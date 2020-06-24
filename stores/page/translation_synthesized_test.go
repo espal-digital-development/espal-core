@@ -7,6 +7,7 @@ import (
 
 	"github.com/espal-digital-development/espal-core/stores/page"
 )
+
 func TestTranslationTable(t *testing.T) {
 	translation := page.NewTranslationEntity()
 	if translation.TableName() == "" {
