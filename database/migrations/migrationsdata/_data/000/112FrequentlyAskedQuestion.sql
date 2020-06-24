@@ -1,0 +1,21 @@
+CREATE TABLE "FrequentlyAskedQuestion" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"frequentlyAskedQuestionSectionID" UUID,
+	"domainID" UUID,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"active" BOOL NOT NULL DEFAULT false,
+	"sorting" INT NOT NULL DEFAULT 0,
+	INDEX "FrequentlyAskedQuestion_idx_createdByID" ("createdByID"),
+	INDEX "FrequentlyAskedQuestion_idx_updatedByID" ("updatedByID"),
+	INDEX "FrequentlyAskedQuestion_idx_faqSectionID" ("frequentlyAskedQuestionSectionID"),
+	INDEX "FrequentlyAskedQuestion_idx_domainID" ("domainID"),
+	CONSTRAINT "FAQ_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "FAQ_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "FAQ_frequentlyAskedQuestionSectionID" FOREIGN KEY ("frequentlyAskedQuestionSectionID") REFERENCES "FrequentlyAskedQuestionSection" ("id"),
+	CONSTRAINT "FAQ_domainID" FOREIGN KEY ("domainID") REFERENCES "Domain" ("id"),
+	FAMILY "Primary" ("id", "createdByID", "frequentlyAskedQuestionSectionID", "domainID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "active", "sorting")
+);

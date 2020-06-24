@@ -1,0 +1,22 @@
+CREATE TABLE "ProductModelDimension" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"productModelID" UUID NOT NULL,
+	"propertyID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"sorting" INT NOT NULL DEFAULT 0,
+    "key" STRING(255),
+    UNIQUE INDEX "ProductModelDimension_uidx_productModelID_propertyID" ("productModelID", "propertyID"),
+    UNIQUE INDEX "ProductModelDimension_uidx_key" ("key"),
+	INDEX "ProductModelDimension_idx_createdByID" ("createdByID"),
+	INDEX "ProductModelDimension_idx_updatedByID" ("updatedByID"),
+	INDEX "ProductModelDimension_idx_propertyID" ("propertyID"),
+	CONSTRAINT "ProductModelDimension_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "ProductModelDimension_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "ProductModelDimension_productModelID" FOREIGN KEY ("productModelID") REFERENCES "ProductModel" ("id"),
+	CONSTRAINT "ProductModelDimension_propertyID" FOREIGN KEY ("propertyID") REFERENCES "Property" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "createdAt", "productModelID", "propertyID"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "sorting", "key")
+);

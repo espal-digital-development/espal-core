@@ -1,0 +1,19 @@
+{
+    "file_line": 575,
+    "func_line": 200,
+    "params_num": 12,
+    "results_num": 3,
+    "formated": true,
+    "pkg_name": true,
+    "camel_name": true,
+    "ignore":[
+        "*/*mock/*.go",
+        "*/*/*mock/*.go",
+        "*/*/*/*mock/*.go",
+        "*/*/*/bindata.go",
+        "repositories/languages/data.go"
+    ],
+    "fatal":[
+        "formated"
+    ]
+}

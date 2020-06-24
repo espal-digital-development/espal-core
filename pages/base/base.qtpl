@@ -1,0 +1,61 @@
+{% interface
+BasePage {
+    Title()
+    Menu()
+    Content()
+    Stylesheets()
+    Javascripts()
+    mainJavascripts()
+}
+%}
+
+{% func PageTemplate(basePage BasePage) %}{% stripspace %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{%= basePage.Title() %}</title>
+        <link rel="stylesheet" href="/c/m.css">
+        {%= basePage.Stylesheets() %}
+    </head>
+    <body>{% stripspace %}
+        {%= basePage.Menu() %}
+        {%= basePage.Content() %}
+        {%= basePage.mainJavascripts() %}
+        {%= basePage.Javascripts() %}
+    {% endstripspace %}</body>
+</html>
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) Title() %}{% endfunc %}
+
+{% func (page *Page) Menu() %}{% stripspace %}
+<header>
+    <a href="/">{%s page.Translate("home") %}</a>
+    <a href="/Catalog">{%s page.Translate("catalog") %}</a>
+    <a href="/Forums">{%s page.TranslatePlural("forum") %}</a>
+    <a href="/Cart">{%s page.Translate("shoppingCart") %}</a>
+    {% if page.IsLoggedIn() %}<a href="/Account">{%s page.Translate("myAccount") %}</a>{% endif %}
+    {% if !page.IsLoggedIn() %}<a href="/Login">{%s page.Translate("login") %}</a>{% endif %}
+    {% if page.IsLoggedIn() %}<a href="/Logout">{%s page.Translate("logout") %}</a>{% endif %}
+    {% if !page.IsLoggedIn() %}<a href="/ForgotPassword">{%s page.Translate("forgotPassword") %}</a>{% endif %}
+    {% if page.IsLoggedIn() && page.HasAdminAccess() %}
+        <a href="{%s page.AdminURL() %}">{%s page.Translate("admin") %}</a>
+    {% endif %}
+    {% if page.HasPprofEnabled() %}
+        <a href="{%s page.PprofURL() %}">Pprof</a>
+    {% endif %}
+</header>
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) mainJavascripts() %}{% stripspace %}
+{% if page.HasFlashMessage() %}
+<script src="/j/flashMessage.js"></script>
+{% endif %}
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) Content() %}{% endfunc %}
+
+{% func (page *Page) Stylesheets() %}{% endfunc %}
+
+{% func (page *Page) Javascripts() %}{% endfunc %}

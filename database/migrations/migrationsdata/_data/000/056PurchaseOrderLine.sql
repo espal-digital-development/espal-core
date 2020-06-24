@@ -1,0 +1,23 @@
+CREATE TABLE "PurchaseOrderLine" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"purchaseOrderID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"sorting" INT NOT NULL DEFAULT 0,
+	"quantity" INT NOT NULL,
+	"price" DECIMAL(9,2) NOT NULL,
+	"vatPercentage" DECIMAL(9,6) NOT NULL,
+	"comments" STRING,
+	INDEX "PurchaseOrderLine_idx_createdByID" ("createdByID"),
+	INDEX "PurchaseOrderLine_idx_updatedByID" ("updatedByID"),
+	INDEX "PurchaseOrderLine_idx_purchaseOrderID" ("purchaseOrderID"),
+	CONSTRAINT "PurchaseOrderLine_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PurchaseOrderLine_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PurchaseOrderLine_purchaseOrderID" FOREIGN KEY ("purchaseOrderID") REFERENCES "PurchaseOrder" ("id"),
+	FAMILY "Primary" ("id", "createdByID", "purchaseOrderID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt"),
+	FAMILY "Tertiary" ("sorting", "comments"),
+	FAMILY "QuantityPrice" ("quantity", "price", "vatPercentage")
+);

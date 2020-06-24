@@ -1,0 +1,7 @@
+{% func (page *Page) Title() %}{%s page.Translate("home") %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<main class="content">
+    <h1 class="pageTitle">{%s page.Translate("administrationPanel") %}</h1>
+</main>
+{% endstripspace %}{% endfunc%}

@@ -1,0 +1,22 @@
+CREATE TABLE "Domain" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"siteID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"active" BOOL NOT NULL DEFAULT false,
+    "host" STRING(255) NOT NULL,
+    "language" INT2,
+	"currencies" STRING NOT NULL DEFAULT '',
+    UNIQUE INDEX "Domain_uidx_host" ("host"),
+	INDEX "Domain_idx_createdByID" ("createdByID"),
+	INDEX "Domain_idx_updatedByID" ("updatedByID"),
+	INDEX "Domain_idx_siteID" ("siteID"),
+	CONSTRAINT "Domain_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "Domain_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "Domain_siteID" FOREIGN KEY ("siteID") REFERENCES "Site" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "siteID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt"),
+	FAMILY "Tertiary" ("active", "host", "language", "currencies")
+);

@@ -1,0 +1,22 @@
+CREATE TABLE "PurchaseOrder" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"supplierID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"currency" INT2 NOT NULL,
+	"comments" STRING,
+	"sellingPartyAutograph" BYTES,
+	"buyingPartyAutograph" BYTES,
+	INDEX "PurchaseOrder_idx_createdByID" ("createdByID"),
+	INDEX "PurchaseOrder_idx_updatedByID" ("updatedByID"),
+	INDEX "PurchaseOrder_idx_supplierID" ("supplierID"),
+	CONSTRAINT "PurchaseOrder_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PurchaseOrder_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PurchaseOrder_supplierID" FOREIGN KEY ("supplierID") REFERENCES "Supplier" ("id"),
+	FAMILY "Primary" ("id", "createdByID", "supplierID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt"),
+	FAMILY "Tertiary" ("currency", "comments"),
+	FAMILY "Autopgrahs" ("sellingPartyAutograph", "buyingPartyAutograph")
+);

@@ -1,0 +1,88 @@
+{% import "time" %}
+
+{% func (page *Page) Title() %}{%s page.TranslatePlural("userGroup") %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<main class="content">
+    <h1>{%s page.TranslatePlural("userGroup") %}</h1>
+    {%s= page.actions.RenderOverviewActions() %}
+    {%s= page.filter.RenderOverviewFilter(page.GetCoreContext()) %}
+    {% if len(page.userGroups) > 0 %}
+        <table>
+            <thead>
+                <tr>
+                {% if page.canUpdate || page.canDelete %}
+                    <th><input type="checkbox" name="check"></th>
+                    <th></th>
+                {% endif %}
+                <th></th>
+                {%s= page.filter.RenderOverviewColumnTableHeaders(page.GetCoreContext()) %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for k := range page.userGroups %}
+                    <tr>
+                        {% if page.canUpdate || page.canDelete %}
+                            <td><input type="checkbox" name="check" data-id="{%s page.userGroups[k].ID() %}"></td>
+                            {% comment %}TODO :: update view{% endcomment %}
+                            <td><a href="{%s page.AdminURL() %}/UserGroup/Update?id={%s page.userGroups[k].ID() %}">✎</a></td>
+                        {% endif %}
+
+                        {% comment %}TODO :: need to create viewPages  {% endcomment %}
+                        <td><a href="{%s page.AdminURL() %}/UserGroup/View?id={%s page.userGroups[k].ID() %}">{%s page.TranslatePlural("detail") %}</a></td>
+
+                        {% for key := range page.filter.ColumnsInOrder() %}
+                            <td>
+                            {% switch key %}
+                            {% case 0 %}
+                                {%s page.userGroups[k].ID() %}
+                            {% case 1 %}
+                                {% if page.userGroups[k].Active() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}
+                            {% case 2 %}
+                                <a href="{%s page.AdminURL() %}/User/View?id={%s page.userGroups[k].CreatedByID() %}">
+                                    {%s page.rendererService.CreatedBy(page.userGroups[k], page.language.ID()) %}
+                                </a>
+                            {% case 3 %}
+                                {%s page.userGroups[k].CreatedAt().Format(time.RFC3339[0:9]) %}
+                            {% case 4 %}
+                                {% if page.userGroups[k].IsUpdated() %}
+                                    <a href="{%s page.AdminURL() %}/User/View?id={%s *page.userGroups[k].UpdatedByID() %}">
+                                        {%s page.rendererService.UpdatedBy(page.userGroups[k], page.language.ID()) %}
+                                    </a>
+                                {% endif %}
+                            {% case 5 %}
+                                {% if page.userGroups[k].UpdatedAt() != nil %}{%s page.userGroups[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}
+                            {% case 6%}
+                                {% if page.userGroups[k].LocalizedName() != nil %}{%s *page.userGroups[k].LocalizedName() %}{% endif %} 
+                            {% case 7 %}
+                                {%v page.userGroups[k].UserRightsCount() %}
+                            {% case 8 %}
+                                {%v page.userGroups[k].CurrenciesCount() %}
+                            {% endswitch %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        {%s page.Translate("noResultsFound") %}
+    {% endif %}
+</main>
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Stylesheets() %}{% stripspace %}
+{% if page.filter.ShouldShowSearch() %}
+    <link rel="stylesheet" href="/c/a/f.css">
+{% endif %}
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Javascripts() %}{% stripspace %}
+{% if page.filter.ShouldShowSearch() %}
+    <script src="/j/a/f.js"></script>
+{% endif %}
+{% if len(page.userGroups) > 0 %}
+    <script src="/j/a/o.js"></script>
+    {%s= page.rendererService.DefaultOverviewTranslations(page.GetCoreContext()) %}
+{% endif %}
+{% endstripspace %}{% endfunc%}

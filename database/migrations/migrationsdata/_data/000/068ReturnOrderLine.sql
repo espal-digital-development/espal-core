@@ -1,0 +1,21 @@
+CREATE TABLE "ReturnOrderLine" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"returnOrderID" UUID NOT NULL,
+	"saleOrderLineID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"quantity" INT NOT NULL,
+	"comments" STRING,
+	INDEX "ReturnOrderLine_idx_createdByID" ("createdByID"),
+	INDEX "ReturnOrderLine_idx_updatedByID" ("updatedByID"),
+	INDEX "ReturnOrderLine_idx_returnOrderID" ("returnOrderID"),
+	INDEX "ReturnOrderLine_idx_saleOrderLineID" ("saleOrderLineID"),
+	CONSTRAINT "ReturnOrderLine_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "ReturnOrderLine_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "ReturnOrderLine_returnOrderID" FOREIGN KEY ("returnOrderID") REFERENCES "ReturnOrder" ("id"),
+	CONSTRAINT "ReturnOrderLine_saleOrderLineID" FOREIGN KEY ("saleOrderLineID") REFERENCES "SaleOrderLine" ("id"),
+	FAMILY "Primary" ("id", "createdByID", "returnOrderID", "saleOrderLineID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "quantity", "comments")
+);

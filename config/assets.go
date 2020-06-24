@@ -1,0 +1,57 @@
+package config
+
+// Assets config section.
+type Assets interface {
+	AssetsGZip() bool
+	AssetsBrotli() bool
+	AssetsGZipFiles() bool
+	AssetsBrotliFiles() bool
+	AssetsCacheMaxAge() string
+}
+
+type assets struct {
+	Gzip        bool
+	Brotli      bool
+	GzipFiles   bool   `yaml:"gzipFiles"`
+	BrotliFiles bool   `yaml:"brotliFiles"`
+	CacheMaxAge string `yaml:"cacheMaxAge"` // String to not have to convert on runtime every time
+}
+
+// AssetsGZip returns an indicator if assets calls like CSS, JS
+// and images should be served GZipped.
+// This feature works dynamically and if an agent doesn't support it
+// it will still serve the raw data variation.
+// This option can be disabled if you know for sure that your visitors
+// don't support (or want) GZip and you want to save some memory on
+// the stored Gzip variations of the assets.
+func (configuration *Configuration) AssetsGZip() bool {
+	return configuration.assets.Gzip
+}
+
+// AssetsBrotli returns an indicator if assets calls like CSS, JS
+// and images should be served as Brotli compressed.
+// This function has the same behavior as GzipAssets
+func (configuration *Configuration) AssetsBrotli() bool {
+	return configuration.assets.Brotli
+}
+
+// AssetsGZipFiles returns an indicator if files calls should be served
+// as GZip compressed.
+// This function has the same behavior as GzipAssets
+func (configuration *Configuration) AssetsGZipFiles() bool {
+	return configuration.assets.GzipFiles
+}
+
+// AssetsBrotliFiles returns an indicator if files calls should be served
+// as Brotli compressed.
+// This function has the same behavior as GzipAssets
+func (configuration *Configuration) AssetsBrotliFiles() bool {
+	return configuration.assets.BrotliFiles
+}
+
+// AssetsCacheMaxAge returns a string variation for HTTP MaxCache.
+// It is a string so empty literally so it doesn't need int conversion
+// every time when it's 0.
+func (configuration *Configuration) AssetsCacheMaxAge() string {
+	return configuration.assets.CacheMaxAge
+}

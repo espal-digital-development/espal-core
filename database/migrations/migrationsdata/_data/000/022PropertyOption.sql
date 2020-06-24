@@ -1,0 +1,20 @@
+CREATE TABLE "PropertyOption" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+    "propertyID" UUID NOT NULL,
+    "createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"active" BOOL NOT NULL DEFAULT false,
+	"sorting" INT NOT NULL DEFAULT 0,
+    "key" STRING(255),
+    UNIQUE INDEX "PropertyOption_uidx_key" ("key"),
+	INDEX "PropertyOption_idx_createdByID" ("createdByID"),
+	INDEX "PropertyOption_idx_updatedByID" ("updatedByID"),
+	INDEX "PropertyOption_idx_propertyID" ("propertyID"),
+	CONSTRAINT "PropertyOption_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PropertyOption_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PropertyOption_propertyID" FOREIGN KEY ("propertyID") REFERENCES "Property" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "createdAt", "propertyID"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "active", "sorting", "key")
+);

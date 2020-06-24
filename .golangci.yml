@@ -1,0 +1,69 @@
+run:
+  concurrency: 4
+  timeout: 30s # First run might be very slow. Afterwards it should be fast
+  issues-exit-code: 25
+  # linters-settings:
+linters:
+  enable:
+    # TODO :: Unquoted linters without an extra comments still need to
+    # be enabled and then have the code fixed.
+    - bodyclose
+    - golint
+    - stylecheck
+    # - gosec # TODO :: The concat queries really need to be fixed, and also quoted
+    - interfacer
+    - unconvert
+    - goconst
+    # - gocognit # TODO :: Try making the complex functions less long winding
+    - asciicheck
+    - gofmt
+    - goimports
+    - depguard # This probably needs custom configuration
+    - misspell
+    - unparam
+    - gochecknoinits
+    - whitespace
+    - goprintffuncname
+    # - gomnd
+    # - goerr113
+    - gomodguard # This probably needs custom configuration
+    - testpackage
+    # - nestif
+    - nolintlint
+
+    # These are enabled, but can slow down global scanning.
+    # Disable them if you want to scan other things more quickly.
+    # - gocyclo
+    # - lll
+    # - dogsled
+    # - nakedret
+    # - prealloc
+    # - scopelint
+    # - gocritic
+    # - funlen
+    # - godot
+
+    # Unused (mutliple reasons):
+    # - rowserrcheck # It already checks the extra error
+    # - dupl # We intentionally use duplicated code in places
+    # - maligned # These changes are very small (might be fun for some tweaking later)
+    # - gochecknoglobals # Can't disable test files, which uses many variable
+    # - godox # Maybe be handy to quickly find TODO's, but might as well just use search
+    # - wsl # Too aggressive
+linters-settings:
+  gocyclo:
+    # TODO :: This can be lowered with some refactoring
+    min-complexity: 56
+  lll:
+    # TODO :: This can be lowered with some refactoring
+    line-length: 170
+  nakedret:
+    # TODO :: This can be lowered with some refactoring
+    max-func-lines: 70
+  gocritic:
+    disabled-checks:
+      - regexpMust
+  funlen:
+    # TODO :: This can be lowered with some refactoring
+    lines: 200
+    statements: 140

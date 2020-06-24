@@ -1,0 +1,23 @@
+{% func (page *Page) Title() %}{%s page.TranslatePlural("site") %} > {%s page.translatedName %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<main class="content">
+    <h1>{%s page.TranslatePlural("site") %}{%s " > " %}{%s page.translatedName %}</h1>
+
+    <p>
+        <a href="{%s page.AdminURL() %}/Site">{%s page.Translate("backToOverview") %}</a><br>
+        <a href="{%s page.AdminURL() %}/Site/Update?id={%s page.site.ID() %}">{%s "✎ " %}{%s page.Translate("update") %}</a>
+    </p>
+    <p>{% if page.site.Online() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}</p>
+    <p>{%s page.Translate("language") + ": " %}{% if page.siteLanguage != nil %}{%s page.siteLanguage.Translate(page.language.ID()) %}{% endif %}</p>
+    <p>{%s page.Translate("country") + ": " %}{% if page.siteCountry != nil %}{%s page.siteCountry.Translate(page.language.ID()) %}{% endif %}</p>
+    <p>
+        {%s page.TranslatePlural("currency") + ": " %}
+        <ul>
+            {% for k := range page.currencies %}
+                <li>{%s page.currencies[k] %}</li>
+            {% endfor %}
+        </ul>
+    </p>
+</main>
+{% endstripspace %}{% endfunc%}

@@ -1,0 +1,607 @@
+# Key Legend
+# s = Singular
+# p = Plural
+# sf = SingularFormatted
+# pf = PluralFormatted
+accountActivation:
+    s: "Account Activation"
+activateAccount:
+    s: "Activate Account"
+content:
+    s: "Content"
+home:
+    s: "Home"
+registerAccountSucceeded:
+    s: "Register Account Succeeded"
+firstName:
+    s: "First name"
+field:
+    s: "Field"
+    p: "Fields"
+name:
+    s: "Name"
+userGroupTranslation:
+    p: "User Group Translations"
+description:
+    s: "Description"
+passwordRecovery:
+    s: "Password Recovery"
+thanksForRegistering_:
+    s: "Thank you for registering! You will receive a message with the activation link soon."
+dashboard:
+    s: "Dashboard"
+overview:
+    s: "Overview"
+forgotYourPassword:
+    s: "Forgot your password?"
+logistic:
+    p: "Logistics"
+passwordResetRequest:
+    s: "Password Reset Request"
+resetLinkSent_:
+    s: "If your supplied e-mail address is known in our system you will receive a message with the reset link soon."
+translation:
+    s: "Translation"
+    p: "Translations"
+activationLinkSent_:
+    s: "If your supplied e-mail address is known in our system you will receive a message with the activation link soon."
+customerRelation:
+    p: "Customer Relations"
+financial:
+    s: "Financial"
+productLifecycle:
+    s: "Product Lifecycle"
+technicalService:
+    s: "Technical Service"
+password:
+    s: "Password"
+newPassword:
+    s: "New password"
+repeatPassword:
+    s: "Repeat password"
+repeatNewPassword:
+    s: "Repeat new password"
+passwordMayNotBeEqualToTheEmail:
+    s: "password may not be equal to the e-mail"
+passwordReset:
+    s: "Password Reset"
+registerAccount:
+    s: "Register Account"
+logout:
+    s: "Logout"
+login:
+    s: "Login"
+emailIsAlreadyUsed:
+    s: "e-mail is already used"
+admin:
+    s: "Admin"
+view:
+    s: "View"
+surname:
+    s: "Surname"
+search:
+    s: "Search"
+administrationPanel:
+    s: "Administration Panel"
+repeatEmail:
+    s: "Repeat e-mail"
+core:
+    s: "Core"
+optional:
+    s: "Optional"
+theSuppliedCredentialsAreNotValid:
+    s: "the supplied credentials are not valid"
+yourPasswordShouldNotBeTheSameAsBefore:
+    s: "your password should not be the same as before"
+theSuppliedInformationDoesNotMatchAnyActiveAccount:
+    s: "the supplied information does not match any active account"
+forgotPassword:
+    s: "Forgot Password"
+noAccountYet:
+    s: "No account yet?"
+registerNewAccount:
+    s: "Register new account"
+dateOfBirth:
+    s: "Date of birth"
+gotoTheFrontend:
+    s: "Go to the front-end"
+catalog:
+    s: "Catalog"
+email:
+    s: "E-mail"
+couponCode:
+    s: "Coupon Code"
+    p: "Coupon Codes"
+property:
+    s: "Property"
+    p: "Properties"
+wishlist:
+    s: "Wishlist"
+    p: "Wishlists"
+discountCode:
+    s: "Discount Code"
+    p: "Discount Codes"
+cart:
+    s: "Cart"
+    p: "Carts"
+credit:
+    s: "Credit"
+    p: "Credits"
+subscription:
+    s: "Subscription"
+    p: "Subscriptions"
+filter:
+    s: "Filter"
+    p: "Filters"
+stock:
+    p: "Stock"
+userGroup:
+    s: "User Group"
+    p: "User Groups"
+userRight:
+    p: "User Rights"
+invoice:
+    s: "Invoice"
+    p: "Invoices"
+forum:
+    s: "Forum"
+    p: "Forums"
+exportProfile:
+    p: "Export Profiles"
+tax:
+    s: "Tax"
+    p: "Taxes"
+menu:
+    p: "Menus"
+blogPost:
+    p: "Blog Posts"
+errorLog:
+    p: "Error Logs"
+shop:
+    p: "Shops"
+technicalStatistic:
+    p: "Technical Statistics"
+lead:
+    p: "Leads"
+block:
+    p: "Blocks"
+account:
+    s: "Account"
+    p: "Accounts"
+pickingSlip:
+    p: "Picking Slips"
+download:
+    p: "Downloads"
+sizescreen:
+    p: "Sizescreens"
+billOfMaterial:
+    p: "Bills of Material"
+newsArticle:
+    p: "News Articles"
+warehouse:
+    p: "Warehouses"
+paymentAccount:
+    s: "Payment Account"
+    p: "Payment Accounts"
+stockLocation:
+    p: "Stock Locations"
+newsletter:
+    p: "Newsletters"
+emailLog:
+    p: "E-mail Logs"
+language:
+    s: "Language"
+    p: "Languages"
+opportunity:
+    p: "Opportunities"
+frequentlyAskedQuestion:
+    p: "Frequently Asked Questions"
+slug:
+    p: "Slugs"
+setting:
+    p: "Settings"
+saleOrder:
+    s: "Sale Order"
+    p: "Sale Orders"
+priceGroup:
+    s: "Price Group"
+    p: "Price Groups"
+paymentProvider:
+    s: "Payment Provider"
+    p: "Payment Providers"
+group:
+    p: "Groups"
+importProfile:
+    p: "Import Profiles"
+swimmingLane:
+    p: "Swimming Lanes"
+webservice:
+    p: "Webservices"
+purchaseOrder:
+    s: "Purchase Order"
+    p: "Purchase Orders"
+supplier:
+    p: "Suppliers"
+phase:
+    p: "Phases"
+prototype:
+    p: "Prototypes"
+offer:
+    p: "Offers"
+campaign:
+    p: "Campaigns"
+accessLog:
+    p: "Access Logs"
+gift:
+    p: "Gifts"
+returnOrder:
+    p: "Return Orders"
+receiving:
+    p: "Receivings"
+giftWrapping:
+    p: "Gift Wrappings"
+user:
+    s: "User"
+    p: "Users"
+tag:
+    p: "Tags"
+country:
+    s: "Country"
+    p: "Countries"
+userContact:
+    s: "User Contact"
+    p: "User Contacts"
+person:
+    p: "Persons"
+project:
+    p: "Projects"
+shippingWindow:
+    p: "Shipping Windows"
+deliveryMethod:
+    p: "Delivery Methods"
+media:
+    p: "Media"
+store:
+    p: "Stores"
+dataMapping:
+    p: "Data Mappings"
+shipmentCost:
+    s: "Shipment Cost"
+    p: "Shipment Costs"
+page:
+    p: "Pages"
+paymentTransaction:
+    s: "Payment Transaction"
+    p: "Payment Transactions"
+prospect:
+    p: "Prospects"
+currency:
+    p: "Currencies"
+shipment:
+    p: "Shipments"
+poll:
+    p: "Polls"
+office:
+    p: "Offices"
+emailTemplate:
+    p: "E-mail Templates"
+searchHistory:
+    p: "Search History"
+priceList:
+    s: "Price List"
+    p: "Price Lists"
+report:
+    p: "Reports"
+reportAndLog:
+    p: "Reports & Logs"
+fieldXPasswordIsNotSafeEnough:
+    sf: "Field `%s` password is not safe enough"
+fieldXIsMissingAccordingToTheValidator:
+    sf: "Field `%s` is missing according to the validator"
+fieldXIsIncorrectlyFormatted:
+    sf: "Field `%s` is incorrectly formatted"
+fieldXYearIsIncorrectlyFormatted:
+    sf: "Field `%s` year is incorrectly formatted"
+fieldXCannotBeSmallerThanX:
+    sf: "Field `%s` cannot be smaller than %d"
+fieldXCannotBeGreaterThanX:
+    sf: "Field `%s` cannot be greater than %d"
+fieldXCannotBeLongerThanXCharacters:
+    sf: "Field `%s` cannot be longer than %d character(s)"
+fieldXMonthIsIncorrectlyFormatted:
+    sf: "Field `%s` month is incorrectly formatted"
+fieldXCannotBeEmpty:
+    sf: "Field `%s` cannot be empty"
+fieldXHasToBeAtLeastXCharactersLong:
+    sf: "Field `%s` has to be at least %d character(s) long"
+fieldXDayIsIncorrectlyFormatted:
+    sf: "Field `%s` day is incorrectly formatted"
+fieldXIsNotAValidEmail:
+    sf: "Field `%s` is not a valid e-mail address"
+fieldXDoesNotAllowMultipleValues:
+    sf: "Field `%s` does not allow multiple values"
+id:
+    s: "ID"
+active:
+    s: "Active"
+yes_:
+    s: "Yes"
+no_:
+    s: "No"
+createdAt:
+    s: "Created at"
+updatedAt:
+    s: "Updated at"
+createdBy:
+    s: "Created by"
+updatedBy:
+    s: "Updated by"
+reseller:
+    p: "Resellers"
+mailMeTheLink:
+    s: "Mail me the link"
+create:
+    s: "Create"
+detail:
+    p: "Details"
+rememberMe:
+    s: "Remember me"
+userTask:
+    p: "User Tasks"
+post:
+    p: "Posts"
+thereIsNoForumToDisplay:
+    p: "There are no forums to display"
+thereIsNoPostOrForumToDisplay:
+    p: "There are no posts nor forums to display"
+reply:
+    p: "Replies"
+topic:
+    p: "Topics"
+save:
+    s: "Save"
+update:
+    s: "Update"
+delete:
+    s: "Delete"
+avatar:
+    s: "Avatar"
+priority:
+    s: "Priority"
+comment:
+    s: "Comment"
+    p: "Comments"
+default:
+    s: "Default"
+userAddress:
+    s: "User Address"
+    p: "User Addresses"
+delivery:
+    s: "Delivery"
+validationTokenNotSupplied:
+    s: "Validation token not supplied"
+validationTokenInvalidExpired:
+    s: "Validation token invalid/expired"
+honeypotFieldNotSupplied:
+    s: "Honeypot field not supplied"
+makeAChoice:
+    s: "Make a choice"
+defaultDeliveryAddress:
+    s: "Default Delivery Address"
+defaultInvoiceAddress:
+    s: "Default Invoice Address"
+theXFieldAndXFieldHaveToBeTheSame:
+    sf: "The `%s` field and `%s` field have to be the same"
+theXFieldAndXFieldCannotBeTheSame:
+    sf: "The `%s` field and `%s` field cannot be the same"
+valueXIsNotAllowedForFieldX:
+    sf: "Value `%s` is not allowed for field `%s`"
+filenameCannotBeEmpty:
+    s: "Filename cannot be empty"
+error400Title_:
+    s: "Bad request"
+error400Message_:
+    s: "The way the request was expected is not correct."
+error401Title_:
+    s: "Unauthorized"
+error401Message_:
+    s: "You are not authorized to access this section."
+error403Title_:
+    s: "Forbidden"
+error403Message_:
+    s: "You are not allowed to access this section."
+error404Title_:
+    s: "Not found"
+error404Message_:
+    s: "We're sorry but the page you're looking for could not be found."
+error500Title_:
+    s: "Internal error"
+error500Message_:
+    s: "Something went wrong with the code execution on the server."
+emailIsAlreadyInUse:
+    s: "E-mail is already in use"
+clearSelection:
+    s: "Clear selection"
+removeAvatar:
+    s: "Remove avatar"
+areYouSure:
+    s: "Are you sure?"
+at:
+    s: "at"
+creationWasSuccessful:
+    s: "Creation was successful"
+updateWasSuccessful:
+    s: "Update was successful"
+noDataWasChanged:
+    s: "No data was changed"
+deletionWasSuccessful:
+    s: "Deletion was successful"
+deletionHasFailed:
+    s: "Deletion has failed"
+activeTogglingWasSuccessful:
+    s: "Active toggling was successful"
+activeTogglingHasFailed:
+    s: "Active toggling has failed"
+creationHasFailed:
+    s: "Creation has failed"
+updateHasFailed:
+    s: "Update has failed"
+saveAndReturn:
+    s: "Save and return"
+saveAndCreateAnother:
+    s: "Save and create another"
+saveAndClone:
+    s: "Save and clone"
+nothingSelected:
+    s: "Nothing selected"
+fieldXDoesNotAllowFileTypeX:
+    sf: "Field `%s` does not allow the file type `%s`"
+cancel:
+    s: "Cancel"
+toggleActiveSelection:
+    s: "Toggle Active Selection"
+deleteSelected:
+    s: "Delete Selected"
+noResultsFound:
+    s: "No Results Found"
+street:
+    s: "Street"
+streetLine2:
+    s: "Street (Line 2)"
+number:
+    s: "Number"
+numberAddition:
+    s: "Number addition"
+zipCode:
+    s: "ZIP Code"
+city:
+    s: "City"
+state:
+    s: "State"
+phoneNumber:
+    s: "Phone Number"
+backToOverview:
+    s: "Back to Overview"
+sorting:
+    s: "Sorting"
+shoppingCart:
+    s: "Shopping Cart"
+myAccount:
+    s: "My Account"
+suppliedPasswordsAreNotTheSame:
+    s: "Supplied passwords are not the same"
+result:
+    s: "Result"
+    p: "Results"
+site:
+    s: "Site"
+    p: "Sites"
+domain:
+    s: "Domain"
+    p: "Domains"
+online:
+    s: "Online"
+toggleOnlineSelection:
+    s: "Toggle Online Selection"
+onlineTogglingWasSuccessful:
+    s: "Online toggling was successful"
+onlineTogglingHasFailed:
+    s: "Online toggling has failed"
+authentication:
+    s: "Authentication"
+username:
+    s: "Username"
+biography:
+    s: "Biography"
+recommendation:
+    p: "Recommendations"
+purchase:
+    p: "Purchases"
+digitalPurchase:
+    p: "Digital Purchases"
+order:
+    p: "Orders"
+discount:
+    p: "Discounts"
+emailSubscription:
+    p: "E-mail Subscriptions"
+addressbook:
+    s: "Addressbooks"
+personalMessage:
+    p: "Personal Messages"
+activity:
+    s: "Activity"
+preference:
+    p: "Preferences"
+emailSetting:
+    p: "Email Settings"
+editAccount:
+    s: "Edit Account"
+paymentOption:
+    p: "Payment Options"
+twoFactorIdentification:
+    s: "Two-factor Identification"
+app:
+    p: "Apps"
+changePassword:
+    s: "Change Password"
+information:
+    s: "Information"
+memberSince:
+    s: "Member since"
+currentPassword:
+    s: "Current password"
+yourCurrentPasswordDidNotMatch:
+    s: "Your current password did not match"
+yourPasswordHasBeenUpdated:
+    s: "Your password has been updated!"
+new:
+    s: "New"
+host:
+    s: "Host"
+address:
+    s: "Address"
+    p: "Addresses"
+contact:
+    s: "Contact"
+    p: "Contacts"
+read:
+    s: "Read"
+access:
+    s: "Access"
+category:
+    s: "Category"
+productModel:
+    s: "Product Model"
+    p: "Product Models"
+productVariant:
+    s: "Product Variant"
+    p: "Product Variants"
+bundledProduct:
+    s: "Bundled Product"
+    p: "Bundled Products"
+propertyGroup:
+    s: "Property Group"
+    p: "Property Groups"
+productReview:
+    s: "Product Review"
+    p: "Product Reviews"
+auth:
+    p: "Authentications"
+adminSection:
+    p: "Admin sections"
+updateUserrightSelection:
+    s: "Update Userright Selection"
+fieldXContainsInvalidChosenValue:
+    sf: "Field `%s` contains an invalid chosen value"
+    pf: "Field `%s` contains invalid chosen values"
+avatarIsNotSet:
+    s: "Avatar is not set"
+userNotFound:
+    s: "User not found"
+removalWasSuccessful:
+    p: "Removal was succesful"
+unknownActivationHash:
+    s: "Unknown activation hash"
+unknownActivationHashMessage:
+    s: "The hash can't be validated. Maybe you clicked the link twice? Try logging in with your credentials. Otherwise contact our support."

@@ -1,0 +1,98 @@
+{% import "time" %}
+
+{% func (page *Page) Title() %}{%s page.TranslatePlural("user") %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<main class="content">
+    <h1>{%s page.TranslatePlural("user") %}</h1>
+    {%s= page.actions.RenderOverviewActions() %}
+    {%s= page.filter.RenderOverviewFilter(page.GetCoreContext()) %}
+    {% if len(page.users) > 0 %}
+        <table>
+            <thead>
+                <tr>
+                {% if page.canUpdate || page.canDelete %}
+                    <th><input type="checkbox" name="check"></th>
+                    <th></th>
+                {% endif %}
+                <th></th>
+                {%s= page.filter.RenderOverviewColumnTableHeaders(page.GetCoreContext()) %}
+            </tr>
+            </thead>
+            <tbody>
+                {% for k := range page.users %}
+                    <tr>
+                        {% if page.canUpdate || page.canDelete %}
+                            <td><input type="checkbox" name="check" data-id="{%s page.users[k].ID() %}"></td>
+                            <td><a href="{%s page.AdminURL() %}/User/Update?id={%s page.users[k].ID() %}">✎</a></td>
+                        {% endif %}
+
+                        <td><a href="{%s page.AdminURL() %}/User/View?id={%s page.users[k].ID() %}">{%s page.TranslatePlural("detail") %}</a></td>
+
+                        {% for key := range page.filter.ColumnsInOrder() %}
+                            <td>
+                                {% switch key %}
+                                {% case 0 %}
+                                    {%s page.users[k].ID() %}
+                                {% case 1 %}
+                                    {% if page.users[k].Active() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}
+                                {% case 2 %}
+                                    <a href="{%s page.AdminURL() %}/User/View?id={%s page.users[k].CreatedByID() %}">
+                                        {%s page.rendererService.CreatedBy(page.users[k], page.language.ID()) %}
+                                    </a>
+                                {% case 3 %}
+                                    {%s page.users[k].CreatedAt().Format(time.RFC3339[0:9]) %}
+                                {% case 4 %}
+                                    {% if page.users[k].IsUpdated() %}
+                                        <a href="{%s page.AdminURL() %}/User/View?id={%s *page.users[k].UpdatedByID() %}">
+                                            {%s page.rendererService.UpdatedBy(page.users[k], page.language.ID()) %}
+                                        </a>
+                                    {% endif %}
+                                {% case 5 %}
+                                    {% if page.users[k].UpdatedAt() != nil %}{%s page.users[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}
+                                {% case 6 %}
+                                    {% if page.users[k].FirstName() != nil %}{%s *page.users[k].FirstName() %}{% endif %}
+                                {% case 7 %}
+                                    {% if page.users[k].Surname() != nil %}{%s *page.users[k].Surname() %}{% endif %}
+                                {% case 8 %}
+                                    {%s page.users[k].Email() %}
+                                {% case 9%}
+                                    {%s page.rendererService.LanguageName(page.users[k].Language(), page.language.ID()) %}
+                                {% case 10 %}
+                                    {% if page.users[k].Country() != nil %}
+                                        {%s page.rendererService.CountryName(*page.users[k].Country(), page.language.ID()) %}
+                                    {% endif %}
+                                {% case 11 %}
+                                    {% if page.users[k].DateOfBirth() != nil %}
+                                        {%s page.users[k].DateOfBirth().Format(time.RFC3339[0:9]) %}
+                                    {% endif %}
+                                {% case 12 %}
+                                    {%v page.users[k].CurrenciesCount() %}
+                                {% endswitch %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        {%s page.Translate("noResultsFound") %}
+    {% endif %}
+</main>
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Stylesheets() %}{% stripspace %}
+{% if page.filter.ShouldShowSearch() %}
+    <link rel="stylesheet" href="/c/a/f.css">
+{% endif %}
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Javascripts() %}{% stripspace %}
+{% if page.filter.ShouldShowSearch() %}
+    <script src="/j/a/f.js"></script>
+{% endif %}
+{% if len(page.users) > 0 %}
+    <script src="/j/a/o.js"></script>
+    {%s= page.rendererService.DefaultOverviewTranslations(page.GetCoreContext()) %}
+{% endif %}
+{% endstripspace %}{% endfunc%}

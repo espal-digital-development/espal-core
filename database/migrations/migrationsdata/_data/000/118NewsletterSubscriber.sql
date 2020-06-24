@@ -1,0 +1,20 @@
+CREATE TABLE "NewsletterSubscriber" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"newsletterID" UUID NOT NULL,
+	"userID" UUID,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"email" STRING(255),
+	UNIQUE INDEX "NewsletterSubscriber_uidx_newsletterID_userID" ("newsletterID", "userID"),
+	INDEX "NewsletterSubscriber_idx_createdByID" ("createdByID"),
+	INDEX "NewsletterSubscriber_idx_updatedByID" ("updatedByID"),
+	INDEX "NewsletterSubscriber_idx_userID" ("userID"),
+	CONSTRAINT "NewsletterSubscriber_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "NewsletterSubscriber_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "NewsletterSubscriber_newsletterID" FOREIGN KEY ("newsletterID") REFERENCES "Newsletter" ("id"),
+	CONSTRAINT "NewsletterSubscriber_userID" FOREIGN KEY ("userID") REFERENCES "User" ("id"),
+	FAMILY "Primary" ("id", "createdByID", "newsletterID", "userID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "email")
+);

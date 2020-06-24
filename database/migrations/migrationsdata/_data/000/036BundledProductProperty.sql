@@ -1,0 +1,22 @@
+CREATE TABLE "BundledProductProperty" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"bundledProductID" UUID NOT NULL,
+	"propertyID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"sorting" INT NOT NULL DEFAULT 0,
+    "key" STRING(255),
+    UNIQUE INDEX "BundledProductProperty_uidx_bundledProductID_propertyID" ("bundledProductID", "propertyID"),
+    UNIQUE INDEX "BundledProductProperty_uidx_key" ("key"),
+	INDEX "BundledProductProperty_idx_createdByID" ("createdByID"),
+	INDEX "BundledProductProperty_idx_updatedByID" ("updatedByID"),
+	INDEX "BundledProductProperty_idx_propertyID" ("propertyID"),
+	CONSTRAINT "BundledProductProperty_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "BundledProductProperty_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "BundledProductProperty_bundledProductID" FOREIGN KEY ("bundledProductID") REFERENCES "BundledProduct" ("id"),
+	CONSTRAINT "BundledProductProperty_propertyID" FOREIGN KEY ("propertyID") REFERENCES "Property" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "createdAt", "bundledProductID", "propertyID"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "sorting", "key")
+);

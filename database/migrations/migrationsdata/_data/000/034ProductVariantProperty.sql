@@ -1,0 +1,22 @@
+CREATE TABLE "ProductVariantProperty" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"productVariantID" UUID NOT NULL,
+	"propertyID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"sorting" INT NOT NULL DEFAULT 0,
+    "key" STRING(255),
+    UNIQUE INDEX "ProductVariantProperty_uidx_productVariantID_propertyID" ("productVariantID", "propertyID"),
+	UNIQUE INDEX "ProductVariantProperty_uidx_key" ("key"),
+	INDEX "ProductVariantProperty_idx_createdByID" ("createdByID"),
+	INDEX "ProductVariantProperty_idx_updatedByID" ("updatedByID"),
+	INDEX "ProductVariantProperty_idx_propertyID" ("propertyID"),
+    CONSTRAINT "ProductVariantProperty_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+    CONSTRAINT "ProductVariantProperty_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+    CONSTRAINT "ProductVariantProperty_productVariantID" FOREIGN KEY ("productVariantID") REFERENCES "ProductVariant" ("id"),
+    CONSTRAINT "ProductVariantProperty_propertyID" FOREIGN KEY ("propertyID") REFERENCES "Property" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "createdAt", "productVariantID", "propertyID"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "sorting", "key")
+);

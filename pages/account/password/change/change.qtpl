@@ -1,0 +1,34 @@
+{% func (page *Page) Title() %}{%s page.Translate("account") %}{% space %}{%s page.Translate("changePassword") %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+    <div class="account">
+        <div class="accountSb">{%s= page.rendererService.AccountMenu(page.GetCoreContext()) %}</div>
+        <div class="accountH">
+            <h1>{%s page.Translate("account") %}</h1>
+        </div>
+        <div class="accountC">
+            <h2>{%s page.Translate("changePassword") %}</h2>
+
+            {% if page.HasFlashMessage() %}
+                <p class="{%s page.GetFlashMessage().ClassName() %}">
+                    <span>×</span>
+                    {%s page.GetFlashMessage().Icon() %} {%s page.GetFlashMessage().Message() %}
+                </p>
+            {% endif %}
+            
+            {%s= page.form.Errors() %}
+            {%s= page.form.Open() %}
+                {%s= page.form.Field("_uname") %}
+                {%s= page.form.Field("_t") %}
+                {%s= page.form.Field("currentPassword") %}<br>
+                {%s= page.form.Field("newPassword") %}<br>
+                {%s= page.form.Field("repeatNewPassword") %}<br>
+                <input type="submit" value="{%s page.Translate("changePassword") %}">
+            </form>
+        </div>
+    </div>
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Stylesheets() %}{% stripspace %}
+<link rel="stylesheet" href="/c/account.css">
+{% endstripspace %}{% endfunc%}

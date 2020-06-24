@@ -1,0 +1,23 @@
+CREATE TABLE "UserTask" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"issuedByID" UUID NOT NULL,
+	"assignedToID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+    "description" STRING NOT NULL,
+    "completedNotes" STRING,
+    "completedAt" TIMESTAMP,
+	INDEX "UserTask_idx_createdByID" ("createdByID"),
+	INDEX "UserTask_idx_updatedByID" ("updatedByID"),
+	INDEX "UserTask_idx_issuedByID" ("issuedByID"),
+	INDEX "UserTask_idx_assignedToID" ("assignedToID"),
+	CONSTRAINT "UserTask_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "UserTask_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "UserTask_issuedByID" FOREIGN KEY ("issuedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "UserTask_assignedToID" FOREIGN KEY ("assignedToID") REFERENCES "User" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "issuedByID", "assignedToID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt"),
+	FAMILY "Tertiary" ("description", "completedNotes", "completedAt")
+);

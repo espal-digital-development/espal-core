@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "macOS/Linux Development",
+            "type": "shell",
+            "command": "./run.sh -dev",
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "macOS/Linux Production",
+            "type": "shell",
+            "command": "./run.sh",
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "Windows Development",
+            "type": "shell",
+            "command": "python ./run.py -dev",
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "Windows Production",
+            "type": "shell",
+            "command": "python ./run.py",
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "Go Check Style",
+            "type": "shell",
+            "command": "gocheckstyle -config=.go_style .",
+            "problemMatcher": []
+        }
+    ]
+}

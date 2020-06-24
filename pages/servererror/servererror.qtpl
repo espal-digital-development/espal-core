@@ -1,0 +1,10 @@
+{% func (page *page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+
+{% func (page *page) Title() %}{%s page.title %}{% endfunc%}
+
+{% func (page *page) Content() %}{% stripspace %}
+<div class="simpleBox" style="width: 90%;">
+    <h1>{%s page.title %}</h1>
+    <pre style="text-align: left;">{%s page.message %}</pre>
+</div>
+{% endstripspace %}{% endfunc%}

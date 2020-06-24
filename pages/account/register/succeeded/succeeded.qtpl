@@ -1,0 +1,10 @@
+{% func (page *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+
+{% func (page *Page) Title() %}{%s page.Translate("registerAccountSucceeded") %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<div class="simpleBox">
+    <h1>{%s page.Translate("registerAccountSucceeded") %}</h1>
+    {%s page.Translate("thanksForRegistering_") %}
+</div>
+{% endstripspace %}{% endfunc%}

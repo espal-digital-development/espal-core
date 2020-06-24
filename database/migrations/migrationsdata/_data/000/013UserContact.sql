@@ -1,0 +1,22 @@
+CREATE TABLE "UserContact" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"userID" UUID NOT NULL,
+	"contactID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+    "sorting" INT NOT NULL DEFAULT 0,
+    "comments" STRING,
+	INDEX "UserContact_idx_createdByID" ("createdByID"),
+	INDEX "UserContact_idx_updatedByID" ("updatedByID"),
+	INDEX "UserContact_idx_userID" ("userID"),
+	INDEX "UserContact_idx_contactID" ("contactID"),
+	CONSTRAINT "UserContact_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "UserContact_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "UserContact_userID" FOREIGN KEY ("userID") REFERENCES "User" ("id"),
+	CONSTRAINT "UserContact_contactID" FOREIGN KEY ("contactID") REFERENCES "User" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "userID", "contactID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt"),
+	FAMILY "Tertiary" ("sorting", "comments")
+);

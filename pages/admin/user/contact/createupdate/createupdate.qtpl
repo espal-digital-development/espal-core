@@ -1,0 +1,32 @@
+{% import "fmt" %}
+
+{% func (page *Page) Title() %}{%s page.displayTitle %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<main class="content">
+    <h1>{%s page.displayTitle %}</h1>
+    {%s= page.form.Errors() %}
+    {%s= page.rendererService.CreatedUpdatedByLinks(page.GetCoreContext(), page.language.ID(), page.userContact) %}
+    {%s= page.form.Open() %}
+        {%s= page.form.Field("_uname") %}
+        {%s= page.form.Field("_t") %}
+        {%s= page.form.Field("sorting") %}<br>
+        {%s= page.form.Field("contact") %}<br>
+        {%s= page.form.Field("comment") %}<br>
+        {%s= page.form.CreateUpdateActions("action", fmt.Sprintf("User/View?id=%s", page.user.ID())) %}
+    </form>
+</main>
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Stylesheets() %}{% stripspace %}
+{% if page.form.ContainsSelectSearch() %}
+<link rel="stylesheet" href="/c/a/selectSearch.css"></link>
+{% endif %}
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Javascripts() %}{% stripspace %}
+<script src="/j/a/cu.js"></script>
+{% if page.form.ContainsSelectSearch() %}
+<script src="/j/a/selectSearch.js"></script>
+{% endif %}
+{% endstripspace %}{% endfunc%}

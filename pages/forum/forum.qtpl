@@ -1,0 +1,70 @@
+{% func (page *Page) Title() %}{%s page.forum.Name() %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<div class="content">
+    {% if len(page.posts) > 0 || len(page.forums) > 0 %}
+        {% if len(page.posts) > 0 %}
+            <p>{%s page.TranslatePlural("post") %}</p>
+            <table>
+                {% for k := range page.posts %}
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>{%s page.posts[k].ID() %}</td>
+                                    <td>
+                                        <a href="/ForumPost?id={%s page.posts[k].ID() %}">
+                                            {% if page.posts[k].Title() != nil %}
+                                                {%s *page.posts[k].Title() %}
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {%s page.rendererService.CreatedBy(page.posts[k], page.language.ID()) %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        {% if len(page.forums) > 0 %}
+            <p>{%s page.TranslatePlural("forum") %}</p>
+            <table>
+                {% for k := range page.forums %}
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>{%s page.TranslatePlural("topic") %}</th>
+                                    <th>{%s page.TranslatePlural("post") %}</th>
+                                    <th>{%s page.Translate("createdBy") %}</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="/Forum?id={%s page.forums[k].ID() %}">{%s page.forums[k].Name() %}</a>
+                                    </td>
+                                    <td>
+                                        {%s page.forums[k].TopicsCountAsString() %}
+                                    </td>
+                                    <td>
+                                        {%s page.forums[k].PostsCountAsString() %}
+                                    </td>
+                                    <td>
+                                        {%s page.rendererService.CreatedBy(page.forums[k], page.language.ID()) %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% else %}
+        <p>{%s page.TranslatePlural("thereIsNoPostOrForumToDisplay") %}</p>
+    {% endif %}
+</div>
+{% endstripspace %}{% endfunc%}

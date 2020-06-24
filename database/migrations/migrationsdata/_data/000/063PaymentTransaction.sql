@@ -1,0 +1,23 @@
+CREATE TABLE "PaymentTransaction" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+	"paymentAccountID" UUID NOT NULL,
+	"saleOrderID" UUID NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"responseCode" INT NOT NULL,
+	"amount" DECIMAL(9,2) NOT NULL,
+	"hash" STRING(255),
+	"message" STRING(255),
+	INDEX "PaymentTransaction_idx_createdByID" ("createdByID"),
+	INDEX "PaymentTransaction_idx_updatedByID" ("updatedByID"),
+	INDEX "PaymentTransaction_idx_paymentAccountID" ("paymentAccountID"),
+	INDEX "PaymentTransaction_idx_saleOrderID" ("saleOrderID"),
+	CONSTRAINT "PaymentTransaction_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PaymentTransaction_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "PaymentTransaction_paymentAccountID" FOREIGN KEY ("paymentAccountID") REFERENCES "PaymentAccount" ("id"),
+	CONSTRAINT "PaymentTransaction_saleOrderID" FOREIGN KEY ("saleOrderID") REFERENCES "SaleOrder" ("id"),
+	FAMILY "Primary" ("id", "createdByID", "paymentAccountID", "saleOrderID", "createdAt"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "responseCode", "amount", "hash", "message")
+);

@@ -1,0 +1,9 @@
+{% func (page *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+
+{% func (page *Page) Title() %}{%s page.Translate("login") %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+
+{% endstripspace %}{% endfunc%}
+
+{% func (page *Page) Javascripts() %}<script src="/j/form.js"></script>{% endfunc%}

@@ -1,0 +1,14 @@
+{% func (page *Page) Title() %}{%s page.TranslatePlural("domain") %} > {%s page.domain.Host() %}{% endfunc%}
+
+{% func (page *Page) Content() %}{% stripspace %}
+<main class="content">
+    <h1>{%s page.TranslatePlural("domain") %}{%s " > " %}{%s page.domain.Host() %}</h1>
+
+    <p>
+        <a href="{%s page.AdminURL() %}/Domain">{%s page.Translate("backToOverview") %}</a><br>
+        <a href="{%s page.AdminURL() %}/Domain/Update?id={%s page.domain.ID() %}">{%s "✎ " %}{%s page.Translate("update") %}</a>
+    </p>
+    <p>{%s page.Translate("active") %}:{% space %}{% if page.domain.Active() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}</p>
+    <p>{%s page.Translate("language") %}:{% space %}{% if page.domainLanguage != nil %}{%s page.domainLanguage.Translate(page.language.ID()) %}{% endif %}</p>
+</main>
+{% endstripspace %}{% endfunc%}

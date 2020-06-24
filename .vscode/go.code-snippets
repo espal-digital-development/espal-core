@@ -1,0 +1,31 @@
+{
+	"Spew dump": {
+		"scope": "go",
+        "prefix": "dump",
+        "body": [
+            "spew.Dump(${0:data})",
+        ],
+        "description": "spew.Dump() a variable",
+	},
+	"Error check return": {
+		"scope": "go",
+        "prefix": "errr",
+        "body": [
+            "if err != nil {",
+            "\treturn errors.Trace(err)",
+            "}"
+        ],
+        "description": "Render Internal Server Error on Context",
+	},
+	"Render Internal Server Error on Context": {
+        "scope": "go",
+        "prefix": "render", 
+        "body": [
+            "if err != nil {",
+            "\tcontext.RenderInternalServerError(errors.Trace(err))",
+            "\treturn",
+            "}"
+        ],
+        "description": "Render Internal Server Error on Context",
+    }
+}

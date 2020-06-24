@@ -1,0 +1,88 @@
+{% interface
+BasePage {
+    Title()
+    SideBar()
+    Header()
+    Content()
+    Footer()
+    Stylesheets()
+    Javascripts()
+    mainJavascripts()
+}
+%}
+
+{% func PageTemplate(basePage BasePage) %}{% stripspace %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{%= basePage.Title() %}</title>
+        <link rel="stylesheet" href="/c/a/m.css">
+        <link rel="stylesheet" href="/c/a/sb.css">
+        {%= basePage.Stylesheets() %}
+    </head>
+    <body>{% stripspace %}
+        <div class="site">
+            {%= basePage.SideBar() %}
+            {%= basePage.Header() %}
+            {%= basePage.Content() %}
+            {%= basePage.Footer() %}
+        </div>
+        {%= basePage.mainJavascripts() %}
+        <script src="/j/a/menu.js"></script>
+        {%= basePage.Javascripts() %}
+    {% endstripspace %}</body>
+</html>
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) mainJavascripts() %}{% stripspace %}
+{% if page.HasFlashMessage() %}
+<script src="/j/flashMessage.js"></script>
+{% endif %}
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) Title() %}{% endfunc %}
+
+{% func (page *Page) SideBar() %}{% stripspace %}
+<aside class="sidebar">
+    <div class="sideBarHead">ESPAL</div>
+    <nav>
+        <ul class="menu">
+            <li><p><a href="/">{%s page.Translate("gotoTheFrontend") %}</a></p></li>
+            <li><p><a href="{%s page.AdminURL() %}">{%s page.Translate("dashboard") %}</a></p></li>
+            {% for _, menuBlock := range page.AdminMainMenu() %}
+                <li>
+                    <p>{%s menuBlock.Title() %}</p>
+                    <ul>
+                        {% for _, item := range menuBlock.Items() %}
+                            <li><a href="{%s item.URL() %}">{%s item.Title() %}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</aside>
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) Header() %}{% stripspace %}
+<header class="header">
+    <input type="search" placeholder="🔍&nbsp;{%s page.Translate("search") %}">
+    {% if page.HasFlashMessage() %}
+        <p class="{%s page.GetFlashMessage().ClassName() %}">
+            <span>×</span>
+            {%s page.GetFlashMessage().Icon() %} {%s page.GetFlashMessage().Message() %}
+        </p>
+    {% endif %}
+</header>
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) Content() %}{% endfunc %}
+
+{% func (page *Page) Footer() %}{% stripspace %}
+<footer class="footer"></footer>
+{% endstripspace %}{% endfunc %}
+
+{% func (page *Page) Stylesheets() %}{% endfunc %}
+
+{% func (page *Page) Javascripts() %}{% endfunc %}

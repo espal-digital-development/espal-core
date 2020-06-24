@@ -1,0 +1,23 @@
+CREATE TABLE "CartLine" (
+	"id" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	"createdByID" UUID NOT NULL,
+	"updatedByID" UUID,
+    "cartID" UUID NOT NULL,
+	"productVariantID" UUID,
+	"bundledProductID" UUID,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
+	"updatedAt" TIMESTAMP,
+	"quantity" INT NOT NULL,
+	INDEX "CartLine_idx_createdByID" ("createdByID"),
+	INDEX "CartLine_idx_updatedByID" ("updatedByID"),
+	INDEX "CartLine_idx_cartID" ("cartID"),
+	INDEX "CartLine_idx_productVariantID" ("productVariantID"),
+	INDEX "CartLine_idx_bundledProductID" ("bundledProductID"),
+	CONSTRAINT "CartLine_createdByID" FOREIGN KEY ("createdByID") REFERENCES "User" ("id"),
+	CONSTRAINT "CartLine_updatedByID" FOREIGN KEY ("updatedByID") REFERENCES "User" ("id"),
+	CONSTRAINT "CartLine_cartID" FOREIGN KEY ("cartID") REFERENCES "Cart" ("id"),
+	CONSTRAINT "CartLine_productVariantID" FOREIGN KEY ("productVariantID") REFERENCES "ProductVariant" ("id"),
+	CONSTRAINT "CartLine_bundledProductID" FOREIGN KEY ("bundledProductID") REFERENCES "BundledProduct" ("id"),
+    FAMILY "Primary" ("id", "createdByID", "createdAt", "cartID", "productVariantID", "bundledProductID"),
+	FAMILY "Secondary" ("updatedByID", "updatedAt", "quantity")
+);
