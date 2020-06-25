@@ -9,286 +9,286 @@ import (
 )
 
 func TestUserTable(t *testing.T) {
-	user := user.NewUserEntity()
-	if user.TableName() == "" {
+	u := user.NewUserEntity()
+	if u.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestUserTableAlias(t *testing.T) {
-	user := user.NewUserEntity()
-	if user.TableName() == "" {
+	u := user.NewUserEntity()
+	if u.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestUserIsUpdated(t *testing.T) {
-	user := user.NewUserEntity()
-	user.IsUpdated()
+	u := user.NewUserEntity()
+	u.IsUpdated()
 }
 
 func TestUserID(t *testing.T) {
-	user := user.NewUserEntity()
-	user.ID()
+	u := user.NewUserEntity()
+	u.ID()
 }
 
 func TestUserCreatedByID(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetCreatedByID(testValue)
-	if testValue != user.CreatedByID() {
+	u.SetCreatedByID(testValue)
+	if testValue != u.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedByID(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetUpdatedByID(&testValue)
-	if &testValue != user.UpdatedByID() {
+	u.SetUpdatedByID(&testValue)
+	if &testValue != u.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserDefaultDeliveryAddressID(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetDefaultDeliveryAddressID(&testValue)
-	if &testValue != user.DefaultDeliveryAddressID() {
+	u.SetDefaultDeliveryAddressID(&testValue)
+	if &testValue != u.DefaultDeliveryAddressID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserDefaultInvoiceAddressID(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetDefaultInvoiceAddressID(&testValue)
-	if &testValue != user.DefaultInvoiceAddressID() {
+	u.SetDefaultInvoiceAddressID(&testValue)
+	if &testValue != u.DefaultInvoiceAddressID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCreatedAt(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := time.Now()
-	user.SetCreatedAt(testValue)
-	if testValue != user.CreatedAt() {
+	u.SetCreatedAt(testValue)
+	if testValue != u.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedAt(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := time.Now()
-	user.SetUpdatedAt(&testValue)
-	if &testValue != user.UpdatedAt() {
+	u.SetUpdatedAt(&testValue)
+	if &testValue != u.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCreatedByFirstName(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetCreatedByFirstName(&testValue)
-	if &testValue != user.CreatedByFirstName() {
+	u.SetCreatedByFirstName(&testValue)
+	if &testValue != u.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCreatedBySurname(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetCreatedBySurname(&testValue)
-	if &testValue != user.CreatedBySurname() {
+	u.SetCreatedBySurname(&testValue)
+	if &testValue != u.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedByFirstName(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetUpdatedByFirstName(&testValue)
-	if &testValue != user.UpdatedByFirstName() {
+	u.SetUpdatedByFirstName(&testValue)
+	if &testValue != u.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedBySurname(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetUpdatedBySurname(&testValue)
-	if &testValue != user.UpdatedBySurname() {
+	u.SetUpdatedBySurname(&testValue)
+	if &testValue != u.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserActive(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := true
-	user.SetActive(testValue)
-	if testValue != user.Active() {
+	u.SetActive(testValue)
+	if testValue != u.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCountry(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := uint16(65000)
-	user.SetCountry(&testValue)
-	if &testValue != user.Country() {
+	u.SetCountry(&testValue)
+	if &testValue != u.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserLanguage(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := uint16(65000)
-	user.SetLanguage(testValue)
-	if testValue != user.Language() {
+	u.SetLanguage(testValue)
+	if testValue != u.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserFirstName(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetFirstName(&testValue)
-	if &testValue != user.FirstName() {
+	u.SetFirstName(&testValue)
+	if &testValue != u.FirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserSurname(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetSurname(&testValue)
-	if &testValue != user.Surname() {
+	u.SetSurname(&testValue)
+	if &testValue != u.Surname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserDateOfBirth(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := time.Now()
-	user.SetDateOfBirth(&testValue)
-	if &testValue != user.DateOfBirth() {
+	u.SetDateOfBirth(&testValue)
+	if &testValue != u.DateOfBirth() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserEmail(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetEmail(testValue)
-	if testValue != user.Email() {
+	u.SetEmail(testValue)
+	if testValue != u.Email() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserPassword(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetPassword(testValue)
-	if testValue != user.Password() {
+	u.SetPassword(testValue)
+	if testValue != u.Password() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserAvatar(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetAvatar(&testValue)
-	if &testValue != user.Avatar() {
+	u.SetAvatar(&testValue)
+	if &testValue != u.Avatar() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserPriority(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := uint(1e9)
-	user.SetPriority(testValue)
-	if testValue != user.Priority() {
+	u.SetPriority(testValue)
+	if testValue != u.Priority() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserActivationHash(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetActivationHash(&testValue)
-	if &testValue != user.ActivationHash() {
+	u.SetActivationHash(&testValue)
+	if &testValue != u.ActivationHash() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserActivatedAt(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := time.Now()
-	user.SetActivatedAt(&testValue)
-	if &testValue != user.ActivatedAt() {
+	u.SetActivatedAt(&testValue)
+	if &testValue != u.ActivatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserPasswordResetHash(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetPasswordResetHash(&testValue)
-	if &testValue != user.PasswordResetHash() {
+	u.SetPasswordResetHash(&testValue)
+	if &testValue != u.PasswordResetHash() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserPasswordResetLastSendAt(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := time.Now()
-	user.SetPasswordResetLastSendAt(&testValue)
-	if &testValue != user.PasswordResetLastSendAt() {
+	u.SetPasswordResetLastSendAt(&testValue)
+	if &testValue != u.PasswordResetLastSendAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserPasswordLastResetAt(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := time.Now()
-	user.SetPasswordLastResetAt(&testValue)
-	if &testValue != user.PasswordLastResetAt() {
+	u.SetPasswordLastResetAt(&testValue)
+	if &testValue != u.PasswordLastResetAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserPasswordResetCount(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := uint8(255)
-	user.SetPasswordResetCount(&testValue)
-	if &testValue != user.PasswordResetCount() {
+	u.SetPasswordResetCount(&testValue)
+	if &testValue != u.PasswordResetCount() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserBiography(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetBiography(&testValue)
-	if &testValue != user.Biography() {
+	u.SetBiography(&testValue)
+	if &testValue != u.Biography() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserComments(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetComments(&testValue)
-	if &testValue != user.Comments() {
+	u.SetComments(&testValue)
+	if &testValue != u.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCurrencies(t *testing.T) {
-	user := user.NewUserEntity()
+	u := user.NewUserEntity()
 	testValue := "testValue"
-	user.SetCurrencies(testValue)
-	if testValue != user.Currencies() {
+	u.SetCurrencies(testValue)
+	if testValue != u.Currencies() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

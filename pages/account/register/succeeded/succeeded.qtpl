@@ -1,10 +1,10 @@
-{% func (page *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+{% func (p *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
 
-{% func (page *Page) Title() %}{%s page.Translate("registerAccountSucceeded") %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.Translate("registerAccountSucceeded") %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <div class="simpleBox">
-    <h1>{%s page.Translate("registerAccountSucceeded") %}</h1>
-    {%s page.Translate("thanksForRegistering_") %}
+    <h1>{%s p.Translate("registerAccountSucceeded") %}</h1>
+    {%s p.Translate("thanksForRegistering_") %}
 </div>
 {% endstripspace %}{% endfunc%}

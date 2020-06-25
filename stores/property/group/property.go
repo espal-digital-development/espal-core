@@ -21,11 +21,11 @@ type Property struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (property *Property) TableName() string {
+func (p *Property) TableName() string {
 	return "PropertyGroupProperty"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (property *Property) TableAlias() string {
+func (p *Property) TableAlias() string {
 	return "prgrp"
 }

@@ -25,6 +25,6 @@ type Download struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (download *Download) TableAlias() string {
+func (d *Download) TableAlias() string {
 	return "do"
 }

@@ -1,21 +1,21 @@
 package pageactions
 
 // AddDelete adds a default Create PageAction if the UserRight requirements are met.
-func (pageActions *PageActions) AddDelete() {
-	pageActions.AddDeleteWithPath("")
+func (a *PageActions) AddDelete() {
+	a.AddDeleteWithPath("")
 }
 
 // AddDeleteWithPath adds a Delete PageAction with a custom path if the
 // UserRight requirements are met.
-func (pageActions *PageActions) AddDeleteWithPath(path string) {
-	if !pageActions.ctx.HasUserRight("Delete" + pageActions.subject) {
+func (a *PageActions) AddDeleteWithPath(path string) {
+	if !a.ctx.HasUserRight("Delete" + a.subject) {
 		return
 	}
 	if path == "" {
-		path = pageActions.subject + "/Delete"
+		path = a.subject + "/Delete"
 	}
-	pageActions.actions = append(pageActions.actions, &pageAction{
-		name:       pageActions.ctx.Translate("deleteSelected"),
+	a.actions = append(a.actions, &pageAction{
+		name:       a.ctx.Translate("deleteSelected"),
 		targetPath: path,
 		listAction: true,
 		class:      "delete",

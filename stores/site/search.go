@@ -9,9 +9,9 @@ import (
 )
 
 // Search searches results based on the given context through the filter mechanics.
-func (sitesStore *SitesStore) Search(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error) {
+func (s *SitesStore) Search(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error) {
 	alias := (&Site{}).TableAlias()
-	filter = sitesStore.databaseFiltersFactory.NewFilter(context, newSite())
+	filter = s.databaseFiltersFactory.NewFilter(context, newSite())
 	filter.AddSelectField(filter.NewSelectField("id")).
 		AddSelectField(filter.NewSelectField("value").SetAlias("t").SetMapTo("localizedName")).
 		AddSearchField(filter.NewSearchField("value").SetTableAlias("t")).

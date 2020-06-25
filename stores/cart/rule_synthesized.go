@@ -14,93 +14,93 @@ type RuleEntity interface {
 }
 
 // ID returns id.
-func (rule *Rule) ID() string {
-	return rule.id
+func (r *Rule) ID() string {
+	return r.id
 }
 
 // CreatedByID returns createdByID.
-func (rule *Rule) CreatedByID() string {
-	return rule.createdByID
+func (r *Rule) CreatedByID() string {
+	return r.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (rule *Rule) SetCreatedByID(createdByID string) {
-	rule.createdByID = createdByID
+func (r *Rule) SetCreatedByID(createdByID string) {
+	r.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (rule *Rule) UpdatedByID() *string {
-	return rule.updatedByID
+func (r *Rule) UpdatedByID() *string {
+	return r.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (rule *Rule) SetUpdatedByID(updatedByID *string) {
-	rule.updatedByID = updatedByID
+func (r *Rule) SetUpdatedByID(updatedByID *string) {
+	r.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (rule *Rule) CreatedAt() time.Time {
-	return rule.createdAt
+func (r *Rule) CreatedAt() time.Time {
+	return r.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (rule *Rule) SetCreatedAt(createdAt time.Time) {
-	rule.createdAt = createdAt
+func (r *Rule) SetCreatedAt(createdAt time.Time) {
+	r.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (rule *Rule) UpdatedAt() *time.Time {
-	return rule.updatedAt
+func (r *Rule) UpdatedAt() *time.Time {
+	return r.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (rule *Rule) SetUpdatedAt(updatedAt *time.Time) {
-	rule.updatedAt = updatedAt
+func (r *Rule) SetUpdatedAt(updatedAt *time.Time) {
+	r.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (rule *Rule) CreatedByFirstName() *string {
-	return rule.createdByFirstName
+func (r *Rule) CreatedByFirstName() *string {
+	return r.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (rule *Rule) SetCreatedByFirstName(createdByFirstName *string) {
-	rule.createdByFirstName = createdByFirstName
+func (r *Rule) SetCreatedByFirstName(createdByFirstName *string) {
+	r.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (rule *Rule) CreatedBySurname() *string {
-	return rule.createdBySurname
+func (r *Rule) CreatedBySurname() *string {
+	return r.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (rule *Rule) SetCreatedBySurname(createdBySurname *string) {
-	rule.createdBySurname = createdBySurname
+func (r *Rule) SetCreatedBySurname(createdBySurname *string) {
+	r.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (rule *Rule) UpdatedByFirstName() *string {
-	return rule.updatedByFirstName
+func (r *Rule) UpdatedByFirstName() *string {
+	return r.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (rule *Rule) SetUpdatedByFirstName(updatedByFirstName *string) {
-	rule.updatedByFirstName = updatedByFirstName
+func (r *Rule) SetUpdatedByFirstName(updatedByFirstName *string) {
+	r.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (rule *Rule) UpdatedBySurname() *string {
-	return rule.updatedBySurname
+func (r *Rule) UpdatedBySurname() *string {
+	return r.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (rule *Rule) SetUpdatedBySurname(updatedBySurname *string) {
-	rule.updatedBySurname = updatedBySurname
+func (r *Rule) SetUpdatedBySurname(updatedBySurname *string) {
+	r.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (rule *Rule) IsUpdated() bool {
-	return rule.updatedByID != nil
+func (r *Rule) IsUpdated() bool {
+	return r.updatedByID != nil
 }
 
 func newRule() *Rule {

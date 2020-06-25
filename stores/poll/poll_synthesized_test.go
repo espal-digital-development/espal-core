@@ -9,142 +9,142 @@ import (
 )
 
 func TestPollTable(t *testing.T) {
-	poll := poll.NewPollEntity()
-	if poll.TableName() == "" {
+	p := poll.NewPollEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPollTableAlias(t *testing.T) {
-	poll := poll.NewPollEntity()
-	if poll.TableName() == "" {
+	p := poll.NewPollEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPollIsUpdated(t *testing.T) {
-	poll := poll.NewPollEntity()
-	poll.IsUpdated()
+	p := poll.NewPollEntity()
+	p.IsUpdated()
 }
 
 func TestPollID(t *testing.T) {
-	poll := poll.NewPollEntity()
-	poll.ID()
+	p := poll.NewPollEntity()
+	p.ID()
 }
 
 func TestPollCreatedByID(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetCreatedByID(testValue)
-	if testValue != poll.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollUpdatedByID(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetUpdatedByID(&testValue)
-	if &testValue != poll.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollCreatedAt(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := time.Now()
-	poll.SetCreatedAt(testValue)
-	if testValue != poll.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollUpdatedAt(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := time.Now()
-	poll.SetUpdatedAt(&testValue)
-	if &testValue != poll.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollCreatedByFirstName(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetCreatedByFirstName(&testValue)
-	if &testValue != poll.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollCreatedBySurname(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetCreatedBySurname(&testValue)
-	if &testValue != poll.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollUpdatedByFirstName(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetUpdatedByFirstName(&testValue)
-	if &testValue != poll.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollUpdatedBySurname(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetUpdatedBySurname(&testValue)
-	if &testValue != poll.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollActive(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := true
-	poll.SetActive(testValue)
-	if testValue != poll.Active() {
+	p.SetActive(testValue)
+	if testValue != p.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollStartDate(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := time.Now()
-	poll.SetStartDate(&testValue)
-	if &testValue != poll.StartDate() {
+	p.SetStartDate(&testValue)
+	if &testValue != p.StartDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollEndDate(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := time.Now()
-	poll.SetEndDate(&testValue)
-	if &testValue != poll.EndDate() {
+	p.SetEndDate(&testValue)
+	if &testValue != p.EndDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollAllowAnonymousVoting(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := true
-	poll.SetAllowAnonymousVoting(testValue)
-	if testValue != poll.AllowAnonymousVoting() {
+	p.SetAllowAnonymousVoting(testValue)
+	if testValue != p.AllowAnonymousVoting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPollComments(t *testing.T) {
-	poll := poll.NewPollEntity()
+	p := poll.NewPollEntity()
 	testValue := "testValue"
-	poll.SetComments(&testValue)
-	if &testValue != poll.Comments() {
+	p.SetComments(&testValue)
+	if &testValue != p.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

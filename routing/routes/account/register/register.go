@@ -24,7 +24,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	_, ok, err := context.GetUser()
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
@@ -41,7 +41,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.registerFormValidator.New(language)
+	form, err := r.registerFormValidator.New(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -82,13 +82,13 @@ func (route *Route) Handle(context contexts.Context) {
 			name = email
 		}
 
-		newPassword, err := bcrypt.GenerateFromPassword([]byte(password), route.configService.SecurityBcryptRounds())
+		newPassword, err := bcrypt.GenerateFromPassword([]byte(password), r.configService.SecurityBcryptRounds())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
 
-		activationHash, err := route.userStore.Register(email, newPassword, firstName, surname, language.ID())
+		activationHash, err := r.userStore.Register(email, newPassword, firstName, surname, language.ID())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -107,8 +107,8 @@ func (route *Route) Handle(context contexts.Context) {
 			"<p>Regards,</p><p>- Espal</p>",
 		}, "")
 
-		message := route.mailerService.NewMessage()
-		message.SetHeader("From", route.configService.EmailNoReplyAddress())
+		message := r.mailerService.NewMessage()
+		message.SetHeader("From", r.configService.EmailNoReplyAddress())
 		message.SetHeader("To", email)
 		message.SetHeader("Subject", context.Translate("accountActivation"))
 		message.SetBody("text/html", body)
@@ -119,13 +119,13 @@ func (route *Route) Handle(context contexts.Context) {
 				routeContext.RenderInternalServerError(errors.Trace(err))
 				return
 			}
-		}(route, context, message)
+		}(r, context, message)
 
 		context.Redirect("/RegisterAccountSucceeded", http.StatusTemporaryRedirect)
 		return
 	}
 
-	route.registerPageFactory.NewPage(context, form.View()).Render()
+	r.registerPageFactory.NewPage(context, form.View()).Render()
 }
 
 // New returns a new instance of Route.

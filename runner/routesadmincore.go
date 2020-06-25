@@ -6,8 +6,8 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdminCore() error {
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL(), dashboard.New(dashboardpage.New())); err != nil {
+func (r *Runner) routesAdminCore() error {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL(), dashboard.New(dashboardpage.New())); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

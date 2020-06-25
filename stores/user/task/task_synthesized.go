@@ -24,143 +24,143 @@ type TaskEntity interface {
 }
 
 // ID returns id.
-func (task *Task) ID() string {
-	return task.id
+func (t *Task) ID() string {
+	return t.id
 }
 
 // CreatedByID returns createdByID.
-func (task *Task) CreatedByID() string {
-	return task.createdByID
+func (t *Task) CreatedByID() string {
+	return t.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (task *Task) SetCreatedByID(createdByID string) {
-	task.createdByID = createdByID
+func (t *Task) SetCreatedByID(createdByID string) {
+	t.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (task *Task) UpdatedByID() *string {
-	return task.updatedByID
+func (t *Task) UpdatedByID() *string {
+	return t.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (task *Task) SetUpdatedByID(updatedByID *string) {
-	task.updatedByID = updatedByID
+func (t *Task) SetUpdatedByID(updatedByID *string) {
+	t.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (task *Task) CreatedAt() time.Time {
-	return task.createdAt
+func (t *Task) CreatedAt() time.Time {
+	return t.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (task *Task) SetCreatedAt(createdAt time.Time) {
-	task.createdAt = createdAt
+func (t *Task) SetCreatedAt(createdAt time.Time) {
+	t.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (task *Task) UpdatedAt() *time.Time {
-	return task.updatedAt
+func (t *Task) UpdatedAt() *time.Time {
+	return t.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (task *Task) SetUpdatedAt(updatedAt *time.Time) {
-	task.updatedAt = updatedAt
+func (t *Task) SetUpdatedAt(updatedAt *time.Time) {
+	t.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (task *Task) CreatedByFirstName() *string {
-	return task.createdByFirstName
+func (t *Task) CreatedByFirstName() *string {
+	return t.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (task *Task) SetCreatedByFirstName(createdByFirstName *string) {
-	task.createdByFirstName = createdByFirstName
+func (t *Task) SetCreatedByFirstName(createdByFirstName *string) {
+	t.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (task *Task) CreatedBySurname() *string {
-	return task.createdBySurname
+func (t *Task) CreatedBySurname() *string {
+	return t.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (task *Task) SetCreatedBySurname(createdBySurname *string) {
-	task.createdBySurname = createdBySurname
+func (t *Task) SetCreatedBySurname(createdBySurname *string) {
+	t.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (task *Task) UpdatedByFirstName() *string {
-	return task.updatedByFirstName
+func (t *Task) UpdatedByFirstName() *string {
+	return t.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (task *Task) SetUpdatedByFirstName(updatedByFirstName *string) {
-	task.updatedByFirstName = updatedByFirstName
+func (t *Task) SetUpdatedByFirstName(updatedByFirstName *string) {
+	t.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (task *Task) UpdatedBySurname() *string {
-	return task.updatedBySurname
+func (t *Task) UpdatedBySurname() *string {
+	return t.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (task *Task) SetUpdatedBySurname(updatedBySurname *string) {
-	task.updatedBySurname = updatedBySurname
+func (t *Task) SetUpdatedBySurname(updatedBySurname *string) {
+	t.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (task *Task) IsUpdated() bool {
-	return task.updatedByID != nil
+func (t *Task) IsUpdated() bool {
+	return t.updatedByID != nil
 }
 
 // IssuedByID returns issuedByID.
-func (task *Task) IssuedByID() string {
-	return task.issuedByID
+func (t *Task) IssuedByID() string {
+	return t.issuedByID
 }
 
 // SetIssuedByID sets the issuedByID.
-func (task *Task) SetIssuedByID(issuedByID string) {
-	task.issuedByID = issuedByID
+func (t *Task) SetIssuedByID(issuedByID string) {
+	t.issuedByID = issuedByID
 }
 
 // AssignedToID returns assignedToID.
-func (task *Task) AssignedToID() *string {
-	return task.assignedToID
+func (t *Task) AssignedToID() *string {
+	return t.assignedToID
 }
 
 // SetAssignedToID sets the assignedToID.
-func (task *Task) SetAssignedToID(assignedToID *string) {
-	task.assignedToID = assignedToID
+func (t *Task) SetAssignedToID(assignedToID *string) {
+	t.assignedToID = assignedToID
 }
 
 // Description returns description.
-func (task *Task) Description() string {
-	return task.description
+func (t *Task) Description() string {
+	return t.description
 }
 
 // SetDescription sets the description.
-func (task *Task) SetDescription(description string) {
-	task.description = description
+func (t *Task) SetDescription(description string) {
+	t.description = description
 }
 
 // CompletedNotes returns completedNotes.
-func (task *Task) CompletedNotes() *string {
-	return task.completedNotes
+func (t *Task) CompletedNotes() *string {
+	return t.completedNotes
 }
 
 // SetCompletedNotes sets the completedNotes.
-func (task *Task) SetCompletedNotes(completedNotes *string) {
-	task.completedNotes = completedNotes
+func (t *Task) SetCompletedNotes(completedNotes *string) {
+	t.completedNotes = completedNotes
 }
 
 // CompletedAt returns completedAt.
-func (task *Task) CompletedAt() *time.Time {
-	return task.completedAt
+func (t *Task) CompletedAt() *time.Time {
+	return t.completedAt
 }
 
 // SetCompletedAt sets the completedAt.
-func (task *Task) SetCompletedAt(completedAt *time.Time) {
-	task.completedAt = completedAt
+func (t *Task) SetCompletedAt(completedAt *time.Time) {
+	t.completedAt = completedAt
 }
 
 func newTask() *Task {

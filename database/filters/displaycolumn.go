@@ -13,23 +13,23 @@ type displayColumn struct {
 }
 
 // Name returns the column name.
-func (displayColumn *displayColumn) Name() string {
-	return displayColumn.name
+func (c *displayColumn) Name() string {
+	return c.name
 }
 
 // Name returns the if the column name is plural.
-func (displayColumn *displayColumn) Plural() bool {
-	return displayColumn.plural
+func (c *displayColumn) Plural() bool {
+	return c.plural
 }
 
 // SetPlural sets the column plural.
-func (displayColumn *displayColumn) SetPlural(plural bool) DisplayColumn {
-	displayColumn.plural = plural
-	return displayColumn
+func (c *displayColumn) SetPlural(plural bool) DisplayColumn {
+	c.plural = plural
+	return c
 }
 
 // NewColumn returns a new instance of a DisplayColumn.
-func (filter *filter) NewColumn(name string) DisplayColumn {
+func (f *filter) NewColumn(name string) DisplayColumn {
 	return &displayColumn{
 		name: name,
 	}

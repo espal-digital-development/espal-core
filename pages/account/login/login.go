@@ -17,7 +17,7 @@ type Factory interface {
 type Login struct{}
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (login *Login) NewPage(context contexts.Context) Template {
+func (l *Login) NewPage(context contexts.Context) Template {
 	page := &Page{}
 	page.SetCoreContext(context)
 	return page
@@ -34,8 +34,8 @@ type Page struct {
 }
 
 // Render the page writing to the context.
-func (page *Page) Render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *Page) Render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of Login.

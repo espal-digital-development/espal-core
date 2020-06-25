@@ -38,20 +38,20 @@ type Change struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (change *Change) Submit(context routeCtx) (isSubmitted bool, isValid bool, err error) {
-	if change.isClosed {
+func (c *Change) Submit(context routeCtx) (isSubmitted bool, isValid bool, err error) {
+	if c.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = change.validator.HandleFromRequest(context); err != nil {
+	if err = c.validator.HandleFromRequest(context); err != nil {
 		return
 	}
-	isSubmitted = change.validator.IsSubmitted()
+	isSubmitted = c.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = change.validator.IsValid()
+		isValid, err = c.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -59,17 +59,17 @@ func (change *Change) Submit(context routeCtx) (isSubmitted bool, isValid bool, 
 	if !isValid {
 		return
 	}
-	if isValid, err = change.process(context); err != nil {
+	if isValid, err = c.process(context); err != nil {
 		return
 	}
 	return
 }
 
-func (change *Change) process(translator translator) (bool, error) {
-	if err := bcrypt.CompareHashAndPassword([]byte(change.user.Password()), []byte(change.validator.Field("currentPassword").Value())); err != nil {
-		change.validator.AddError(translator.Translate("yourCurrentPasswordDidNotMatch"))
+func (c *Change) process(translator translator) (bool, error) {
+	if err := bcrypt.CompareHashAndPassword([]byte(c.user.Password()), []byte(c.validator.Field("currentPassword").Value())); err != nil {
+		c.validator.AddError(translator.Translate("yourCurrentPasswordDidNotMatch"))
 	}
-	isValid, err := change.validator.IsValid()
+	isValid, err := c.validator.IsValid()
 	if err != nil || !isValid {
 		return isValid, errors.Trace(err)
 	}
@@ -77,17 +77,17 @@ func (change *Change) process(translator translator) (bool, error) {
 }
 
 // View returns the FormView internal to help render inside html output.
-func (change *Change) View() formview.View {
-	return change.view
+func (c *Change) View() formview.View {
+	return c.view
 }
 
 // FormFieldValue returns a single form value that was resolved while submitting the form.
-func (change *Change) FormFieldValue(name string) string {
-	return change.validator.FieldValue(name)
+func (c *Change) FormFieldValue(name string) string {
+	return c.validator.FieldValue(name)
 }
 
 // Close will release internals.
-func (change *Change) Close() {
-	change.validator = nil
-	change.view = nil
+func (c *Change) Close() {
+	c.validator = nil
+	c.view = nil
 }

@@ -13,8 +13,8 @@ var _ Store = &PurchaseOrdersStore{}
 type Store interface {
 }
 
-func (purchaseOrdersStore *PurchaseOrdersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PurchaseOrder, ok bool, err error) {
-	rows, err := purchaseOrdersStore.selecterDatabase.Query(query, params...)
+func (p *PurchaseOrdersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PurchaseOrder, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (purchaseOrdersStore *PurchaseOrdersStore) fetch(query string, withCreators
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		purchaseOrder := newPurchaseOrder()
-		fields := []interface{}{&purchaseOrder.id, &purchaseOrder.createdByID, &purchaseOrder.updatedByID, &purchaseOrder.createdAt, &purchaseOrder.updatedAt, &purchaseOrder.supplierID, &purchaseOrder.currency, &purchaseOrder.comments, &purchaseOrder.sellingPartyAutograph, &purchaseOrder.buyingPartyAutograph}
+		p := newPurchaseOrder()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.supplierID, &p.currency, &p.comments, &p.sellingPartyAutograph, &p.buyingPartyAutograph}
 		if withCreators {
-			fields = append(fields, &purchaseOrder.createdByFirstName, &purchaseOrder.createdBySurname, &purchaseOrder.updatedByFirstName, &purchaseOrder.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, purchaseOrder)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (purchaseOrdersStore *PurchaseOrdersStore) fetch(query string, withCreators
 
 // New returns a new instance of PurchaseOrdersStore.
 func New(selecterDatabase database.Database) (*PurchaseOrdersStore, error) {
-	purchaseOrdersStore := &PurchaseOrdersStore{
+	p := &PurchaseOrdersStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return purchaseOrdersStore, nil
+	return p, nil
 }

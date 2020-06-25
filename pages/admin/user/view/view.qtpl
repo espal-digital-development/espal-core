@@ -1,128 +1,128 @@
 {% import "time" %}
 
-{% func (page *Page) Title() %}{%s page.TranslatePlural("user") %} > {%s page.userStore.Name(page.user, page.language.ID()) %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.TranslatePlural("user") %} > {%s p.userStore.Name(p.user, p.language.ID()) %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
-    <h1>{%s page.TranslatePlural("user") %}{%s " > " %}{%s page.userStore.Name(page.user, page.language.ID()) %}</h1>
+    <h1>{%s p.TranslatePlural("user") %}{%s " > " %}{%s p.userStore.Name(p.user, p.language.ID()) %}</h1>
 
     <p>
-        <a href="{%s page.AdminURL() %}/User">{%s page.Translate("backToOverview") %}</a><br>
-        <a href="{%s page.AdminURL() %}/User/Update?id={%s page.user.ID() %}">{%s "✎ " %}{%s page.Translate("update") %}</a>
+        <a href="{%s p.AdminURL() %}/User">{%s p.Translate("backToOverview") %}</a><br>
+        <a href="{%s p.AdminURL() %}/User/Update?id={%s p.user.ID() %}">{%s "✎ " %}{%s p.Translate("update") %}</a>
     </p>
-    <p>{%s page.Translate("active") %}{%s ": " %}{% if page.user.Active() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}</p>
-    <p>{%s page.user.Email() %}</p>
+    <p>{%s p.Translate("active") %}{%s ": " %}{% if p.user.Active() %}{%s p.Translate("yes_") %}{% else %}{%s p.Translate("no_") %}{% endif %}</p>
+    <p>{%s p.user.Email() %}</p>
 
     <hr>
 
-    <h2>{%s page.TranslatePlural("address") %}</h2>
-    {%s= page.addressesActions.RenderOverviewActions() %}
-    {% if len(page.addresses) > 0 %}
+    <h2>{%s p.TranslatePlural("address") %}</h2>
+    {%s= p.addressesActions.RenderOverviewActions() %}
+    {% if len(p.addresses) > 0 %}
     <table>
         <tr>
-            {% if page.HasUserRight("UpdateUserAddress") || page.HasUserRight("DeleteUserAddress") %}
+            {% if p.HasUserRight("UpdateUserAddress") || p.HasUserRight("DeleteUserAddress") %}
                 <th><input type="checkbox" name="check"></th>
                 <th></th>
             {% endif %}
             {% comment %} TODO :: 7 These inline overviews should be filters too. But maybe first just without the filter functionilty {% endcomment %}
-            <th>{%s page.Translate("id") %}</th>
-            <th>{%s page.Translate("active") %}</th>
-            <th>{%s page.Translate("createdBy") %}</th>
-            <th>{%s page.Translate("createdAt") %}</th>
-            <th>{%s page.Translate("updatedBy") %}</th>
-            <th>{%s page.Translate("updatedAt") %}</th>
-            <th>{%s page.Translate("firstName") %}</th>
-            <th>{%s page.Translate("surname") %}</th>
-            <th>{%s page.Translate("street") %}</th>
-            <th>{%s page.Translate("streetLine2") %}</th>
-            <th>{%s page.Translate("number") %}</th>
-            <th>{%s page.Translate("numberAddition") %}</th>
-            <th>{%s page.Translate("zipCode") %}</th>
-            <th>{%s page.Translate("city") %}</th>
-            <th>{%s page.Translate("state") %}</th>
-            <th>{%s page.Translate("country") %}</th>
-            <th>{%s page.Translate("phoneNumber") %}</th>
-            <th>{%s page.Translate("email") %}</th>
+            <th>{%s p.Translate("id") %}</th>
+            <th>{%s p.Translate("active") %}</th>
+            <th>{%s p.Translate("createdBy") %}</th>
+            <th>{%s p.Translate("createdAt") %}</th>
+            <th>{%s p.Translate("updatedBy") %}</th>
+            <th>{%s p.Translate("updatedAt") %}</th>
+            <th>{%s p.Translate("firstName") %}</th>
+            <th>{%s p.Translate("surname") %}</th>
+            <th>{%s p.Translate("street") %}</th>
+            <th>{%s p.Translate("streetLine2") %}</th>
+            <th>{%s p.Translate("number") %}</th>
+            <th>{%s p.Translate("numberAddition") %}</th>
+            <th>{%s p.Translate("zipCode") %}</th>
+            <th>{%s p.Translate("city") %}</th>
+            <th>{%s p.Translate("state") %}</th>
+            <th>{%s p.Translate("country") %}</th>
+            <th>{%s p.Translate("phoneNumber") %}</th>
+            <th>{%s p.Translate("email") %}</th>
         </tr>
-        {% for k := range page.addresses %}
+        {% for k := range p.addresses %}
             <tr>
-                {% if page.HasUserRight("UpdateUserAddress") || page.HasUserRight("DeleteUserAddress") %}
-                    <td><input type="checkbox" name="check" data-id="{%s page.addresses[k].ID() %}"></td>
-                    <td><a href="{%s page.AdminURL() %}/User/Address/Update?userid={%s page.addresses[k].ID() %}&id={%s page.addresses[k].ID() %}">✎</a></td>
+                {% if p.HasUserRight("UpdateUserAddress") || p.HasUserRight("DeleteUserAddress") %}
+                    <td><input type="checkbox" name="check" data-id="{%s p.addresses[k].ID() %}"></td>
+                    <td><a href="{%s p.AdminURL() %}/User/Address/Update?userid={%s p.addresses[k].ID() %}&id={%s p.addresses[k].ID() %}">✎</a></td>
                 {% endif %}
-                <td>{%s page.addresses[k].ID() %}</td>
-                <td>{% if page.addresses[k].Active() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}</td>
-                <td><a href="{%s page.AdminURL() %}/User/View?id={%s page.addresses[k].CreatedByID() %}">{%s page.rendererService.CreatedBy(page.addresses[k], page.language.ID()) %}</a></td>
-                <td>{%s page.addresses[k].CreatedAt().Format(time.RFC3339[0:9]) %}</td>
-                <td>{% if page.addresses[k].IsUpdated() %}<a href="{%s page.AdminURL() %}/User/View?id={%s *page.addresses[k].UpdatedByID() %}">{%s page.rendererService.UpdatedBy(page.addresses[k], page.language.ID()) %}</a>{% endif %}</td>
-                <td>{% if page.addresses[k].UpdatedAt() != nil %}{%s page.addresses[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}</td>
-                <td>{% if page.addresses[k].FirstName() != nil %}{%s *page.addresses[k].FirstName() %}{% endif %}</td>
-                <td>{% if page.addresses[k].Surname() != nil %}{%s *page.addresses[k].Surname() %}{% endif %}</td>
-                <td>{%s page.addresses[k].Street() %}</td>
-                <td>{% if page.addresses[k].StreetLine2() != nil %}{%s *page.addresses[k].StreetLine2() %}{% endif %}</td>
-                <td>{%s page.addresses[k].Number() %}</td>
-                <td>{% if page.addresses[k].NumberAddition() != nil %}{%s *page.addresses[k].NumberAddition() %}{% endif %}</td>
-                <td>{%s page.addresses[k].ZipCode() %}</td>
-                <td>{%s page.addresses[k].City() %}</td>
-                <td>{% if page.addresses[k].State() != nil %}{%s *page.addresses[k].State() %}{% endif %}</td>
+                <td>{%s p.addresses[k].ID() %}</td>
+                <td>{% if p.addresses[k].Active() %}{%s p.Translate("yes_") %}{% else %}{%s p.Translate("no_") %}{% endif %}</td>
+                <td><a href="{%s p.AdminURL() %}/User/View?id={%s p.addresses[k].CreatedByID() %}">{%s p.rendererService.CreatedBy(p.addresses[k], p.language.ID()) %}</a></td>
+                <td>{%s p.addresses[k].CreatedAt().Format(time.RFC3339[0:9]) %}</td>
+                <td>{% if p.addresses[k].IsUpdated() %}<a href="{%s p.AdminURL() %}/User/View?id={%s *page.addresses[k].UpdatedByID() %}">{%s p.rendererService.UpdatedBy(p.addresses[k], p.language.ID()) %}</a>{% endif %}</td>
+                <td>{% if p.addresses[k].UpdatedAt() != nil %}{%s p.addresses[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}</td>
+                <td>{% if p.addresses[k].FirstName() != nil %}{%s *page.addresses[k].FirstName() %}{% endif %}</td>
+                <td>{% if p.addresses[k].Surname() != nil %}{%s *page.addresses[k].Surname() %}{% endif %}</td>
+                <td>{%s p.addresses[k].Street() %}</td>
+                <td>{% if p.addresses[k].StreetLine2() != nil %}{%s *page.addresses[k].StreetLine2() %}{% endif %}</td>
+                <td>{%s p.addresses[k].Number() %}</td>
+                <td>{% if p.addresses[k].NumberAddition() != nil %}{%s *page.addresses[k].NumberAddition() %}{% endif %}</td>
+                <td>{%s p.addresses[k].ZipCode() %}</td>
+                <td>{%s p.addresses[k].City() %}</td>
+                <td>{% if p.addresses[k].State() != nil %}{%s *page.addresses[k].State() %}{% endif %}</td>
                 <td>
-                    {% if page.addresses[k].Country() != nil %}{%s page.rendererService.CountryName(*page.addresses[k].Country(), page.language.ID()) %}{% endif %}
+                    {% if p.addresses[k].Country() != nil %}{%s p.rendererService.CountryName(*page.addresses[k].Country(), p.language.ID()) %}{% endif %}
                 </td>
-                <td>{% if page.addresses[k].PhoneNumber() != nil %}{%s *page.addresses[k].PhoneNumber() %}{% endif %}</td>
-                <td>{% if page.addresses[k].Email() != nil %}{%s *page.addresses[k].Email() %}{% endif %}</td>
+                <td>{% if p.addresses[k].PhoneNumber() != nil %}{%s *page.addresses[k].PhoneNumber() %}{% endif %}</td>
+                <td>{% if p.addresses[k].Email() != nil %}{%s *page.addresses[k].Email() %}{% endif %}</td>
             </tr>
         {% endfor %}
     </table>
     {% else %}
-        {%s page.Translate("noResultsFound") %}
+        {%s p.Translate("noResultsFound") %}
     {% endif %}
 
     <hr>
 
-    <h2>{%s page.TranslatePlural("contact") %}</h2>
-    {%s= page.contactsActions.RenderOverviewActions() %}
-    {% if len(page.contacts) > 0 %}
+    <h2>{%s p.TranslatePlural("contact") %}</h2>
+    {%s= p.contactsActions.RenderOverviewActions() %}
+    {% if len(p.contacts) > 0 %}
     <table>
         <tr>
-            {% if page.HasUserRight("UpdateUserContact") || page.HasUserRight("DeleteUserContact") %}
+            {% if p.HasUserRight("UpdateUserContact") || p.HasUserRight("DeleteUserContact") %}
                 <th><input type="checkbox" name="check"></th>
                 <th></th>
             {% endif %}
-            <th>{%s page.Translate("id") %}</th>
-            <th>{%s page.Translate("createdBy") %}</th>
-            <th>{%s page.Translate("createdAt") %}</th>
-            <th>{%s page.Translate("updatedBy") %}</th>
-            <th>{%s page.Translate("updatedAt") %}</th>
-            <th>{%s page.Translate("name") %}</th>
-            <th>{%s page.TranslatePlural("comment") %}</th>
+            <th>{%s p.Translate("id") %}</th>
+            <th>{%s p.Translate("createdBy") %}</th>
+            <th>{%s p.Translate("createdAt") %}</th>
+            <th>{%s p.Translate("updatedBy") %}</th>
+            <th>{%s p.Translate("updatedAt") %}</th>
+            <th>{%s p.Translate("name") %}</th>
+            <th>{%s p.TranslatePlural("comment") %}</th>
         </tr>
-        {% for k := range page.contacts %}
+        {% for k := range p.contacts %}
             <tr>
-                {% if page.HasUserRight("UpdateUserContact") || page.HasUserRight("DeleteUserContact") %}
-                    <td><input type="checkbox" name="check" data-id="{%s page.contacts[k].ID() %}"></td>
-                    <td><a href="{%s page.AdminURL() %}/User/Contact/Update?userid={%s page.contacts[k].ID() %}&id={%s page.contacts[k].ID() %}">✎</a></td>
+                {% if p.HasUserRight("UpdateUserContact") || p.HasUserRight("DeleteUserContact") %}
+                    <td><input type="checkbox" name="check" data-id="{%s p.contacts[k].ID() %}"></td>
+                    <td><a href="{%s p.AdminURL() %}/User/Contact/Update?userid={%s p.contacts[k].ID() %}&id={%s p.contacts[k].ID() %}">✎</a></td>
                 {% endif %}
-                <td>{%s page.contacts[k].ID() %}</td>
-                <td><a href="{%s page.AdminURL() %}/User/View?id={%s page.contacts[k].CreatedByID() %}">{%s page.rendererService.CreatedBy(page.contacts[k], page.language.ID()) %}</a></td>
-                <td>{%s page.contacts[k].CreatedAt().Format(time.RFC3339[0:9]) %}</td>
-                <td>{% if page.contacts[k].IsUpdated() %}<a href="{%s page.AdminURL() %}/User/View/{%s *page.contacts[k].UpdatedByID() %}">{%s page.rendererService.UpdatedBy(page.contacts[k], page.language.ID()) %}</a>{% endif %}</td>
-                <td>{% if page.contacts[k].IsUpdated() %}{%s page.contacts[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}</td>
+                <td>{%s p.contacts[k].ID() %}</td>
+                <td><a href="{%s p.AdminURL() %}/User/View?id={%s p.contacts[k].CreatedByID() %}">{%s p.rendererService.CreatedBy(p.contacts[k], p.language.ID()) %}</a></td>
+                <td>{%s p.contacts[k].CreatedAt().Format(time.RFC3339[0:9]) %}</td>
+                <td>{% if p.contacts[k].IsUpdated() %}<a href="{%s p.AdminURL() %}/User/View/{%s *page.contacts[k].UpdatedByID() %}">{%s p.rendererService.UpdatedBy(p.contacts[k], p.language.ID()) %}</a>{% endif %}</td>
+                <td>{% if p.contacts[k].IsUpdated() %}{%s p.contacts[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}</td>
                 <td>
-                    <a href="{%s page.AdminURL() %}/User/View?id={%s page.contacts[k].ContactID() %}">{%s page.userContactStore.Name(page.contacts[k], page.language.ID()) %}</a>
+                    <a href="{%s p.AdminURL() %}/User/View?id={%s p.contacts[k].ContactID() %}">{%s p.userContactStore.Name(p.contacts[k], p.language.ID()) %}</a>
                 </td>
-                <td>{% if page.contacts[k].Comments() != nil %}{%s *page.contacts[k].Comments() %}{% endif %}</td>
+                <td>{% if p.contacts[k].Comments() != nil %}{%s *page.contacts[k].Comments() %}{% endif %}</td>
             </tr>
         {% endfor %}
     </table>
     {% else %}
-        {%s page.Translate("noResultsFound") %}
+        {%s p.Translate("noResultsFound") %}
     {% endif %}
 </main>
 {% endstripspace %}{% endfunc%}
 
-{% func (page *Page) Javascripts() %}{% stripspace %}
-{% if len(page.addresses) > 0 || len(page.contacts) > 0 %}
+{% func (p *Page) Javascripts() %}{% stripspace %}
+{% if len(p.addresses) > 0 || len(p.contacts) > 0 %}
     <script src="/j/a/o.js"></script>
-    {%s= page.rendererService.DefaultOverviewTranslations(page.GetCoreContext()) %}
+    {%s= p.rendererService.DefaultOverviewTranslations(p.GetCoreContext()) %}
 {% endif %}
 {% endstripspace %}{% endfunc%}

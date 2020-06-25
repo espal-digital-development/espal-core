@@ -13,8 +13,8 @@ var _ Store = &PricesStore{}
 type Store interface {
 }
 
-func (pricesStore *PricesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Price, ok bool, err error) {
-	rows, err := pricesStore.selecterDatabase.Query(query, params...)
+func (p *PricesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Price, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (pricesStore *PricesStore) fetch(query string, withCreators bool, params ..
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		price := newPrice()
-		fields := []interface{}{&price.id, &price.createdByID, &price.updatedByID, &price.createdAt, &price.updatedAt, &price.bundledProductID, &price.productModelID, &price.productVariantID, &price.domainID, &price.priceGroupID, &price.taxGroup, &price.currency, &price.price}
+		p := newPrice()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.bundledProductID, &p.productModelID, &p.productVariantID, &p.domainID, &p.priceGroupID, &p.taxGroup, &p.currency, &p.price}
 		if withCreators {
-			fields = append(fields, &price.createdByFirstName, &price.createdBySurname, &price.updatedByFirstName, &price.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, price)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (pricesStore *PricesStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of PricesStore.
 func New(selecterDatabase database.Database) (*PricesStore, error) {
-	pricesStore := &PricesStore{
+	p := &PricesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return pricesStore, nil
+	return p, nil
 }

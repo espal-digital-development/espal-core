@@ -36,8 +36,8 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
-func (forms *Forms) New(contact contact, language language) (Form, error) {
-	validator, err := forms.validatorsFactory.NewForm(language)
+func (f *Forms) New(contact contact, language language) (Form, error) {
+	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -63,7 +63,7 @@ func (forms *Forms) New(contact contact, language language) (Form, error) {
 
 	contactField := validator.NewChoiceField("contact")
 	contactField.SetSearchable()
-	contactField.SetSearchableDataPath(forms.configService.AdminURL() + "/User/Search")
+	contactField.SetSearchableDataPath(f.configService.AdminURL() + "/User/Search")
 	if err := validator.AddField(contactField); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -74,12 +74,12 @@ func (forms *Forms) New(contact contact, language language) (Form, error) {
 			contactID = contact.ID()
 		}
 		if contactID != "" {
-			contactUser, ok, err := forms.userContactStore.GetOneByIDWithCreator(contactID)
+			contactUser, ok, err := f.userContactStore.GetOneByIDWithCreator(contactID)
 			if err != nil {
 				panic(errors.ErrorStack(err))
 			}
 			if !ok {
-				contactField.AddChoice(forms.validatorsFactory.NewChoiceOption(contactID, forms.userContactStore.Name(contactUser, language.ID())))
+				contactField.AddChoice(f.validatorsFactory.NewChoiceOption(contactID, f.userContactStore.Name(contactUser, language.ID())))
 				contactField.SetValue(contactID)
 			}
 		}

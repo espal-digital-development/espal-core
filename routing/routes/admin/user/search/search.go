@@ -14,12 +14,12 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadUser") {
 		return
 	}
 
-	users, _, err := route.userStore.Filter(context)
+	users, _, err := r.userStore.Filter(context)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return

@@ -9,106 +9,106 @@ import (
 )
 
 func TestDeliveryMethodTable(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
-	if deliveryMethod.TableName() == "" {
+	d := deliverymethod.NewDeliveryMethodEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestDeliveryMethodTableAlias(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
-	if deliveryMethod.TableName() == "" {
+	d := deliverymethod.NewDeliveryMethodEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestDeliveryMethodIsUpdated(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
-	deliveryMethod.IsUpdated()
+	d := deliverymethod.NewDeliveryMethodEntity()
+	d.IsUpdated()
 }
 
 func TestDeliveryMethodID(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
-	deliveryMethod.ID()
+	d := deliverymethod.NewDeliveryMethodEntity()
+	d.ID()
 }
 
 func TestDeliveryMethodCreatedByID(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := "testValue"
-	deliveryMethod.SetCreatedByID(testValue)
-	if testValue != deliveryMethod.CreatedByID() {
+	d.SetCreatedByID(testValue)
+	if testValue != d.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodUpdatedByID(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := "testValue"
-	deliveryMethod.SetUpdatedByID(&testValue)
-	if &testValue != deliveryMethod.UpdatedByID() {
+	d.SetUpdatedByID(&testValue)
+	if &testValue != d.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodCreatedAt(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := time.Now()
-	deliveryMethod.SetCreatedAt(testValue)
-	if testValue != deliveryMethod.CreatedAt() {
+	d.SetCreatedAt(testValue)
+	if testValue != d.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodUpdatedAt(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := time.Now()
-	deliveryMethod.SetUpdatedAt(&testValue)
-	if &testValue != deliveryMethod.UpdatedAt() {
+	d.SetUpdatedAt(&testValue)
+	if &testValue != d.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodCreatedByFirstName(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := "testValue"
-	deliveryMethod.SetCreatedByFirstName(&testValue)
-	if &testValue != deliveryMethod.CreatedByFirstName() {
+	d.SetCreatedByFirstName(&testValue)
+	if &testValue != d.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodCreatedBySurname(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := "testValue"
-	deliveryMethod.SetCreatedBySurname(&testValue)
-	if &testValue != deliveryMethod.CreatedBySurname() {
+	d.SetCreatedBySurname(&testValue)
+	if &testValue != d.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodUpdatedByFirstName(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := "testValue"
-	deliveryMethod.SetUpdatedByFirstName(&testValue)
-	if &testValue != deliveryMethod.UpdatedByFirstName() {
+	d.SetUpdatedByFirstName(&testValue)
+	if &testValue != d.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodUpdatedBySurname(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := "testValue"
-	deliveryMethod.SetUpdatedBySurname(&testValue)
-	if &testValue != deliveryMethod.UpdatedBySurname() {
+	d.SetUpdatedBySurname(&testValue)
+	if &testValue != d.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDeliveryMethodPrice(t *testing.T) {
-	deliveryMethod := deliverymethod.NewDeliveryMethodEntity()
+	d := deliverymethod.NewDeliveryMethodEntity()
 	testValue := 6.28
-	deliveryMethod.SetPrice(testValue)
-	if testValue != deliveryMethod.Price() {
+	d.SetPrice(testValue)
+	if testValue != d.Price() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

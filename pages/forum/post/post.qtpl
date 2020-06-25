@@ -1,31 +1,31 @@
-{% func (page *Page) Title() %}{%s *page.post.Title() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s *page.post.Title() %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <div class="content">
     <div>
         <h1>{%s *page.post.Title() %}</h1>
-        <p>{%s page.rendererService.CreatedBy(page.post, page.language.ID()) %}</p>
-        {% if page.IsLoggedIn() && page.user.ID() == page.post.CreatedByID() %}
+        <p>{%s p.rendererService.CreatedBy(p.post, p.language.ID()) %}</p>
+        {% if p.IsLoggedIn() && p.user.ID() == p.post.CreatedByID() %}
         <p>
-            <a href="/ForumPost/Delete/{%s page.post.ID() %}">
-                {%s page.Translate("delete") %}
+            <a href="/ForumPost/Delete/{%s p.post.ID() %}">
+                {%s p.Translate("delete") %}
             </a>
         </p>
         {% endif %}
         <p>
-            {%s page.post.Message() %}
+            {%s p.post.Message() %}
         </p>
     </div>
-    {% if len(page.replies) > 0 %}
-        <h2>{%s page.TranslatePlural("reply") %}</h2>
-        {% for k := range page.replies %}
+    {% if len(p.replies) > 0 %}
+        <h2>{%s p.TranslatePlural("reply") %}</h2>
+        {% for k := range p.replies %}
             <div>
                 <p>
-                    {% if page.replies[k].Title() != nil %}
+                    {% if p.replies[k].Title() != nil %}
                         {%s *page.replies[k].Title() %}
                     {% endif %}
                 </p>
-                <p>{%s page.rendererService.CreatedBy(page.replies[k], page.language.ID()) %}</p>
+                <p>{%s p.rendererService.CreatedBy(p.replies[k], p.language.ID()) %}</p>
             </div>
         {% endfor %}
     {% endif %}

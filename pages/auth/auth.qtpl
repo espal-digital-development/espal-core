@@ -1,22 +1,22 @@
-{% func (page *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+{% func (p *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
 
-{% func (page *Page) Menu() %}{% endfunc %}
+{% func (p *Page) Menu() %}{% endfunc %}
 
-{% func (page *Page) Title() %}{%s page.Translate("authentication") %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.Translate("authentication") %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <div class="simpleBox">
-    {%s= page.form.Errors() %}
-    <h1>{%s page.Translate("authentication") %}</h1>
-    {%s= page.form.Open() %}
-        {%s= page.form.Field("_uname") %}
-        {%s= page.form.Field("_t") %}
-        {%s= page.form.Field("email") %}<br>
-        {%s= page.form.Field("password") %}<br>
-        {%s= page.form.Field("rememberMe") %}<br>
-        <input type="submit" value="{%s page.Translate("login") %}">
+    {%s= p.form.Errors() %}
+    <h1>{%s p.Translate("authentication") %}</h1>
+    {%s= p.form.Open() %}
+        {%s= p.form.Field("_uname") %}
+        {%s= p.form.Field("_t") %}
+        {%s= p.form.Field("email") %}<br>
+        {%s= p.form.Field("password") %}<br>
+        {%s= p.form.Field("rememberMe") %}<br>
+        <input type="submit" value="{%s p.Translate("login") %}">
     </form>
 </div>
 {% endstripspace %}{% endfunc%}
 
-{% func (page *Page) Javascripts() %}<script src="/j/form.js"></script>{% endfunc%}
+{% func (p *Page) Javascripts() %}<script src="/j/form.js"></script>{% endfunc%}

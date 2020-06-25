@@ -9,115 +9,115 @@ import (
 )
 
 func TestGroupTable(t *testing.T) {
-	group := group.NewGroupEntity()
-	if group.TableName() == "" {
+	g := group.NewGroupEntity()
+	if g.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestGroupTableAlias(t *testing.T) {
-	group := group.NewGroupEntity()
-	if group.TableName() == "" {
+	g := group.NewGroupEntity()
+	if g.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestGroupIsUpdated(t *testing.T) {
-	group := group.NewGroupEntity()
-	group.IsUpdated()
+	g := group.NewGroupEntity()
+	g.IsUpdated()
 }
 
 func TestGroupID(t *testing.T) {
-	group := group.NewGroupEntity()
-	group.ID()
+	g := group.NewGroupEntity()
+	g.ID()
 }
 
 func TestGroupCreatedByID(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := "testValue"
-	group.SetCreatedByID(testValue)
-	if testValue != group.CreatedByID() {
+	g.SetCreatedByID(testValue)
+	if testValue != g.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupUpdatedByID(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := "testValue"
-	group.SetUpdatedByID(&testValue)
-	if &testValue != group.UpdatedByID() {
+	g.SetUpdatedByID(&testValue)
+	if &testValue != g.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupCreatedAt(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := time.Now()
-	group.SetCreatedAt(testValue)
-	if testValue != group.CreatedAt() {
+	g.SetCreatedAt(testValue)
+	if testValue != g.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupUpdatedAt(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := time.Now()
-	group.SetUpdatedAt(&testValue)
-	if &testValue != group.UpdatedAt() {
+	g.SetUpdatedAt(&testValue)
+	if &testValue != g.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupCreatedByFirstName(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := "testValue"
-	group.SetCreatedByFirstName(&testValue)
-	if &testValue != group.CreatedByFirstName() {
+	g.SetCreatedByFirstName(&testValue)
+	if &testValue != g.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupCreatedBySurname(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := "testValue"
-	group.SetCreatedBySurname(&testValue)
-	if &testValue != group.CreatedBySurname() {
+	g.SetCreatedBySurname(&testValue)
+	if &testValue != g.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupUpdatedByFirstName(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := "testValue"
-	group.SetUpdatedByFirstName(&testValue)
-	if &testValue != group.UpdatedByFirstName() {
+	g.SetUpdatedByFirstName(&testValue)
+	if &testValue != g.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupUpdatedBySurname(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := "testValue"
-	group.SetUpdatedBySurname(&testValue)
-	if &testValue != group.UpdatedBySurname() {
+	g.SetUpdatedBySurname(&testValue)
+	if &testValue != g.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupActive(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := true
-	group.SetActive(testValue)
-	if testValue != group.Active() {
+	g.SetActive(testValue)
+	if testValue != g.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGroupSorting(t *testing.T) {
-	group := group.NewGroupEntity()
+	g := group.NewGroupEntity()
 	testValue := uint(1e9)
-	group.SetSorting(testValue)
-	if testValue != group.Sorting() {
+	g.SetSorting(testValue)
+	if testValue != g.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

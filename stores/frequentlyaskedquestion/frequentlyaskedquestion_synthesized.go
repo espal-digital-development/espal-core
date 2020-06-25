@@ -22,143 +22,143 @@ type FrequentlyAskedQuestionEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) TableName() string {
+func (f *FrequentlyAskedQuestion) TableName() string {
 	return "FrequentlyAskedQuestion"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) TableAlias() string {
+func (f *FrequentlyAskedQuestion) TableAlias() string {
 	return "faqe"
 }
 
 // ID returns id.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) ID() string {
-	return frequentlyAskedQuestion.id
+func (f *FrequentlyAskedQuestion) ID() string {
+	return f.id
 }
 
 // CreatedByID returns createdByID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) CreatedByID() string {
-	return frequentlyAskedQuestion.createdByID
+func (f *FrequentlyAskedQuestion) CreatedByID() string {
+	return f.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetCreatedByID(createdByID string) {
-	frequentlyAskedQuestion.createdByID = createdByID
+func (f *FrequentlyAskedQuestion) SetCreatedByID(createdByID string) {
+	f.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) UpdatedByID() *string {
-	return frequentlyAskedQuestion.updatedByID
+func (f *FrequentlyAskedQuestion) UpdatedByID() *string {
+	return f.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetUpdatedByID(updatedByID *string) {
-	frequentlyAskedQuestion.updatedByID = updatedByID
+func (f *FrequentlyAskedQuestion) SetUpdatedByID(updatedByID *string) {
+	f.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) CreatedAt() time.Time {
-	return frequentlyAskedQuestion.createdAt
+func (f *FrequentlyAskedQuestion) CreatedAt() time.Time {
+	return f.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetCreatedAt(createdAt time.Time) {
-	frequentlyAskedQuestion.createdAt = createdAt
+func (f *FrequentlyAskedQuestion) SetCreatedAt(createdAt time.Time) {
+	f.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) UpdatedAt() *time.Time {
-	return frequentlyAskedQuestion.updatedAt
+func (f *FrequentlyAskedQuestion) UpdatedAt() *time.Time {
+	return f.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetUpdatedAt(updatedAt *time.Time) {
-	frequentlyAskedQuestion.updatedAt = updatedAt
+func (f *FrequentlyAskedQuestion) SetUpdatedAt(updatedAt *time.Time) {
+	f.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) CreatedByFirstName() *string {
-	return frequentlyAskedQuestion.createdByFirstName
+func (f *FrequentlyAskedQuestion) CreatedByFirstName() *string {
+	return f.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetCreatedByFirstName(createdByFirstName *string) {
-	frequentlyAskedQuestion.createdByFirstName = createdByFirstName
+func (f *FrequentlyAskedQuestion) SetCreatedByFirstName(createdByFirstName *string) {
+	f.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) CreatedBySurname() *string {
-	return frequentlyAskedQuestion.createdBySurname
+func (f *FrequentlyAskedQuestion) CreatedBySurname() *string {
+	return f.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetCreatedBySurname(createdBySurname *string) {
-	frequentlyAskedQuestion.createdBySurname = createdBySurname
+func (f *FrequentlyAskedQuestion) SetCreatedBySurname(createdBySurname *string) {
+	f.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) UpdatedByFirstName() *string {
-	return frequentlyAskedQuestion.updatedByFirstName
+func (f *FrequentlyAskedQuestion) UpdatedByFirstName() *string {
+	return f.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetUpdatedByFirstName(updatedByFirstName *string) {
-	frequentlyAskedQuestion.updatedByFirstName = updatedByFirstName
+func (f *FrequentlyAskedQuestion) SetUpdatedByFirstName(updatedByFirstName *string) {
+	f.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) UpdatedBySurname() *string {
-	return frequentlyAskedQuestion.updatedBySurname
+func (f *FrequentlyAskedQuestion) UpdatedBySurname() *string {
+	return f.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetUpdatedBySurname(updatedBySurname *string) {
-	frequentlyAskedQuestion.updatedBySurname = updatedBySurname
+func (f *FrequentlyAskedQuestion) SetUpdatedBySurname(updatedBySurname *string) {
+	f.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) IsUpdated() bool {
-	return frequentlyAskedQuestion.updatedByID != nil
+func (f *FrequentlyAskedQuestion) IsUpdated() bool {
+	return f.updatedByID != nil
 }
 
 // FrequentlyAskedQuestionSectionID returns frequentlyAskedQuestionSectionID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) FrequentlyAskedQuestionSectionID() *string {
-	return frequentlyAskedQuestion.frequentlyAskedQuestionSectionID
+func (f *FrequentlyAskedQuestion) FrequentlyAskedQuestionSectionID() *string {
+	return f.frequentlyAskedQuestionSectionID
 }
 
 // SetFrequentlyAskedQuestionSectionID sets the frequentlyAskedQuestionSectionID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetFrequentlyAskedQuestionSectionID(frequentlyAskedQuestionSectionID *string) {
-	frequentlyAskedQuestion.frequentlyAskedQuestionSectionID = frequentlyAskedQuestionSectionID
+func (f *FrequentlyAskedQuestion) SetFrequentlyAskedQuestionSectionID(frequentlyAskedQuestionSectionID *string) {
+	f.frequentlyAskedQuestionSectionID = frequentlyAskedQuestionSectionID
 }
 
 // DomainID returns domainID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) DomainID() string {
-	return frequentlyAskedQuestion.domainID
+func (f *FrequentlyAskedQuestion) DomainID() string {
+	return f.domainID
 }
 
 // SetDomainID sets the domainID.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetDomainID(domainID string) {
-	frequentlyAskedQuestion.domainID = domainID
+func (f *FrequentlyAskedQuestion) SetDomainID(domainID string) {
+	f.domainID = domainID
 }
 
 // Active returns active.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) Active() bool {
-	return frequentlyAskedQuestion.active
+func (f *FrequentlyAskedQuestion) Active() bool {
+	return f.active
 }
 
 // SetActive sets the active.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetActive(active bool) {
-	frequentlyAskedQuestion.active = active
+func (f *FrequentlyAskedQuestion) SetActive(active bool) {
+	f.active = active
 }
 
 // Sorting returns sorting.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) Sorting() uint {
-	return frequentlyAskedQuestion.sorting
+func (f *FrequentlyAskedQuestion) Sorting() uint {
+	return f.sorting
 }
 
 // SetSorting sets the sorting.
-func (frequentlyAskedQuestion *FrequentlyAskedQuestion) SetSorting(sorting uint) {
-	frequentlyAskedQuestion.sorting = sorting
+func (f *FrequentlyAskedQuestion) SetSorting(sorting uint) {
+	f.sorting = sorting
 }
 
 func newFrequentlyAskedQuestion() *FrequentlyAskedQuestion {

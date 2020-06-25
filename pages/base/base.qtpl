@@ -9,53 +9,53 @@ BasePage {
 }
 %}
 
-{% func PageTemplate(basePage BasePage) %}{% stripspace %}
+{% func PageTemplate(p BasePage) %}{% stripspace %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{%= basePage.Title() %}</title>
+        <title>{%= p.Title() %}</title>
         <link rel="stylesheet" href="/c/m.css">
-        {%= basePage.Stylesheets() %}
+        {%= p.Stylesheets() %}
     </head>
     <body>{% stripspace %}
-        {%= basePage.Menu() %}
-        {%= basePage.Content() %}
-        {%= basePage.mainJavascripts() %}
-        {%= basePage.Javascripts() %}
+        {%= p.Menu() %}
+        {%= p.Content() %}
+        {%= p.mainJavascripts() %}
+        {%= p.Javascripts() %}
     {% endstripspace %}</body>
 </html>
 {% endstripspace %}{% endfunc %}
 
-{% func (page *Page) Title() %}{% endfunc %}
+{% func (p *Page) Title() %}{% endfunc %}
 
-{% func (page *Page) Menu() %}{% stripspace %}
+{% func (p *Page) Menu() %}{% stripspace %}
 <header>
-    <a href="/">{%s page.Translate("home") %}</a>
-    <a href="/Catalog">{%s page.Translate("catalog") %}</a>
-    <a href="/Forums">{%s page.TranslatePlural("forum") %}</a>
-    <a href="/Cart">{%s page.Translate("shoppingCart") %}</a>
-    {% if page.IsLoggedIn() %}<a href="/Account">{%s page.Translate("myAccount") %}</a>{% endif %}
-    {% if !page.IsLoggedIn() %}<a href="/Login">{%s page.Translate("login") %}</a>{% endif %}
-    {% if page.IsLoggedIn() %}<a href="/Logout">{%s page.Translate("logout") %}</a>{% endif %}
-    {% if !page.IsLoggedIn() %}<a href="/ForgotPassword">{%s page.Translate("forgotPassword") %}</a>{% endif %}
-    {% if page.IsLoggedIn() && page.HasAdminAccess() %}
-        <a href="{%s page.AdminURL() %}">{%s page.Translate("admin") %}</a>
+    <a href="/">{%s p.Translate("home") %}</a>
+    <a href="/Catalog">{%s p.Translate("catalog") %}</a>
+    <a href="/Forums">{%s p.TranslatePlural("forum") %}</a>
+    <a href="/Cart">{%s p.Translate("shoppingCart") %}</a>
+    {% if p.IsLoggedIn() %}<a href="/Account">{%s p.Translate("myAccount") %}</a>{% endif %}
+    {% if !p.IsLoggedIn() %}<a href="/Login">{%s p.Translate("login") %}</a>{% endif %}
+    {% if p.IsLoggedIn() %}<a href="/Logout">{%s p.Translate("logout") %}</a>{% endif %}
+    {% if !p.IsLoggedIn() %}<a href="/ForgotPassword">{%s p.Translate("forgotPassword") %}</a>{% endif %}
+    {% if p.IsLoggedIn() && p.HasAdminAccess() %}
+        <a href="{%s p.AdminURL() %}">{%s p.Translate("admin") %}</a>
     {% endif %}
-    {% if page.HasPprofEnabled() %}
-        <a href="{%s page.PprofURL() %}">Pprof</a>
+    {% if p.HasPprofEnabled() %}
+        <a href="{%s p.PprofURL() %}">Pprof</a>
     {% endif %}
 </header>
 {% endstripspace %}{% endfunc %}
 
-{% func (page *Page) mainJavascripts() %}{% stripspace %}
-{% if page.HasFlashMessage() %}
+{% func (p *Page) mainJavascripts() %}{% stripspace %}
+{% if p.HasFlashMessage() %}
 <script src="/j/flashMessage.js"></script>
 {% endif %}
 {% endstripspace %}{% endfunc %}
 
-{% func (page *Page) Content() %}{% endfunc %}
+{% func (p *Page) Content() %}{% endfunc %}
 
-{% func (page *Page) Stylesheets() %}{% endfunc %}
+{% func (p *Page) Stylesheets() %}{% endfunc %}
 
-{% func (page *Page) Javascripts() %}{% endfunc %}
+{% func (p *Page) Javascripts() %}{% endfunc %}

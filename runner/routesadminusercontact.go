@@ -7,15 +7,15 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdminUserContact() error {
-	createUpdatePage := createupdatepage.New(runner.services.renderer)
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Contact/Create", createupdate.New(runner.services.entityMutators, runner.stores.user, runner.stores.userContact, runner.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
+func (r *Runner) routesAdminUserContact() error {
+	createUpdatePage := createupdatepage.New(r.services.renderer)
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Create", createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userContact, r.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Contact/Update", createupdate.New(runner.services.entityMutators, runner.stores.user, runner.stores.userContact, runner.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Update", createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userContact, r.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Contact/Delete", delete.New(runner.repositories.regularExpressions, runner.stores.userContact)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Delete", delete.New(r.repositories.regularExpressions, r.stores.userContact)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

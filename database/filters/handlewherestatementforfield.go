@@ -6,145 +6,145 @@ import (
 	"github.com/juju/errors"
 )
 
-func (filter *filter) handleWhereStatementForField(fieldKey int) error {
-	if filter.firstWhereStatementHad {
-		if _, err := filter.query.WriteString(" AND "); err != nil {
+func (f *filter) handleWhereStatementForField(fieldKey int) error {
+	if f.firstWhereStatementHad {
+		if _, err := f.query.WriteString(" AND "); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(" AND "); err != nil {
+		if _, err := f.countQuery.WriteString(" AND "); err != nil {
 			return errors.Trace(err)
 		}
 	} else {
-		if _, err := filter.query.WriteString(" "); err != nil {
+		if _, err := f.query.WriteString(" "); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(" "); err != nil {
+		if _, err := f.countQuery.WriteString(" "); err != nil {
 			return errors.Trace(err)
 		}
-		filter.firstWhereStatementHad = true
+		f.firstWhereStatementHad = true
 	}
 
-	if filter.fields[fieldKey].alias == "" {
-		if _, err := filter.query.WriteString(filter.tableAlias); err != nil {
+	if f.fields[fieldKey].alias == "" {
+		if _, err := f.query.WriteString(f.tableAlias); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString("."); err != nil {
+		if _, err := f.query.WriteString("."); err != nil {
 			return errors.Trace(err)
 		}
-	} else if filter.fields[fieldKey].alias != "" {
-		if _, err := filter.query.WriteString(filter.fields[fieldKey].alias); err != nil {
+	} else if f.fields[fieldKey].alias != "" {
+		if _, err := f.query.WriteString(f.fields[fieldKey].alias); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString("."); err != nil {
+		if _, err := f.query.WriteString("."); err != nil {
 			return errors.Trace(err)
 		}
 	}
 
-	if _, err := filter.query.WriteString(filter.fields[fieldKey].name); err != nil {
+	if _, err := f.query.WriteString(f.fields[fieldKey].name); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := filter.countQuery.WriteString(filter.fields[fieldKey].name); err != nil {
+	if _, err := f.countQuery.WriteString(f.fields[fieldKey].name); err != nil {
 		return errors.Trace(err)
 	}
 
 	var dontBindParam bool
 
-	switch filter.fields[fieldKey].action {
+	switch f.fields[fieldKey].action {
 	case filterFieldActionEqualTo:
-		if _, err := filter.query.WriteString("="); err != nil {
+		if _, err := f.query.WriteString("="); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString("="); err != nil {
+		if _, err := f.countQuery.WriteString("="); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionIsNull:
-		if filter.fields[fieldKey].value == "1" {
-			if _, err := filter.query.WriteString(" IS NULL"); err != nil {
+		if f.fields[fieldKey].value == "1" {
+			if _, err := f.query.WriteString(" IS NULL"); err != nil {
 				return errors.Trace(err)
 			}
-			if _, err := filter.countQuery.WriteString(" IS NULL"); err != nil {
+			if _, err := f.countQuery.WriteString(" IS NULL"); err != nil {
 				return errors.Trace(err)
 			}
 		} else {
-			if _, err := filter.query.WriteString(" IS NOT NULL"); err != nil {
+			if _, err := f.query.WriteString(" IS NOT NULL"); err != nil {
 				return errors.Trace(err)
 			}
-			if _, err := filter.countQuery.WriteString(" IS NOT NULL"); err != nil {
+			if _, err := f.countQuery.WriteString(" IS NOT NULL"); err != nil {
 				return errors.Trace(err)
 			}
 		}
 		dontBindParam = true
-		filter.amountOfNotNulls++
+		f.amountOfNotNulls++
 	case filterFieldActionNotEqualTo:
-		if _, err := filter.query.WriteString("!="); err != nil {
+		if _, err := f.query.WriteString("!="); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString("!="); err != nil {
+		if _, err := f.countQuery.WriteString("!="); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionGreaterThan:
-		if _, err := filter.query.WriteString(">"); err != nil {
+		if _, err := f.query.WriteString(">"); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(">"); err != nil {
+		if _, err := f.countQuery.WriteString(">"); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionSmallerThan:
-		if _, err := filter.query.WriteString("<"); err != nil {
+		if _, err := f.query.WriteString("<"); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString("<"); err != nil {
+		if _, err := f.countQuery.WriteString("<"); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionEqualToOrGreaterThan:
-		if _, err := filter.query.WriteString(">="); err != nil {
+		if _, err := f.query.WriteString(">="); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(">="); err != nil {
+		if _, err := f.countQuery.WriteString(">="); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionEqualToOrSmallerThan:
-		if _, err := filter.query.WriteString("<="); err != nil {
+		if _, err := f.query.WriteString("<="); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString("<="); err != nil {
+		if _, err := f.countQuery.WriteString("<="); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionLike:
-		if _, err := filter.query.WriteString(" LIKE"); err != nil {
+		if _, err := f.query.WriteString(" LIKE"); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(" LIKE"); err != nil {
+		if _, err := f.countQuery.WriteString(" LIKE"); err != nil {
 			return errors.Trace(err)
 		}
 	case filterFieldActionBetween:
-		if _, err := filter.query.WriteString(" BETWEEN $"); err != nil {
+		if _, err := f.query.WriteString(" BETWEEN $"); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString(strconv.Itoa(int(filter.incrementParameterCount()))); err != nil {
+		if _, err := f.query.WriteString(strconv.Itoa(int(f.incrementParameterCount()))); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString(" AND "); err != nil {
+		if _, err := f.query.WriteString(" AND "); err != nil {
 			return errors.Trace(err)
 		}
 
-		if _, err := filter.countQuery.WriteString(" BETWEEN $"); err != nil {
+		if _, err := f.countQuery.WriteString(" BETWEEN $"); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(strconv.Itoa(int(filter.parameterCount))); err != nil {
+		if _, err := f.countQuery.WriteString(strconv.Itoa(int(f.parameterCount))); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString(" AND "); err != nil {
+		if _, err := f.countQuery.WriteString(" AND "); err != nil {
 			return errors.Trace(err)
 		}
-		filter.amountOfBetweens++
+		f.amountOfBetweens++
 	}
 
 	if !dontBindParam {
-		if _, err := filter.query.WriteString("?"); err != nil {
+		if _, err := f.query.WriteString("?"); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.countQuery.WriteString("?"); err != nil {
+		if _, err := f.countQuery.WriteString("?"); err != nil {
 			return errors.Trace(err)
 		}
 	}

@@ -28,46 +28,46 @@ type database struct {
 }
 
 // DatabaseHost returns the database host server address.
-func (config *Configuration) DatabaseHost() string {
-	return config.database.Host
+func (c *Configuration) DatabaseHost() string {
+	return c.database.Host
 }
 
 // DatabasePort returns the database server port.
-func (config *Configuration) DatabasePort() int {
-	return config.database.Port
+func (c *Configuration) DatabasePort() int {
+	return c.database.Port
 }
 
 // DatabaseName returns the database name.
-func (config *Configuration) DatabaseName() string {
-	return config.database.Name
+func (c *Configuration) DatabaseName() string {
+	return c.database.Name
 }
 
 // DatabaseSelecter returns the database selecter username.
-func (config *Configuration) DatabaseSelecter() string {
-	return config.database.Users.Selecter
+func (c *Configuration) DatabaseSelecter() string {
+	return c.database.Users.Selecter
 }
 
 // DatabaseCreator returns the database creator username.
-func (config *Configuration) DatabaseCreator() string {
-	return config.database.Users.Creator
+func (c *Configuration) DatabaseCreator() string {
+	return c.database.Users.Creator
 }
 
 // DatabaseInserter returns the database inserter username.
-func (config *Configuration) DatabaseInserter() string {
-	return config.database.Users.Inserter
+func (c *Configuration) DatabaseInserter() string {
+	return c.database.Users.Inserter
 }
 
 // DatabaseUpdater returns the database updater username.
-func (config *Configuration) DatabaseUpdater() string {
-	return config.database.Users.Updater
+func (c *Configuration) DatabaseUpdater() string {
+	return c.database.Users.Updater
 }
 
 // DatabaseDeletor returns the database deletor username.
-func (config *Configuration) DatabaseDeletor() string {
-	return config.database.Users.Deletor
+func (c *Configuration) DatabaseDeletor() string {
+	return c.database.Users.Deletor
 }
 
 // DatabaseMigrator returns the database migrator username.
-func (config *Configuration) DatabaseMigrator() string {
-	return config.database.Users.Migrator
+func (c *Configuration) DatabaseMigrator() string {
+	return c.database.Users.Migrator
 }

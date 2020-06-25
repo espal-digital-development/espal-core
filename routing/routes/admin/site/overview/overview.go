@@ -15,7 +15,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadSite") {
 		return
 	}
@@ -25,7 +25,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	sites, filter, err := route.siteStore.Filter(context, language)
+	sites, filter, err := r.siteStore.Filter(context, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -41,7 +41,7 @@ func (route *Route) Handle(context contexts.Context) {
 	pageActions.AddCreate()
 	pageActions.AddToggle()
 	pageActions.AddDelete()
-	route.overviewPageFactory.NewPage(context, language, pageActions, filter, sites, canUpdate, canDelete).Render()
+	r.overviewPageFactory.NewPage(context, language, pageActions, filter, sites, canUpdate, canDelete).Render()
 }
 
 // New returns a new instance of Route.

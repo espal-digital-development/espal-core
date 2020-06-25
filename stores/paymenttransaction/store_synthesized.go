@@ -13,8 +13,8 @@ var _ Store = &PaymentTransactionsStore{}
 type Store interface {
 }
 
-func (paymentTransactionsStore *PaymentTransactionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PaymentTransaction, ok bool, err error) {
-	rows, err := paymentTransactionsStore.selecterDatabase.Query(query, params...)
+func (p *PaymentTransactionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PaymentTransaction, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (paymentTransactionsStore *PaymentTransactionsStore) fetch(query string, wi
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		paymentTransaction := newPaymentTransaction()
-		fields := []interface{}{&paymentTransaction.id, &paymentTransaction.createdByID, &paymentTransaction.updatedByID, &paymentTransaction.createdAt, &paymentTransaction.updatedAt, &paymentTransaction.paymentAccountID, &paymentTransaction.saleOrderID, &paymentTransaction.responseCode, &paymentTransaction.amount, &paymentTransaction.hash, &paymentTransaction.message}
+		p := newPaymentTransaction()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.paymentAccountID, &p.saleOrderID, &p.responseCode, &p.amount, &p.hash, &p.message}
 		if withCreators {
-			fields = append(fields, &paymentTransaction.createdByFirstName, &paymentTransaction.createdBySurname, &paymentTransaction.updatedByFirstName, &paymentTransaction.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, paymentTransaction)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (paymentTransactionsStore *PaymentTransactionsStore) fetch(query string, wi
 
 // New returns a new instance of PaymentTransactionsStore.
 func New(selecterDatabase database.Database) (*PaymentTransactionsStore, error) {
-	paymentTransactionsStore := &PaymentTransactionsStore{
+	p := &PaymentTransactionsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return paymentTransactionsStore, nil
+	return p, nil
 }

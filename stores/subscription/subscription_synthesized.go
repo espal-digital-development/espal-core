@@ -14,98 +14,98 @@ type SubscriptionEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (subscription *Subscription) TableName() string {
+func (s *Subscription) TableName() string {
 	return "Subscription"
 }
 
 // ID returns id.
-func (subscription *Subscription) ID() string {
-	return subscription.id
+func (s *Subscription) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (subscription *Subscription) CreatedByID() string {
-	return subscription.createdByID
+func (s *Subscription) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (subscription *Subscription) SetCreatedByID(createdByID string) {
-	subscription.createdByID = createdByID
+func (s *Subscription) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (subscription *Subscription) UpdatedByID() *string {
-	return subscription.updatedByID
+func (s *Subscription) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (subscription *Subscription) SetUpdatedByID(updatedByID *string) {
-	subscription.updatedByID = updatedByID
+func (s *Subscription) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (subscription *Subscription) CreatedAt() time.Time {
-	return subscription.createdAt
+func (s *Subscription) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (subscription *Subscription) SetCreatedAt(createdAt time.Time) {
-	subscription.createdAt = createdAt
+func (s *Subscription) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (subscription *Subscription) UpdatedAt() *time.Time {
-	return subscription.updatedAt
+func (s *Subscription) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (subscription *Subscription) SetUpdatedAt(updatedAt *time.Time) {
-	subscription.updatedAt = updatedAt
+func (s *Subscription) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (subscription *Subscription) CreatedByFirstName() *string {
-	return subscription.createdByFirstName
+func (s *Subscription) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (subscription *Subscription) SetCreatedByFirstName(createdByFirstName *string) {
-	subscription.createdByFirstName = createdByFirstName
+func (s *Subscription) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (subscription *Subscription) CreatedBySurname() *string {
-	return subscription.createdBySurname
+func (s *Subscription) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (subscription *Subscription) SetCreatedBySurname(createdBySurname *string) {
-	subscription.createdBySurname = createdBySurname
+func (s *Subscription) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (subscription *Subscription) UpdatedByFirstName() *string {
-	return subscription.updatedByFirstName
+func (s *Subscription) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (subscription *Subscription) SetUpdatedByFirstName(updatedByFirstName *string) {
-	subscription.updatedByFirstName = updatedByFirstName
+func (s *Subscription) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (subscription *Subscription) UpdatedBySurname() *string {
-	return subscription.updatedBySurname
+func (s *Subscription) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (subscription *Subscription) SetUpdatedBySurname(updatedBySurname *string) {
-	subscription.updatedBySurname = updatedBySurname
+func (s *Subscription) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (subscription *Subscription) IsUpdated() bool {
-	return subscription.updatedByID != nil
+func (s *Subscription) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 func newSubscription() *Subscription {

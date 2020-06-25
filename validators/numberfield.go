@@ -1,29 +1,29 @@
 package validators
 
 // NewNumberField returns a new instance of FormField with the type Number.
-func (form *Form) NewNumberField(name string) FormField {
-	return form.defaultChecks(&formField{
+func (f *Form) NewNumberField(name string) FormField {
+	return f.defaultChecks(&formField{
 		name:  name,
 		_type: NumberFormField,
 	})
 }
 
 // SetMinValue sets the minimal numeral value.
-func (formField *formField) SetMinValue(minValue float64) {
-	formField.minValue = minValue
+func (f *formField) SetMinValue(minValue float64) {
+	f.minValue = minValue
 }
 
 // MinValue gets the minimal numeral value.
-func (formField *formField) MinValue() float64 {
-	return formField.minValue
+func (f *formField) MinValue() float64 {
+	return f.minValue
 }
 
 // SetMaxValue sets the maximum numeral value.
-func (formField *formField) SetMaxValue(maxValue float64) {
-	formField.maxValue = maxValue
+func (f *formField) SetMaxValue(maxValue float64) {
+	f.maxValue = maxValue
 }
 
 // MaxValue gets the maximum numeral value.
-func (formField *formField) MaxValue() float64 {
-	return formField.maxValue
+func (f *formField) MaxValue() float64 {
+	return f.maxValue
 }

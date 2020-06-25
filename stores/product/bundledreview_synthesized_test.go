@@ -9,169 +9,169 @@ import (
 )
 
 func TestBundledReviewTable(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
-	if bundledReview.TableName() == "" {
+	b := product.NewBundledReviewEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestBundledReviewTableAlias(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
-	if bundledReview.TableName() == "" {
+	b := product.NewBundledReviewEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestBundledReviewIsUpdated(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
-	bundledReview.IsUpdated()
+	b := product.NewBundledReviewEntity()
+	b.IsUpdated()
 }
 
 func TestBundledReviewID(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
-	bundledReview.ID()
+	b := product.NewBundledReviewEntity()
+	b.ID()
 }
 
 func TestBundledReviewCreatedByID(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetCreatedByID(testValue)
-	if testValue != bundledReview.CreatedByID() {
+	b.SetCreatedByID(testValue)
+	if testValue != b.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewUpdatedByID(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetUpdatedByID(&testValue)
-	if &testValue != bundledReview.UpdatedByID() {
+	b.SetUpdatedByID(&testValue)
+	if &testValue != b.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewCreatedAt(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := time.Now()
-	bundledReview.SetCreatedAt(testValue)
-	if testValue != bundledReview.CreatedAt() {
+	b.SetCreatedAt(testValue)
+	if testValue != b.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewUpdatedAt(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := time.Now()
-	bundledReview.SetUpdatedAt(&testValue)
-	if &testValue != bundledReview.UpdatedAt() {
+	b.SetUpdatedAt(&testValue)
+	if &testValue != b.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewCreatedByFirstName(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetCreatedByFirstName(&testValue)
-	if &testValue != bundledReview.CreatedByFirstName() {
+	b.SetCreatedByFirstName(&testValue)
+	if &testValue != b.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewCreatedBySurname(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetCreatedBySurname(&testValue)
-	if &testValue != bundledReview.CreatedBySurname() {
+	b.SetCreatedBySurname(&testValue)
+	if &testValue != b.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewUpdatedByFirstName(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetUpdatedByFirstName(&testValue)
-	if &testValue != bundledReview.UpdatedByFirstName() {
+	b.SetUpdatedByFirstName(&testValue)
+	if &testValue != b.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewUpdatedBySurname(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetUpdatedBySurname(&testValue)
-	if &testValue != bundledReview.UpdatedBySurname() {
+	b.SetUpdatedBySurname(&testValue)
+	if &testValue != b.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewReviewedByID(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetReviewedByID(&testValue)
-	if &testValue != bundledReview.ReviewedByID() {
+	b.SetReviewedByID(&testValue)
+	if &testValue != b.ReviewedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewReviewedOnDate(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := time.Now()
-	bundledReview.SetReviewedOnDate(&testValue)
-	if &testValue != bundledReview.ReviewedOnDate() {
+	b.SetReviewedOnDate(&testValue)
+	if &testValue != b.ReviewedOnDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewReviewNotes(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetReviewNotes(&testValue)
-	if &testValue != bundledReview.ReviewNotes() {
+	b.SetReviewNotes(&testValue)
+	if &testValue != b.ReviewNotes() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewApproved(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := true
-	bundledReview.SetApproved(&testValue)
-	if &testValue != bundledReview.Approved() {
+	b.SetApproved(&testValue)
+	if &testValue != b.Approved() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewRating(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := float32(3.14)
-	bundledReview.SetRating(testValue)
-	if testValue != bundledReview.Rating() {
+	b.SetRating(testValue)
+	if testValue != b.Rating() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewTitle(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetTitle(testValue)
-	if testValue != bundledReview.Title() {
+	b.SetTitle(testValue)
+	if testValue != b.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewDescription(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetDescription(testValue)
-	if testValue != bundledReview.Description() {
+	b.SetDescription(testValue)
+	if testValue != b.Description() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledReviewBundledID(t *testing.T) {
-	bundledReview := product.NewBundledReviewEntity()
+	b := product.NewBundledReviewEntity()
 	testValue := "testValue"
-	bundledReview.SetBundledID(testValue)
-	if testValue != bundledReview.BundledID() {
+	b.SetBundledID(testValue)
+	if testValue != b.BundledID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

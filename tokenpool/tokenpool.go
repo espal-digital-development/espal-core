@@ -26,52 +26,52 @@ type TokenPool struct {
 	randSource      rand.Source
 }
 
-func (tokenPool *TokenPool) set(key int) {
-	tokenPool.mutex.Lock()
-	defer tokenPool.mutex.Unlock()
-	tokenPool.entries[key] = time.Now()
+func (p *TokenPool) set(key int) {
+	p.mutex.Lock()
+	defer p.mutex.Unlock()
+	p.entries[key] = time.Now()
 }
 
 // Validate check the given token key and returns whether it is valid
 // and will consume it if so, expiring it instantly.
-func (tokenPool *TokenPool) Validate(key int) bool {
-	tokenPool.mutex.RLock()
-	createdAt, ok := tokenPool.entries[key]
+func (p *TokenPool) Validate(key int) bool {
+	p.mutex.RLock()
+	createdAt, ok := p.entries[key]
 	if !ok {
-		tokenPool.mutex.RUnlock()
+		p.mutex.RUnlock()
 		return false
 	}
-	valid := time.Since(createdAt) <= tokenPool.expiration
-	tokenPool.mutex.RUnlock()
-	tokenPool.Expire(key)
+	valid := time.Since(createdAt) <= p.expiration
+	p.mutex.RUnlock()
+	p.Expire(key)
 	return valid
 }
 
 // Expire ensures the token is removed so it can't be hijacked afterwards.
-func (tokenPool *TokenPool) Expire(key int) {
-	tokenPool.mutex.Lock()
-	defer tokenPool.mutex.Unlock()
-	delete(tokenPool.entries, key)
+func (p *TokenPool) Expire(key int) {
+	p.mutex.Lock()
+	defer p.mutex.Unlock()
+	delete(p.entries, key)
 }
 
 // RequestToken requests a new token from the stack.
-func (tokenPool *TokenPool) RequestToken() (int, error) {
-	key := int(tokenPool.randSource.Int63())
-	tokenPool.set(key)
+func (p *TokenPool) RequestToken() (int, error) {
+	key := int(p.randSource.Int63())
+	p.set(key)
 	return key, nil
 }
 
 // Count returns the current pool entries size.
-func (tokenPool *TokenPool) Count() uint {
-	tokenPool.mutex.RLock()
-	defer tokenPool.mutex.RUnlock()
-	return uint(len(tokenPool.entries))
+func (p *TokenPool) Count() uint {
+	p.mutex.RLock()
+	defer p.mutex.RUnlock()
+	return uint(len(p.entries))
 }
 
 // New returns a new instance of Pool.
 // TODO :: 7 The cleanup cycler will still be too slow for high visit counts. What to do?
 func New(expiration time.Duration, cleanupInterval time.Duration) *TokenPool {
-	tokenPool := &TokenPool{
+	p := &TokenPool{
 		entries:         map[int]time.Time{},
 		mutex:           &sync.RWMutex{},
 		expiration:      expiration,
@@ -88,9 +88,9 @@ func New(expiration time.Duration, cleanupInterval time.Duration) *TokenPool {
 					delete(pool.entries, k)
 				}
 			}
-			tokenPool.mutex.Unlock()
+			p.mutex.Unlock()
 		}
-	}(tokenPool)
+	}(p)
 
-	return tokenPool
+	return p
 }

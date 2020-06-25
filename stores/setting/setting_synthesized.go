@@ -24,148 +24,148 @@ type SettingEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (setting *Setting) TableName() string {
+func (s *Setting) TableName() string {
 	return "Setting"
 }
 
 // ID returns id.
-func (setting *Setting) ID() string {
-	return setting.id
+func (s *Setting) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (setting *Setting) CreatedByID() string {
-	return setting.createdByID
+func (s *Setting) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (setting *Setting) SetCreatedByID(createdByID string) {
-	setting.createdByID = createdByID
+func (s *Setting) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (setting *Setting) UpdatedByID() *string {
-	return setting.updatedByID
+func (s *Setting) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (setting *Setting) SetUpdatedByID(updatedByID *string) {
-	setting.updatedByID = updatedByID
+func (s *Setting) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (setting *Setting) CreatedAt() time.Time {
-	return setting.createdAt
+func (s *Setting) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (setting *Setting) SetCreatedAt(createdAt time.Time) {
-	setting.createdAt = createdAt
+func (s *Setting) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (setting *Setting) UpdatedAt() *time.Time {
-	return setting.updatedAt
+func (s *Setting) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (setting *Setting) SetUpdatedAt(updatedAt *time.Time) {
-	setting.updatedAt = updatedAt
+func (s *Setting) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (setting *Setting) CreatedByFirstName() *string {
-	return setting.createdByFirstName
+func (s *Setting) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (setting *Setting) SetCreatedByFirstName(createdByFirstName *string) {
-	setting.createdByFirstName = createdByFirstName
+func (s *Setting) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (setting *Setting) CreatedBySurname() *string {
-	return setting.createdBySurname
+func (s *Setting) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (setting *Setting) SetCreatedBySurname(createdBySurname *string) {
-	setting.createdBySurname = createdBySurname
+func (s *Setting) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (setting *Setting) UpdatedByFirstName() *string {
-	return setting.updatedByFirstName
+func (s *Setting) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (setting *Setting) SetUpdatedByFirstName(updatedByFirstName *string) {
-	setting.updatedByFirstName = updatedByFirstName
+func (s *Setting) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (setting *Setting) UpdatedBySurname() *string {
-	return setting.updatedBySurname
+func (s *Setting) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (setting *Setting) SetUpdatedBySurname(updatedBySurname *string) {
-	setting.updatedBySurname = updatedBySurname
+func (s *Setting) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (setting *Setting) IsUpdated() bool {
-	return setting.updatedByID != nil
+func (s *Setting) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (setting *Setting) DomainID() *string {
-	return setting.domainID
+func (s *Setting) DomainID() *string {
+	return s.domainID
 }
 
 // SetDomainID sets the domainID.
-func (setting *Setting) SetDomainID(domainID *string) {
-	setting.domainID = domainID
+func (s *Setting) SetDomainID(domainID *string) {
+	s.domainID = domainID
 }
 
 // SiteID returns siteID.
-func (setting *Setting) SiteID() *string {
-	return setting.siteID
+func (s *Setting) SiteID() *string {
+	return s.siteID
 }
 
 // SetSiteID sets the siteID.
-func (setting *Setting) SetSiteID(siteID *string) {
-	setting.siteID = siteID
+func (s *Setting) SetSiteID(siteID *string) {
+	s.siteID = siteID
 }
 
 // UserID returns userID.
-func (setting *Setting) UserID() *string {
-	return setting.userID
+func (s *Setting) UserID() *string {
+	return s.userID
 }
 
 // SetUserID sets the userID.
-func (setting *Setting) SetUserID(userID *string) {
-	setting.userID = userID
+func (s *Setting) SetUserID(userID *string) {
+	s.userID = userID
 }
 
 // Key returns key.
-func (setting *Setting) Key() uint16 {
-	return setting.key
+func (s *Setting) Key() uint16 {
+	return s.key
 }
 
 // SetKey sets the key.
-func (setting *Setting) SetKey(key uint16) {
-	setting.key = key
+func (s *Setting) SetKey(key uint16) {
+	s.key = key
 }
 
 // Value returns value.
-func (setting *Setting) Value() string {
-	return setting.value
+func (s *Setting) Value() string {
+	return s.value
 }
 
 // SetValue sets the value.
-func (setting *Setting) SetValue(value string) {
-	setting.value = value
+func (s *Setting) SetValue(value string) {
+	s.value = value
 }
 
 func newSetting() *Setting {

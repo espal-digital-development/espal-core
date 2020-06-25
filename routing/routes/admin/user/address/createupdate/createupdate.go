@@ -23,9 +23,9 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	// TODO :: 77777 :: This doesn't fetch (id issue?)
-	user, ok, err := route.userStore.GetOne(context.QueryValue("id"))
+	user, ok, err := r.userStore.GetOne(context.QueryValue("id"))
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -44,7 +44,7 @@ func (route *Route) Handle(context contexts.Context) {
 
 	userAddress := &address.Address{}
 	if id != "" {
-		userAddress, ok, err = route.userAddressStore.GetOneByIDWithCreator(id)
+		userAddress, ok, err = r.userAddressStore.GetOneByIDWithCreator(id)
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -61,7 +61,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.createUpdateFormValidator.New(userAddress, language)
+	form, err := r.createUpdateFormValidator.New(userAddress, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -77,7 +77,7 @@ func (route *Route) Handle(context contexts.Context) {
 		countryID := form.FieldValueAsUint16("country")
 		userID := user.ID()
 
-		entityMutator := route.entityMutatorsFactory.NewMutation(userAddress, form, "User/Address")
+		entityMutator := r.entityMutatorsFactory.NewMutation(userAddress, form, "User/Address")
 		entityMutator.SetString("userID", &userID, userAddress.UserID())
 		entityMutator.SetBool("active", form.FieldValueAsBool("active"), userAddress.Active())
 		entityMutator.SetNullableString("firstName", form.FieldPointerValue("firstName"), userAddress.FirstName())
@@ -103,7 +103,7 @@ func (route *Route) Handle(context contexts.Context) {
 			return
 		}
 
-		userAddress, ok, err = route.userAddressStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
+		userAddress, ok, err = r.userAddressStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -114,7 +114,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	route.createUpdatePageFactory.NewPage(context, userAddress, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "userAddress")).Render()
+	r.createUpdatePageFactory.NewPage(context, userAddress, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "userAddress")).Render()
 }
 
 // New returns a new instance of Route.

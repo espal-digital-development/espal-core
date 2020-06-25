@@ -30,178 +30,178 @@ type SlugEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (slug *Slug) TableName() string {
+func (s *Slug) TableName() string {
 	return "Slug"
 }
 
 // ID returns id.
-func (slug *Slug) ID() string {
-	return slug.id
+func (s *Slug) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (slug *Slug) CreatedByID() string {
-	return slug.createdByID
+func (s *Slug) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (slug *Slug) SetCreatedByID(createdByID string) {
-	slug.createdByID = createdByID
+func (s *Slug) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (slug *Slug) UpdatedByID() *string {
-	return slug.updatedByID
+func (s *Slug) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (slug *Slug) SetUpdatedByID(updatedByID *string) {
-	slug.updatedByID = updatedByID
+func (s *Slug) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (slug *Slug) CreatedAt() time.Time {
-	return slug.createdAt
+func (s *Slug) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (slug *Slug) SetCreatedAt(createdAt time.Time) {
-	slug.createdAt = createdAt
+func (s *Slug) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (slug *Slug) UpdatedAt() *time.Time {
-	return slug.updatedAt
+func (s *Slug) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (slug *Slug) SetUpdatedAt(updatedAt *time.Time) {
-	slug.updatedAt = updatedAt
+func (s *Slug) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (slug *Slug) CreatedByFirstName() *string {
-	return slug.createdByFirstName
+func (s *Slug) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (slug *Slug) SetCreatedByFirstName(createdByFirstName *string) {
-	slug.createdByFirstName = createdByFirstName
+func (s *Slug) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (slug *Slug) CreatedBySurname() *string {
-	return slug.createdBySurname
+func (s *Slug) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (slug *Slug) SetCreatedBySurname(createdBySurname *string) {
-	slug.createdBySurname = createdBySurname
+func (s *Slug) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (slug *Slug) UpdatedByFirstName() *string {
-	return slug.updatedByFirstName
+func (s *Slug) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (slug *Slug) SetUpdatedByFirstName(updatedByFirstName *string) {
-	slug.updatedByFirstName = updatedByFirstName
+func (s *Slug) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (slug *Slug) UpdatedBySurname() *string {
-	return slug.updatedBySurname
+func (s *Slug) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (slug *Slug) SetUpdatedBySurname(updatedBySurname *string) {
-	slug.updatedBySurname = updatedBySurname
+func (s *Slug) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (slug *Slug) IsUpdated() bool {
-	return slug.updatedByID != nil
+func (s *Slug) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (slug *Slug) DomainID() string {
-	return slug.domainID
+func (s *Slug) DomainID() string {
+	return s.domainID
 }
 
 // SetDomainID sets the domainID.
-func (slug *Slug) SetDomainID(domainID string) {
-	slug.domainID = domainID
+func (s *Slug) SetDomainID(domainID string) {
+	s.domainID = domainID
 }
 
 // Language returns language.
-func (slug *Slug) Language() uint16 {
-	return slug.language
+func (s *Slug) Language() uint16 {
+	return s.language
 }
 
 // SetLanguage sets the language.
-func (slug *Slug) SetLanguage(language uint16) {
-	slug.language = language
+func (s *Slug) SetLanguage(language uint16) {
+	s.language = language
 }
 
 // Path returns path.
-func (slug *Slug) Path() string {
-	return slug.path
+func (s *Slug) Path() string {
+	return s.path
 }
 
 // SetPath sets the path.
-func (slug *Slug) SetPath(path string) {
-	slug.path = path
+func (s *Slug) SetPath(path string) {
+	s.path = path
 }
 
 // RerouteTo returns rerouteTo.
-func (slug *Slug) RerouteTo() string {
-	return slug.rerouteTo
+func (s *Slug) RerouteTo() string {
+	return s.rerouteTo
 }
 
 // SetRerouteTo sets the rerouteTo.
-func (slug *Slug) SetRerouteTo(rerouteTo string) {
-	slug.rerouteTo = rerouteTo
+func (s *Slug) SetRerouteTo(rerouteTo string) {
+	s.rerouteTo = rerouteTo
 }
 
 // InvalidWithStatus returns invalidWithStatus.
-func (slug *Slug) InvalidWithStatus() *uint16 {
-	return slug.invalidWithStatus
+func (s *Slug) InvalidWithStatus() *uint16 {
+	return s.invalidWithStatus
 }
 
 // SetInvalidWithStatus sets the invalidWithStatus.
-func (slug *Slug) SetInvalidWithStatus(invalidWithStatus *uint16) {
-	slug.invalidWithStatus = invalidWithStatus
+func (s *Slug) SetInvalidWithStatus(invalidWithStatus *uint16) {
+	s.invalidWithStatus = invalidWithStatus
 }
 
 // InvalidMessage returns invalidMessage.
-func (slug *Slug) InvalidMessage() *string {
-	return slug.invalidMessage
+func (s *Slug) InvalidMessage() *string {
+	return s.invalidMessage
 }
 
 // SetInvalidMessage sets the invalidMessage.
-func (slug *Slug) SetInvalidMessage(invalidMessage *string) {
-	slug.invalidMessage = invalidMessage
+func (s *Slug) SetInvalidMessage(invalidMessage *string) {
+	s.invalidMessage = invalidMessage
 }
 
 // RedirectToRawPath returns redirectToRawPath.
-func (slug *Slug) RedirectToRawPath() *string {
-	return slug.redirectToRawPath
+func (s *Slug) RedirectToRawPath() *string {
+	return s.redirectToRawPath
 }
 
 // SetRedirectToRawPath sets the redirectToRawPath.
-func (slug *Slug) SetRedirectToRawPath(redirectToRawPath *string) {
-	slug.redirectToRawPath = redirectToRawPath
+func (s *Slug) SetRedirectToRawPath(redirectToRawPath *string) {
+	s.redirectToRawPath = redirectToRawPath
 }
 
 // RedirectStatusCode returns redirectStatusCode.
-func (slug *Slug) RedirectStatusCode() *uint16 {
-	return slug.redirectStatusCode
+func (s *Slug) RedirectStatusCode() *uint16 {
+	return s.redirectStatusCode
 }
 
 // SetRedirectStatusCode sets the redirectStatusCode.
-func (slug *Slug) SetRedirectStatusCode(redirectStatusCode *uint16) {
-	slug.redirectStatusCode = redirectStatusCode
+func (s *Slug) SetRedirectStatusCode(redirectStatusCode *uint16) {
+	s.redirectStatusCode = redirectStatusCode
 }
 
 func newSlug() *Slug {

@@ -9,97 +9,97 @@ import (
 )
 
 func TestRuleTable(t *testing.T) {
-	rule := cart.NewRuleEntity()
-	if rule.TableName() == "" {
+	r := cart.NewRuleEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestRuleTableAlias(t *testing.T) {
-	rule := cart.NewRuleEntity()
-	if rule.TableName() == "" {
+	r := cart.NewRuleEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestRuleIsUpdated(t *testing.T) {
-	rule := cart.NewRuleEntity()
-	rule.IsUpdated()
+	r := cart.NewRuleEntity()
+	r.IsUpdated()
 }
 
 func TestRuleID(t *testing.T) {
-	rule := cart.NewRuleEntity()
-	rule.ID()
+	r := cart.NewRuleEntity()
+	r.ID()
 }
 
 func TestRuleCreatedByID(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := "testValue"
-	rule.SetCreatedByID(testValue)
-	if testValue != rule.CreatedByID() {
+	r.SetCreatedByID(testValue)
+	if testValue != r.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleUpdatedByID(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := "testValue"
-	rule.SetUpdatedByID(&testValue)
-	if &testValue != rule.UpdatedByID() {
+	r.SetUpdatedByID(&testValue)
+	if &testValue != r.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleCreatedAt(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := time.Now()
-	rule.SetCreatedAt(testValue)
-	if testValue != rule.CreatedAt() {
+	r.SetCreatedAt(testValue)
+	if testValue != r.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleUpdatedAt(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := time.Now()
-	rule.SetUpdatedAt(&testValue)
-	if &testValue != rule.UpdatedAt() {
+	r.SetUpdatedAt(&testValue)
+	if &testValue != r.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleCreatedByFirstName(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := "testValue"
-	rule.SetCreatedByFirstName(&testValue)
-	if &testValue != rule.CreatedByFirstName() {
+	r.SetCreatedByFirstName(&testValue)
+	if &testValue != r.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleCreatedBySurname(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := "testValue"
-	rule.SetCreatedBySurname(&testValue)
-	if &testValue != rule.CreatedBySurname() {
+	r.SetCreatedBySurname(&testValue)
+	if &testValue != r.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleUpdatedByFirstName(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := "testValue"
-	rule.SetUpdatedByFirstName(&testValue)
-	if &testValue != rule.UpdatedByFirstName() {
+	r.SetUpdatedByFirstName(&testValue)
+	if &testValue != r.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestRuleUpdatedBySurname(t *testing.T) {
-	rule := cart.NewRuleEntity()
+	r := cart.NewRuleEntity()
 	testValue := "testValue"
-	rule.SetUpdatedBySurname(&testValue)
-	if &testValue != rule.UpdatedBySurname() {
+	r.SetUpdatedBySurname(&testValue)
+	if &testValue != r.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

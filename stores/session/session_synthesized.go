@@ -24,138 +24,138 @@ type SessionEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (session *Session) TableName() string {
+func (s *Session) TableName() string {
 	return "Session"
 }
 
 // ID returns id.
-func (session *Session) ID() string {
-	return session.id
+func (s *Session) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (session *Session) CreatedByID() *string {
-	return session.createdByID
+func (s *Session) CreatedByID() *string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (session *Session) SetCreatedByID(createdByID *string) {
-	session.createdByID = createdByID
+func (s *Session) SetCreatedByID(createdByID *string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (session *Session) UpdatedByID() *string {
-	return session.updatedByID
+func (s *Session) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (session *Session) SetUpdatedByID(updatedByID *string) {
-	session.updatedByID = updatedByID
+func (s *Session) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (session *Session) CreatedAt() time.Time {
-	return session.createdAt
+func (s *Session) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (session *Session) SetCreatedAt(createdAt time.Time) {
-	session.createdAt = createdAt
+func (s *Session) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (session *Session) UpdatedAt() *time.Time {
-	return session.updatedAt
+func (s *Session) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (session *Session) SetUpdatedAt(updatedAt *time.Time) {
-	session.updatedAt = updatedAt
+func (s *Session) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (session *Session) CreatedByFirstName() *string {
-	return session.createdByFirstName
+func (s *Session) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (session *Session) SetCreatedByFirstName(createdByFirstName *string) {
-	session.createdByFirstName = createdByFirstName
+func (s *Session) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (session *Session) CreatedBySurname() *string {
-	return session.createdBySurname
+func (s *Session) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (session *Session) SetCreatedBySurname(createdBySurname *string) {
-	session.createdBySurname = createdBySurname
+func (s *Session) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (session *Session) UpdatedByFirstName() *string {
-	return session.updatedByFirstName
+func (s *Session) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (session *Session) SetUpdatedByFirstName(updatedByFirstName *string) {
-	session.updatedByFirstName = updatedByFirstName
+func (s *Session) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (session *Session) UpdatedBySurname() *string {
-	return session.updatedBySurname
+func (s *Session) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (session *Session) SetUpdatedBySurname(updatedBySurname *string) {
-	session.updatedBySurname = updatedBySurname
+func (s *Session) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (session *Session) IsUpdated() bool {
-	return session.updatedByID != nil
+func (s *Session) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Timeout returns timeout.
-func (session *Session) Timeout() time.Duration {
-	return session.timeout
+func (s *Session) Timeout() time.Duration {
+	return s.timeout
 }
 
 // SetTimeout sets the timeout.
-func (session *Session) SetTimeout(timeout time.Duration) {
-	session.timeout = timeout
+func (s *Session) SetTimeout(timeout time.Duration) {
+	s.timeout = timeout
 }
 
 // Hash returns hash.
-func (session *Session) Hash() string {
-	return session.hash
+func (s *Session) Hash() string {
+	return s.hash
 }
 
 // SetHash sets the hash.
-func (session *Session) SetHash(hash string) {
-	session.hash = hash
+func (s *Session) SetHash(hash string) {
+	s.hash = hash
 }
 
 // Data returns data.
-func (session *Session) Data() []byte {
-	return session.data
+func (s *Session) Data() []byte {
+	return s.data
 }
 
 // SetData sets the data.
-func (session *Session) SetData(data []byte) {
-	session.data = data
+func (s *Session) SetData(data []byte) {
+	s.data = data
 }
 
 // DataEntries returns dataEntries.
-func (session *Session) DataEntries() *dataEntries {
-	return session.dataEntries
+func (s *Session) DataEntries() *dataEntries {
+	return s.dataEntries
 }
 
 // SetDataEntries sets the dataEntries.
-func (session *Session) SetDataEntries(dataEntries *dataEntries) {
-	session.dataEntries = dataEntries
+func (s *Session) SetDataEntries(dataEntries *dataEntries) {
+	s.dataEntries = dataEntries
 }
 
 // New returns a new instance of SessionEntity.

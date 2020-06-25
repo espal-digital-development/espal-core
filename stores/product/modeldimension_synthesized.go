@@ -22,133 +22,133 @@ type ModelDimensionEntity interface {
 }
 
 // ID returns id.
-func (modelDimension *ModelDimension) ID() string {
-	return modelDimension.id
+func (m *ModelDimension) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (modelDimension *ModelDimension) CreatedByID() string {
-	return modelDimension.createdByID
+func (m *ModelDimension) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (modelDimension *ModelDimension) SetCreatedByID(createdByID string) {
-	modelDimension.createdByID = createdByID
+func (m *ModelDimension) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (modelDimension *ModelDimension) UpdatedByID() *string {
-	return modelDimension.updatedByID
+func (m *ModelDimension) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (modelDimension *ModelDimension) SetUpdatedByID(updatedByID *string) {
-	modelDimension.updatedByID = updatedByID
+func (m *ModelDimension) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (modelDimension *ModelDimension) CreatedAt() time.Time {
-	return modelDimension.createdAt
+func (m *ModelDimension) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (modelDimension *ModelDimension) SetCreatedAt(createdAt time.Time) {
-	modelDimension.createdAt = createdAt
+func (m *ModelDimension) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (modelDimension *ModelDimension) UpdatedAt() *time.Time {
-	return modelDimension.updatedAt
+func (m *ModelDimension) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (modelDimension *ModelDimension) SetUpdatedAt(updatedAt *time.Time) {
-	modelDimension.updatedAt = updatedAt
+func (m *ModelDimension) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (modelDimension *ModelDimension) CreatedByFirstName() *string {
-	return modelDimension.createdByFirstName
+func (m *ModelDimension) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (modelDimension *ModelDimension) SetCreatedByFirstName(createdByFirstName *string) {
-	modelDimension.createdByFirstName = createdByFirstName
+func (m *ModelDimension) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (modelDimension *ModelDimension) CreatedBySurname() *string {
-	return modelDimension.createdBySurname
+func (m *ModelDimension) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (modelDimension *ModelDimension) SetCreatedBySurname(createdBySurname *string) {
-	modelDimension.createdBySurname = createdBySurname
+func (m *ModelDimension) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (modelDimension *ModelDimension) UpdatedByFirstName() *string {
-	return modelDimension.updatedByFirstName
+func (m *ModelDimension) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (modelDimension *ModelDimension) SetUpdatedByFirstName(updatedByFirstName *string) {
-	modelDimension.updatedByFirstName = updatedByFirstName
+func (m *ModelDimension) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (modelDimension *ModelDimension) UpdatedBySurname() *string {
-	return modelDimension.updatedBySurname
+func (m *ModelDimension) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (modelDimension *ModelDimension) SetUpdatedBySurname(updatedBySurname *string) {
-	modelDimension.updatedBySurname = updatedBySurname
+func (m *ModelDimension) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (modelDimension *ModelDimension) IsUpdated() bool {
-	return modelDimension.updatedByID != nil
+func (m *ModelDimension) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // Sorting returns sorting.
-func (modelDimension *ModelDimension) Sorting() uint {
-	return modelDimension.sorting
+func (m *ModelDimension) Sorting() uint {
+	return m.sorting
 }
 
 // SetSorting sets the sorting.
-func (modelDimension *ModelDimension) SetSorting(sorting uint) {
-	modelDimension.sorting = sorting
+func (m *ModelDimension) SetSorting(sorting uint) {
+	m.sorting = sorting
 }
 
 // Key returns key.
-func (modelDimension *ModelDimension) Key() *string {
-	return modelDimension.key
+func (m *ModelDimension) Key() *string {
+	return m.key
 }
 
 // SetKey sets the key.
-func (modelDimension *ModelDimension) SetKey(key *string) {
-	modelDimension.key = key
+func (m *ModelDimension) SetKey(key *string) {
+	m.key = key
 }
 
 // ModelID returns modelID.
-func (modelDimension *ModelDimension) ModelID() string {
-	return modelDimension.modelID
+func (m *ModelDimension) ModelID() string {
+	return m.modelID
 }
 
 // SetModelID sets the modelID.
-func (modelDimension *ModelDimension) SetModelID(modelID string) {
-	modelDimension.modelID = modelID
+func (m *ModelDimension) SetModelID(modelID string) {
+	m.modelID = modelID
 }
 
 // PropertyID returns propertyID.
-func (modelDimension *ModelDimension) PropertyID() string {
-	return modelDimension.propertyID
+func (m *ModelDimension) PropertyID() string {
+	return m.propertyID
 }
 
 // SetPropertyID sets the propertyID.
-func (modelDimension *ModelDimension) SetPropertyID(propertyID string) {
-	modelDimension.propertyID = propertyID
+func (m *ModelDimension) SetPropertyID(propertyID string) {
+	m.propertyID = propertyID
 }
 
 func newModelDimension() *ModelDimension {

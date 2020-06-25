@@ -9,124 +9,124 @@ import (
 )
 
 func TestOptionTable(t *testing.T) {
-	option := poll.NewOptionEntity()
-	if option.TableName() == "" {
+	o := poll.NewOptionEntity()
+	if o.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestOptionTableAlias(t *testing.T) {
-	option := poll.NewOptionEntity()
-	if option.TableName() == "" {
+	o := poll.NewOptionEntity()
+	if o.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestOptionIsUpdated(t *testing.T) {
-	option := poll.NewOptionEntity()
-	option.IsUpdated()
+	o := poll.NewOptionEntity()
+	o.IsUpdated()
 }
 
 func TestOptionID(t *testing.T) {
-	option := poll.NewOptionEntity()
-	option.ID()
+	o := poll.NewOptionEntity()
+	o.ID()
 }
 
 func TestOptionCreatedByID(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetCreatedByID(testValue)
-	if testValue != option.CreatedByID() {
+	o.SetCreatedByID(testValue)
+	if testValue != o.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionUpdatedByID(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetUpdatedByID(&testValue)
-	if &testValue != option.UpdatedByID() {
+	o.SetUpdatedByID(&testValue)
+	if &testValue != o.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionCreatedAt(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := time.Now()
-	option.SetCreatedAt(testValue)
-	if testValue != option.CreatedAt() {
+	o.SetCreatedAt(testValue)
+	if testValue != o.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionUpdatedAt(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := time.Now()
-	option.SetUpdatedAt(&testValue)
-	if &testValue != option.UpdatedAt() {
+	o.SetUpdatedAt(&testValue)
+	if &testValue != o.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionCreatedByFirstName(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetCreatedByFirstName(&testValue)
-	if &testValue != option.CreatedByFirstName() {
+	o.SetCreatedByFirstName(&testValue)
+	if &testValue != o.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionCreatedBySurname(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetCreatedBySurname(&testValue)
-	if &testValue != option.CreatedBySurname() {
+	o.SetCreatedBySurname(&testValue)
+	if &testValue != o.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionUpdatedByFirstName(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetUpdatedByFirstName(&testValue)
-	if &testValue != option.UpdatedByFirstName() {
+	o.SetUpdatedByFirstName(&testValue)
+	if &testValue != o.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionUpdatedBySurname(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetUpdatedBySurname(&testValue)
-	if &testValue != option.UpdatedBySurname() {
+	o.SetUpdatedBySurname(&testValue)
+	if &testValue != o.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionActive(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := true
-	option.SetActive(testValue)
-	if testValue != option.Active() {
+	o.SetActive(testValue)
+	if testValue != o.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionSorting(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := uint(1e9)
-	option.SetSorting(testValue)
-	if testValue != option.Sorting() {
+	o.SetSorting(testValue)
+	if testValue != o.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionPollID(t *testing.T) {
-	option := poll.NewOptionEntity()
+	o := poll.NewOptionEntity()
 	testValue := "testValue"
-	option.SetPollID(testValue)
-	if testValue != option.PollID() {
+	o.SetPollID(testValue)
+	if testValue != o.PollID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

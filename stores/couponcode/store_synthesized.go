@@ -13,8 +13,8 @@ var _ Store = &CouponCodesStore{}
 type Store interface {
 }
 
-func (couponCodesStore *CouponCodesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CouponCode, ok bool, err error) {
-	rows, err := couponCodesStore.selecterDatabase.Query(query, params...)
+func (c *CouponCodesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CouponCode, ok bool, err error) {
+	rows, err := c.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (couponCodesStore *CouponCodesStore) fetch(query string, withCreators bool,
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		couponCode := newCouponCode()
-		fields := []interface{}{&couponCode.id, &couponCode.createdByID, &couponCode.updatedByID, &couponCode.createdAt, &couponCode.updatedAt, &couponCode.claimedByID, &couponCode.key}
+		c := newCouponCode()
+		fields := []interface{}{&c.id, &c.createdByID, &c.updatedByID, &c.createdAt, &c.updatedAt, &c.claimedByID, &c.key}
 		if withCreators {
-			fields = append(fields, &couponCode.createdByFirstName, &couponCode.createdBySurname, &couponCode.updatedByFirstName, &couponCode.updatedBySurname)
+			fields = append(fields, &c.createdByFirstName, &c.createdBySurname, &c.updatedByFirstName, &c.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, couponCode)
+		result = append(result, c)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (couponCodesStore *CouponCodesStore) fetch(query string, withCreators bool,
 
 // New returns a new instance of CouponCodesStore.
 func New(selecterDatabase database.Database) (*CouponCodesStore, error) {
-	couponCodesStore := &CouponCodesStore{
+	c := &CouponCodesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return couponCodesStore, nil
+	return c, nil
 }

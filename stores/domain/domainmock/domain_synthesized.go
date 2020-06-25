@@ -47,15 +47,15 @@ var (
 	lockDomainEntityMockUpdatedBySurname       sync.RWMutex
 )
 
-// Ensure, that DomainEntityMock does implement DomainEntity.
+// Ensure, that DomainEntityMock does implement domain.DomainEntity.
 // If this is not the case, regenerate this file with moq.
 var _ domain.DomainEntity = &DomainEntityMock{}
 
-// DomainEntityMock is a mock implementation of DomainEntity.
+// DomainEntityMock is a mock implementation of domain.DomainEntity.
 //
 //     func TestSomethingThatUsesDomainEntity(t *testing.T) {
 //
-//         // make and configure a mocked DomainEntity
+//         // make and configure a mocked domain.DomainEntity
 //         mockedDomainEntity := &DomainEntityMock{
 //             ActiveFunc: func() bool {
 // 	               panic("mock out the Active method")
@@ -164,7 +164,7 @@ var _ domain.DomainEntity = &DomainEntityMock{}
 //             },
 //         }
 //
-//         // use mockedDomainEntity in code that requires DomainEntity
+//         // use mockedDomainEntity in code that requires domain.DomainEntity
 //         // and then make assertions.
 //
 //     }

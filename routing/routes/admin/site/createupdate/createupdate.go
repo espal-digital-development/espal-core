@@ -21,7 +21,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	var err error
 	id := context.QueryValue("id")
 
@@ -33,7 +33,7 @@ func (route *Route) Handle(context contexts.Context) {
 	var ok bool
 	site := &site.Site{}
 	if id != "" {
-		site, ok, err = route.siteStore.GetOneByIDWithCreator(id)
+		site, ok, err = r.siteStore.GetOneByIDWithCreator(id)
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -50,7 +50,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.createUpdateFormValidator.New(site, language)
+	form, err := r.createUpdateFormValidator.New(site, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -67,7 +67,7 @@ func (route *Route) Handle(context contexts.Context) {
 		languageID := form.FieldValueAsUint16("language")
 		currencies := strings.Join(form.FieldValues("currencies"), ",")
 
-		entityMutator := route.entityMutatorsFactory.NewMutation(site, form, "Site")
+		entityMutator := r.entityMutatorsFactory.NewMutation(site, form, "Site")
 		entityMutator.SetBool("online", form.FieldValueAsBool("online"), site.Online())
 		entityMutator.SetNullableUint16("language", &languageID, site.Language())
 		entityMutator.SetNullableUint16("country", &countryID, site.Country())
@@ -85,7 +85,7 @@ func (route *Route) Handle(context contexts.Context) {
 			return
 		}
 
-		site, ok, err = route.siteStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
+		site, ok, err = r.siteStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -97,7 +97,7 @@ func (route *Route) Handle(context contexts.Context) {
 	}
 
 	// TODO :: 77 Creation succeeds but still shows `Validation token invalid/expired`
-	route.createUpdatePageFactory.NewPage(context, site, language, form.View(), context.GetAdminCreateUpdateTitle(id, "site")).Render()
+	r.createUpdatePageFactory.NewPage(context, site, language, form.View(), context.GetAdminCreateUpdateTitle(id, "site")).Render()
 }
 
 // New returns a new instance of Route.

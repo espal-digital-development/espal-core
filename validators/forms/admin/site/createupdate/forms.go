@@ -37,8 +37,8 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
-func (forms *Forms) New(site site, language language) (Form, error) {
-	validator, err := forms.validatorsFactory.NewForm(language)
+func (f *Forms) New(site site, language language) (Form, error) {
+	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -55,7 +55,7 @@ func (forms *Forms) New(site site, language language) (Form, error) {
 	countryField.SetOptional()
 	countryField.SetSearchable()
 	countryField.SetCheckValuesInChoices()
-	countryField.SetChoices(forms.validatorsFactory.GetCountryOptionsForLanguage(language))
+	countryField.SetChoices(f.validatorsFactory.GetCountryOptionsForLanguage(language))
 	if site.ID() != "" && site.Country() != nil {
 		countryField.SetValue(strconv.FormatUint(uint64(*site.Country()), 10))
 	}
@@ -66,7 +66,7 @@ func (forms *Forms) New(site site, language language) (Form, error) {
 	languageField := validator.NewChoiceField("language")
 	languageField.SetSearchable()
 	languageField.SetCheckValuesInChoices()
-	languageField.SetChoices(forms.validatorsFactory.GetLanguageOptionsForLanguage(language))
+	languageField.SetChoices(f.validatorsFactory.GetLanguageOptionsForLanguage(language))
 	if site.ID() != "" && site.Language() != nil {
 		languageField.SetValue(strconv.FormatUint(uint64(*site.Language()), 10))
 	}
@@ -76,11 +76,11 @@ func (forms *Forms) New(site site, language language) (Form, error) {
 
 	currenciesField := validator.NewChoiceField("currencies")
 	currenciesField.SetOptional()
-	currenciesField.SetPlaceholder(forms.translationsRepository.Plural(language.ID(), "currency") + " (" + forms.translationsRepository.Singular(language.ID(), "optional") + ")")
+	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	currenciesField.SetDontTranslate()
 	currenciesField.SetSearchable()
 	currenciesField.SetCheckValuesInChoices()
-	currenciesField.SetChoices(forms.validatorsFactory.GetCurrencyOptionsForLanguage(language))
+	currenciesField.SetChoices(f.validatorsFactory.GetCurrencyOptionsForLanguage(language))
 	currenciesField.SetMultiple()
 	if site.ID() != "" {
 		if err := currenciesField.SetValues(strings.Split(site.Currencies(), ",")); err != nil {

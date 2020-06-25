@@ -9,115 +9,115 @@ import (
 )
 
 func TestCouponCodeTable(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
-	if couponCode.TableName() == "" {
+	c := couponcode.NewCouponCodeEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestCouponCodeTableAlias(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
-	if couponCode.TableName() == "" {
+	c := couponcode.NewCouponCodeEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestCouponCodeIsUpdated(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
-	couponCode.IsUpdated()
+	c := couponcode.NewCouponCodeEntity()
+	c.IsUpdated()
 }
 
 func TestCouponCodeID(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
-	couponCode.ID()
+	c := couponcode.NewCouponCodeEntity()
+	c.ID()
 }
 
 func TestCouponCodeCreatedByID(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetCreatedByID(testValue)
-	if testValue != couponCode.CreatedByID() {
+	c.SetCreatedByID(testValue)
+	if testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeUpdatedByID(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetUpdatedByID(&testValue)
-	if &testValue != couponCode.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeCreatedAt(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := time.Now()
-	couponCode.SetCreatedAt(testValue)
-	if testValue != couponCode.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeUpdatedAt(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := time.Now()
-	couponCode.SetUpdatedAt(&testValue)
-	if &testValue != couponCode.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeCreatedByFirstName(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetCreatedByFirstName(&testValue)
-	if &testValue != couponCode.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeCreatedBySurname(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetCreatedBySurname(&testValue)
-	if &testValue != couponCode.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeUpdatedByFirstName(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetUpdatedByFirstName(&testValue)
-	if &testValue != couponCode.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeUpdatedBySurname(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetUpdatedBySurname(&testValue)
-	if &testValue != couponCode.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeClaimedByID(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetClaimedByID(&testValue)
-	if &testValue != couponCode.ClaimedByID() {
+	c.SetClaimedByID(&testValue)
+	if &testValue != c.ClaimedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCouponCodeKey(t *testing.T) {
-	couponCode := couponcode.NewCouponCodeEntity()
+	c := couponcode.NewCouponCodeEntity()
 	testValue := "testValue"
-	couponCode.SetKey(testValue)
-	if testValue != couponCode.Key() {
+	c.SetKey(testValue)
+	if testValue != c.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

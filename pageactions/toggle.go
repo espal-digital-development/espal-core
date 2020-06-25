@@ -5,36 +5,36 @@ import (
 )
 
 // AddToggle adds a default Create PageAction if the UserRight requirements are met.
-func (pageActions *PageActions) AddToggle() {
-	pageActions.AddToggleWithFieldAndPath("", "")
+func (a *PageActions) AddToggle() {
+	a.AddToggleWithFieldAndPath("", "")
 }
 
 // AddToggleWithField adds a Toggle PageAction with a custom field if the
 // UserRight requirements are met.
-func (pageActions *PageActions) AddToggleWithField(field string) {
-	pageActions.AddToggleWithFieldAndPath(field, "")
+func (a *PageActions) AddToggleWithField(field string) {
+	a.AddToggleWithFieldAndPath(field, "")
 }
 
 // AddToggleWithPath adds a Toggle PageAction with a custom path if the
 // UserRight requirements are met.
-func (pageActions *PageActions) AddToggleWithPath(path string) {
-	pageActions.AddToggleWithFieldAndPath("", path)
+func (a *PageActions) AddToggleWithPath(path string) {
+	a.AddToggleWithFieldAndPath("", path)
 }
 
 // AddToggleWithFieldAndPath adds a Toggle PageAction with a custom field and path if the
 // UserRight requirements are met.
-func (pageActions *PageActions) AddToggleWithFieldAndPath(field string, path string) {
-	if !pageActions.ctx.HasUserRight("Update" + pageActions.subject) {
+func (a *PageActions) AddToggleWithFieldAndPath(field string, path string) {
+	if !a.ctx.HasUserRight("Update" + a.subject) {
 		return
 	}
 	if field == "" {
 		field = "Active"
 	}
 	if path == "" {
-		path = pageActions.subject + "/Toggle" + field
+		path = a.subject + "/Toggle" + field
 	}
-	pageActions.actions = append(pageActions.actions, &pageAction{
-		name:       pageActions.ctx.Translate("toggle" + strings.Title(field) + "Selection"),
+	a.actions = append(a.actions, &pageAction{
+		name:       a.ctx.Translate("toggle" + strings.Title(field) + "Selection"),
 		targetPath: path,
 		listAction: true,
 		class:      "toggleActive",

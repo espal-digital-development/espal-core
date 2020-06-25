@@ -18,113 +18,113 @@ type PropertyEntity interface {
 }
 
 // ID returns id.
-func (property *Property) ID() string {
-	return property.id
+func (p *Property) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (property *Property) CreatedByID() string {
-	return property.createdByID
+func (p *Property) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (property *Property) SetCreatedByID(createdByID string) {
-	property.createdByID = createdByID
+func (p *Property) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (property *Property) UpdatedByID() *string {
-	return property.updatedByID
+func (p *Property) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (property *Property) SetUpdatedByID(updatedByID *string) {
-	property.updatedByID = updatedByID
+func (p *Property) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (property *Property) CreatedAt() time.Time {
-	return property.createdAt
+func (p *Property) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (property *Property) SetCreatedAt(createdAt time.Time) {
-	property.createdAt = createdAt
+func (p *Property) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (property *Property) UpdatedAt() *time.Time {
-	return property.updatedAt
+func (p *Property) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (property *Property) SetUpdatedAt(updatedAt *time.Time) {
-	property.updatedAt = updatedAt
+func (p *Property) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (property *Property) CreatedByFirstName() *string {
-	return property.createdByFirstName
+func (p *Property) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (property *Property) SetCreatedByFirstName(createdByFirstName *string) {
-	property.createdByFirstName = createdByFirstName
+func (p *Property) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (property *Property) CreatedBySurname() *string {
-	return property.createdBySurname
+func (p *Property) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (property *Property) SetCreatedBySurname(createdBySurname *string) {
-	property.createdBySurname = createdBySurname
+func (p *Property) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (property *Property) UpdatedByFirstName() *string {
-	return property.updatedByFirstName
+func (p *Property) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (property *Property) SetUpdatedByFirstName(updatedByFirstName *string) {
-	property.updatedByFirstName = updatedByFirstName
+func (p *Property) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (property *Property) UpdatedBySurname() *string {
-	return property.updatedBySurname
+func (p *Property) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (property *Property) SetUpdatedBySurname(updatedBySurname *string) {
-	property.updatedBySurname = updatedBySurname
+func (p *Property) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (property *Property) IsUpdated() bool {
-	return property.updatedByID != nil
+func (p *Property) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // PropertyGroupID returns propertyGroupID.
-func (property *Property) PropertyGroupID() string {
-	return property.propertyGroupID
+func (p *Property) PropertyGroupID() string {
+	return p.propertyGroupID
 }
 
 // SetPropertyGroupID sets the propertyGroupID.
-func (property *Property) SetPropertyGroupID(propertyGroupID string) {
-	property.propertyGroupID = propertyGroupID
+func (p *Property) SetPropertyGroupID(propertyGroupID string) {
+	p.propertyGroupID = propertyGroupID
 }
 
 // PropertyID returns propertyID.
-func (property *Property) PropertyID() string {
-	return property.propertyID
+func (p *Property) PropertyID() string {
+	return p.propertyID
 }
 
 // SetPropertyID sets the propertyID.
-func (property *Property) SetPropertyID(propertyID string) {
-	property.propertyID = propertyID
+func (p *Property) SetPropertyID(propertyID string) {
+	p.propertyID = propertyID
 }
 
 func newProperty() *Property {

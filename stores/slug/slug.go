@@ -37,6 +37,6 @@ type Slug struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (slug *Slug) TableAlias() string {
+func (s *Slug) TableAlias() string {
 	return "slu"
 }

@@ -46,258 +46,258 @@ type SupplierEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (supplier *Supplier) TableName() string {
+func (s *Supplier) TableName() string {
 	return "Supplier"
 }
 
 // ID returns id.
-func (supplier *Supplier) ID() string {
-	return supplier.id
+func (s *Supplier) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (supplier *Supplier) CreatedByID() string {
-	return supplier.createdByID
+func (s *Supplier) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (supplier *Supplier) SetCreatedByID(createdByID string) {
-	supplier.createdByID = createdByID
+func (s *Supplier) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (supplier *Supplier) UpdatedByID() *string {
-	return supplier.updatedByID
+func (s *Supplier) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (supplier *Supplier) SetUpdatedByID(updatedByID *string) {
-	supplier.updatedByID = updatedByID
+func (s *Supplier) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (supplier *Supplier) CreatedAt() time.Time {
-	return supplier.createdAt
+func (s *Supplier) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (supplier *Supplier) SetCreatedAt(createdAt time.Time) {
-	supplier.createdAt = createdAt
+func (s *Supplier) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (supplier *Supplier) UpdatedAt() *time.Time {
-	return supplier.updatedAt
+func (s *Supplier) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (supplier *Supplier) SetUpdatedAt(updatedAt *time.Time) {
-	supplier.updatedAt = updatedAt
+func (s *Supplier) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (supplier *Supplier) CreatedByFirstName() *string {
-	return supplier.createdByFirstName
+func (s *Supplier) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (supplier *Supplier) SetCreatedByFirstName(createdByFirstName *string) {
-	supplier.createdByFirstName = createdByFirstName
+func (s *Supplier) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (supplier *Supplier) CreatedBySurname() *string {
-	return supplier.createdBySurname
+func (s *Supplier) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (supplier *Supplier) SetCreatedBySurname(createdBySurname *string) {
-	supplier.createdBySurname = createdBySurname
+func (s *Supplier) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (supplier *Supplier) UpdatedByFirstName() *string {
-	return supplier.updatedByFirstName
+func (s *Supplier) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (supplier *Supplier) SetUpdatedByFirstName(updatedByFirstName *string) {
-	supplier.updatedByFirstName = updatedByFirstName
+func (s *Supplier) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (supplier *Supplier) UpdatedBySurname() *string {
-	return supplier.updatedBySurname
+func (s *Supplier) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (supplier *Supplier) SetUpdatedBySurname(updatedBySurname *string) {
-	supplier.updatedBySurname = updatedBySurname
+func (s *Supplier) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (supplier *Supplier) IsUpdated() bool {
-	return supplier.updatedByID != nil
+func (s *Supplier) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Active returns active.
-func (supplier *Supplier) Active() bool {
-	return supplier.active
+func (s *Supplier) Active() bool {
+	return s.active
 }
 
 // SetActive sets the active.
-func (supplier *Supplier) SetActive(active bool) {
-	supplier.active = active
+func (s *Supplier) SetActive(active bool) {
+	s.active = active
 }
 
 // Key returns key.
-func (supplier *Supplier) Key() *string {
-	return supplier.key
+func (s *Supplier) Key() *string {
+	return s.key
 }
 
 // SetKey sets the key.
-func (supplier *Supplier) SetKey(key *string) {
-	supplier.key = key
+func (s *Supplier) SetKey(key *string) {
+	s.key = key
 }
 
 // Name returns name.
-func (supplier *Supplier) Name() string {
-	return supplier.name
+func (s *Supplier) Name() string {
+	return s.name
 }
 
 // SetName sets the name.
-func (supplier *Supplier) SetName(name string) {
-	supplier.name = name
+func (s *Supplier) SetName(name string) {
+	s.name = name
 }
 
 // ContactFirstName returns contactFirstName.
-func (supplier *Supplier) ContactFirstName() *string {
-	return supplier.contactFirstName
+func (s *Supplier) ContactFirstName() *string {
+	return s.contactFirstName
 }
 
 // SetContactFirstName sets the contactFirstName.
-func (supplier *Supplier) SetContactFirstName(contactFirstName *string) {
-	supplier.contactFirstName = contactFirstName
+func (s *Supplier) SetContactFirstName(contactFirstName *string) {
+	s.contactFirstName = contactFirstName
 }
 
 // ContactSurname returns contactSurname.
-func (supplier *Supplier) ContactSurname() *string {
-	return supplier.contactSurname
+func (s *Supplier) ContactSurname() *string {
+	return s.contactSurname
 }
 
 // SetContactSurname sets the contactSurname.
-func (supplier *Supplier) SetContactSurname(contactSurname *string) {
-	supplier.contactSurname = contactSurname
+func (s *Supplier) SetContactSurname(contactSurname *string) {
+	s.contactSurname = contactSurname
 }
 
 // Street returns street.
-func (supplier *Supplier) Street() *string {
-	return supplier.street
+func (s *Supplier) Street() *string {
+	return s.street
 }
 
 // SetStreet sets the street.
-func (supplier *Supplier) SetStreet(street *string) {
-	supplier.street = street
+func (s *Supplier) SetStreet(street *string) {
+	s.street = street
 }
 
 // StreetLine2 returns streetLine2.
-func (supplier *Supplier) StreetLine2() *string {
-	return supplier.streetLine2
+func (s *Supplier) StreetLine2() *string {
+	return s.streetLine2
 }
 
 // SetStreetLine2 sets the streetLine2.
-func (supplier *Supplier) SetStreetLine2(streetLine2 *string) {
-	supplier.streetLine2 = streetLine2
+func (s *Supplier) SetStreetLine2(streetLine2 *string) {
+	s.streetLine2 = streetLine2
 }
 
 // Number returns number.
-func (supplier *Supplier) Number() *string {
-	return supplier.number
+func (s *Supplier) Number() *string {
+	return s.number
 }
 
 // SetNumber sets the number.
-func (supplier *Supplier) SetNumber(number *string) {
-	supplier.number = number
+func (s *Supplier) SetNumber(number *string) {
+	s.number = number
 }
 
 // NumberAddition returns numberAddition.
-func (supplier *Supplier) NumberAddition() *string {
-	return supplier.numberAddition
+func (s *Supplier) NumberAddition() *string {
+	return s.numberAddition
 }
 
 // SetNumberAddition sets the numberAddition.
-func (supplier *Supplier) SetNumberAddition(numberAddition *string) {
-	supplier.numberAddition = numberAddition
+func (s *Supplier) SetNumberAddition(numberAddition *string) {
+	s.numberAddition = numberAddition
 }
 
 // ZipCode returns zipCode.
-func (supplier *Supplier) ZipCode() *string {
-	return supplier.zipCode
+func (s *Supplier) ZipCode() *string {
+	return s.zipCode
 }
 
 // SetZipCode sets the zipCode.
-func (supplier *Supplier) SetZipCode(zipCode *string) {
-	supplier.zipCode = zipCode
+func (s *Supplier) SetZipCode(zipCode *string) {
+	s.zipCode = zipCode
 }
 
 // City returns city.
-func (supplier *Supplier) City() *string {
-	return supplier.city
+func (s *Supplier) City() *string {
+	return s.city
 }
 
 // SetCity sets the city.
-func (supplier *Supplier) SetCity(city *string) {
-	supplier.city = city
+func (s *Supplier) SetCity(city *string) {
+	s.city = city
 }
 
 // State returns state.
-func (supplier *Supplier) State() *string {
-	return supplier.state
+func (s *Supplier) State() *string {
+	return s.state
 }
 
 // SetState sets the state.
-func (supplier *Supplier) SetState(state *string) {
-	supplier.state = state
+func (s *Supplier) SetState(state *string) {
+	s.state = state
 }
 
 // Country returns country.
-func (supplier *Supplier) Country() *uint16 {
-	return supplier.country
+func (s *Supplier) Country() *uint16 {
+	return s.country
 }
 
 // SetCountry sets the country.
-func (supplier *Supplier) SetCountry(country *uint16) {
-	supplier.country = country
+func (s *Supplier) SetCountry(country *uint16) {
+	s.country = country
 }
 
 // PhoneNumber returns phoneNumber.
-func (supplier *Supplier) PhoneNumber() *string {
-	return supplier.phoneNumber
+func (s *Supplier) PhoneNumber() *string {
+	return s.phoneNumber
 }
 
 // SetPhoneNumber sets the phoneNumber.
-func (supplier *Supplier) SetPhoneNumber(phoneNumber *string) {
-	supplier.phoneNumber = phoneNumber
+func (s *Supplier) SetPhoneNumber(phoneNumber *string) {
+	s.phoneNumber = phoneNumber
 }
 
 // Email returns email.
-func (supplier *Supplier) Email() *string {
-	return supplier.email
+func (s *Supplier) Email() *string {
+	return s.email
 }
 
 // SetEmail sets the email.
-func (supplier *Supplier) SetEmail(email *string) {
-	supplier.email = email
+func (s *Supplier) SetEmail(email *string) {
+	s.email = email
 }
 
 // Comments returns comments.
-func (supplier *Supplier) Comments() *string {
-	return supplier.comments
+func (s *Supplier) Comments() *string {
+	return s.comments
 }
 
 // SetComments sets the comments.
-func (supplier *Supplier) SetComments(comments *string) {
-	supplier.comments = comments
+func (s *Supplier) SetComments(comments *string) {
+	s.comments = comments
 }
 
 func newSupplier() *Supplier {

@@ -9,97 +9,97 @@ import (
 )
 
 func TestWrappingTable(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
-	if wrapping.TableName() == "" {
+	w := gift.NewWrappingEntity()
+	if w.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestWrappingTableAlias(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
-	if wrapping.TableName() == "" {
+	w := gift.NewWrappingEntity()
+	if w.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestWrappingIsUpdated(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
-	wrapping.IsUpdated()
+	w := gift.NewWrappingEntity()
+	w.IsUpdated()
 }
 
 func TestWrappingID(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
-	wrapping.ID()
+	w := gift.NewWrappingEntity()
+	w.ID()
 }
 
 func TestWrappingCreatedByID(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := "testValue"
-	wrapping.SetCreatedByID(testValue)
-	if testValue != wrapping.CreatedByID() {
+	w.SetCreatedByID(testValue)
+	if testValue != w.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingUpdatedByID(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := "testValue"
-	wrapping.SetUpdatedByID(&testValue)
-	if &testValue != wrapping.UpdatedByID() {
+	w.SetUpdatedByID(&testValue)
+	if &testValue != w.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingCreatedAt(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := time.Now()
-	wrapping.SetCreatedAt(testValue)
-	if testValue != wrapping.CreatedAt() {
+	w.SetCreatedAt(testValue)
+	if testValue != w.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingUpdatedAt(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := time.Now()
-	wrapping.SetUpdatedAt(&testValue)
-	if &testValue != wrapping.UpdatedAt() {
+	w.SetUpdatedAt(&testValue)
+	if &testValue != w.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingCreatedByFirstName(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := "testValue"
-	wrapping.SetCreatedByFirstName(&testValue)
-	if &testValue != wrapping.CreatedByFirstName() {
+	w.SetCreatedByFirstName(&testValue)
+	if &testValue != w.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingCreatedBySurname(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := "testValue"
-	wrapping.SetCreatedBySurname(&testValue)
-	if &testValue != wrapping.CreatedBySurname() {
+	w.SetCreatedBySurname(&testValue)
+	if &testValue != w.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingUpdatedByFirstName(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := "testValue"
-	wrapping.SetUpdatedByFirstName(&testValue)
-	if &testValue != wrapping.UpdatedByFirstName() {
+	w.SetUpdatedByFirstName(&testValue)
+	if &testValue != w.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWrappingUpdatedBySurname(t *testing.T) {
-	wrapping := gift.NewWrappingEntity()
+	w := gift.NewWrappingEntity()
 	testValue := "testValue"
-	wrapping.SetUpdatedBySurname(&testValue)
-	if &testValue != wrapping.UpdatedBySurname() {
+	w.SetUpdatedBySurname(&testValue)
+	if &testValue != w.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

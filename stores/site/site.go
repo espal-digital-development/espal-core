@@ -32,9 +32,9 @@ type Site struct {
 
 // CurrenciesCount returns the amount of currencies that are
 // defined in the string field.
-func (site *Site) CurrenciesCount() uint {
-	if site.currencies != "" {
-		return uint(strings.Count(site.currencies, ",") + 1)
+func (s *Site) CurrenciesCount() uint {
+	if s.currencies != "" {
+		return uint(strings.Count(s.currencies, ",") + 1)
 	}
 	return 0
 }

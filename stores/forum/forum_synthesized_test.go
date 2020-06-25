@@ -9,151 +9,151 @@ import (
 )
 
 func TestForumTable(t *testing.T) {
-	forum := forum.NewForumEntity()
-	if forum.TableName() == "" {
+	f := forum.NewForumEntity()
+	if f.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestForumTableAlias(t *testing.T) {
-	forum := forum.NewForumEntity()
-	if forum.TableName() == "" {
+	f := forum.NewForumEntity()
+	if f.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestForumIsUpdated(t *testing.T) {
-	forum := forum.NewForumEntity()
-	forum.IsUpdated()
+	f := forum.NewForumEntity()
+	f.IsUpdated()
 }
 
 func TestForumID(t *testing.T) {
-	forum := forum.NewForumEntity()
-	forum.ID()
+	f := forum.NewForumEntity()
+	f.ID()
 }
 
 func TestForumCreatedByID(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetCreatedByID(testValue)
-	if testValue != forum.CreatedByID() {
+	f.SetCreatedByID(testValue)
+	if testValue != f.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumUpdatedByID(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetUpdatedByID(&testValue)
-	if &testValue != forum.UpdatedByID() {
+	f.SetUpdatedByID(&testValue)
+	if &testValue != f.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumCreatedAt(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := time.Now()
-	forum.SetCreatedAt(testValue)
-	if testValue != forum.CreatedAt() {
+	f.SetCreatedAt(testValue)
+	if testValue != f.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumUpdatedAt(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := time.Now()
-	forum.SetUpdatedAt(&testValue)
-	if &testValue != forum.UpdatedAt() {
+	f.SetUpdatedAt(&testValue)
+	if &testValue != f.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumCreatedByFirstName(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetCreatedByFirstName(&testValue)
-	if &testValue != forum.CreatedByFirstName() {
+	f.SetCreatedByFirstName(&testValue)
+	if &testValue != f.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumCreatedBySurname(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetCreatedBySurname(&testValue)
-	if &testValue != forum.CreatedBySurname() {
+	f.SetCreatedBySurname(&testValue)
+	if &testValue != f.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumUpdatedByFirstName(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetUpdatedByFirstName(&testValue)
-	if &testValue != forum.UpdatedByFirstName() {
+	f.SetUpdatedByFirstName(&testValue)
+	if &testValue != f.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumUpdatedBySurname(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetUpdatedBySurname(&testValue)
-	if &testValue != forum.UpdatedBySurname() {
+	f.SetUpdatedBySurname(&testValue)
+	if &testValue != f.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumActive(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := true
-	forum.SetActive(testValue)
-	if testValue != forum.Active() {
+	f.SetActive(testValue)
+	if testValue != f.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumSorting(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := uint(1e9)
-	forum.SetSorting(testValue)
-	if testValue != forum.Sorting() {
+	f.SetSorting(testValue)
+	if testValue != f.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumParentID(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetParentID(&testValue)
-	if &testValue != forum.ParentID() {
+	f.SetParentID(&testValue)
+	if &testValue != f.ParentID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumName(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := "testValue"
-	forum.SetName(testValue)
-	if testValue != forum.Name() {
+	f.SetName(testValue)
+	if testValue != f.Name() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumTopicsCount(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := uint(1e9)
-	forum.SetTopicsCount(testValue)
-	if testValue != forum.TopicsCount() {
+	f.SetTopicsCount(testValue)
+	if testValue != f.TopicsCount() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestForumPostsCount(t *testing.T) {
-	forum := forum.NewForumEntity()
+	f := forum.NewForumEntity()
 	testValue := uint(1e9)
-	forum.SetPostsCount(testValue)
-	if testValue != forum.PostsCount() {
+	f.SetPostsCount(testValue)
+	if testValue != f.PostsCount() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

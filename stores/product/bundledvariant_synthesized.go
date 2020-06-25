@@ -20,123 +20,123 @@ type BundledVariantEntity interface {
 }
 
 // ID returns id.
-func (bundledVariant *BundledVariant) ID() string {
-	return bundledVariant.id
+func (b *BundledVariant) ID() string {
+	return b.id
 }
 
 // CreatedByID returns createdByID.
-func (bundledVariant *BundledVariant) CreatedByID() string {
-	return bundledVariant.createdByID
+func (b *BundledVariant) CreatedByID() string {
+	return b.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (bundledVariant *BundledVariant) SetCreatedByID(createdByID string) {
-	bundledVariant.createdByID = createdByID
+func (b *BundledVariant) SetCreatedByID(createdByID string) {
+	b.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (bundledVariant *BundledVariant) UpdatedByID() *string {
-	return bundledVariant.updatedByID
+func (b *BundledVariant) UpdatedByID() *string {
+	return b.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (bundledVariant *BundledVariant) SetUpdatedByID(updatedByID *string) {
-	bundledVariant.updatedByID = updatedByID
+func (b *BundledVariant) SetUpdatedByID(updatedByID *string) {
+	b.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (bundledVariant *BundledVariant) CreatedAt() time.Time {
-	return bundledVariant.createdAt
+func (b *BundledVariant) CreatedAt() time.Time {
+	return b.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (bundledVariant *BundledVariant) SetCreatedAt(createdAt time.Time) {
-	bundledVariant.createdAt = createdAt
+func (b *BundledVariant) SetCreatedAt(createdAt time.Time) {
+	b.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (bundledVariant *BundledVariant) UpdatedAt() *time.Time {
-	return bundledVariant.updatedAt
+func (b *BundledVariant) UpdatedAt() *time.Time {
+	return b.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (bundledVariant *BundledVariant) SetUpdatedAt(updatedAt *time.Time) {
-	bundledVariant.updatedAt = updatedAt
+func (b *BundledVariant) SetUpdatedAt(updatedAt *time.Time) {
+	b.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (bundledVariant *BundledVariant) CreatedByFirstName() *string {
-	return bundledVariant.createdByFirstName
+func (b *BundledVariant) CreatedByFirstName() *string {
+	return b.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (bundledVariant *BundledVariant) SetCreatedByFirstName(createdByFirstName *string) {
-	bundledVariant.createdByFirstName = createdByFirstName
+func (b *BundledVariant) SetCreatedByFirstName(createdByFirstName *string) {
+	b.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (bundledVariant *BundledVariant) CreatedBySurname() *string {
-	return bundledVariant.createdBySurname
+func (b *BundledVariant) CreatedBySurname() *string {
+	return b.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (bundledVariant *BundledVariant) SetCreatedBySurname(createdBySurname *string) {
-	bundledVariant.createdBySurname = createdBySurname
+func (b *BundledVariant) SetCreatedBySurname(createdBySurname *string) {
+	b.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (bundledVariant *BundledVariant) UpdatedByFirstName() *string {
-	return bundledVariant.updatedByFirstName
+func (b *BundledVariant) UpdatedByFirstName() *string {
+	return b.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (bundledVariant *BundledVariant) SetUpdatedByFirstName(updatedByFirstName *string) {
-	bundledVariant.updatedByFirstName = updatedByFirstName
+func (b *BundledVariant) SetUpdatedByFirstName(updatedByFirstName *string) {
+	b.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (bundledVariant *BundledVariant) UpdatedBySurname() *string {
-	return bundledVariant.updatedBySurname
+func (b *BundledVariant) UpdatedBySurname() *string {
+	return b.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (bundledVariant *BundledVariant) SetUpdatedBySurname(updatedBySurname *string) {
-	bundledVariant.updatedBySurname = updatedBySurname
+func (b *BundledVariant) SetUpdatedBySurname(updatedBySurname *string) {
+	b.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (bundledVariant *BundledVariant) IsUpdated() bool {
-	return bundledVariant.updatedByID != nil
+func (b *BundledVariant) IsUpdated() bool {
+	return b.updatedByID != nil
 }
 
 // BundledID returns bundledID.
-func (bundledVariant *BundledVariant) BundledID() string {
-	return bundledVariant.bundledID
+func (b *BundledVariant) BundledID() string {
+	return b.bundledID
 }
 
 // SetBundledID sets the bundledID.
-func (bundledVariant *BundledVariant) SetBundledID(bundledID string) {
-	bundledVariant.bundledID = bundledID
+func (b *BundledVariant) SetBundledID(bundledID string) {
+	b.bundledID = bundledID
 }
 
 // VariantID returns variantID.
-func (bundledVariant *BundledVariant) VariantID() string {
-	return bundledVariant.variantID
+func (b *BundledVariant) VariantID() string {
+	return b.variantID
 }
 
 // SetVariantID sets the variantID.
-func (bundledVariant *BundledVariant) SetVariantID(variantID string) {
-	bundledVariant.variantID = variantID
+func (b *BundledVariant) SetVariantID(variantID string) {
+	b.variantID = variantID
 }
 
 // Quantity returns quantity.
-func (bundledVariant *BundledVariant) Quantity() uint {
-	return bundledVariant.quantity
+func (b *BundledVariant) Quantity() uint {
+	return b.quantity
 }
 
 // SetQuantity sets the quantity.
-func (bundledVariant *BundledVariant) SetQuantity(quantity uint) {
-	bundledVariant.quantity = quantity
+func (b *BundledVariant) SetQuantity(quantity uint) {
+	b.quantity = quantity
 }
 
 func newBundledVariant() *BundledVariant {

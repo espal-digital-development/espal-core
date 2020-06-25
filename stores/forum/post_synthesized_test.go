@@ -9,160 +9,160 @@ import (
 )
 
 func TestPostTable(t *testing.T) {
-	post := forum.NewPostEntity()
-	if post.TableName() == "" {
+	p := forum.NewPostEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPostTableAlias(t *testing.T) {
-	post := forum.NewPostEntity()
-	if post.TableName() == "" {
+	p := forum.NewPostEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPostIsUpdated(t *testing.T) {
-	post := forum.NewPostEntity()
-	post.IsUpdated()
+	p := forum.NewPostEntity()
+	p.IsUpdated()
 }
 
 func TestPostID(t *testing.T) {
-	post := forum.NewPostEntity()
-	post.ID()
+	p := forum.NewPostEntity()
+	p.ID()
 }
 
 func TestPostCreatedByID(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetCreatedByID(testValue)
-	if testValue != post.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostUpdatedByID(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetUpdatedByID(&testValue)
-	if &testValue != post.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostCreatedAt(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := time.Now()
-	post.SetCreatedAt(testValue)
-	if testValue != post.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostUpdatedAt(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := time.Now()
-	post.SetUpdatedAt(&testValue)
-	if &testValue != post.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostCreatedByFirstName(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetCreatedByFirstName(&testValue)
-	if &testValue != post.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostCreatedBySurname(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetCreatedBySurname(&testValue)
-	if &testValue != post.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostUpdatedByFirstName(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetUpdatedByFirstName(&testValue)
-	if &testValue != post.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostUpdatedBySurname(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetUpdatedBySurname(&testValue)
-	if &testValue != post.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostForumID(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetForumID(testValue)
-	if testValue != post.ForumID() {
+	p.SetForumID(testValue)
+	if testValue != p.ForumID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostResponseToID(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetResponseToID(&testValue)
-	if &testValue != post.ResponseToID() {
+	p.SetResponseToID(&testValue)
+	if &testValue != p.ResponseToID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostSticky(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := true
-	post.SetSticky(testValue)
-	if testValue != post.Sticky() {
+	p.SetSticky(testValue)
+	if testValue != p.Sticky() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostTitle(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetTitle(&testValue)
-	if &testValue != post.Title() {
+	p.SetTitle(&testValue)
+	if &testValue != p.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostMessage(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetMessage(testValue)
-	if testValue != post.Message() {
+	p.SetMessage(testValue)
+	if testValue != p.Message() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostTimesEdited(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := uint(1e9)
-	post.SetTimesEdited(&testValue)
-	if &testValue != post.TimesEdited() {
+	p.SetTimesEdited(&testValue)
+	if &testValue != p.TimesEdited() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostName(t *testing.T) {
-	post := forum.NewPostEntity()
+	p := forum.NewPostEntity()
 	testValue := "testValue"
-	post.SetName(testValue)
-	if testValue != post.Name() {
+	p.SetName(testValue)
+	if testValue != p.Name() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

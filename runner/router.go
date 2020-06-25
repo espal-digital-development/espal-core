@@ -8,9 +8,9 @@ import (
 	"github.com/espal-digital-development/espal-core/template/renderer"
 )
 
-func (runner *Runner) router() {
-	runner.services.renderer = renderer.New(runner.repositories.languages, runner.repositories.countries, runner.repositories.translations, runner.services.logger)
-	runner.services.adminMenu = adminmenu.New(runner.services.config, runner.databases.selecter, runner.repositories.translations, runner.repositories.userRights)
-	runner.services.contexts = contexts.New(runner.services.config, runner.services.logger, runner.repositories.languages, runner.repositories.translations, runner.services.sessions, runner.services.adminMenu, runner.services.renderer, runner.stores.user, servererrorpage.New())
-	runner.services.router = router.New(runner.services.config, runner.services.logger, runner.services.contexts, runner.stores.domain, runner.stores.site, runner.stores.slug)
+func (r *Runner) router() {
+	r.services.renderer = renderer.New(r.repositories.languages, r.repositories.countries, r.repositories.translations, r.services.logger)
+	r.services.adminMenu = adminmenu.New(r.services.config, r.databases.selecter, r.repositories.translations, r.repositories.userRights)
+	r.services.contexts = contexts.New(r.services.config, r.services.logger, r.repositories.languages, r.repositories.translations, r.services.sessions, r.services.adminMenu, r.services.renderer, r.stores.user, servererrorpage.New())
+	r.services.router = router.New(r.services.config, r.services.logger, r.services.contexts, r.stores.domain, r.stores.site, r.stores.slug)
 }

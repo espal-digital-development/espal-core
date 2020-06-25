@@ -13,8 +13,8 @@ var _ Store = &PollsStore{}
 type Store interface {
 }
 
-func (pollsStore *PollsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Poll, ok bool, err error) {
-	rows, err := pollsStore.selecterDatabase.Query(query, params...)
+func (p *PollsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Poll, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (pollsStore *PollsStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		poll := newPoll()
-		fields := []interface{}{&poll.id, &poll.createdByID, &poll.updatedByID, &poll.createdAt, &poll.updatedAt, &poll.active, &poll.startDate, &poll.endDate, &poll.allowAnonymousVoting, &poll.comments}
+		p := newPoll()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.active, &p.startDate, &p.endDate, &p.allowAnonymousVoting, &p.comments}
 		if withCreators {
-			fields = append(fields, &poll.createdByFirstName, &poll.createdBySurname, &poll.updatedByFirstName, &poll.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, poll)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (pollsStore *PollsStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of PollsStore.
 func New(selecterDatabase database.Database) (*PollsStore, error) {
-	pollsStore := &PollsStore{
+	p := &PollsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return pollsStore, nil
+	return p, nil
 }

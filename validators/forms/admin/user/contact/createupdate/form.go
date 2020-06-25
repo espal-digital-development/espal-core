@@ -32,20 +32,20 @@ type CreateUpdate struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (createUpdate *CreateUpdate) Submit(context context) (isSubmitted bool, isValid bool, err error) {
-	if createUpdate.isClosed {
+func (c *CreateUpdate) Submit(context context) (isSubmitted bool, isValid bool, err error) {
+	if c.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = createUpdate.validator.HandleFromRequest(context); err != nil {
+	if err = c.validator.HandleFromRequest(context); err != nil {
 		return
 	}
-	isSubmitted = createUpdate.validator.IsSubmitted()
+	isSubmitted = c.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = createUpdate.validator.IsValid()
+		isValid, err = c.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -54,27 +54,27 @@ func (createUpdate *CreateUpdate) Submit(context context) (isSubmitted bool, isV
 }
 
 // View returns the FormView internal to help render inside html output.
-func (createUpdate *CreateUpdate) View() formview.View {
-	return createUpdate.view
+func (c *CreateUpdate) View() formview.View {
+	return c.view
 }
 
 // FieldValue returns a single form value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValue(name string) string {
-	return createUpdate.validator.FieldValue(name)
+func (c *CreateUpdate) FieldValue(name string) string {
+	return c.validator.FieldValue(name)
 }
 
 // FieldPointerValue returns a single form pointer value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldPointerValue(name string) *string {
-	return createUpdate.validator.Field(name).PointerValue()
+func (c *CreateUpdate) FieldPointerValue(name string) *string {
+	return c.validator.Field(name).PointerValue()
 }
 
 // FieldValueAsUint returns a single form uint value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsUint(name string) uint {
-	return createUpdate.validator.Field(name).ValueAsUint()
+func (c *CreateUpdate) FieldValueAsUint(name string) uint {
+	return c.validator.Field(name).ValueAsUint()
 }
 
 // Close will release internals.
-func (createUpdate *CreateUpdate) Close() {
-	createUpdate.validator = nil
-	createUpdate.view = nil
+func (c *CreateUpdate) Close() {
+	c.validator = nil
+	c.view = nil
 }

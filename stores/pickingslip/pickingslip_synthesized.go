@@ -16,113 +16,113 @@ type PickingSlipEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (pickingSlip *PickingSlip) TableName() string {
+func (p *PickingSlip) TableName() string {
 	return "PickingSlip"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (pickingSlip *PickingSlip) TableAlias() string {
+func (p *PickingSlip) TableAlias() string {
 	return "pse"
 }
 
 // ID returns id.
-func (pickingSlip *PickingSlip) ID() string {
-	return pickingSlip.id
+func (p *PickingSlip) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (pickingSlip *PickingSlip) CreatedByID() string {
-	return pickingSlip.createdByID
+func (p *PickingSlip) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (pickingSlip *PickingSlip) SetCreatedByID(createdByID string) {
-	pickingSlip.createdByID = createdByID
+func (p *PickingSlip) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (pickingSlip *PickingSlip) UpdatedByID() *string {
-	return pickingSlip.updatedByID
+func (p *PickingSlip) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (pickingSlip *PickingSlip) SetUpdatedByID(updatedByID *string) {
-	pickingSlip.updatedByID = updatedByID
+func (p *PickingSlip) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (pickingSlip *PickingSlip) CreatedAt() time.Time {
-	return pickingSlip.createdAt
+func (p *PickingSlip) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (pickingSlip *PickingSlip) SetCreatedAt(createdAt time.Time) {
-	pickingSlip.createdAt = createdAt
+func (p *PickingSlip) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (pickingSlip *PickingSlip) UpdatedAt() *time.Time {
-	return pickingSlip.updatedAt
+func (p *PickingSlip) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (pickingSlip *PickingSlip) SetUpdatedAt(updatedAt *time.Time) {
-	pickingSlip.updatedAt = updatedAt
+func (p *PickingSlip) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (pickingSlip *PickingSlip) CreatedByFirstName() *string {
-	return pickingSlip.createdByFirstName
+func (p *PickingSlip) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (pickingSlip *PickingSlip) SetCreatedByFirstName(createdByFirstName *string) {
-	pickingSlip.createdByFirstName = createdByFirstName
+func (p *PickingSlip) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (pickingSlip *PickingSlip) CreatedBySurname() *string {
-	return pickingSlip.createdBySurname
+func (p *PickingSlip) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (pickingSlip *PickingSlip) SetCreatedBySurname(createdBySurname *string) {
-	pickingSlip.createdBySurname = createdBySurname
+func (p *PickingSlip) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (pickingSlip *PickingSlip) UpdatedByFirstName() *string {
-	return pickingSlip.updatedByFirstName
+func (p *PickingSlip) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (pickingSlip *PickingSlip) SetUpdatedByFirstName(updatedByFirstName *string) {
-	pickingSlip.updatedByFirstName = updatedByFirstName
+func (p *PickingSlip) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (pickingSlip *PickingSlip) UpdatedBySurname() *string {
-	return pickingSlip.updatedBySurname
+func (p *PickingSlip) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (pickingSlip *PickingSlip) SetUpdatedBySurname(updatedBySurname *string) {
-	pickingSlip.updatedBySurname = updatedBySurname
+func (p *PickingSlip) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (pickingSlip *PickingSlip) IsUpdated() bool {
-	return pickingSlip.updatedByID != nil
+func (p *PickingSlip) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // Comments returns comments.
-func (pickingSlip *PickingSlip) Comments() *string {
-	return pickingSlip.comments
+func (p *PickingSlip) Comments() *string {
+	return p.comments
 }
 
 // SetComments sets the comments.
-func (pickingSlip *PickingSlip) SetComments(comments *string) {
-	pickingSlip.comments = comments
+func (p *PickingSlip) SetComments(comments *string) {
+	p.comments = comments
 }
 
 func newPickingSlip() *PickingSlip {

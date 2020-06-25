@@ -16,9 +16,9 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	id := context.QueryValue("id")
-	if !route.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
+	if !r.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
 		context.RenderBadRequest()
 		return
 	}
@@ -27,7 +27,7 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	forum, ok, err := route.forumStore.GetOneByID(id, language)
+	forum, ok, err := r.forumStore.GetOneByID(id, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -36,18 +36,18 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderNotFound()
 		return
 	}
-	posts, _, err := route.forumStore.GetPosts(forum.ID())
+	posts, _, err := r.forumStore.GetPosts(forum.ID())
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	forums, _, err := route.forumStore.GetForParent(forum.ID(), language)
+	forums, _, err := r.forumStore.GetForParent(forum.ID(), language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
 
-	route.forumPageFactory.NewPage(context, language, forum, posts, forums).Render()
+	r.forumPageFactory.NewPage(context, language, forum, posts, forums).Render()
 }
 
 // New returns a new instance of Route.

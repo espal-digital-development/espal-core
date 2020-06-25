@@ -9,133 +9,133 @@ import (
 )
 
 func TestOptionTranslationTable(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
-	if optionTranslation.TableName() == "" {
+	o := property.NewOptionTranslationEntity()
+	if o.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestOptionTranslationTableAlias(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
-	if optionTranslation.TableName() == "" {
+	o := property.NewOptionTranslationEntity()
+	if o.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestOptionTranslationIsUpdated(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
-	optionTranslation.IsUpdated()
+	o := property.NewOptionTranslationEntity()
+	o.IsUpdated()
 }
 
 func TestOptionTranslationID(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
-	optionTranslation.ID()
+	o := property.NewOptionTranslationEntity()
+	o.ID()
 }
 
 func TestOptionTranslationCreatedByID(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetCreatedByID(testValue)
-	if testValue != optionTranslation.CreatedByID() {
+	o.SetCreatedByID(testValue)
+	if testValue != o.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationUpdatedByID(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetUpdatedByID(&testValue)
-	if &testValue != optionTranslation.UpdatedByID() {
+	o.SetUpdatedByID(&testValue)
+	if &testValue != o.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationCreatedAt(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := time.Now()
-	optionTranslation.SetCreatedAt(testValue)
-	if testValue != optionTranslation.CreatedAt() {
+	o.SetCreatedAt(testValue)
+	if testValue != o.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationUpdatedAt(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := time.Now()
-	optionTranslation.SetUpdatedAt(&testValue)
-	if &testValue != optionTranslation.UpdatedAt() {
+	o.SetUpdatedAt(&testValue)
+	if &testValue != o.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationCreatedByFirstName(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetCreatedByFirstName(&testValue)
-	if &testValue != optionTranslation.CreatedByFirstName() {
+	o.SetCreatedByFirstName(&testValue)
+	if &testValue != o.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationCreatedBySurname(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetCreatedBySurname(&testValue)
-	if &testValue != optionTranslation.CreatedBySurname() {
+	o.SetCreatedBySurname(&testValue)
+	if &testValue != o.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationUpdatedByFirstName(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetUpdatedByFirstName(&testValue)
-	if &testValue != optionTranslation.UpdatedByFirstName() {
+	o.SetUpdatedByFirstName(&testValue)
+	if &testValue != o.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationUpdatedBySurname(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetUpdatedBySurname(&testValue)
-	if &testValue != optionTranslation.UpdatedBySurname() {
+	o.SetUpdatedBySurname(&testValue)
+	if &testValue != o.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationLanguage(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := uint16(65000)
-	optionTranslation.SetLanguage(testValue)
-	if testValue != optionTranslation.Language() {
+	o.SetLanguage(testValue)
+	if testValue != o.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationField(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := uint16(65000)
-	optionTranslation.SetField(testValue)
-	if testValue != optionTranslation.Field() {
+	o.SetField(testValue)
+	if testValue != o.Field() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationValue(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetValue(testValue)
-	if testValue != optionTranslation.Value() {
+	o.SetValue(testValue)
+	if testValue != o.Value() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOptionTranslationOptionID(t *testing.T) {
-	optionTranslation := property.NewOptionTranslationEntity()
+	o := property.NewOptionTranslationEntity()
 	testValue := "testValue"
-	optionTranslation.SetOptionID(testValue)
-	if testValue != optionTranslation.OptionID() {
+	o.SetOptionID(testValue)
+	if testValue != o.OptionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

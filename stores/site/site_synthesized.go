@@ -25,153 +25,153 @@ type SiteEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (site *Site) TableName() string {
+func (s *Site) TableName() string {
 	return "Site"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (site *Site) TableAlias() string {
+func (s *Site) TableAlias() string {
 	return "se"
 }
 
 // ID returns id.
-func (site *Site) ID() string {
-	return site.id
+func (s *Site) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (site *Site) CreatedByID() string {
-	return site.createdByID
+func (s *Site) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (site *Site) SetCreatedByID(createdByID string) {
-	site.createdByID = createdByID
+func (s *Site) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (site *Site) UpdatedByID() *string {
-	return site.updatedByID
+func (s *Site) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (site *Site) SetUpdatedByID(updatedByID *string) {
-	site.updatedByID = updatedByID
+func (s *Site) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (site *Site) CreatedAt() time.Time {
-	return site.createdAt
+func (s *Site) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (site *Site) SetCreatedAt(createdAt time.Time) {
-	site.createdAt = createdAt
+func (s *Site) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (site *Site) UpdatedAt() *time.Time {
-	return site.updatedAt
+func (s *Site) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (site *Site) SetUpdatedAt(updatedAt *time.Time) {
-	site.updatedAt = updatedAt
+func (s *Site) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (site *Site) CreatedByFirstName() *string {
-	return site.createdByFirstName
+func (s *Site) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (site *Site) SetCreatedByFirstName(createdByFirstName *string) {
-	site.createdByFirstName = createdByFirstName
+func (s *Site) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (site *Site) CreatedBySurname() *string {
-	return site.createdBySurname
+func (s *Site) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (site *Site) SetCreatedBySurname(createdBySurname *string) {
-	site.createdBySurname = createdBySurname
+func (s *Site) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (site *Site) UpdatedByFirstName() *string {
-	return site.updatedByFirstName
+func (s *Site) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (site *Site) SetUpdatedByFirstName(updatedByFirstName *string) {
-	site.updatedByFirstName = updatedByFirstName
+func (s *Site) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (site *Site) UpdatedBySurname() *string {
-	return site.updatedBySurname
+func (s *Site) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (site *Site) SetUpdatedBySurname(updatedBySurname *string) {
-	site.updatedBySurname = updatedBySurname
+func (s *Site) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (site *Site) IsUpdated() bool {
-	return site.updatedByID != nil
+func (s *Site) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Online returns online.
-func (site *Site) Online() bool {
-	return site.online
+func (s *Site) Online() bool {
+	return s.online
 }
 
 // SetOnline sets the online.
-func (site *Site) SetOnline(online bool) {
-	site.online = online
+func (s *Site) SetOnline(online bool) {
+	s.online = online
 }
 
 // Language returns language.
-func (site *Site) Language() *uint16 {
-	return site.language
+func (s *Site) Language() *uint16 {
+	return s.language
 }
 
 // SetLanguage sets the language.
-func (site *Site) SetLanguage(language *uint16) {
-	site.language = language
+func (s *Site) SetLanguage(language *uint16) {
+	s.language = language
 }
 
 // Country returns country.
-func (site *Site) Country() *uint16 {
-	return site.country
+func (s *Site) Country() *uint16 {
+	return s.country
 }
 
 // SetCountry sets the country.
-func (site *Site) SetCountry(country *uint16) {
-	site.country = country
+func (s *Site) SetCountry(country *uint16) {
+	s.country = country
 }
 
 // Currencies returns currencies.
-func (site *Site) Currencies() string {
-	return site.currencies
+func (s *Site) Currencies() string {
+	return s.currencies
 }
 
 // SetCurrencies sets the currencies.
-func (site *Site) SetCurrencies(currencies string) {
-	site.currencies = currencies
+func (s *Site) SetCurrencies(currencies string) {
+	s.currencies = currencies
 }
 
 // LocalizedName returns localizedName.
-func (site *Site) LocalizedName() *string {
-	return site.localizedName
+func (s *Site) LocalizedName() *string {
+	return s.localizedName
 }
 
 // SetLocalizedName sets the localizedName.
-func (site *Site) SetLocalizedName(localizedName *string) {
-	site.localizedName = localizedName
+func (s *Site) SetLocalizedName(localizedName *string) {
+	s.localizedName = localizedName
 }
 
 func newSite() *Site {

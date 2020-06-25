@@ -28,173 +28,173 @@ type DiscountCodeEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (discountCode *DiscountCode) TableName() string {
+func (d *DiscountCode) TableName() string {
 	return "DiscountCode"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (discountCode *DiscountCode) TableAlias() string {
+func (d *DiscountCode) TableAlias() string {
 	return "dce"
 }
 
 // ID returns id.
-func (discountCode *DiscountCode) ID() string {
-	return discountCode.id
+func (d *DiscountCode) ID() string {
+	return d.id
 }
 
 // CreatedByID returns createdByID.
-func (discountCode *DiscountCode) CreatedByID() string {
-	return discountCode.createdByID
+func (d *DiscountCode) CreatedByID() string {
+	return d.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (discountCode *DiscountCode) SetCreatedByID(createdByID string) {
-	discountCode.createdByID = createdByID
+func (d *DiscountCode) SetCreatedByID(createdByID string) {
+	d.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (discountCode *DiscountCode) UpdatedByID() *string {
-	return discountCode.updatedByID
+func (d *DiscountCode) UpdatedByID() *string {
+	return d.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (discountCode *DiscountCode) SetUpdatedByID(updatedByID *string) {
-	discountCode.updatedByID = updatedByID
+func (d *DiscountCode) SetUpdatedByID(updatedByID *string) {
+	d.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (discountCode *DiscountCode) CreatedAt() time.Time {
-	return discountCode.createdAt
+func (d *DiscountCode) CreatedAt() time.Time {
+	return d.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (discountCode *DiscountCode) SetCreatedAt(createdAt time.Time) {
-	discountCode.createdAt = createdAt
+func (d *DiscountCode) SetCreatedAt(createdAt time.Time) {
+	d.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (discountCode *DiscountCode) UpdatedAt() *time.Time {
-	return discountCode.updatedAt
+func (d *DiscountCode) UpdatedAt() *time.Time {
+	return d.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (discountCode *DiscountCode) SetUpdatedAt(updatedAt *time.Time) {
-	discountCode.updatedAt = updatedAt
+func (d *DiscountCode) SetUpdatedAt(updatedAt *time.Time) {
+	d.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (discountCode *DiscountCode) CreatedByFirstName() *string {
-	return discountCode.createdByFirstName
+func (d *DiscountCode) CreatedByFirstName() *string {
+	return d.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (discountCode *DiscountCode) SetCreatedByFirstName(createdByFirstName *string) {
-	discountCode.createdByFirstName = createdByFirstName
+func (d *DiscountCode) SetCreatedByFirstName(createdByFirstName *string) {
+	d.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (discountCode *DiscountCode) CreatedBySurname() *string {
-	return discountCode.createdBySurname
+func (d *DiscountCode) CreatedBySurname() *string {
+	return d.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (discountCode *DiscountCode) SetCreatedBySurname(createdBySurname *string) {
-	discountCode.createdBySurname = createdBySurname
+func (d *DiscountCode) SetCreatedBySurname(createdBySurname *string) {
+	d.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (discountCode *DiscountCode) UpdatedByFirstName() *string {
-	return discountCode.updatedByFirstName
+func (d *DiscountCode) UpdatedByFirstName() *string {
+	return d.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (discountCode *DiscountCode) SetUpdatedByFirstName(updatedByFirstName *string) {
-	discountCode.updatedByFirstName = updatedByFirstName
+func (d *DiscountCode) SetUpdatedByFirstName(updatedByFirstName *string) {
+	d.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (discountCode *DiscountCode) UpdatedBySurname() *string {
-	return discountCode.updatedBySurname
+func (d *DiscountCode) UpdatedBySurname() *string {
+	return d.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (discountCode *DiscountCode) SetUpdatedBySurname(updatedBySurname *string) {
-	discountCode.updatedBySurname = updatedBySurname
+func (d *DiscountCode) SetUpdatedBySurname(updatedBySurname *string) {
+	d.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (discountCode *DiscountCode) IsUpdated() bool {
-	return discountCode.updatedByID != nil
+func (d *DiscountCode) IsUpdated() bool {
+	return d.updatedByID != nil
 }
 
 // Key returns key.
-func (discountCode *DiscountCode) Key() string {
-	return discountCode.key
+func (d *DiscountCode) Key() string {
+	return d.key
 }
 
 // SetKey sets the key.
-func (discountCode *DiscountCode) SetKey(key string) {
-	discountCode.key = key
+func (d *DiscountCode) SetKey(key string) {
+	d.key = key
 }
 
 // MaxUses returns maxUses.
-func (discountCode *DiscountCode) MaxUses() *uint {
-	return discountCode.maxUses
+func (d *DiscountCode) MaxUses() *uint {
+	return d.maxUses
 }
 
 // SetMaxUses sets the maxUses.
-func (discountCode *DiscountCode) SetMaxUses(maxUses *uint) {
-	discountCode.maxUses = maxUses
+func (d *DiscountCode) SetMaxUses(maxUses *uint) {
+	d.maxUses = maxUses
 }
 
 // UsesCounter returns usesCounter.
-func (discountCode *DiscountCode) UsesCounter() uint {
-	return discountCode.usesCounter
+func (d *DiscountCode) UsesCounter() uint {
+	return d.usesCounter
 }
 
 // SetUsesCounter sets the usesCounter.
-func (discountCode *DiscountCode) SetUsesCounter(usesCounter uint) {
-	discountCode.usesCounter = usesCounter
+func (d *DiscountCode) SetUsesCounter(usesCounter uint) {
+	d.usesCounter = usesCounter
 }
 
 // AvailableFrom returns availableFrom.
-func (discountCode *DiscountCode) AvailableFrom() *time.Time {
-	return discountCode.availableFrom
+func (d *DiscountCode) AvailableFrom() *time.Time {
+	return d.availableFrom
 }
 
 // SetAvailableFrom sets the availableFrom.
-func (discountCode *DiscountCode) SetAvailableFrom(availableFrom *time.Time) {
-	discountCode.availableFrom = availableFrom
+func (d *DiscountCode) SetAvailableFrom(availableFrom *time.Time) {
+	d.availableFrom = availableFrom
 }
 
 // AvailableUntil returns availableUntil.
-func (discountCode *DiscountCode) AvailableUntil() *time.Time {
-	return discountCode.availableUntil
+func (d *DiscountCode) AvailableUntil() *time.Time {
+	return d.availableUntil
 }
 
 // SetAvailableUntil sets the availableUntil.
-func (discountCode *DiscountCode) SetAvailableUntil(availableUntil *time.Time) {
-	discountCode.availableUntil = availableUntil
+func (d *DiscountCode) SetAvailableUntil(availableUntil *time.Time) {
+	d.availableUntil = availableUntil
 }
 
 // DiscountPercentage returns discountPercentage.
-func (discountCode *DiscountCode) DiscountPercentage() *float32 {
-	return discountCode.discountPercentage
+func (d *DiscountCode) DiscountPercentage() *float32 {
+	return d.discountPercentage
 }
 
 // SetDiscountPercentage sets the discountPercentage.
-func (discountCode *DiscountCode) SetDiscountPercentage(discountPercentage *float32) {
-	discountCode.discountPercentage = discountPercentage
+func (d *DiscountCode) SetDiscountPercentage(discountPercentage *float32) {
+	d.discountPercentage = discountPercentage
 }
 
 // DiscountAmount returns discountAmount.
-func (discountCode *DiscountCode) DiscountAmount() *float32 {
-	return discountCode.discountAmount
+func (d *DiscountCode) DiscountAmount() *float32 {
+	return d.discountAmount
 }
 
 // SetDiscountAmount sets the discountAmount.
-func (discountCode *DiscountCode) SetDiscountAmount(discountAmount *float32) {
-	discountCode.discountAmount = discountAmount
+func (d *DiscountCode) SetDiscountAmount(discountAmount *float32) {
+	d.discountAmount = discountAmount
 }
 
 func newDiscountCode() *DiscountCode {

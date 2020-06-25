@@ -5,38 +5,38 @@ import (
 )
 
 // CreatedUpdatedByLinks will render the shared createdBy/updatedBy links.
-func (templateRenderer *TemplateRenderer) CreatedUpdatedByLinks(ctx context, languageID uint16, entity entity) string {
+func (r *TemplateRenderer) CreatedUpdatedByLinks(ctx context, languageID uint16, entity entity) string {
 	if entity.ID() == "" {
 		return ""
 	}
 
 	out := strings.Builder{}
 
-	templateRenderer.perror(out.WriteString(`<p>`))
-	templateRenderer.perror(out.WriteString(`<span>`))
+	r.perror(out.WriteString(`<p>`))
+	r.perror(out.WriteString(`<span>`))
 
 	if entity.IsUpdated() {
-		templateRenderer.perror(out.WriteString(ctx.Translate("updatedBy")))
+		r.perror(out.WriteString(ctx.Translate("updatedBy")))
 	} else {
-		templateRenderer.perror(out.WriteString(ctx.Translate("createdBy")))
+		r.perror(out.WriteString(ctx.Translate("createdBy")))
 	}
 
-	templateRenderer.perror(out.WriteString(`: </span><a href="`))
-	templateRenderer.perror(out.WriteString(ctx.AdminURL()))
-	templateRenderer.perror(out.WriteString(`/User/View?id=`))
+	r.perror(out.WriteString(`: </span><a href="`))
+	r.perror(out.WriteString(ctx.AdminURL()))
+	r.perror(out.WriteString(`/User/View?id=`))
 
 	if entity.IsUpdated() {
-		templateRenderer.perror(out.WriteString(*entity.UpdatedByID()))
-		templateRenderer.perror(out.WriteString(`">`))
-		templateRenderer.perror(out.WriteString(templateRenderer.UpdatedBy(entity, languageID)))
+		r.perror(out.WriteString(*entity.UpdatedByID()))
+		r.perror(out.WriteString(`">`))
+		r.perror(out.WriteString(r.UpdatedBy(entity, languageID)))
 	} else {
-		templateRenderer.perror(out.WriteString(entity.CreatedByID()))
-		templateRenderer.perror(out.WriteString(`">`))
-		templateRenderer.perror(out.WriteString(templateRenderer.CreatedBy(entity, languageID)))
+		r.perror(out.WriteString(entity.CreatedByID()))
+		r.perror(out.WriteString(`">`))
+		r.perror(out.WriteString(r.CreatedBy(entity, languageID)))
 	}
 
-	templateRenderer.perror(out.WriteString(`</a>`))
-	templateRenderer.perror(out.WriteString(`</p>`))
+	r.perror(out.WriteString(`</a>`))
+	r.perror(out.WriteString(`</p>`))
 
 	return out.String()
 }

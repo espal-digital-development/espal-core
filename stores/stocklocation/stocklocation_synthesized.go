@@ -14,103 +14,103 @@ type StockLocationEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (stockLocation *StockLocation) TableName() string {
+func (s *StockLocation) TableName() string {
 	return "StockLocation"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (stockLocation *StockLocation) TableAlias() string {
+func (s *StockLocation) TableAlias() string {
 	return "sle"
 }
 
 // ID returns id.
-func (stockLocation *StockLocation) ID() string {
-	return stockLocation.id
+func (s *StockLocation) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (stockLocation *StockLocation) CreatedByID() string {
-	return stockLocation.createdByID
+func (s *StockLocation) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (stockLocation *StockLocation) SetCreatedByID(createdByID string) {
-	stockLocation.createdByID = createdByID
+func (s *StockLocation) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (stockLocation *StockLocation) UpdatedByID() *string {
-	return stockLocation.updatedByID
+func (s *StockLocation) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (stockLocation *StockLocation) SetUpdatedByID(updatedByID *string) {
-	stockLocation.updatedByID = updatedByID
+func (s *StockLocation) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (stockLocation *StockLocation) CreatedAt() time.Time {
-	return stockLocation.createdAt
+func (s *StockLocation) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (stockLocation *StockLocation) SetCreatedAt(createdAt time.Time) {
-	stockLocation.createdAt = createdAt
+func (s *StockLocation) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (stockLocation *StockLocation) UpdatedAt() *time.Time {
-	return stockLocation.updatedAt
+func (s *StockLocation) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (stockLocation *StockLocation) SetUpdatedAt(updatedAt *time.Time) {
-	stockLocation.updatedAt = updatedAt
+func (s *StockLocation) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (stockLocation *StockLocation) CreatedByFirstName() *string {
-	return stockLocation.createdByFirstName
+func (s *StockLocation) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (stockLocation *StockLocation) SetCreatedByFirstName(createdByFirstName *string) {
-	stockLocation.createdByFirstName = createdByFirstName
+func (s *StockLocation) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (stockLocation *StockLocation) CreatedBySurname() *string {
-	return stockLocation.createdBySurname
+func (s *StockLocation) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (stockLocation *StockLocation) SetCreatedBySurname(createdBySurname *string) {
-	stockLocation.createdBySurname = createdBySurname
+func (s *StockLocation) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (stockLocation *StockLocation) UpdatedByFirstName() *string {
-	return stockLocation.updatedByFirstName
+func (s *StockLocation) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (stockLocation *StockLocation) SetUpdatedByFirstName(updatedByFirstName *string) {
-	stockLocation.updatedByFirstName = updatedByFirstName
+func (s *StockLocation) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (stockLocation *StockLocation) UpdatedBySurname() *string {
-	return stockLocation.updatedBySurname
+func (s *StockLocation) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (stockLocation *StockLocation) SetUpdatedBySurname(updatedBySurname *string) {
-	stockLocation.updatedBySurname = updatedBySurname
+func (s *StockLocation) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (stockLocation *StockLocation) IsUpdated() bool {
-	return stockLocation.updatedByID != nil
+func (s *StockLocation) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 func newStockLocation() *StockLocation {

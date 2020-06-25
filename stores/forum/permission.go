@@ -31,11 +31,11 @@ type Permission struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (permission *Permission) TableName() string {
+func (p *Permission) TableName() string {
 	return "ForumPermission"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (permission *Permission) TableAlias() string {
+func (p *Permission) TableAlias() string {
 	return "fop"
 }

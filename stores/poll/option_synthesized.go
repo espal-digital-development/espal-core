@@ -20,123 +20,123 @@ type OptionEntity interface {
 }
 
 // ID returns id.
-func (option *Option) ID() string {
-	return option.id
+func (o *Option) ID() string {
+	return o.id
 }
 
 // CreatedByID returns createdByID.
-func (option *Option) CreatedByID() string {
-	return option.createdByID
+func (o *Option) CreatedByID() string {
+	return o.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (option *Option) SetCreatedByID(createdByID string) {
-	option.createdByID = createdByID
+func (o *Option) SetCreatedByID(createdByID string) {
+	o.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (option *Option) UpdatedByID() *string {
-	return option.updatedByID
+func (o *Option) UpdatedByID() *string {
+	return o.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (option *Option) SetUpdatedByID(updatedByID *string) {
-	option.updatedByID = updatedByID
+func (o *Option) SetUpdatedByID(updatedByID *string) {
+	o.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (option *Option) CreatedAt() time.Time {
-	return option.createdAt
+func (o *Option) CreatedAt() time.Time {
+	return o.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (option *Option) SetCreatedAt(createdAt time.Time) {
-	option.createdAt = createdAt
+func (o *Option) SetCreatedAt(createdAt time.Time) {
+	o.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (option *Option) UpdatedAt() *time.Time {
-	return option.updatedAt
+func (o *Option) UpdatedAt() *time.Time {
+	return o.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (option *Option) SetUpdatedAt(updatedAt *time.Time) {
-	option.updatedAt = updatedAt
+func (o *Option) SetUpdatedAt(updatedAt *time.Time) {
+	o.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (option *Option) CreatedByFirstName() *string {
-	return option.createdByFirstName
+func (o *Option) CreatedByFirstName() *string {
+	return o.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (option *Option) SetCreatedByFirstName(createdByFirstName *string) {
-	option.createdByFirstName = createdByFirstName
+func (o *Option) SetCreatedByFirstName(createdByFirstName *string) {
+	o.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (option *Option) CreatedBySurname() *string {
-	return option.createdBySurname
+func (o *Option) CreatedBySurname() *string {
+	return o.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (option *Option) SetCreatedBySurname(createdBySurname *string) {
-	option.createdBySurname = createdBySurname
+func (o *Option) SetCreatedBySurname(createdBySurname *string) {
+	o.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (option *Option) UpdatedByFirstName() *string {
-	return option.updatedByFirstName
+func (o *Option) UpdatedByFirstName() *string {
+	return o.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (option *Option) SetUpdatedByFirstName(updatedByFirstName *string) {
-	option.updatedByFirstName = updatedByFirstName
+func (o *Option) SetUpdatedByFirstName(updatedByFirstName *string) {
+	o.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (option *Option) UpdatedBySurname() *string {
-	return option.updatedBySurname
+func (o *Option) UpdatedBySurname() *string {
+	return o.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (option *Option) SetUpdatedBySurname(updatedBySurname *string) {
-	option.updatedBySurname = updatedBySurname
+func (o *Option) SetUpdatedBySurname(updatedBySurname *string) {
+	o.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (option *Option) IsUpdated() bool {
-	return option.updatedByID != nil
+func (o *Option) IsUpdated() bool {
+	return o.updatedByID != nil
 }
 
 // Active returns active.
-func (option *Option) Active() bool {
-	return option.active
+func (o *Option) Active() bool {
+	return o.active
 }
 
 // SetActive sets the active.
-func (option *Option) SetActive(active bool) {
-	option.active = active
+func (o *Option) SetActive(active bool) {
+	o.active = active
 }
 
 // Sorting returns sorting.
-func (option *Option) Sorting() uint {
-	return option.sorting
+func (o *Option) Sorting() uint {
+	return o.sorting
 }
 
 // SetSorting sets the sorting.
-func (option *Option) SetSorting(sorting uint) {
-	option.sorting = sorting
+func (o *Option) SetSorting(sorting uint) {
+	o.sorting = sorting
 }
 
 // PollID returns pollID.
-func (option *Option) PollID() string {
-	return option.pollID
+func (o *Option) PollID() string {
+	return o.pollID
 }
 
 // SetPollID sets the pollID.
-func (option *Option) SetPollID(pollID string) {
-	option.pollID = pollID
+func (o *Option) SetPollID(pollID string) {
+	o.pollID = pollID
 }
 
 func newOption() *Option {

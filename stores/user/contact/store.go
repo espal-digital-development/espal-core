@@ -17,8 +17,8 @@ type ContactsStore struct {
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (contactsStore *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, bool, error) {
-	result, ok, err := contactsStore.fetch(`SELECT u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (c *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, bool, error) {
+	result, ok, err := c.fetch(`SELECT u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserContact" u
 		LEFT JOIN "User" c ON c."id" = u."contactID"
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
@@ -31,8 +31,8 @@ func (contactsStore *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, 
 }
 
 // Delete deletes the given ID(s).
-func (contactsStore *ContactsStore) Delete(ids []string) error {
-	transaction, err := contactsStore.deletorDatabase.Begin()
+func (c *ContactsStore) Delete(ids []string) error {
+	transaction, err := c.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -46,7 +46,7 @@ func (contactsStore *ContactsStore) Delete(ids []string) error {
 }
 
 // Name returns the presentable name for the User's Contact.
-func (contactsStore *ContactsStore) Name(contact *Contact, languageID uint16) string {
+func (c *ContactsStore) Name(contact *Contact, languageID uint16) string {
 	var name string
 	if contact.ContactFirstName() != nil {
 		name = *contact.ContactFirstName()
@@ -55,14 +55,14 @@ func (contactsStore *ContactsStore) Name(contact *Contact, languageID uint16) st
 		name += " " + *contact.ContactSurname()
 	}
 	if name == "" {
-		name = contactsStore.translationsRepository.Singular(languageID, "user") + " " + contact.ID()
+		name = c.translationsRepository.Singular(languageID, "user") + " " + contact.ID()
 	}
 	return name
 }
 
 // ForUser fetches UserContacts for userID.
-func (contactsStore *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err error) {
-	rows, err := contactsStore.selecterDatabase.Query(`SELECT u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (c *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err error) {
+	rows, err := c.selecterDatabase.Query(`SELECT u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserContact" u
 		LEFT JOIN "User" c ON c."id" = u."contactID"
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"

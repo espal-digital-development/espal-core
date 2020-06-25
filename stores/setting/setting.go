@@ -34,6 +34,6 @@ type Setting struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (setting *Setting) TableAlias() string {
+func (s *Setting) TableAlias() string {
 	return "set"
 }

@@ -23,11 +23,11 @@ type Comment struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (comment *Comment) TableName() string {
+func (c *Comment) TableName() string {
 	return "BlogPostComment"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (comment *Comment) TableAlias() string {
+func (c *Comment) TableAlias() string {
 	return "bpc"
 }

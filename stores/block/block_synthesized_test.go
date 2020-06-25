@@ -9,115 +9,115 @@ import (
 )
 
 func TestBlockTable(t *testing.T) {
-	block := block.NewBlockEntity()
-	if block.TableName() == "" {
+	b := block.NewBlockEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestBlockTableAlias(t *testing.T) {
-	block := block.NewBlockEntity()
-	if block.TableName() == "" {
+	b := block.NewBlockEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestBlockIsUpdated(t *testing.T) {
-	block := block.NewBlockEntity()
-	block.IsUpdated()
+	b := block.NewBlockEntity()
+	b.IsUpdated()
 }
 
 func TestBlockID(t *testing.T) {
-	block := block.NewBlockEntity()
-	block.ID()
+	b := block.NewBlockEntity()
+	b.ID()
 }
 
 func TestBlockCreatedByID(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetCreatedByID(testValue)
-	if testValue != block.CreatedByID() {
+	b.SetCreatedByID(testValue)
+	if testValue != b.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockUpdatedByID(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetUpdatedByID(&testValue)
-	if &testValue != block.UpdatedByID() {
+	b.SetUpdatedByID(&testValue)
+	if &testValue != b.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockCreatedAt(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := time.Now()
-	block.SetCreatedAt(testValue)
-	if testValue != block.CreatedAt() {
+	b.SetCreatedAt(testValue)
+	if testValue != b.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockUpdatedAt(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := time.Now()
-	block.SetUpdatedAt(&testValue)
-	if &testValue != block.UpdatedAt() {
+	b.SetUpdatedAt(&testValue)
+	if &testValue != b.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockCreatedByFirstName(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetCreatedByFirstName(&testValue)
-	if &testValue != block.CreatedByFirstName() {
+	b.SetCreatedByFirstName(&testValue)
+	if &testValue != b.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockCreatedBySurname(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetCreatedBySurname(&testValue)
-	if &testValue != block.CreatedBySurname() {
+	b.SetCreatedBySurname(&testValue)
+	if &testValue != b.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockUpdatedByFirstName(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetUpdatedByFirstName(&testValue)
-	if &testValue != block.UpdatedByFirstName() {
+	b.SetUpdatedByFirstName(&testValue)
+	if &testValue != b.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockUpdatedBySurname(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetUpdatedBySurname(&testValue)
-	if &testValue != block.UpdatedBySurname() {
+	b.SetUpdatedBySurname(&testValue)
+	if &testValue != b.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockDomainID(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := "testValue"
-	block.SetDomainID(testValue)
-	if testValue != block.DomainID() {
+	b.SetDomainID(testValue)
+	if testValue != b.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlockActive(t *testing.T) {
-	block := block.NewBlockEntity()
+	b := block.NewBlockEntity()
 	testValue := true
-	block.SetActive(testValue)
-	if testValue != block.Active() {
+	b.SetActive(testValue)
+	if testValue != b.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

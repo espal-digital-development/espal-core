@@ -14,15 +14,15 @@ var (
 	lockStoreMockSave      sync.RWMutex
 )
 
-// Ensure, that StoreMock does implement Store.
+// Ensure, that StoreMock does implement cachenotify.Store.
 // If this is not the case, regenerate this file with moq.
 var _ cachenotify.Store = &StoreMock{}
 
-// StoreMock is a mock implementation of Store.
+// StoreMock is a mock implementation of cachenotify.Store.
 //
 //     func TestSomethingThatUsesStore(t *testing.T) {
 //
-//         // make and configure a mocked Store
+//         // make and configure a mocked cachenotify.Store
 //         mockedStore := &StoreMock{
 //             GetLatestFunc: func(interval time.Duration) ([]*cachenotify.CacheNotify, bool, error) {
 // 	               panic("mock out the GetLatest method")
@@ -32,7 +32,7 @@ var _ cachenotify.Store = &StoreMock{}
 //             },
 //         }
 //
-//         // use mockedStore in code that requires Store
+//         // use mockedStore in code that requires cachenotify.Store
 //         // and then make assertions.
 //
 //     }

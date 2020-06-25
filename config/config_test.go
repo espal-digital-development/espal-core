@@ -147,7 +147,7 @@ func TestAvailableLanguages(t *testing.T) {
 	}
 
 	for k := range langs {
-		if len(strings.Trim(langs[k], " ")) == 0 {
+		if len(strings.TrimSpace(langs[k])) == 0 {
 			t.Fatal("Language code keys should not be empty")
 		}
 	}

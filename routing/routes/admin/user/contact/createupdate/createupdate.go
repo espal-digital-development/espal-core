@@ -23,8 +23,8 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
-	user, ok, err := route.userStore.GetOne(context.QueryValue("userid"))
+func (r *Route) Handle(context contexts.Context) {
+	user, ok, err := r.userStore.GetOne(context.QueryValue("userid"))
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -43,7 +43,7 @@ func (route *Route) Handle(context contexts.Context) {
 
 	userContact := &contact.Contact{}
 	if id != "" {
-		userContact, ok, err = route.userContactStore.GetOneByIDWithCreator(id)
+		userContact, ok, err = r.userContactStore.GetOneByIDWithCreator(id)
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -60,7 +60,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.createUpdateFormValidator.New(userContact, language)
+	form, err := r.createUpdateFormValidator.New(userContact, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -74,7 +74,7 @@ func (route *Route) Handle(context contexts.Context) {
 
 	if isSubmitted && isValid {
 		userID := form.FieldValue("userID")
-		entityMutator := route.entityMutatorsFactory.NewMutation(userContact, form, "User/Conttact")
+		entityMutator := r.entityMutatorsFactory.NewMutation(userContact, form, "User/Conttact")
 		entityMutator.SetNullableString("userID", &userID, userContact.UserID())
 		entityMutator.SetString("contactID", form.FieldPointerValue("contact"), userContact.ContactID())
 		entityMutator.SetUint("sorting", form.FieldValueAsUint("sorting"), userContact.Sorting())
@@ -92,7 +92,7 @@ func (route *Route) Handle(context contexts.Context) {
 			return
 		}
 
-		userContact, ok, err = route.userContactStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
+		userContact, ok, err = r.userContactStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -105,7 +105,7 @@ func (route *Route) Handle(context contexts.Context) {
 
 	// TODO :: 77 Pressing the action `cancel` acts strange and goes to a broken URL (e.g. `/_PY0l/User/Contact/User/View?id=385509484458901505`)
 
-	route.createUpdatePageFactory.NewPage(context, userContact, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "userContact")).Render()
+	r.createUpdatePageFactory.NewPage(context, userContact, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "userContact")).Render()
 }
 
 // New returns a new instance of Route.

@@ -18,16 +18,16 @@ type session struct {
 }
 
 // SessionCookieName returns the cookie name.
-func (configuration *Configuration) SessionCookieName() string {
-	return configuration.session.CookieName
+func (c *Configuration) SessionCookieName() string {
+	return c.session.CookieName
 }
 
 // SessionExpiration returns the cookie expiration.
-func (configuration *Configuration) SessionExpiration() time.Duration {
-	return configuration.session.Expiration
+func (c *Configuration) SessionExpiration() time.Duration {
+	return c.session.Expiration
 }
 
 // SessionRememberMeExpiration returns the cookie `remember me` expiration.
-func (configuration *Configuration) SessionRememberMeExpiration() time.Duration {
-	return configuration.session.RememberMeExpiration
+func (c *Configuration) SessionRememberMeExpiration() time.Duration {
+	return c.session.RememberMeExpiration
 }

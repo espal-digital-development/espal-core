@@ -18,41 +18,41 @@ type RenderStatusContext interface {
 }
 
 // RenderBadRequest renders a basic 400 page.
-func (httpContext *HTTPContext) RenderBadRequest() {
-	httpContext.SetStatusCode(http.StatusBadRequest)
-	httpContext.RenderNon200()
+func (c *HTTPContext) RenderBadRequest() {
+	c.SetStatusCode(http.StatusBadRequest)
+	c.RenderNon200()
 }
 
 // RenderUnauthorized renders a basic 401 page.
-func (httpContext *HTTPContext) RenderUnauthorized() {
-	httpContext.SetStatusCode(http.StatusUnauthorized)
-	httpContext.RenderNon200()
+func (c *HTTPContext) RenderUnauthorized() {
+	c.SetStatusCode(http.StatusUnauthorized)
+	c.RenderNon200()
 }
 
 // RenderNotFound renders a basic 404 page.
-func (httpContext *HTTPContext) RenderNotFound() {
-	httpContext.SetStatusCode(http.StatusNotFound)
-	httpContext.RenderNon200()
+func (c *HTTPContext) RenderNotFound() {
+	c.SetStatusCode(http.StatusNotFound)
+	c.RenderNon200()
 }
 
 // RenderInternalServerError renders a basic 500 page.
-func (httpContext *HTTPContext) RenderInternalServerError(err error) {
-	httpContext.loggerService.Error(errors.ErrorStack(err))
-	httpContext.SetStatusCode(http.StatusInternalServerError)
+func (c *HTTPContext) RenderInternalServerError(err error) {
+	c.loggerService.Error(errors.ErrorStack(err))
+	c.SetStatusCode(http.StatusInternalServerError)
 	var errorMessage string
-	if httpContext.configService.Development() {
+	if c.configService.Development() {
 		errorMessage = err.Error()
 	}
-	httpContext.RenderNon200Custom(strconv.Itoa(httpContext.StatusCode()), errorMessage)
+	c.RenderNon200Custom(strconv.Itoa(c.StatusCode()), errorMessage)
 }
 
 // RenderNon200 gives the possibility to render a non-200 page.
-func (httpContext *HTTPContext) RenderNon200() {
+func (c *HTTPContext) RenderNon200() {
 	// TODO :: 7 Translate all status messages
-	httpContext.RenderNon200Custom(strconv.Itoa(httpContext.StatusCode()), http.StatusText(httpContext.StatusCode()))
+	c.RenderNon200Custom(strconv.Itoa(c.StatusCode()), http.StatusText(c.StatusCode()))
 }
 
 // RenderNon200Custom gives the possibility to render a non-200 page with a custom message.
-func (httpContext *HTTPContext) RenderNon200Custom(title string, message string) {
-	httpContext.serverError.RenderPage(httpContext, title, message)
+func (c *HTTPContext) RenderNon200Custom(title string, message string) {
+	c.serverError.RenderPage(c, title, message)
 }

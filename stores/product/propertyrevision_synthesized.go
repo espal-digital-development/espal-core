@@ -34,193 +34,193 @@ type PropertyRevisionEntity interface {
 }
 
 // ID returns id.
-func (propertyRevision *PropertyRevision) ID() string {
-	return propertyRevision.id
+func (p *PropertyRevision) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (propertyRevision *PropertyRevision) CreatedByID() string {
-	return propertyRevision.createdByID
+func (p *PropertyRevision) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (propertyRevision *PropertyRevision) SetCreatedByID(createdByID string) {
-	propertyRevision.createdByID = createdByID
+func (p *PropertyRevision) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (propertyRevision *PropertyRevision) UpdatedByID() *string {
-	return propertyRevision.updatedByID
+func (p *PropertyRevision) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (propertyRevision *PropertyRevision) SetUpdatedByID(updatedByID *string) {
-	propertyRevision.updatedByID = updatedByID
+func (p *PropertyRevision) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (propertyRevision *PropertyRevision) CreatedAt() time.Time {
-	return propertyRevision.createdAt
+func (p *PropertyRevision) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (propertyRevision *PropertyRevision) SetCreatedAt(createdAt time.Time) {
-	propertyRevision.createdAt = createdAt
+func (p *PropertyRevision) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (propertyRevision *PropertyRevision) UpdatedAt() *time.Time {
-	return propertyRevision.updatedAt
+func (p *PropertyRevision) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (propertyRevision *PropertyRevision) SetUpdatedAt(updatedAt *time.Time) {
-	propertyRevision.updatedAt = updatedAt
+func (p *PropertyRevision) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (propertyRevision *PropertyRevision) CreatedByFirstName() *string {
-	return propertyRevision.createdByFirstName
+func (p *PropertyRevision) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (propertyRevision *PropertyRevision) SetCreatedByFirstName(createdByFirstName *string) {
-	propertyRevision.createdByFirstName = createdByFirstName
+func (p *PropertyRevision) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (propertyRevision *PropertyRevision) CreatedBySurname() *string {
-	return propertyRevision.createdBySurname
+func (p *PropertyRevision) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (propertyRevision *PropertyRevision) SetCreatedBySurname(createdBySurname *string) {
-	propertyRevision.createdBySurname = createdBySurname
+func (p *PropertyRevision) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (propertyRevision *PropertyRevision) UpdatedByFirstName() *string {
-	return propertyRevision.updatedByFirstName
+func (p *PropertyRevision) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (propertyRevision *PropertyRevision) SetUpdatedByFirstName(updatedByFirstName *string) {
-	propertyRevision.updatedByFirstName = updatedByFirstName
+func (p *PropertyRevision) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (propertyRevision *PropertyRevision) UpdatedBySurname() *string {
-	return propertyRevision.updatedBySurname
+func (p *PropertyRevision) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (propertyRevision *PropertyRevision) SetUpdatedBySurname(updatedBySurname *string) {
-	propertyRevision.updatedBySurname = updatedBySurname
+func (p *PropertyRevision) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (propertyRevision *PropertyRevision) IsUpdated() bool {
-	return propertyRevision.updatedByID != nil
+func (p *PropertyRevision) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (propertyRevision *PropertyRevision) DomainID() *string {
-	return propertyRevision.domainID
+func (p *PropertyRevision) DomainID() *string {
+	return p.domainID
 }
 
 // SetDomainID sets the domainID.
-func (propertyRevision *PropertyRevision) SetDomainID(domainID *string) {
-	propertyRevision.domainID = domainID
+func (p *PropertyRevision) SetDomainID(domainID *string) {
+	p.domainID = domainID
 }
 
 // Language returns language.
-func (propertyRevision *PropertyRevision) Language() *uint16 {
-	return propertyRevision.language
+func (p *PropertyRevision) Language() *uint16 {
+	return p.language
 }
 
 // SetLanguage sets the language.
-func (propertyRevision *PropertyRevision) SetLanguage(language *uint16) {
-	propertyRevision.language = language
+func (p *PropertyRevision) SetLanguage(language *uint16) {
+	p.language = language
 }
 
 // BundledID returns bundledID.
-func (propertyRevision *PropertyRevision) BundledID() *string {
-	return propertyRevision.bundledID
+func (p *PropertyRevision) BundledID() *string {
+	return p.bundledID
 }
 
 // SetBundledID sets the bundledID.
-func (propertyRevision *PropertyRevision) SetBundledID(bundledID *string) {
-	propertyRevision.bundledID = bundledID
+func (p *PropertyRevision) SetBundledID(bundledID *string) {
+	p.bundledID = bundledID
 }
 
 // ModelID returns modelID.
-func (propertyRevision *PropertyRevision) ModelID() *string {
-	return propertyRevision.modelID
+func (p *PropertyRevision) ModelID() *string {
+	return p.modelID
 }
 
 // SetModelID sets the modelID.
-func (propertyRevision *PropertyRevision) SetModelID(modelID *string) {
-	propertyRevision.modelID = modelID
+func (p *PropertyRevision) SetModelID(modelID *string) {
+	p.modelID = modelID
 }
 
 // VariantID returns variantID.
-func (propertyRevision *PropertyRevision) VariantID() *string {
-	return propertyRevision.variantID
+func (p *PropertyRevision) VariantID() *string {
+	return p.variantID
 }
 
 // SetVariantID sets the variantID.
-func (propertyRevision *PropertyRevision) SetVariantID(variantID *string) {
-	propertyRevision.variantID = variantID
+func (p *PropertyRevision) SetVariantID(variantID *string) {
+	p.variantID = variantID
 }
 
 // PropertyID returns propertyID.
-func (propertyRevision *PropertyRevision) PropertyID() string {
-	return propertyRevision.propertyID
+func (p *PropertyRevision) PropertyID() string {
+	return p.propertyID
 }
 
 // SetPropertyID sets the propertyID.
-func (propertyRevision *PropertyRevision) SetPropertyID(propertyID string) {
-	propertyRevision.propertyID = propertyID
+func (p *PropertyRevision) SetPropertyID(propertyID string) {
+	p.propertyID = propertyID
 }
 
 // PropertyOptionID returns propertyOptionID.
-func (propertyRevision *PropertyRevision) PropertyOptionID() *string {
-	return propertyRevision.propertyOptionID
+func (p *PropertyRevision) PropertyOptionID() *string {
+	return p.propertyOptionID
 }
 
 // SetPropertyOptionID sets the propertyOptionID.
-func (propertyRevision *PropertyRevision) SetPropertyOptionID(propertyOptionID *string) {
-	propertyRevision.propertyOptionID = propertyOptionID
+func (p *PropertyRevision) SetPropertyOptionID(propertyOptionID *string) {
+	p.propertyOptionID = propertyOptionID
 }
 
 // RevertedFromID returns revertedFromID.
-func (propertyRevision *PropertyRevision) RevertedFromID() *string {
-	return propertyRevision.revertedFromID
+func (p *PropertyRevision) RevertedFromID() *string {
+	return p.revertedFromID
 }
 
 // SetRevertedFromID sets the revertedFromID.
-func (propertyRevision *PropertyRevision) SetRevertedFromID(revertedFromID *string) {
-	propertyRevision.revertedFromID = revertedFromID
+func (p *PropertyRevision) SetRevertedFromID(revertedFromID *string) {
+	p.revertedFromID = revertedFromID
 }
 
 // Revision returns revision.
-func (propertyRevision *PropertyRevision) Revision() uint {
-	return propertyRevision.revision
+func (p *PropertyRevision) Revision() uint {
+	return p.revision
 }
 
 // SetRevision sets the revision.
-func (propertyRevision *PropertyRevision) SetRevision(revision uint) {
-	propertyRevision.revision = revision
+func (p *PropertyRevision) SetRevision(revision uint) {
+	p.revision = revision
 }
 
 // Value returns value.
-func (propertyRevision *PropertyRevision) Value() *string {
-	return propertyRevision.value
+func (p *PropertyRevision) Value() *string {
+	return p.value
 }
 
 // SetValue sets the value.
-func (propertyRevision *PropertyRevision) SetValue(value *string) {
-	propertyRevision.value = value
+func (p *PropertyRevision) SetValue(value *string) {
+	p.value = value
 }
 
 func newPropertyRevision() *PropertyRevision {

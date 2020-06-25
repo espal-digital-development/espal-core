@@ -7,7 +7,7 @@ import (
 	"github.com/juju/errors"
 )
 
-func (assetHandler *AssetHandler) registerImagesRoutes() error {
+func (h *AssetHandler) registerImagesRoutes() error {
 	allowedExtensions := map[string]bool{
 		"jpg":  true,
 		"jpeg": true,
@@ -17,7 +17,7 @@ func (assetHandler *AssetHandler) registerImagesRoutes() error {
 		"svg":  true,
 	}
 	var loopErr error
-	assetHandler.imagesStorage.Iterate(func(path string, data []byte, err error) bool {
+	h.imagesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
 			loopErr = err
 			return false
@@ -51,20 +51,20 @@ func (assetHandler *AssetHandler) registerImagesRoutes() error {
 		// }
 
 		var gzipData []byte
-		if assetHandler.configService.AssetsGZip() {
-			gzipData, err = assetHandler.convertToGzip(data)
+		if h.configService.AssetsGZip() {
+			gzipData, err = h.convertToGzip(data)
 			if err != nil {
 				loopErr = errors.Trace(err)
 				return false
 			}
 		}
 
-		err = assetHandler.routerService.RegisterRoute("/i/"+path, &route{
+		err = h.routerService.RegisterRoute("/i/"+path, &route{
 			data:        data,
 			gzipData:    gzipData,
 			contentType: mimeType,
-			cacheMaxAge: assetHandler.configService.AssetsCacheMaxAge(),
-			allowGzip:   assetHandler.configService.AssetsGZip(),
+			cacheMaxAge: h.configService.AssetsCacheMaxAge(),
+			allowGzip:   h.configService.AssetsGZip(),
 		})
 		if err != nil {
 			loopErr = errors.Trace(err)

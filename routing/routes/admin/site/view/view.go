@@ -23,7 +23,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadSite") {
 		return
 	}
@@ -34,7 +34,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	site, ok, err := route.siteStore.GetOneByIDWithCreator(id)
+	site, ok, err := r.siteStore.GetOneByIDWithCreator(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -60,7 +60,7 @@ func (route *Route) Handle(context contexts.Context) {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
 			}
-			currency, err := route.currenciesRepository.ByID(uint(currencyID))
+			currency, err := r.currenciesRepository.ByID(uint(currencyID))
 			if err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
@@ -71,7 +71,7 @@ func (route *Route) Handle(context contexts.Context) {
 
 	var siteLanguage languages.Data
 	if site.Language() != nil {
-		siteLanguage, err = route.languagesRepository.ByID(*site.Language())
+		siteLanguage, err = r.languagesRepository.ByID(*site.Language())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -79,13 +79,13 @@ func (route *Route) Handle(context contexts.Context) {
 	}
 	var siteCountry countries.Data
 	if site.Country() != nil {
-		siteCountry, err = route.countriesRepository.ByID(*site.Country())
+		siteCountry, err = r.countriesRepository.ByID(*site.Country())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
 	}
-	route.viewPageFactory.NewPage(context, language, site, route.siteStore.GetTranslatedName(site, language.ID()), siteLanguage, siteCountry, siteCurrencies).Render()
+	r.viewPageFactory.NewPage(context, language, site, r.siteStore.GetTranslatedName(site, language.ID()), siteLanguage, siteCountry, siteCurrencies).Render()
 }
 
 // New returns a new instance of Route.

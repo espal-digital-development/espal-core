@@ -12,18 +12,22 @@ var (
 	lockFactoryMockNewFilter sync.RWMutex
 )
 
-// FactoryMock is a mock implementation of Factory.
+// Ensure, that FactoryMock does implement filters.Factory.
+// If this is not the case, regenerate this file with moq.
+var _ filters.Factory = &FactoryMock{}
+
+// FactoryMock is a mock implementation of filters.Factory.
 //
 //     func TestSomethingThatUsesFactory(t *testing.T) {
 //
-//         // make and configure a mocked Factory
+//         // make and configure a mocked filters.Factory
 //         mockedFactory := &FactoryMock{
 //             NewFilterFunc: func(queryReader filters.QueryReader, m filters.Model) filters.Filter {
 // 	               panic("mock out the NewFilter method")
 //             },
 //         }
 //
-//         // use mockedFactory in code that requires Factory
+//         // use mockedFactory in code that requires filters.Factory
 //         // and then make assertions.
 //
 //     }

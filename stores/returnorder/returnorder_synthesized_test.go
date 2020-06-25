@@ -9,124 +9,124 @@ import (
 )
 
 func TestReturnOrderTable(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
-	if returnOrder.TableName() == "" {
+	r := returnorder.NewReturnOrderEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestReturnOrderTableAlias(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
-	if returnOrder.TableName() == "" {
+	r := returnorder.NewReturnOrderEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestReturnOrderIsUpdated(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
-	returnOrder.IsUpdated()
+	r := returnorder.NewReturnOrderEntity()
+	r.IsUpdated()
 }
 
 func TestReturnOrderID(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
-	returnOrder.ID()
+	r := returnorder.NewReturnOrderEntity()
+	r.ID()
 }
 
 func TestReturnOrderCreatedByID(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetCreatedByID(testValue)
-	if testValue != returnOrder.CreatedByID() {
+	r.SetCreatedByID(testValue)
+	if testValue != r.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderUpdatedByID(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetUpdatedByID(&testValue)
-	if &testValue != returnOrder.UpdatedByID() {
+	r.SetUpdatedByID(&testValue)
+	if &testValue != r.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderCreatedAt(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := time.Now()
-	returnOrder.SetCreatedAt(testValue)
-	if testValue != returnOrder.CreatedAt() {
+	r.SetCreatedAt(testValue)
+	if testValue != r.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderUpdatedAt(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := time.Now()
-	returnOrder.SetUpdatedAt(&testValue)
-	if &testValue != returnOrder.UpdatedAt() {
+	r.SetUpdatedAt(&testValue)
+	if &testValue != r.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderCreatedByFirstName(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetCreatedByFirstName(&testValue)
-	if &testValue != returnOrder.CreatedByFirstName() {
+	r.SetCreatedByFirstName(&testValue)
+	if &testValue != r.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderCreatedBySurname(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetCreatedBySurname(&testValue)
-	if &testValue != returnOrder.CreatedBySurname() {
+	r.SetCreatedBySurname(&testValue)
+	if &testValue != r.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderUpdatedByFirstName(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetUpdatedByFirstName(&testValue)
-	if &testValue != returnOrder.UpdatedByFirstName() {
+	r.SetUpdatedByFirstName(&testValue)
+	if &testValue != r.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderUpdatedBySurname(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetUpdatedBySurname(&testValue)
-	if &testValue != returnOrder.UpdatedBySurname() {
+	r.SetUpdatedBySurname(&testValue)
+	if &testValue != r.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderDomainID(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetDomainID(testValue)
-	if testValue != returnOrder.DomainID() {
+	r.SetDomainID(testValue)
+	if testValue != r.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderUserID(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetUserID(testValue)
-	if testValue != returnOrder.UserID() {
+	r.SetUserID(testValue)
+	if testValue != r.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReturnOrderComments(t *testing.T) {
-	returnOrder := returnorder.NewReturnOrderEntity()
+	r := returnorder.NewReturnOrderEntity()
 	testValue := "testValue"
-	returnOrder.SetComments(&testValue)
-	if &testValue != returnOrder.Comments() {
+	r.SetComments(&testValue)
+	if &testValue != r.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

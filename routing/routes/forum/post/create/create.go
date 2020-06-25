@@ -16,9 +16,9 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	id := context.QueryValue("id")
-	if !route.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
+	if !r.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
 		context.RenderBadRequest()
 		return
 	}
@@ -27,7 +27,7 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	forum, ok, err := route.forumStore.GetOneByID(id, language)
+	forum, ok, err := r.forumStore.GetOneByID(id, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -37,7 +37,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 	// TODO :: Form, Post and Process
-	route.createPageFactory.NewPage(context, forum).Render()
+	r.createPageFactory.NewPage(context, forum).Render()
 }
 
 // New returns a new instance of Route.

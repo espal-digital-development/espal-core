@@ -20,6 +20,6 @@ type Credit struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (credit *Credit) TableAlias() string {
+func (c *Credit) TableAlias() string {
 	return "cre"
 }

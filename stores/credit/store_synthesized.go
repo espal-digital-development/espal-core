@@ -13,8 +13,8 @@ var _ Store = &CreditsStore{}
 type Store interface {
 }
 
-func (creditsStore *CreditsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Credit, ok bool, err error) {
-	rows, err := creditsStore.selecterDatabase.Query(query, params...)
+func (c *CreditsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Credit, ok bool, err error) {
+	rows, err := c.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (creditsStore *CreditsStore) fetch(query string, withCreators bool, params 
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		credit := newCredit()
-		fields := []interface{}{&credit.id, &credit.createdByID, &credit.updatedByID, &credit.createdAt, &credit.updatedAt}
+		c := newCredit()
+		fields := []interface{}{&c.id, &c.createdByID, &c.updatedByID, &c.createdAt, &c.updatedAt}
 		if withCreators {
-			fields = append(fields, &credit.createdByFirstName, &credit.createdBySurname, &credit.updatedByFirstName, &credit.updatedBySurname)
+			fields = append(fields, &c.createdByFirstName, &c.createdBySurname, &c.updatedByFirstName, &c.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, credit)
+		result = append(result, c)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (creditsStore *CreditsStore) fetch(query string, withCreators bool, params 
 
 // New returns a new instance of CreditsStore.
 func New(selecterDatabase database.Database) (*CreditsStore, error) {
-	creditsStore := &CreditsStore{
+	c := &CreditsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return creditsStore, nil
+	return c, nil
 }

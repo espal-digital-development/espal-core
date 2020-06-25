@@ -13,8 +13,8 @@ var _ Store = &ReturnOrdersStore{}
 type Store interface {
 }
 
-func (returnOrdersStore *ReturnOrdersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*ReturnOrder, ok bool, err error) {
-	rows, err := returnOrdersStore.selecterDatabase.Query(query, params...)
+func (r *ReturnOrdersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*ReturnOrder, ok bool, err error) {
+	rows, err := r.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (returnOrdersStore *ReturnOrdersStore) fetch(query string, withCreators boo
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		returnOrder := newReturnOrder()
-		fields := []interface{}{&returnOrder.id, &returnOrder.createdByID, &returnOrder.updatedByID, &returnOrder.createdAt, &returnOrder.updatedAt, &returnOrder.domainID, &returnOrder.userID, &returnOrder.comments}
+		r := newReturnOrder()
+		fields := []interface{}{&r.id, &r.createdByID, &r.updatedByID, &r.createdAt, &r.updatedAt, &r.domainID, &r.userID, &r.comments}
 		if withCreators {
-			fields = append(fields, &returnOrder.createdByFirstName, &returnOrder.createdBySurname, &returnOrder.updatedByFirstName, &returnOrder.updatedBySurname)
+			fields = append(fields, &r.createdByFirstName, &r.createdBySurname, &r.updatedByFirstName, &r.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, returnOrder)
+		result = append(result, r)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (returnOrdersStore *ReturnOrdersStore) fetch(query string, withCreators boo
 
 // New returns a new instance of ReturnOrdersStore.
 func New(selecterDatabase database.Database) (*ReturnOrdersStore, error) {
-	returnOrdersStore := &ReturnOrdersStore{
+	r := &ReturnOrdersStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return returnOrdersStore, nil
+	return r, nil
 }

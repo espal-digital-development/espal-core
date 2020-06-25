@@ -13,23 +13,23 @@ type searchField struct {
 }
 
 // Name returns the field name.
-func (searchField *searchField) Name() string {
-	return searchField.name
+func (f *searchField) Name() string {
+	return f.name
 }
 
 // TableAlias returns the field it's table alias.
-func (searchField *searchField) TableAlias() string {
-	return searchField.tableAlias
+func (f *searchField) TableAlias() string {
+	return f.tableAlias
 }
 
 // SetTableAlias sets the field table alias.
-func (searchField *searchField) SetTableAlias(tableAlias string) SearchField {
-	searchField.tableAlias = tableAlias
-	return searchField
+func (f *searchField) SetTableAlias(tableAlias string) SearchField {
+	f.tableAlias = tableAlias
+	return f
 }
 
 // NewSearchField returns a new instance of a SearchField.
-func (filter *filter) NewSearchField(name string) SearchField {
+func (f *filter) NewSearchField(name string) SearchField {
 	return &searchField{
 		name: name,
 	}

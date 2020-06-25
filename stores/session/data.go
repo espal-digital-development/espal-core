@@ -14,21 +14,21 @@ type dataEntries struct {
 }
 
 // Get returns the data entry for the given key.
-func (dataEntries *dataEntries) Get(key uint8) (bool, string) {
-	if value, ok := dataEntries.entries[key]; ok {
+func (d *dataEntries) Get(key uint8) (bool, string) {
+	if value, ok := d.entries[key]; ok {
 		return true, value
 	}
 	return false, ""
 }
 
 // Set sets the data entry for the given key.
-func (dataEntries *dataEntries) Set(key uint8, value string) {
-	dataEntries.entries[key] = value
+func (d *dataEntries) Set(key uint8, value string) {
+	d.entries[key] = value
 }
 
 // All returns all known entries.
-func (dataEntries *dataEntries) All() map[uint8]string {
-	return dataEntries.entries
+func (d *dataEntries) All() map[uint8]string {
+	return d.entries
 }
 
 func newDataEntries() *dataEntries {

@@ -22,11 +22,11 @@ type Group struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (group *Group) TableName() string {
+func (g *Group) TableName() string {
 	return "TaxGroup"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (group *Group) TableAlias() string {
+func (g *Group) TableAlias() string {
 	return "tag"
 }

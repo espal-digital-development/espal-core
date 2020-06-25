@@ -48,13 +48,13 @@ type Validators struct {
 }
 
 // NewForm builds a new form-based validator based on the ValidatorFields given
-func (validators *Validators) NewForm(language language) (Validator, error) {
+func (v *Validators) NewForm(language language) (Validator, error) {
 	validator := &Form{
-		configService:                validators.configService,
-		loggerService:                validators.loggerService,
-		translationsRepository:       validators.translationsRepository,
-		tokenPoolService:             validators.tokenPoolService,
-		regularExpressionsRepository: validators.regularExpressionsRepository,
+		configService:                v.configService,
+		loggerService:                v.loggerService,
+		translationsRepository:       v.translationsRepository,
+		tokenPoolService:             v.tokenPoolService,
+		regularExpressionsRepository: v.regularExpressionsRepository,
 		language:                     language,
 		fields:                       map[string]*formField{},
 		isFormValidator:              true,
@@ -63,7 +63,7 @@ func (validators *Validators) NewForm(language language) (Validator, error) {
 	if err := validator.AddField(validator.NewHoneypotField("_uname")); err != nil {
 		return nil, errors.Trace(err)
 	}
-	token, err := validators.tokenPoolService.RequestToken()
+	token, err := v.tokenPoolService.RequestToken()
 	if err != nil {
 		return validator, errors.Trace(err)
 	}

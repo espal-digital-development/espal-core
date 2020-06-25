@@ -4,21 +4,21 @@ import (
 	"strings"
 )
 
-func (form *Form) renderCheckboxField(field FormField) string {
+func (f *Form) renderCheckboxField(field FormField) string {
 	out := strings.Builder{}
-	form.addLabel(field, &out)
-	form.perror(out.WriteString(`<p><input type="checkbox" name="`))
-	form.perror(out.WriteString(field.Name()))
-	form.perror(out.WriteString(`"`))
+	f.addLabel(field, &out)
+	f.perror(out.WriteString(`<p><input type="checkbox" name="`))
+	f.perror(out.WriteString(field.Name()))
+	f.perror(out.WriteString(`"`))
 	if field.Value() == "1" {
-		form.perror(out.WriteString(` checked`))
+		f.perror(out.WriteString(` checked`))
 	}
-	form.perror(out.WriteString(`>`))
+	f.perror(out.WriteString(`>`))
 	if field.Placeholder() != "" {
-		form.perror(out.WriteString(`<span> `))
-		form.perror(out.WriteString(field.Placeholder()))
-		form.perror(out.WriteString(`</span>`))
+		f.perror(out.WriteString(`<span> `))
+		f.perror(out.WriteString(field.Placeholder()))
+		f.perror(out.WriteString(`</span>`))
 	}
-	form.perror(out.WriteString(`</p>`))
+	f.perror(out.WriteString(`</p>`))
 	return out.String()
 }

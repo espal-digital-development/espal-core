@@ -13,8 +13,8 @@ var _ Store = &FrequentlyAskedQuestionsStore{}
 type Store interface {
 }
 
-func (frequentlyAskedQuestionsStore *FrequentlyAskedQuestionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*FrequentlyAskedQuestion, ok bool, err error) {
-	rows, err := frequentlyAskedQuestionsStore.selecterDatabase.Query(query, params...)
+func (f *FrequentlyAskedQuestionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*FrequentlyAskedQuestion, ok bool, err error) {
+	rows, err := f.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (frequentlyAskedQuestionsStore *FrequentlyAskedQuestionsStore) fetch(query 
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		frequentlyAskedQuestion := newFrequentlyAskedQuestion()
-		fields := []interface{}{&frequentlyAskedQuestion.id, &frequentlyAskedQuestion.createdByID, &frequentlyAskedQuestion.updatedByID, &frequentlyAskedQuestion.createdAt, &frequentlyAskedQuestion.updatedAt, &frequentlyAskedQuestion.frequentlyAskedQuestionSectionID, &frequentlyAskedQuestion.domainID, &frequentlyAskedQuestion.active, &frequentlyAskedQuestion.sorting}
+		f := newFrequentlyAskedQuestion()
+		fields := []interface{}{&f.id, &f.createdByID, &f.updatedByID, &f.createdAt, &f.updatedAt, &f.frequentlyAskedQuestionSectionID, &f.domainID, &f.active, &f.sorting}
 		if withCreators {
-			fields = append(fields, &frequentlyAskedQuestion.createdByFirstName, &frequentlyAskedQuestion.createdBySurname, &frequentlyAskedQuestion.updatedByFirstName, &frequentlyAskedQuestion.updatedBySurname)
+			fields = append(fields, &f.createdByFirstName, &f.createdBySurname, &f.updatedByFirstName, &f.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, frequentlyAskedQuestion)
+		result = append(result, f)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (frequentlyAskedQuestionsStore *FrequentlyAskedQuestionsStore) fetch(query 
 
 // New returns a new instance of FrequentlyAskedQuestionsStore.
 func New(selecterDatabase database.Database) (*FrequentlyAskedQuestionsStore, error) {
-	frequentlyAskedQuestionsStore := &FrequentlyAskedQuestionsStore{
+	f := &FrequentlyAskedQuestionsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return frequentlyAskedQuestionsStore, nil
+	return f, nil
 }

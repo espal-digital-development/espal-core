@@ -9,142 +9,142 @@ import (
 )
 
 func TestSettingTable(t *testing.T) {
-	setting := setting.NewSettingEntity()
-	if setting.TableName() == "" {
+	s := setting.NewSettingEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSettingTableAlias(t *testing.T) {
-	setting := setting.NewSettingEntity()
-	if setting.TableName() == "" {
+	s := setting.NewSettingEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSettingIsUpdated(t *testing.T) {
-	setting := setting.NewSettingEntity()
-	setting.IsUpdated()
+	s := setting.NewSettingEntity()
+	s.IsUpdated()
 }
 
 func TestSettingID(t *testing.T) {
-	setting := setting.NewSettingEntity()
-	setting.ID()
+	s := setting.NewSettingEntity()
+	s.ID()
 }
 
 func TestSettingCreatedByID(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetCreatedByID(testValue)
-	if testValue != setting.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingUpdatedByID(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetUpdatedByID(&testValue)
-	if &testValue != setting.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingCreatedAt(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := time.Now()
-	setting.SetCreatedAt(testValue)
-	if testValue != setting.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingUpdatedAt(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := time.Now()
-	setting.SetUpdatedAt(&testValue)
-	if &testValue != setting.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingCreatedByFirstName(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetCreatedByFirstName(&testValue)
-	if &testValue != setting.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingCreatedBySurname(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetCreatedBySurname(&testValue)
-	if &testValue != setting.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingUpdatedByFirstName(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetUpdatedByFirstName(&testValue)
-	if &testValue != setting.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingUpdatedBySurname(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetUpdatedBySurname(&testValue)
-	if &testValue != setting.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingDomainID(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetDomainID(&testValue)
-	if &testValue != setting.DomainID() {
+	s.SetDomainID(&testValue)
+	if &testValue != s.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingSiteID(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetSiteID(&testValue)
-	if &testValue != setting.SiteID() {
+	s.SetSiteID(&testValue)
+	if &testValue != s.SiteID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingUserID(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetUserID(&testValue)
-	if &testValue != setting.UserID() {
+	s.SetUserID(&testValue)
+	if &testValue != s.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingKey(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := uint16(65000)
-	setting.SetKey(testValue)
-	if testValue != setting.Key() {
+	s.SetKey(testValue)
+	if testValue != s.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSettingValue(t *testing.T) {
-	setting := setting.NewSettingEntity()
+	s := setting.NewSettingEntity()
 	testValue := "testValue"
-	setting.SetValue(testValue)
-	if testValue != setting.Value() {
+	s.SetValue(testValue)
+	if testValue != s.Value() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

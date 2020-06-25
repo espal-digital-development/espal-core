@@ -14,11 +14,15 @@ var (
 	lockSearchFieldMockTableAlias    sync.RWMutex
 )
 
-// SearchFieldMock is a mock implementation of SearchField.
+// Ensure, that SearchFieldMock does implement filters.SearchField.
+// If this is not the case, regenerate this file with moq.
+var _ filters.SearchField = &SearchFieldMock{}
+
+// SearchFieldMock is a mock implementation of filters.SearchField.
 //
 //     func TestSomethingThatUsesSearchField(t *testing.T) {
 //
-//         // make and configure a mocked SearchField
+//         // make and configure a mocked filters.SearchField
 //         mockedSearchField := &SearchFieldMock{
 //             NameFunc: func() string {
 // 	               panic("mock out the Name method")
@@ -31,7 +35,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedSearchField in code that requires SearchField
+//         // use mockedSearchField in code that requires filters.SearchField
 //         // and then make assertions.
 //
 //     }

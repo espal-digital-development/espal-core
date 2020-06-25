@@ -7,77 +7,77 @@ import (
 
 // RenderOverviewFilter will render the filter actions of an
 // admin module overview page.
-func (filter *filter) RenderOverviewFilter(ctx Context) string {
+func (f *filter) RenderOverviewFilter(ctx Context) string {
 	out := strings.Builder{}
 
-	filter.perror(out.WriteString(`<div class="filter">`))
+	f.perror(out.WriteString(`<div class="filter">`))
 
-	filter.perror(out.WriteString(`<div class="filterInfo">`))
-	filter.perror(out.WriteString(strconv.FormatUint(uint64(filter.totalResults), 10)))
-	filter.perror(out.WriteString(` `))
-	if filter.totalResults == 1 {
-		filter.perror(out.WriteString(ctx.Translate("result")))
+	f.perror(out.WriteString(`<div class="filterInfo">`))
+	f.perror(out.WriteString(strconv.FormatUint(uint64(f.totalResults), 10)))
+	f.perror(out.WriteString(` `))
+	if f.totalResults == 1 {
+		f.perror(out.WriteString(ctx.Translate("result")))
 	} else {
-		filter.perror(out.WriteString(ctx.TranslatePlural("result")))
+		f.perror(out.WriteString(ctx.TranslatePlural("result")))
 	}
-	filter.perror(out.WriteString(`</div>`))
+	f.perror(out.WriteString(`</div>`))
 
-	filter.perror(out.WriteString(`<div>`))
-	if filter.ShouldShowSearch() {
-		filter.perror(out.WriteString(`<input id="filterSearch" placeholder="`))
-		filter.perror(out.WriteString(ctx.Translate("search")))
-		filter.perror(out.WriteString(`"`))
-		if filter.search != "" {
-			filter.perror(out.WriteString(`value="`))
-			filter.perror(out.WriteString(filter.search))
-			filter.perror(out.WriteString(`"`))
+	f.perror(out.WriteString(`<div>`))
+	if f.ShouldShowSearch() {
+		f.perror(out.WriteString(`<input id="filterSearch" placeholder="`))
+		f.perror(out.WriteString(ctx.Translate("search")))
+		f.perror(out.WriteString(`"`))
+		if f.search != "" {
+			f.perror(out.WriteString(`value="`))
+			f.perror(out.WriteString(f.search))
+			f.perror(out.WriteString(`"`))
 		}
-		filter.perror(out.WriteString(`>`))
+		f.perror(out.WriteString(`>`))
 	}
-	filter.perror(out.WriteString(`<div class="filters"></div>`))
-	filter.perror(out.WriteString(`</div>`))
+	f.perror(out.WriteString(`<div class="filters"></div>`))
+	f.perror(out.WriteString(`</div>`))
 
-	if filter.totalPages > 1 {
-		filter.perror(out.WriteString(`<div class="pagination disable-select">`))
+	if f.totalPages > 1 {
+		f.perror(out.WriteString(`<div class="pagination disable-select">`))
 
-		filter.perror(out.WriteString(`<select>`))
+		f.perror(out.WriteString(`<select>`))
 		for _, r := range []uint{5, 10, 25, 50, 100} {
-			filter.perror(out.WriteString(`<option value="`))
-			filter.perror(out.WriteString(strconv.FormatUint(uint64(r), 10)))
-			filter.perror(out.WriteString(`"`))
-			if r == filter.limit {
-				filter.perror(out.WriteString(` selected`))
+			f.perror(out.WriteString(`<option value="`))
+			f.perror(out.WriteString(strconv.FormatUint(uint64(r), 10)))
+			f.perror(out.WriteString(`"`))
+			if r == f.limit {
+				f.perror(out.WriteString(` selected`))
 			}
-			filter.perror(out.WriteString(`>`))
-			filter.perror(out.WriteString(strconv.FormatUint(uint64(r), 10)))
-			filter.perror(out.WriteString(`</option>`))
+			f.perror(out.WriteString(`>`))
+			f.perror(out.WriteString(strconv.FormatUint(uint64(r), 10)))
+			f.perror(out.WriteString(`</option>`))
 		}
-		filter.perror(out.WriteString(`</select>`))
+		f.perror(out.WriteString(`</select>`))
 
-		for _, page := range filter.PaginationBlocks() {
-			filter.perror(out.WriteString(`<p `))
-			if page == 0 || filter.CurrentPage() == page {
-				filter.perror(out.WriteString(`class="`))
-				if filter.CurrentPage() == page {
-					filter.perror(out.WriteString(`current`))
+		for _, page := range f.PaginationBlocks() {
+			f.perror(out.WriteString(`<p `))
+			if page == 0 || f.CurrentPage() == page {
+				f.perror(out.WriteString(`class="`))
+				if f.CurrentPage() == page {
+					f.perror(out.WriteString(`current`))
 				} else if page == 0 {
-					filter.perror(out.WriteString(`separator`))
+					f.perror(out.WriteString(`separator`))
 				}
-				filter.perror(out.WriteString(`"`))
+				f.perror(out.WriteString(`"`))
 			}
-			filter.perror(out.WriteString(`>`))
+			f.perror(out.WriteString(`>`))
 			if page == 0 {
-				filter.perror(out.WriteString(`...`))
+				f.perror(out.WriteString(`...`))
 			} else {
-				filter.perror(out.WriteString(strconv.FormatUint(uint64(page), 10)))
+				f.perror(out.WriteString(strconv.FormatUint(uint64(page), 10)))
 			}
-			filter.perror(out.WriteString(`</p>`))
+			f.perror(out.WriteString(`</p>`))
 		}
 
-		filter.perror(out.WriteString(`</div>`))
+		f.perror(out.WriteString(`</div>`))
 	}
 
-	filter.perror(out.WriteString(`</div>`))
+	f.perror(out.WriteString(`</div>`))
 
 	return out.String()
 }

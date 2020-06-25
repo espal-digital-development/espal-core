@@ -9,115 +9,115 @@ import (
 )
 
 func TestDownloadTable(t *testing.T) {
-	download := download.NewDownloadEntity()
-	if download.TableName() == "" {
+	d := download.NewDownloadEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestDownloadTableAlias(t *testing.T) {
-	download := download.NewDownloadEntity()
-	if download.TableName() == "" {
+	d := download.NewDownloadEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestDownloadIsUpdated(t *testing.T) {
-	download := download.NewDownloadEntity()
-	download.IsUpdated()
+	d := download.NewDownloadEntity()
+	d.IsUpdated()
 }
 
 func TestDownloadID(t *testing.T) {
-	download := download.NewDownloadEntity()
-	download.ID()
+	d := download.NewDownloadEntity()
+	d.ID()
 }
 
 func TestDownloadCreatedByID(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetCreatedByID(testValue)
-	if testValue != download.CreatedByID() {
+	d.SetCreatedByID(testValue)
+	if testValue != d.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadUpdatedByID(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetUpdatedByID(&testValue)
-	if &testValue != download.UpdatedByID() {
+	d.SetUpdatedByID(&testValue)
+	if &testValue != d.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadCreatedAt(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := time.Now()
-	download.SetCreatedAt(testValue)
-	if testValue != download.CreatedAt() {
+	d.SetCreatedAt(testValue)
+	if testValue != d.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadUpdatedAt(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := time.Now()
-	download.SetUpdatedAt(&testValue)
-	if &testValue != download.UpdatedAt() {
+	d.SetUpdatedAt(&testValue)
+	if &testValue != d.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadCreatedByFirstName(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetCreatedByFirstName(&testValue)
-	if &testValue != download.CreatedByFirstName() {
+	d.SetCreatedByFirstName(&testValue)
+	if &testValue != d.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadCreatedBySurname(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetCreatedBySurname(&testValue)
-	if &testValue != download.CreatedBySurname() {
+	d.SetCreatedBySurname(&testValue)
+	if &testValue != d.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadUpdatedByFirstName(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetUpdatedByFirstName(&testValue)
-	if &testValue != download.UpdatedByFirstName() {
+	d.SetUpdatedByFirstName(&testValue)
+	if &testValue != d.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadUpdatedBySurname(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetUpdatedBySurname(&testValue)
-	if &testValue != download.UpdatedBySurname() {
+	d.SetUpdatedBySurname(&testValue)
+	if &testValue != d.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadActive(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := true
-	download.SetActive(testValue)
-	if testValue != download.Active() {
+	d.SetActive(testValue)
+	if testValue != d.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDownloadFilePath(t *testing.T) {
-	download := download.NewDownloadEntity()
+	d := download.NewDownloadEntity()
 	testValue := "testValue"
-	download.SetFilePath(testValue)
-	if testValue != download.FilePath() {
+	d.SetFilePath(testValue)
+	if testValue != d.FilePath() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

@@ -9,106 +9,106 @@ import (
 )
 
 func TestPointOfSaleTable(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
-	if pointOfSale.TableName() == "" {
+	p := pointofsale.NewPointOfSaleEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPointOfSaleTableAlias(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
-	if pointOfSale.TableName() == "" {
+	p := pointofsale.NewPointOfSaleEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPointOfSaleIsUpdated(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
-	pointOfSale.IsUpdated()
+	p := pointofsale.NewPointOfSaleEntity()
+	p.IsUpdated()
 }
 
 func TestPointOfSaleID(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
-	pointOfSale.ID()
+	p := pointofsale.NewPointOfSaleEntity()
+	p.ID()
 }
 
 func TestPointOfSaleCreatedByID(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetCreatedByID(testValue)
-	if testValue != pointOfSale.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleUpdatedByID(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetUpdatedByID(&testValue)
-	if &testValue != pointOfSale.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleCreatedAt(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := time.Now()
-	pointOfSale.SetCreatedAt(testValue)
-	if testValue != pointOfSale.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleUpdatedAt(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := time.Now()
-	pointOfSale.SetUpdatedAt(&testValue)
-	if &testValue != pointOfSale.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleCreatedByFirstName(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetCreatedByFirstName(&testValue)
-	if &testValue != pointOfSale.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleCreatedBySurname(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetCreatedBySurname(&testValue)
-	if &testValue != pointOfSale.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleUpdatedByFirstName(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetUpdatedByFirstName(&testValue)
-	if &testValue != pointOfSale.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleUpdatedBySurname(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetUpdatedBySurname(&testValue)
-	if &testValue != pointOfSale.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPointOfSaleShopID(t *testing.T) {
-	pointOfSale := pointofsale.NewPointOfSaleEntity()
+	p := pointofsale.NewPointOfSaleEntity()
 	testValue := "testValue"
-	pointOfSale.SetShopID(testValue)
-	if testValue != pointOfSale.ShopID() {
+	p.SetShopID(testValue)
+	if testValue != p.ShopID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

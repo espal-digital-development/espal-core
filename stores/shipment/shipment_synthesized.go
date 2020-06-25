@@ -56,308 +56,308 @@ type ShipmentEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (shipment *Shipment) TableName() string {
+func (s *Shipment) TableName() string {
 	return "Shipment"
 }
 
 // ID returns id.
-func (shipment *Shipment) ID() string {
-	return shipment.id
+func (s *Shipment) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (shipment *Shipment) CreatedByID() string {
-	return shipment.createdByID
+func (s *Shipment) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (shipment *Shipment) SetCreatedByID(createdByID string) {
-	shipment.createdByID = createdByID
+func (s *Shipment) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (shipment *Shipment) UpdatedByID() *string {
-	return shipment.updatedByID
+func (s *Shipment) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (shipment *Shipment) SetUpdatedByID(updatedByID *string) {
-	shipment.updatedByID = updatedByID
+func (s *Shipment) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (shipment *Shipment) CreatedAt() time.Time {
-	return shipment.createdAt
+func (s *Shipment) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (shipment *Shipment) SetCreatedAt(createdAt time.Time) {
-	shipment.createdAt = createdAt
+func (s *Shipment) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (shipment *Shipment) UpdatedAt() *time.Time {
-	return shipment.updatedAt
+func (s *Shipment) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (shipment *Shipment) SetUpdatedAt(updatedAt *time.Time) {
-	shipment.updatedAt = updatedAt
+func (s *Shipment) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (shipment *Shipment) CreatedByFirstName() *string {
-	return shipment.createdByFirstName
+func (s *Shipment) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (shipment *Shipment) SetCreatedByFirstName(createdByFirstName *string) {
-	shipment.createdByFirstName = createdByFirstName
+func (s *Shipment) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (shipment *Shipment) CreatedBySurname() *string {
-	return shipment.createdBySurname
+func (s *Shipment) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (shipment *Shipment) SetCreatedBySurname(createdBySurname *string) {
-	shipment.createdBySurname = createdBySurname
+func (s *Shipment) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (shipment *Shipment) UpdatedByFirstName() *string {
-	return shipment.updatedByFirstName
+func (s *Shipment) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (shipment *Shipment) SetUpdatedByFirstName(updatedByFirstName *string) {
-	shipment.updatedByFirstName = updatedByFirstName
+func (s *Shipment) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (shipment *Shipment) UpdatedBySurname() *string {
-	return shipment.updatedBySurname
+func (s *Shipment) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (shipment *Shipment) SetUpdatedBySurname(updatedBySurname *string) {
-	shipment.updatedBySurname = updatedBySurname
+func (s *Shipment) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (shipment *Shipment) IsUpdated() bool {
-	return shipment.updatedByID != nil
+func (s *Shipment) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (shipment *Shipment) DomainID() string {
-	return shipment.domainID
+func (s *Shipment) DomainID() string {
+	return s.domainID
 }
 
 // SetDomainID sets the domainID.
-func (shipment *Shipment) SetDomainID(domainID string) {
-	shipment.domainID = domainID
+func (s *Shipment) SetDomainID(domainID string) {
+	s.domainID = domainID
 }
 
 // UserID returns userID.
-func (shipment *Shipment) UserID() string {
-	return shipment.userID
+func (s *Shipment) UserID() string {
+	return s.userID
 }
 
 // SetUserID sets the userID.
-func (shipment *Shipment) SetUserID(userID string) {
-	shipment.userID = userID
+func (s *Shipment) SetUserID(userID string) {
+	s.userID = userID
 }
 
 // SaleOrderID returns saleOrderID.
-func (shipment *Shipment) SaleOrderID() string {
-	return shipment.saleOrderID
+func (s *Shipment) SaleOrderID() string {
+	return s.saleOrderID
 }
 
 // SetSaleOrderID sets the saleOrderID.
-func (shipment *Shipment) SetSaleOrderID(saleOrderID string) {
-	shipment.saleOrderID = saleOrderID
+func (s *Shipment) SetSaleOrderID(saleOrderID string) {
+	s.saleOrderID = saleOrderID
 }
 
 // Code returns code.
-func (shipment *Shipment) Code() *string {
-	return shipment.code
+func (s *Shipment) Code() *string {
+	return s.code
 }
 
 // SetCode sets the code.
-func (shipment *Shipment) SetCode(code *string) {
-	shipment.code = code
+func (s *Shipment) SetCode(code *string) {
+	s.code = code
 }
 
 // UserInfoBusiness returns userInfoBusiness.
-func (shipment *Shipment) UserInfoBusiness() bool {
-	return shipment.userInfoBusiness
+func (s *Shipment) UserInfoBusiness() bool {
+	return s.userInfoBusiness
 }
 
 // SetUserInfoBusiness sets the userInfoBusiness.
-func (shipment *Shipment) SetUserInfoBusiness(userInfoBusiness bool) {
-	shipment.userInfoBusiness = userInfoBusiness
+func (s *Shipment) SetUserInfoBusiness(userInfoBusiness bool) {
+	s.userInfoBusiness = userInfoBusiness
 }
 
 // UserInfoBusinessCocNumber returns userInfoBusinessCocNumber.
-func (shipment *Shipment) UserInfoBusinessCocNumber() *string {
-	return shipment.userInfoBusinessCocNumber
+func (s *Shipment) UserInfoBusinessCocNumber() *string {
+	return s.userInfoBusinessCocNumber
 }
 
 // SetUserInfoBusinessCocNumber sets the userInfoBusinessCocNumber.
-func (shipment *Shipment) SetUserInfoBusinessCocNumber(userInfoBusinessCocNumber *string) {
-	shipment.userInfoBusinessCocNumber = userInfoBusinessCocNumber
+func (s *Shipment) SetUserInfoBusinessCocNumber(userInfoBusinessCocNumber *string) {
+	s.userInfoBusinessCocNumber = userInfoBusinessCocNumber
 }
 
 // UserInfoFirstName returns userInfoFirstName.
-func (shipment *Shipment) UserInfoFirstName() string {
-	return shipment.userInfoFirstName
+func (s *Shipment) UserInfoFirstName() string {
+	return s.userInfoFirstName
 }
 
 // SetUserInfoFirstName sets the userInfoFirstName.
-func (shipment *Shipment) SetUserInfoFirstName(userInfoFirstName string) {
-	shipment.userInfoFirstName = userInfoFirstName
+func (s *Shipment) SetUserInfoFirstName(userInfoFirstName string) {
+	s.userInfoFirstName = userInfoFirstName
 }
 
 // UserInfoSurname returns userInfoSurname.
-func (shipment *Shipment) UserInfoSurname() string {
-	return shipment.userInfoSurname
+func (s *Shipment) UserInfoSurname() string {
+	return s.userInfoSurname
 }
 
 // SetUserInfoSurname sets the userInfoSurname.
-func (shipment *Shipment) SetUserInfoSurname(userInfoSurname string) {
-	shipment.userInfoSurname = userInfoSurname
+func (s *Shipment) SetUserInfoSurname(userInfoSurname string) {
+	s.userInfoSurname = userInfoSurname
 }
 
 // UserInfoStreet returns userInfoStreet.
-func (shipment *Shipment) UserInfoStreet() string {
-	return shipment.userInfoStreet
+func (s *Shipment) UserInfoStreet() string {
+	return s.userInfoStreet
 }
 
 // SetUserInfoStreet sets the userInfoStreet.
-func (shipment *Shipment) SetUserInfoStreet(userInfoStreet string) {
-	shipment.userInfoStreet = userInfoStreet
+func (s *Shipment) SetUserInfoStreet(userInfoStreet string) {
+	s.userInfoStreet = userInfoStreet
 }
 
 // UserInfoStreetLine2 returns userInfoStreetLine2.
-func (shipment *Shipment) UserInfoStreetLine2() *string {
-	return shipment.userInfoStreetLine2
+func (s *Shipment) UserInfoStreetLine2() *string {
+	return s.userInfoStreetLine2
 }
 
 // SetUserInfoStreetLine2 sets the userInfoStreetLine2.
-func (shipment *Shipment) SetUserInfoStreetLine2(userInfoStreetLine2 *string) {
-	shipment.userInfoStreetLine2 = userInfoStreetLine2
+func (s *Shipment) SetUserInfoStreetLine2(userInfoStreetLine2 *string) {
+	s.userInfoStreetLine2 = userInfoStreetLine2
 }
 
 // UserInfoNumber returns userInfoNumber.
-func (shipment *Shipment) UserInfoNumber() string {
-	return shipment.userInfoNumber
+func (s *Shipment) UserInfoNumber() string {
+	return s.userInfoNumber
 }
 
 // SetUserInfoNumber sets the userInfoNumber.
-func (shipment *Shipment) SetUserInfoNumber(userInfoNumber string) {
-	shipment.userInfoNumber = userInfoNumber
+func (s *Shipment) SetUserInfoNumber(userInfoNumber string) {
+	s.userInfoNumber = userInfoNumber
 }
 
 // UserInfoNumberAddition returns userInfoNumberAddition.
-func (shipment *Shipment) UserInfoNumberAddition() *string {
-	return shipment.userInfoNumberAddition
+func (s *Shipment) UserInfoNumberAddition() *string {
+	return s.userInfoNumberAddition
 }
 
 // SetUserInfoNumberAddition sets the userInfoNumberAddition.
-func (shipment *Shipment) SetUserInfoNumberAddition(userInfoNumberAddition *string) {
-	shipment.userInfoNumberAddition = userInfoNumberAddition
+func (s *Shipment) SetUserInfoNumberAddition(userInfoNumberAddition *string) {
+	s.userInfoNumberAddition = userInfoNumberAddition
 }
 
 // UserInfoZipCode returns userInfoZipCode.
-func (shipment *Shipment) UserInfoZipCode() string {
-	return shipment.userInfoZipCode
+func (s *Shipment) UserInfoZipCode() string {
+	return s.userInfoZipCode
 }
 
 // SetUserInfoZipCode sets the userInfoZipCode.
-func (shipment *Shipment) SetUserInfoZipCode(userInfoZipCode string) {
-	shipment.userInfoZipCode = userInfoZipCode
+func (s *Shipment) SetUserInfoZipCode(userInfoZipCode string) {
+	s.userInfoZipCode = userInfoZipCode
 }
 
 // UserInfoCity returns userInfoCity.
-func (shipment *Shipment) UserInfoCity() string {
-	return shipment.userInfoCity
+func (s *Shipment) UserInfoCity() string {
+	return s.userInfoCity
 }
 
 // SetUserInfoCity sets the userInfoCity.
-func (shipment *Shipment) SetUserInfoCity(userInfoCity string) {
-	shipment.userInfoCity = userInfoCity
+func (s *Shipment) SetUserInfoCity(userInfoCity string) {
+	s.userInfoCity = userInfoCity
 }
 
 // UserInfoState returns userInfoState.
-func (shipment *Shipment) UserInfoState() *uint {
-	return shipment.userInfoState
+func (s *Shipment) UserInfoState() *uint {
+	return s.userInfoState
 }
 
 // SetUserInfoState sets the userInfoState.
-func (shipment *Shipment) SetUserInfoState(userInfoState *uint) {
-	shipment.userInfoState = userInfoState
+func (s *Shipment) SetUserInfoState(userInfoState *uint) {
+	s.userInfoState = userInfoState
 }
 
 // UserInfoCountry returns userInfoCountry.
-func (shipment *Shipment) UserInfoCountry() *uint16 {
-	return shipment.userInfoCountry
+func (s *Shipment) UserInfoCountry() *uint16 {
+	return s.userInfoCountry
 }
 
 // SetUserInfoCountry sets the userInfoCountry.
-func (shipment *Shipment) SetUserInfoCountry(userInfoCountry *uint16) {
-	shipment.userInfoCountry = userInfoCountry
+func (s *Shipment) SetUserInfoCountry(userInfoCountry *uint16) {
+	s.userInfoCountry = userInfoCountry
 }
 
 // UserInfoPhoneNumber returns userInfoPhoneNumber.
-func (shipment *Shipment) UserInfoPhoneNumber() *string {
-	return shipment.userInfoPhoneNumber
+func (s *Shipment) UserInfoPhoneNumber() *string {
+	return s.userInfoPhoneNumber
 }
 
 // SetUserInfoPhoneNumber sets the userInfoPhoneNumber.
-func (shipment *Shipment) SetUserInfoPhoneNumber(userInfoPhoneNumber *string) {
-	shipment.userInfoPhoneNumber = userInfoPhoneNumber
+func (s *Shipment) SetUserInfoPhoneNumber(userInfoPhoneNumber *string) {
+	s.userInfoPhoneNumber = userInfoPhoneNumber
 }
 
 // UserInfoEmail returns userInfoEmail.
-func (shipment *Shipment) UserInfoEmail() *string {
-	return shipment.userInfoEmail
+func (s *Shipment) UserInfoEmail() *string {
+	return s.userInfoEmail
 }
 
 // SetUserInfoEmail sets the userInfoEmail.
-func (shipment *Shipment) SetUserInfoEmail(userInfoEmail *string) {
-	shipment.userInfoEmail = userInfoEmail
+func (s *Shipment) SetUserInfoEmail(userInfoEmail *string) {
+	s.userInfoEmail = userInfoEmail
 }
 
 // Comments returns comments.
-func (shipment *Shipment) Comments() *string {
-	return shipment.comments
+func (s *Shipment) Comments() *string {
+	return s.comments
 }
 
 // SetComments sets the comments.
-func (shipment *Shipment) SetComments(comments *string) {
-	shipment.comments = comments
+func (s *Shipment) SetComments(comments *string) {
+	s.comments = comments
 }
 
 // SellingPartyAutograph returns sellingPartyAutograph.
-func (shipment *Shipment) SellingPartyAutograph() *string {
-	return shipment.sellingPartyAutograph
+func (s *Shipment) SellingPartyAutograph() *string {
+	return s.sellingPartyAutograph
 }
 
 // SetSellingPartyAutograph sets the sellingPartyAutograph.
-func (shipment *Shipment) SetSellingPartyAutograph(sellingPartyAutograph *string) {
-	shipment.sellingPartyAutograph = sellingPartyAutograph
+func (s *Shipment) SetSellingPartyAutograph(sellingPartyAutograph *string) {
+	s.sellingPartyAutograph = sellingPartyAutograph
 }
 
 // BuyingPartyAutograph returns buyingPartyAutograph.
-func (shipment *Shipment) BuyingPartyAutograph() *string {
-	return shipment.buyingPartyAutograph
+func (s *Shipment) BuyingPartyAutograph() *string {
+	return s.buyingPartyAutograph
 }
 
 // SetBuyingPartyAutograph sets the buyingPartyAutograph.
-func (shipment *Shipment) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
-	shipment.buyingPartyAutograph = buyingPartyAutograph
+func (s *Shipment) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
+	s.buyingPartyAutograph = buyingPartyAutograph
 }
 
 func newShipment() *Shipment {

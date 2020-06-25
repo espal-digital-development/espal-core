@@ -9,124 +9,124 @@ import (
 )
 
 func TestPermissionTable(t *testing.T) {
-	permission := forum.NewPermissionEntity()
-	if permission.TableName() == "" {
+	p := forum.NewPermissionEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPermissionTableAlias(t *testing.T) {
-	permission := forum.NewPermissionEntity()
-	if permission.TableName() == "" {
+	p := forum.NewPermissionEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPermissionIsUpdated(t *testing.T) {
-	permission := forum.NewPermissionEntity()
-	permission.IsUpdated()
+	p := forum.NewPermissionEntity()
+	p.IsUpdated()
 }
 
 func TestPermissionID(t *testing.T) {
-	permission := forum.NewPermissionEntity()
-	permission.ID()
+	p := forum.NewPermissionEntity()
+	p.ID()
 }
 
 func TestPermissionCreatedByID(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetCreatedByID(testValue)
-	if testValue != permission.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionUpdatedByID(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetUpdatedByID(&testValue)
-	if &testValue != permission.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionCreatedAt(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := time.Now()
-	permission.SetCreatedAt(testValue)
-	if testValue != permission.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionUpdatedAt(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := time.Now()
-	permission.SetUpdatedAt(&testValue)
-	if &testValue != permission.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionCreatedByFirstName(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetCreatedByFirstName(&testValue)
-	if &testValue != permission.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionCreatedBySurname(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetCreatedBySurname(&testValue)
-	if &testValue != permission.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionUpdatedByFirstName(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetUpdatedByFirstName(&testValue)
-	if &testValue != permission.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionUpdatedBySurname(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetUpdatedBySurname(&testValue)
-	if &testValue != permission.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionForumID(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetForumID(&testValue)
-	if &testValue != permission.ForumID() {
+	p.SetForumID(&testValue)
+	if &testValue != p.ForumID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionUserID(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := "testValue"
-	permission.SetUserID(&testValue)
-	if &testValue != permission.UserID() {
+	p.SetUserID(&testValue)
+	if &testValue != p.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPermissionPermission(t *testing.T) {
-	permission := forum.NewPermissionEntity()
+	p := forum.NewPermissionEntity()
 	testValue := uint8(255)
-	permission.SetPermission(testValue)
-	if testValue != permission.Permission() {
+	p.SetPermission(testValue)
+	if testValue != p.Permission() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

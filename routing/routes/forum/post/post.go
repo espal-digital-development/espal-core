@@ -17,19 +17,19 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	language, err := context.GetLanguage()
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
 	id := context.QueryValue("id")
-	if !route.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
+	if !r.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
 		context.RenderBadRequest()
 		return
 	}
 
-	forumPost, ok, err := route.forumStore.GetOnePostByID(id)
+	forumPost, ok, err := r.forumStore.GetOnePostByID(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -39,7 +39,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	replies, _, err := route.forumStore.GetPostReplies(id)
+	replies, _, err := r.forumStore.GetPostReplies(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -58,7 +58,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	route.postPageFactory.NewPage(context, language, user, forumPost, replies).Render()
+	r.postPageFactory.NewPage(context, language, user, forumPost, replies).Render()
 }
 
 // New returns a new instance of Route.

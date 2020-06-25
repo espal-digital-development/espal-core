@@ -30,9 +30,9 @@ type Sessions struct {
 	sessionStore  store.Store
 }
 
-func (sessions *Sessions) generateCookie(session Session, expiration time.Time) *http.Cookie {
+func (s *Sessions) generateCookie(session Session, expiration time.Time) *http.Cookie {
 	cookie := &http.Cookie{}
-	cookie.Name = sessions.configService.SessionCookieName()
+	cookie.Name = s.configService.SessionCookieName()
 	cookie.Value = session.ID()
 	cookie.Secure = true
 	cookie.HttpOnly = true
@@ -43,13 +43,13 @@ func (sessions *Sessions) generateCookie(session Session, expiration time.Time) 
 
 // SetRememberMe will modify the cookie expiration time to work according
 // to the remember me setting.
-func (sessions *Sessions) SetRememberMe(session Session) *http.Cookie {
-	session.SetTimeout(sessions.configService.SessionRememberMeExpiration())
-	return sessions.generateCookie(session, time.Now().Add(sessions.configService.SessionRememberMeExpiration()))
+func (s *Sessions) SetRememberMe(session Session) *http.Cookie {
+	session.SetTimeout(s.configService.SessionRememberMeExpiration())
+	return s.generateCookie(session, time.Now().Add(s.configService.SessionRememberMeExpiration()))
 }
 
 // New generates a new internal session and returns it's instance.
-func (sessions *Sessions) New() (Session, *http.Cookie, error) {
+func (s *Sessions) New() (Session, *http.Cookie, error) {
 	random := make([]byte, 32)
 	if _, err := io.ReadFull(rand.Reader, random); err != nil {
 		return nil, nil, errors.Trace(err)
@@ -59,24 +59,24 @@ func (sessions *Sessions) New() (Session, *http.Cookie, error) {
 		id:         base64.URLEncoding.EncodeToString(random),
 		createdAt:  time.Now(),
 		accessedAt: time.Now(),
-		timeout:    sessions.configService.SessionExpiration(),
+		timeout:    s.configService.SessionExpiration(),
 		values:     map[uint8][]byte{},
 		isNew:      true,
 	}
 
-	cookie := sessions.generateCookie(session, time.Now().Add(sessions.configService.SessionExpiration()))
+	cookie := s.generateCookie(session, time.Now().Add(s.configService.SessionExpiration()))
 
 	return session, cookie, nil
 }
 
 // Exists returns wether the given ID (still) has an existing Session.
-func (sessions *Sessions) Exists(hash string) (bool, error) {
-	return sessions.sessionStore.HashExists(hash)
+func (s *Sessions) Exists(hash string) (bool, error) {
+	return s.sessionStore.HashExists(hash)
 }
 
 // Get returns the session based on the given header's cookie.
-func (sessions *Sessions) Get(hash string) (Session, bool, error) {
-	sess, ok, err := sessions.sessionStore.GetOneByHash(hash)
+func (s *Sessions) Get(hash string) (Session, bool, error) {
+	sess, ok, err := s.sessionStore.GetOneByHash(hash)
 	if err != nil || !ok {
 		return nil, ok, errors.Trace(err)
 	}
@@ -106,7 +106,7 @@ func (sessions *Sessions) Get(hash string) (Session, bool, error) {
 }
 
 // Save saves the given session to the session's storage engine.
-func (sessions *Sessions) Save(session Session) error {
+func (s *Sessions) Save(session Session) error {
 	// TODO :: 77 AccessedAt is always updating, but way too heavy. Maybe needs a more
 	// modern way of approaching? Like only update when a certain amount of seconds or
 	// minutes had passed? Or it would expire it or not; but will not work safely either
@@ -124,11 +124,11 @@ func (sessions *Sessions) Save(session Session) error {
 	}
 
 	if session.IsNew() {
-		if err := sessions.sessionStore.Create(session.ID(), session.Timeout(), data); err != nil {
+		if err := s.sessionStore.Create(session.ID(), session.Timeout(), data); err != nil {
 			return errors.Trace(err)
 		}
 	} else {
-		if err := sessions.sessionStore.Update(session.ID(), session.Timeout(), data); err != nil {
+		if err := s.sessionStore.Update(session.ID(), session.Timeout(), data); err != nil {
 			return errors.Trace(err)
 		}
 	}

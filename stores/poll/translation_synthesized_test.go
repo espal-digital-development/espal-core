@@ -9,133 +9,133 @@ import (
 )
 
 func TestTranslationTable(t *testing.T) {
-	translation := poll.NewTranslationEntity()
-	if translation.TableName() == "" {
+	tt := poll.NewTranslationEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestTranslationTableAlias(t *testing.T) {
-	translation := poll.NewTranslationEntity()
-	if translation.TableName() == "" {
+	tt := poll.NewTranslationEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestTranslationIsUpdated(t *testing.T) {
-	translation := poll.NewTranslationEntity()
-	translation.IsUpdated()
+	tt := poll.NewTranslationEntity()
+	tt.IsUpdated()
 }
 
 func TestTranslationID(t *testing.T) {
-	translation := poll.NewTranslationEntity()
-	translation.ID()
+	tt := poll.NewTranslationEntity()
+	tt.ID()
 }
 
 func TestTranslationCreatedByID(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetCreatedByID(testValue)
-	if testValue != translation.CreatedByID() {
+	tt.SetCreatedByID(testValue)
+	if testValue != tt.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationUpdatedByID(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetUpdatedByID(&testValue)
-	if &testValue != translation.UpdatedByID() {
+	tt.SetUpdatedByID(&testValue)
+	if &testValue != tt.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationCreatedAt(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := time.Now()
-	translation.SetCreatedAt(testValue)
-	if testValue != translation.CreatedAt() {
+	tt.SetCreatedAt(testValue)
+	if testValue != tt.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationUpdatedAt(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := time.Now()
-	translation.SetUpdatedAt(&testValue)
-	if &testValue != translation.UpdatedAt() {
+	tt.SetUpdatedAt(&testValue)
+	if &testValue != tt.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationCreatedByFirstName(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetCreatedByFirstName(&testValue)
-	if &testValue != translation.CreatedByFirstName() {
+	tt.SetCreatedByFirstName(&testValue)
+	if &testValue != tt.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationCreatedBySurname(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetCreatedBySurname(&testValue)
-	if &testValue != translation.CreatedBySurname() {
+	tt.SetCreatedBySurname(&testValue)
+	if &testValue != tt.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationUpdatedByFirstName(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetUpdatedByFirstName(&testValue)
-	if &testValue != translation.UpdatedByFirstName() {
+	tt.SetUpdatedByFirstName(&testValue)
+	if &testValue != tt.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationUpdatedBySurname(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetUpdatedBySurname(&testValue)
-	if &testValue != translation.UpdatedBySurname() {
+	tt.SetUpdatedBySurname(&testValue)
+	if &testValue != tt.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationLanguage(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := uint16(65000)
-	translation.SetLanguage(testValue)
-	if testValue != translation.Language() {
+	tt.SetLanguage(testValue)
+	if testValue != tt.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationField(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := uint16(65000)
-	translation.SetField(testValue)
-	if testValue != translation.Field() {
+	tt.SetField(testValue)
+	if testValue != tt.Field() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationValue(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetValue(testValue)
-	if testValue != translation.Value() {
+	tt.SetValue(testValue)
+	if testValue != tt.Value() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTranslationPollID(t *testing.T) {
-	translation := poll.NewTranslationEntity()
+	tt := poll.NewTranslationEntity()
 	testValue := "testValue"
-	translation.SetPollID(testValue)
-	if testValue != translation.PollID() {
+	tt.SetPollID(testValue)
+	if testValue != tt.PollID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

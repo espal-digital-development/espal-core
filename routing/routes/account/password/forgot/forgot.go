@@ -24,7 +24,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if context.IsLoggedIn() {
 		context.Redirect("/", http.StatusTemporaryRedirect)
 		return
@@ -35,7 +35,7 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	form, err := route.forgotPasswordFormValidator.New(language)
+	form, err := r.forgotPasswordFormValidator.New(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -47,7 +47,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 	if isSubmitted && isValid {
-		user, ok, err := route.userStore.GetOneActiveByEmail(form.FormFieldValue("email"))
+		user, ok, err := r.userStore.GetOneActiveByEmail(form.FormFieldValue("email"))
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -58,7 +58,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 
 		hash := text.RandomString(72)
-		if err := route.userStore.SetPasswordResetHashForUser(user.ID(), hash); err != nil {
+		if err := r.userStore.SetPasswordResetHashForUser(user.ID(), hash); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
@@ -78,8 +78,8 @@ func (route *Route) Handle(context contexts.Context) {
 			"<p>Regards,</p><p>- Espal</p>",
 		}, "")
 
-		message := route.mailerService.NewMessage()
-		message.SetHeader("From", route.configService.EmailNoReplyAddress())
+		message := r.mailerService.NewMessage()
+		message.SetHeader("From", r.configService.EmailNoReplyAddress())
 		message.SetHeader("To", user.Email())
 		message.SetHeader("Subject", context.Translate("passwordResetRequest"))
 		message.SetBody("text/html", body)
@@ -90,13 +90,13 @@ func (route *Route) Handle(context contexts.Context) {
 				routeContext.RenderInternalServerError(errors.Trace(err))
 				return
 			}
-		}(route, context, message)
+		}(r, context, message)
 
 		context.Redirect("/ForgotPasswordSucceeded", http.StatusTemporaryRedirect)
 		return
 	}
 
-	route.forgotPageFactory.NewPage(context, form.View()).Render()
+	r.forgotPageFactory.NewPage(context, form.View()).Render()
 }
 
 // New returns a new instance of Route.

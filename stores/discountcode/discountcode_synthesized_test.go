@@ -9,160 +9,160 @@ import (
 )
 
 func TestDiscountCodeTable(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
-	if discountCode.TableName() == "" {
+	d := discountcode.NewDiscountCodeEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestDiscountCodeTableAlias(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
-	if discountCode.TableName() == "" {
+	d := discountcode.NewDiscountCodeEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestDiscountCodeIsUpdated(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
-	discountCode.IsUpdated()
+	d := discountcode.NewDiscountCodeEntity()
+	d.IsUpdated()
 }
 
 func TestDiscountCodeID(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
-	discountCode.ID()
+	d := discountcode.NewDiscountCodeEntity()
+	d.ID()
 }
 
 func TestDiscountCodeCreatedByID(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetCreatedByID(testValue)
-	if testValue != discountCode.CreatedByID() {
+	d.SetCreatedByID(testValue)
+	if testValue != d.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeUpdatedByID(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetUpdatedByID(&testValue)
-	if &testValue != discountCode.UpdatedByID() {
+	d.SetUpdatedByID(&testValue)
+	if &testValue != d.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeCreatedAt(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := time.Now()
-	discountCode.SetCreatedAt(testValue)
-	if testValue != discountCode.CreatedAt() {
+	d.SetCreatedAt(testValue)
+	if testValue != d.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeUpdatedAt(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := time.Now()
-	discountCode.SetUpdatedAt(&testValue)
-	if &testValue != discountCode.UpdatedAt() {
+	d.SetUpdatedAt(&testValue)
+	if &testValue != d.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeCreatedByFirstName(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetCreatedByFirstName(&testValue)
-	if &testValue != discountCode.CreatedByFirstName() {
+	d.SetCreatedByFirstName(&testValue)
+	if &testValue != d.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeCreatedBySurname(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetCreatedBySurname(&testValue)
-	if &testValue != discountCode.CreatedBySurname() {
+	d.SetCreatedBySurname(&testValue)
+	if &testValue != d.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeUpdatedByFirstName(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetUpdatedByFirstName(&testValue)
-	if &testValue != discountCode.UpdatedByFirstName() {
+	d.SetUpdatedByFirstName(&testValue)
+	if &testValue != d.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeUpdatedBySurname(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetUpdatedBySurname(&testValue)
-	if &testValue != discountCode.UpdatedBySurname() {
+	d.SetUpdatedBySurname(&testValue)
+	if &testValue != d.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeKey(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := "testValue"
-	discountCode.SetKey(testValue)
-	if testValue != discountCode.Key() {
+	d.SetKey(testValue)
+	if testValue != d.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeMaxUses(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := uint(1e9)
-	discountCode.SetMaxUses(&testValue)
-	if &testValue != discountCode.MaxUses() {
+	d.SetMaxUses(&testValue)
+	if &testValue != d.MaxUses() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeUsesCounter(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := uint(1e9)
-	discountCode.SetUsesCounter(testValue)
-	if testValue != discountCode.UsesCounter() {
+	d.SetUsesCounter(testValue)
+	if testValue != d.UsesCounter() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeAvailableFrom(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := time.Now()
-	discountCode.SetAvailableFrom(&testValue)
-	if &testValue != discountCode.AvailableFrom() {
+	d.SetAvailableFrom(&testValue)
+	if &testValue != d.AvailableFrom() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeAvailableUntil(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := time.Now()
-	discountCode.SetAvailableUntil(&testValue)
-	if &testValue != discountCode.AvailableUntil() {
+	d.SetAvailableUntil(&testValue)
+	if &testValue != d.AvailableUntil() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeDiscountPercentage(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := float32(3.14)
-	discountCode.SetDiscountPercentage(&testValue)
-	if &testValue != discountCode.DiscountPercentage() {
+	d.SetDiscountPercentage(&testValue)
+	if &testValue != d.DiscountPercentage() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDiscountCodeDiscountAmount(t *testing.T) {
-	discountCode := discountcode.NewDiscountCodeEntity()
+	d := discountcode.NewDiscountCodeEntity()
 	testValue := float32(3.14)
-	discountCode.SetDiscountAmount(&testValue)
-	if &testValue != discountCode.DiscountAmount() {
+	d.SetDiscountAmount(&testValue)
+	if &testValue != d.DiscountAmount() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

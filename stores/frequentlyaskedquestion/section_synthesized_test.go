@@ -9,133 +9,133 @@ import (
 )
 
 func TestSectionTable(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
-	if section.TableName() == "" {
+	s := frequentlyaskedquestion.NewSectionEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSectionTableAlias(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
-	if section.TableName() == "" {
+	s := frequentlyaskedquestion.NewSectionEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSectionIsUpdated(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
-	section.IsUpdated()
+	s := frequentlyaskedquestion.NewSectionEntity()
+	s.IsUpdated()
 }
 
 func TestSectionID(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
-	section.ID()
+	s := frequentlyaskedquestion.NewSectionEntity()
+	s.ID()
 }
 
 func TestSectionCreatedByID(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetCreatedByID(testValue)
-	if testValue != section.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionUpdatedByID(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetUpdatedByID(&testValue)
-	if &testValue != section.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionCreatedAt(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := time.Now()
-	section.SetCreatedAt(testValue)
-	if testValue != section.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionUpdatedAt(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := time.Now()
-	section.SetUpdatedAt(&testValue)
-	if &testValue != section.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionCreatedByFirstName(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetCreatedByFirstName(&testValue)
-	if &testValue != section.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionCreatedBySurname(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetCreatedBySurname(&testValue)
-	if &testValue != section.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionUpdatedByFirstName(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetUpdatedByFirstName(&testValue)
-	if &testValue != section.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionUpdatedBySurname(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetUpdatedBySurname(&testValue)
-	if &testValue != section.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionParentID(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetParentID(&testValue)
-	if &testValue != section.ParentID() {
+	s.SetParentID(&testValue)
+	if &testValue != s.ParentID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionDomainID(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := "testValue"
-	section.SetDomainID(testValue)
-	if testValue != section.DomainID() {
+	s.SetDomainID(testValue)
+	if testValue != s.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionActive(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := true
-	section.SetActive(testValue)
-	if testValue != section.Active() {
+	s.SetActive(testValue)
+	if testValue != s.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionSorting(t *testing.T) {
-	section := frequentlyaskedquestion.NewSectionEntity()
+	s := frequentlyaskedquestion.NewSectionEntity()
 	testValue := uint(1e9)
-	section.SetSorting(testValue)
-	if testValue != section.Sorting() {
+	s.SetSorting(testValue)
+	if testValue != s.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

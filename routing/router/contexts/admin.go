@@ -12,19 +12,19 @@ type AdminContext interface {
 }
 
 // AdminMainMenu returns a localized version of the AdminMenu for the current user.
-func (httpContext *HTTPContext) AdminMainMenu() []*adminmenu.Block {
-	user, ok, err := httpContext.GetUser()
+func (c *HTTPContext) AdminMainMenu() []*adminmenu.Block {
+	user, ok, err := c.GetUser()
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return nil
 	}
 	if !ok {
-		httpContext.loggerService.Errorf("no user found!")
+		c.loggerService.Errorf("no user found!")
 		return nil
 	}
-	adminMenu, err := httpContext.adminMenuService.GenerateAdminMenuStructure(user.ID(), httpContext.language.ID())
+	adminMenu, err := c.adminMenuService.GenerateAdminMenuStructure(user.ID(), c.language.ID())
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return nil
 	}
 	return adminMenu
@@ -32,13 +32,13 @@ func (httpContext *HTTPContext) AdminMainMenu() []*adminmenu.Block {
 
 // GetAdminCreateUpdateTitle returns the title for the create/update
 // page for the id and subject given.
-func (httpContext *HTTPContext) GetAdminCreateUpdateTitle(id string, subject string) string {
+func (c *HTTPContext) GetAdminCreateUpdateTitle(id string, subject string) string {
 	var displayTitle string
 	if id == "" {
-		displayTitle += httpContext.Translate("create")
+		displayTitle += c.Translate("create")
 	} else {
-		displayTitle += httpContext.Translate("update")
+		displayTitle += c.Translate("update")
 	}
-	displayTitle += " " + httpContext.Translate(subject)
+	displayTitle += " " + c.Translate(subject)
 	return displayTitle
 }

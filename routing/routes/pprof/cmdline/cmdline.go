@@ -13,7 +13,7 @@ import (
 type Route struct{}
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	context.SetContentType("text/plain; charset=utf-8")
 	if _, err := context.WriteString(strings.Join(os.Args, "\x00")); err != nil {
 		context.RenderInternalServerError(errors.Trace(err))

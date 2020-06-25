@@ -9,115 +9,115 @@ import (
 )
 
 func TestMediaTable(t *testing.T) {
-	media := media.NewMediaEntity()
-	if media.TableName() == "" {
+	m := media.NewMediaEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestMediaTableAlias(t *testing.T) {
-	media := media.NewMediaEntity()
-	if media.TableName() == "" {
+	m := media.NewMediaEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestMediaIsUpdated(t *testing.T) {
-	media := media.NewMediaEntity()
-	media.IsUpdated()
+	m := media.NewMediaEntity()
+	m.IsUpdated()
 }
 
 func TestMediaID(t *testing.T) {
-	media := media.NewMediaEntity()
-	media.ID()
+	m := media.NewMediaEntity()
+	m.ID()
 }
 
 func TestMediaCreatedByID(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetCreatedByID(testValue)
-	if testValue != media.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaUpdatedByID(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetUpdatedByID(&testValue)
-	if &testValue != media.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaCreatedAt(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := time.Now()
-	media.SetCreatedAt(testValue)
-	if testValue != media.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaUpdatedAt(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := time.Now()
-	media.SetUpdatedAt(&testValue)
-	if &testValue != media.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaCreatedByFirstName(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetCreatedByFirstName(&testValue)
-	if &testValue != media.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaCreatedBySurname(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetCreatedBySurname(&testValue)
-	if &testValue != media.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaUpdatedByFirstName(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetUpdatedByFirstName(&testValue)
-	if &testValue != media.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaUpdatedBySurname(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetUpdatedBySurname(&testValue)
-	if &testValue != media.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaActive(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := true
-	media.SetActive(testValue)
-	if testValue != media.Active() {
+	m.SetActive(testValue)
+	if testValue != m.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMediaFilePath(t *testing.T) {
-	media := media.NewMediaEntity()
+	m := media.NewMediaEntity()
 	testValue := "testValue"
-	media.SetFilePath(testValue)
-	if testValue != media.FilePath() {
+	m.SetFilePath(testValue)
+	if testValue != m.FilePath() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

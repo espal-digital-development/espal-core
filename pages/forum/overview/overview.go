@@ -21,11 +21,11 @@ type Overview struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (overview *Overview) NewPage(context contexts.Context, forums []*forum.Forum, language contexts.Language) Template {
+func (o *Overview) NewPage(context contexts.Context, forums []*forum.Forum, language contexts.Language) Template {
 	page := &Page{
 		forums:          forums,
 		language:        language,
-		rendererService: overview.rendererService,
+		rendererService: o.rendererService,
 	}
 	page.SetCoreContext(context)
 	return page
@@ -45,8 +45,8 @@ type Page struct {
 }
 
 // Render the page writing to the context.
-func (page *Page) Render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *Page) Render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of Overview.

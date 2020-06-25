@@ -13,8 +13,8 @@ var _ Store = &DownloadsStore{}
 type Store interface {
 }
 
-func (downloadsStore *DownloadsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Download, ok bool, err error) {
-	rows, err := downloadsStore.selecterDatabase.Query(query, params...)
+func (d *DownloadsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Download, ok bool, err error) {
+	rows, err := d.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (downloadsStore *DownloadsStore) fetch(query string, withCreators bool, par
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		download := newDownload()
-		fields := []interface{}{&download.id, &download.createdByID, &download.updatedByID, &download.createdAt, &download.updatedAt, &download.active, &download.filePath}
+		d := newDownload()
+		fields := []interface{}{&d.id, &d.createdByID, &d.updatedByID, &d.createdAt, &d.updatedAt, &d.active, &d.filePath}
 		if withCreators {
-			fields = append(fields, &download.createdByFirstName, &download.createdBySurname, &download.updatedByFirstName, &download.updatedBySurname)
+			fields = append(fields, &d.createdByFirstName, &d.createdBySurname, &d.updatedByFirstName, &d.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, download)
+		result = append(result, d)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (downloadsStore *DownloadsStore) fetch(query string, withCreators bool, par
 
 // New returns a new instance of DownloadsStore.
 func New(selecterDatabase database.Database) (*DownloadsStore, error) {
-	downloadsStore := &DownloadsStore{
+	d := &DownloadsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return downloadsStore, nil
+	return d, nil
 }

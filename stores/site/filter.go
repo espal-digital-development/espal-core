@@ -9,9 +9,9 @@ import (
 )
 
 // Filter filters results based on the given context.
-func (sitesStore *SitesStore) Filter(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error) {
+func (s *SitesStore) Filter(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error) {
 	alias := (&Site{}).TableAlias()
-	filter = sitesStore.databaseFiltersFactory.NewFilter(context, newSite())
+	filter = s.databaseFiltersFactory.NewFilter(context, newSite())
 	filter.AddSelectField(filter.NewSelectField("id")).
 		AddSelectField(filter.NewSelectField("createdByID")).
 		AddSelectField(filter.NewSelectField("updatedByID")).

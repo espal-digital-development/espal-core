@@ -14,30 +14,30 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdminUser() error {
-	createUpdatePage := createupdatepage.New(runner.services.renderer)
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User", overview.New(runner.stores.user, overviewpage.New(runner.services.renderer))); err != nil {
+func (r *Runner) routesAdminUser() error {
+	createUpdatePage := createupdatepage.New(r.services.renderer)
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User", overview.New(r.stores.user, overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/View", view.New(runner.stores.user, runner.stores.userAddress, runner.stores.userContact, viewpage.New(runner.services.renderer, runner.stores.user, runner.stores.userContact))); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/View", view.New(r.stores.user, r.stores.userAddress, r.stores.userContact, viewpage.New(r.services.renderer, r.stores.user, r.stores.userContact))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Create", createupdate.New(runner.services.config, runner.services.assetHandler, runner.services.entityMutators, runner.storages.assetsPublicFiles, runner.stores.user, runner.stores.userAddress, runner.formValidators.admin.userCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Create", createupdate.New(r.services.config, r.services.assetHandler, r.services.entityMutators, r.storages.assetsPublicFiles, r.stores.user, r.stores.userAddress, r.formValidators.admin.userCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Update", createupdate.New(runner.services.config, runner.services.assetHandler, runner.services.entityMutators, runner.storages.assetsPublicFiles, runner.stores.user, runner.stores.userAddress, runner.formValidators.admin.userCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Update", createupdate.New(r.services.config, r.services.assetHandler, r.services.entityMutators, r.storages.assetsPublicFiles, r.stores.user, r.stores.userAddress, r.formValidators.admin.userCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/ToggleActive", toggleactive.New(runner.repositories.regularExpressions, runner.stores.user)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/ToggleActive", toggleactive.New(r.repositories.regularExpressions, r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Search", search.New(runner.stores.user)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Search", search.New(r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Delete", delete.New(runner.repositories.regularExpressions, runner.stores.user)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Delete", delete.New(r.repositories.regularExpressions, r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/RemoveAvatar", removeavatar.New(runner.services.config, runner.storages.assetsPublicFiles, runner.stores.user)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/RemoveAvatar", removeavatar.New(r.services.config, r.storages.assetsPublicFiles, r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

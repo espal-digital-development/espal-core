@@ -7,7 +7,7 @@ import (
 	"github.com/juju/errors"
 )
 
-func (form *Form) validateNumberFormField(field *formField) error {
+func (f *Form) validateNumberFormField(field *formField) error {
 	var err error
 	var value float64
 	if len(field.Value()) > 0 {
@@ -20,10 +20,10 @@ func (form *Form) validateNumberFormField(field *formField) error {
 	if field.Optional() && value == 0 {
 		// Empty fields allowed on `optional` and having a `minLength`
 	} else if field.MinValue() > 0 && value < field.MinValue() {
-		field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXCannotBeSmallerThanX"), field.Name(), field.MinValue()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeSmallerThanX"), field.Name(), field.MinValue()))
 	}
 	if field.MaxValue() > 0 && value > field.MaxValue() {
-		field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXCannotBeGreaterThanX"), field.Name(), field.MaxValue()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeGreaterThanX"), field.Name(), field.MaxValue()))
 	}
 
 	return nil

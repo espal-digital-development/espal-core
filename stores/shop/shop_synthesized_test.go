@@ -9,115 +9,115 @@ import (
 )
 
 func TestShopTable(t *testing.T) {
-	shop := shop.NewShopEntity()
-	if shop.TableName() == "" {
+	s := shop.NewShopEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestShopTableAlias(t *testing.T) {
-	shop := shop.NewShopEntity()
-	if shop.TableName() == "" {
+	s := shop.NewShopEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestShopIsUpdated(t *testing.T) {
-	shop := shop.NewShopEntity()
-	shop.IsUpdated()
+	s := shop.NewShopEntity()
+	s.IsUpdated()
 }
 
 func TestShopID(t *testing.T) {
-	shop := shop.NewShopEntity()
-	shop.ID()
+	s := shop.NewShopEntity()
+	s.ID()
 }
 
 func TestShopCreatedByID(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetCreatedByID(testValue)
-	if testValue != shop.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopUpdatedByID(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetUpdatedByID(&testValue)
-	if &testValue != shop.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopCreatedAt(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := time.Now()
-	shop.SetCreatedAt(testValue)
-	if testValue != shop.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopUpdatedAt(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := time.Now()
-	shop.SetUpdatedAt(&testValue)
-	if &testValue != shop.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopCreatedByFirstName(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetCreatedByFirstName(&testValue)
-	if &testValue != shop.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopCreatedBySurname(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetCreatedBySurname(&testValue)
-	if &testValue != shop.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopUpdatedByFirstName(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetUpdatedByFirstName(&testValue)
-	if &testValue != shop.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopUpdatedBySurname(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetUpdatedBySurname(&testValue)
-	if &testValue != shop.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopLanguage(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := uint16(65000)
-	shop.SetLanguage(&testValue)
-	if &testValue != shop.Language() {
+	s.SetLanguage(&testValue)
+	if &testValue != s.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShopCurrencies(t *testing.T) {
-	shop := shop.NewShopEntity()
+	s := shop.NewShopEntity()
 	testValue := "testValue"
-	shop.SetCurrencies(testValue)
-	if testValue != shop.Currencies() {
+	s.SetCurrencies(testValue)
+	if testValue != s.Currencies() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

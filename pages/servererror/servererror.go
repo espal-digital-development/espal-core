@@ -17,7 +17,7 @@ type ServerError struct{}
 
 // RenderPage generates a new instance of Page based on the given parameters
 // but instantly renders it to prevent package inclusion cycle problems.
-func (serverError *ServerError) RenderPage(context contexts.Context, title string, message string) {
+func (e *ServerError) RenderPage(context contexts.Context, title string, message string) {
 	page := &page{
 		title:   title,
 		message: message,
@@ -32,8 +32,8 @@ type page struct {
 	message string
 }
 
-func (page *page) render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *page) render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of ServerError.

@@ -40,20 +40,20 @@ type CreateUpdate struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (createUpdate *CreateUpdate) Submit(context context) (isSubmitted bool, isValid bool, err error) {
-	if createUpdate.isClosed {
+func (c *CreateUpdate) Submit(context context) (isSubmitted bool, isValid bool, err error) {
+	if c.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = createUpdate.validator.HandleFromRequest(context); err != nil {
+	if err = c.validator.HandleFromRequest(context); err != nil {
 		return
 	}
-	isSubmitted = createUpdate.validator.IsSubmitted()
+	isSubmitted = c.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = createUpdate.validator.IsValid()
+		isValid, err = c.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -62,74 +62,74 @@ func (createUpdate *CreateUpdate) Submit(context context) (isSubmitted bool, isV
 }
 
 // View returns the FormView internal to help render inside html output.
-func (createUpdate *CreateUpdate) View() formview.View {
-	return createUpdate.view
+func (c *CreateUpdate) View() formview.View {
+	return c.view
 }
 
 // FieldValue returns a single form value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValue(name string) string {
-	return createUpdate.validator.FieldValue(name)
+func (c *CreateUpdate) FieldValue(name string) string {
+	return c.validator.FieldValue(name)
 }
 
 // FieldPointerValue returns a single form pointer value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldPointerValue(name string) *string {
-	return createUpdate.validator.Field(name).PointerValue()
+func (c *CreateUpdate) FieldPointerValue(name string) *string {
+	return c.validator.Field(name).PointerValue()
 }
 
 // FieldValues returns a single form values that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValues(name string) []string {
-	return createUpdate.validator.Field(name).Values()
+func (c *CreateUpdate) FieldValues(name string) []string {
+	return c.validator.Field(name).Values()
 }
 
 // FieldValueAsBool returns a single form bool value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsBool(name string) bool {
-	return createUpdate.validator.Field(name).ValueAsBool()
+func (c *CreateUpdate) FieldValueAsBool(name string) bool {
+	return c.validator.Field(name).ValueAsBool()
 }
 
 // FieldValueAsUint returns a single form uint value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsUint(name string) uint {
-	return createUpdate.validator.Field(name).ValueAsUint()
+func (c *CreateUpdate) FieldValueAsUint(name string) uint {
+	return c.validator.Field(name).ValueAsUint()
 }
 
 // FieldValueAsPointerUint returns a single form pointer uint value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsPointerUint(name string) *uint {
-	if createUpdate.validator.Field(name).Value() == "" {
+func (c *CreateUpdate) FieldValueAsPointerUint(name string) *uint {
+	if c.validator.Field(name).Value() == "" {
 		return nil
 	}
-	value := createUpdate.validator.Field(name).ValueAsUint()
+	value := c.validator.Field(name).ValueAsUint()
 	return &value
 }
 
 // FieldValueAsUint16 returns a single form uint16 value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsUint16(name string) uint16 {
-	return createUpdate.validator.Field(name).ValueAsUint16()
+func (c *CreateUpdate) FieldValueAsUint16(name string) uint16 {
+	return c.validator.Field(name).ValueAsUint16()
 }
 
 // HasAvatarUploaded returns if an avatar was uploaded on submission.
-func (createUpdate *CreateUpdate) HasAvatarUploaded() bool {
-	return len(createUpdate.validator.Field("avatar").UploadedFiles()) == 1
+func (c *CreateUpdate) HasAvatarUploaded() bool {
+	return len(c.validator.Field("avatar").UploadedFiles()) == 1
 }
 
 // SaveAvatar saves the uploaded avatar field (if submitted).
-func (createUpdate *CreateUpdate) SaveAvatar() error {
-	if !createUpdate.HasAvatarUploaded() {
+func (c *CreateUpdate) SaveAvatar() error {
+	if !c.HasAvatarUploaded() {
 		return nil
 	}
-	return errors.Trace(createUpdate.validator.Field("avatar").SaveFiles())
+	return errors.Trace(c.validator.Field("avatar").SaveFiles())
 }
 
 // AvatarFileName returns the uploaded avatar file name.
-func (createUpdate *CreateUpdate) AvatarFileName() string {
-	return createUpdate.validator.Field("avatar").UploadedFiles()[0].SanitizedName()
+func (c *CreateUpdate) AvatarFileName() string {
+	return c.validator.Field("avatar").UploadedFiles()[0].SanitizedName()
 }
 
 // AvatarSavedPath returns the uploaded avatar saved path.
-func (createUpdate *CreateUpdate) AvatarSavedPath() string {
-	return createUpdate.validator.Field("avatar").UploadedFiles()[0].SavedPath()
+func (c *CreateUpdate) AvatarSavedPath() string {
+	return c.validator.Field("avatar").UploadedFiles()[0].SavedPath()
 }
 
 // Close will release internals.
-func (createUpdate *CreateUpdate) Close() {
-	createUpdate.validator = nil
-	createUpdate.view = nil
+func (c *CreateUpdate) Close() {
+	c.validator = nil
+	c.view = nil
 }

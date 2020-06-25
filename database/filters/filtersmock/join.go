@@ -4,6 +4,7 @@
 package filtersmock
 
 import (
+	"github.com/espal-digital-development/espal-core/database/filters"
 	"sync"
 )
 
@@ -12,11 +13,15 @@ var (
 	lockJoinMockStatement sync.RWMutex
 )
 
-// JoinMock is a mock implementation of Join.
+// Ensure, that JoinMock does implement filters.Join.
+// If this is not the case, regenerate this file with moq.
+var _ filters.Join = &JoinMock{}
+
+// JoinMock is a mock implementation of filters.Join.
 //
 //     func TestSomethingThatUsesJoin(t *testing.T) {
 //
-//         // make and configure a mocked Join
+//         // make and configure a mocked filters.Join
 //         mockedJoin := &JoinMock{
 //             AliasFunc: func() string {
 // 	               panic("mock out the Alias method")
@@ -26,7 +31,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedJoin in code that requires Join
+//         // use mockedJoin in code that requires filters.Join
 //         // and then make assertions.
 //
 //     }

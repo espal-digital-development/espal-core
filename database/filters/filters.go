@@ -19,10 +19,10 @@ type Filters struct {
 }
 
 // NewFilter returns a new ResultFilter based on the given model.
-func (filters *Filters) NewFilter(queryReader QueryReader, m Model) Filter {
+func (f *Filters) NewFilter(queryReader QueryReader, m Model) Filter {
 	return &filter{
 		queryReader:      queryReader,
-		selecterDatabase: filters.selecterDatabase,
+		selecterDatabase: f.selecterDatabase,
 		table:            m.TableName(),
 		tableAlias:       m.TableAlias(),
 		limit:            defaultLimit,

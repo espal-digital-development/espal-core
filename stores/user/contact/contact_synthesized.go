@@ -26,158 +26,158 @@ type ContactEntity interface {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (contact *Contact) TableAlias() string {
+func (c *Contact) TableAlias() string {
 	return "ce"
 }
 
 // ID returns id.
-func (contact *Contact) ID() string {
-	return contact.id
+func (c *Contact) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (contact *Contact) CreatedByID() string {
-	return contact.createdByID
+func (c *Contact) CreatedByID() string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (contact *Contact) SetCreatedByID(createdByID string) {
-	contact.createdByID = createdByID
+func (c *Contact) SetCreatedByID(createdByID string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (contact *Contact) UpdatedByID() *string {
-	return contact.updatedByID
+func (c *Contact) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (contact *Contact) SetUpdatedByID(updatedByID *string) {
-	contact.updatedByID = updatedByID
+func (c *Contact) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (contact *Contact) CreatedAt() time.Time {
-	return contact.createdAt
+func (c *Contact) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (contact *Contact) SetCreatedAt(createdAt time.Time) {
-	contact.createdAt = createdAt
+func (c *Contact) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (contact *Contact) UpdatedAt() *time.Time {
-	return contact.updatedAt
+func (c *Contact) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (contact *Contact) SetUpdatedAt(updatedAt *time.Time) {
-	contact.updatedAt = updatedAt
+func (c *Contact) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (contact *Contact) CreatedByFirstName() *string {
-	return contact.createdByFirstName
+func (c *Contact) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (contact *Contact) SetCreatedByFirstName(createdByFirstName *string) {
-	contact.createdByFirstName = createdByFirstName
+func (c *Contact) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (contact *Contact) CreatedBySurname() *string {
-	return contact.createdBySurname
+func (c *Contact) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (contact *Contact) SetCreatedBySurname(createdBySurname *string) {
-	contact.createdBySurname = createdBySurname
+func (c *Contact) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (contact *Contact) UpdatedByFirstName() *string {
-	return contact.updatedByFirstName
+func (c *Contact) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (contact *Contact) SetUpdatedByFirstName(updatedByFirstName *string) {
-	contact.updatedByFirstName = updatedByFirstName
+func (c *Contact) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (contact *Contact) UpdatedBySurname() *string {
-	return contact.updatedBySurname
+func (c *Contact) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (contact *Contact) SetUpdatedBySurname(updatedBySurname *string) {
-	contact.updatedBySurname = updatedBySurname
+func (c *Contact) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (contact *Contact) IsUpdated() bool {
-	return contact.updatedByID != nil
+func (c *Contact) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 // UserID returns userID.
-func (contact *Contact) UserID() *string {
-	return contact.userID
+func (c *Contact) UserID() *string {
+	return c.userID
 }
 
 // SetUserID sets the userID.
-func (contact *Contact) SetUserID(userID *string) {
-	contact.userID = userID
+func (c *Contact) SetUserID(userID *string) {
+	c.userID = userID
 }
 
 // ContactID returns contactID.
-func (contact *Contact) ContactID() string {
-	return contact.contactID
+func (c *Contact) ContactID() string {
+	return c.contactID
 }
 
 // SetContactID sets the contactID.
-func (contact *Contact) SetContactID(contactID string) {
-	contact.contactID = contactID
+func (c *Contact) SetContactID(contactID string) {
+	c.contactID = contactID
 }
 
 // Sorting returns sorting.
-func (contact *Contact) Sorting() uint {
-	return contact.sorting
+func (c *Contact) Sorting() uint {
+	return c.sorting
 }
 
 // SetSorting sets the sorting.
-func (contact *Contact) SetSorting(sorting uint) {
-	contact.sorting = sorting
+func (c *Contact) SetSorting(sorting uint) {
+	c.sorting = sorting
 }
 
 // Comments returns comments.
-func (contact *Contact) Comments() *string {
-	return contact.comments
+func (c *Contact) Comments() *string {
+	return c.comments
 }
 
 // SetComments sets the comments.
-func (contact *Contact) SetComments(comments *string) {
-	contact.comments = comments
+func (c *Contact) SetComments(comments *string) {
+	c.comments = comments
 }
 
 // ContactFirstName returns contactFirstName.
-func (contact *Contact) ContactFirstName() *string {
-	return contact.contactFirstName
+func (c *Contact) ContactFirstName() *string {
+	return c.contactFirstName
 }
 
 // SetContactFirstName sets the contactFirstName.
-func (contact *Contact) SetContactFirstName(contactFirstName *string) {
-	contact.contactFirstName = contactFirstName
+func (c *Contact) SetContactFirstName(contactFirstName *string) {
+	c.contactFirstName = contactFirstName
 }
 
 // ContactSurname returns contactSurname.
-func (contact *Contact) ContactSurname() *string {
-	return contact.contactSurname
+func (c *Contact) ContactSurname() *string {
+	return c.contactSurname
 }
 
 // SetContactSurname sets the contactSurname.
-func (contact *Contact) SetContactSurname(contactSurname *string) {
-	contact.contactSurname = contactSurname
+func (c *Contact) SetContactSurname(contactSurname *string) {
+	c.contactSurname = contactSurname
 }
 
 func newContact() *Contact {

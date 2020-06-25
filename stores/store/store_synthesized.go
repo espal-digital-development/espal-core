@@ -13,8 +13,8 @@ var _ Store = &StoresStore{}
 type Store interface {
 }
 
-func (storesStore *StoresStore) fetch(query string, withCreators bool, params ...interface{}) (result []*StoreEntity, ok bool, err error) {
-	rows, err := storesStore.selecterDatabase.Query(query, params...)
+func (s *StoresStore) fetch(query string, withCreators bool, params ...interface{}) (result []*StoreEntity, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (storesStore *StoresStore) fetch(query string, withCreators bool, params ..
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		storeEntity := newStoreEntity()
-		fields := []interface{}{&storeEntity.id, &storeEntity.createdByID, &storeEntity.updatedByID, &storeEntity.createdAt, &storeEntity.updatedAt, &storeEntity.active, &storeEntity.sorting, &storeEntity.primaryContactPerson, &storeEntity.street, &storeEntity.streetLine2, &storeEntity.number, &storeEntity.numberAddition, &storeEntity.zipCode, &storeEntity.city, &storeEntity.state, &storeEntity.country, &storeEntity.phoneNumber, &storeEntity.email}
+		s := newStoreEntity()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.active, &s.sorting, &s.primaryContactPerson, &s.street, &s.streetLine2, &s.number, &s.numberAddition, &s.zipCode, &s.city, &s.state, &s.country, &s.phoneNumber, &s.email}
 		if withCreators {
-			fields = append(fields, &storeEntity.createdByFirstName, &storeEntity.createdBySurname, &storeEntity.updatedByFirstName, &storeEntity.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, storeEntity)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (storesStore *StoresStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of StoresStore.
 func New(selecterDatabase database.Database) (*StoresStore, error) {
-	storesStore := &StoresStore{
+	s := &StoresStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return storesStore, nil
+	return s, nil
 }

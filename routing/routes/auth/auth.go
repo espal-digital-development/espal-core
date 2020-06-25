@@ -16,7 +16,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if context.IsLoggedIn() {
 		context.Redirect("/", http.StatusTemporaryRedirect)
 		return
@@ -28,7 +28,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 	// TODO :: 7 This is ok for now, but the Auth should be blocking the site to such an extent that it shouldn't even show the design or expose the assets.
-	form, err := route.authFormValidator.New(language)
+	form, err := r.authFormValidator.New(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -49,7 +49,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	route.authPageFactory.NewPage(context, form.View()).Render()
+	r.authPageFactory.NewPage(context, form.View()).Render()
 }
 
 // New returns a new instance of Route.

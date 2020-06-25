@@ -15,12 +15,12 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadDomain") {
 		return
 	}
 
-	domains, filter, err := route.domainStore.Filter(context)
+	domains, filter, err := r.domainStore.Filter(context)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -42,7 +42,7 @@ func (route *Route) Handle(context contexts.Context) {
 	pageActions.AddCreate()
 	pageActions.AddToggle()
 	pageActions.AddDelete()
-	route.overviewPageFactory.NewPage(context, language, pageActions, filter, domains, canUpdate, canDelete).Render()
+	r.overviewPageFactory.NewPage(context, language, pageActions, filter, domains, canUpdate, canDelete).Render()
 }
 
 // New returns a new instance of Route.

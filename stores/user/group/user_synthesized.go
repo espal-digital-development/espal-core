@@ -18,113 +18,113 @@ type UserEntity interface {
 }
 
 // ID returns id.
-func (user *User) ID() string {
-	return user.id
+func (u *User) ID() string {
+	return u.id
 }
 
 // CreatedByID returns createdByID.
-func (user *User) CreatedByID() string {
-	return user.createdByID
+func (u *User) CreatedByID() string {
+	return u.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (user *User) SetCreatedByID(createdByID string) {
-	user.createdByID = createdByID
+func (u *User) SetCreatedByID(createdByID string) {
+	u.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (user *User) UpdatedByID() *string {
-	return user.updatedByID
+func (u *User) UpdatedByID() *string {
+	return u.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (user *User) SetUpdatedByID(updatedByID *string) {
-	user.updatedByID = updatedByID
+func (u *User) SetUpdatedByID(updatedByID *string) {
+	u.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (user *User) CreatedAt() time.Time {
-	return user.createdAt
+func (u *User) CreatedAt() time.Time {
+	return u.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (user *User) SetCreatedAt(createdAt time.Time) {
-	user.createdAt = createdAt
+func (u *User) SetCreatedAt(createdAt time.Time) {
+	u.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (user *User) UpdatedAt() *time.Time {
-	return user.updatedAt
+func (u *User) UpdatedAt() *time.Time {
+	return u.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (user *User) SetUpdatedAt(updatedAt *time.Time) {
-	user.updatedAt = updatedAt
+func (u *User) SetUpdatedAt(updatedAt *time.Time) {
+	u.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (user *User) CreatedByFirstName() *string {
-	return user.createdByFirstName
+func (u *User) CreatedByFirstName() *string {
+	return u.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (user *User) SetCreatedByFirstName(createdByFirstName *string) {
-	user.createdByFirstName = createdByFirstName
+func (u *User) SetCreatedByFirstName(createdByFirstName *string) {
+	u.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (user *User) CreatedBySurname() *string {
-	return user.createdBySurname
+func (u *User) CreatedBySurname() *string {
+	return u.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (user *User) SetCreatedBySurname(createdBySurname *string) {
-	user.createdBySurname = createdBySurname
+func (u *User) SetCreatedBySurname(createdBySurname *string) {
+	u.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (user *User) UpdatedByFirstName() *string {
-	return user.updatedByFirstName
+func (u *User) UpdatedByFirstName() *string {
+	return u.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (user *User) SetUpdatedByFirstName(updatedByFirstName *string) {
-	user.updatedByFirstName = updatedByFirstName
+func (u *User) SetUpdatedByFirstName(updatedByFirstName *string) {
+	u.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (user *User) UpdatedBySurname() *string {
-	return user.updatedBySurname
+func (u *User) UpdatedBySurname() *string {
+	return u.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (user *User) SetUpdatedBySurname(updatedBySurname *string) {
-	user.updatedBySurname = updatedBySurname
+func (u *User) SetUpdatedBySurname(updatedBySurname *string) {
+	u.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (user *User) IsUpdated() bool {
-	return user.updatedByID != nil
+func (u *User) IsUpdated() bool {
+	return u.updatedByID != nil
 }
 
 // UserGroupID returns userGroupID.
-func (user *User) UserGroupID() string {
-	return user.userGroupID
+func (u *User) UserGroupID() string {
+	return u.userGroupID
 }
 
 // SetUserGroupID sets the userGroupID.
-func (user *User) SetUserGroupID(userGroupID string) {
-	user.userGroupID = userGroupID
+func (u *User) SetUserGroupID(userGroupID string) {
+	u.userGroupID = userGroupID
 }
 
 // UserID returns userID.
-func (user *User) UserID() string {
-	return user.userID
+func (u *User) UserID() string {
+	return u.userID
 }
 
 // SetUserID sets the userID.
-func (user *User) SetUserID(userID string) {
-	user.userID = userID
+func (u *User) SetUserID(userID string) {
+	u.userID = userID
 }
 
 func newUser() *User {

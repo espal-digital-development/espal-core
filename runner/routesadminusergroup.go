@@ -13,29 +13,29 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdminUserGroup() error {
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup", overview.New(runner.stores.userGroup, overviewpage.New(runner.services.renderer))); err != nil {
+func (r *Runner) routesAdminUserGroup() error {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup", overview.New(r.stores.userGroup, overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/View", view.New(runner.repositories.userRights, runner.stores.userGroup, viewpage.New(runner.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/View", view.New(r.repositories.userRights, r.stores.userGroup, viewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/UserRights/Update", userrightupdate.New(runner.repositories.regularExpressions, runner.stores.userGroup)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/UserRights/Update", userrightupdate.New(r.repositories.regularExpressions, r.stores.userGroup)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/Translations/Create", translationcreateupdate.New(runner.repositories.regularExpressions, runner.stores.userGroup)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/Translations/Create", translationcreateupdate.New(r.repositories.regularExpressions, r.stores.userGroup)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/Translations/Update", translationcreateupdate.New(runner.repositories.regularExpressions, runner.stores.userGroup)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/Translations/Update", translationcreateupdate.New(r.repositories.regularExpressions, r.stores.userGroup)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/Translations/Delete", translationdelete.New(runner.repositories.regularExpressions, runner.stores.userGroup)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/Translations/Delete", translationdelete.New(r.repositories.regularExpressions, r.stores.userGroup)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/ToggleActive", toggleactive.New(runner.repositories.regularExpressions, runner.stores.userGroup)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/ToggleActive", toggleactive.New(r.repositories.regularExpressions, r.stores.userGroup)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/UserGroup/Delete", delete.New(runner.repositories.regularExpressions, runner.stores.userGroup)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/UserGroup/Delete", delete.New(r.repositories.regularExpressions, r.stores.userGroup)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

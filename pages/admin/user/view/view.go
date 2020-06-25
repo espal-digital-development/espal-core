@@ -26,7 +26,7 @@ type View struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (view *View) NewPage(context contexts.Context, language contexts.Language, user *user.User, addresses []*address.Address, addressesActions pageactions.Actions, contacts []*contact.Contact, contactsActions pageactions.Actions, canUpdateAddress bool, canDeleteAddress bool, canUpdateContact bool, canDeleteContact bool) Template {
+func (v *View) NewPage(context contexts.Context, language contexts.Language, user *user.User, addresses []*address.Address, addressesActions pageactions.Actions, contacts []*contact.Contact, contactsActions pageactions.Actions, canUpdateAddress bool, canDeleteAddress bool, canUpdateContact bool, canDeleteContact bool) Template {
 	page := &Page{
 		language:         language,
 		user:             user,
@@ -38,9 +38,9 @@ func (view *View) NewPage(context contexts.Context, language contexts.Language, 
 		canDeleteAddress: canDeleteAddress,
 		canUpdateContact: canUpdateContact,
 		canDeleteContact: canDeleteContact,
-		rendererService:  view.rendererService,
-		userStore:        view.userStore,
-		userContactStore: view.userContactStore,
+		rendererService:  v.rendererService,
+		userStore:        v.userStore,
+		userContactStore: v.userContactStore,
 	}
 	page.SetCoreContext(context)
 	return page
@@ -70,8 +70,8 @@ type Page struct {
 }
 
 // Render the page writing to the context.
-func (page *Page) Render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *Page) Render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of View.

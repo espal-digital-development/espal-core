@@ -16,103 +16,103 @@ type UnitEntity interface {
 }
 
 // ID returns id.
-func (unit *Unit) ID() string {
-	return unit.id
+func (u *Unit) ID() string {
+	return u.id
 }
 
 // CreatedByID returns createdByID.
-func (unit *Unit) CreatedByID() string {
-	return unit.createdByID
+func (u *Unit) CreatedByID() string {
+	return u.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (unit *Unit) SetCreatedByID(createdByID string) {
-	unit.createdByID = createdByID
+func (u *Unit) SetCreatedByID(createdByID string) {
+	u.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (unit *Unit) UpdatedByID() *string {
-	return unit.updatedByID
+func (u *Unit) UpdatedByID() *string {
+	return u.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (unit *Unit) SetUpdatedByID(updatedByID *string) {
-	unit.updatedByID = updatedByID
+func (u *Unit) SetUpdatedByID(updatedByID *string) {
+	u.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (unit *Unit) CreatedAt() time.Time {
-	return unit.createdAt
+func (u *Unit) CreatedAt() time.Time {
+	return u.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (unit *Unit) SetCreatedAt(createdAt time.Time) {
-	unit.createdAt = createdAt
+func (u *Unit) SetCreatedAt(createdAt time.Time) {
+	u.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (unit *Unit) UpdatedAt() *time.Time {
-	return unit.updatedAt
+func (u *Unit) UpdatedAt() *time.Time {
+	return u.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (unit *Unit) SetUpdatedAt(updatedAt *time.Time) {
-	unit.updatedAt = updatedAt
+func (u *Unit) SetUpdatedAt(updatedAt *time.Time) {
+	u.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (unit *Unit) CreatedByFirstName() *string {
-	return unit.createdByFirstName
+func (u *Unit) CreatedByFirstName() *string {
+	return u.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (unit *Unit) SetCreatedByFirstName(createdByFirstName *string) {
-	unit.createdByFirstName = createdByFirstName
+func (u *Unit) SetCreatedByFirstName(createdByFirstName *string) {
+	u.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (unit *Unit) CreatedBySurname() *string {
-	return unit.createdBySurname
+func (u *Unit) CreatedBySurname() *string {
+	return u.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (unit *Unit) SetCreatedBySurname(createdBySurname *string) {
-	unit.createdBySurname = createdBySurname
+func (u *Unit) SetCreatedBySurname(createdBySurname *string) {
+	u.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (unit *Unit) UpdatedByFirstName() *string {
-	return unit.updatedByFirstName
+func (u *Unit) UpdatedByFirstName() *string {
+	return u.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (unit *Unit) SetUpdatedByFirstName(updatedByFirstName *string) {
-	unit.updatedByFirstName = updatedByFirstName
+func (u *Unit) SetUpdatedByFirstName(updatedByFirstName *string) {
+	u.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (unit *Unit) UpdatedBySurname() *string {
-	return unit.updatedBySurname
+func (u *Unit) UpdatedBySurname() *string {
+	return u.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (unit *Unit) SetUpdatedBySurname(updatedBySurname *string) {
-	unit.updatedBySurname = updatedBySurname
+func (u *Unit) SetUpdatedBySurname(updatedBySurname *string) {
+	u.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (unit *Unit) IsUpdated() bool {
-	return unit.updatedByID != nil
+func (u *Unit) IsUpdated() bool {
+	return u.updatedByID != nil
 }
 
 // Display returns display.
-func (unit *Unit) Display() string {
-	return unit.display
+func (u *Unit) Display() string {
+	return u.display
 }
 
 // SetDisplay sets the display.
-func (unit *Unit) SetDisplay(display string) {
-	unit.display = display
+func (u *Unit) SetDisplay(display string) {
+	u.display = display
 }
 
 func newUnit() *Unit {

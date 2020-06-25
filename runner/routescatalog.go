@@ -6,8 +6,8 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesCatalog() error {
-	if err := runner.services.router.RegisterRoute("/Catalog", catalog.New(catalogpage.New())); err != nil {
+func (r *Runner) routesCatalog() error {
+	if err := r.services.router.RegisterRoute("/Catalog", catalog.New(catalogpage.New())); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

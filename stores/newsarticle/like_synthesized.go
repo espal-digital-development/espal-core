@@ -16,103 +16,103 @@ type LikeEntity interface {
 }
 
 // ID returns id.
-func (like *Like) ID() string {
-	return like.id
+func (l *Like) ID() string {
+	return l.id
 }
 
 // CreatedByID returns createdByID.
-func (like *Like) CreatedByID() string {
-	return like.createdByID
+func (l *Like) CreatedByID() string {
+	return l.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (like *Like) SetCreatedByID(createdByID string) {
-	like.createdByID = createdByID
+func (l *Like) SetCreatedByID(createdByID string) {
+	l.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (like *Like) UpdatedByID() *string {
-	return like.updatedByID
+func (l *Like) UpdatedByID() *string {
+	return l.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (like *Like) SetUpdatedByID(updatedByID *string) {
-	like.updatedByID = updatedByID
+func (l *Like) SetUpdatedByID(updatedByID *string) {
+	l.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (like *Like) CreatedAt() time.Time {
-	return like.createdAt
+func (l *Like) CreatedAt() time.Time {
+	return l.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (like *Like) SetCreatedAt(createdAt time.Time) {
-	like.createdAt = createdAt
+func (l *Like) SetCreatedAt(createdAt time.Time) {
+	l.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (like *Like) UpdatedAt() *time.Time {
-	return like.updatedAt
+func (l *Like) UpdatedAt() *time.Time {
+	return l.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (like *Like) SetUpdatedAt(updatedAt *time.Time) {
-	like.updatedAt = updatedAt
+func (l *Like) SetUpdatedAt(updatedAt *time.Time) {
+	l.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (like *Like) CreatedByFirstName() *string {
-	return like.createdByFirstName
+func (l *Like) CreatedByFirstName() *string {
+	return l.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (like *Like) SetCreatedByFirstName(createdByFirstName *string) {
-	like.createdByFirstName = createdByFirstName
+func (l *Like) SetCreatedByFirstName(createdByFirstName *string) {
+	l.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (like *Like) CreatedBySurname() *string {
-	return like.createdBySurname
+func (l *Like) CreatedBySurname() *string {
+	return l.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (like *Like) SetCreatedBySurname(createdBySurname *string) {
-	like.createdBySurname = createdBySurname
+func (l *Like) SetCreatedBySurname(createdBySurname *string) {
+	l.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (like *Like) UpdatedByFirstName() *string {
-	return like.updatedByFirstName
+func (l *Like) UpdatedByFirstName() *string {
+	return l.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (like *Like) SetUpdatedByFirstName(updatedByFirstName *string) {
-	like.updatedByFirstName = updatedByFirstName
+func (l *Like) SetUpdatedByFirstName(updatedByFirstName *string) {
+	l.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (like *Like) UpdatedBySurname() *string {
-	return like.updatedBySurname
+func (l *Like) UpdatedBySurname() *string {
+	return l.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (like *Like) SetUpdatedBySurname(updatedBySurname *string) {
-	like.updatedBySurname = updatedBySurname
+func (l *Like) SetUpdatedBySurname(updatedBySurname *string) {
+	l.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (like *Like) IsUpdated() bool {
-	return like.updatedByID != nil
+func (l *Like) IsUpdated() bool {
+	return l.updatedByID != nil
 }
 
 // NewsArticleID returns newsArticleID.
-func (like *Like) NewsArticleID() string {
-	return like.newsArticleID
+func (l *Like) NewsArticleID() string {
+	return l.newsArticleID
 }
 
 // SetNewsArticleID sets the newsArticleID.
-func (like *Like) SetNewsArticleID(newsArticleID string) {
-	like.newsArticleID = newsArticleID
+func (l *Like) SetNewsArticleID(newsArticleID string) {
+	l.newsArticleID = newsArticleID
 }
 
 func newLike() *Like {

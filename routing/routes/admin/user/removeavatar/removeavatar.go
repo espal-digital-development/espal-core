@@ -18,7 +18,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("UpdateUser") {
 		return
 	}
@@ -29,7 +29,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	avatar, ok, err := route.userStore.GetAvatar(id)
+	avatar, ok, err := r.userStore.GetAvatar(id)
 	if err != nil {
 		if err := context.SetFlashErrorMessage(err.Error()); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
@@ -46,20 +46,20 @@ func (route *Route) Handle(context contexts.Context) {
 			return
 		}
 	} else {
-		if route.assetsPublicFilesStorage.Exists(*avatar + ".gz") {
-			if err := route.assetsPublicFilesStorage.Delete(*avatar + ".gz"); err != nil {
+		if r.assetsPublicFilesStorage.Exists(*avatar + ".gz") {
+			if err := r.assetsPublicFilesStorage.Delete(*avatar + ".gz"); err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
 			}
 		}
-		if route.assetsPublicFilesStorage.Exists(*avatar) {
-			if err := route.assetsPublicFilesStorage.Delete(*avatar); err != nil {
+		if r.assetsPublicFilesStorage.Exists(*avatar) {
+			if err := r.assetsPublicFilesStorage.Delete(*avatar); err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
 			}
 		}
 
-		if err = route.userStore.UnsetAvatar(id); err != nil {
+		if err = r.userStore.UnsetAvatar(id); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}

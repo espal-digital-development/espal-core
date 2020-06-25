@@ -33,59 +33,59 @@ type Page struct {
 	coreContext Context
 }
 
-// SetCoreContext sets the basic context requirements of the page.
-func (page *Page) SetCoreContext(context Context) {
-	page.coreContext = context
+// SetCoreContext sets the basic context requirements of the p.
+func (p *Page) SetCoreContext(context Context) {
+	p.coreContext = context
 }
 
 // GetCoreContext returns the internal core context.
-func (page *Page) GetCoreContext() Context {
-	return page.coreContext
+func (p *Page) GetCoreContext() Context {
+	return p.coreContext
 }
 
 // IsLoggedIn returns an indicator if the user is logged in or not.
-func (page *Page) IsLoggedIn() bool {
-	return page.coreContext.IsLoggedIn()
+func (p *Page) IsLoggedIn() bool {
+	return p.coreContext.IsLoggedIn()
 }
 
 // HasAdminAccess returns an indicator if the user has administrator access.
-func (page *Page) HasAdminAccess() bool {
-	return page.coreContext.HasAdminAccess()
+func (p *Page) HasAdminAccess() bool {
+	return p.coreContext.HasAdminAccess()
 }
 
 // HasPprofEnabled returns an indicator if the user has pprof access.
-func (page *Page) HasPprofEnabled() bool {
-	return page.coreContext.HasPprofEnabled()
+func (p *Page) HasPprofEnabled() bool {
+	return p.coreContext.HasPprofEnabled()
 }
 
 // Translate translates the given key based on the language
 // active in the current context.
-func (page *Page) Translate(key string) string {
-	return page.coreContext.Translate(key)
+func (p *Page) Translate(key string) string {
+	return p.coreContext.Translate(key)
 }
 
 // TranslatePlural translates the given key based on the language
 // active in the current context in plural.
-func (page *Page) TranslatePlural(key string) string {
-	return page.coreContext.TranslatePlural(key)
+func (p *Page) TranslatePlural(key string) string {
+	return p.coreContext.TranslatePlural(key)
 }
 
 // AdminURL returns the url prefix for visiting admin area paths.
-func (page *Page) AdminURL() string {
-	return page.coreContext.AdminURL()
+func (p *Page) AdminURL() string {
+	return p.coreContext.AdminURL()
 }
 
 // PprofURL returns the url prefix for visiting pprof area paths.
-func (page *Page) PprofURL() string {
-	return page.coreContext.PprofURL()
+func (p *Page) PprofURL() string {
+	return p.coreContext.PprofURL()
 }
 
 // HasFlashMessage returns an indicator if a flash message was set.
-func (page *Page) HasFlashMessage() bool {
-	return page.coreContext.HasFlashMessage()
+func (p *Page) HasFlashMessage() bool {
+	return p.coreContext.HasFlashMessage()
 }
 
 // GetFlashMessage returns the set flash message.
-func (page *Page) GetFlashMessage() sessions.Message {
-	return page.coreContext.GetFlashMessage()
+func (p *Page) GetFlashMessage() sessions.Message {
+	return p.coreContext.GetFlashMessage()
 }

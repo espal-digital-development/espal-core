@@ -15,23 +15,23 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesForum() error {
-	if err := runner.services.router.RegisterRoute("/Forums", overview.New(runner.stores.forum, overviewpage.New(runner.services.renderer))); err != nil {
+func (r *Runner) routesForum() error {
+	if err := r.services.router.RegisterRoute("/Forums", overview.New(r.stores.forum, overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/Forum", forum.New(runner.repositories.regularExpressions, runner.stores.forum, forumpage.New(runner.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/Forum", forum.New(r.repositories.regularExpressions, r.stores.forum, forumpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ForumPost", post.New(runner.repositories.regularExpressions, runner.stores.forum, postpage.New(runner.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPost", post.New(r.repositories.regularExpressions, r.stores.forum, postpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ForumPostCreate", create.New(runner.repositories.regularExpressions, runner.stores.forum, postcreatepage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPostCreate", create.New(r.repositories.regularExpressions, r.stores.forum, postcreatepage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ForumPostEdit", edit.New(runner.repositories.regularExpressions, runner.stores.forum, posteditpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPostEdit", edit.New(r.repositories.regularExpressions, r.stores.forum, posteditpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ForumPostDelete", delete.New(runner.stores.forum)); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPostDelete", delete.New(r.stores.forum)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

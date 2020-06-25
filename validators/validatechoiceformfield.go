@@ -7,11 +7,11 @@ import (
 	"github.com/juju/errors"
 )
 
-func (form *Form) validateChoiceFormField(field *formField) error {
+func (f *Form) validateChoiceFormField(field *formField) error {
 	var values []string
 	fieldValuesLength := len(field.Values())
 	if !field.Multiple() && fieldValuesLength > 0 {
-		field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXDoesNotAllowMultipleValues"), field.Name()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXDoesNotAllowMultipleValues"), field.Name()))
 	}
 
 	if field.Multiple() && fieldValuesLength > 0 && field.Value() == "" {
@@ -22,7 +22,7 @@ func (form *Form) validateChoiceFormField(field *formField) error {
 
 	valuesLength := len(values)
 	if !field.Optional() && valuesLength == 0 {
-		field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXCannotBeEmpty"), field.Name()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeEmpty"), field.Name()))
 	}
 	if field.Multiple() && valuesLength == 1 && field.Value() != "" {
 		// Favor filling field.values over multiple with one value filling field.value
@@ -65,7 +65,7 @@ func (form *Form) validateChoiceFormField(field *formField) error {
 					}
 				}
 				if !allowed || disallowed {
-					field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "valueXIsNotAllowedForFieldX"), value, field.Name()))
+					field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "valueXIsNotAllowedForFieldX"), value, field.Name()))
 				}
 			}
 		}
@@ -82,7 +82,7 @@ func (form *Form) validateChoiceFormField(field *formField) error {
 				}
 			}
 			if found < len(field.Values()) {
-				field.AddError(fmt.Sprintf(form.translationsRepository.FormattedPlural(form.language.ID(), "fieldXContainsInvalidChosenValue"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.FormattedPlural(f.language.ID(), "fieldXContainsInvalidChosenValue"), field.Name()))
 			}
 		} else {
 			var valid bool
@@ -93,12 +93,12 @@ func (form *Form) validateChoiceFormField(field *formField) error {
 				}
 			}
 			if !valid {
-				field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXContainsInvalidChosenValue"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXContainsInvalidChosenValue"), field.Name()))
 			}
 		}
 	}
 
-	field.DetermineNoSelectText(form.language.ID())
+	field.DetermineNoSelectText(f.language.ID())
 
 	return nil
 }

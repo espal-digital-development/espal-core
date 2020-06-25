@@ -20,8 +20,8 @@ type DomainsStore struct {
 }
 
 // GetOne fetches by ID.
-func (domainsStore *DomainsStore) GetOne(id string) (*Domain, bool, error) {
-	result, ok, err := domainsStore.fetch(`SELECT * FROM "Domain" WHERE "id" = $1 LIMIT 1`, false, id)
+func (d *DomainsStore) GetOne(id string) (*Domain, bool, error) {
+	result, ok, err := d.fetch(`SELECT * FROM "Domain" WHERE "id" = $1 LIMIT 1`, false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -29,8 +29,8 @@ func (domainsStore *DomainsStore) GetOne(id string) (*Domain, bool, error) {
 }
 
 // All returns all Domains.
-func (domainsStore *DomainsStore) All() ([]*Domain, bool, error) {
-	result, ok, err := domainsStore.fetch(`SELECT * FROM "Domain"`, false)
+func (d *DomainsStore) All() ([]*Domain, bool, error) {
+	result, ok, err := d.fetch(`SELECT * FROM "Domain"`, false)
 	if err != nil {
 		return nil, ok, errors.Trace(err)
 	}
@@ -41,8 +41,8 @@ func (domainsStore *DomainsStore) All() ([]*Domain, bool, error) {
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (domainsStore *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
-	result, ok, err := domainsStore.fetch(`SELECT d.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (d *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
+	result, ok, err := d.fetch(`SELECT d.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "Domain" d
 		LEFT JOIN "User" cu ON cu."id" = d."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = d."updatedByID"
@@ -54,33 +54,33 @@ func (domainsStore *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, boo
 }
 
 // GetOneActiveByHost fetches by Host and must be Active.
-func (domainsStore *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
+func (d *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
 	// TODO :: 77777 :: Move this caching to the general cache notifier
-	if domainsStore.mutex == nil {
-		domainsStore.mutex = &sync.RWMutex{}
+	if d.mutex == nil {
+		d.mutex = &sync.RWMutex{}
 	}
-	domainsStore.mutex.Lock()
-	defer domainsStore.mutex.Unlock()
+	d.mutex.Lock()
+	defer d.mutex.Unlock()
 
-	if domainsStore.domainsNormal == nil {
-		domainsStore.domainsNormal = make(map[string]*Domain)
-	}
-
-	if _, ok := domainsStore.domainsNormal[host]; ok {
-		return domainsStore.domainsNormal[host], true, nil
+	if d.domainsNormal == nil {
+		d.domainsNormal = make(map[string]*Domain)
 	}
 
-	result, ok, err := domainsStore.fetch(`SELECT * FROM "Domain" WHERE "host" = $1 AND "active" = true LIMIT 1`, false, host)
+	if _, ok := d.domainsNormal[host]; ok {
+		return d.domainsNormal[host], true, nil
+	}
+
+	result, ok, err := d.fetch(`SELECT * FROM "Domain" WHERE "host" = $1 AND "active" = true LIMIT 1`, false, host)
 	if len(result) == 1 {
-		domainsStore.domainsNormal[host] = result[0]
+		d.domainsNormal[host] = result[0]
 		return result[0], ok, errors.Trace(err)
 	}
 	return nil, ok, errors.Trace(err)
 }
 
 // Delete deletes the given ID(s).
-func (domainsStore *DomainsStore) Delete(ids []string) error {
-	transaction, err := domainsStore.deletorDatabase.Begin()
+func (d *DomainsStore) Delete(ids []string) error {
+	transaction, err := d.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -94,8 +94,8 @@ func (domainsStore *DomainsStore) Delete(ids []string) error {
 }
 
 // ToggleActive toggles the active state of the given ID(s).
-func (domainsStore *DomainsStore) ToggleActive(ids []string) error {
-	transaction, err := domainsStore.updaterDatabase.Begin()
+func (d *DomainsStore) ToggleActive(ids []string) error {
+	transaction, err := d.updaterDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}

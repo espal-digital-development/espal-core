@@ -21,6 +21,6 @@ type Shop struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (shop *Shop) TableAlias() string {
+func (s *Shop) TableAlias() string {
 	return "sho"
 }

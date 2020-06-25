@@ -20,133 +20,133 @@ type ResellerEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (reseller *Reseller) TableName() string {
+func (r *Reseller) TableName() string {
 	return "Reseller"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (reseller *Reseller) TableAlias() string {
+func (r *Reseller) TableAlias() string {
 	return "re"
 }
 
 // ID returns id.
-func (reseller *Reseller) ID() string {
-	return reseller.id
+func (r *Reseller) ID() string {
+	return r.id
 }
 
 // CreatedByID returns createdByID.
-func (reseller *Reseller) CreatedByID() string {
-	return reseller.createdByID
+func (r *Reseller) CreatedByID() string {
+	return r.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (reseller *Reseller) SetCreatedByID(createdByID string) {
-	reseller.createdByID = createdByID
+func (r *Reseller) SetCreatedByID(createdByID string) {
+	r.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (reseller *Reseller) UpdatedByID() *string {
-	return reseller.updatedByID
+func (r *Reseller) UpdatedByID() *string {
+	return r.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (reseller *Reseller) SetUpdatedByID(updatedByID *string) {
-	reseller.updatedByID = updatedByID
+func (r *Reseller) SetUpdatedByID(updatedByID *string) {
+	r.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (reseller *Reseller) CreatedAt() time.Time {
-	return reseller.createdAt
+func (r *Reseller) CreatedAt() time.Time {
+	return r.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (reseller *Reseller) SetCreatedAt(createdAt time.Time) {
-	reseller.createdAt = createdAt
+func (r *Reseller) SetCreatedAt(createdAt time.Time) {
+	r.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (reseller *Reseller) UpdatedAt() *time.Time {
-	return reseller.updatedAt
+func (r *Reseller) UpdatedAt() *time.Time {
+	return r.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (reseller *Reseller) SetUpdatedAt(updatedAt *time.Time) {
-	reseller.updatedAt = updatedAt
+func (r *Reseller) SetUpdatedAt(updatedAt *time.Time) {
+	r.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (reseller *Reseller) CreatedByFirstName() *string {
-	return reseller.createdByFirstName
+func (r *Reseller) CreatedByFirstName() *string {
+	return r.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (reseller *Reseller) SetCreatedByFirstName(createdByFirstName *string) {
-	reseller.createdByFirstName = createdByFirstName
+func (r *Reseller) SetCreatedByFirstName(createdByFirstName *string) {
+	r.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (reseller *Reseller) CreatedBySurname() *string {
-	return reseller.createdBySurname
+func (r *Reseller) CreatedBySurname() *string {
+	return r.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (reseller *Reseller) SetCreatedBySurname(createdBySurname *string) {
-	reseller.createdBySurname = createdBySurname
+func (r *Reseller) SetCreatedBySurname(createdBySurname *string) {
+	r.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (reseller *Reseller) UpdatedByFirstName() *string {
-	return reseller.updatedByFirstName
+func (r *Reseller) UpdatedByFirstName() *string {
+	return r.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (reseller *Reseller) SetUpdatedByFirstName(updatedByFirstName *string) {
-	reseller.updatedByFirstName = updatedByFirstName
+func (r *Reseller) SetUpdatedByFirstName(updatedByFirstName *string) {
+	r.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (reseller *Reseller) UpdatedBySurname() *string {
-	return reseller.updatedBySurname
+func (r *Reseller) UpdatedBySurname() *string {
+	return r.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (reseller *Reseller) SetUpdatedBySurname(updatedBySurname *string) {
-	reseller.updatedBySurname = updatedBySurname
+func (r *Reseller) SetUpdatedBySurname(updatedBySurname *string) {
+	r.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (reseller *Reseller) IsUpdated() bool {
-	return reseller.updatedByID != nil
+func (r *Reseller) IsUpdated() bool {
+	return r.updatedByID != nil
 }
 
 // Active returns active.
-func (reseller *Reseller) Active() bool {
-	return reseller.active
+func (r *Reseller) Active() bool {
+	return r.active
 }
 
 // SetActive sets the active.
-func (reseller *Reseller) SetActive(active bool) {
-	reseller.active = active
+func (r *Reseller) SetActive(active bool) {
+	r.active = active
 }
 
 // Country returns country.
-func (reseller *Reseller) Country() *uint16 {
-	return reseller.country
+func (r *Reseller) Country() *uint16 {
+	return r.country
 }
 
 // SetCountry sets the country.
-func (reseller *Reseller) SetCountry(country *uint16) {
-	reseller.country = country
+func (r *Reseller) SetCountry(country *uint16) {
+	r.country = country
 }
 
 // Address returns address.
-func (reseller *Reseller) Address() *string {
-	return reseller.address
+func (r *Reseller) Address() *string {
+	return r.address
 }
 
 // SetAddress sets the address.
-func (reseller *Reseller) SetAddress(address *string) {
-	reseller.address = address
+func (r *Reseller) SetAddress(address *string) {
+	r.address = address
 }
 
 func newReseller() *Reseller {

@@ -30,11 +30,11 @@ type field struct {
 }
 
 // UintValue returns the filter field value as uint.
-func (field *field) UintValue() (uint, error) {
-	if field.value == "" {
+func (f *field) UintValue() (uint, error) {
+	if f.value == "" {
 		return 0, nil
 	}
-	ui64, err := strconv.ParseUint(field.value, 10, 64)
+	ui64, err := strconv.ParseUint(f.value, 10, 64)
 	if err != nil {
 		return 0, errors.Trace(err)
 	}

@@ -20,123 +20,123 @@ type PermissionEntity interface {
 }
 
 // ID returns id.
-func (permission *Permission) ID() string {
-	return permission.id
+func (p *Permission) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (permission *Permission) CreatedByID() string {
-	return permission.createdByID
+func (p *Permission) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (permission *Permission) SetCreatedByID(createdByID string) {
-	permission.createdByID = createdByID
+func (p *Permission) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (permission *Permission) UpdatedByID() *string {
-	return permission.updatedByID
+func (p *Permission) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (permission *Permission) SetUpdatedByID(updatedByID *string) {
-	permission.updatedByID = updatedByID
+func (p *Permission) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (permission *Permission) CreatedAt() time.Time {
-	return permission.createdAt
+func (p *Permission) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (permission *Permission) SetCreatedAt(createdAt time.Time) {
-	permission.createdAt = createdAt
+func (p *Permission) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (permission *Permission) UpdatedAt() *time.Time {
-	return permission.updatedAt
+func (p *Permission) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (permission *Permission) SetUpdatedAt(updatedAt *time.Time) {
-	permission.updatedAt = updatedAt
+func (p *Permission) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (permission *Permission) CreatedByFirstName() *string {
-	return permission.createdByFirstName
+func (p *Permission) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (permission *Permission) SetCreatedByFirstName(createdByFirstName *string) {
-	permission.createdByFirstName = createdByFirstName
+func (p *Permission) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (permission *Permission) CreatedBySurname() *string {
-	return permission.createdBySurname
+func (p *Permission) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (permission *Permission) SetCreatedBySurname(createdBySurname *string) {
-	permission.createdBySurname = createdBySurname
+func (p *Permission) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (permission *Permission) UpdatedByFirstName() *string {
-	return permission.updatedByFirstName
+func (p *Permission) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (permission *Permission) SetUpdatedByFirstName(updatedByFirstName *string) {
-	permission.updatedByFirstName = updatedByFirstName
+func (p *Permission) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (permission *Permission) UpdatedBySurname() *string {
-	return permission.updatedBySurname
+func (p *Permission) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (permission *Permission) SetUpdatedBySurname(updatedBySurname *string) {
-	permission.updatedBySurname = updatedBySurname
+func (p *Permission) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (permission *Permission) IsUpdated() bool {
-	return permission.updatedByID != nil
+func (p *Permission) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // ForumID returns forumID.
-func (permission *Permission) ForumID() *string {
-	return permission.forumID
+func (p *Permission) ForumID() *string {
+	return p.forumID
 }
 
 // SetForumID sets the forumID.
-func (permission *Permission) SetForumID(forumID *string) {
-	permission.forumID = forumID
+func (p *Permission) SetForumID(forumID *string) {
+	p.forumID = forumID
 }
 
 // UserID returns userID.
-func (permission *Permission) UserID() *string {
-	return permission.userID
+func (p *Permission) UserID() *string {
+	return p.userID
 }
 
 // SetUserID sets the userID.
-func (permission *Permission) SetUserID(userID *string) {
-	permission.userID = userID
+func (p *Permission) SetUserID(userID *string) {
+	p.userID = userID
 }
 
 // Permission returns permission.
-func (permission *Permission) Permission() uint8 {
-	return permission.permission
+func (p *Permission) Permission() uint8 {
+	return p.permission
 }
 
 // SetPermission sets the permission.
-func (permissionEntity *Permission) SetPermission(permission uint8) {
-	permissionEntity.permission = permission
+func (p *Permission) SetPermission(permission uint8) {
+	p.permission = permission
 }
 
 func newPermission() *Permission {

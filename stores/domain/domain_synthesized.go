@@ -29,163 +29,163 @@ type DomainEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (domain *Domain) TableName() string {
+func (d *Domain) TableName() string {
 	return "Domain"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (domain *Domain) TableAlias() string {
+func (d *Domain) TableAlias() string {
 	return "de"
 }
 
 // ID returns id.
-func (domain *Domain) ID() string {
-	return domain.id
+func (d *Domain) ID() string {
+	return d.id
 }
 
 // CreatedByID returns createdByID.
-func (domain *Domain) CreatedByID() string {
-	return domain.createdByID
+func (d *Domain) CreatedByID() string {
+	return d.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (domain *Domain) SetCreatedByID(createdByID string) {
-	domain.createdByID = createdByID
+func (d *Domain) SetCreatedByID(createdByID string) {
+	d.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (domain *Domain) UpdatedByID() *string {
-	return domain.updatedByID
+func (d *Domain) UpdatedByID() *string {
+	return d.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (domain *Domain) SetUpdatedByID(updatedByID *string) {
-	domain.updatedByID = updatedByID
+func (d *Domain) SetUpdatedByID(updatedByID *string) {
+	d.updatedByID = updatedByID
 }
 
 // SiteID returns siteID.
-func (domain *Domain) SiteID() string {
-	return domain.siteID
+func (d *Domain) SiteID() string {
+	return d.siteID
 }
 
 // SetSiteID sets the siteID.
-func (domain *Domain) SetSiteID(siteID string) {
-	domain.siteID = siteID
+func (d *Domain) SetSiteID(siteID string) {
+	d.siteID = siteID
 }
 
 // CreatedAt returns createdAt.
-func (domain *Domain) CreatedAt() time.Time {
-	return domain.createdAt
+func (d *Domain) CreatedAt() time.Time {
+	return d.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (domain *Domain) SetCreatedAt(createdAt time.Time) {
-	domain.createdAt = createdAt
+func (d *Domain) SetCreatedAt(createdAt time.Time) {
+	d.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (domain *Domain) UpdatedAt() *time.Time {
-	return domain.updatedAt
+func (d *Domain) UpdatedAt() *time.Time {
+	return d.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (domain *Domain) SetUpdatedAt(updatedAt *time.Time) {
-	domain.updatedAt = updatedAt
+func (d *Domain) SetUpdatedAt(updatedAt *time.Time) {
+	d.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (domain *Domain) CreatedByFirstName() *string {
-	return domain.createdByFirstName
+func (d *Domain) CreatedByFirstName() *string {
+	return d.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (domain *Domain) SetCreatedByFirstName(createdByFirstName *string) {
-	domain.createdByFirstName = createdByFirstName
+func (d *Domain) SetCreatedByFirstName(createdByFirstName *string) {
+	d.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (domain *Domain) CreatedBySurname() *string {
-	return domain.createdBySurname
+func (d *Domain) CreatedBySurname() *string {
+	return d.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (domain *Domain) SetCreatedBySurname(createdBySurname *string) {
-	domain.createdBySurname = createdBySurname
+func (d *Domain) SetCreatedBySurname(createdBySurname *string) {
+	d.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (domain *Domain) UpdatedByFirstName() *string {
-	return domain.updatedByFirstName
+func (d *Domain) UpdatedByFirstName() *string {
+	return d.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (domain *Domain) SetUpdatedByFirstName(updatedByFirstName *string) {
-	domain.updatedByFirstName = updatedByFirstName
+func (d *Domain) SetUpdatedByFirstName(updatedByFirstName *string) {
+	d.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (domain *Domain) UpdatedBySurname() *string {
-	return domain.updatedBySurname
+func (d *Domain) UpdatedBySurname() *string {
+	return d.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (domain *Domain) SetUpdatedBySurname(updatedBySurname *string) {
-	domain.updatedBySurname = updatedBySurname
+func (d *Domain) SetUpdatedBySurname(updatedBySurname *string) {
+	d.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (domain *Domain) IsUpdated() bool {
-	return domain.updatedByID != nil
+func (d *Domain) IsUpdated() bool {
+	return d.updatedByID != nil
 }
 
 // Active returns active.
-func (domain *Domain) Active() bool {
-	return domain.active
+func (d *Domain) Active() bool {
+	return d.active
 }
 
 // SetActive sets the active.
-func (domain *Domain) SetActive(active bool) {
-	domain.active = active
+func (d *Domain) SetActive(active bool) {
+	d.active = active
 }
 
 // Host returns host.
-func (domain *Domain) Host() string {
-	return domain.host
+func (d *Domain) Host() string {
+	return d.host
 }
 
 // SetHost sets the host.
-func (domain *Domain) SetHost(host string) {
-	domain.host = host
+func (d *Domain) SetHost(host string) {
+	d.host = host
 }
 
 // Language returns language.
-func (domain *Domain) Language() *uint16 {
-	return domain.language
+func (d *Domain) Language() *uint16 {
+	return d.language
 }
 
 // SetLanguage sets the language.
-func (domain *Domain) SetLanguage(language *uint16) {
-	domain.language = language
+func (d *Domain) SetLanguage(language *uint16) {
+	d.language = language
 }
 
 // Currencies returns currencies.
-func (domain *Domain) Currencies() string {
-	return domain.currencies
+func (d *Domain) Currencies() string {
+	return d.currencies
 }
 
 // SetCurrencies sets the currencies.
-func (domain *Domain) SetCurrencies(currencies string) {
-	domain.currencies = currencies
+func (d *Domain) SetCurrencies(currencies string) {
+	d.currencies = currencies
 }
 
 // LocalizedName returns localizedName.
-func (domain *Domain) LocalizedName() *string {
-	return domain.localizedName
+func (d *Domain) LocalizedName() *string {
+	return d.localizedName
 }
 
 // SetLocalizedName sets the localizedName.
-func (domain *Domain) SetLocalizedName(localizedName *string) {
-	domain.localizedName = localizedName
+func (d *Domain) SetLocalizedName(localizedName *string) {
+	d.localizedName = localizedName
 }
 
 func newDomain() *Domain {

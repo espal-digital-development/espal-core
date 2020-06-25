@@ -32,13 +32,13 @@ func TestNew(t *testing.T) {
 
 func TestRenderOverviewActions(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	out := pageActions.RenderOverviewActions()
+	a := pageactions.New(context, "User", true)
+	out := a.RenderOverviewActions()
 	if out != "" {
 		t.Fatal("Output should be empty when no actions are present")
 	}
-	pageActions.AddDelete()
-	out = pageActions.RenderOverviewActions()
+	a.AddDelete()
+	out = a.RenderOverviewActions()
 	if out == "" {
 		t.Fatal("Output shouldn't be empty when actions are present")
 	}
@@ -46,20 +46,20 @@ func TestRenderOverviewActions(t *testing.T) {
 
 func TestIsFilled(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	if pageActions.IsFilled() {
+	a := pageactions.New(context, "User", true)
+	if a.IsFilled() {
 		t.Fatal("There shouldn't be any filling yet")
 	}
-	pageActions.AddCreate()
-	if !pageActions.IsFilled() {
+	a.AddCreate()
+	if !a.IsFilled() {
 		t.Fatal("There should be filling by now")
 	}
 }
 
 func TestAddCreate(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddCreate()
+	a := pageactions.New(context, "User", true)
+	a.AddCreate()
 }
 
 func TestAddCreateWithPath(t *testing.T) {
@@ -71,8 +71,8 @@ func TestAddCreateWithPath(t *testing.T) {
 		}
 		return ""
 	}
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddCreateWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddCreateWithPath("stubPath")
 	if !seenTranslation {
 		t.Fatal("Expected subject to be translated")
 	}
@@ -87,26 +87,26 @@ func TestAddCreateWithPathNoRights(t *testing.T) {
 		t.Fatal("Shouldn't have being able to reach anywere further than having no rights for it")
 		return ""
 	}
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddCreateWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddCreateWithPath("stubPath")
 }
 
 func TestAddCreateWithFieldAndPathEmptyFieldEmptyPath(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddCreateWithFieldAndPath("", "")
+	a := pageactions.New(context, "User", true)
+	a.AddCreateWithFieldAndPath("", "")
 }
 
 func TestAddToggle(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddToggle()
+	a := pageactions.New(context, "User", true)
+	a.AddToggle()
 }
 
 func TestAddToggleWithField(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddToggleWithField("stubField")
+	a := pageactions.New(context, "User", true)
+	a.AddToggleWithField("stubField")
 }
 
 func TestAddToggleWithPathNoRights(t *testing.T) {
@@ -118,26 +118,26 @@ func TestAddToggleWithPathNoRights(t *testing.T) {
 		t.Fatal("Shouldn't have being able to reach anywere further than having no rights for it")
 		return ""
 	}
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddToggleWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddToggleWithPath("stubPath")
 }
 
 func TestAddToggleWithFieldAndPathEmptyFieldEmptyPath(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddToggleWithFieldAndPath("", "")
+	a := pageactions.New(context, "User", true)
+	a.AddToggleWithFieldAndPath("", "")
 }
 
 func TestAddDelete(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddDelete()
+	a := pageactions.New(context, "User", true)
+	a.AddDelete()
 }
 
 func TestAddDeleteWithPath(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddDeleteWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddDeleteWithPath("stubPath")
 }
 
 func TestAddDeleteWithPathNoRights(t *testing.T) {
@@ -149,32 +149,32 @@ func TestAddDeleteWithPathNoRights(t *testing.T) {
 		t.Fatal("Shouldn't have being able to reach anywere further than having no rights for it")
 		return ""
 	}
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddDeleteWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddDeleteWithPath("stubPath")
 }
 
 func TestAddDeleteWithPathEmptyPath(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddDeleteWithPath("")
+	a := pageactions.New(context, "User", true)
+	a.AddDeleteWithPath("")
 }
 
 func TestAddUpdate(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddUpdate()
+	a := pageactions.New(context, "User", true)
+	a.AddUpdate()
 }
 
 func TestAddUpdateWithField(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddUpdateWithField("stubField")
+	a := pageactions.New(context, "User", true)
+	a.AddUpdateWithField("stubField")
 }
 
 func TestAddUpdateWithPath(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddUpdateWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddUpdateWithPath("stubPath")
 }
 
 func TestAddUpdateWithPathNoRights(t *testing.T) {
@@ -186,12 +186,12 @@ func TestAddUpdateWithPathNoRights(t *testing.T) {
 		t.Fatal("Shouldn't have being able to reach anywere further than having no rights for it")
 		return ""
 	}
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddUpdateWithPath("stubPath")
+	a := pageactions.New(context, "User", true)
+	a.AddUpdateWithPath("stubPath")
 }
 
 func TestAddUpdateWithFieldAndPathEmptyFieldEmptyPath(t *testing.T) {
 	initMocks()
-	pageActions := pageactions.New(context, "User", true)
-	pageActions.AddUpdateWithFieldAndPath("", "")
+	a := pageactions.New(context, "User", true)
+	a.AddUpdateWithFieldAndPath("", "")
 }

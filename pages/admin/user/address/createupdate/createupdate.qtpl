@@ -1,37 +1,37 @@
 {% import "fmt" %}
 
-{% func (page *Page) Title() %}{%s page.displayTitle %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.displayTitle %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
-    <h1>{%s page.displayTitle %}</h1>
-    {%s= page.form.Errors() %}
-    {%s= page.rendererService.CreatedUpdatedByLinks(page.GetCoreContext(), page.language.ID(), page.userAddress) %}
-    {%s= page.form.Open() %}
-        {%s= page.form.Field("_uname") %}
-        {%s= page.form.Field("_t") %}
-        {%s= page.form.Field("active") %}<br>
-        {%s= page.form.Field("firstName") %}<br>
-        {%s= page.form.Field("surname") %}<br>
-        {%s= page.form.Field("street") %}<br>
-        {%s= page.form.Field("streetLine2") %}<br>
-        {%s= page.form.Field("number") %}<br>
-        {%s= page.form.Field("numberAddition") %}<br>
-        {%s= page.form.Field("zipCode") %}<br>
-        {%s= page.form.Field("city") %}<br>
-        {%s= page.form.Field("country") %}<br>
-        {%s= page.form.Field("phoneNumber") %}<br>
-        {%s= page.form.Field("email") %}<br>
-        {%s= page.form.CreateUpdateActions("action", fmt.Sprintf("User/View?id=%s", page.user.ID())) %}
+    <h1>{%s p.displayTitle %}</h1>
+    {%s= p.form.Errors() %}
+    {%s= p.rendererService.CreatedUpdatedByLinks(p.GetCoreContext(), p.language.ID(), p.userAddress) %}
+    {%s= p.form.Open() %}
+        {%s= p.form.Field("_uname") %}
+        {%s= p.form.Field("_t") %}
+        {%s= p.form.Field("active") %}<br>
+        {%s= p.form.Field("firstName") %}<br>
+        {%s= p.form.Field("surname") %}<br>
+        {%s= p.form.Field("street") %}<br>
+        {%s= p.form.Field("streetLine2") %}<br>
+        {%s= p.form.Field("number") %}<br>
+        {%s= p.form.Field("numberAddition") %}<br>
+        {%s= p.form.Field("zipCode") %}<br>
+        {%s= p.form.Field("city") %}<br>
+        {%s= p.form.Field("country") %}<br>
+        {%s= p.form.Field("phoneNumber") %}<br>
+        {%s= p.form.Field("email") %}<br>
+        {%s= p.form.CreateUpdateActions("action", fmt.Sprintf("User/View?id=%s", p.user.ID())) %}
     </form>
 </main>
 {% endstripspace %}{% endfunc%}
 
-{% func (page *Page) Stylesheets() %}{% stripspace %}
+{% func (p *Page) Stylesheets() %}{% stripspace %}
 <link rel="stylesheet" href="/c/a/selectSearch.css"></link>
 {% endstripspace %}{% endfunc%}
 
-{% func (page *Page) Javascripts() %}{% stripspace %}
+{% func (p *Page) Javascripts() %}{% stripspace %}
 <script src="/j/a/cu.js"></script>
 <script src="/j/a/selectSearch.js"></script>
 {% endstripspace %}{% endfunc%}

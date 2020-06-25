@@ -13,8 +13,8 @@ var _ Store = &NewsArticlesStore{}
 type Store interface {
 }
 
-func (newsArticlesStore *NewsArticlesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*NewsArticle, ok bool, err error) {
-	rows, err := newsArticlesStore.selecterDatabase.Query(query, params...)
+func (n *NewsArticlesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*NewsArticle, ok bool, err error) {
+	rows, err := n.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (newsArticlesStore *NewsArticlesStore) fetch(query string, withCreators boo
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		newsArticle := newNewsArticle()
-		fields := []interface{}{&newsArticle.id, &newsArticle.createdByID, &newsArticle.updatedByID, &newsArticle.createdAt, &newsArticle.updatedAt, &newsArticle.active, &newsArticle.sorting, &newsArticle.sectionID, &newsArticle.approvedByID, &newsArticle.approvedDate, &newsArticle.publishDate, &newsArticle.expirationDate, &newsArticle.comments}
+		n := newNewsArticle()
+		fields := []interface{}{&n.id, &n.createdByID, &n.updatedByID, &n.createdAt, &n.updatedAt, &n.active, &n.sorting, &n.sectionID, &n.approvedByID, &n.approvedDate, &n.publishDate, &n.expirationDate, &n.comments}
 		if withCreators {
-			fields = append(fields, &newsArticle.createdByFirstName, &newsArticle.createdBySurname, &newsArticle.updatedByFirstName, &newsArticle.updatedBySurname)
+			fields = append(fields, &n.createdByFirstName, &n.createdBySurname, &n.updatedByFirstName, &n.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, newsArticle)
+		result = append(result, n)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (newsArticlesStore *NewsArticlesStore) fetch(query string, withCreators boo
 
 // New returns a new instance of NewsArticlesStore.
 func New(selecterDatabase database.Database) (*NewsArticlesStore, error) {
-	newsArticlesStore := &NewsArticlesStore{
+	n := &NewsArticlesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return newsArticlesStore, nil
+	return n, nil
 }

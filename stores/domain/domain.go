@@ -36,19 +36,19 @@ type Domain struct {
 
 // CurrenciesCount returns the amount of currencies that are
 // defined in the string field.
-func (domain *Domain) CurrenciesCount() uint {
-	if domain.currencies != "" {
-		return uint(strings.Count(domain.currencies, ",") + 1)
+func (d *Domain) CurrenciesCount() uint {
+	if d.currencies != "" {
+		return uint(strings.Count(d.currencies, ",") + 1)
 	}
 	return 0
 }
 
 // HostWithProtocol returns Host with https:// prefixed.
-func (domain *Domain) HostWithProtocol() string {
-	return "https://" + domain.host
+func (d *Domain) HostWithProtocol() string {
+	return "https://" + d.host
 }
 
 // HostWithProtocolAndWWW returns Host with https://www. prefixed.
-func (domain *Domain) HostWithProtocolAndWWW() string {
-	return "https://www." + domain.host
+func (d *Domain) HostWithProtocolAndWWW() string {
+	return "https://www." + d.host
 }

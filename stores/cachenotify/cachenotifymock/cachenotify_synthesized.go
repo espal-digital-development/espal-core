@@ -36,15 +36,15 @@ var (
 	lockCacheNotifyEntityMockUpdatedBySurname      sync.RWMutex
 )
 
-// Ensure, that CacheNotifyEntityMock does implement CacheNotifyEntity.
+// Ensure, that CacheNotifyEntityMock does implement cachenotify.CacheNotifyEntity.
 // If this is not the case, regenerate this file with moq.
 var _ cachenotify.CacheNotifyEntity = &CacheNotifyEntityMock{}
 
-// CacheNotifyEntityMock is a mock implementation of CacheNotifyEntity.
+// CacheNotifyEntityMock is a mock implementation of cachenotify.CacheNotifyEntity.
 //
 //     func TestSomethingThatUsesCacheNotifyEntity(t *testing.T) {
 //
-//         // make and configure a mocked CacheNotifyEntity
+//         // make and configure a mocked cachenotify.CacheNotifyEntity
 //         mockedCacheNotifyEntity := &CacheNotifyEntityMock{
 //             CreatedAtFunc: func() time.Time {
 // 	               panic("mock out the CreatedAt method")
@@ -120,7 +120,7 @@ var _ cachenotify.CacheNotifyEntity = &CacheNotifyEntityMock{}
 //             },
 //         }
 //
-//         // use mockedCacheNotifyEntity in code that requires CacheNotifyEntity
+//         // use mockedCacheNotifyEntity in code that requires cachenotify.CacheNotifyEntity
 //         // and then make assertions.
 //
 //     }

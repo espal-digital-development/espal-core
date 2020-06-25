@@ -23,11 +23,11 @@ type ModelProperty struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (modelProperty *ModelProperty) TableName() string {
+func (m *ModelProperty) TableName() string {
 	return "ProductModelProperty"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (modelProperty *ModelProperty) TableAlias() string {
+func (m *ModelProperty) TableAlias() string {
 	return "promp"
 }

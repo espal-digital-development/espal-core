@@ -42,6 +42,6 @@ type Shipment struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (shipment *Shipment) TableAlias() string {
+func (s *Shipment) TableAlias() string {
 	return "sh"
 }

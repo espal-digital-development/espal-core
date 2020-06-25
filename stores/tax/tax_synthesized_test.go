@@ -9,124 +9,124 @@ import (
 )
 
 func TestTaxTable(t *testing.T) {
-	tax := tax.NewTaxEntity()
-	if tax.TableName() == "" {
+	tt := tax.NewTaxEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestTaxTableAlias(t *testing.T) {
-	tax := tax.NewTaxEntity()
-	if tax.TableName() == "" {
+	tt := tax.NewTaxEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestTaxIsUpdated(t *testing.T) {
-	tax := tax.NewTaxEntity()
-	tax.IsUpdated()
+	tt := tax.NewTaxEntity()
+	tt.IsUpdated()
 }
 
 func TestTaxID(t *testing.T) {
-	tax := tax.NewTaxEntity()
-	tax.ID()
+	tt := tax.NewTaxEntity()
+	tt.ID()
 }
 
 func TestTaxCreatedByID(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetCreatedByID(testValue)
-	if testValue != tax.CreatedByID() {
+	tt.SetCreatedByID(testValue)
+	if testValue != tt.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxUpdatedByID(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetUpdatedByID(&testValue)
-	if &testValue != tax.UpdatedByID() {
+	tt.SetUpdatedByID(&testValue)
+	if &testValue != tt.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxCreatedAt(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := time.Now()
-	tax.SetCreatedAt(testValue)
-	if testValue != tax.CreatedAt() {
+	tt.SetCreatedAt(testValue)
+	if testValue != tt.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxUpdatedAt(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := time.Now()
-	tax.SetUpdatedAt(&testValue)
-	if &testValue != tax.UpdatedAt() {
+	tt.SetUpdatedAt(&testValue)
+	if &testValue != tt.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxCreatedByFirstName(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetCreatedByFirstName(&testValue)
-	if &testValue != tax.CreatedByFirstName() {
+	tt.SetCreatedByFirstName(&testValue)
+	if &testValue != tt.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxCreatedBySurname(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetCreatedBySurname(&testValue)
-	if &testValue != tax.CreatedBySurname() {
+	tt.SetCreatedBySurname(&testValue)
+	if &testValue != tt.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxUpdatedByFirstName(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetUpdatedByFirstName(&testValue)
-	if &testValue != tax.UpdatedByFirstName() {
+	tt.SetUpdatedByFirstName(&testValue)
+	if &testValue != tt.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxUpdatedBySurname(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetUpdatedBySurname(&testValue)
-	if &testValue != tax.UpdatedBySurname() {
+	tt.SetUpdatedBySurname(&testValue)
+	if &testValue != tt.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxTaxGroupID(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := "testValue"
-	tax.SetTaxGroupID(testValue)
-	if testValue != tax.TaxGroupID() {
+	tt.SetTaxGroupID(testValue)
+	if testValue != tt.TaxGroupID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxCountry(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := uint16(65000)
-	tax.SetCountry(testValue)
-	if testValue != tax.Country() {
+	tt.SetCountry(testValue)
+	if testValue != tt.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaxRate(t *testing.T) {
-	tax := tax.NewTaxEntity()
+	tt := tax.NewTaxEntity()
 	testValue := float32(3.14)
-	tax.SetRate(testValue)
-	if testValue != tax.Rate() {
+	tt.SetRate(testValue)
+	if testValue != tt.Rate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

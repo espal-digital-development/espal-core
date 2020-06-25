@@ -9,115 +9,115 @@ import (
 )
 
 func TestEmailTemplateTable(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
-	if emailTemplate.TableName() == "" {
+	e := emailtemplate.NewEmailTemplateEntity()
+	if e.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestEmailTemplateTableAlias(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
-	if emailTemplate.TableName() == "" {
+	e := emailtemplate.NewEmailTemplateEntity()
+	if e.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestEmailTemplateIsUpdated(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
-	emailTemplate.IsUpdated()
+	e := emailtemplate.NewEmailTemplateEntity()
+	e.IsUpdated()
 }
 
 func TestEmailTemplateID(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
-	emailTemplate.ID()
+	e := emailtemplate.NewEmailTemplateEntity()
+	e.ID()
 }
 
 func TestEmailTemplateCreatedByID(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetCreatedByID(testValue)
-	if testValue != emailTemplate.CreatedByID() {
+	e.SetCreatedByID(testValue)
+	if testValue != e.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateUpdatedByID(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetUpdatedByID(&testValue)
-	if &testValue != emailTemplate.UpdatedByID() {
+	e.SetUpdatedByID(&testValue)
+	if &testValue != e.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateCreatedAt(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := time.Now()
-	emailTemplate.SetCreatedAt(testValue)
-	if testValue != emailTemplate.CreatedAt() {
+	e.SetCreatedAt(testValue)
+	if testValue != e.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateUpdatedAt(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := time.Now()
-	emailTemplate.SetUpdatedAt(&testValue)
-	if &testValue != emailTemplate.UpdatedAt() {
+	e.SetUpdatedAt(&testValue)
+	if &testValue != e.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateCreatedByFirstName(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetCreatedByFirstName(&testValue)
-	if &testValue != emailTemplate.CreatedByFirstName() {
+	e.SetCreatedByFirstName(&testValue)
+	if &testValue != e.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateCreatedBySurname(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetCreatedBySurname(&testValue)
-	if &testValue != emailTemplate.CreatedBySurname() {
+	e.SetCreatedBySurname(&testValue)
+	if &testValue != e.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateUpdatedByFirstName(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetUpdatedByFirstName(&testValue)
-	if &testValue != emailTemplate.UpdatedByFirstName() {
+	e.SetUpdatedByFirstName(&testValue)
+	if &testValue != e.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateUpdatedBySurname(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetUpdatedBySurname(&testValue)
-	if &testValue != emailTemplate.UpdatedBySurname() {
+	e.SetUpdatedBySurname(&testValue)
+	if &testValue != e.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateDomainID(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := "testValue"
-	emailTemplate.SetDomainID(testValue)
-	if testValue != emailTemplate.DomainID() {
+	e.SetDomainID(testValue)
+	if testValue != e.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestEmailTemplateActive(t *testing.T) {
-	emailTemplate := emailtemplate.NewEmailTemplateEntity()
+	e := emailtemplate.NewEmailTemplateEntity()
 	testValue := true
-	emailTemplate.SetActive(testValue)
-	if testValue != emailTemplate.Active() {
+	e.SetActive(testValue)
+	if testValue != e.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

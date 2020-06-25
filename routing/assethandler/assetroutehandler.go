@@ -36,30 +36,30 @@ type AssetHandler struct {
 }
 
 // RegisterAll registers all assets as a route equivalent.
-func (assetHandler *AssetHandler) RegisterAll() error {
-	assetHandler.minifier.AddFunc("text/css", css.Minify)
-	assetHandler.minifier.AddFunc("application/javascript", js.Minify)
+func (h *AssetHandler) RegisterAll() error {
+	h.minifier.AddFunc("text/css", css.Minify)
+	h.minifier.AddFunc("application/javascript", js.Minify)
 
 	// TODO :: 7 Images that get saved in Forms could be optimized and then compressed to gzip/brotli besides the original file and instantly served by keeping a buffer in cache of which files have gzip/brotli variations on disk
 	// TODO :: 7 Max-Age header for files too. A bit more complex tho
 
-	if err := assetHandler.registerStylesheetsRoutes(); err != nil {
+	if err := h.registerStylesheetsRoutes(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := assetHandler.registerJavaScriptsRoutes(); err != nil {
+	if err := h.registerJavaScriptsRoutes(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := assetHandler.registerImagesRoutes(); err != nil {
+	if err := h.registerImagesRoutes(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := assetHandler.registerFilesRoutes(); err != nil {
+	if err := h.registerFilesRoutes(); err != nil {
 		return errors.Trace(err)
 	}
 
 	return nil
 }
 
-func (assetHandler *AssetHandler) convertToGzip(bts []byte) ([]byte, error) {
+func (h *AssetHandler) convertToGzip(bts []byte) ([]byte, error) {
 	var b bytes.Buffer
 	w, err := gzip.NewWriterLevel(&b, gzip.BestCompression)
 	if err != nil {

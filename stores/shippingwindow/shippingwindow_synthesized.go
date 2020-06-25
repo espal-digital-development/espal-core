@@ -20,128 +20,128 @@ type ShippingWindowEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (shippingWindow *ShippingWindow) TableName() string {
+func (s *ShippingWindow) TableName() string {
 	return "ShippingWindow"
 }
 
 // ID returns id.
-func (shippingWindow *ShippingWindow) ID() string {
-	return shippingWindow.id
+func (s *ShippingWindow) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (shippingWindow *ShippingWindow) CreatedByID() string {
-	return shippingWindow.createdByID
+func (s *ShippingWindow) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (shippingWindow *ShippingWindow) SetCreatedByID(createdByID string) {
-	shippingWindow.createdByID = createdByID
+func (s *ShippingWindow) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (shippingWindow *ShippingWindow) UpdatedByID() *string {
-	return shippingWindow.updatedByID
+func (s *ShippingWindow) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (shippingWindow *ShippingWindow) SetUpdatedByID(updatedByID *string) {
-	shippingWindow.updatedByID = updatedByID
+func (s *ShippingWindow) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (shippingWindow *ShippingWindow) CreatedAt() time.Time {
-	return shippingWindow.createdAt
+func (s *ShippingWindow) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (shippingWindow *ShippingWindow) SetCreatedAt(createdAt time.Time) {
-	shippingWindow.createdAt = createdAt
+func (s *ShippingWindow) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (shippingWindow *ShippingWindow) UpdatedAt() *time.Time {
-	return shippingWindow.updatedAt
+func (s *ShippingWindow) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (shippingWindow *ShippingWindow) SetUpdatedAt(updatedAt *time.Time) {
-	shippingWindow.updatedAt = updatedAt
+func (s *ShippingWindow) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (shippingWindow *ShippingWindow) CreatedByFirstName() *string {
-	return shippingWindow.createdByFirstName
+func (s *ShippingWindow) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (shippingWindow *ShippingWindow) SetCreatedByFirstName(createdByFirstName *string) {
-	shippingWindow.createdByFirstName = createdByFirstName
+func (s *ShippingWindow) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (shippingWindow *ShippingWindow) CreatedBySurname() *string {
-	return shippingWindow.createdBySurname
+func (s *ShippingWindow) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (shippingWindow *ShippingWindow) SetCreatedBySurname(createdBySurname *string) {
-	shippingWindow.createdBySurname = createdBySurname
+func (s *ShippingWindow) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (shippingWindow *ShippingWindow) UpdatedByFirstName() *string {
-	return shippingWindow.updatedByFirstName
+func (s *ShippingWindow) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (shippingWindow *ShippingWindow) SetUpdatedByFirstName(updatedByFirstName *string) {
-	shippingWindow.updatedByFirstName = updatedByFirstName
+func (s *ShippingWindow) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (shippingWindow *ShippingWindow) UpdatedBySurname() *string {
-	return shippingWindow.updatedBySurname
+func (s *ShippingWindow) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (shippingWindow *ShippingWindow) SetUpdatedBySurname(updatedBySurname *string) {
-	shippingWindow.updatedBySurname = updatedBySurname
+func (s *ShippingWindow) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (shippingWindow *ShippingWindow) IsUpdated() bool {
-	return shippingWindow.updatedByID != nil
+func (s *ShippingWindow) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // UserGroupID returns userGroupID.
-func (shippingWindow *ShippingWindow) UserGroupID() *string {
-	return shippingWindow.userGroupID
+func (s *ShippingWindow) UserGroupID() *string {
+	return s.userGroupID
 }
 
 // SetUserGroupID sets the userGroupID.
-func (shippingWindow *ShippingWindow) SetUserGroupID(userGroupID *string) {
-	shippingWindow.userGroupID = userGroupID
+func (s *ShippingWindow) SetUserGroupID(userGroupID *string) {
+	s.userGroupID = userGroupID
 }
 
 // StartDate returns startDate.
-func (shippingWindow *ShippingWindow) StartDate() *time.Time {
-	return shippingWindow.startDate
+func (s *ShippingWindow) StartDate() *time.Time {
+	return s.startDate
 }
 
 // SetStartDate sets the startDate.
-func (shippingWindow *ShippingWindow) SetStartDate(startDate *time.Time) {
-	shippingWindow.startDate = startDate
+func (s *ShippingWindow) SetStartDate(startDate *time.Time) {
+	s.startDate = startDate
 }
 
 // EndDate returns endDate.
-func (shippingWindow *ShippingWindow) EndDate() *time.Time {
-	return shippingWindow.endDate
+func (s *ShippingWindow) EndDate() *time.Time {
+	return s.endDate
 }
 
 // SetEndDate sets the endDate.
-func (shippingWindow *ShippingWindow) SetEndDate(endDate *time.Time) {
-	shippingWindow.endDate = endDate
+func (s *ShippingWindow) SetEndDate(endDate *time.Time) {
+	s.endDate = endDate
 }
 
 func newShippingWindow() *ShippingWindow {

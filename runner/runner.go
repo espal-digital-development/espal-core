@@ -29,32 +29,32 @@ type Runner struct {
 }
 
 // Run executes all tasks that are needed to startup the application.
-func (runner *Runner) Run(path string) error {
-	if err := runner.core(path); err != nil {
+func (r *Runner) Run(path string) error {
+	if err := r.core(path); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.database(); err != nil {
+	if err := r.database(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.dataStores(); err != nil {
+	if err := r.dataStores(); err != nil {
 		return errors.Trace(err)
 	}
 
 	// TODO :: 777 Make interval a config value
-	runner.services.cacheSynchronizer = cachesynchronizer.New(runner.services.logger, runner.stores.cacheNotify, time.Minute)
+	r.services.cacheSynchronizer = cachesynchronizer.New(r.services.logger, r.stores.cacheNotify, time.Minute)
 
-	runner.services.sessions = sessions.New(runner.services.config, runner.stores.session)
+	r.services.sessions = sessions.New(r.services.config, r.stores.session)
 
-	runner.router()
-	runner.forms()
-	if err := runner.routes(); err != nil {
+	r.router()
+	r.forms()
+	if err := r.routes(); err != nil {
 		return errors.Trace(err)
 	}
 
-	runner.serverStartTime = time.Now()
-	runner.startRedirectNonTLSServer()
-	runner.startTLSServer()
-	runner.listenToSystemSignals()
+	r.serverStartTime = time.Now()
+	r.startRedirectNonTLSServer()
+	r.startTLSServer()
+	r.listenToSystemSignals()
 
 	return nil
 }

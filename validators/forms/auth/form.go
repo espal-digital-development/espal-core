@@ -40,20 +40,20 @@ type Auth struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (auth *Auth) Submit(routeCtx routeCtx) (isSubmitted bool, isValid bool, err error) {
-	if auth.isClosed {
+func (a *Auth) Submit(routeCtx routeCtx) (isSubmitted bool, isValid bool, err error) {
+	if a.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = auth.validator.HandleFromRequest(routeCtx); err != nil {
+	if err = a.validator.HandleFromRequest(routeCtx); err != nil {
 		return
 	}
-	isSubmitted = auth.validator.IsSubmitted()
+	isSubmitted = a.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = auth.validator.IsValid()
+		isValid, err = a.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -61,68 +61,68 @@ func (auth *Auth) Submit(routeCtx routeCtx) (isSubmitted bool, isValid bool, err
 	if !isValid {
 		return
 	}
-	if isValid, err = auth.process(routeCtx); err != nil {
+	if isValid, err = a.process(routeCtx); err != nil {
 		return
 	}
 	return
 }
 
-func (auth *Auth) process(translator translator) (bool, error) {
-	user, ok, err := auth.userStore.GetOneActiveByEmail(auth.validator.Field("email").Value())
+func (a *Auth) process(translator translator) (bool, error) {
+	user, ok, err := a.userStore.GetOneActiveByEmail(a.validator.Field("email").Value())
 	if err != nil {
 		return false, errors.Trace(err)
 	}
 	if !ok {
-		auth.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
+		a.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
 		return false, nil
 	}
-	isValid, err := auth.validator.IsValid()
+	isValid, err := a.validator.IsValid()
 	if err != nil || !isValid {
 		return isValid, errors.Trace(err)
 	}
 	if isValid {
-		hasAuthAccess, err := auth.userStore.HasUserRight(user, "AccessAuth")
+		hasAuthAccess, err := a.userStore.HasUserRight(user, "AccessAuth")
 		if err != nil {
 			return false, errors.Trace(err)
 		}
 		if !hasAuthAccess {
-			auth.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
+			a.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
 		}
 	}
-	isValid, err = auth.validator.IsValid()
+	isValid, err = a.validator.IsValid()
 	if err != nil || !isValid {
 		return isValid, errors.Trace(err)
 	}
-	if err = bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(auth.validator.Field("password").Value())); err != nil {
-		auth.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
+	if err = bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(a.validator.Field("password").Value())); err != nil {
+		a.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
 		return false, nil
 	}
-	isValid, err = auth.validator.IsValid()
+	isValid, err = a.validator.IsValid()
 	if err != nil || !isValid {
 		return isValid, errors.Trace(err)
 	}
-	auth.userID = user.ID()
+	a.userID = user.ID()
 	return true, nil
 }
 
 // GetUserID returns the User ID that was resolved while submitting the form.
-func (auth *Auth) GetUserID() string {
-	return auth.userID
+func (a *Auth) GetUserID() string {
+	return a.userID
 }
 
 // RememberMe returns an indicator if the user wants to stay logged in longer.
-func (auth *Auth) RememberMe() bool {
-	return auth.validator.Field("rememberMe").Value() == "1"
+func (a *Auth) RememberMe() bool {
+	return a.validator.Field("rememberMe").Value() == "1"
 }
 
 // View returns the FormView internal to help render inside html output.
-func (auth *Auth) View() formview.View {
-	return auth.view
+func (a *Auth) View() formview.View {
+	return a.view
 }
 
 // Close will release internals.
-func (auth *Auth) Close() {
-	auth.validator = nil
-	auth.userStore = nil
-	auth.view = nil
+func (a *Auth) Close() {
+	a.validator = nil
+	a.userStore = nil
+	a.view = nil
 }

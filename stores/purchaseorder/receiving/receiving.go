@@ -20,11 +20,11 @@ type Receiving struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (receiving *Receiving) TableName() string {
+func (r *Receiving) TableName() string {
 	return "PurchaseOrderReceiving"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (receiving *Receiving) TableAlias() string {
+func (r *Receiving) TableAlias() string {
 	return "porr"
 }

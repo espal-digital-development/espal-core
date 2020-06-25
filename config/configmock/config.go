@@ -4,6 +4,7 @@
 package configmock
 
 import (
+	"github.com/espal-digital-development/espal-core/config"
 	"sync"
 	"time"
 )
@@ -71,11 +72,15 @@ var (
 	lockConfigMockTranslationsPath                   sync.RWMutex
 )
 
-// ConfigMock is a mock implementation of Config.
+// Ensure, that ConfigMock does implement config.Config.
+// If this is not the case, regenerate this file with moq.
+var _ config.Config = &ConfigMock{}
+
+// ConfigMock is a mock implementation of config.Config.
 //
 //     func TestSomethingThatUsesConfig(t *testing.T) {
 //
-//         // make and configure a mocked Config
+//         // make and configure a mocked config.Config
 //         mockedConfig := &ConfigMock{
 //             AdminURLFunc: func() string {
 // 	               panic("mock out the AdminURL method")
@@ -259,7 +264,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedConfig in code that requires Config
+//         // use mockedConfig in code that requires config.Config
 //         // and then make assertions.
 //
 //     }

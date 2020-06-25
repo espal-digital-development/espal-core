@@ -20,128 +20,128 @@ type TaxEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (tax *Tax) TableName() string {
+func (t *Tax) TableName() string {
 	return "Tax"
 }
 
 // ID returns id.
-func (tax *Tax) ID() string {
-	return tax.id
+func (t *Tax) ID() string {
+	return t.id
 }
 
 // CreatedByID returns createdByID.
-func (tax *Tax) CreatedByID() string {
-	return tax.createdByID
+func (t *Tax) CreatedByID() string {
+	return t.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (tax *Tax) SetCreatedByID(createdByID string) {
-	tax.createdByID = createdByID
+func (t *Tax) SetCreatedByID(createdByID string) {
+	t.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (tax *Tax) UpdatedByID() *string {
-	return tax.updatedByID
+func (t *Tax) UpdatedByID() *string {
+	return t.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (tax *Tax) SetUpdatedByID(updatedByID *string) {
-	tax.updatedByID = updatedByID
+func (t *Tax) SetUpdatedByID(updatedByID *string) {
+	t.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (tax *Tax) CreatedAt() time.Time {
-	return tax.createdAt
+func (t *Tax) CreatedAt() time.Time {
+	return t.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (tax *Tax) SetCreatedAt(createdAt time.Time) {
-	tax.createdAt = createdAt
+func (t *Tax) SetCreatedAt(createdAt time.Time) {
+	t.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (tax *Tax) UpdatedAt() *time.Time {
-	return tax.updatedAt
+func (t *Tax) UpdatedAt() *time.Time {
+	return t.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (tax *Tax) SetUpdatedAt(updatedAt *time.Time) {
-	tax.updatedAt = updatedAt
+func (t *Tax) SetUpdatedAt(updatedAt *time.Time) {
+	t.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (tax *Tax) CreatedByFirstName() *string {
-	return tax.createdByFirstName
+func (t *Tax) CreatedByFirstName() *string {
+	return t.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (tax *Tax) SetCreatedByFirstName(createdByFirstName *string) {
-	tax.createdByFirstName = createdByFirstName
+func (t *Tax) SetCreatedByFirstName(createdByFirstName *string) {
+	t.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (tax *Tax) CreatedBySurname() *string {
-	return tax.createdBySurname
+func (t *Tax) CreatedBySurname() *string {
+	return t.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (tax *Tax) SetCreatedBySurname(createdBySurname *string) {
-	tax.createdBySurname = createdBySurname
+func (t *Tax) SetCreatedBySurname(createdBySurname *string) {
+	t.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (tax *Tax) UpdatedByFirstName() *string {
-	return tax.updatedByFirstName
+func (t *Tax) UpdatedByFirstName() *string {
+	return t.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (tax *Tax) SetUpdatedByFirstName(updatedByFirstName *string) {
-	tax.updatedByFirstName = updatedByFirstName
+func (t *Tax) SetUpdatedByFirstName(updatedByFirstName *string) {
+	t.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (tax *Tax) UpdatedBySurname() *string {
-	return tax.updatedBySurname
+func (t *Tax) UpdatedBySurname() *string {
+	return t.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (tax *Tax) SetUpdatedBySurname(updatedBySurname *string) {
-	tax.updatedBySurname = updatedBySurname
+func (t *Tax) SetUpdatedBySurname(updatedBySurname *string) {
+	t.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (tax *Tax) IsUpdated() bool {
-	return tax.updatedByID != nil
+func (t *Tax) IsUpdated() bool {
+	return t.updatedByID != nil
 }
 
 // TaxGroupID returns taxGroupID.
-func (tax *Tax) TaxGroupID() string {
-	return tax.taxGroupID
+func (t *Tax) TaxGroupID() string {
+	return t.taxGroupID
 }
 
 // SetTaxGroupID sets the taxGroupID.
-func (tax *Tax) SetTaxGroupID(taxGroupID string) {
-	tax.taxGroupID = taxGroupID
+func (t *Tax) SetTaxGroupID(taxGroupID string) {
+	t.taxGroupID = taxGroupID
 }
 
 // Country returns country.
-func (tax *Tax) Country() uint16 {
-	return tax.country
+func (t *Tax) Country() uint16 {
+	return t.country
 }
 
 // SetCountry sets the country.
-func (tax *Tax) SetCountry(country uint16) {
-	tax.country = country
+func (t *Tax) SetCountry(country uint16) {
+	t.country = country
 }
 
 // Rate returns rate.
-func (tax *Tax) Rate() float32 {
-	return tax.rate
+func (t *Tax) Rate() float32 {
+	return t.rate
 }
 
 // SetRate sets the rate.
-func (tax *Tax) SetRate(rate float32) {
-	tax.rate = rate
+func (t *Tax) SetRate(rate float32) {
+	t.rate = rate
 }
 
 func newTax() *Tax {

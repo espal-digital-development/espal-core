@@ -17,11 +17,15 @@ var (
 	lockDatabaseMockQueryRow sync.RWMutex
 )
 
-// DatabaseMock is a mock implementation of Database.
+// Ensure, that DatabaseMock does implement database.Database.
+// If this is not the case, regenerate this file with moq.
+var _ database.Database = &DatabaseMock{}
+
+// DatabaseMock is a mock implementation of database.Database.
 //
 //     func TestSomethingThatUsesDatabase(t *testing.T) {
 //
-//         // make and configure a mocked Database
+//         // make and configure a mocked database.Database
 //         mockedDatabase := &DatabaseMock{
 //             BeginFunc: func() (database.Transaction, error) {
 // 	               panic("mock out the Begin method")
@@ -43,7 +47,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedDatabase in code that requires Database
+//         // use mockedDatabase in code that requires database.Database
 //         // and then make assertions.
 //
 //     }

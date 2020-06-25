@@ -101,137 +101,137 @@ type filter struct {
 }
 
 // AddSelectField adds a selectField.
-func (filter *filter) AddSelectField(selectField SelectField) Filter {
-	filter.selectFields = append(filter.selectFields, selectField)
-	return filter
+func (f *filter) AddSelectField(selectField SelectField) Filter {
+	f.selectFields = append(f.selectFields, selectField)
+	return f
 }
 
 // AddColumn adds a displayColumn.
-func (filter *filter) AddColumn(displayColumn DisplayColumn) Filter {
-	filter.columns = append(filter.columns, displayColumn)
-	return filter
+func (f *filter) AddColumn(displayColumn DisplayColumn) Filter {
+	f.columns = append(f.columns, displayColumn)
+	return f
 }
 
 // AddSearchField adds a searchField.
-func (filter *filter) AddSearchField(searchField SearchField) Filter {
-	filter.searchFields = append(filter.searchFields, searchField)
-	return filter
+func (f *filter) AddSearchField(searchField SearchField) Filter {
+	f.searchFields = append(f.searchFields, searchField)
+	return f
 }
 
 // AddJoinStatement adds a joinStatement.
-func (filter *filter) AddJoinStatement(joinStatement Join) Filter {
-	filter.joinStatements = append(filter.joinStatements, joinStatement)
-	return filter
+func (f *filter) AddJoinStatement(joinStatement Join) Filter {
+	f.joinStatements = append(f.joinStatements, joinStatement)
+	return f
 }
 
 // AddSortField adds a sortField.
-func (filter *filter) AddSortField(sortField SortField) Filter {
-	filter.sortFields = append(filter.sortFields, sortField)
-	return filter
+func (f *filter) AddSortField(sortField SortField) Filter {
+	f.sortFields = append(f.sortFields, sortField)
+	return f
 }
 
 // TotalResults returns the total results in the current filtered result.
-func (filter *filter) TotalResults() uint {
-	return filter.totalResults
+func (f *filter) TotalResults() uint {
+	return f.totalResults
 }
 
 // TotalPages returns the total pages in the current filtered result.
-func (filter *filter) TotalPages() uint {
-	return filter.totalPages
+func (f *filter) TotalPages() uint {
+	return f.totalPages
 }
 
 // CurrentPage returns the current page in the current filtered result.
-func (filter *filter) CurrentPage() uint {
-	return filter.currentPage
+func (f *filter) CurrentPage() uint {
+	return f.currentPage
 }
 
 // HasPreviousPage returns if there's a previous page in the current filtered
 // result based on the current page.
-func (filter *filter) HasPreviousPage() bool {
-	return filter.hasPreviousPage
+func (f *filter) HasPreviousPage() bool {
+	return f.hasPreviousPage
 }
 
 // HasNextPage returns if there's a next page in the current filtered
 // result based on the current page.
-func (filter *filter) HasNextPage() bool {
-	return filter.hasNextPage
+func (f *filter) HasNextPage() bool {
+	return f.hasNextPage
 }
 
 // PaginationBlocks returns an easy index list how to display the pagination blocks.
-func (filter *filter) PaginationBlocks() []uint {
+func (f *filter) PaginationBlocks() []uint {
 	var page uint
 	var blocks []uint
-	if filter.TotalPages() <= maxPaginationBarPages {
+	if f.TotalPages() <= maxPaginationBarPages {
 		// [ 1 2 3 4 5 6 7 ] (up till 7)
-		for page = 1; page <= filter.totalPages; page++ {
+		for page = 1; page <= f.totalPages; page++ {
 			blocks = append(blocks, page)
 		}
 		return blocks
 	}
-	if filter.CurrentPage() <= paginationLeftTreshHold {
+	if f.CurrentPage() <= paginationLeftTreshHold {
 		// [ 1 2 3 4 5 . 9 ] (. (or ...) will be indicated as 0)
-		return []uint{1, 2, 3, 4, 5, 0, filter.totalPages}
+		return []uint{1, 2, 3, 4, 5, 0, f.totalPages}
 	}
-	if filter.CurrentPage() >= (filter.TotalPages() - 3) {
+	if f.CurrentPage() >= (f.TotalPages() - 3) {
 		// [ 1 . 5 6 7 8 9 ]
 		blocks = append(blocks, 1)
 		blocks = append(blocks, 0)
-		for page = filter.totalPages - paginationLeftTreshHold; page <= filter.totalPages; page++ {
+		for page = f.totalPages - paginationLeftTreshHold; page <= f.totalPages; page++ {
 			blocks = append(blocks, page)
 		}
 		return blocks
 	}
 	// [ 1 . 4 5 6 . 9 ]
-	return []uint{1, 0, filter.currentPage - 1, filter.currentPage, filter.currentPage + 1, 0, filter.totalPages}
+	return []uint{1, 0, f.currentPage - 1, f.currentPage, f.currentPage + 1, 0, f.totalPages}
 }
 
 // incrementParameterCount increments the parameter count and then returns the new value.
-func (filter *filter) incrementParameterCount() uint16 {
-	filter.parameterCount++
-	return filter.parameterCount
+func (f *filter) incrementParameterCount() uint16 {
+	f.parameterCount++
+	return f.parameterCount
 }
 
-func (filter *filter) sort() error {
-	if len(filter.sortFields) == 0 {
+func (f *filter) sort() error {
+	if len(f.sortFields) == 0 {
 		return nil
 	}
-	if _, err := filter.query.WriteString(" ORDER BY"); err != nil {
+	if _, err := f.query.WriteString(" ORDER BY"); err != nil {
 		return errors.Trace(err)
 	}
 	var firstHad bool
-	for k := range filter.sortFields {
+	for k := range f.sortFields {
 		if firstHad {
-			if _, err := filter.query.WriteString(", "); err != nil {
+			if _, err := f.query.WriteString(", "); err != nil {
 				return errors.Trace(err)
 			}
 		} else {
-			if _, err := filter.query.WriteString(" "); err != nil {
+			if _, err := f.query.WriteString(" "); err != nil {
 				return errors.Trace(err)
 			}
 			firstHad = true
 		}
 
-		if filter.sortFields[k].TableAlias() != "" {
-			if _, err := filter.query.WriteString(filter.sortFields[k].TableAlias()); err != nil {
+		if f.sortFields[k].TableAlias() != "" {
+			if _, err := f.query.WriteString(f.sortFields[k].TableAlias()); err != nil {
 				return errors.Trace(err)
 			}
-			if _, err := filter.query.WriteString(`.`); err != nil {
+			if _, err := f.query.WriteString(`.`); err != nil {
 				return errors.Trace(err)
 			}
 		}
 
-		if _, err := filter.query.WriteString(`"`); err != nil {
+		if _, err := f.query.WriteString(`"`); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString(filter.sortFields[k].Name()); err != nil {
+		if _, err := f.query.WriteString(f.sortFields[k].Name()); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString(`"`); err != nil {
+		if _, err := f.query.WriteString(`"`); err != nil {
 			return errors.Trace(err)
 		}
 
-		if filter.sortFields[k].Descending() {
-			if _, err := filter.query.WriteString(" DESC"); err != nil {
+		if f.sortFields[k].Descending() {
+			if _, err := f.query.WriteString(" DESC"); err != nil {
 				return errors.Trace(err)
 			}
 		}
@@ -239,28 +239,28 @@ func (filter *filter) sort() error {
 	return nil
 }
 
-func (filter *filter) pagination() error {
-	if filter.limit > 0 {
-		if _, err := filter.query.WriteString(" LIMIT "); err != nil {
+func (f *filter) pagination() error {
+	if f.limit > 0 {
+		if _, err := f.query.WriteString(" LIMIT "); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString(strconv.FormatUint(uint64(filter.limit), 10)); err != nil {
+		if _, err := f.query.WriteString(strconv.FormatUint(uint64(f.limit), 10)); err != nil {
 			return errors.Trace(err)
 		}
-		if filter.offset > 0 {
-			if _, err := filter.query.WriteString(" OFFSET "); err != nil {
+		if f.offset > 0 {
+			if _, err := f.query.WriteString(" OFFSET "); err != nil {
 				return errors.Trace(err)
 			}
-			if _, err := filter.query.WriteString(strconv.FormatUint(uint64(filter.offset), 10)); err != nil {
+			if _, err := f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10)); err != nil {
 				return errors.Trace(err)
 			}
 		}
 	}
-	if filter.limit == 0 && filter.offset > 0 {
-		if _, err := filter.query.WriteString(" OFFSET "); err != nil {
+	if f.limit == 0 && f.offset > 0 {
+		if _, err := f.query.WriteString(" OFFSET "); err != nil {
 			return errors.Trace(err)
 		}
-		if _, err := filter.query.WriteString(strconv.FormatUint(uint64(filter.offset), 10)); err != nil {
+		if _, err := f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10)); err != nil {
 			return errors.Trace(err)
 		}
 	}
@@ -268,53 +268,53 @@ func (filter *filter) pagination() error {
 }
 
 // TableAlias returns the alias for this filter's model.
-func (filter *filter) TableAlias() string {
-	return filter.tableAlias
+func (f *filter) TableAlias() string {
+	return f.tableAlias
 }
 
-// HasResults returns if there were any results at all in the filter.
-func (filter *filter) HasResults() bool {
-	return filter.totalResults > 0
+// HasResults returns if there were any results at all in the f.
+func (f *filter) HasResults() bool {
+	return f.totalResults > 0
 }
 
 // HasError returns if there was an error while running the query.
-func (filter *filter) HasError() bool {
-	return filter.rowsError != nil && sql.ErrNoRows != filter.rowsError
+func (f *filter) HasError() bool {
+	return f.rowsError != nil && sql.ErrNoRows != f.rowsError
 }
 
 // Limit returns the set result limit.
-func (filter *filter) Limit() uint {
-	return filter.limit
+func (f *filter) Limit() uint {
+	return f.limit
 }
 
 // Rows returns the internal rows cursor.
-func (filter *filter) Rows() database.Rows {
-	return filter.rows
+func (f *filter) Rows() database.Rows {
+	return f.rows
 }
 
 // CloseRows closes the internal rows cursor.
-func (filter *filter) CloseRows() error {
-	return filter.rows.Close()
+func (f *filter) CloseRows() error {
+	return f.rows.Close()
 }
 
 // ShouldShowSearch returns if the search field should be shown.
-func (filter *filter) ShouldShowSearch() bool {
-	return (filter.TotalResults() > filter.limit || filter.search != "") && len(filter.searchFields) > 0
+func (f *filter) ShouldShowSearch() bool {
+	return (f.TotalResults() > f.limit || f.search != "") && len(f.searchFields) > 0
 }
 
 // ColumnsInOrder returns the filter columns in their required order.
-func (filter *filter) ColumnsInOrder() []DisplayColumn {
-	if length := len(filter.columnDisplayOrder); length > 0 {
+func (f *filter) ColumnsInOrder() []DisplayColumn {
+	if length := len(f.columnDisplayOrder); length > 0 {
 		columns := make([]DisplayColumn, 0, length)
-		for k := range filter.columnDisplayOrder {
-			columns = append(columns, filter.columns[filter.columnDisplayOrder[k]])
+		for k := range f.columnDisplayOrder {
+			columns = append(columns, f.columns[f.columnDisplayOrder[k]])
 		}
 		return columns
 	}
-	return filter.columns
+	return f.columns
 }
 
-func (filter *filter) perror(i int, err error) {
+func (f *filter) perror(i int, err error) {
 	if err != nil {
 		// TODO :: 777 Can't log easily here because it's instanced. Need some solution
 		panic(errors.ErrorStack(err))

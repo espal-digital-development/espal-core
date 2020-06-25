@@ -15,43 +15,43 @@ type Storage struct {
 }
 
 // Exists returns an indicator if an entry exists for the given key.
-func (storage *Storage) Exists(key string) bool {
-	storage.mutex.RLock()
-	defer storage.mutex.RUnlock()
-	_, ok := storage.entries[key]
+func (s *Storage) Exists(key string) bool {
+	s.mutex.RLock()
+	defer s.mutex.RUnlock()
+	_, ok := s.entries[key]
 	return ok
 }
 
 // Set stores the value bytes at the given key.
-func (storage *Storage) Set(key string, value []byte) error {
-	storage.mutex.Lock()
-	defer storage.mutex.Unlock()
-	storage.entries[key] = value
+func (s *Storage) Set(key string, value []byte) error {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+	s.entries[key] = value
 	return nil
 }
 
 // Get fetches the stored bytes for the given key.
-func (storage *Storage) Get(key string) ([]byte, bool, error) {
-	storage.mutex.RLock()
-	defer storage.mutex.RUnlock()
-	value, ok := storage.entries[key]
+func (s *Storage) Get(key string) ([]byte, bool, error) {
+	s.mutex.RLock()
+	defer s.mutex.RUnlock()
+	value, ok := s.entries[key]
 	return value, ok, nil
 }
 
 // Delete wipes the bytes for the given key.
-func (storage *Storage) Delete(key string) error {
-	storage.mutex.Lock()
-	defer storage.mutex.Unlock()
-	delete(storage.entries, key)
+func (s *Storage) Delete(key string) error {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+	delete(s.entries, key)
 	return nil
 }
 
 // Iterate gives the possiblity to iterate over all entries.
 // For the memory engine this can cause longer locks so don't use on heavy actions.
-func (storage *Storage) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
-	storage.mutex.RLock()
-	defer storage.mutex.RUnlock()
-	for key, value := range storage.entries {
+func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
+	s.mutex.RLock()
+	defer s.mutex.RUnlock()
+	for key, value := range s.entries {
 		if !iterator(key, value, nil) {
 			break
 		}

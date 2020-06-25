@@ -14,98 +14,98 @@ type CreditEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (credit *Credit) TableName() string {
+func (c *Credit) TableName() string {
 	return "Credit"
 }
 
 // ID returns id.
-func (credit *Credit) ID() string {
-	return credit.id
+func (c *Credit) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (credit *Credit) CreatedByID() string {
-	return credit.createdByID
+func (c *Credit) CreatedByID() string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (credit *Credit) SetCreatedByID(createdByID string) {
-	credit.createdByID = createdByID
+func (c *Credit) SetCreatedByID(createdByID string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (credit *Credit) UpdatedByID() *string {
-	return credit.updatedByID
+func (c *Credit) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (credit *Credit) SetUpdatedByID(updatedByID *string) {
-	credit.updatedByID = updatedByID
+func (c *Credit) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (credit *Credit) CreatedAt() time.Time {
-	return credit.createdAt
+func (c *Credit) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (credit *Credit) SetCreatedAt(createdAt time.Time) {
-	credit.createdAt = createdAt
+func (c *Credit) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (credit *Credit) UpdatedAt() *time.Time {
-	return credit.updatedAt
+func (c *Credit) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (credit *Credit) SetUpdatedAt(updatedAt *time.Time) {
-	credit.updatedAt = updatedAt
+func (c *Credit) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (credit *Credit) CreatedByFirstName() *string {
-	return credit.createdByFirstName
+func (c *Credit) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (credit *Credit) SetCreatedByFirstName(createdByFirstName *string) {
-	credit.createdByFirstName = createdByFirstName
+func (c *Credit) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (credit *Credit) CreatedBySurname() *string {
-	return credit.createdBySurname
+func (c *Credit) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (credit *Credit) SetCreatedBySurname(createdBySurname *string) {
-	credit.createdBySurname = createdBySurname
+func (c *Credit) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (credit *Credit) UpdatedByFirstName() *string {
-	return credit.updatedByFirstName
+func (c *Credit) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (credit *Credit) SetUpdatedByFirstName(updatedByFirstName *string) {
-	credit.updatedByFirstName = updatedByFirstName
+func (c *Credit) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (credit *Credit) UpdatedBySurname() *string {
-	return credit.updatedBySurname
+func (c *Credit) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (credit *Credit) SetUpdatedBySurname(updatedBySurname *string) {
-	credit.updatedBySurname = updatedBySurname
+func (c *Credit) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (credit *Credit) IsUpdated() bool {
-	return credit.updatedByID != nil
+func (c *Credit) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 func newCredit() *Credit {

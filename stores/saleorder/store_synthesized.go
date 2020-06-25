@@ -13,8 +13,8 @@ var _ Store = &SaleOrdersStore{}
 type Store interface {
 }
 
-func (saleOrdersStore *SaleOrdersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*SaleOrder, ok bool, err error) {
-	rows, err := saleOrdersStore.selecterDatabase.Query(query, params...)
+func (s *SaleOrdersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*SaleOrder, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (saleOrdersStore *SaleOrdersStore) fetch(query string, withCreators bool, p
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		saleOrder := newSaleOrder()
-		fields := []interface{}{&saleOrder.id, &saleOrder.createdByID, &saleOrder.updatedByID, &saleOrder.createdAt, &saleOrder.updatedAt, &saleOrder.userID, &saleOrder.domainID, &saleOrder.currency, &saleOrder.code, &saleOrder.userInfoBusiness, &saleOrder.userInfoBusinessCocNumber, &saleOrder.userInfoFirstName, &saleOrder.userInfoSurname, &saleOrder.userInfoStreet, &saleOrder.userInfoStreetLine2, &saleOrder.userInfoNumber, &saleOrder.userInfoNumberAddition, &saleOrder.userInfoZipCode, &saleOrder.userInfoCity, &saleOrder.userInfoState, &saleOrder.userInfoCountry, &saleOrder.userInfoPhoneNumber, &saleOrder.userInfoEmail, &saleOrder.shippingAddressBusiness, &saleOrder.shippingAddressBusinessCocNumber, &saleOrder.shippingAddressFirstName, &saleOrder.shippingAddressSurname, &saleOrder.shippingAddressStreet, &saleOrder.shippingAddressStreetLine2, &saleOrder.shippingAddressNumber, &saleOrder.shippingAddressNumberAddition, &saleOrder.shippingAddressZipCode, &saleOrder.shippingAddressCity, &saleOrder.shippingAddressState, &saleOrder.shippingAddressCountry, &saleOrder.shippingAddressPhoneNumber, &saleOrder.shippingAddressEmail, &saleOrder.comments, &saleOrder.sellingPartyAutograph, &saleOrder.buyingPartyAutograph, &saleOrder.saleOfferID}
+		s := newSaleOrder()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.userID, &s.domainID, &s.currency, &s.code, &s.userInfoBusiness, &s.userInfoBusinessCocNumber, &s.userInfoFirstName, &s.userInfoSurname, &s.userInfoStreet, &s.userInfoStreetLine2, &s.userInfoNumber, &s.userInfoNumberAddition, &s.userInfoZipCode, &s.userInfoCity, &s.userInfoState, &s.userInfoCountry, &s.userInfoPhoneNumber, &s.userInfoEmail, &s.shippingAddressBusiness, &s.shippingAddressBusinessCocNumber, &s.shippingAddressFirstName, &s.shippingAddressSurname, &s.shippingAddressStreet, &s.shippingAddressStreetLine2, &s.shippingAddressNumber, &s.shippingAddressNumberAddition, &s.shippingAddressZipCode, &s.shippingAddressCity, &s.shippingAddressState, &s.shippingAddressCountry, &s.shippingAddressPhoneNumber, &s.shippingAddressEmail, &s.comments, &s.sellingPartyAutograph, &s.buyingPartyAutograph, &s.saleOfferID}
 		if withCreators {
-			fields = append(fields, &saleOrder.createdByFirstName, &saleOrder.createdBySurname, &saleOrder.updatedByFirstName, &saleOrder.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, saleOrder)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (saleOrdersStore *SaleOrdersStore) fetch(query string, withCreators bool, p
 
 // New returns a new instance of SaleOrdersStore.
 func New(selecterDatabase database.Database) (*SaleOrdersStore, error) {
-	saleOrdersStore := &SaleOrdersStore{
+	s := &SaleOrdersStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return saleOrdersStore, nil
+	return s, nil
 }

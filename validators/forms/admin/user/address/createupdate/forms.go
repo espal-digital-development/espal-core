@@ -43,8 +43,8 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
-func (forms *Forms) New(address address, language language) (Form, error) {
-	validator, err := forms.validatorsFactory.NewForm(language)
+func (f *Forms) New(address address, language language) (Form, error) {
+	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -156,7 +156,7 @@ func (forms *Forms) New(address address, language language) (Form, error) {
 	countryField.SetOptional()
 	countryField.SetSearchable()
 	countryField.SetCheckValuesInChoices()
-	countryField.SetChoices(forms.validatorsFactory.GetCountryOptionsForLanguage(language))
+	countryField.SetChoices(f.validatorsFactory.GetCountryOptionsForLanguage(language))
 	if address.ID() != "" && address.Country() != nil {
 		countryField.SetValue(strconv.FormatUint(uint64(*address.Country()), 10))
 	}

@@ -9,142 +9,142 @@ import (
 )
 
 func TestPurchaseOrderTable(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
-	if purchaseOrder.TableName() == "" {
+	p := purchaseorder.NewPurchaseOrderEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPurchaseOrderTableAlias(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
-	if purchaseOrder.TableName() == "" {
+	p := purchaseorder.NewPurchaseOrderEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPurchaseOrderIsUpdated(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
-	purchaseOrder.IsUpdated()
+	p := purchaseorder.NewPurchaseOrderEntity()
+	p.IsUpdated()
 }
 
 func TestPurchaseOrderID(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
-	purchaseOrder.ID()
+	p := purchaseorder.NewPurchaseOrderEntity()
+	p.ID()
 }
 
 func TestPurchaseOrderCreatedByID(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetCreatedByID(testValue)
-	if testValue != purchaseOrder.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderUpdatedByID(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetUpdatedByID(&testValue)
-	if &testValue != purchaseOrder.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderCreatedAt(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := time.Now()
-	purchaseOrder.SetCreatedAt(testValue)
-	if testValue != purchaseOrder.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderUpdatedAt(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := time.Now()
-	purchaseOrder.SetUpdatedAt(&testValue)
-	if &testValue != purchaseOrder.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderCreatedByFirstName(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetCreatedByFirstName(&testValue)
-	if &testValue != purchaseOrder.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderCreatedBySurname(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetCreatedBySurname(&testValue)
-	if &testValue != purchaseOrder.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderUpdatedByFirstName(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetUpdatedByFirstName(&testValue)
-	if &testValue != purchaseOrder.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderUpdatedBySurname(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetUpdatedBySurname(&testValue)
-	if &testValue != purchaseOrder.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderSupplierID(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetSupplierID(testValue)
-	if testValue != purchaseOrder.SupplierID() {
+	p.SetSupplierID(testValue)
+	if testValue != p.SupplierID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderCurrency(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := uint16(65000)
-	purchaseOrder.SetCurrency(testValue)
-	if testValue != purchaseOrder.Currency() {
+	p.SetCurrency(testValue)
+	if testValue != p.Currency() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderComments(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetComments(&testValue)
-	if &testValue != purchaseOrder.Comments() {
+	p.SetComments(&testValue)
+	if &testValue != p.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderSellingPartyAutograph(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetSellingPartyAutograph(&testValue)
-	if &testValue != purchaseOrder.SellingPartyAutograph() {
+	p.SetSellingPartyAutograph(&testValue)
+	if &testValue != p.SellingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPurchaseOrderBuyingPartyAutograph(t *testing.T) {
-	purchaseOrder := purchaseorder.NewPurchaseOrderEntity()
+	p := purchaseorder.NewPurchaseOrderEntity()
 	testValue := "testValue"
-	purchaseOrder.SetBuyingPartyAutograph(&testValue)
-	if &testValue != purchaseOrder.BuyingPartyAutograph() {
+	p.SetBuyingPartyAutograph(&testValue)
+	if &testValue != p.BuyingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

@@ -49,11 +49,11 @@ type pageAction struct {
 }
 
 // IsFilled returns if there are any actions present.
-func (pageActions *PageActions) IsFilled() bool {
-	return len(pageActions.actions) > 0
+func (a *PageActions) IsFilled() bool {
+	return len(a.actions) > 0
 }
 
-func (pageActions *PageActions) perror(i int, err error) {
+func (a *PageActions) perror(i int, err error) {
 	if err != nil {
 		// TODO :: 777 Can't log easily here because it's instanced. Need some solution
 		panic(errors.ErrorStack(err))

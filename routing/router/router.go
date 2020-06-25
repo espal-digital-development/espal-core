@@ -41,31 +41,31 @@ type HTTPRouter struct {
 }
 
 // RegisterRoute registers a callback to a new route.
-func (httpRouter *HTTPRouter) RegisterRoute(path string, h handler) error {
-	httpRouter.routesMutex.Lock()
-	defer httpRouter.routesMutex.Unlock()
-	if _, ok := httpRouter.routes[path]; ok {
+func (r *HTTPRouter) RegisterRoute(path string, h handler) error {
+	r.routesMutex.Lock()
+	defer r.routesMutex.Unlock()
+	if _, ok := r.routes[path]; ok {
 		return errors.Errorf("path `%s` is already registered", path)
 	}
-	httpRouter.routes[path] = h
+	r.routes[path] = h
 	return nil
 }
 
 // UnregisterRoute unregisters a route and it's callback for the given domain.
-func (httpRouter *HTTPRouter) UnregisterRoute(path string) error {
-	httpRouter.routesMutex.Lock()
-	defer httpRouter.routesMutex.Unlock()
-	if _, ok := httpRouter.routes[path]; !ok {
+func (r *HTTPRouter) UnregisterRoute(path string) error {
+	r.routesMutex.Lock()
+	defer r.routesMutex.Unlock()
+	if _, ok := r.routes[path]; !ok {
 		return errors.Errorf("`%s` is not known route", path)
 	}
-	delete(httpRouter.routes, path)
+	delete(r.routes, path)
 	return nil
 }
 
-func (httpRouter *HTTPRouter) getRoute(path string) (handler, bool) {
-	httpRouter.routesMutex.RLock()
-	defer httpRouter.routesMutex.RUnlock()
-	route, ok := httpRouter.routes[path]
+func (r *HTTPRouter) getRoute(path string) (handler, bool) {
+	r.routesMutex.RLock()
+	defer r.routesMutex.RUnlock()
+	route, ok := r.routes[path]
 	return route, ok
 }
 

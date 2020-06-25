@@ -6,34 +6,34 @@ import (
 
 // RenderCreateUpdateActions will render all admin create/update
 // actions of an admin module overview page.
-func (form *Form) RenderCreateUpdateActions(fieldName string, url string) string {
+func (f *Form) RenderCreateUpdateActions(fieldName string, url string) string {
 	out := strings.Builder{}
 
-	form.perror(out.WriteString(`<br>`))
+	f.perror(out.WriteString(`<br>`))
 
-	form.perror(out.WriteString(form.renderInputTypeField(form.field(fieldName))))
+	f.perror(out.WriteString(f.renderInputTypeField(f.field(fieldName))))
 
-	form.perror(out.WriteString(`<input type="submit" value="`))
-	form.perror(out.WriteString(form.translationsRepository.Singular(form.language.ID(), "save")))
-	form.perror(out.WriteString(`" class="save"><br>`))
+	f.perror(out.WriteString(`<input type="submit" value="`))
+	f.perror(out.WriteString(f.translationsRepository.Singular(f.language.ID(), "save")))
+	f.perror(out.WriteString(`" class="save"><br>`))
 
-	form.perror(out.WriteString(`<input type="submit" value="`))
-	form.perror(out.WriteString(form.translationsRepository.Singular(form.language.ID(), "saveAndReturn")))
-	form.perror(out.WriteString(`" class="save" data-a="1"><br>`))
+	f.perror(out.WriteString(`<input type="submit" value="`))
+	f.perror(out.WriteString(f.translationsRepository.Singular(f.language.ID(), "saveAndReturn")))
+	f.perror(out.WriteString(`" class="save" data-a="1"><br>`))
 
-	form.perror(out.WriteString(`<input type="submit" value="`))
-	form.perror(out.WriteString(form.translationsRepository.Singular(form.language.ID(), "saveAndCreateAnother")))
-	form.perror(out.WriteString(`" class="save" data-a="2"><br>`))
+	f.perror(out.WriteString(`<input type="submit" value="`))
+	f.perror(out.WriteString(f.translationsRepository.Singular(f.language.ID(), "saveAndCreateAnother")))
+	f.perror(out.WriteString(`" class="save" data-a="2"><br>`))
 
-	form.perror(out.WriteString(`<input type="submit" value="`))
-	form.perror(out.WriteString(form.translationsRepository.Singular(form.language.ID(), "saveAndClone")))
-	form.perror(out.WriteString(`" class="save" data-a="3"><br>`))
+	f.perror(out.WriteString(`<input type="submit" value="`))
+	f.perror(out.WriteString(f.translationsRepository.Singular(f.language.ID(), "saveAndClone")))
+	f.perror(out.WriteString(`" class="save" data-a="3"><br>`))
 
-	form.perror(out.WriteString(`<button class="wide"><a href="`))
-	form.perror(out.WriteString(url))
-	form.perror(out.WriteString(`" class="delete">`))
-	form.perror(out.WriteString(form.translationsRepository.Singular(form.language.ID(), "cancel")))
-	form.perror(out.WriteString(`</a></button>`))
+	f.perror(out.WriteString(`<button class="wide"><a href="`))
+	f.perror(out.WriteString(url))
+	f.perror(out.WriteString(`" class="delete">`))
+	f.perror(out.WriteString(f.translationsRepository.Singular(f.language.ID(), "cancel")))
+	f.perror(out.WriteString(`</a></button>`))
 
 	return out.String()
 }

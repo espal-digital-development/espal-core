@@ -31,11 +31,11 @@ type ModelReview struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (modelReview *ModelReview) TableName() string {
+func (m *ModelReview) TableName() string {
 	return "ProductModelReview"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (modelReview *ModelReview) TableAlias() string {
+func (m *ModelReview) TableAlias() string {
 	return "promr"
 }

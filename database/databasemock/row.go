@@ -4,6 +4,7 @@
 package databasemock
 
 import (
+	"github.com/espal-digital-development/espal-core/database"
 	"sync"
 )
 
@@ -11,18 +12,22 @@ var (
 	lockRowMockScan sync.RWMutex
 )
 
-// RowMock is a mock implementation of Row.
+// Ensure, that RowMock does implement database.Row.
+// If this is not the case, regenerate this file with moq.
+var _ database.Row = &RowMock{}
+
+// RowMock is a mock implementation of database.Row.
 //
 //     func TestSomethingThatUsesRow(t *testing.T) {
 //
-//         // make and configure a mocked Row
+//         // make and configure a mocked database.Row
 //         mockedRow := &RowMock{
 //             ScanFunc: func(dest ...interface{}) error {
 // 	               panic("mock out the Scan method")
 //             },
 //         }
 //
-//         // use mockedRow in code that requires Row
+//         // use mockedRow in code that requires database.Row
 //         // and then make assertions.
 //
 //     }

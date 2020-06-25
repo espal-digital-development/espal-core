@@ -14,17 +14,17 @@ type redirectRouter struct {
 }
 
 // ServeHTTP registers all the required redirect invokers.
-func (redirectRouter *redirectRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (r *redirectRouter) ServeHTTP(response http.ResponseWriter, request *http.Request) {
 	// TODO :: 77 Redirect to default port should be left out? And what about internal ports vs external normal ports?
-	if len(r.URL.RequestURI()) == 1 && r.URL.RequestURI()[0] == '/' {
-		http.Redirect(w, r, fmt.Sprintf("https://%s:%d", redirectRouter.serverHost, redirectRouter.serverPort), http.StatusMovedPermanently)
+	if len(request.URL.RequestURI()) == 1 && request.URL.RequestURI()[0] == '/' {
+		http.Redirect(response, request, fmt.Sprintf("https://%s:%d", r.serverHost, r.serverPort), http.StatusMovedPermanently)
 	} else {
-		http.Redirect(w, r, fmt.Sprintf("https://%s:%d%s", redirectRouter.serverHost, redirectRouter.serverPort, r.URL.RequestURI()), http.StatusMovedPermanently)
+		http.Redirect(response, request, fmt.Sprintf("https://%s:%d%s", r.serverHost, r.serverPort, request.URL.RequestURI()), http.StatusMovedPermanently)
 	}
 }
 
 // Listen to non-TLS to redirect to the TLS version.
-func (runner *Runner) startRedirectNonTLSServer() {
+func (r *Runner) startRedirectNonTLSServer() {
 	go func(appRunner *Runner) {
 		server := &http.Server{
 			Addr: fmt.Sprintf("%s:%d", appRunner.services.config.ServerHost(), appRunner.services.config.ServerHTTPRedirectPort()),
@@ -37,10 +37,10 @@ func (runner *Runner) startRedirectNonTLSServer() {
 		if err := server.ListenAndServe(); err != nil {
 			appRunner.services.logger.Errorf("error in server.ListenAndServe: %s", err)
 		}
-	}(runner)
+	}(r)
 }
 
-func (runner *Runner) startTLSServer() {
+func (r *Runner) startTLSServer() {
 	go func(appRunner *Runner) {
 		cfg := &tls.Config{
 			MinVersion:               tls.VersionTLS13, // TODO :: wrk needs 12, but should use 13 for running
@@ -57,7 +57,7 @@ func (runner *Runner) startTLSServer() {
 		if err := server.ListenAndServeTLS(appRunner.services.config.ServerSSLCertificateFilePath(), appRunner.services.config.ServerSSLKeyFilePath()); err != nil {
 			appRunner.services.logger.Errorf("error in server.ListenAndServeTLS: %s", err)
 		}
-	}(runner)
+	}(r)
 
-	runner.services.logger.Infof("Server running TLS on `%s` port %d and redirecting non-TLS from port %d.", runner.services.config.ServerHost(), runner.services.config.ServerPort(), runner.services.config.ServerHTTPRedirectPort())
+	r.services.logger.Infof("Server running TLS on `%s` port %d and redirecting non-TLS from port %d.", r.services.config.ServerHost(), r.services.config.ServerPort(), r.services.config.ServerHTTPRedirectPort())
 }

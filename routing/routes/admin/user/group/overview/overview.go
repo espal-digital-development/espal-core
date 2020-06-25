@@ -15,7 +15,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadUserGroup") {
 		return
 	}
@@ -25,7 +25,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	userGroups, filter, err := route.userGroupStore.Filter(context, language)
+	userGroups, filter, err := r.userGroupStore.Filter(context, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -41,7 +41,7 @@ func (route *Route) Handle(context contexts.Context) {
 	pageActions.AddCreate()
 	pageActions.AddToggle()
 	pageActions.AddDelete()
-	route.overviewPageFactory.NewPage(context, language, pageActions, filter, userGroups, canUpdate, canDelete).Render()
+	r.overviewPageFactory.NewPage(context, language, pageActions, filter, userGroups, canUpdate, canDelete).Render()
 }
 
 // New returns a new instance of Route.

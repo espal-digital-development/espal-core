@@ -9,151 +9,151 @@ import (
 )
 
 func TestMutationTable(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
-	if mutation.TableName() == "" {
+	m := stocklocation.NewMutationEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestMutationTableAlias(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
-	if mutation.TableName() == "" {
+	m := stocklocation.NewMutationEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestMutationIsUpdated(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
-	mutation.IsUpdated()
+	m := stocklocation.NewMutationEntity()
+	m.IsUpdated()
 }
 
 func TestMutationID(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
-	mutation.ID()
+	m := stocklocation.NewMutationEntity()
+	m.ID()
 }
 
 func TestMutationCreatedByID(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetCreatedByID(testValue)
-	if testValue != mutation.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedByID(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetUpdatedByID(&testValue)
-	if &testValue != mutation.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationCreatedAt(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := time.Now()
-	mutation.SetCreatedAt(testValue)
-	if testValue != mutation.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedAt(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := time.Now()
-	mutation.SetUpdatedAt(&testValue)
-	if &testValue != mutation.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationCreatedByFirstName(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetCreatedByFirstName(&testValue)
-	if &testValue != mutation.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationCreatedBySurname(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetCreatedBySurname(&testValue)
-	if &testValue != mutation.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedByFirstName(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetUpdatedByFirstName(&testValue)
-	if &testValue != mutation.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedBySurname(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetUpdatedBySurname(&testValue)
-	if &testValue != mutation.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationSourceID(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetSourceID(&testValue)
-	if &testValue != mutation.SourceID() {
+	m.SetSourceID(&testValue)
+	if &testValue != m.SourceID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationTargetID(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetTargetID(testValue)
-	if testValue != mutation.TargetID() {
+	m.SetTargetID(testValue)
+	if testValue != m.TargetID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationProductVariantID(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetProductVariantID(testValue)
-	if testValue != mutation.ProductVariantID() {
+	m.SetProductVariantID(testValue)
+	if testValue != m.ProductVariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationModifier(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := int(1e8)
-	mutation.SetModifier(testValue)
-	if testValue != mutation.Modifier() {
+	m.SetModifier(testValue)
+	if testValue != m.Modifier() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationBallanceAfterModifier(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := int(1e8)
-	mutation.SetBallanceAfterModifier(testValue)
-	if testValue != mutation.BallanceAfterModifier() {
+	m.SetBallanceAfterModifier(testValue)
+	if testValue != m.BallanceAfterModifier() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationComments(t *testing.T) {
-	mutation := stocklocation.NewMutationEntity()
+	m := stocklocation.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetComments(&testValue)
-	if &testValue != mutation.Comments() {
+	m.SetComments(&testValue)
+	if &testValue != m.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

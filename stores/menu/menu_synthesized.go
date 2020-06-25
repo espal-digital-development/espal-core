@@ -26,158 +26,158 @@ type MenuEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (menu *Menu) TableName() string {
+func (m *Menu) TableName() string {
 	return "Menu"
 }
 
 // ID returns id.
-func (menu *Menu) ID() string {
-	return menu.id
+func (m *Menu) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (menu *Menu) CreatedByID() string {
-	return menu.createdByID
+func (m *Menu) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (menu *Menu) SetCreatedByID(createdByID string) {
-	menu.createdByID = createdByID
+func (m *Menu) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (menu *Menu) UpdatedByID() *string {
-	return menu.updatedByID
+func (m *Menu) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (menu *Menu) SetUpdatedByID(updatedByID *string) {
-	menu.updatedByID = updatedByID
+func (m *Menu) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (menu *Menu) CreatedAt() time.Time {
-	return menu.createdAt
+func (m *Menu) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (menu *Menu) SetCreatedAt(createdAt time.Time) {
-	menu.createdAt = createdAt
+func (m *Menu) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (menu *Menu) UpdatedAt() *time.Time {
-	return menu.updatedAt
+func (m *Menu) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (menu *Menu) SetUpdatedAt(updatedAt *time.Time) {
-	menu.updatedAt = updatedAt
+func (m *Menu) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (menu *Menu) CreatedByFirstName() *string {
-	return menu.createdByFirstName
+func (m *Menu) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (menu *Menu) SetCreatedByFirstName(createdByFirstName *string) {
-	menu.createdByFirstName = createdByFirstName
+func (m *Menu) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (menu *Menu) CreatedBySurname() *string {
-	return menu.createdBySurname
+func (m *Menu) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (menu *Menu) SetCreatedBySurname(createdBySurname *string) {
-	menu.createdBySurname = createdBySurname
+func (m *Menu) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (menu *Menu) UpdatedByFirstName() *string {
-	return menu.updatedByFirstName
+func (m *Menu) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (menu *Menu) SetUpdatedByFirstName(updatedByFirstName *string) {
-	menu.updatedByFirstName = updatedByFirstName
+func (m *Menu) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (menu *Menu) UpdatedBySurname() *string {
-	return menu.updatedBySurname
+func (m *Menu) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (menu *Menu) SetUpdatedBySurname(updatedBySurname *string) {
-	menu.updatedBySurname = updatedBySurname
+func (m *Menu) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (menu *Menu) IsUpdated() bool {
-	return menu.updatedByID != nil
+func (m *Menu) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // Active returns active.
-func (menu *Menu) Active() bool {
-	return menu.active
+func (m *Menu) Active() bool {
+	return m.active
 }
 
 // SetActive sets the active.
-func (menu *Menu) SetActive(active bool) {
-	menu.active = active
+func (m *Menu) SetActive(active bool) {
+	m.active = active
 }
 
 // Sorting returns sorting.
-func (menu *Menu) Sorting() uint {
-	return menu.sorting
+func (m *Menu) Sorting() uint {
+	return m.sorting
 }
 
 // SetSorting sets the sorting.
-func (menu *Menu) SetSorting(sorting uint) {
-	menu.sorting = sorting
+func (m *Menu) SetSorting(sorting uint) {
+	m.sorting = sorting
 }
 
 // SlugID returns slugID.
-func (menu *Menu) SlugID() *string {
-	return menu.slugID
+func (m *Menu) SlugID() *string {
+	return m.slugID
 }
 
 // SetSlugID sets the slugID.
-func (menu *Menu) SetSlugID(slugID *string) {
-	menu.slugID = slugID
+func (m *Menu) SetSlugID(slugID *string) {
+	m.slugID = slugID
 }
 
 // ExternalLink returns externalLink.
-func (menu *Menu) ExternalLink() *string {
-	return menu.externalLink
+func (m *Menu) ExternalLink() *string {
+	return m.externalLink
 }
 
 // SetExternalLink sets the externalLink.
-func (menu *Menu) SetExternalLink(externalLink *string) {
-	menu.externalLink = externalLink
+func (m *Menu) SetExternalLink(externalLink *string) {
+	m.externalLink = externalLink
 }
 
 // InternalLink returns internalLink.
-func (menu *Menu) InternalLink() *string {
-	return menu.internalLink
+func (m *Menu) InternalLink() *string {
+	return m.internalLink
 }
 
 // SetInternalLink sets the internalLink.
-func (menu *Menu) SetInternalLink(internalLink *string) {
-	menu.internalLink = internalLink
+func (m *Menu) SetInternalLink(internalLink *string) {
+	m.internalLink = internalLink
 }
 
 // ParentID returns parentID.
-func (menu *Menu) ParentID() *string {
-	return menu.parentID
+func (m *Menu) ParentID() *string {
+	return m.parentID
 }
 
 // SetParentID sets the parentID.
-func (menu *Menu) SetParentID(parentID *string) {
-	menu.parentID = parentID
+func (m *Menu) SetParentID(parentID *string) {
+	m.parentID = parentID
 }
 
 func newMenu() *Menu {

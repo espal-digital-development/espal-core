@@ -22,8 +22,8 @@ type AddressesStore struct {
 }
 
 // ForUser fetches Addresses for userID.
-func (addressesStore *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err error) {
-	rows, err := addressesStore.selecterDatabase.Query(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (a *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err error) {
+	rows, err := a.selecterDatabase.Query(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserAddress" u
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = u."updatedByID"
@@ -67,7 +67,7 @@ func (addressesStore *AddressesStore) ForUser(userID string) (result []*Address,
 }
 
 // DisplayValue returns a readable display representation.
-func (addressesStore *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) string {
+func (a *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) string {
 	var display string
 	if address.FirstName() != nil {
 		display += *address.FirstName()
@@ -79,7 +79,7 @@ func (addressesStore *AddressesStore) DisplayValue(address AddressEntity, locale
 		display += *address.Surname()
 	}
 	if display == "" {
-		display = addressesStore.translationsRepository.Singular(localeID, "address") + " " + address.ID()
+		display = a.translationsRepository.Singular(localeID, "address") + " " + address.ID()
 	}
 	display += " : " + address.Street()
 	if address.StreetLine2() != nil {
@@ -91,9 +91,9 @@ func (addressesStore *AddressesStore) DisplayValue(address AddressEntity, locale
 	}
 	display += " " + address.City()
 	if address.Country() != nil {
-		country, err := addressesStore.countriesRepository.ByID(*address.Country())
+		country, err := a.countriesRepository.ByID(*address.Country())
 		if err != nil {
-			addressesStore.loggerService.Error(errors.ErrorStack(err))
+			a.loggerService.Error(errors.ErrorStack(err))
 			return ""
 		}
 		display += " " + country.Translate(localeID)
@@ -103,8 +103,8 @@ func (addressesStore *AddressesStore) DisplayValue(address AddressEntity, locale
 }
 
 // GetOneByID fetches by ID.
-func (addressesStore *AddressesStore) GetOneByID(id string) (*Address, bool, error) {
-	result, ok, err := addressesStore.fetch(`SELECT * FROM "UserAddress" WHERE "id" = $1 LIMIT 1`, false, id)
+func (a *AddressesStore) GetOneByID(id string) (*Address, bool, error) {
+	result, ok, err := a.fetch(`SELECT * FROM "UserAddress" WHERE "id" = $1 LIMIT 1`, false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -112,8 +112,8 @@ func (addressesStore *AddressesStore) GetOneByID(id string) (*Address, bool, err
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (addressesStore *AddressesStore) GetOneByIDWithCreator(id string) (*Address, bool, error) {
-	result, ok, err := addressesStore.fetch(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (a *AddressesStore) GetOneByIDWithCreator(id string) (*Address, bool, error) {
+	result, ok, err := a.fetch(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserAddress" u
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = u."updatedByID"
@@ -125,8 +125,8 @@ func (addressesStore *AddressesStore) GetOneByIDWithCreator(id string) (*Address
 }
 
 // Delete deletes the given ID(s).
-func (addressesStore *AddressesStore) Delete(ids []string) error {
-	transaction, err := addressesStore.deletorDatabase.Begin()
+func (a *AddressesStore) Delete(ids []string) error {
+	transaction, err := a.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -140,8 +140,8 @@ func (addressesStore *AddressesStore) Delete(ids []string) error {
 }
 
 // ToggleActive toggles the active state of the given ID(s).
-func (addressesStore *AddressesStore) ToggleActive(ids []string) error {
-	transaction, err := addressesStore.updaterDatabase.Begin()
+func (a *AddressesStore) ToggleActive(ids []string) error {
+	transaction, err := a.updaterDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}

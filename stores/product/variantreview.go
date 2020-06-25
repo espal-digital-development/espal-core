@@ -29,11 +29,11 @@ type VariantReview struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (variantReview *VariantReview) TableName() string {
+func (v *VariantReview) TableName() string {
 	return "ProductVariantReview"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (variantReview *VariantReview) TableAlias() string {
+func (v *VariantReview) TableAlias() string {
 	return "provr"
 }

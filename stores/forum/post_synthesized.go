@@ -28,163 +28,163 @@ type PostEntity interface {
 }
 
 // ID returns id.
-func (post *Post) ID() string {
-	return post.id
+func (p *Post) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (post *Post) CreatedByID() string {
-	return post.createdByID
+func (p *Post) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (post *Post) SetCreatedByID(createdByID string) {
-	post.createdByID = createdByID
+func (p *Post) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (post *Post) UpdatedByID() *string {
-	return post.updatedByID
+func (p *Post) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (post *Post) SetUpdatedByID(updatedByID *string) {
-	post.updatedByID = updatedByID
+func (p *Post) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (post *Post) CreatedAt() time.Time {
-	return post.createdAt
+func (p *Post) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (post *Post) SetCreatedAt(createdAt time.Time) {
-	post.createdAt = createdAt
+func (p *Post) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (post *Post) UpdatedAt() *time.Time {
-	return post.updatedAt
+func (p *Post) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (post *Post) SetUpdatedAt(updatedAt *time.Time) {
-	post.updatedAt = updatedAt
+func (p *Post) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (post *Post) CreatedByFirstName() *string {
-	return post.createdByFirstName
+func (p *Post) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (post *Post) SetCreatedByFirstName(createdByFirstName *string) {
-	post.createdByFirstName = createdByFirstName
+func (p *Post) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (post *Post) CreatedBySurname() *string {
-	return post.createdBySurname
+func (p *Post) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (post *Post) SetCreatedBySurname(createdBySurname *string) {
-	post.createdBySurname = createdBySurname
+func (p *Post) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (post *Post) UpdatedByFirstName() *string {
-	return post.updatedByFirstName
+func (p *Post) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (post *Post) SetUpdatedByFirstName(updatedByFirstName *string) {
-	post.updatedByFirstName = updatedByFirstName
+func (p *Post) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (post *Post) UpdatedBySurname() *string {
-	return post.updatedBySurname
+func (p *Post) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (post *Post) SetUpdatedBySurname(updatedBySurname *string) {
-	post.updatedBySurname = updatedBySurname
+func (p *Post) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (post *Post) IsUpdated() bool {
-	return post.updatedByID != nil
+func (p *Post) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // ForumID returns forumID.
-func (post *Post) ForumID() string {
-	return post.forumID
+func (p *Post) ForumID() string {
+	return p.forumID
 }
 
 // SetForumID sets the forumID.
-func (post *Post) SetForumID(forumID string) {
-	post.forumID = forumID
+func (p *Post) SetForumID(forumID string) {
+	p.forumID = forumID
 }
 
 // ResponseToID returns responseToID.
-func (post *Post) ResponseToID() *string {
-	return post.responseToID
+func (p *Post) ResponseToID() *string {
+	return p.responseToID
 }
 
 // SetResponseToID sets the responseToID.
-func (post *Post) SetResponseToID(responseToID *string) {
-	post.responseToID = responseToID
+func (p *Post) SetResponseToID(responseToID *string) {
+	p.responseToID = responseToID
 }
 
 // Sticky returns sticky.
-func (post *Post) Sticky() bool {
-	return post.sticky
+func (p *Post) Sticky() bool {
+	return p.sticky
 }
 
 // SetSticky sets the sticky.
-func (post *Post) SetSticky(sticky bool) {
-	post.sticky = sticky
+func (p *Post) SetSticky(sticky bool) {
+	p.sticky = sticky
 }
 
 // Title returns title.
-func (post *Post) Title() *string {
-	return post.title
+func (p *Post) Title() *string {
+	return p.title
 }
 
 // SetTitle sets the title.
-func (post *Post) SetTitle(title *string) {
-	post.title = title
+func (p *Post) SetTitle(title *string) {
+	p.title = title
 }
 
 // Message returns message.
-func (post *Post) Message() string {
-	return post.message
+func (p *Post) Message() string {
+	return p.message
 }
 
 // SetMessage sets the message.
-func (post *Post) SetMessage(message string) {
-	post.message = message
+func (p *Post) SetMessage(message string) {
+	p.message = message
 }
 
 // TimesEdited returns timesEdited.
-func (post *Post) TimesEdited() *uint {
-	return post.timesEdited
+func (p *Post) TimesEdited() *uint {
+	return p.timesEdited
 }
 
 // SetTimesEdited sets the timesEdited.
-func (post *Post) SetTimesEdited(timesEdited *uint) {
-	post.timesEdited = timesEdited
+func (p *Post) SetTimesEdited(timesEdited *uint) {
+	p.timesEdited = timesEdited
 }
 
 // Name returns name.
-func (post *Post) Name() string {
-	return post.name
+func (p *Post) Name() string {
+	return p.name
 }
 
 // SetName sets the name.
-func (post *Post) SetName(name string) {
-	post.name = name
+func (p *Post) SetName(name string) {
+	p.name = name
 }
 
 func newPost() *Post {

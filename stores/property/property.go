@@ -28,6 +28,6 @@ type Property struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (property *Property) TableAlias() string {
+func (p *Property) TableAlias() string {
 	return "pro"
 }

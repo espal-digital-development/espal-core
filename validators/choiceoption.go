@@ -12,17 +12,17 @@ type choiceOption struct {
 }
 
 // Value returns the option value.
-func (choiceOption *choiceOption) Value() string {
-	return choiceOption.value
+func (o *choiceOption) Value() string {
+	return o.value
 }
 
 // Value returns the option display value.
-func (choiceOption *choiceOption) Display() string {
-	return choiceOption.display
+func (o *choiceOption) Display() string {
+	return o.display
 }
 
 // NewChoiceOption returns a new instance of ChoiceOption.
-func (validators *Validators) NewChoiceOption(value string, display string) ChoiceOption {
+func (v *Validators) NewChoiceOption(value string, display string) ChoiceOption {
 	return &choiceOption{
 		value:   value,
 		display: display,

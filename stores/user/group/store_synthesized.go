@@ -25,8 +25,8 @@ type Store interface {
 	Filter(context filters.QueryReader, language language) (result []*Group, filter filters.Filter, err error)
 }
 
-func (groupsStore *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {
-	rows, err := groupsStore.selecterDatabase.Query(query, params...)
+func (g *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {
+	rows, err := g.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -48,15 +48,15 @@ func (groupsStore *GroupsStore) fetch(query string, withCreators bool, params ..
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		group := newGroup()
-		fields := []interface{}{&group.id, &group.createdByID, &group.updatedByID, &group.createdAt, &group.updatedAt, &group.active, &group.userRights, &group.currencies}
+		g := newGroup()
+		fields := []interface{}{&g.id, &g.createdByID, &g.updatedByID, &g.createdAt, &g.updatedAt, &g.active, &g.userRights, &g.currencies}
 		if withCreators {
-			fields = append(fields, &group.createdByFirstName, &group.createdBySurname, &group.updatedByFirstName, &group.updatedBySurname)
+			fields = append(fields, &g.createdByFirstName, &g.createdBySurname, &g.updatedByFirstName, &g.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, group)
+		result = append(result, g)
 	}
 	ok = len(result) > 0
 	return
@@ -64,7 +64,7 @@ func (groupsStore *GroupsStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of GroupsStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, loggerService logger.Loggable) (*GroupsStore, error) {
-	groupsStore := &GroupsStore{
+	g := &GroupsStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
@@ -72,5 +72,5 @@ func New(selecterDatabase database.Database, updaterDatabase database.Database, 
 		translationsRepository: translationsRepository,
 		loggerService:          loggerService,
 	}
-	return groupsStore, nil
+	return g, nil
 }

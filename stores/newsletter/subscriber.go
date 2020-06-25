@@ -23,11 +23,11 @@ type Subscriber struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (subscriber *Subscriber) TableName() string {
+func (s *Subscriber) TableName() string {
 	return "NewsletterSubscriber"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (subscriber *Subscriber) TableAlias() string {
+func (s *Subscriber) TableAlias() string {
 	return "ns"
 }

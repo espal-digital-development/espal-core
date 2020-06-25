@@ -13,8 +13,8 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
-	route.overviewPageFactory.NewPage(context, pprof.Profiles()).Render()
+func (r *Route) Handle(context contexts.Context) {
+	r.overviewPageFactory.NewPage(context, pprof.Profiles()).Render()
 }
 
 // New returns a new instance of Route.

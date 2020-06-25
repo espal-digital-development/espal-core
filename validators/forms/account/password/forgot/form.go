@@ -30,20 +30,20 @@ type Forgot struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (forgot *Forgot) Submit(context context) (isSubmitted bool, isValid bool, err error) {
-	if forgot.isClosed {
+func (f *Forgot) Submit(context context) (isSubmitted bool, isValid bool, err error) {
+	if f.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = forgot.validator.HandleFromRequest(context); err != nil {
+	if err = f.validator.HandleFromRequest(context); err != nil {
 		return
 	}
-	isSubmitted = forgot.validator.IsSubmitted()
+	isSubmitted = f.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = forgot.validator.IsValid()
+		isValid, err = f.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -52,17 +52,17 @@ func (forgot *Forgot) Submit(context context) (isSubmitted bool, isValid bool, e
 }
 
 // FormFieldValue returns a single form value that was resolved while submitting the form.
-func (forgot *Forgot) FormFieldValue(name string) string {
-	return forgot.validator.FieldValue(name)
+func (f *Forgot) FormFieldValue(name string) string {
+	return f.validator.FieldValue(name)
 }
 
 // View returns the FormView internal to help render inside html output.
-func (forgot *Forgot) View() formview.View {
-	return forgot.view
+func (f *Forgot) View() formview.View {
+	return f.view
 }
 
 // Close will release internals.
-func (forgot *Forgot) Close() {
-	forgot.validator = nil
-	forgot.view = nil
+func (f *Forgot) Close() {
+	f.validator = nil
+	f.view = nil
 }

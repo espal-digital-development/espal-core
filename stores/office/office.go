@@ -32,11 +32,11 @@ type Office struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (office *Office) TableName() string {
+func (o *Office) TableName() string {
 	return "Office"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (office *Office) TableAlias() string {
+func (o *Office) TableAlias() string {
 	return "o"
 }

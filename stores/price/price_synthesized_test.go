@@ -9,169 +9,169 @@ import (
 )
 
 func TestPriceTable(t *testing.T) {
-	price := price.NewPriceEntity()
-	if price.TableName() == "" {
+	p := price.NewPriceEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPriceTableAlias(t *testing.T) {
-	price := price.NewPriceEntity()
-	if price.TableName() == "" {
+	p := price.NewPriceEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPriceIsUpdated(t *testing.T) {
-	price := price.NewPriceEntity()
-	price.IsUpdated()
+	p := price.NewPriceEntity()
+	p.IsUpdated()
 }
 
 func TestPriceID(t *testing.T) {
-	price := price.NewPriceEntity()
-	price.ID()
+	p := price.NewPriceEntity()
+	p.ID()
 }
 
 func TestPriceCreatedByID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetCreatedByID(testValue)
-	if testValue != price.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceUpdatedByID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetUpdatedByID(&testValue)
-	if &testValue != price.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceCreatedAt(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := time.Now()
-	price.SetCreatedAt(testValue)
-	if testValue != price.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceUpdatedAt(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := time.Now()
-	price.SetUpdatedAt(&testValue)
-	if &testValue != price.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceCreatedByFirstName(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetCreatedByFirstName(&testValue)
-	if &testValue != price.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceCreatedBySurname(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetCreatedBySurname(&testValue)
-	if &testValue != price.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceUpdatedByFirstName(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetUpdatedByFirstName(&testValue)
-	if &testValue != price.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceUpdatedBySurname(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetUpdatedBySurname(&testValue)
-	if &testValue != price.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceBundledProductID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetBundledProductID(&testValue)
-	if &testValue != price.BundledProductID() {
+	p.SetBundledProductID(&testValue)
+	if &testValue != p.BundledProductID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceProductModelID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetProductModelID(&testValue)
-	if &testValue != price.ProductModelID() {
+	p.SetProductModelID(&testValue)
+	if &testValue != p.ProductModelID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceProductVariantID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetProductVariantID(&testValue)
-	if &testValue != price.ProductVariantID() {
+	p.SetProductVariantID(&testValue)
+	if &testValue != p.ProductVariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceDomainID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetDomainID(testValue)
-	if testValue != price.DomainID() {
+	p.SetDomainID(testValue)
+	if testValue != p.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPricePriceGroupID(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := "testValue"
-	price.SetPriceGroupID(testValue)
-	if testValue != price.PriceGroupID() {
+	p.SetPriceGroupID(testValue)
+	if testValue != p.PriceGroupID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceTaxGroup(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := uint(1e9)
-	price.SetTaxGroup(testValue)
-	if testValue != price.TaxGroup() {
+	p.SetTaxGroup(testValue)
+	if testValue != p.TaxGroup() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPriceCurrency(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := uint16(65000)
-	price.SetCurrency(testValue)
-	if testValue != price.Currency() {
+	p.SetCurrency(testValue)
+	if testValue != p.Currency() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPricePrice(t *testing.T) {
-	price := price.NewPriceEntity()
+	p := price.NewPriceEntity()
 	testValue := float32(3.14)
-	price.SetPrice(testValue)
-	if testValue != price.Price() {
+	p.SetPrice(testValue)
+	if testValue != p.Price() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

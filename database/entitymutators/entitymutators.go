@@ -20,10 +20,10 @@ type EntityMutators struct {
 }
 
 // NewMutation returns a new instance of Mutation to manipulate database data with.
-func (entityMutators *EntityMutators) NewMutation(entity entity, form form, path string) Mutator {
+func (m *EntityMutators) NewMutation(entity entity, form form, path string) Mutator {
 	return &EntityMutator{
-		inserterDatabase: entityMutators.inserterDatabase,
-		updaterDatabase:  entityMutators.updaterDatabase,
+		inserterDatabase: m.inserterDatabase,
+		updaterDatabase:  m.updaterDatabase,
 		entity:           entity,
 		formAction:       form.FieldValue("action"),
 		path:             path,

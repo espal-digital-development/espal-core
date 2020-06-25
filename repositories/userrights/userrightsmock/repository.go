@@ -4,6 +4,7 @@
 package userrightsmock
 
 import (
+	"github.com/espal-digital-development/espal-core/repositories/userrights"
 	"sync"
 )
 
@@ -15,11 +16,15 @@ var (
 	lockRepositoryMockUserRightCodes sync.RWMutex
 )
 
-// RepositoryMock is a mock implementation of Repository.
+// Ensure, that RepositoryMock does implement userrights.Repository.
+// If this is not the case, regenerate this file with moq.
+var _ userrights.Repository = &RepositoryMock{}
+
+// RepositoryMock is a mock implementation of userrights.Repository.
 //
 //     func TestSomethingThatUsesRepository(t *testing.T) {
 //
-//         // make and configure a mocked Repository
+//         // make and configure a mocked userrights.Repository
 //         mockedRepository := &RepositoryMock{
 //             AllByCodeFunc: func() map[uint16]string {
 // 	               panic("mock out the AllByCode method")
@@ -38,7 +43,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedRepository in code that requires Repository
+//         // use mockedRepository in code that requires userrights.Repository
 //         // and then make assertions.
 //
 //     }

@@ -13,8 +13,8 @@ var _ Store = &DeliveryMethodsStore{}
 type Store interface {
 }
 
-func (deliveryMethodsStore *DeliveryMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*DeliveryMethod, ok bool, err error) {
-	rows, err := deliveryMethodsStore.selecterDatabase.Query(query, params...)
+func (d *DeliveryMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*DeliveryMethod, ok bool, err error) {
+	rows, err := d.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (deliveryMethodsStore *DeliveryMethodsStore) fetch(query string, withCreato
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		deliveryMethod := newDeliveryMethod()
-		fields := []interface{}{&deliveryMethod.id, &deliveryMethod.createdByID, &deliveryMethod.updatedByID, &deliveryMethod.createdAt, &deliveryMethod.updatedAt, &deliveryMethod.price}
+		d := newDeliveryMethod()
+		fields := []interface{}{&d.id, &d.createdByID, &d.updatedByID, &d.createdAt, &d.updatedAt, &d.price}
 		if withCreators {
-			fields = append(fields, &deliveryMethod.createdByFirstName, &deliveryMethod.createdBySurname, &deliveryMethod.updatedByFirstName, &deliveryMethod.updatedBySurname)
+			fields = append(fields, &d.createdByFirstName, &d.createdBySurname, &d.updatedByFirstName, &d.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, deliveryMethod)
+		result = append(result, d)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (deliveryMethodsStore *DeliveryMethodsStore) fetch(query string, withCreato
 
 // New returns a new instance of DeliveryMethodsStore.
 func New(selecterDatabase database.Database) (*DeliveryMethodsStore, error) {
-	deliveryMethodsStore := &DeliveryMethodsStore{
+	d := &DeliveryMethodsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return deliveryMethodsStore, nil
+	return d, nil
 }

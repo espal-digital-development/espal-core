@@ -9,115 +9,115 @@ import (
 )
 
 func TestCacheNotifyTable(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
-	if cacheNotify.TableName() == "" {
+	c := cachenotify.NewCacheNotifyEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestCacheNotifyTableAlias(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
-	if cacheNotify.TableName() == "" {
+	c := cachenotify.NewCacheNotifyEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestCacheNotifyIsUpdated(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
-	cacheNotify.IsUpdated()
+	c := cachenotify.NewCacheNotifyEntity()
+	c.IsUpdated()
 }
 
 func TestCacheNotifyID(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
-	cacheNotify.ID()
+	c := cachenotify.NewCacheNotifyEntity()
+	c.ID()
 }
 
 func TestCacheNotifyCreatedByID(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetCreatedByID(&testValue)
-	if &testValue != cacheNotify.CreatedByID() {
+	c.SetCreatedByID(&testValue)
+	if &testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyUpdatedByID(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetUpdatedByID(&testValue)
-	if &testValue != cacheNotify.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyCreatedAt(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := time.Now()
-	cacheNotify.SetCreatedAt(testValue)
-	if testValue != cacheNotify.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyUpdatedAt(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := time.Now()
-	cacheNotify.SetUpdatedAt(&testValue)
-	if &testValue != cacheNotify.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyCreatedByFirstName(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetCreatedByFirstName(&testValue)
-	if &testValue != cacheNotify.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyCreatedBySurname(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetCreatedBySurname(&testValue)
-	if &testValue != cacheNotify.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyUpdatedByFirstName(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetUpdatedByFirstName(&testValue)
-	if &testValue != cacheNotify.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyUpdatedBySurname(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetUpdatedBySurname(&testValue)
-	if &testValue != cacheNotify.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyTarget(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := uint(1e9)
-	cacheNotify.SetTarget(testValue)
-	if testValue != cacheNotify.Target() {
+	c.SetTarget(testValue)
+	if testValue != c.Target() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCacheNotifyKey(t *testing.T) {
-	cacheNotify := cachenotify.NewCacheNotifyEntity()
+	c := cachenotify.NewCacheNotifyEntity()
 	testValue := "testValue"
-	cacheNotify.SetKey(testValue)
-	if testValue != cacheNotify.Key() {
+	c.SetKey(testValue)
+	if testValue != c.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

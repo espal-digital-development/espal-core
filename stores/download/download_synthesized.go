@@ -18,118 +18,118 @@ type DownloadEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (download *Download) TableName() string {
+func (d *Download) TableName() string {
 	return "Download"
 }
 
 // ID returns id.
-func (download *Download) ID() string {
-	return download.id
+func (d *Download) ID() string {
+	return d.id
 }
 
 // CreatedByID returns createdByID.
-func (download *Download) CreatedByID() string {
-	return download.createdByID
+func (d *Download) CreatedByID() string {
+	return d.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (download *Download) SetCreatedByID(createdByID string) {
-	download.createdByID = createdByID
+func (d *Download) SetCreatedByID(createdByID string) {
+	d.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (download *Download) UpdatedByID() *string {
-	return download.updatedByID
+func (d *Download) UpdatedByID() *string {
+	return d.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (download *Download) SetUpdatedByID(updatedByID *string) {
-	download.updatedByID = updatedByID
+func (d *Download) SetUpdatedByID(updatedByID *string) {
+	d.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (download *Download) CreatedAt() time.Time {
-	return download.createdAt
+func (d *Download) CreatedAt() time.Time {
+	return d.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (download *Download) SetCreatedAt(createdAt time.Time) {
-	download.createdAt = createdAt
+func (d *Download) SetCreatedAt(createdAt time.Time) {
+	d.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (download *Download) UpdatedAt() *time.Time {
-	return download.updatedAt
+func (d *Download) UpdatedAt() *time.Time {
+	return d.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (download *Download) SetUpdatedAt(updatedAt *time.Time) {
-	download.updatedAt = updatedAt
+func (d *Download) SetUpdatedAt(updatedAt *time.Time) {
+	d.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (download *Download) CreatedByFirstName() *string {
-	return download.createdByFirstName
+func (d *Download) CreatedByFirstName() *string {
+	return d.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (download *Download) SetCreatedByFirstName(createdByFirstName *string) {
-	download.createdByFirstName = createdByFirstName
+func (d *Download) SetCreatedByFirstName(createdByFirstName *string) {
+	d.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (download *Download) CreatedBySurname() *string {
-	return download.createdBySurname
+func (d *Download) CreatedBySurname() *string {
+	return d.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (download *Download) SetCreatedBySurname(createdBySurname *string) {
-	download.createdBySurname = createdBySurname
+func (d *Download) SetCreatedBySurname(createdBySurname *string) {
+	d.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (download *Download) UpdatedByFirstName() *string {
-	return download.updatedByFirstName
+func (d *Download) UpdatedByFirstName() *string {
+	return d.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (download *Download) SetUpdatedByFirstName(updatedByFirstName *string) {
-	download.updatedByFirstName = updatedByFirstName
+func (d *Download) SetUpdatedByFirstName(updatedByFirstName *string) {
+	d.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (download *Download) UpdatedBySurname() *string {
-	return download.updatedBySurname
+func (d *Download) UpdatedBySurname() *string {
+	return d.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (download *Download) SetUpdatedBySurname(updatedBySurname *string) {
-	download.updatedBySurname = updatedBySurname
+func (d *Download) SetUpdatedBySurname(updatedBySurname *string) {
+	d.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (download *Download) IsUpdated() bool {
-	return download.updatedByID != nil
+func (d *Download) IsUpdated() bool {
+	return d.updatedByID != nil
 }
 
 // Active returns active.
-func (download *Download) Active() bool {
-	return download.active
+func (d *Download) Active() bool {
+	return d.active
 }
 
 // SetActive sets the active.
-func (download *Download) SetActive(active bool) {
-	download.active = active
+func (d *Download) SetActive(active bool) {
+	d.active = active
 }
 
 // FilePath returns filePath.
-func (download *Download) FilePath() string {
-	return download.filePath
+func (d *Download) FilePath() string {
+	return d.filePath
 }
 
 // SetFilePath sets the filePath.
-func (download *Download) SetFilePath(filePath string) {
-	download.filePath = filePath
+func (d *Download) SetFilePath(filePath string) {
+	d.filePath = filePath
 }
 
 func newDownload() *Download {

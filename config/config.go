@@ -15,7 +15,7 @@ const (
 var _ Config = &Configuration{}
 
 var (
-	// ErrorIncorrectDefaultLanguage is returned when no default language was specified in the configuration.
+	// ErrorIncorrectDefaultLanguage is returned when no default language was specified in the c.
 	ErrorIncorrectDefaultLanguage = errors.New("default Language must be available in the available languages file")
 	// ErrorDontUsePort80ForTLS is returned when the default non-TLS port is used for TLS connections.
 	ErrorDontUsePort80ForTLS = errors.New("do not use port 80 for TLS connections")
@@ -64,16 +64,16 @@ type Configuration struct {
 	coreStorage storage.Storage
 }
 
-// AvailableLanguages returns all languages that are available in the current build based on the configuration.
-func (configuration *Configuration) AvailableLanguages() []string {
+// AvailableLanguages returns all languages that are available in the current build based on the c.
+func (c *Configuration) AvailableLanguages() []string {
 	availableLanguages := make([]string, 0)
-	availableLanguages = append(availableLanguages, configuration.general.Languages...)
+	availableLanguages = append(availableLanguages, c.general.Languages...)
 	return availableLanguages
 }
 
-// LanguageIsAvailable indicates if the language is available in the current build based on the configuration.
-func (configuration *Configuration) LanguageIsAvailable(code string) bool {
-	for _, language := range configuration.general.Languages {
+// LanguageIsAvailable indicates if the language is available in the current build based on the c.
+func (c *Configuration) LanguageIsAvailable(code string) bool {
+	for _, language := range c.general.Languages {
 		if code == language {
 			return true
 		}
@@ -81,35 +81,35 @@ func (configuration *Configuration) LanguageIsAvailable(code string) bool {
 	return false
 }
 
-func (configuration *Configuration) validate() error {
-	if configuration.assets.CacheMaxAge != "" {
-		assetCacheMaxAge, err := strconv.Atoi(configuration.assets.CacheMaxAge)
+func (c *Configuration) validate() error {
+	if c.assets.CacheMaxAge != "" {
+		assetCacheMaxAge, err := strconv.Atoi(c.assets.CacheMaxAge)
 		if err != nil || assetCacheMaxAge < 1 {
 			return errors.Trace(ErrorAssetCacheMaxAgeIncorrect)
 		}
 	}
 	availableLanguages := map[string]bool{}
-	for _, language := range configuration.general.Languages {
+	for _, language := range c.general.Languages {
 		availableLanguages[language] = true
 	}
-	if ok := availableLanguages[configuration.general.DefaultLanguage]; !ok {
+	if ok := availableLanguages[c.general.DefaultLanguage]; !ok {
 		return errors.Trace(ErrorIncorrectDefaultLanguage)
 	}
-	if configuration.server.Port == DefaultHTTPPort {
+	if c.server.Port == DefaultHTTPPort {
 		return errors.Trace(ErrorDontUsePort80ForTLS)
 	}
-	if []byte(configuration.urls.Admin)[0] != '/' {
-		configuration.urls.Admin = "/" + configuration.urls.Admin
+	if []byte(c.urls.Admin)[0] != '/' {
+		c.urls.Admin = "/" + c.urls.Admin
 	}
-	if []byte(configuration.urls.Pprof)[0] != '/' {
-		configuration.urls.Pprof = "/" + configuration.urls.Pprof
+	if []byte(c.urls.Pprof)[0] != '/' {
+		c.urls.Pprof = "/" + c.urls.Pprof
 	}
 	return nil
 }
 
 // New returns a new instance of Configuration loaded from the target file.
 func New(coreStorage storage.Storage) (*Configuration, error) {
-	configuration := &Configuration{
+	c := &Configuration{
 		coreStorage: coreStorage,
 	}
 
@@ -126,18 +126,18 @@ func New(coreStorage storage.Storage) (*Configuration, error) {
 		return nil, errors.Trace(err)
 	}
 
-	configuration.assets = values.Assets
-	configuration.database = values.Database
-	configuration.email = values.Email
-	configuration.general = values.General
-	configuration.paths = values.Paths
-	configuration.security = values.Security
-	configuration.server = values.Server
-	configuration.session = values.Session
-	configuration.urls = values.Urls
+	c.assets = values.Assets
+	c.database = values.Database
+	c.email = values.Email
+	c.general = values.General
+	c.paths = values.Paths
+	c.security = values.Security
+	c.server = values.Server
+	c.session = values.Session
+	c.urls = values.Urls
 
-	if err := configuration.validate(); err != nil {
+	if err := c.validate(); err != nil {
 		return nil, errors.Trace(err)
 	}
-	return configuration, nil
+	return c, nil
 }

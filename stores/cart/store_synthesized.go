@@ -13,8 +13,8 @@ var _ Store = &CartsStore{}
 type Store interface {
 }
 
-func (cartsStore *CartsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Cart, ok bool, err error) {
-	rows, err := cartsStore.selecterDatabase.Query(query, params...)
+func (c *CartsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Cart, ok bool, err error) {
+	rows, err := c.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (cartsStore *CartsStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		cart := newCart()
-		fields := []interface{}{&cart.id, &cart.createdByID, &cart.updatedByID, &cart.createdAt, &cart.updatedAt, &cart.domainID, &cart.userID}
+		c := newCart()
+		fields := []interface{}{&c.id, &c.createdByID, &c.updatedByID, &c.createdAt, &c.updatedAt, &c.domainID, &c.userID}
 		if withCreators {
-			fields = append(fields, &cart.createdByFirstName, &cart.createdBySurname, &cart.updatedByFirstName, &cart.updatedBySurname)
+			fields = append(fields, &c.createdByFirstName, &c.createdBySurname, &c.updatedByFirstName, &c.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, cart)
+		result = append(result, c)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (cartsStore *CartsStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of CartsStore.
 func New(selecterDatabase database.Database) (*CartsStore, error) {
-	cartsStore := &CartsStore{
+	c := &CartsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return cartsStore, nil
+	return c, nil
 }

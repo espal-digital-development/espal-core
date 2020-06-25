@@ -30,11 +30,11 @@ type Bundled struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (bundled *Bundled) TableName() string {
+func (b *Bundled) TableName() string {
 	return "BundledProduct"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (bundled *Bundled) TableAlias() string {
+func (b *Bundled) TableAlias() string {
 	return "bpr"
 }

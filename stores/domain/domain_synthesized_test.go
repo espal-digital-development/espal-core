@@ -9,142 +9,142 @@ import (
 )
 
 func TestDomainTable(t *testing.T) {
-	domain := domain.NewDomainEntity()
-	if domain.TableName() == "" {
+	d := domain.NewDomainEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestDomainTableAlias(t *testing.T) {
-	domain := domain.NewDomainEntity()
-	if domain.TableName() == "" {
+	d := domain.NewDomainEntity()
+	if d.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestDomainIsUpdated(t *testing.T) {
-	domain := domain.NewDomainEntity()
-	domain.IsUpdated()
+	d := domain.NewDomainEntity()
+	d.IsUpdated()
 }
 
 func TestDomainID(t *testing.T) {
-	domain := domain.NewDomainEntity()
-	domain.ID()
+	d := domain.NewDomainEntity()
+	d.ID()
 }
 
 func TestDomainCreatedByID(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetCreatedByID(testValue)
-	if testValue != domain.CreatedByID() {
+	d.SetCreatedByID(testValue)
+	if testValue != d.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainUpdatedByID(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetUpdatedByID(&testValue)
-	if &testValue != domain.UpdatedByID() {
+	d.SetUpdatedByID(&testValue)
+	if &testValue != d.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainSiteID(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetSiteID(testValue)
-	if testValue != domain.SiteID() {
+	d.SetSiteID(testValue)
+	if testValue != d.SiteID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainCreatedAt(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := time.Now()
-	domain.SetCreatedAt(testValue)
-	if testValue != domain.CreatedAt() {
+	d.SetCreatedAt(testValue)
+	if testValue != d.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainUpdatedAt(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := time.Now()
-	domain.SetUpdatedAt(&testValue)
-	if &testValue != domain.UpdatedAt() {
+	d.SetUpdatedAt(&testValue)
+	if &testValue != d.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainCreatedByFirstName(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetCreatedByFirstName(&testValue)
-	if &testValue != domain.CreatedByFirstName() {
+	d.SetCreatedByFirstName(&testValue)
+	if &testValue != d.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainCreatedBySurname(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetCreatedBySurname(&testValue)
-	if &testValue != domain.CreatedBySurname() {
+	d.SetCreatedBySurname(&testValue)
+	if &testValue != d.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainUpdatedByFirstName(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetUpdatedByFirstName(&testValue)
-	if &testValue != domain.UpdatedByFirstName() {
+	d.SetUpdatedByFirstName(&testValue)
+	if &testValue != d.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainUpdatedBySurname(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetUpdatedBySurname(&testValue)
-	if &testValue != domain.UpdatedBySurname() {
+	d.SetUpdatedBySurname(&testValue)
+	if &testValue != d.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainActive(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := true
-	domain.SetActive(testValue)
-	if testValue != domain.Active() {
+	d.SetActive(testValue)
+	if testValue != d.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainHost(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetHost(testValue)
-	if testValue != domain.Host() {
+	d.SetHost(testValue)
+	if testValue != d.Host() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainLanguage(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := uint16(65000)
-	domain.SetLanguage(&testValue)
-	if &testValue != domain.Language() {
+	d.SetLanguage(&testValue)
+	if &testValue != d.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestDomainCurrencies(t *testing.T) {
-	domain := domain.NewDomainEntity()
+	d := domain.NewDomainEntity()
 	testValue := "testValue"
-	domain.SetCurrencies(testValue)
-	if testValue != domain.Currencies() {
+	d.SetCurrencies(testValue)
+	if testValue != d.Currencies() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

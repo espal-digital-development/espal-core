@@ -18,8 +18,8 @@ type Store interface {
 	ForUser(userID string) (result []*Contact, ok bool, err error)
 }
 
-func (contactsStore *ContactsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Contact, ok bool, err error) {
-	rows, err := contactsStore.selecterDatabase.Query(query, params...)
+func (c *ContactsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Contact, ok bool, err error) {
+	rows, err := c.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -41,15 +41,15 @@ func (contactsStore *ContactsStore) fetch(query string, withCreators bool, param
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		contact := newContact()
-		fields := []interface{}{&contact.id, &contact.createdByID, &contact.updatedByID, &contact.createdAt, &contact.updatedAt, &contact.userID, &contact.contactID, &contact.sorting, &contact.comments, &contact.contactFirstName, &contact.contactSurname}
+		c := newContact()
+		fields := []interface{}{&c.id, &c.createdByID, &c.updatedByID, &c.createdAt, &c.updatedAt, &c.userID, &c.contactID, &c.sorting, &c.comments, &c.contactFirstName, &c.contactSurname}
 		if withCreators {
-			fields = append(fields, &contact.createdByFirstName, &contact.createdBySurname, &contact.updatedByFirstName, &contact.updatedBySurname)
+			fields = append(fields, &c.createdByFirstName, &c.createdBySurname, &c.updatedByFirstName, &c.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, contact)
+		result = append(result, c)
 	}
 	ok = len(result) > 0
 	return
@@ -57,10 +57,10 @@ func (contactsStore *ContactsStore) fetch(query string, withCreators bool, param
 
 // New returns a new instance of ContactsStore.
 func New(selecterDatabase database.Database, deletorDatabase database.Database, translationsRepository translations.Repository) (*ContactsStore, error) {
-	contactsStore := &ContactsStore{
+	c := &ContactsStore{
 		selecterDatabase:       selecterDatabase,
 		deletorDatabase:        deletorDatabase,
 		translationsRepository: translationsRepository,
 	}
-	return contactsStore, nil
+	return c, nil
 }

@@ -6,15 +6,15 @@ import (
 	"github.com/juju/errors"
 )
 
-func (form *Form) validateTokenFormField(field FormField) (bool, error) {
+func (f *Form) validateTokenFormField(field FormField) (bool, error) {
 	token, err := strconv.Atoi(field.Value())
 	if err != nil {
 		return false, errors.Trace(err)
 	}
-	if !form.tokenPoolService.Validate(token) {
-		field.AddError(form.translationsRepository.Singular(form.language.ID(), "validationTokenInvalidExpired"))
+	if !f.tokenPoolService.Validate(token) {
+		field.AddError(f.translationsRepository.Singular(f.language.ID(), "validationTokenInvalidExpired"))
 
-		token, err = form.tokenPoolService.RequestToken()
+		token, err = f.tokenPoolService.RequestToken()
 		if err != nil {
 			return false, errors.Trace(err)
 		}

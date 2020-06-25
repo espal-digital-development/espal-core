@@ -9,151 +9,151 @@ import (
 )
 
 func TestPropertyTable(t *testing.T) {
-	property := property.NewPropertyEntity()
-	if property.TableName() == "" {
+	p := property.NewPropertyEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPropertyTableAlias(t *testing.T) {
-	property := property.NewPropertyEntity()
-	if property.TableName() == "" {
+	p := property.NewPropertyEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPropertyIsUpdated(t *testing.T) {
-	property := property.NewPropertyEntity()
-	property.IsUpdated()
+	p := property.NewPropertyEntity()
+	p.IsUpdated()
 }
 
 func TestPropertyID(t *testing.T) {
-	property := property.NewPropertyEntity()
-	property.ID()
+	p := property.NewPropertyEntity()
+	p.ID()
 }
 
 func TestPropertyCreatedByID(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetCreatedByID(testValue)
-	if testValue != property.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyUpdatedByID(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetUpdatedByID(&testValue)
-	if &testValue != property.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyCreatedAt(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := time.Now()
-	property.SetCreatedAt(testValue)
-	if testValue != property.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyUpdatedAt(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := time.Now()
-	property.SetUpdatedAt(&testValue)
-	if &testValue != property.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyCreatedByFirstName(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetCreatedByFirstName(&testValue)
-	if &testValue != property.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyCreatedBySurname(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetCreatedBySurname(&testValue)
-	if &testValue != property.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyUpdatedByFirstName(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetUpdatedByFirstName(&testValue)
-	if &testValue != property.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyUpdatedBySurname(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetUpdatedBySurname(&testValue)
-	if &testValue != property.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyUnitID(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetUnitID(&testValue)
-	if &testValue != property.UnitID() {
+	p.SetUnitID(&testValue)
+	if &testValue != p.UnitID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyActive(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := true
-	property.SetActive(testValue)
-	if testValue != property.Active() {
+	p.SetActive(testValue)
+	if testValue != p.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertySorting(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := uint(1e9)
-	property.SetSorting(testValue)
-	if testValue != property.Sorting() {
+	p.SetSorting(testValue)
+	if testValue != p.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyKey(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := "testValue"
-	property.SetKey(&testValue)
-	if &testValue != property.Key() {
+	p.SetKey(&testValue)
+	if &testValue != p.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyType(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := uint8(255)
-	property.SetType(testValue)
-	if testValue != property.Type() {
+	p.SetType(testValue)
+	if testValue != p.Type() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyMultiLingual(t *testing.T) {
-	property := property.NewPropertyEntity()
+	p := property.NewPropertyEntity()
 	testValue := true
-	property.SetMultiLingual(testValue)
-	if testValue != property.MultiLingual() {
+	p.SetMultiLingual(testValue)
+	if testValue != p.MultiLingual() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

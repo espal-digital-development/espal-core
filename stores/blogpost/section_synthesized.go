@@ -20,123 +20,123 @@ type SectionEntity interface {
 }
 
 // ID returns id.
-func (section *Section) ID() string {
-	return section.id
+func (s *Section) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (section *Section) CreatedByID() string {
-	return section.createdByID
+func (s *Section) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (section *Section) SetCreatedByID(createdByID string) {
-	section.createdByID = createdByID
+func (s *Section) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (section *Section) UpdatedByID() *string {
-	return section.updatedByID
+func (s *Section) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (section *Section) SetUpdatedByID(updatedByID *string) {
-	section.updatedByID = updatedByID
+func (s *Section) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (section *Section) CreatedAt() time.Time {
-	return section.createdAt
+func (s *Section) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (section *Section) SetCreatedAt(createdAt time.Time) {
-	section.createdAt = createdAt
+func (s *Section) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (section *Section) UpdatedAt() *time.Time {
-	return section.updatedAt
+func (s *Section) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (section *Section) SetUpdatedAt(updatedAt *time.Time) {
-	section.updatedAt = updatedAt
+func (s *Section) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (section *Section) CreatedByFirstName() *string {
-	return section.createdByFirstName
+func (s *Section) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (section *Section) SetCreatedByFirstName(createdByFirstName *string) {
-	section.createdByFirstName = createdByFirstName
+func (s *Section) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (section *Section) CreatedBySurname() *string {
-	return section.createdBySurname
+func (s *Section) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (section *Section) SetCreatedBySurname(createdBySurname *string) {
-	section.createdBySurname = createdBySurname
+func (s *Section) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (section *Section) UpdatedByFirstName() *string {
-	return section.updatedByFirstName
+func (s *Section) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (section *Section) SetUpdatedByFirstName(updatedByFirstName *string) {
-	section.updatedByFirstName = updatedByFirstName
+func (s *Section) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (section *Section) UpdatedBySurname() *string {
-	return section.updatedBySurname
+func (s *Section) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (section *Section) SetUpdatedBySurname(updatedBySurname *string) {
-	section.updatedBySurname = updatedBySurname
+func (s *Section) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (section *Section) IsUpdated() bool {
-	return section.updatedByID != nil
+func (s *Section) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Active returns active.
-func (section *Section) Active() bool {
-	return section.active
+func (s *Section) Active() bool {
+	return s.active
 }
 
 // SetActive sets the active.
-func (section *Section) SetActive(active bool) {
-	section.active = active
+func (s *Section) SetActive(active bool) {
+	s.active = active
 }
 
 // Sorting returns sorting.
-func (section *Section) Sorting() uint {
-	return section.sorting
+func (s *Section) Sorting() uint {
+	return s.sorting
 }
 
 // SetSorting sets the sorting.
-func (section *Section) SetSorting(sorting uint) {
-	section.sorting = sorting
+func (s *Section) SetSorting(sorting uint) {
+	s.sorting = sorting
 }
 
 // ParentID returns parentID.
-func (section *Section) ParentID() *string {
-	return section.parentID
+func (s *Section) ParentID() *string {
+	return s.parentID
 }
 
 // SetParentID sets the parentID.
-func (section *Section) SetParentID(parentID *string) {
-	section.parentID = parentID
+func (s *Section) SetParentID(parentID *string) {
+	s.parentID = parentID
 }
 
 func newSection() *Section {

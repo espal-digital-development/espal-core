@@ -13,8 +13,8 @@ var _ Store = &PropertiesStore{}
 type Store interface {
 }
 
-func (propertiesStore *PropertiesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Property, ok bool, err error) {
-	rows, err := propertiesStore.selecterDatabase.Query(query, params...)
+func (p *PropertiesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Property, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (propertiesStore *PropertiesStore) fetch(query string, withCreators bool, p
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		property := newProperty()
-		fields := []interface{}{&property.id, &property.createdByID, &property.updatedByID, &property.createdAt, &property.updatedAt, &property.unitID, &property.active, &property.sorting, &property.key, &property._type, &property.multiLingual}
+		p := newProperty()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.unitID, &p.active, &p.sorting, &p.key, &p._type, &p.multiLingual}
 		if withCreators {
-			fields = append(fields, &property.createdByFirstName, &property.createdBySurname, &property.updatedByFirstName, &property.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, property)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (propertiesStore *PropertiesStore) fetch(query string, withCreators bool, p
 
 // New returns a new instance of PropertiesStore.
 func New(selecterDatabase database.Database) (*PropertiesStore, error) {
-	propertiesStore := &PropertiesStore{
+	p := &PropertiesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return propertiesStore, nil
+	return p, nil
 }

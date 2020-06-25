@@ -30,11 +30,11 @@ type NewsArticle struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (newsArticle *NewsArticle) TableName() string {
+func (n *NewsArticle) TableName() string {
 	return "NewsArticle"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (newsArticle *NewsArticle) TableAlias() string {
+func (n *NewsArticle) TableAlias() string {
 	return "na"
 }

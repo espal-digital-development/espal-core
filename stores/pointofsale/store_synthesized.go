@@ -13,8 +13,8 @@ var _ Store = &PointsOfSaleStore{}
 type Store interface {
 }
 
-func (pointsOfSaleStore *PointsOfSaleStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PointOfSale, ok bool, err error) {
-	rows, err := pointsOfSaleStore.selecterDatabase.Query(query, params...)
+func (p *PointsOfSaleStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PointOfSale, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (pointsOfSaleStore *PointsOfSaleStore) fetch(query string, withCreators boo
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		pointOfSale := newPointOfSale()
-		fields := []interface{}{&pointOfSale.id, &pointOfSale.createdByID, &pointOfSale.updatedByID, &pointOfSale.createdAt, &pointOfSale.updatedAt, &pointOfSale.shopID}
+		p := newPointOfSale()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.shopID}
 		if withCreators {
-			fields = append(fields, &pointOfSale.createdByFirstName, &pointOfSale.createdBySurname, &pointOfSale.updatedByFirstName, &pointOfSale.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, pointOfSale)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (pointsOfSaleStore *PointsOfSaleStore) fetch(query string, withCreators boo
 
 // New returns a new instance of PointsOfSaleStore.
 func New(selecterDatabase database.Database) (*PointsOfSaleStore, error) {
-	pointsOfSaleStore := &PointsOfSaleStore{
+	p := &PointsOfSaleStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return pointsOfSaleStore, nil
+	return p, nil
 }

@@ -30,183 +30,183 @@ type BlogPostEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (blogPost *BlogPost) TableName() string {
+func (b *BlogPost) TableName() string {
 	return "BlogPost"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (blogPost *BlogPost) TableAlias() string {
+func (b *BlogPost) TableAlias() string {
 	return "bpe"
 }
 
 // ID returns id.
-func (blogPost *BlogPost) ID() string {
-	return blogPost.id
+func (b *BlogPost) ID() string {
+	return b.id
 }
 
 // CreatedByID returns createdByID.
-func (blogPost *BlogPost) CreatedByID() string {
-	return blogPost.createdByID
+func (b *BlogPost) CreatedByID() string {
+	return b.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (blogPost *BlogPost) SetCreatedByID(createdByID string) {
-	blogPost.createdByID = createdByID
+func (b *BlogPost) SetCreatedByID(createdByID string) {
+	b.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (blogPost *BlogPost) UpdatedByID() *string {
-	return blogPost.updatedByID
+func (b *BlogPost) UpdatedByID() *string {
+	return b.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (blogPost *BlogPost) SetUpdatedByID(updatedByID *string) {
-	blogPost.updatedByID = updatedByID
+func (b *BlogPost) SetUpdatedByID(updatedByID *string) {
+	b.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (blogPost *BlogPost) CreatedAt() time.Time {
-	return blogPost.createdAt
+func (b *BlogPost) CreatedAt() time.Time {
+	return b.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (blogPost *BlogPost) SetCreatedAt(createdAt time.Time) {
-	blogPost.createdAt = createdAt
+func (b *BlogPost) SetCreatedAt(createdAt time.Time) {
+	b.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (blogPost *BlogPost) UpdatedAt() *time.Time {
-	return blogPost.updatedAt
+func (b *BlogPost) UpdatedAt() *time.Time {
+	return b.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (blogPost *BlogPost) SetUpdatedAt(updatedAt *time.Time) {
-	blogPost.updatedAt = updatedAt
+func (b *BlogPost) SetUpdatedAt(updatedAt *time.Time) {
+	b.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (blogPost *BlogPost) CreatedByFirstName() *string {
-	return blogPost.createdByFirstName
+func (b *BlogPost) CreatedByFirstName() *string {
+	return b.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (blogPost *BlogPost) SetCreatedByFirstName(createdByFirstName *string) {
-	blogPost.createdByFirstName = createdByFirstName
+func (b *BlogPost) SetCreatedByFirstName(createdByFirstName *string) {
+	b.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (blogPost *BlogPost) CreatedBySurname() *string {
-	return blogPost.createdBySurname
+func (b *BlogPost) CreatedBySurname() *string {
+	return b.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (blogPost *BlogPost) SetCreatedBySurname(createdBySurname *string) {
-	blogPost.createdBySurname = createdBySurname
+func (b *BlogPost) SetCreatedBySurname(createdBySurname *string) {
+	b.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (blogPost *BlogPost) UpdatedByFirstName() *string {
-	return blogPost.updatedByFirstName
+func (b *BlogPost) UpdatedByFirstName() *string {
+	return b.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (blogPost *BlogPost) SetUpdatedByFirstName(updatedByFirstName *string) {
-	blogPost.updatedByFirstName = updatedByFirstName
+func (b *BlogPost) SetUpdatedByFirstName(updatedByFirstName *string) {
+	b.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (blogPost *BlogPost) UpdatedBySurname() *string {
-	return blogPost.updatedBySurname
+func (b *BlogPost) UpdatedBySurname() *string {
+	return b.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (blogPost *BlogPost) SetUpdatedBySurname(updatedBySurname *string) {
-	blogPost.updatedBySurname = updatedBySurname
+func (b *BlogPost) SetUpdatedBySurname(updatedBySurname *string) {
+	b.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (blogPost *BlogPost) IsUpdated() bool {
-	return blogPost.updatedByID != nil
+func (b *BlogPost) IsUpdated() bool {
+	return b.updatedByID != nil
 }
 
 // Active returns active.
-func (blogPost *BlogPost) Active() bool {
-	return blogPost.active
+func (b *BlogPost) Active() bool {
+	return b.active
 }
 
 // SetActive sets the active.
-func (blogPost *BlogPost) SetActive(active bool) {
-	blogPost.active = active
+func (b *BlogPost) SetActive(active bool) {
+	b.active = active
 }
 
 // Sorting returns sorting.
-func (blogPost *BlogPost) Sorting() uint {
-	return blogPost.sorting
+func (b *BlogPost) Sorting() uint {
+	return b.sorting
 }
 
 // SetSorting sets the sorting.
-func (blogPost *BlogPost) SetSorting(sorting uint) {
-	blogPost.sorting = sorting
+func (b *BlogPost) SetSorting(sorting uint) {
+	b.sorting = sorting
 }
 
 // SectionID returns sectionID.
-func (blogPost *BlogPost) SectionID() *string {
-	return blogPost.sectionID
+func (b *BlogPost) SectionID() *string {
+	return b.sectionID
 }
 
 // SetSectionID sets the sectionID.
-func (blogPost *BlogPost) SetSectionID(sectionID *string) {
-	blogPost.sectionID = sectionID
+func (b *BlogPost) SetSectionID(sectionID *string) {
+	b.sectionID = sectionID
 }
 
 // ApprovedByID returns approvedByID.
-func (blogPost *BlogPost) ApprovedByID() *string {
-	return blogPost.approvedByID
+func (b *BlogPost) ApprovedByID() *string {
+	return b.approvedByID
 }
 
 // SetApprovedByID sets the approvedByID.
-func (blogPost *BlogPost) SetApprovedByID(approvedByID *string) {
-	blogPost.approvedByID = approvedByID
+func (b *BlogPost) SetApprovedByID(approvedByID *string) {
+	b.approvedByID = approvedByID
 }
 
 // ApprovedDate returns approvedDate.
-func (blogPost *BlogPost) ApprovedDate() *time.Time {
-	return blogPost.approvedDate
+func (b *BlogPost) ApprovedDate() *time.Time {
+	return b.approvedDate
 }
 
 // SetApprovedDate sets the approvedDate.
-func (blogPost *BlogPost) SetApprovedDate(approvedDate *time.Time) {
-	blogPost.approvedDate = approvedDate
+func (b *BlogPost) SetApprovedDate(approvedDate *time.Time) {
+	b.approvedDate = approvedDate
 }
 
 // PublishDate returns publishDate.
-func (blogPost *BlogPost) PublishDate() *time.Time {
-	return blogPost.publishDate
+func (b *BlogPost) PublishDate() *time.Time {
+	return b.publishDate
 }
 
 // SetPublishDate sets the publishDate.
-func (blogPost *BlogPost) SetPublishDate(publishDate *time.Time) {
-	blogPost.publishDate = publishDate
+func (b *BlogPost) SetPublishDate(publishDate *time.Time) {
+	b.publishDate = publishDate
 }
 
 // ExpirationDate returns expirationDate.
-func (blogPost *BlogPost) ExpirationDate() *time.Time {
-	return blogPost.expirationDate
+func (b *BlogPost) ExpirationDate() *time.Time {
+	return b.expirationDate
 }
 
 // SetExpirationDate sets the expirationDate.
-func (blogPost *BlogPost) SetExpirationDate(expirationDate *time.Time) {
-	blogPost.expirationDate = expirationDate
+func (b *BlogPost) SetExpirationDate(expirationDate *time.Time) {
+	b.expirationDate = expirationDate
 }
 
 // Comments returns comments.
-func (blogPost *BlogPost) Comments() *string {
-	return blogPost.comments
+func (b *BlogPost) Comments() *string {
+	return b.comments
 }
 
 // SetComments sets the comments.
-func (blogPost *BlogPost) SetComments(comments *string) {
-	blogPost.comments = comments
+func (b *BlogPost) SetComments(comments *string) {
+	b.comments = comments
 }
 
 func newBlogPost() *BlogPost {

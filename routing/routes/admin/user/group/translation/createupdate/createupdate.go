@@ -13,14 +13,14 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	// TODO :: 77 Implement this (is being called from user/group/view.qtpl)
 	// if !context.HasUserRightOrForbid("UpdateUserGroup") {
 	// 	return
 	// }
 
 	// ids := context.QueryValue("ids")
-	// if !route.regularExpressionsRepository.GetRouteIDs().MatchString(ids) {
+	// if !r.regularExpressionsRepository.GetRouteIDs().MatchString(ids) {
 	// 	context.RenderBadRequest()
 	// 	return
 	// }
@@ -30,7 +30,7 @@ func (route *Route) Handle(context contexts.Context) {
 	// 	context.RenderNotFound()
 	// 	return
 	// }
-	// if !route.regularExpressionsRepository.GetRouteIDs().MatchString(idString) {
+	// if !r.regularExpressionsRepository.GetRouteIDs().MatchString(idString) {
 	// 	context.RenderBadRequest()
 	// 	return
 	// }

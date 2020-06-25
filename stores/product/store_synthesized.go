@@ -13,8 +13,8 @@ var _ Store = &ProductsStore{}
 type Store interface {
 }
 
-func (productsStore *ProductsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Model, ok bool, err error) {
-	rows, err := productsStore.selecterDatabase.Query(query, params...)
+func (p *ProductsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Model, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (productsStore *ProductsStore) fetch(query string, withCreators bool, param
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		model := newModel()
-		fields := []interface{}{&model.id, &model.createdByID, &model.updatedByID, &model.createdAt, &model.updatedAt, &model.active, &model.sorting, &model.key, &model.taxGroupID, &model.nameRepresentationID, &model.descriptionRepresentationID, &model.imageRepresentationID}
+		m := newModel()
+		fields := []interface{}{&m.id, &m.createdByID, &m.updatedByID, &m.createdAt, &m.updatedAt, &m.active, &m.sorting, &m.key, &m.taxGroupID, &m.nameRepresentationID, &m.descriptionRepresentationID, &m.imageRepresentationID}
 		if withCreators {
-			fields = append(fields, &model.createdByFirstName, &model.createdBySurname, &model.updatedByFirstName, &model.updatedBySurname)
+			fields = append(fields, &m.createdByFirstName, &m.createdBySurname, &m.updatedByFirstName, &m.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, model)
+		result = append(result, m)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (productsStore *ProductsStore) fetch(query string, withCreators bool, param
 
 // New returns a new instance of ProductsStore.
 func New(selecterDatabase database.Database) (*ProductsStore, error) {
-	productsStore := &ProductsStore{
+	p := &ProductsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return productsStore, nil
+	return p, nil
 }

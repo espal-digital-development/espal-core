@@ -18,143 +18,143 @@ type UnitTranslationEntity interface {
 }
 
 // ID returns id.
-func (unitTranslation *UnitTranslation) ID() string {
-	return unitTranslation.id
+func (u *UnitTranslation) ID() string {
+	return u.id
 }
 
 // CreatedByID returns createdByID.
-func (unitTranslation *UnitTranslation) CreatedByID() string {
-	return unitTranslation.createdByID
+func (u *UnitTranslation) CreatedByID() string {
+	return u.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (unitTranslation *UnitTranslation) SetCreatedByID(createdByID string) {
-	unitTranslation.createdByID = createdByID
+func (u *UnitTranslation) SetCreatedByID(createdByID string) {
+	u.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (unitTranslation *UnitTranslation) UpdatedByID() *string {
-	return unitTranslation.updatedByID
+func (u *UnitTranslation) UpdatedByID() *string {
+	return u.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (unitTranslation *UnitTranslation) SetUpdatedByID(updatedByID *string) {
-	unitTranslation.updatedByID = updatedByID
+func (u *UnitTranslation) SetUpdatedByID(updatedByID *string) {
+	u.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (unitTranslation *UnitTranslation) CreatedAt() time.Time {
-	return unitTranslation.createdAt
+func (u *UnitTranslation) CreatedAt() time.Time {
+	return u.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (unitTranslation *UnitTranslation) SetCreatedAt(createdAt time.Time) {
-	unitTranslation.createdAt = createdAt
+func (u *UnitTranslation) SetCreatedAt(createdAt time.Time) {
+	u.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (unitTranslation *UnitTranslation) UpdatedAt() *time.Time {
-	return unitTranslation.updatedAt
+func (u *UnitTranslation) UpdatedAt() *time.Time {
+	return u.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (unitTranslation *UnitTranslation) SetUpdatedAt(updatedAt *time.Time) {
-	unitTranslation.updatedAt = updatedAt
+func (u *UnitTranslation) SetUpdatedAt(updatedAt *time.Time) {
+	u.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (unitTranslation *UnitTranslation) CreatedByFirstName() *string {
-	return unitTranslation.createdByFirstName
+func (u *UnitTranslation) CreatedByFirstName() *string {
+	return u.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (unitTranslation *UnitTranslation) SetCreatedByFirstName(createdByFirstName *string) {
-	unitTranslation.createdByFirstName = createdByFirstName
+func (u *UnitTranslation) SetCreatedByFirstName(createdByFirstName *string) {
+	u.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (unitTranslation *UnitTranslation) CreatedBySurname() *string {
-	return unitTranslation.createdBySurname
+func (u *UnitTranslation) CreatedBySurname() *string {
+	return u.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (unitTranslation *UnitTranslation) SetCreatedBySurname(createdBySurname *string) {
-	unitTranslation.createdBySurname = createdBySurname
+func (u *UnitTranslation) SetCreatedBySurname(createdBySurname *string) {
+	u.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (unitTranslation *UnitTranslation) UpdatedByFirstName() *string {
-	return unitTranslation.updatedByFirstName
+func (u *UnitTranslation) UpdatedByFirstName() *string {
+	return u.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (unitTranslation *UnitTranslation) SetUpdatedByFirstName(updatedByFirstName *string) {
-	unitTranslation.updatedByFirstName = updatedByFirstName
+func (u *UnitTranslation) SetUpdatedByFirstName(updatedByFirstName *string) {
+	u.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (unitTranslation *UnitTranslation) UpdatedBySurname() *string {
-	return unitTranslation.updatedBySurname
+func (u *UnitTranslation) UpdatedBySurname() *string {
+	return u.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (unitTranslation *UnitTranslation) SetUpdatedBySurname(updatedBySurname *string) {
-	unitTranslation.updatedBySurname = updatedBySurname
+func (u *UnitTranslation) SetUpdatedBySurname(updatedBySurname *string) {
+	u.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (unitTranslation *UnitTranslation) IsUpdated() bool {
-	return unitTranslation.updatedByID != nil
+func (u *UnitTranslation) IsUpdated() bool {
+	return u.updatedByID != nil
 }
 
 // Language returns language.
-func (unitTranslation *UnitTranslation) Language() uint16 {
-	return unitTranslation.language
+func (u *UnitTranslation) Language() uint16 {
+	return u.language
 }
 
 // SetLanguage sets the language.
-func (unitTranslation *UnitTranslation) SetLanguage(language uint16) {
-	unitTranslation.language = language
+func (u *UnitTranslation) SetLanguage(language uint16) {
+	u.language = language
 }
 
 // Field returns field.
-func (unitTranslation *UnitTranslation) Field() uint16 {
-	return unitTranslation.field
+func (u *UnitTranslation) Field() uint16 {
+	return u.field
 }
 
 // SetField sets the field.
-func (unitTranslation *UnitTranslation) SetField(field uint16) {
-	unitTranslation.field = field
+func (u *UnitTranslation) SetField(field uint16) {
+	u.field = field
 }
 
 // UnitID returns unitID.
-func (unitTranslation *UnitTranslation) UnitID() string {
-	return unitTranslation.unitID
+func (u *UnitTranslation) UnitID() string {
+	return u.unitID
 }
 
 // SetUnitID sets the unitID.
-func (unitTranslation *UnitTranslation) SetUnitID(unitID string) {
-	unitTranslation.unitID = unitID
+func (u *UnitTranslation) SetUnitID(unitID string) {
+	u.unitID = unitID
 }
 
 // Value returns value.
-func (unitTranslation *UnitTranslation) Value() string {
-	return unitTranslation.value
+func (u *UnitTranslation) Value() string {
+	return u.value
 }
 
 // SetValue sets the value.
-func (unitTranslation *UnitTranslation) SetValue(value string) {
-	unitTranslation.value = value
+func (u *UnitTranslation) SetValue(value string) {
+	u.value = value
 }
 
 // Display returns display.
-func (unitTranslation *UnitTranslation) Display() *string {
-	return unitTranslation.display
+func (u *UnitTranslation) Display() *string {
+	return u.display
 }
 
 // SetDisplay sets the display.
-func (unitTranslation *UnitTranslation) SetDisplay(display *string) {
-	unitTranslation.display = display
+func (u *UnitTranslation) SetDisplay(display *string) {
+	u.display = display
 }
 
 func newUnitTranslation() *UnitTranslation {

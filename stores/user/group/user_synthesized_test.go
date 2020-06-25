@@ -9,115 +9,115 @@ import (
 )
 
 func TestUserTable(t *testing.T) {
-	user := group.NewUserEntity()
-	if user.TableName() == "" {
+	u := group.NewUserEntity()
+	if u.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestUserTableAlias(t *testing.T) {
-	user := group.NewUserEntity()
-	if user.TableName() == "" {
+	u := group.NewUserEntity()
+	if u.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestUserIsUpdated(t *testing.T) {
-	user := group.NewUserEntity()
-	user.IsUpdated()
+	u := group.NewUserEntity()
+	u.IsUpdated()
 }
 
 func TestUserID(t *testing.T) {
-	user := group.NewUserEntity()
-	user.ID()
+	u := group.NewUserEntity()
+	u.ID()
 }
 
 func TestUserCreatedByID(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetCreatedByID(testValue)
-	if testValue != user.CreatedByID() {
+	u.SetCreatedByID(testValue)
+	if testValue != u.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedByID(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetUpdatedByID(&testValue)
-	if &testValue != user.UpdatedByID() {
+	u.SetUpdatedByID(&testValue)
+	if &testValue != u.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCreatedAt(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := time.Now()
-	user.SetCreatedAt(testValue)
-	if testValue != user.CreatedAt() {
+	u.SetCreatedAt(testValue)
+	if testValue != u.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedAt(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := time.Now()
-	user.SetUpdatedAt(&testValue)
-	if &testValue != user.UpdatedAt() {
+	u.SetUpdatedAt(&testValue)
+	if &testValue != u.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCreatedByFirstName(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetCreatedByFirstName(&testValue)
-	if &testValue != user.CreatedByFirstName() {
+	u.SetCreatedByFirstName(&testValue)
+	if &testValue != u.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserCreatedBySurname(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetCreatedBySurname(&testValue)
-	if &testValue != user.CreatedBySurname() {
+	u.SetCreatedBySurname(&testValue)
+	if &testValue != u.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedByFirstName(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetUpdatedByFirstName(&testValue)
-	if &testValue != user.UpdatedByFirstName() {
+	u.SetUpdatedByFirstName(&testValue)
+	if &testValue != u.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUpdatedBySurname(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetUpdatedBySurname(&testValue)
-	if &testValue != user.UpdatedBySurname() {
+	u.SetUpdatedBySurname(&testValue)
+	if &testValue != u.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUserGroupID(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetUserGroupID(testValue)
-	if testValue != user.UserGroupID() {
+	u.SetUserGroupID(testValue)
+	if testValue != u.UserGroupID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUserUserID(t *testing.T) {
-	user := group.NewUserEntity()
+	u := group.NewUserEntity()
 	testValue := "testValue"
-	user.SetUserID(testValue)
-	if testValue != user.UserID() {
+	u.SetUserID(testValue)
+	if testValue != u.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

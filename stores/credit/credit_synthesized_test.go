@@ -9,97 +9,97 @@ import (
 )
 
 func TestCreditTable(t *testing.T) {
-	credit := credit.NewCreditEntity()
-	if credit.TableName() == "" {
+	c := credit.NewCreditEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestCreditTableAlias(t *testing.T) {
-	credit := credit.NewCreditEntity()
-	if credit.TableName() == "" {
+	c := credit.NewCreditEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestCreditIsUpdated(t *testing.T) {
-	credit := credit.NewCreditEntity()
-	credit.IsUpdated()
+	c := credit.NewCreditEntity()
+	c.IsUpdated()
 }
 
 func TestCreditID(t *testing.T) {
-	credit := credit.NewCreditEntity()
-	credit.ID()
+	c := credit.NewCreditEntity()
+	c.ID()
 }
 
 func TestCreditCreatedByID(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := "testValue"
-	credit.SetCreatedByID(testValue)
-	if testValue != credit.CreatedByID() {
+	c.SetCreatedByID(testValue)
+	if testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditUpdatedByID(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := "testValue"
-	credit.SetUpdatedByID(&testValue)
-	if &testValue != credit.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditCreatedAt(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := time.Now()
-	credit.SetCreatedAt(testValue)
-	if testValue != credit.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditUpdatedAt(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := time.Now()
-	credit.SetUpdatedAt(&testValue)
-	if &testValue != credit.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditCreatedByFirstName(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := "testValue"
-	credit.SetCreatedByFirstName(&testValue)
-	if &testValue != credit.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditCreatedBySurname(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := "testValue"
-	credit.SetCreatedBySurname(&testValue)
-	if &testValue != credit.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditUpdatedByFirstName(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := "testValue"
-	credit.SetUpdatedByFirstName(&testValue)
-	if &testValue != credit.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCreditUpdatedBySurname(t *testing.T) {
-	credit := credit.NewCreditEntity()
+	c := credit.NewCreditEntity()
 	testValue := "testValue"
-	credit.SetUpdatedBySurname(&testValue)
-	if &testValue != credit.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

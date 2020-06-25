@@ -9,214 +9,214 @@ import (
 )
 
 func TestOfficeTable(t *testing.T) {
-	office := office.NewOfficeEntity()
-	if office.TableName() == "" {
+	o := office.NewOfficeEntity()
+	if o.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestOfficeTableAlias(t *testing.T) {
-	office := office.NewOfficeEntity()
-	if office.TableName() == "" {
+	o := office.NewOfficeEntity()
+	if o.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestOfficeIsUpdated(t *testing.T) {
-	office := office.NewOfficeEntity()
-	office.IsUpdated()
+	o := office.NewOfficeEntity()
+	o.IsUpdated()
 }
 
 func TestOfficeID(t *testing.T) {
-	office := office.NewOfficeEntity()
-	office.ID()
+	o := office.NewOfficeEntity()
+	o.ID()
 }
 
 func TestOfficeCreatedByID(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetCreatedByID(testValue)
-	if testValue != office.CreatedByID() {
+	o.SetCreatedByID(testValue)
+	if testValue != o.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeUpdatedByID(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetUpdatedByID(&testValue)
-	if &testValue != office.UpdatedByID() {
+	o.SetUpdatedByID(&testValue)
+	if &testValue != o.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeCreatedAt(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := time.Now()
-	office.SetCreatedAt(testValue)
-	if testValue != office.CreatedAt() {
+	o.SetCreatedAt(testValue)
+	if testValue != o.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeUpdatedAt(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := time.Now()
-	office.SetUpdatedAt(&testValue)
-	if &testValue != office.UpdatedAt() {
+	o.SetUpdatedAt(&testValue)
+	if &testValue != o.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeCreatedByFirstName(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetCreatedByFirstName(&testValue)
-	if &testValue != office.CreatedByFirstName() {
+	o.SetCreatedByFirstName(&testValue)
+	if &testValue != o.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeCreatedBySurname(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetCreatedBySurname(&testValue)
-	if &testValue != office.CreatedBySurname() {
+	o.SetCreatedBySurname(&testValue)
+	if &testValue != o.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeUpdatedByFirstName(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetUpdatedByFirstName(&testValue)
-	if &testValue != office.UpdatedByFirstName() {
+	o.SetUpdatedByFirstName(&testValue)
+	if &testValue != o.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeUpdatedBySurname(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetUpdatedBySurname(&testValue)
-	if &testValue != office.UpdatedBySurname() {
+	o.SetUpdatedBySurname(&testValue)
+	if &testValue != o.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeActive(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := true
-	office.SetActive(testValue)
-	if testValue != office.Active() {
+	o.SetActive(testValue)
+	if testValue != o.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeSorting(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := uint(1e9)
-	office.SetSorting(testValue)
-	if testValue != office.Sorting() {
+	o.SetSorting(testValue)
+	if testValue != o.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficePrimaryContactPerson(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetPrimaryContactPerson(&testValue)
-	if &testValue != office.PrimaryContactPerson() {
+	o.SetPrimaryContactPerson(&testValue)
+	if &testValue != o.PrimaryContactPerson() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeStreet(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetStreet(testValue)
-	if testValue != office.Street() {
+	o.SetStreet(testValue)
+	if testValue != o.Street() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeStreetLine2(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetStreetLine2(&testValue)
-	if &testValue != office.StreetLine2() {
+	o.SetStreetLine2(&testValue)
+	if &testValue != o.StreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeNumber(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetNumber(testValue)
-	if testValue != office.Number() {
+	o.SetNumber(testValue)
+	if testValue != o.Number() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeNumberAddition(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetNumberAddition(&testValue)
-	if &testValue != office.NumberAddition() {
+	o.SetNumberAddition(&testValue)
+	if &testValue != o.NumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeZipCode(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetZipCode(testValue)
-	if testValue != office.ZipCode() {
+	o.SetZipCode(testValue)
+	if testValue != o.ZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeCity(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetCity(testValue)
-	if testValue != office.City() {
+	o.SetCity(testValue)
+	if testValue != o.City() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeState(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetState(&testValue)
-	if &testValue != office.State() {
+	o.SetState(&testValue)
+	if &testValue != o.State() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeCountry(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := uint16(65000)
-	office.SetCountry(&testValue)
-	if &testValue != office.Country() {
+	o.SetCountry(&testValue)
+	if &testValue != o.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficePhoneNumber(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetPhoneNumber(&testValue)
-	if &testValue != office.PhoneNumber() {
+	o.SetPhoneNumber(&testValue)
+	if &testValue != o.PhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestOfficeEmail(t *testing.T) {
-	office := office.NewOfficeEntity()
+	o := office.NewOfficeEntity()
 	testValue := "testValue"
-	office.SetEmail(&testValue)
-	if &testValue != office.Email() {
+	o.SetEmail(&testValue)
+	if &testValue != o.Email() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

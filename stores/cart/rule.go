@@ -21,11 +21,11 @@ type Rule struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (rule *Rule) TableName() string {
+func (r *Rule) TableName() string {
 	return "CartRule"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (rule *Rule) TableAlias() string {
+func (r *Rule) TableAlias() string {
 	return "cr"
 }

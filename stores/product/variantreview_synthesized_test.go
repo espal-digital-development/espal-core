@@ -9,169 +9,169 @@ import (
 )
 
 func TestVariantReviewTable(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
-	if variantReview.TableName() == "" {
+	v := product.NewVariantReviewEntity()
+	if v.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestVariantReviewTableAlias(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
-	if variantReview.TableName() == "" {
+	v := product.NewVariantReviewEntity()
+	if v.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestVariantReviewIsUpdated(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
-	variantReview.IsUpdated()
+	v := product.NewVariantReviewEntity()
+	v.IsUpdated()
 }
 
 func TestVariantReviewID(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
-	variantReview.ID()
+	v := product.NewVariantReviewEntity()
+	v.ID()
 }
 
 func TestVariantReviewCreatedByID(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetCreatedByID(testValue)
-	if testValue != variantReview.CreatedByID() {
+	v.SetCreatedByID(testValue)
+	if testValue != v.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewUpdatedByID(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetUpdatedByID(&testValue)
-	if &testValue != variantReview.UpdatedByID() {
+	v.SetUpdatedByID(&testValue)
+	if &testValue != v.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewCreatedAt(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := time.Now()
-	variantReview.SetCreatedAt(testValue)
-	if testValue != variantReview.CreatedAt() {
+	v.SetCreatedAt(testValue)
+	if testValue != v.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewUpdatedAt(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := time.Now()
-	variantReview.SetUpdatedAt(&testValue)
-	if &testValue != variantReview.UpdatedAt() {
+	v.SetUpdatedAt(&testValue)
+	if &testValue != v.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewCreatedByFirstName(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetCreatedByFirstName(&testValue)
-	if &testValue != variantReview.CreatedByFirstName() {
+	v.SetCreatedByFirstName(&testValue)
+	if &testValue != v.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewCreatedBySurname(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetCreatedBySurname(&testValue)
-	if &testValue != variantReview.CreatedBySurname() {
+	v.SetCreatedBySurname(&testValue)
+	if &testValue != v.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewUpdatedByFirstName(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetUpdatedByFirstName(&testValue)
-	if &testValue != variantReview.UpdatedByFirstName() {
+	v.SetUpdatedByFirstName(&testValue)
+	if &testValue != v.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewUpdatedBySurname(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetUpdatedBySurname(&testValue)
-	if &testValue != variantReview.UpdatedBySurname() {
+	v.SetUpdatedBySurname(&testValue)
+	if &testValue != v.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewReviewedByID(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetReviewedByID(&testValue)
-	if &testValue != variantReview.ReviewedByID() {
+	v.SetReviewedByID(&testValue)
+	if &testValue != v.ReviewedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewReviewedOnDate(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := time.Now()
-	variantReview.SetReviewedOnDate(&testValue)
-	if &testValue != variantReview.ReviewedOnDate() {
+	v.SetReviewedOnDate(&testValue)
+	if &testValue != v.ReviewedOnDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewReviewNotes(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetReviewNotes(&testValue)
-	if &testValue != variantReview.ReviewNotes() {
+	v.SetReviewNotes(&testValue)
+	if &testValue != v.ReviewNotes() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewApproved(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := true
-	variantReview.SetApproved(&testValue)
-	if &testValue != variantReview.Approved() {
+	v.SetApproved(&testValue)
+	if &testValue != v.Approved() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewRating(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := float32(3.14)
-	variantReview.SetRating(testValue)
-	if testValue != variantReview.Rating() {
+	v.SetRating(testValue)
+	if testValue != v.Rating() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewTitle(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetTitle(testValue)
-	if testValue != variantReview.Title() {
+	v.SetTitle(testValue)
+	if testValue != v.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewDescription(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetDescription(testValue)
-	if testValue != variantReview.Description() {
+	v.SetDescription(testValue)
+	if testValue != v.Description() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantReviewVariantID(t *testing.T) {
-	variantReview := product.NewVariantReviewEntity()
+	v := product.NewVariantReviewEntity()
 	testValue := "testValue"
-	variantReview.SetVariantID(testValue)
-	if testValue != variantReview.VariantID() {
+	v.SetVariantID(testValue)
+	if testValue != v.VariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

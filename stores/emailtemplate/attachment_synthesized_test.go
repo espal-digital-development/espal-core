@@ -9,124 +9,124 @@ import (
 )
 
 func TestAttachmentTable(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
-	if attachment.TableName() == "" {
+	a := emailtemplate.NewAttachmentEntity()
+	if a.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestAttachmentTableAlias(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
-	if attachment.TableName() == "" {
+	a := emailtemplate.NewAttachmentEntity()
+	if a.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestAttachmentIsUpdated(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
-	attachment.IsUpdated()
+	a := emailtemplate.NewAttachmentEntity()
+	a.IsUpdated()
 }
 
 func TestAttachmentID(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
-	attachment.ID()
+	a := emailtemplate.NewAttachmentEntity()
+	a.ID()
 }
 
 func TestAttachmentCreatedByID(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetCreatedByID(testValue)
-	if testValue != attachment.CreatedByID() {
+	a.SetCreatedByID(testValue)
+	if testValue != a.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentUpdatedByID(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetUpdatedByID(&testValue)
-	if &testValue != attachment.UpdatedByID() {
+	a.SetUpdatedByID(&testValue)
+	if &testValue != a.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentCreatedAt(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := time.Now()
-	attachment.SetCreatedAt(testValue)
-	if testValue != attachment.CreatedAt() {
+	a.SetCreatedAt(testValue)
+	if testValue != a.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentUpdatedAt(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := time.Now()
-	attachment.SetUpdatedAt(&testValue)
-	if &testValue != attachment.UpdatedAt() {
+	a.SetUpdatedAt(&testValue)
+	if &testValue != a.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentCreatedByFirstName(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetCreatedByFirstName(&testValue)
-	if &testValue != attachment.CreatedByFirstName() {
+	a.SetCreatedByFirstName(&testValue)
+	if &testValue != a.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentCreatedBySurname(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetCreatedBySurname(&testValue)
-	if &testValue != attachment.CreatedBySurname() {
+	a.SetCreatedBySurname(&testValue)
+	if &testValue != a.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentUpdatedByFirstName(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetUpdatedByFirstName(&testValue)
-	if &testValue != attachment.UpdatedByFirstName() {
+	a.SetUpdatedByFirstName(&testValue)
+	if &testValue != a.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentUpdatedBySurname(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetUpdatedBySurname(&testValue)
-	if &testValue != attachment.UpdatedBySurname() {
+	a.SetUpdatedBySurname(&testValue)
+	if &testValue != a.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentEmailTemplateID(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetEmailTemplateID(testValue)
-	if testValue != attachment.EmailTemplateID() {
+	a.SetEmailTemplateID(testValue)
+	if testValue != a.EmailTemplateID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentFilePath(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := "testValue"
-	attachment.SetFilePath(testValue)
-	if testValue != attachment.FilePath() {
+	a.SetFilePath(testValue)
+	if testValue != a.FilePath() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAttachmentLanguage(t *testing.T) {
-	attachment := emailtemplate.NewAttachmentEntity()
+	a := emailtemplate.NewAttachmentEntity()
 	testValue := uint16(65000)
-	attachment.SetLanguage(&testValue)
-	if &testValue != attachment.Language() {
+	a.SetLanguage(&testValue)
+	if &testValue != a.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

@@ -9,115 +9,115 @@ import (
 )
 
 func TestPostRatingTable(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
-	if postRating.TableName() == "" {
+	p := forum.NewPostRatingEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPostRatingTableAlias(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
-	if postRating.TableName() == "" {
+	p := forum.NewPostRatingEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPostRatingIsUpdated(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
-	postRating.IsUpdated()
+	p := forum.NewPostRatingEntity()
+	p.IsUpdated()
 }
 
 func TestPostRatingID(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
-	postRating.ID()
+	p := forum.NewPostRatingEntity()
+	p.ID()
 }
 
 func TestPostRatingCreatedByID(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetCreatedByID(testValue)
-	if testValue != postRating.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingUpdatedByID(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetUpdatedByID(&testValue)
-	if &testValue != postRating.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingCreatedAt(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := time.Now()
-	postRating.SetCreatedAt(testValue)
-	if testValue != postRating.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingUpdatedAt(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := time.Now()
-	postRating.SetUpdatedAt(&testValue)
-	if &testValue != postRating.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingCreatedByFirstName(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetCreatedByFirstName(&testValue)
-	if &testValue != postRating.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingCreatedBySurname(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetCreatedBySurname(&testValue)
-	if &testValue != postRating.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingUpdatedByFirstName(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetUpdatedByFirstName(&testValue)
-	if &testValue != postRating.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingUpdatedBySurname(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetUpdatedBySurname(&testValue)
-	if &testValue != postRating.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingPostID(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := "testValue"
-	postRating.SetPostID(&testValue)
-	if &testValue != postRating.PostID() {
+	p.SetPostID(&testValue)
+	if &testValue != p.PostID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPostRatingScore(t *testing.T) {
-	postRating := forum.NewPostRatingEntity()
+	p := forum.NewPostRatingEntity()
 	testValue := 6.28
-	postRating.SetScore(testValue)
-	if testValue != postRating.Score() {
+	p.SetScore(testValue)
+	if testValue != p.Score() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

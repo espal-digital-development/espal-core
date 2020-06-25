@@ -17,17 +17,17 @@ func newChoicesCache() *choicesCache {
 }
 
 // Store the CountryChoice to the given key.
-func (choicesCache *choicesCache) Store(key string, value options) {
-	choicesCache.mutex.Lock()
-	choicesCache.choices[key] = value
-	choicesCache.mutex.Unlock()
+func (c *choicesCache) Store(key string, value options) {
+	c.mutex.Lock()
+	c.choices[key] = value
+	c.mutex.Unlock()
 }
 
 // Load the CountryChoice based on the requested key.
-func (choicesCache *choicesCache) Load(key string) (options, bool) {
-	choicesCache.mutex.RLock()
-	value, ok := choicesCache.choices[key]
-	choicesCache.mutex.RUnlock()
+func (c *choicesCache) Load(key string) (options, bool) {
+	c.mutex.RLock()
+	value, ok := c.choices[key]
+	c.mutex.RUnlock()
 	if !ok {
 		return options{}, false
 	}
@@ -35,21 +35,21 @@ func (choicesCache *choicesCache) Load(key string) (options, bool) {
 }
 
 // Consume the CountryChoice based on the requested key and destroy it afterwards.
-func (choicesCache *choicesCache) Consume(key string) (options, bool) {
-	choicesCache.mutex.RLock()
-	value, ok := choicesCache.choices[key]
-	choicesCache.mutex.RUnlock()
+func (c *choicesCache) Consume(key string) (options, bool) {
+	c.mutex.RLock()
+	value, ok := c.choices[key]
+	c.mutex.RUnlock()
 	if !ok {
 		return options{}, false
 	}
-	choicesCache.mutex.Lock()
-	delete(choicesCache.choices, key)
-	choicesCache.mutex.Unlock()
+	c.mutex.Lock()
+	delete(c.choices, key)
+	c.mutex.Unlock()
 
 	return value, true
 }
 
 // Count returns the current cache's entry-count.
-func (choicesCache *choicesCache) Count() uint {
-	return uint(len(choicesCache.choices))
+func (c *choicesCache) Count() uint {
+	return uint(len(c.choices))
 }

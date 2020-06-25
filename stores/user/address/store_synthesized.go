@@ -22,8 +22,8 @@ type Store interface {
 	ToggleActive(ids []string) error
 }
 
-func (addressesStore *AddressesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Address, ok bool, err error) {
-	rows, err := addressesStore.selecterDatabase.Query(query, params...)
+func (a *AddressesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Address, ok bool, err error) {
+	rows, err := a.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -45,15 +45,15 @@ func (addressesStore *AddressesStore) fetch(query string, withCreators bool, par
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		address := newAddress()
-		fields := []interface{}{&address.id, &address.createdByID, &address.updatedByID, &address.createdAt, &address.updatedAt, &address.userID, &address.active, &address.firstName, &address.surname, &address.street, &address.streetLine2, &address.number, &address.numberAddition, &address.zipCode, &address.city, &address.state, &address.country, &address.phoneNumber, &address.email}
+		a := newAddress()
+		fields := []interface{}{&a.id, &a.createdByID, &a.updatedByID, &a.createdAt, &a.updatedAt, &a.userID, &a.active, &a.firstName, &a.surname, &a.street, &a.streetLine2, &a.number, &a.numberAddition, &a.zipCode, &a.city, &a.state, &a.country, &a.phoneNumber, &a.email}
 		if withCreators {
-			fields = append(fields, &address.createdByFirstName, &address.createdBySurname, &address.updatedByFirstName, &address.updatedBySurname)
+			fields = append(fields, &a.createdByFirstName, &a.createdBySurname, &a.updatedByFirstName, &a.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, address)
+		result = append(result, a)
 	}
 	ok = len(result) > 0
 	return
@@ -61,7 +61,7 @@ func (addressesStore *AddressesStore) fetch(query string, withCreators bool, par
 
 // New returns a new instance of AddressesStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, translationsRepository translations.Repository, countriesRepository countries.Repository, loggerService logger.Loggable) (*AddressesStore, error) {
-	addressesStore := &AddressesStore{
+	a := &AddressesStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
@@ -69,5 +69,5 @@ func New(selecterDatabase database.Database, updaterDatabase database.Database, 
 		countriesRepository:    countriesRepository,
 		loggerService:          loggerService,
 	}
-	return addressesStore, nil
+	return a, nil
 }

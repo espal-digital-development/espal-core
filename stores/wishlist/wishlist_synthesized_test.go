@@ -9,124 +9,124 @@ import (
 )
 
 func TestWishlistTable(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
-	if wishlist.TableName() == "" {
+	w := wishlist.NewWishlistEntity()
+	if w.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestWishlistTableAlias(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
-	if wishlist.TableName() == "" {
+	w := wishlist.NewWishlistEntity()
+	if w.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestWishlistIsUpdated(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
-	wishlist.IsUpdated()
+	w := wishlist.NewWishlistEntity()
+	w.IsUpdated()
 }
 
 func TestWishlistID(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
-	wishlist.ID()
+	w := wishlist.NewWishlistEntity()
+	w.ID()
 }
 
 func TestWishlistCreatedByID(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetCreatedByID(testValue)
-	if testValue != wishlist.CreatedByID() {
+	w.SetCreatedByID(testValue)
+	if testValue != w.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistUpdatedByID(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetUpdatedByID(&testValue)
-	if &testValue != wishlist.UpdatedByID() {
+	w.SetUpdatedByID(&testValue)
+	if &testValue != w.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistCreatedAt(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := time.Now()
-	wishlist.SetCreatedAt(testValue)
-	if testValue != wishlist.CreatedAt() {
+	w.SetCreatedAt(testValue)
+	if testValue != w.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistUpdatedAt(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := time.Now()
-	wishlist.SetUpdatedAt(&testValue)
-	if &testValue != wishlist.UpdatedAt() {
+	w.SetUpdatedAt(&testValue)
+	if &testValue != w.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistCreatedByFirstName(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetCreatedByFirstName(&testValue)
-	if &testValue != wishlist.CreatedByFirstName() {
+	w.SetCreatedByFirstName(&testValue)
+	if &testValue != w.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistCreatedBySurname(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetCreatedBySurname(&testValue)
-	if &testValue != wishlist.CreatedBySurname() {
+	w.SetCreatedBySurname(&testValue)
+	if &testValue != w.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistUpdatedByFirstName(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetUpdatedByFirstName(&testValue)
-	if &testValue != wishlist.UpdatedByFirstName() {
+	w.SetUpdatedByFirstName(&testValue)
+	if &testValue != w.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistUpdatedBySurname(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetUpdatedBySurname(&testValue)
-	if &testValue != wishlist.UpdatedBySurname() {
+	w.SetUpdatedBySurname(&testValue)
+	if &testValue != w.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistDomainID(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetDomainID(testValue)
-	if testValue != wishlist.DomainID() {
+	w.SetDomainID(testValue)
+	if testValue != w.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistUserID(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := "testValue"
-	wishlist.SetUserID(testValue)
-	if testValue != wishlist.UserID() {
+	w.SetUserID(testValue)
+	if testValue != w.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestWishlistSorting(t *testing.T) {
-	wishlist := wishlist.NewWishlistEntity()
+	w := wishlist.NewWishlistEntity()
 	testValue := uint(1e9)
-	wishlist.SetSorting(testValue)
-	if testValue != wishlist.Sorting() {
+	w.SetSorting(testValue)
+	if testValue != w.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

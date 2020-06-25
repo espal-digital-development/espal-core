@@ -53,9 +53,9 @@ type User struct {
 
 // CurrenciesCount returns the amount of currencies that are
 // defined in the string field.
-func (user *User) CurrenciesCount() uint {
-	if user.currencies != "" {
-		return uint(strings.Count(user.currencies, ",") + 1)
+func (u *User) CurrenciesCount() uint {
+	if u.currencies != "" {
+		return uint(strings.Count(u.currencies, ",") + 1)
 	}
 	return 0
 }

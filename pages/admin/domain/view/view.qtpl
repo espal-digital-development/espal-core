@@ -1,14 +1,14 @@
-{% func (page *Page) Title() %}{%s page.TranslatePlural("domain") %} > {%s page.domain.Host() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.TranslatePlural("domain") %} > {%s p.domain.Host() %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
-    <h1>{%s page.TranslatePlural("domain") %}{%s " > " %}{%s page.domain.Host() %}</h1>
+    <h1>{%s p.TranslatePlural("domain") %}{%s " > " %}{%s p.domain.Host() %}</h1>
 
     <p>
-        <a href="{%s page.AdminURL() %}/Domain">{%s page.Translate("backToOverview") %}</a><br>
-        <a href="{%s page.AdminURL() %}/Domain/Update?id={%s page.domain.ID() %}">{%s "✎ " %}{%s page.Translate("update") %}</a>
+        <a href="{%s p.AdminURL() %}/Domain">{%s p.Translate("backToOverview") %}</a><br>
+        <a href="{%s p.AdminURL() %}/Domain/Update?id={%s p.domain.ID() %}">{%s "✎ " %}{%s p.Translate("update") %}</a>
     </p>
-    <p>{%s page.Translate("active") %}:{% space %}{% if page.domain.Active() %}{%s page.Translate("yes_") %}{% else %}{%s page.Translate("no_") %}{% endif %}</p>
-    <p>{%s page.Translate("language") %}:{% space %}{% if page.domainLanguage != nil %}{%s page.domainLanguage.Translate(page.language.ID()) %}{% endif %}</p>
+    <p>{%s p.Translate("active") %}:{% space %}{% if p.domain.Active() %}{%s p.Translate("yes_") %}{% else %}{%s p.Translate("no_") %}{% endif %}</p>
+    <p>{%s p.Translate("language") %}:{% space %}{% if p.domainLanguage != nil %}{%s p.domainLanguage.Translate(p.language.ID()) %}{% endif %}</p>
 </main>
 {% endstripspace %}{% endfunc%}

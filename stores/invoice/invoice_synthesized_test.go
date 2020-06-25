@@ -9,295 +9,295 @@ import (
 )
 
 func TestInvoiceTable(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
-	if invoice.TableName() == "" {
+	i := invoice.NewInvoiceEntity()
+	if i.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestInvoiceTableAlias(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
-	if invoice.TableName() == "" {
+	i := invoice.NewInvoiceEntity()
+	if i.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestInvoiceIsUpdated(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
-	invoice.IsUpdated()
+	i := invoice.NewInvoiceEntity()
+	i.IsUpdated()
 }
 
 func TestInvoiceID(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
-	invoice.ID()
+	i := invoice.NewInvoiceEntity()
+	i.ID()
 }
 
 func TestInvoiceCreatedByID(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetCreatedByID(testValue)
-	if testValue != invoice.CreatedByID() {
+	i.SetCreatedByID(testValue)
+	if testValue != i.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUpdatedByID(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUpdatedByID(&testValue)
-	if &testValue != invoice.UpdatedByID() {
+	i.SetUpdatedByID(&testValue)
+	if &testValue != i.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceCreatedAt(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := time.Now()
-	invoice.SetCreatedAt(testValue)
-	if testValue != invoice.CreatedAt() {
+	i.SetCreatedAt(testValue)
+	if testValue != i.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUpdatedAt(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := time.Now()
-	invoice.SetUpdatedAt(&testValue)
-	if &testValue != invoice.UpdatedAt() {
+	i.SetUpdatedAt(&testValue)
+	if &testValue != i.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceCreatedByFirstName(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetCreatedByFirstName(&testValue)
-	if &testValue != invoice.CreatedByFirstName() {
+	i.SetCreatedByFirstName(&testValue)
+	if &testValue != i.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceCreatedBySurname(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetCreatedBySurname(&testValue)
-	if &testValue != invoice.CreatedBySurname() {
+	i.SetCreatedBySurname(&testValue)
+	if &testValue != i.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUpdatedByFirstName(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUpdatedByFirstName(&testValue)
-	if &testValue != invoice.UpdatedByFirstName() {
+	i.SetUpdatedByFirstName(&testValue)
+	if &testValue != i.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUpdatedBySurname(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUpdatedBySurname(&testValue)
-	if &testValue != invoice.UpdatedBySurname() {
+	i.SetUpdatedBySurname(&testValue)
+	if &testValue != i.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceDomainID(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetDomainID(testValue)
-	if testValue != invoice.DomainID() {
+	i.SetDomainID(testValue)
+	if testValue != i.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserID(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserID(testValue)
-	if testValue != invoice.UserID() {
+	i.SetUserID(testValue)
+	if testValue != i.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceSaleOrderID(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetSaleOrderID(testValue)
-	if testValue != invoice.SaleOrderID() {
+	i.SetSaleOrderID(testValue)
+	if testValue != i.SaleOrderID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceCurrency(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := uint(1e9)
-	invoice.SetCurrency(testValue)
-	if testValue != invoice.Currency() {
+	i.SetCurrency(testValue)
+	if testValue != i.Currency() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceCode(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetCode(&testValue)
-	if &testValue != invoice.Code() {
+	i.SetCode(&testValue)
+	if &testValue != i.Code() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoBusiness(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := true
-	invoice.SetUserInfoBusiness(testValue)
-	if testValue != invoice.UserInfoBusiness() {
+	i.SetUserInfoBusiness(testValue)
+	if testValue != i.UserInfoBusiness() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoBusinessCocNumber(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoBusinessCocNumber(&testValue)
-	if &testValue != invoice.UserInfoBusinessCocNumber() {
+	i.SetUserInfoBusinessCocNumber(&testValue)
+	if &testValue != i.UserInfoBusinessCocNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoFirstName(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoFirstName(testValue)
-	if testValue != invoice.UserInfoFirstName() {
+	i.SetUserInfoFirstName(testValue)
+	if testValue != i.UserInfoFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoSurname(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoSurname(testValue)
-	if testValue != invoice.UserInfoSurname() {
+	i.SetUserInfoSurname(testValue)
+	if testValue != i.UserInfoSurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoStreet(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoStreet(testValue)
-	if testValue != invoice.UserInfoStreet() {
+	i.SetUserInfoStreet(testValue)
+	if testValue != i.UserInfoStreet() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoStreetLine2(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoStreetLine2(&testValue)
-	if &testValue != invoice.UserInfoStreetLine2() {
+	i.SetUserInfoStreetLine2(&testValue)
+	if &testValue != i.UserInfoStreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoNumber(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoNumber(testValue)
-	if testValue != invoice.UserInfoNumber() {
+	i.SetUserInfoNumber(testValue)
+	if testValue != i.UserInfoNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoNumberAddition(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoNumberAddition(&testValue)
-	if &testValue != invoice.UserInfoNumberAddition() {
+	i.SetUserInfoNumberAddition(&testValue)
+	if &testValue != i.UserInfoNumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoZipCode(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoZipCode(testValue)
-	if testValue != invoice.UserInfoZipCode() {
+	i.SetUserInfoZipCode(testValue)
+	if testValue != i.UserInfoZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoCity(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoCity(testValue)
-	if testValue != invoice.UserInfoCity() {
+	i.SetUserInfoCity(testValue)
+	if testValue != i.UserInfoCity() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoState(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := uint(1e9)
-	invoice.SetUserInfoState(&testValue)
-	if &testValue != invoice.UserInfoState() {
+	i.SetUserInfoState(&testValue)
+	if &testValue != i.UserInfoState() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoCountry(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := uint16(65000)
-	invoice.SetUserInfoCountry(&testValue)
-	if &testValue != invoice.UserInfoCountry() {
+	i.SetUserInfoCountry(&testValue)
+	if &testValue != i.UserInfoCountry() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoPhoneNumber(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoPhoneNumber(&testValue)
-	if &testValue != invoice.UserInfoPhoneNumber() {
+	i.SetUserInfoPhoneNumber(&testValue)
+	if &testValue != i.UserInfoPhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceUserInfoEmail(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetUserInfoEmail(&testValue)
-	if &testValue != invoice.UserInfoEmail() {
+	i.SetUserInfoEmail(&testValue)
+	if &testValue != i.UserInfoEmail() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceComments(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetComments(&testValue)
-	if &testValue != invoice.Comments() {
+	i.SetComments(&testValue)
+	if &testValue != i.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceSellingPartyAutograph(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetSellingPartyAutograph(&testValue)
-	if &testValue != invoice.SellingPartyAutograph() {
+	i.SetSellingPartyAutograph(&testValue)
+	if &testValue != i.SellingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestInvoiceBuyingPartyAutograph(t *testing.T) {
-	invoice := invoice.NewInvoiceEntity()
+	i := invoice.NewInvoiceEntity()
 	testValue := "testValue"
-	invoice.SetBuyingPartyAutograph(&testValue)
-	if &testValue != invoice.BuyingPartyAutograph() {
+	i.SetBuyingPartyAutograph(&testValue)
+	if &testValue != i.BuyingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

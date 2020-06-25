@@ -27,8 +27,8 @@ type Migrations struct {
 }
 
 // Run runs all migrations for the system.
-func (migrations *Migrations) Run() error {
-	migrationsToRun, err := migrations.migrationsToRun()
+func (m *Migrations) Run() error {
+	migrationsToRun, err := m.migrationsToRun()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -50,10 +50,10 @@ func (migrations *Migrations) Run() error {
 		}
 
 		if sqlFiles == 0 {
-			migrations.loggerService.Infof("Migration `%s` is empty. Skipping..", migration)
+			m.loggerService.Infof("Migration `%s` is empty. Skipping..", migration)
 			continue
 		} else {
-			migrations.loggerService.Infof("Running migration `%s`..", migration)
+			m.loggerService.Infof("Running migration `%s`..", migration)
 		}
 
 		var migrationSQL []byte
@@ -66,14 +66,14 @@ func (migrations *Migrations) Run() error {
 				return errors.Trace(err)
 			}
 
-			migrations.loggerService.Infof("Running migration `%s` file `%s`", migration, files[k])
+			m.loggerService.Infof("Running migration `%s` file `%s`", migration, files[k])
 
-			if _, err := migrations.migratorDatabase.Exec(string(migrationSQL)); err != nil {
+			if _, err := m.migratorDatabase.Exec(string(migrationSQL)); err != nil {
 				return errors.Annotate(err, fmt.Sprintf("migration `%s` in file `%s`", migration, files[k]))
 			}
 		}
 
-		if _, err := migrations.migratorDatabase.Exec(`INSERT INTO "Migration"("revision") VALUES($1)`, migration); err != nil {
+		if _, err := m.migratorDatabase.Exec(`INSERT INTO "Migration"("revision") VALUES($1)`, migration); err != nil {
 			return errors.Trace(err)
 		}
 	}
@@ -83,13 +83,13 @@ func (migrations *Migrations) Run() error {
 
 // MigrationsToRun returns the amount of migrations that will be run
 // if Run() would be triggered.
-func (migrations *Migrations) MigrationsToRun() (uint, error) {
-	migrationsToRun, err := migrations.migrationsToRun()
+func (m *Migrations) MigrationsToRun() (uint, error) {
+	migrationsToRun, err := m.migrationsToRun()
 	return uint(len(migrationsToRun)), errors.Trace(err)
 }
 
 // TotalMigrations returns the total amount of migrations the system has.
-func (migrations *Migrations) TotalMigrations() uint {
+func (m *Migrations) TotalMigrations() uint {
 	directories := make(map[string]bool)
 	allFiles := migrationsdata.AssetNames()
 	sort.Strings(allFiles)
@@ -101,10 +101,10 @@ func (migrations *Migrations) TotalMigrations() uint {
 	return uint(len(directories))
 }
 
-func (migrations *Migrations) migrationsToRun() ([]string, error) {
+func (m *Migrations) migrationsToRun() ([]string, error) {
 	var lastMigration string
 	var migrationsToRun []string
-	if err := migrations.migratorDatabase.QueryRow(`SELECT "revision" FROM "Migration" ORDER BY "id" DESC LIMIT 1`).Scan(&lastMigration); err != nil {
+	if err := m.migratorDatabase.QueryRow(`SELECT "revision" FROM "Migration" ORDER BY "id" DESC LIMIT 1`).Scan(&lastMigration); err != nil {
 		if !strings.Contains(err.Error(), `relation "Migration" does not exist`) {
 			return nil, errors.Trace(err)
 		}
@@ -139,9 +139,9 @@ func (migrations *Migrations) migrationsToRun() ([]string, error) {
 
 // New returns a new instance of Fixtures.
 func New(migratorDatabase database.Database, loggerService logger.Loggable) *Migrations {
-	migrations := &Migrations{
+	m := &Migrations{
 		migratorDatabase: migratorDatabase,
 		loggerService:    loggerService,
 	}
-	return migrations
+	return m
 }

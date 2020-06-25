@@ -13,68 +13,68 @@ import (
 )
 
 // NewFileField returns a new instance of FormField with the type File.
-func (form *Form) NewFileField(name string, storage storage.Storage) FormField {
-	return form.defaultChecks(&formField{
+func (f *Form) NewFileField(name string, storage storage.Storage) FormField {
+	return f.defaultChecks(&formField{
 		name:              name,
 		_type:             FileFormField,
 		storage:           storage,
-		gzipFilesOnSave:   form.configService.AssetsGZipFiles(),
-		brotliFilesOnSave: form.configService.AssetsBrotliFiles(),
+		gzipFilesOnSave:   f.configService.AssetsGZipFiles(),
+		brotliFilesOnSave: f.configService.AssetsBrotliFiles(),
 	})
 }
 
 // SetOptimizeImages marks that uploaded images should be optimized as best
 // as possible for file size. This may vary per platform's available optimizers
 // and aren't quality compressors, but only encoder efficiency and meta optimizations.
-func (formField *formField) SetOptimizeImages() {
-	formField.optimizeImages = true
+func (f *formField) SetOptimizeImages() {
+	f.optimizeImages = true
 }
 
 // OptimizeImages returns if the uploaded file(s) should be optimized.
-func (formField *formField) OptimizeImages() bool {
-	return formField.optimizeImages
+func (f *formField) OptimizeImages() bool {
+	return f.optimizeImages
 }
 
 // SetGzipFilesOnSave marks the files to also be gzip compressed on save.
-func (formField *formField) SetGzipFilesOnSave() {
-	formField.gzipFilesOnSave = true
+func (f *formField) SetGzipFilesOnSave() {
+	f.gzipFilesOnSave = true
 }
 
 // GzipFilesOnSave returns if the files should be gzip compressed on save.
-func (formField *formField) GzipFilesOnSave() bool {
-	return formField.gzipFilesOnSave
+func (f *formField) GzipFilesOnSave() bool {
+	return f.gzipFilesOnSave
 }
 
 // SetGzipFilesOnSave marks the files to also be brotli compressed on save.
-func (formField *formField) SetBrotliFilesOnSave() {
-	formField.brotliFilesOnSave = true
+func (f *formField) SetBrotliFilesOnSave() {
+	f.brotliFilesOnSave = true
 }
 
 // BrotliFilesOnSave returns if the files should be brotli compressed on save.
-func (formField *formField) BrotliFilesOnSave() bool {
-	return formField.brotliFilesOnSave
+func (f *formField) BrotliFilesOnSave() bool {
+	return f.brotliFilesOnSave
 }
 
 // SetAllowedMIMETypes sets the allowed MIME types that can be uploaded through the form.
-func (formField *formField) SetAllowedMIMETypes(allowedMIMETypes []string) {
-	formField.allowedMIMETypes = allowedMIMETypes
+func (f *formField) SetAllowedMIMETypes(allowedMIMETypes []string) {
+	f.allowedMIMETypes = allowedMIMETypes
 }
 
 // RemoveUploadedFiles removes any files that were uploaded on
 // the targeted field. This is useful when a form fails after
 // the upload and it should be cleaned up.
 // It won't delete images already linked on the loaded data.
-func (formField *formField) RemoveUploadedFiles() error {
-	for k := range formField.uploadedFiles {
+func (f *formField) RemoveUploadedFiles() error {
+	for k := range f.uploadedFiles {
 		var fullPath string
-		if formField.fileSaveFolder != "" {
-			fullPath = formField.fileSaveFolder + string(os.PathSeparator)
+		if f.fileSaveFolder != "" {
+			fullPath = f.fileSaveFolder + string(os.PathSeparator)
 		}
-		fullPath += formField.uploadedFiles[k].SanitizedName()
-		if !formField.storage.Exists(fullPath) {
+		fullPath += f.uploadedFiles[k].SanitizedName()
+		if !f.storage.Exists(fullPath) {
 			continue
 		}
-		if err := formField.storage.Delete(fullPath); err != nil {
+		if err := f.storage.Delete(fullPath); err != nil {
 			return errors.Trace(err)
 		}
 	}
@@ -82,37 +82,37 @@ func (formField *formField) RemoveUploadedFiles() error {
 }
 
 // AddUploadedFile adds a new UploadedFile to the internal files list.
-func (formField *formField) AddUploadedFile(uploadedFile UploadedFile) {
-	if formField.uploadedFiles == nil {
-		formField.uploadedFiles = make([]UploadedFile, 0)
+func (f *formField) AddUploadedFile(uploadedFile UploadedFile) {
+	if f.uploadedFiles == nil {
+		f.uploadedFiles = make([]UploadedFile, 0)
 	}
-	formField.uploadedFiles = append(formField.uploadedFiles, uploadedFile)
+	f.uploadedFiles = append(f.uploadedFiles, uploadedFile)
 }
 
 // UploadedFiles returns all the field's uploaded files.
-func (formField *formField) UploadedFiles() []UploadedFile {
-	return formField.uploadedFiles
+func (f *formField) UploadedFiles() []UploadedFile {
+	return f.uploadedFiles
 }
 
 // SetFileSaveFolder sets the specific folder (different than default)
 // where to save the file(s) too.
-func (formField *formField) SetFileSaveFolder(fileSaveFolder string) {
-	formField.fileSaveFolder = fileSaveFolder
+func (f *formField) SetFileSaveFolder(fileSaveFolder string) {
+	f.fileSaveFolder = fileSaveFolder
 }
 
 // FileSaveFolder gets the specific folder (different than default)
 // where to save the file(s) too.
-func (formField *formField) FileSaveFolder() string {
-	return formField.fileSaveFolder
+func (f *formField) FileSaveFolder() string {
+	return f.fileSaveFolder
 }
 
 // SaveFiles saves the file(s) that were uploaded to the private
 // or public folder based on the field.PublicFile setting.
-func (formField *formField) SaveFiles() error {
-	if FileFormField != formField._type {
+func (f *formField) SaveFiles() error {
+	if FileFormField != f._type {
 		return errors.Errorf("cannot run SaveFiles on a non-FileFormField")
 	}
-	if formField.storage == nil {
+	if f.storage == nil {
 		return errors.Errorf("cannot run SaveFiles without a storage being set")
 	}
 
@@ -122,18 +122,18 @@ func (formField *formField) SaveFiles() error {
 	var loopErr error
 	savedFiles := make([]string, 0)
 
-	for k := range formField.uploadedFiles {
+	for k := range f.uploadedFiles {
 		var fullPath string
-		if formField.fileSaveFolder != "" {
-			fullPath = formField.fileSaveFolder + string(os.PathSeparator)
+		if f.fileSaveFolder != "" {
+			fullPath = f.fileSaveFolder + string(os.PathSeparator)
 		}
-		fullPath += formField.uploadedFiles[k].SanitizedName()
+		fullPath += f.uploadedFiles[k].SanitizedName()
 
 		var generationSuccessful bool
-		if formField.storage.Exists(fullPath) {
+		if f.storage.Exists(fullPath) {
 			var extension string
 			var baseName string
-			dotSlices := strings.Split(formField.uploadedFiles[k].SanitizedName(), ".")
+			dotSlices := strings.Split(f.uploadedFiles[k].SanitizedName(), ".")
 			length := len(dotSlices)
 			if length > 1 && dotSlices[length-1] != "" {
 				extension = dotSlices[length-1]
@@ -141,21 +141,21 @@ func (formField *formField) SaveFiles() error {
 					baseName += dotSlices[i]
 				}
 			} else {
-				baseName = formField.uploadedFiles[k].SanitizedName()
+				baseName = f.uploadedFiles[k].SanitizedName()
 			}
 
 			for i := 0; i < 25; i++ {
 				extra := text.RandomString(4)
 				newName := baseName + "_" + extra + "." + extension
 				var checkPath string
-				if formField.fileSaveFolder != "" {
-					checkPath = formField.fileSaveFolder + string(os.PathSeparator)
+				if f.fileSaveFolder != "" {
+					checkPath = f.fileSaveFolder + string(os.PathSeparator)
 				}
 				checkPath += newName
-				if formField.storage.Exists(checkPath) {
+				if f.storage.Exists(checkPath) {
 					continue
 				}
-				formField.uploadedFiles[k].SetSanitizedName(newName)
+				f.uploadedFiles[k].SetSanitizedName(newName)
 				fullPath = checkPath
 				generationSuccessful = true
 				break
@@ -173,7 +173,7 @@ func (formField *formField) SaveFiles() error {
 		// 	// TODO :: Apply image optimizations `pngquant` etc. when it works on Windows
 		// }
 
-		file, err := formField.uploadedFiles[k].Header().Open()
+		file, err := f.uploadedFiles[k].Header().Open()
 		if err != nil {
 			loopErr = errors.Trace(err)
 			break
@@ -183,13 +183,13 @@ func (formField *formField) SaveFiles() error {
 			loopErr = errors.Trace(err)
 			break
 		}
-		if err := formField.storage.Set(fullPath, fileBytes); err != nil {
+		if err := f.storage.Set(fullPath, fileBytes); err != nil {
 			loopErr = errors.Trace(err)
 			break
 		}
 		savedFiles = append(savedFiles, fullPath)
 
-		if !formField.HasErrors() && formField.gzipFilesOnSave {
+		if !f.HasErrors() && f.gzipFilesOnSave {
 			var b bytes.Buffer
 			gw, err := gzip.NewWriterLevel(&b, gzip.BestCompression)
 			if err != nil {
@@ -205,8 +205,8 @@ func (formField *formField) SaveFiles() error {
 				loopErr = errors.Trace(err)
 				break
 			}
-			if !formField.HasErrors() {
-				if err := formField.storage.Set(fullPath+".gz", b.Bytes()); err != nil {
+			if !f.HasErrors() {
+				if err := f.storage.Set(fullPath+".gz", b.Bytes()); err != nil {
 					loopErr = errors.Trace(err)
 					break
 				}
@@ -217,7 +217,7 @@ func (formField *formField) SaveFiles() error {
 		// 	// TODO :: Implement if Brotli would ever work on Windows
 		// }
 
-		formField.uploadedFiles[k].SetSavedPath(fullPath)
+		f.uploadedFiles[k].SetSavedPath(fullPath)
 	}
 
 	if loopErr != nil {
@@ -226,7 +226,7 @@ func (formField *formField) SaveFiles() error {
 		for k := range savedFiles {
 			// Don't abrubtly stop if one fails, as with multiple files it might
 			// leave way more resedue data than needed
-			if err := formField.storage.Delete(savedFiles[k]); err != nil {
+			if err := f.storage.Delete(savedFiles[k]); err != nil {
 				loopErr = errors.Wrap(loopErr, err)
 			}
 		}
@@ -238,10 +238,10 @@ func (formField *formField) SaveFiles() error {
 }
 
 // SetStorage sets the storage where uploaded files get saved to.
-func (formField *formField) SetStorage(storage storage.Storage) error {
-	if FileFormField != formField._type {
+func (f *formField) SetStorage(storage storage.Storage) error {
+	if FileFormField != f._type {
 		return errors.Errorf("cannot run SetStorage on a non-FileFormField")
 	}
-	formField.storage = storage
+	f.storage = storage
 	return nil
 }

@@ -9,106 +9,106 @@ import (
 )
 
 func TestUnitTable(t *testing.T) {
-	unit := property.NewUnitEntity()
-	if unit.TableName() == "" {
+	u := property.NewUnitEntity()
+	if u.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestUnitTableAlias(t *testing.T) {
-	unit := property.NewUnitEntity()
-	if unit.TableName() == "" {
+	u := property.NewUnitEntity()
+	if u.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestUnitIsUpdated(t *testing.T) {
-	unit := property.NewUnitEntity()
-	unit.IsUpdated()
+	u := property.NewUnitEntity()
+	u.IsUpdated()
 }
 
 func TestUnitID(t *testing.T) {
-	unit := property.NewUnitEntity()
-	unit.ID()
+	u := property.NewUnitEntity()
+	u.ID()
 }
 
 func TestUnitCreatedByID(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetCreatedByID(testValue)
-	if testValue != unit.CreatedByID() {
+	u.SetCreatedByID(testValue)
+	if testValue != u.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitUpdatedByID(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetUpdatedByID(&testValue)
-	if &testValue != unit.UpdatedByID() {
+	u.SetUpdatedByID(&testValue)
+	if &testValue != u.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitCreatedAt(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := time.Now()
-	unit.SetCreatedAt(testValue)
-	if testValue != unit.CreatedAt() {
+	u.SetCreatedAt(testValue)
+	if testValue != u.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitUpdatedAt(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := time.Now()
-	unit.SetUpdatedAt(&testValue)
-	if &testValue != unit.UpdatedAt() {
+	u.SetUpdatedAt(&testValue)
+	if &testValue != u.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitCreatedByFirstName(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetCreatedByFirstName(&testValue)
-	if &testValue != unit.CreatedByFirstName() {
+	u.SetCreatedByFirstName(&testValue)
+	if &testValue != u.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitCreatedBySurname(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetCreatedBySurname(&testValue)
-	if &testValue != unit.CreatedBySurname() {
+	u.SetCreatedBySurname(&testValue)
+	if &testValue != u.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitUpdatedByFirstName(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetUpdatedByFirstName(&testValue)
-	if &testValue != unit.UpdatedByFirstName() {
+	u.SetUpdatedByFirstName(&testValue)
+	if &testValue != u.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitUpdatedBySurname(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetUpdatedBySurname(&testValue)
-	if &testValue != unit.UpdatedBySurname() {
+	u.SetUpdatedBySurname(&testValue)
+	if &testValue != u.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestUnitDisplay(t *testing.T) {
-	unit := property.NewUnitEntity()
+	u := property.NewUnitEntity()
 	testValue := "testValue"
-	unit.SetDisplay(testValue)
-	if testValue != unit.Display() {
+	u.SetDisplay(testValue)
+	if testValue != u.Display() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

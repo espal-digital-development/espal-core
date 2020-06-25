@@ -9,64 +9,64 @@ import (
 
 // RenderErrors will render the list of form errors.
 // Returns an empty string when no errors are present.
-func (form *Form) RenderErrors() string {
-	if form.isValid {
+func (f *Form) RenderErrors() string {
+	if f.isValid {
 		return ""
 	}
 	errorList := strings.Builder{}
-	form.perror(errorList.WriteString(`<ul class="errors">`))
-	for k := range form.submitErrors {
-		form.perror(errorList.WriteString("<li>"))
-		form.perror(errorList.WriteString(form.submitErrors[k]))
-		form.perror(errorList.WriteString("</li>"))
+	f.perror(errorList.WriteString(`<ul class="errors">`))
+	for k := range f.submitErrors {
+		f.perror(errorList.WriteString("<li>"))
+		f.perror(errorList.WriteString(f.submitErrors[k]))
+		f.perror(errorList.WriteString("</li>"))
 	}
-	for k := range form.fields {
-		if form.fields[k].HasErrors() {
-			for _, errorMessage := range form.fields[k].Errors() {
-				form.perror(errorList.WriteString("<li>"))
-				form.perror(errorList.WriteString(errorMessage))
-				form.perror(errorList.WriteString("</li>"))
+	for k := range f.fields {
+		if f.fields[k].HasErrors() {
+			for _, errorMessage := range f.fields[k].Errors() {
+				f.perror(errorList.WriteString("<li>"))
+				f.perror(errorList.WriteString(errorMessage))
+				f.perror(errorList.WriteString("</li>"))
 			}
 		}
 	}
-	form.perror(errorList.WriteString("</ul>"))
+	f.perror(errorList.WriteString("</ul>"))
 	return errorList.String()
 }
 
 // RenderOpen will render the form open tag.
-func (form *Form) RenderOpen() string {
-	if form.isMultipart() {
+func (f *Form) RenderOpen() string {
+	if f.isMultipart() {
 		return `<form method="post" enctype="multipart/form-data">`
 	}
 	return `<form method="post">`
 }
 
 // RenderField will render the form field and resolve it's rules and presets.
-func (form *Form) RenderField(name string) string {
-	field := form.field(name)
+func (f *Form) RenderField(name string) string {
+	field := f.field(name)
 	switch field.Type() {
 	case HiddenFormField, TokenFormField, HoneypotFormField, TextFormField, NumberFormField, DateTimeFormField, EmailFormField, SearchFormField, PasswordFormField, FileFormField:
-		return form.renderInputTypeField(field)
+		return f.renderInputTypeField(field)
 	case TextAreaFormField:
-		return form.renderTextAreaField(field)
+		return f.renderTextAreaField(field)
 	case CheckboxFormField:
-		return form.renderCheckboxField(field)
+		return f.renderCheckboxField(field)
 	case ChoiceFormField:
-		return form.renderChoiceField(field)
+		return f.renderChoiceField(field)
 	default:
 		err := errors.Errorf("invalid field type `%v`", field.Type())
-		form.loggerService.Error(err.Error())
+		f.loggerService.Error(err.Error())
 		panic(err)
 	}
 }
 
-func (form *Form) addLabel(field FormField, stringBuilder io.StringWriter) {
+func (f *Form) addLabel(field FormField, stringBuilder io.StringWriter) {
 	if field.HideLabel() {
 		return
 	}
-	form.perror(stringBuilder.WriteString(`<label for="`))
-	form.perror(stringBuilder.WriteString(field.Name()))
-	form.perror(stringBuilder.WriteString(`">`))
-	form.perror(stringBuilder.WriteString(field.Placeholder()))
-	form.perror(stringBuilder.WriteString(`</label>`))
+	f.perror(stringBuilder.WriteString(`<label for="`))
+	f.perror(stringBuilder.WriteString(field.Name()))
+	f.perror(stringBuilder.WriteString(`">`))
+	f.perror(stringBuilder.WriteString(field.Placeholder()))
+	f.perror(stringBuilder.WriteString(`</label>`))
 }

@@ -25,40 +25,40 @@ type RegularExpressions struct {
 }
 
 // GetEmail returns the similar-named regular expression.
-func (regularExpressions *RegularExpressions) GetEmail() *regexp.Regexp {
-	return regularExpressions.email
+func (r *RegularExpressions) GetEmail() *regexp.Regexp {
+	return r.email
 }
 
 // GetPasswordRecoveryhash returns the similar-named regular expression.
-func (regularExpressions *RegularExpressions) GetPasswordRecoveryhash() *regexp.Regexp {
-	return regularExpressions.passwordRecoveryhash
+func (r *RegularExpressions) GetPasswordRecoveryhash() *regexp.Regexp {
+	return r.passwordRecoveryhash
 }
 
 // GetActivateAccounthash returns the similar-named regular expression.
-func (regularExpressions *RegularExpressions) GetActivateAccounthash() *regexp.Regexp {
-	return regularExpressions.activateAccounthash
+func (r *RegularExpressions) GetActivateAccounthash() *regexp.Regexp {
+	return r.activateAccounthash
 }
 
 // GetRouteIDs returns the similar-named regular expression.
-func (regularExpressions *RegularExpressions) GetRouteIDs() *regexp.Regexp {
-	return regularExpressions.routeIDs
+func (r *RegularExpressions) GetRouteIDs() *regexp.Regexp {
+	return r.routeIDs
 }
 
 // New returns a new instance of RegularExpressions.
 func New() (*RegularExpressions, error) {
 	var err error
-	regularExpressions := &RegularExpressions{}
-	if regularExpressions.email, err = regexp.Compile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,9}\.?$`); err != nil {
+	r := &RegularExpressions{}
+	if r.email, err = regexp.Compile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,9}\.?$`); err != nil {
 		return nil, errors.Trace(err)
 	}
-	if regularExpressions.passwordRecoveryhash, err = regexp.Compile(`^[a-zA-Z0-9]{72}$`); err != nil {
+	if r.passwordRecoveryhash, err = regexp.Compile(`^[a-zA-Z0-9]{72}$`); err != nil {
 		return nil, errors.Trace(err)
 	}
-	if regularExpressions.activateAccounthash, err = regexp.Compile(`^[a-zA-Z0-9]{72}$`); err != nil {
+	if r.activateAccounthash, err = regexp.Compile(`^[a-zA-Z0-9]{72}$`); err != nil {
 		return nil, errors.Trace(err)
 	}
-	if regularExpressions.routeIDs, err = regexp.Compile(`^(?:\w{8}-\w{4}-\w{4}-\w{4}-\w{12})(?:,\w{8}-\w{4}-\w{4}-\w{4}-\w{12})*$`); err != nil { // `^[\w-]+(?:,[\w-]+)*$`
+	if r.routeIDs, err = regexp.Compile(`^(?:\w{8}-\w{4}-\w{4}-\w{4}-\w{12})(?:,\w{8}-\w{4}-\w{4}-\w{4}-\w{12})*$`); err != nil { // `^[\w-]+(?:,[\w-]+)*$`
 		return nil, errors.Trace(err)
 	}
-	return regularExpressions, nil
+	return r, nil
 }

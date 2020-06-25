@@ -42,8 +42,8 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
-func (forms *Forms) New(domain domain, language language) (Form, error) {
-	validator, err := forms.validatorsFactory.NewForm(language)
+func (f *Forms) New(domain domain, language language) (Form, error) {
+	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -58,7 +58,7 @@ func (forms *Forms) New(domain domain, language language) (Form, error) {
 
 	siteField := validator.NewChoiceField("site")
 	siteField.SetSearchable()
-	siteField.SetSearchableDataPath(forms.configService.AdminURL() + "/Site/Search")
+	siteField.SetSearchableDataPath(f.configService.AdminURL() + "/Site/Search")
 	if err := validator.AddField(siteField); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -77,7 +77,7 @@ func (forms *Forms) New(domain domain, language language) (Form, error) {
 	languageField.SetOptional()
 	languageField.SetSearchable()
 	languageField.SetCheckValuesInChoices()
-	languageField.SetChoices(forms.validatorsFactory.GetLanguageOptionsForLanguage(language))
+	languageField.SetChoices(f.validatorsFactory.GetLanguageOptionsForLanguage(language))
 	if domain.ID() != "" && domain.Language() != nil {
 		languageField.SetValue(strconv.FormatUint(uint64(*domain.Language()), 10))
 	}
@@ -90,8 +90,8 @@ func (forms *Forms) New(domain domain, language language) (Form, error) {
 	currenciesField.SetSearchable()
 	currenciesField.SetCheckValuesInChoices()
 	currenciesField.SetMultiple()
-	currenciesField.SetPlaceholder(forms.translationsRepository.Plural(language.ID(), "currency") + " (" + forms.translationsRepository.Singular(language.ID(), "optional") + ")")
-	currenciesField.SetChoices(forms.validatorsFactory.GetCurrencyOptionsForLanguage(language))
+	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
+	currenciesField.SetChoices(f.validatorsFactory.GetCurrencyOptionsForLanguage(language))
 	if domain.ID() != "" {
 		if err := currenciesField.SetValues(strings.Split(domain.Currencies(), ",")); err != nil {
 			return nil, errors.Trace(err)
@@ -113,14 +113,14 @@ func (forms *Forms) New(domain domain, language language) (Form, error) {
 			siteID = domain.SiteID()
 		}
 		if siteID != "" {
-			site, ok, err := forms.siteStore.GetOne(siteID)
+			site, ok, err := f.siteStore.GetOne(siteID)
 			if err != nil {
 				panic(errors.ErrorStack(err))
 			}
 			if !ok {
 				panic(errors.Errorf("no site found for ID `%s` when one should exist", siteID))
 			}
-			siteField.AddChoice(forms.validatorsFactory.NewChoiceOption(siteID, forms.siteStore.GetTranslatedName(site, language.ID())))
+			siteField.AddChoice(f.validatorsFactory.NewChoiceOption(siteID, f.siteStore.GetTranslatedName(site, language.ID())))
 			siteField.SetValue(siteID)
 		}
 	})

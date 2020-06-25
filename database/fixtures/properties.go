@@ -11,160 +11,160 @@ const propertyTranslationQuery = `INSERT INTO "PropertyTranslation"("createdByID
 const propertyOptionQuery = `INSERT INTO "PropertyOption"("createdByID","propertyID","active") VALUES($1,$2,$3) RETURNING "id"`
 const propertyOptionTranslationQuery = `INSERT INTO "PropertyOptionTranslation"("createdByID","propertyOptionID","language","field","value") VALUES($1,$2,$3,$4,$5)`
 
-func (fixtures *Fixtures) properties() error {
-	if err := fixtures.propertyName(); err != nil {
+func (f *Fixtures) properties() error {
+	if err := f.propertyName(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := fixtures.propertyDescription(); err != nil {
+	if err := f.propertyDescription(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := fixtures.propertyImage(); err != nil {
+	if err := f.propertyImage(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := fixtures.propertyColor(); err != nil {
+	if err := f.propertyColor(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := fixtures.propertyLengthSize(); err != nil {
+	if err := f.propertyLengthSize(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := fixtures.propertyWidthSize(); err != nil {
+	if err := f.propertyWidthSize(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := fixtures.propertyPrice(); err != nil {
-		return errors.Trace(err)
-	}
-	return nil
-}
-
-func (fixtures *Fixtures) propertyName() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyMultilingualQuery, fixtures.mainUserID, true, database.PropertytypeText, true)
-	if err := row.Scan(&fixtures.propertyNameID); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyNameID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Name"); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyNameID, fixtures.englishLanguage.ID(), database.DBTranslationFieldDescription, "Generic naming definition of a product"); err != nil {
+	if err := f.propertyPrice(); err != nil {
 		return errors.Trace(err)
 	}
 	return nil
 }
 
-func (fixtures *Fixtures) propertyDescription() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyMultilingualQuery, fixtures.mainUserID, true, database.PropertytypeText, true)
-	if err := row.Scan(&fixtures.propertyDescriptionID); err != nil {
+func (f *Fixtures) propertyName() error {
+	row := f.inserterDatabase.QueryRow(propertyMultilingualQuery, f.mainUserID, true, database.PropertytypeText, true)
+	if err := row.Scan(&f.propertyNameID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyDescriptionID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Description"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyNameID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Name"); err != nil {
 		return errors.Trace(err)
 	}
-	return nil
-}
-
-func (fixtures *Fixtures) propertyImage() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyQuery, fixtures.mainUserID, true, database.PropertytypeSinglefile)
-	if err := row.Scan(&fixtures.propertyImageID); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyImageID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Image"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyNameID, f.englishLanguage.ID(), database.DBTranslationFieldDescription, "Generic naming definition of a product"); err != nil {
 		return errors.Trace(err)
 	}
 	return nil
 }
 
-func (fixtures *Fixtures) propertyColor() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyQuery, fixtures.mainUserID, true, database.PropertytypeSingleselect)
-	if err := row.Scan(&fixtures.propertyColorID); err != nil {
+func (f *Fixtures) propertyDescription() error {
+	row := f.inserterDatabase.QueryRow(propertyMultilingualQuery, f.mainUserID, true, database.PropertytypeText, true)
+	if err := row.Scan(&f.propertyDescriptionID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyColorID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Color"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyDescriptionID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Description"); err != nil {
+		return errors.Trace(err)
+	}
+	return nil
+}
+
+func (f *Fixtures) propertyImage() error {
+	row := f.inserterDatabase.QueryRow(propertyQuery, f.mainUserID, true, database.PropertytypeSinglefile)
+	if err := row.Scan(&f.propertyImageID); err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyImageID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Image"); err != nil {
+		return errors.Trace(err)
+	}
+	return nil
+}
+
+func (f *Fixtures) propertyColor() error {
+	row := f.inserterDatabase.QueryRow(propertyQuery, f.mainUserID, true, database.PropertytypeSingleselect)
+	if err := row.Scan(&f.propertyColorID); err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyColorID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Color"); err != nil {
 		return errors.Trace(err)
 	}
 
 	var propertyOptionRedID string
-	row = fixtures.inserterDatabase.QueryRow(propertyOptionQuery, fixtures.mainUserID, fixtures.propertyColorID, true)
+	row = f.inserterDatabase.QueryRow(propertyOptionQuery, f.mainUserID, f.propertyColorID, true)
 	if err := row.Scan(&propertyOptionRedID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyOptionTranslationQuery, fixtures.mainUserID, propertyOptionRedID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Red"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyOptionTranslationQuery, f.mainUserID, propertyOptionRedID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Red"); err != nil {
 		return errors.Trace(err)
 	}
 
 	var propertyOptionBlueID string
-	row = fixtures.inserterDatabase.QueryRow(propertyOptionQuery, fixtures.mainUserID, fixtures.propertyColorID, true)
+	row = f.inserterDatabase.QueryRow(propertyOptionQuery, f.mainUserID, f.propertyColorID, true)
 	if err := row.Scan(&propertyOptionBlueID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyOptionTranslationQuery, fixtures.mainUserID, propertyOptionBlueID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Blue"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyOptionTranslationQuery, f.mainUserID, propertyOptionBlueID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Blue"); err != nil {
 		return errors.Trace(err)
 	}
 	return nil
 }
 
-func (fixtures *Fixtures) propertyLengthSize() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyQuery, fixtures.mainUserID, true, database.PropertytypeSingleselect)
-	if err := row.Scan(&fixtures.propertyLengthSizeID); err != nil {
+func (f *Fixtures) propertyLengthSize() error {
+	row := f.inserterDatabase.QueryRow(propertyQuery, f.mainUserID, true, database.PropertytypeSingleselect)
+	if err := row.Scan(&f.propertyLengthSizeID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyLengthSizeID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Length Size"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyLengthSizeID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Length Size"); err != nil {
 		return errors.Trace(err)
 	}
 
 	var propertyOptionSize34ID string
-	row = fixtures.inserterDatabase.QueryRow(propertyOptionQuery, fixtures.mainUserID, fixtures.propertyLengthSizeID, true)
+	row = f.inserterDatabase.QueryRow(propertyOptionQuery, f.mainUserID, f.propertyLengthSizeID, true)
 	if err := row.Scan(&propertyOptionSize34ID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyOptionTranslationQuery, fixtures.mainUserID, propertyOptionSize34ID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "34"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyOptionTranslationQuery, f.mainUserID, propertyOptionSize34ID, f.englishLanguage.ID(), database.DBTranslationFieldName, "34"); err != nil {
 		return errors.Trace(err)
 	}
 
 	var propertyOptionSize36ID string
-	row = fixtures.inserterDatabase.QueryRow(propertyOptionQuery, fixtures.mainUserID, fixtures.propertyLengthSizeID, true)
+	row = f.inserterDatabase.QueryRow(propertyOptionQuery, f.mainUserID, f.propertyLengthSizeID, true)
 	if err := row.Scan(&propertyOptionSize36ID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyOptionTranslationQuery, fixtures.mainUserID, propertyOptionSize36ID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "36"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyOptionTranslationQuery, f.mainUserID, propertyOptionSize36ID, f.englishLanguage.ID(), database.DBTranslationFieldName, "36"); err != nil {
 		return errors.Trace(err)
 	}
 	return nil
 }
 
-func (fixtures *Fixtures) propertyWidthSize() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyQuery, fixtures.mainUserID, true, database.PropertytypeSingleselect)
-	if err := row.Scan(&fixtures.propertyLengthWidthSizeID); err != nil {
+func (f *Fixtures) propertyWidthSize() error {
+	row := f.inserterDatabase.QueryRow(propertyQuery, f.mainUserID, true, database.PropertytypeSingleselect)
+	if err := row.Scan(&f.propertyLengthWidthSizeID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyLengthWidthSizeID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Width Size"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyLengthWidthSizeID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Width Size"); err != nil {
 		return errors.Trace(err)
 	}
 
 	var propertyOptionWidthSize36ID string
-	row = fixtures.inserterDatabase.QueryRow(propertyOptionQuery, fixtures.mainUserID, fixtures.propertyLengthWidthSizeID, true)
+	row = f.inserterDatabase.QueryRow(propertyOptionQuery, f.mainUserID, f.propertyLengthWidthSizeID, true)
 	if err := row.Scan(&propertyOptionWidthSize36ID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyOptionTranslationQuery, fixtures.mainUserID, propertyOptionWidthSize36ID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "36"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyOptionTranslationQuery, f.mainUserID, propertyOptionWidthSize36ID, f.englishLanguage.ID(), database.DBTranslationFieldName, "36"); err != nil {
 		return errors.Trace(err)
 	}
 
 	var propertyOptionWidthSize38ID string
-	row = fixtures.inserterDatabase.QueryRow(propertyOptionQuery, fixtures.mainUserID, fixtures.propertyLengthWidthSizeID, true)
+	row = f.inserterDatabase.QueryRow(propertyOptionQuery, f.mainUserID, f.propertyLengthWidthSizeID, true)
 	if err := row.Scan(&propertyOptionWidthSize38ID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyOptionTranslationQuery, fixtures.mainUserID, propertyOptionWidthSize38ID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "38"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyOptionTranslationQuery, f.mainUserID, propertyOptionWidthSize38ID, f.englishLanguage.ID(), database.DBTranslationFieldName, "38"); err != nil {
 		return errors.Trace(err)
 	}
 	return nil
 }
 
-func (fixtures *Fixtures) propertyPrice() error {
-	row := fixtures.inserterDatabase.QueryRow(propertyQuery, fixtures.mainUserID, true, database.PropertytypeCurrency)
-	if err := row.Scan(&fixtures.propertyPriceID); err != nil {
+func (f *Fixtures) propertyPrice() error {
+	row := f.inserterDatabase.QueryRow(propertyQuery, f.mainUserID, true, database.PropertytypeCurrency)
+	if err := row.Scan(&f.propertyPriceID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := fixtures.inserterDatabase.Exec(propertyTranslationQuery, fixtures.mainUserID, fixtures.propertyPriceID, fixtures.englishLanguage.ID(), database.DBTranslationFieldName, "Price"); err != nil {
+	if _, err := f.inserterDatabase.Exec(propertyTranslationQuery, f.mainUserID, f.propertyPriceID, f.englishLanguage.ID(), database.DBTranslationFieldName, "Price"); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

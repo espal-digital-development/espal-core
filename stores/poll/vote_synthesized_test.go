@@ -9,106 +9,106 @@ import (
 )
 
 func TestVoteTable(t *testing.T) {
-	vote := poll.NewVoteEntity()
-	if vote.TableName() == "" {
+	v := poll.NewVoteEntity()
+	if v.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestVoteTableAlias(t *testing.T) {
-	vote := poll.NewVoteEntity()
-	if vote.TableName() == "" {
+	v := poll.NewVoteEntity()
+	if v.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestVoteIsUpdated(t *testing.T) {
-	vote := poll.NewVoteEntity()
-	vote.IsUpdated()
+	v := poll.NewVoteEntity()
+	v.IsUpdated()
 }
 
 func TestVoteID(t *testing.T) {
-	vote := poll.NewVoteEntity()
-	vote.ID()
+	v := poll.NewVoteEntity()
+	v.ID()
 }
 
 func TestVoteCreatedByID(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetCreatedByID(testValue)
-	if testValue != vote.CreatedByID() {
+	v.SetCreatedByID(testValue)
+	if testValue != v.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteUpdatedByID(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetUpdatedByID(&testValue)
-	if &testValue != vote.UpdatedByID() {
+	v.SetUpdatedByID(&testValue)
+	if &testValue != v.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteCreatedAt(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := time.Now()
-	vote.SetCreatedAt(testValue)
-	if testValue != vote.CreatedAt() {
+	v.SetCreatedAt(testValue)
+	if testValue != v.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteUpdatedAt(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := time.Now()
-	vote.SetUpdatedAt(&testValue)
-	if &testValue != vote.UpdatedAt() {
+	v.SetUpdatedAt(&testValue)
+	if &testValue != v.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteCreatedByFirstName(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetCreatedByFirstName(&testValue)
-	if &testValue != vote.CreatedByFirstName() {
+	v.SetCreatedByFirstName(&testValue)
+	if &testValue != v.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteCreatedBySurname(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetCreatedBySurname(&testValue)
-	if &testValue != vote.CreatedBySurname() {
+	v.SetCreatedBySurname(&testValue)
+	if &testValue != v.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteUpdatedByFirstName(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetUpdatedByFirstName(&testValue)
-	if &testValue != vote.UpdatedByFirstName() {
+	v.SetUpdatedByFirstName(&testValue)
+	if &testValue != v.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVoteUpdatedBySurname(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetUpdatedBySurname(&testValue)
-	if &testValue != vote.UpdatedBySurname() {
+	v.SetUpdatedBySurname(&testValue)
+	if &testValue != v.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVotePollOptionID(t *testing.T) {
-	vote := poll.NewVoteEntity()
+	v := poll.NewVoteEntity()
 	testValue := "testValue"
-	vote.SetPollOptionID(testValue)
-	if testValue != vote.PollOptionID() {
+	v.SetPollOptionID(testValue)
+	if testValue != v.PollOptionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

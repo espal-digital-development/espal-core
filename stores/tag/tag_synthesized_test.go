@@ -9,115 +9,115 @@ import (
 )
 
 func TestTagTable(t *testing.T) {
-	tag := tag.NewTagEntity()
-	if tag.TableName() == "" {
+	tt := tag.NewTagEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestTagTableAlias(t *testing.T) {
-	tag := tag.NewTagEntity()
-	if tag.TableName() == "" {
+	tt := tag.NewTagEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestTagIsUpdated(t *testing.T) {
-	tag := tag.NewTagEntity()
-	tag.IsUpdated()
+	tt := tag.NewTagEntity()
+	tt.IsUpdated()
 }
 
 func TestTagID(t *testing.T) {
-	tag := tag.NewTagEntity()
-	tag.ID()
+	tt := tag.NewTagEntity()
+	tt.ID()
 }
 
 func TestTagCreatedByID(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := "testValue"
-	tag.SetCreatedByID(testValue)
-	if testValue != tag.CreatedByID() {
+	tt.SetCreatedByID(testValue)
+	if testValue != tt.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagUpdatedByID(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := "testValue"
-	tag.SetUpdatedByID(&testValue)
-	if &testValue != tag.UpdatedByID() {
+	tt.SetUpdatedByID(&testValue)
+	if &testValue != tt.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagCreatedAt(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := time.Now()
-	tag.SetCreatedAt(testValue)
-	if testValue != tag.CreatedAt() {
+	tt.SetCreatedAt(testValue)
+	if testValue != tt.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagUpdatedAt(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := time.Now()
-	tag.SetUpdatedAt(&testValue)
-	if &testValue != tag.UpdatedAt() {
+	tt.SetUpdatedAt(&testValue)
+	if &testValue != tt.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagCreatedByFirstName(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := "testValue"
-	tag.SetCreatedByFirstName(&testValue)
-	if &testValue != tag.CreatedByFirstName() {
+	tt.SetCreatedByFirstName(&testValue)
+	if &testValue != tt.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagCreatedBySurname(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := "testValue"
-	tag.SetCreatedBySurname(&testValue)
-	if &testValue != tag.CreatedBySurname() {
+	tt.SetCreatedBySurname(&testValue)
+	if &testValue != tt.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagUpdatedByFirstName(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := "testValue"
-	tag.SetUpdatedByFirstName(&testValue)
-	if &testValue != tag.UpdatedByFirstName() {
+	tt.SetUpdatedByFirstName(&testValue)
+	if &testValue != tt.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagUpdatedBySurname(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := "testValue"
-	tag.SetUpdatedBySurname(&testValue)
-	if &testValue != tag.UpdatedBySurname() {
+	tt.SetUpdatedBySurname(&testValue)
+	if &testValue != tt.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagActive(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := true
-	tag.SetActive(testValue)
-	if testValue != tag.Active() {
+	tt.SetActive(testValue)
+	if testValue != tt.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTagSorting(t *testing.T) {
-	tag := tag.NewTagEntity()
+	tt := tag.NewTagEntity()
 	testValue := uint(1e9)
-	tag.SetSorting(testValue)
-	if testValue != tag.Sorting() {
+	tt.SetSorting(testValue)
+	if testValue != tt.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

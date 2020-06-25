@@ -6,7 +6,6 @@ import (
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
 	"github.com/juju/errors"
-	"sync"
 )
 
 var _ Store = &DomainsStore{}
@@ -22,8 +21,8 @@ type Store interface {
 	Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error)
 }
 
-func (domainsStore *DomainsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Domain, ok bool, err error) {
-	rows, err := domainsStore.selecterDatabase.Query(query, params...)
+func (d *DomainsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Domain, ok bool, err error) {
+	rows, err := d.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -45,15 +44,15 @@ func (domainsStore *DomainsStore) fetch(query string, withCreators bool, params 
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		domain := newDomain()
-		fields := []interface{}{&domain.id, &domain.createdByID, &domain.updatedByID, &domain.siteID, &domain.createdAt, &domain.updatedAt, &domain.active, &domain.host, &domain.language, &domain.currencies}
+		d := newDomain()
+		fields := []interface{}{&d.id, &d.createdByID, &d.updatedByID, &d.siteID, &d.createdAt, &d.updatedAt, &d.active, &d.host, &d.language, &d.currencies}
 		if withCreators {
-			fields = append(fields, &domain.createdByFirstName, &domain.createdBySurname, &domain.updatedByFirstName, &domain.updatedBySurname)
+			fields = append(fields, &d.createdByFirstName, &d.createdBySurname, &d.updatedByFirstName, &d.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, domain)
+		result = append(result, d)
 	}
 	ok = len(result) > 0
 	return
@@ -61,13 +60,11 @@ func (domainsStore *DomainsStore) fetch(query string, withCreators bool, params 
 
 // New returns a new instance of DomainsStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory) (*DomainsStore, error) {
-	domainsStore := &DomainsStore{
+	d := &DomainsStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
 		databaseFiltersFactory: databaseFiltersFactory,
-		domainsNormal:          make(map[string]*Domain),
-		mutex:                  &sync.RWMutex{},
 	}
-	return domainsStore, nil
+	return d, nil
 }

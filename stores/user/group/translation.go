@@ -23,12 +23,12 @@ type Translation struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (translation *Translation) TableName() string {
+func (t *Translation) TableName() string {
 	return "UserGroupTranslation"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (translation *Translation) TableAlias() string {
+func (t *Translation) TableAlias() string {
 	return "ugt"
 }
 

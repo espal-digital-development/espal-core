@@ -20,6 +20,6 @@ type Subscription struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (subscription *Subscription) TableAlias() string {
+func (s *Subscription) TableAlias() string {
 	return "sub"
 }

@@ -9,169 +9,169 @@ import (
 )
 
 func TestVariantTable(t *testing.T) {
-	variant := product.NewVariantEntity()
-	if variant.TableName() == "" {
+	v := product.NewVariantEntity()
+	if v.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestVariantTableAlias(t *testing.T) {
-	variant := product.NewVariantEntity()
-	if variant.TableName() == "" {
+	v := product.NewVariantEntity()
+	if v.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestVariantIsUpdated(t *testing.T) {
-	variant := product.NewVariantEntity()
-	variant.IsUpdated()
+	v := product.NewVariantEntity()
+	v.IsUpdated()
 }
 
 func TestVariantID(t *testing.T) {
-	variant := product.NewVariantEntity()
-	variant.ID()
+	v := product.NewVariantEntity()
+	v.ID()
 }
 
 func TestVariantCreatedByID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetCreatedByID(testValue)
-	if testValue != variant.CreatedByID() {
+	v.SetCreatedByID(testValue)
+	if testValue != v.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantUpdatedByID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetUpdatedByID(&testValue)
-	if &testValue != variant.UpdatedByID() {
+	v.SetUpdatedByID(&testValue)
+	if &testValue != v.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantCreatedAt(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := time.Now()
-	variant.SetCreatedAt(testValue)
-	if testValue != variant.CreatedAt() {
+	v.SetCreatedAt(testValue)
+	if testValue != v.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantUpdatedAt(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := time.Now()
-	variant.SetUpdatedAt(&testValue)
-	if &testValue != variant.UpdatedAt() {
+	v.SetUpdatedAt(&testValue)
+	if &testValue != v.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantCreatedByFirstName(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetCreatedByFirstName(&testValue)
-	if &testValue != variant.CreatedByFirstName() {
+	v.SetCreatedByFirstName(&testValue)
+	if &testValue != v.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantCreatedBySurname(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetCreatedBySurname(&testValue)
-	if &testValue != variant.CreatedBySurname() {
+	v.SetCreatedBySurname(&testValue)
+	if &testValue != v.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantUpdatedByFirstName(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetUpdatedByFirstName(&testValue)
-	if &testValue != variant.UpdatedByFirstName() {
+	v.SetUpdatedByFirstName(&testValue)
+	if &testValue != v.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantUpdatedBySurname(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetUpdatedBySurname(&testValue)
-	if &testValue != variant.UpdatedBySurname() {
+	v.SetUpdatedBySurname(&testValue)
+	if &testValue != v.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantModelID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetModelID(testValue)
-	if testValue != variant.ModelID() {
+	v.SetModelID(testValue)
+	if testValue != v.ModelID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantActive(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := true
-	variant.SetActive(testValue)
-	if testValue != variant.Active() {
+	v.SetActive(testValue)
+	if testValue != v.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantKey(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetKey(&testValue)
-	if &testValue != variant.Key() {
+	v.SetKey(&testValue)
+	if &testValue != v.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantSorting(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := uint(1e9)
-	variant.SetSorting(testValue)
-	if testValue != variant.Sorting() {
+	v.SetSorting(testValue)
+	if testValue != v.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantTaxGroupID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetTaxGroupID(testValue)
-	if testValue != variant.TaxGroupID() {
+	v.SetTaxGroupID(testValue)
+	if testValue != v.TaxGroupID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantNameRepresentationID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetNameRepresentationID(&testValue)
-	if &testValue != variant.NameRepresentationID() {
+	v.SetNameRepresentationID(&testValue)
+	if &testValue != v.NameRepresentationID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantDescriptionRepresentationID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetDescriptionRepresentationID(&testValue)
-	if &testValue != variant.DescriptionRepresentationID() {
+	v.SetDescriptionRepresentationID(&testValue)
+	if &testValue != v.DescriptionRepresentationID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestVariantImageRepresentationID(t *testing.T) {
-	variant := product.NewVariantEntity()
+	v := product.NewVariantEntity()
 	testValue := "testValue"
-	variant.SetImageRepresentationID(&testValue)
-	if &testValue != variant.ImageRepresentationID() {
+	v.SetImageRepresentationID(&testValue)
+	if &testValue != v.ImageRepresentationID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

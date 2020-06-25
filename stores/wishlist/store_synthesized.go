@@ -13,8 +13,8 @@ var _ Store = &WishlistsStore{}
 type Store interface {
 }
 
-func (wishlistsStore *WishlistsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Wishlist, ok bool, err error) {
-	rows, err := wishlistsStore.selecterDatabase.Query(query, params...)
+func (w *WishlistsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Wishlist, ok bool, err error) {
+	rows, err := w.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (wishlistsStore *WishlistsStore) fetch(query string, withCreators bool, par
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		wishlist := newWishlist()
-		fields := []interface{}{&wishlist.id, &wishlist.createdByID, &wishlist.updatedByID, &wishlist.createdAt, &wishlist.updatedAt, &wishlist.domainID, &wishlist.userID, &wishlist.sorting}
+		w := newWishlist()
+		fields := []interface{}{&w.id, &w.createdByID, &w.updatedByID, &w.createdAt, &w.updatedAt, &w.domainID, &w.userID, &w.sorting}
 		if withCreators {
-			fields = append(fields, &wishlist.createdByFirstName, &wishlist.createdBySurname, &wishlist.updatedByFirstName, &wishlist.updatedBySurname)
+			fields = append(fields, &w.createdByFirstName, &w.createdBySurname, &w.updatedByFirstName, &w.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, wishlist)
+		result = append(result, w)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (wishlistsStore *WishlistsStore) fetch(query string, withCreators bool, par
 
 // New returns a new instance of WishlistsStore.
 func New(selecterDatabase database.Database) (*WishlistsStore, error) {
-	wishlistsStore := &WishlistsStore{
+	w := &WishlistsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return wishlistsStore, nil
+	return w, nil
 }

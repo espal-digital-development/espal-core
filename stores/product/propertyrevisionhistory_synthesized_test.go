@@ -7,25 +7,25 @@ import (
 )
 
 func TestPropertyRevisionHistoryTable(t *testing.T) {
-	propertyRevisionHistory := product.NewPropertyRevisionHistoryEntity()
-	if propertyRevisionHistory.TableName() == "" {
+	p := product.NewPropertyRevisionHistoryEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPropertyRevisionHistoryTableAlias(t *testing.T) {
-	propertyRevisionHistory := product.NewPropertyRevisionHistoryEntity()
-	if propertyRevisionHistory.TableName() == "" {
+	p := product.NewPropertyRevisionHistoryEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPropertyRevisionHistoryIsUpdated(t *testing.T) {
-	propertyRevisionHistory := product.NewPropertyRevisionHistoryEntity()
-	propertyRevisionHistory.IsUpdated()
+	p := product.NewPropertyRevisionHistoryEntity()
+	p.IsUpdated()
 }
 
 func TestPropertyRevisionHistoryID(t *testing.T) {
-	propertyRevisionHistory := product.NewPropertyRevisionHistoryEntity()
-	propertyRevisionHistory.ID()
+	p := product.NewPropertyRevisionHistoryEntity()
+	p.ID()
 }

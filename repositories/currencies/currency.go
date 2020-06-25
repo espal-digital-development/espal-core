@@ -25,49 +25,49 @@ type Currency struct {
 }
 
 // ID returns the internal Currency id.
-func (currency *Currency) ID() uint {
-	return currency.id
+func (c *Currency) ID() uint {
+	return c.id
 }
 
 // Code returns the internal Currency code.
-func (currency *Currency) Code() string {
-	return currency.code
+func (c *Currency) Code() string {
+	return c.code
 }
 
 // Numeral returns the internal Currency numeral code.
-func (currency *Currency) Numeral() string {
-	return currency.numeral
+func (c *Currency) Numeral() string {
+	return c.numeral
 }
 
 // Symbol returns the internal Currency symbol.
-func (currency *Currency) Symbol() string {
-	return currency.symbol
+func (c *Currency) Symbol() string {
+	return c.symbol
 }
 
 // EnglishName returns the internal Currency englishName.
-func (currency *Currency) EnglishName() string {
-	return currency.englishName
+func (c *Currency) EnglishName() string {
+	return c.englishName
 }
 
 // SetTranslation sets a translations for the Language.
-func (currency *Currency) SetTranslation(languageID uint16, value string) {
-	currency.translations[languageID] = value
+func (c *Currency) SetTranslation(languageID uint16, value string) {
+	c.translations[languageID] = value
 }
 
 // HasTranslation returns an indicator if the given currency
 // has a translation for the given locale.
-func (currency *Currency) HasTranslation(localeID uint16) (string, bool) {
-	value, ok := currency.translations[localeID]
+func (c *Currency) HasTranslation(localeID uint16) (string, bool) {
+	value, ok := c.translations[localeID]
 	return value, ok
 }
 
 // Translate get's the Currency's translation based on the given locale.
-func (currency *Currency) Translate(localeID uint16) string {
-	if localeID == currency.englishLocaleID {
-		return currency.englishName
+func (c *Currency) Translate(localeID uint16) string {
+	if localeID == c.englishLocaleID {
+		return c.englishName
 	}
-	if _, ok := currency.translations[localeID]; !ok {
-		return currency.englishName
+	if _, ok := c.translations[localeID]; !ok {
+		return c.englishName
 	}
-	return currency.translations[localeID]
+	return c.translations[localeID]
 }

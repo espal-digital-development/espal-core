@@ -1,6 +1,6 @@
-{% func (page *Page) Title() %}{%s *page.post.Title() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s *page.post.Title() %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <div class="content">
     {% comment %} TODO :: Implement {% endcomment %}
     EDIT

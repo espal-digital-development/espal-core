@@ -18,123 +18,123 @@ type CacheNotifyEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (cacheNotify *CacheNotify) TableName() string {
+func (c *CacheNotify) TableName() string {
 	return "CacheNotify"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (cacheNotify *CacheNotify) TableAlias() string {
+func (c *CacheNotify) TableAlias() string {
 	return "cne"
 }
 
 // ID returns id.
-func (cacheNotify *CacheNotify) ID() string {
-	return cacheNotify.id
+func (c *CacheNotify) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (cacheNotify *CacheNotify) CreatedByID() *string {
-	return cacheNotify.createdByID
+func (c *CacheNotify) CreatedByID() *string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (cacheNotify *CacheNotify) SetCreatedByID(createdByID *string) {
-	cacheNotify.createdByID = createdByID
+func (c *CacheNotify) SetCreatedByID(createdByID *string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (cacheNotify *CacheNotify) UpdatedByID() *string {
-	return cacheNotify.updatedByID
+func (c *CacheNotify) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (cacheNotify *CacheNotify) SetUpdatedByID(updatedByID *string) {
-	cacheNotify.updatedByID = updatedByID
+func (c *CacheNotify) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (cacheNotify *CacheNotify) CreatedAt() time.Time {
-	return cacheNotify.createdAt
+func (c *CacheNotify) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (cacheNotify *CacheNotify) SetCreatedAt(createdAt time.Time) {
-	cacheNotify.createdAt = createdAt
+func (c *CacheNotify) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (cacheNotify *CacheNotify) UpdatedAt() *time.Time {
-	return cacheNotify.updatedAt
+func (c *CacheNotify) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (cacheNotify *CacheNotify) SetUpdatedAt(updatedAt *time.Time) {
-	cacheNotify.updatedAt = updatedAt
+func (c *CacheNotify) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (cacheNotify *CacheNotify) CreatedByFirstName() *string {
-	return cacheNotify.createdByFirstName
+func (c *CacheNotify) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (cacheNotify *CacheNotify) SetCreatedByFirstName(createdByFirstName *string) {
-	cacheNotify.createdByFirstName = createdByFirstName
+func (c *CacheNotify) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (cacheNotify *CacheNotify) CreatedBySurname() *string {
-	return cacheNotify.createdBySurname
+func (c *CacheNotify) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (cacheNotify *CacheNotify) SetCreatedBySurname(createdBySurname *string) {
-	cacheNotify.createdBySurname = createdBySurname
+func (c *CacheNotify) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (cacheNotify *CacheNotify) UpdatedByFirstName() *string {
-	return cacheNotify.updatedByFirstName
+func (c *CacheNotify) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (cacheNotify *CacheNotify) SetUpdatedByFirstName(updatedByFirstName *string) {
-	cacheNotify.updatedByFirstName = updatedByFirstName
+func (c *CacheNotify) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (cacheNotify *CacheNotify) UpdatedBySurname() *string {
-	return cacheNotify.updatedBySurname
+func (c *CacheNotify) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (cacheNotify *CacheNotify) SetUpdatedBySurname(updatedBySurname *string) {
-	cacheNotify.updatedBySurname = updatedBySurname
+func (c *CacheNotify) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (cacheNotify *CacheNotify) IsUpdated() bool {
-	return cacheNotify.updatedByID != nil
+func (c *CacheNotify) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 // Target returns target.
-func (cacheNotify *CacheNotify) Target() uint {
-	return cacheNotify.target
+func (c *CacheNotify) Target() uint {
+	return c.target
 }
 
 // SetTarget sets the target.
-func (cacheNotify *CacheNotify) SetTarget(target uint) {
-	cacheNotify.target = target
+func (c *CacheNotify) SetTarget(target uint) {
+	c.target = target
 }
 
 // Key returns key.
-func (cacheNotify *CacheNotify) Key() string {
-	return cacheNotify.key
+func (c *CacheNotify) Key() string {
+	return c.key
 }
 
 // SetKey sets the key.
-func (cacheNotify *CacheNotify) SetKey(key string) {
-	cacheNotify.key = key
+func (c *CacheNotify) SetKey(key string) {
+	c.key = key
 }
 
 func newCacheNotify() *CacheNotify {

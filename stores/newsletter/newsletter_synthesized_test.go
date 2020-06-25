@@ -9,124 +9,124 @@ import (
 )
 
 func TestNewsletterTable(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
-	if newsletter.TableName() == "" {
+	n := newsletter.NewNewsletterEntity()
+	if n.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestNewsletterTableAlias(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
-	if newsletter.TableName() == "" {
+	n := newsletter.NewNewsletterEntity()
+	if n.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestNewsletterIsUpdated(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
-	newsletter.IsUpdated()
+	n := newsletter.NewNewsletterEntity()
+	n.IsUpdated()
 }
 
 func TestNewsletterID(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
-	newsletter.ID()
+	n := newsletter.NewNewsletterEntity()
+	n.ID()
 }
 
 func TestNewsletterCreatedByID(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetCreatedByID(testValue)
-	if testValue != newsletter.CreatedByID() {
+	n.SetCreatedByID(testValue)
+	if testValue != n.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterUpdatedByID(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetUpdatedByID(&testValue)
-	if &testValue != newsletter.UpdatedByID() {
+	n.SetUpdatedByID(&testValue)
+	if &testValue != n.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterCreatedAt(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := time.Now()
-	newsletter.SetCreatedAt(testValue)
-	if testValue != newsletter.CreatedAt() {
+	n.SetCreatedAt(testValue)
+	if testValue != n.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterUpdatedAt(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := time.Now()
-	newsletter.SetUpdatedAt(&testValue)
-	if &testValue != newsletter.UpdatedAt() {
+	n.SetUpdatedAt(&testValue)
+	if &testValue != n.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterCreatedByFirstName(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetCreatedByFirstName(&testValue)
-	if &testValue != newsletter.CreatedByFirstName() {
+	n.SetCreatedByFirstName(&testValue)
+	if &testValue != n.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterCreatedBySurname(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetCreatedBySurname(&testValue)
-	if &testValue != newsletter.CreatedBySurname() {
+	n.SetCreatedBySurname(&testValue)
+	if &testValue != n.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterUpdatedByFirstName(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetUpdatedByFirstName(&testValue)
-	if &testValue != newsletter.UpdatedByFirstName() {
+	n.SetUpdatedByFirstName(&testValue)
+	if &testValue != n.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterUpdatedBySurname(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetUpdatedBySurname(&testValue)
-	if &testValue != newsletter.UpdatedBySurname() {
+	n.SetUpdatedBySurname(&testValue)
+	if &testValue != n.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterDomainID(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := "testValue"
-	newsletter.SetDomainID(testValue)
-	if testValue != newsletter.DomainID() {
+	n.SetDomainID(testValue)
+	if testValue != n.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterActive(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := true
-	newsletter.SetActive(testValue)
-	if testValue != newsletter.Active() {
+	n.SetActive(testValue)
+	if testValue != n.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsletterSendAt(t *testing.T) {
-	newsletter := newsletter.NewNewsletterEntity()
+	n := newsletter.NewNewsletterEntity()
 	testValue := time.Now()
-	newsletter.SetSendAt(&testValue)
-	if &testValue != newsletter.SendAt() {
+	n.SetSendAt(&testValue)
+	if &testValue != n.SendAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

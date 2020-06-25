@@ -22,25 +22,25 @@ type FileSystem struct {
 }
 
 // Exists returns an indicator if an entry exists for the given key.
-func (fileSystem *FileSystem) Exists(key string) bool {
-	if _, err := os.Stat(fileSystem.path + key); !os.IsNotExist(err) {
+func (s *FileSystem) Exists(key string) bool {
+	if _, err := os.Stat(s.path + key); !os.IsNotExist(err) {
 		return true
 	}
 	return false
 }
 
 // Set stores the value bytes at the given key.
-func (fileSystem *FileSystem) Set(key string, value []byte) error {
+func (s *FileSystem) Set(key string, value []byte) error {
 	// TODO :: 777 Create all intermediate directories if needed
-	return errors.Trace(ioutil.WriteFile(fileSystem.path+key, value, 0600))
+	return errors.Trace(ioutil.WriteFile(s.path+key, value, 0600))
 }
 
 // Get fetches the stored bytes for the given key.
-func (fileSystem *FileSystem) Get(key string) ([]byte, bool, error) {
-	if _, err := os.Stat(fileSystem.path + key); os.IsNotExist(err) {
+func (s *FileSystem) Get(key string) ([]byte, bool, error) {
+	if _, err := os.Stat(s.path + key); os.IsNotExist(err) {
 		return nil, false, nil
 	}
-	read, err := ioutil.ReadFile(fileSystem.path + key)
+	read, err := ioutil.ReadFile(s.path + key)
 	if err != nil {
 		return nil, false, errors.Trace(err)
 	}
@@ -48,13 +48,13 @@ func (fileSystem *FileSystem) Get(key string) ([]byte, bool, error) {
 }
 
 // Delete wipes the bytes for the given key.
-func (fileSystem *FileSystem) Delete(key string) error {
-	return errors.Trace(os.Remove(fileSystem.path + key))
+func (s *FileSystem) Delete(key string) error {
+	return errors.Trace(os.Remove(s.path + key))
 }
 
 // Iterate gives the possiblity to iterate over all entries.
-func (fileSystem *FileSystem) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
-	files, err := zglob.Glob(fmt.Sprintf("%s/**/*", fileSystem.path))
+func (s *FileSystem) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
+	files, err := zglob.Glob(fmt.Sprintf("%s/**/*", s.path))
 	if err != nil {
 		iterator("", nil, errors.Trace(err))
 		return
@@ -71,7 +71,7 @@ func (fileSystem *FileSystem) Iterate(iterator func(key string, value []byte, er
 			continue
 		}
 		fileBytes, err := ioutil.ReadFile(files[k])
-		if !iterator(strings.Replace(files[k], fileSystem.pathWithoutRelativePrefix, "", 1), fileBytes, errors.Trace(err)) {
+		if !iterator(strings.Replace(files[k], s.pathWithoutRelativePrefix, "", 1), fileBytes, errors.Trace(err)) {
 			break
 		}
 	}
@@ -82,9 +82,9 @@ func New(path string) (*FileSystem, error) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		return nil, errors.Trace(err)
 	}
-	fileSystem := &FileSystem{
+	f := &FileSystem{
 		path: strings.TrimSuffix(path, "/") + "/",
 	}
-	fileSystem.pathWithoutRelativePrefix = strings.TrimPrefix(fileSystem.path, "./")
-	return fileSystem, nil
+	f.pathWithoutRelativePrefix = strings.TrimPrefix(f.path, "./")
+	return f, nil
 }

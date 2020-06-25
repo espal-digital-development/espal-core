@@ -20,133 +20,133 @@ type NewsletterEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (newsletter *Newsletter) TableName() string {
+func (n *Newsletter) TableName() string {
 	return "Newsletter"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (newsletter *Newsletter) TableAlias() string {
+func (n *Newsletter) TableAlias() string {
 	return "ne"
 }
 
 // ID returns id.
-func (newsletter *Newsletter) ID() string {
-	return newsletter.id
+func (n *Newsletter) ID() string {
+	return n.id
 }
 
 // CreatedByID returns createdByID.
-func (newsletter *Newsletter) CreatedByID() string {
-	return newsletter.createdByID
+func (n *Newsletter) CreatedByID() string {
+	return n.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (newsletter *Newsletter) SetCreatedByID(createdByID string) {
-	newsletter.createdByID = createdByID
+func (n *Newsletter) SetCreatedByID(createdByID string) {
+	n.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (newsletter *Newsletter) UpdatedByID() *string {
-	return newsletter.updatedByID
+func (n *Newsletter) UpdatedByID() *string {
+	return n.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (newsletter *Newsletter) SetUpdatedByID(updatedByID *string) {
-	newsletter.updatedByID = updatedByID
+func (n *Newsletter) SetUpdatedByID(updatedByID *string) {
+	n.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (newsletter *Newsletter) CreatedAt() time.Time {
-	return newsletter.createdAt
+func (n *Newsletter) CreatedAt() time.Time {
+	return n.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (newsletter *Newsletter) SetCreatedAt(createdAt time.Time) {
-	newsletter.createdAt = createdAt
+func (n *Newsletter) SetCreatedAt(createdAt time.Time) {
+	n.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (newsletter *Newsletter) UpdatedAt() *time.Time {
-	return newsletter.updatedAt
+func (n *Newsletter) UpdatedAt() *time.Time {
+	return n.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (newsletter *Newsletter) SetUpdatedAt(updatedAt *time.Time) {
-	newsletter.updatedAt = updatedAt
+func (n *Newsletter) SetUpdatedAt(updatedAt *time.Time) {
+	n.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (newsletter *Newsletter) CreatedByFirstName() *string {
-	return newsletter.createdByFirstName
+func (n *Newsletter) CreatedByFirstName() *string {
+	return n.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (newsletter *Newsletter) SetCreatedByFirstName(createdByFirstName *string) {
-	newsletter.createdByFirstName = createdByFirstName
+func (n *Newsletter) SetCreatedByFirstName(createdByFirstName *string) {
+	n.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (newsletter *Newsletter) CreatedBySurname() *string {
-	return newsletter.createdBySurname
+func (n *Newsletter) CreatedBySurname() *string {
+	return n.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (newsletter *Newsletter) SetCreatedBySurname(createdBySurname *string) {
-	newsletter.createdBySurname = createdBySurname
+func (n *Newsletter) SetCreatedBySurname(createdBySurname *string) {
+	n.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (newsletter *Newsletter) UpdatedByFirstName() *string {
-	return newsletter.updatedByFirstName
+func (n *Newsletter) UpdatedByFirstName() *string {
+	return n.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (newsletter *Newsletter) SetUpdatedByFirstName(updatedByFirstName *string) {
-	newsletter.updatedByFirstName = updatedByFirstName
+func (n *Newsletter) SetUpdatedByFirstName(updatedByFirstName *string) {
+	n.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (newsletter *Newsletter) UpdatedBySurname() *string {
-	return newsletter.updatedBySurname
+func (n *Newsletter) UpdatedBySurname() *string {
+	return n.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (newsletter *Newsletter) SetUpdatedBySurname(updatedBySurname *string) {
-	newsletter.updatedBySurname = updatedBySurname
+func (n *Newsletter) SetUpdatedBySurname(updatedBySurname *string) {
+	n.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (newsletter *Newsletter) IsUpdated() bool {
-	return newsletter.updatedByID != nil
+func (n *Newsletter) IsUpdated() bool {
+	return n.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (newsletter *Newsletter) DomainID() string {
-	return newsletter.domainID
+func (n *Newsletter) DomainID() string {
+	return n.domainID
 }
 
 // SetDomainID sets the domainID.
-func (newsletter *Newsletter) SetDomainID(domainID string) {
-	newsletter.domainID = domainID
+func (n *Newsletter) SetDomainID(domainID string) {
+	n.domainID = domainID
 }
 
 // Active returns active.
-func (newsletter *Newsletter) Active() bool {
-	return newsletter.active
+func (n *Newsletter) Active() bool {
+	return n.active
 }
 
 // SetActive sets the active.
-func (newsletter *Newsletter) SetActive(active bool) {
-	newsletter.active = active
+func (n *Newsletter) SetActive(active bool) {
+	n.active = active
 }
 
 // SendAt returns sendAt.
-func (newsletter *Newsletter) SendAt() *time.Time {
-	return newsletter.sendAt
+func (n *Newsletter) SendAt() *time.Time {
+	return n.sendAt
 }
 
 // SetSendAt sets the sendAt.
-func (newsletter *Newsletter) SetSendAt(sendAt *time.Time) {
-	newsletter.sendAt = sendAt
+func (n *Newsletter) SetSendAt(sendAt *time.Time) {
+	n.sendAt = sendAt
 }
 
 func newNewsletter() *Newsletter {

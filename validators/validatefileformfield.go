@@ -4,14 +4,14 @@ import (
 	"fmt"
 )
 
-func (form *Form) validateFileFormField(field *formField) {
+func (f *Form) validateFileFormField(field *formField) {
 	filesCount := len(field.UploadedFiles())
 	if !field.Optional() && filesCount > 0 {
-		field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXCannotBeEmpty"), field.Name()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeEmpty"), field.Name()))
 	} else if filesCount > 0 {
 		for _, uploadedFile := range field.UploadedFiles() {
 			if field.MaxLength() > 0 && field.MaxLength() < uint(len(uploadedFile.SanitizedName())) {
-				field.AddError(fmt.Sprintf(form.translationsRepository.Formatted(form.language.ID(), "fieldXCannotBeLongerThanXCharacters"), field.Name()+": "+uploadedFile.SanitizedName(), field.MaxLength()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeLongerThanXCharacters"), field.Name()+": "+uploadedFile.SanitizedName(), field.MaxLength()))
 			}
 		}
 	}

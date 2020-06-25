@@ -9,133 +9,133 @@ import (
 )
 
 func TestSectionTranslationTable(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
-	if sectionTranslation.TableName() == "" {
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSectionTranslationTableAlias(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
-	if sectionTranslation.TableName() == "" {
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSectionTranslationIsUpdated(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
-	sectionTranslation.IsUpdated()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s.IsUpdated()
 }
 
 func TestSectionTranslationID(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
-	sectionTranslation.ID()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s.ID()
 }
 
 func TestSectionTranslationCreatedByID(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetCreatedByID(testValue)
-	if testValue != sectionTranslation.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationUpdatedByID(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetUpdatedByID(&testValue)
-	if &testValue != sectionTranslation.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationCreatedAt(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := time.Now()
-	sectionTranslation.SetCreatedAt(testValue)
-	if testValue != sectionTranslation.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationUpdatedAt(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := time.Now()
-	sectionTranslation.SetUpdatedAt(&testValue)
-	if &testValue != sectionTranslation.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationCreatedByFirstName(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetCreatedByFirstName(&testValue)
-	if &testValue != sectionTranslation.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationCreatedBySurname(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetCreatedBySurname(&testValue)
-	if &testValue != sectionTranslation.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationUpdatedByFirstName(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetUpdatedByFirstName(&testValue)
-	if &testValue != sectionTranslation.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationUpdatedBySurname(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetUpdatedBySurname(&testValue)
-	if &testValue != sectionTranslation.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationLanguage(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := uint16(65000)
-	sectionTranslation.SetLanguage(testValue)
-	if testValue != sectionTranslation.Language() {
+	s.SetLanguage(testValue)
+	if testValue != s.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationField(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := uint16(65000)
-	sectionTranslation.SetField(testValue)
-	if testValue != sectionTranslation.Field() {
+	s.SetField(testValue)
+	if testValue != s.Field() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationValue(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetValue(testValue)
-	if testValue != sectionTranslation.Value() {
+	s.SetValue(testValue)
+	if testValue != s.Value() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSectionTranslationSectionID(t *testing.T) {
-	sectionTranslation := frequentlyaskedquestion.NewSectionTranslationEntity()
+	s := frequentlyaskedquestion.NewSectionTranslationEntity()
 	testValue := "testValue"
-	sectionTranslation.SetSectionID(testValue)
-	if testValue != sectionTranslation.SectionID() {
+	s.SetSectionID(testValue)
+	if testValue != s.SectionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

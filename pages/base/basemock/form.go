@@ -4,6 +4,7 @@
 package basemock
 
 import (
+	"github.com/espal-digital-development/espal-core/pages/base"
 	"sync"
 )
 
@@ -14,11 +15,15 @@ var (
 	lockFormMockOpen                 sync.RWMutex
 )
 
-// FormMock is a mock implementation of Form.
+// Ensure, that FormMock does implement base.Form.
+// If this is not the case, regenerate this file with moq.
+var _ base.Form = &FormMock{}
+
+// FormMock is a mock implementation of base.Form.
 //
 //     func TestSomethingThatUsesForm(t *testing.T) {
 //
-//         // make and configure a mocked Form
+//         // make and configure a mocked base.Form
 //         mockedForm := &FormMock{
 //             ContainsSelectSearchFunc: func() bool {
 // 	               panic("mock out the ContainsSelectSearch method")
@@ -34,7 +39,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedForm in code that requires Form
+//         // use mockedForm in code that requires base.Form
 //         // and then make assertions.
 //
 //     }

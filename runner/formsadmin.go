@@ -16,11 +16,11 @@ type formsAdmin struct {
 	userContactCreateUpdate usercontactcreateupdate.Factory
 }
 
-func (runner *Runner) formsAdmin() {
-	runner.formValidators.admin = &formsAdmin{}
-	runner.formValidators.admin.domainCreateUpdate = domaincreateupdate.New(runner.services.validators, runner.repositories.translations, runner.services.config, runner.stores.site)
-	runner.formValidators.admin.siteCreateUpdate = sitecreateupdate.New(runner.services.validators, runner.repositories.translations)
-	runner.formValidators.admin.userCreateUpdate = usercreateupdate.New(runner.services.validators, runner.repositories.translations, runner.storages.assetsPublicFiles, runner.stores.userAddress, runner.stores.userContact)
-	runner.formValidators.admin.userAddressCreateUpdate = useraddresscreateupdate.New(runner.services.validators)
-	runner.formValidators.admin.userContactCreateUpdate = usercontactcreateupdate.New(runner.services.validators, runner.services.config, runner.stores.userContact)
+func (r *Runner) formsAdmin() {
+	r.formValidators.admin = &formsAdmin{}
+	r.formValidators.admin.domainCreateUpdate = domaincreateupdate.New(r.services.validators, r.repositories.translations, r.services.config, r.stores.site)
+	r.formValidators.admin.siteCreateUpdate = sitecreateupdate.New(r.services.validators, r.repositories.translations)
+	r.formValidators.admin.userCreateUpdate = usercreateupdate.New(r.services.validators, r.repositories.translations, r.storages.assetsPublicFiles, r.stores.userAddress, r.stores.userContact)
+	r.formValidators.admin.userAddressCreateUpdate = useraddresscreateupdate.New(r.services.validators)
+	r.formValidators.admin.userContactCreateUpdate = usercontactcreateupdate.New(r.services.validators, r.services.config, r.stores.userContact)
 }

@@ -23,11 +23,11 @@ type OptionTranslation struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (optionTranslation *OptionTranslation) TableName() string {
+func (o *OptionTranslation) TableName() string {
 	return "PropertyOptionTranslation"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (optionTranslation *OptionTranslation) TableAlias() string {
+func (o *OptionTranslation) TableAlias() string {
 	return "proot"
 }

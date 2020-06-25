@@ -18,113 +18,113 @@ type MutationEntity interface {
 }
 
 // ID returns id.
-func (mutation *Mutation) ID() string {
-	return mutation.id
+func (m *Mutation) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (mutation *Mutation) CreatedByID() string {
-	return mutation.createdByID
+func (m *Mutation) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (mutation *Mutation) SetCreatedByID(createdByID string) {
-	mutation.createdByID = createdByID
+func (m *Mutation) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (mutation *Mutation) UpdatedByID() *string {
-	return mutation.updatedByID
+func (m *Mutation) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (mutation *Mutation) SetUpdatedByID(updatedByID *string) {
-	mutation.updatedByID = updatedByID
+func (m *Mutation) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (mutation *Mutation) CreatedAt() time.Time {
-	return mutation.createdAt
+func (m *Mutation) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (mutation *Mutation) SetCreatedAt(createdAt time.Time) {
-	mutation.createdAt = createdAt
+func (m *Mutation) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (mutation *Mutation) UpdatedAt() *time.Time {
-	return mutation.updatedAt
+func (m *Mutation) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (mutation *Mutation) SetUpdatedAt(updatedAt *time.Time) {
-	mutation.updatedAt = updatedAt
+func (m *Mutation) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (mutation *Mutation) CreatedByFirstName() *string {
-	return mutation.createdByFirstName
+func (m *Mutation) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (mutation *Mutation) SetCreatedByFirstName(createdByFirstName *string) {
-	mutation.createdByFirstName = createdByFirstName
+func (m *Mutation) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (mutation *Mutation) CreatedBySurname() *string {
-	return mutation.createdBySurname
+func (m *Mutation) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (mutation *Mutation) SetCreatedBySurname(createdBySurname *string) {
-	mutation.createdBySurname = createdBySurname
+func (m *Mutation) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (mutation *Mutation) UpdatedByFirstName() *string {
-	return mutation.updatedByFirstName
+func (m *Mutation) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (mutation *Mutation) SetUpdatedByFirstName(updatedByFirstName *string) {
-	mutation.updatedByFirstName = updatedByFirstName
+func (m *Mutation) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (mutation *Mutation) UpdatedBySurname() *string {
-	return mutation.updatedBySurname
+func (m *Mutation) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (mutation *Mutation) SetUpdatedBySurname(updatedBySurname *string) {
-	mutation.updatedBySurname = updatedBySurname
+func (m *Mutation) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (mutation *Mutation) IsUpdated() bool {
-	return mutation.updatedByID != nil
+func (m *Mutation) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // ProductVariantID returns productVariantID.
-func (mutation *Mutation) ProductVariantID() string {
-	return mutation.productVariantID
+func (m *Mutation) ProductVariantID() string {
+	return m.productVariantID
 }
 
 // SetProductVariantID sets the productVariantID.
-func (mutation *Mutation) SetProductVariantID(productVariantID string) {
-	mutation.productVariantID = productVariantID
+func (m *Mutation) SetProductVariantID(productVariantID string) {
+	m.productVariantID = productVariantID
 }
 
 // Price returns price.
-func (mutation *Mutation) Price() float64 {
-	return mutation.price
+func (m *Mutation) Price() float64 {
+	return m.price
 }
 
 // SetPrice sets the price.
-func (mutation *Mutation) SetPrice(price float64) {
-	mutation.price = price
+func (m *Mutation) SetPrice(price float64) {
+	m.price = price
 }
 
 func newMutation() *Mutation {

@@ -33,11 +33,11 @@ type StoreEntity struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (storeEntity *StoreEntity) TableName() string {
+func (s *StoreEntity) TableName() string {
 	return "Store"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (storeEntity *StoreEntity) TableAlias() string {
+func (s *StoreEntity) TableAlias() string {
 	return "sto"
 }

@@ -36,203 +36,203 @@ type MinMaxEntity interface {
 }
 
 // ID returns id.
-func (minMax *MinMax) ID() string {
-	return minMax.id
+func (m *MinMax) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (minMax *MinMax) CreatedByID() string {
-	return minMax.createdByID
+func (m *MinMax) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (minMax *MinMax) SetCreatedByID(createdByID string) {
-	minMax.createdByID = createdByID
+func (m *MinMax) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (minMax *MinMax) UpdatedByID() *string {
-	return minMax.updatedByID
+func (m *MinMax) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (minMax *MinMax) SetUpdatedByID(updatedByID *string) {
-	minMax.updatedByID = updatedByID
+func (m *MinMax) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (minMax *MinMax) CreatedAt() time.Time {
-	return minMax.createdAt
+func (m *MinMax) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (minMax *MinMax) SetCreatedAt(createdAt time.Time) {
-	minMax.createdAt = createdAt
+func (m *MinMax) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (minMax *MinMax) UpdatedAt() *time.Time {
-	return minMax.updatedAt
+func (m *MinMax) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (minMax *MinMax) SetUpdatedAt(updatedAt *time.Time) {
-	minMax.updatedAt = updatedAt
+func (m *MinMax) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (minMax *MinMax) CreatedByFirstName() *string {
-	return minMax.createdByFirstName
+func (m *MinMax) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (minMax *MinMax) SetCreatedByFirstName(createdByFirstName *string) {
-	minMax.createdByFirstName = createdByFirstName
+func (m *MinMax) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (minMax *MinMax) CreatedBySurname() *string {
-	return minMax.createdBySurname
+func (m *MinMax) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (minMax *MinMax) SetCreatedBySurname(createdBySurname *string) {
-	minMax.createdBySurname = createdBySurname
+func (m *MinMax) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (minMax *MinMax) UpdatedByFirstName() *string {
-	return minMax.updatedByFirstName
+func (m *MinMax) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (minMax *MinMax) SetUpdatedByFirstName(updatedByFirstName *string) {
-	minMax.updatedByFirstName = updatedByFirstName
+func (m *MinMax) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (minMax *MinMax) UpdatedBySurname() *string {
-	return minMax.updatedBySurname
+func (m *MinMax) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (minMax *MinMax) SetUpdatedBySurname(updatedBySurname *string) {
-	minMax.updatedBySurname = updatedBySurname
+func (m *MinMax) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (minMax *MinMax) IsUpdated() bool {
-	return minMax.updatedByID != nil
+func (m *MinMax) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // BundledProductID returns bundledProductID.
-func (minMax *MinMax) BundledProductID() *string {
-	return minMax.bundledProductID
+func (m *MinMax) BundledProductID() *string {
+	return m.bundledProductID
 }
 
 // SetBundledProductID sets the bundledProductID.
-func (minMax *MinMax) SetBundledProductID(bundledProductID *string) {
-	minMax.bundledProductID = bundledProductID
+func (m *MinMax) SetBundledProductID(bundledProductID *string) {
+	m.bundledProductID = bundledProductID
 }
 
 // ProductModelID returns productModelID.
-func (minMax *MinMax) ProductModelID() *string {
-	return minMax.productModelID
+func (m *MinMax) ProductModelID() *string {
+	return m.productModelID
 }
 
 // SetProductModelID sets the productModelID.
-func (minMax *MinMax) SetProductModelID(productModelID *string) {
-	minMax.productModelID = productModelID
+func (m *MinMax) SetProductModelID(productModelID *string) {
+	m.productModelID = productModelID
 }
 
 // ProductVariantID returns productVariantID.
-func (minMax *MinMax) ProductVariantID() *string {
-	return minMax.productVariantID
+func (m *MinMax) ProductVariantID() *string {
+	return m.productVariantID
 }
 
 // SetProductVariantID sets the productVariantID.
-func (minMax *MinMax) SetProductVariantID(productVariantID *string) {
-	minMax.productVariantID = productVariantID
+func (m *MinMax) SetProductVariantID(productVariantID *string) {
+	m.productVariantID = productVariantID
 }
 
 // DomainID returns domainID.
-func (minMax *MinMax) DomainID() string {
-	return minMax.domainID
+func (m *MinMax) DomainID() string {
+	return m.domainID
 }
 
 // SetDomainID sets the domainID.
-func (minMax *MinMax) SetDomainID(domainID string) {
-	minMax.domainID = domainID
+func (m *MinMax) SetDomainID(domainID string) {
+	m.domainID = domainID
 }
 
 // PriceGroupID returns priceGroupID.
-func (minMax *MinMax) PriceGroupID() string {
-	return minMax.priceGroupID
+func (m *MinMax) PriceGroupID() string {
+	return m.priceGroupID
 }
 
 // SetPriceGroupID sets the priceGroupID.
-func (minMax *MinMax) SetPriceGroupID(priceGroupID string) {
-	minMax.priceGroupID = priceGroupID
+func (m *MinMax) SetPriceGroupID(priceGroupID string) {
+	m.priceGroupID = priceGroupID
 }
 
 // TaxGroup returns taxGroup.
-func (minMax *MinMax) TaxGroup() uint {
-	return minMax.taxGroup
+func (m *MinMax) TaxGroup() uint {
+	return m.taxGroup
 }
 
 // SetTaxGroup sets the taxGroup.
-func (minMax *MinMax) SetTaxGroup(taxGroup uint) {
-	minMax.taxGroup = taxGroup
+func (m *MinMax) SetTaxGroup(taxGroup uint) {
+	m.taxGroup = taxGroup
 }
 
 // Currency returns currency.
-func (minMax *MinMax) Currency() uint16 {
-	return minMax.currency
+func (m *MinMax) Currency() uint16 {
+	return m.currency
 }
 
 // SetCurrency sets the currency.
-func (minMax *MinMax) SetCurrency(currency uint16) {
-	minMax.currency = currency
+func (m *MinMax) SetCurrency(currency uint16) {
+	m.currency = currency
 }
 
 // Lowest returns lowest.
-func (minMax *MinMax) Lowest() float64 {
-	return minMax.lowest
+func (m *MinMax) Lowest() float64 {
+	return m.lowest
 }
 
 // SetLowest sets the lowest.
-func (minMax *MinMax) SetLowest(lowest float64) {
-	minMax.lowest = lowest
+func (m *MinMax) SetLowest(lowest float64) {
+	m.lowest = lowest
 }
 
 // Highest returns highest.
-func (minMax *MinMax) Highest() float64 {
-	return minMax.highest
+func (m *MinMax) Highest() float64 {
+	return m.highest
 }
 
 // SetHighest sets the highest.
-func (minMax *MinMax) SetHighest(highest float64) {
-	minMax.highest = highest
+func (m *MinMax) SetHighest(highest float64) {
+	m.highest = highest
 }
 
 // LowestRev returns lowestRev.
-func (minMax *MinMax) LowestRev() float64 {
-	return minMax.lowestRev
+func (m *MinMax) LowestRev() float64 {
+	return m.lowestRev
 }
 
 // SetLowestRev sets the lowestRev.
-func (minMax *MinMax) SetLowestRev(lowestRev float64) {
-	minMax.lowestRev = lowestRev
+func (m *MinMax) SetLowestRev(lowestRev float64) {
+	m.lowestRev = lowestRev
 }
 
 // HighestRev returns highestRev.
-func (minMax *MinMax) HighestRev() float64 {
-	return minMax.highestRev
+func (m *MinMax) HighestRev() float64 {
+	return m.highestRev
 }
 
 // SetHighestRev sets the highestRev.
-func (minMax *MinMax) SetHighestRev(highestRev float64) {
-	minMax.highestRev = highestRev
+func (m *MinMax) SetHighestRev(highestRev float64) {
+	m.highestRev = highestRev
 }
 
 func newMinMax() *MinMax {

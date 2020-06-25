@@ -13,8 +13,8 @@ var _ Store = &GiftsStore{}
 type Store interface {
 }
 
-func (giftsStore *GiftsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Gift, ok bool, err error) {
-	rows, err := giftsStore.selecterDatabase.Query(query, params...)
+func (g *GiftsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Gift, ok bool, err error) {
+	rows, err := g.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (giftsStore *GiftsStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		gift := newGift()
-		fields := []interface{}{&gift.id, &gift.createdByID, &gift.updatedByID, &gift.createdAt, &gift.updatedAt}
+		g := newGift()
+		fields := []interface{}{&g.id, &g.createdByID, &g.updatedByID, &g.createdAt, &g.updatedAt}
 		if withCreators {
-			fields = append(fields, &gift.createdByFirstName, &gift.createdBySurname, &gift.updatedByFirstName, &gift.updatedBySurname)
+			fields = append(fields, &g.createdByFirstName, &g.createdBySurname, &g.updatedByFirstName, &g.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, gift)
+		result = append(result, g)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (giftsStore *GiftsStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of GiftsStore.
 func New(selecterDatabase database.Database) (*GiftsStore, error) {
-	giftsStore := &GiftsStore{
+	g := &GiftsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return giftsStore, nil
+	return g, nil
 }

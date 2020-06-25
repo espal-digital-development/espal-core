@@ -9,196 +9,196 @@ import (
 )
 
 func TestMinMaxTable(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
-	if minMax.TableName() == "" {
+	m := price.NewMinMaxEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestMinMaxTableAlias(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
-	if minMax.TableName() == "" {
+	m := price.NewMinMaxEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestMinMaxIsUpdated(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
-	minMax.IsUpdated()
+	m := price.NewMinMaxEntity()
+	m.IsUpdated()
 }
 
 func TestMinMaxID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
-	minMax.ID()
+	m := price.NewMinMaxEntity()
+	m.ID()
 }
 
 func TestMinMaxCreatedByID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetCreatedByID(testValue)
-	if testValue != minMax.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxUpdatedByID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetUpdatedByID(&testValue)
-	if &testValue != minMax.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxCreatedAt(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := time.Now()
-	minMax.SetCreatedAt(testValue)
-	if testValue != minMax.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxUpdatedAt(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := time.Now()
-	minMax.SetUpdatedAt(&testValue)
-	if &testValue != minMax.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxCreatedByFirstName(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetCreatedByFirstName(&testValue)
-	if &testValue != minMax.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxCreatedBySurname(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetCreatedBySurname(&testValue)
-	if &testValue != minMax.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxUpdatedByFirstName(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetUpdatedByFirstName(&testValue)
-	if &testValue != minMax.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxUpdatedBySurname(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetUpdatedBySurname(&testValue)
-	if &testValue != minMax.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxBundledProductID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetBundledProductID(&testValue)
-	if &testValue != minMax.BundledProductID() {
+	m.SetBundledProductID(&testValue)
+	if &testValue != m.BundledProductID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxProductModelID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetProductModelID(&testValue)
-	if &testValue != minMax.ProductModelID() {
+	m.SetProductModelID(&testValue)
+	if &testValue != m.ProductModelID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxProductVariantID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetProductVariantID(&testValue)
-	if &testValue != minMax.ProductVariantID() {
+	m.SetProductVariantID(&testValue)
+	if &testValue != m.ProductVariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxDomainID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetDomainID(testValue)
-	if testValue != minMax.DomainID() {
+	m.SetDomainID(testValue)
+	if testValue != m.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxPriceGroupID(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := "testValue"
-	minMax.SetPriceGroupID(testValue)
-	if testValue != minMax.PriceGroupID() {
+	m.SetPriceGroupID(testValue)
+	if testValue != m.PriceGroupID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxTaxGroup(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := uint(1e9)
-	minMax.SetTaxGroup(testValue)
-	if testValue != minMax.TaxGroup() {
+	m.SetTaxGroup(testValue)
+	if testValue != m.TaxGroup() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxCurrency(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := uint16(65000)
-	minMax.SetCurrency(testValue)
-	if testValue != minMax.Currency() {
+	m.SetCurrency(testValue)
+	if testValue != m.Currency() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxLowest(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := 6.28
-	minMax.SetLowest(testValue)
-	if testValue != minMax.Lowest() {
+	m.SetLowest(testValue)
+	if testValue != m.Lowest() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxHighest(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := 6.28
-	minMax.SetHighest(testValue)
-	if testValue != minMax.Highest() {
+	m.SetHighest(testValue)
+	if testValue != m.Highest() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxLowestRev(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := 6.28
-	minMax.SetLowestRev(testValue)
-	if testValue != minMax.LowestRev() {
+	m.SetLowestRev(testValue)
+	if testValue != m.LowestRev() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMinMaxHighestRev(t *testing.T) {
-	minMax := price.NewMinMaxEntity()
+	m := price.NewMinMaxEntity()
 	testValue := 6.28
-	minMax.SetHighestRev(testValue)
-	if testValue != minMax.HighestRev() {
+	m.SetHighestRev(testValue)
+	if testValue != m.HighestRev() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

@@ -18,123 +18,123 @@ type CouponCodeEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (couponCode *CouponCode) TableName() string {
+func (c *CouponCode) TableName() string {
 	return "CouponCode"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (couponCode *CouponCode) TableAlias() string {
+func (c *CouponCode) TableAlias() string {
 	return "cce"
 }
 
 // ID returns id.
-func (couponCode *CouponCode) ID() string {
-	return couponCode.id
+func (c *CouponCode) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (couponCode *CouponCode) CreatedByID() string {
-	return couponCode.createdByID
+func (c *CouponCode) CreatedByID() string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (couponCode *CouponCode) SetCreatedByID(createdByID string) {
-	couponCode.createdByID = createdByID
+func (c *CouponCode) SetCreatedByID(createdByID string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (couponCode *CouponCode) UpdatedByID() *string {
-	return couponCode.updatedByID
+func (c *CouponCode) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (couponCode *CouponCode) SetUpdatedByID(updatedByID *string) {
-	couponCode.updatedByID = updatedByID
+func (c *CouponCode) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (couponCode *CouponCode) CreatedAt() time.Time {
-	return couponCode.createdAt
+func (c *CouponCode) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (couponCode *CouponCode) SetCreatedAt(createdAt time.Time) {
-	couponCode.createdAt = createdAt
+func (c *CouponCode) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (couponCode *CouponCode) UpdatedAt() *time.Time {
-	return couponCode.updatedAt
+func (c *CouponCode) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (couponCode *CouponCode) SetUpdatedAt(updatedAt *time.Time) {
-	couponCode.updatedAt = updatedAt
+func (c *CouponCode) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (couponCode *CouponCode) CreatedByFirstName() *string {
-	return couponCode.createdByFirstName
+func (c *CouponCode) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (couponCode *CouponCode) SetCreatedByFirstName(createdByFirstName *string) {
-	couponCode.createdByFirstName = createdByFirstName
+func (c *CouponCode) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (couponCode *CouponCode) CreatedBySurname() *string {
-	return couponCode.createdBySurname
+func (c *CouponCode) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (couponCode *CouponCode) SetCreatedBySurname(createdBySurname *string) {
-	couponCode.createdBySurname = createdBySurname
+func (c *CouponCode) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (couponCode *CouponCode) UpdatedByFirstName() *string {
-	return couponCode.updatedByFirstName
+func (c *CouponCode) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (couponCode *CouponCode) SetUpdatedByFirstName(updatedByFirstName *string) {
-	couponCode.updatedByFirstName = updatedByFirstName
+func (c *CouponCode) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (couponCode *CouponCode) UpdatedBySurname() *string {
-	return couponCode.updatedBySurname
+func (c *CouponCode) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (couponCode *CouponCode) SetUpdatedBySurname(updatedBySurname *string) {
-	couponCode.updatedBySurname = updatedBySurname
+func (c *CouponCode) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (couponCode *CouponCode) IsUpdated() bool {
-	return couponCode.updatedByID != nil
+func (c *CouponCode) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 // ClaimedByID returns claimedByID.
-func (couponCode *CouponCode) ClaimedByID() *string {
-	return couponCode.claimedByID
+func (c *CouponCode) ClaimedByID() *string {
+	return c.claimedByID
 }
 
 // SetClaimedByID sets the claimedByID.
-func (couponCode *CouponCode) SetClaimedByID(claimedByID *string) {
-	couponCode.claimedByID = claimedByID
+func (c *CouponCode) SetClaimedByID(claimedByID *string) {
+	c.claimedByID = claimedByID
 }
 
 // Key returns key.
-func (couponCode *CouponCode) Key() string {
-	return couponCode.key
+func (c *CouponCode) Key() string {
+	return c.key
 }
 
 // SetKey sets the key.
-func (couponCode *CouponCode) SetKey(key string) {
-	couponCode.key = key
+func (c *CouponCode) SetKey(key string) {
+	c.key = key
 }
 
 func newCouponCode() *CouponCode {

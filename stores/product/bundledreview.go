@@ -29,11 +29,11 @@ type BundledReview struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (bundledReview *BundledReview) TableName() string {
+func (b *BundledReview) TableName() string {
 	return "BundledProductReview"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (bundledReview *BundledReview) TableAlias() string {
+func (b *BundledReview) TableAlias() string {
 	return "bprr"
 }

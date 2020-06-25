@@ -23,6 +23,6 @@ type Cart struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (cart *Cart) TableAlias() string {
+func (c *Cart) TableAlias() string {
 	return "car"
 }

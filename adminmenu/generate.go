@@ -26,18 +26,18 @@ type Block struct {
 }
 
 // Title returns the block title.
-func (block *Block) Title() string {
-	return block.title
+func (b *Block) Title() string {
+	return b.title
 }
 
 // Items returns the block items.
-func (block *Block) Items() []*Item {
-	return block.items
+func (b *Block) Items() []*Item {
+	return b.items
 }
 
 // // AccessRight returns the block accessRight.
-// func (block *block) AccessRight() uint16 {
-// 	return block.accessRight
+// func (b *block) AccessRight() uint16 {
+// 	return b.accessRight
 // }
 
 // MenuItem represents a menu item.
@@ -55,18 +55,18 @@ type Item struct {
 }
 
 // Title returns the menu item title.
-func (item *Item) Title() string {
-	return item.title
+func (i *Item) Title() string {
+	return i.title
 }
 
 // URL returns the menu item url.
-func (item *Item) URL() string {
-	return item.url
+func (i *Item) URL() string {
+	return i.url
 }
 
 // AccessRight returns the menu item accessRight.
-func (item *Item) AccessRight() uint16 {
-	return item.accessRight
+func (i *Item) AccessRight() uint16 {
+	return i.accessRight
 }
 
 type itemToGenerate struct {
@@ -77,8 +77,8 @@ type itemToGenerate struct {
 
 // GenerateAdminMenuStructure generates and returns a rendered admin menu
 // for the given user (based on it's userrights) and locale.
-func (adminMenu *AdminMenu) GenerateAdminMenuStructure(userID string, localeID uint16) ([]*Block, error) {
-	rows, err := adminMenu.selecterDatabase.Query(`SELECT ug."userRights" FROM "UserGroup" ug
+func (m *AdminMenu) GenerateAdminMenuStructure(userID string, localeID uint16) ([]*Block, error) {
+	rows, err := m.selecterDatabase.Query(`SELECT ug."userRights" FROM "UserGroup" ug
 		JOIN "UserGroupUser" uu ON uu."userGroupID" = ug."id" AND uu."userID" = $1
 		WHERE ug."userRights" != ''`, userID)
 	if err != nil && err != sql.ErrNoRows {
@@ -111,7 +111,7 @@ func (adminMenu *AdminMenu) GenerateAdminMenuStructure(userID string, localeID u
 
 	// TODO :: 7 The blueprint will bleed memory lock on the Items. Needs a better version later
 	var menu []*Block
-	blueprint, err := adminMenu.generateAdminMenuForLocale(localeID)
+	blueprint, err := m.generateAdminMenuForLocale(localeID)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -137,12 +137,12 @@ func (adminMenu *AdminMenu) GenerateAdminMenuStructure(userID string, localeID u
 	return menu, nil
 }
 
-func (adminMenu *AdminMenu) generateAdminMenuForLocale(localeID uint16) ([]*Block, error) {
-	adminURL := adminMenu.configService.AdminURL() + "/"
-	blocks := make([]*Block, 0, len(adminMenu.itemToGenerate))
+func (m *AdminMenu) generateAdminMenuForLocale(localeID uint16) ([]*Block, error) {
+	adminURL := m.configService.AdminURL() + "/"
+	blocks := make([]*Block, 0, len(m.itemToGenerate))
 
-	for k := range adminMenu.itemToGenerate {
-		items, err := adminMenu.generateItems(localeID, adminURL, adminMenu.itemToGenerate[k].items)
+	for k := range m.itemToGenerate {
+		items, err := m.generateItems(localeID, adminURL, m.itemToGenerate[k].items)
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
@@ -151,10 +151,10 @@ func (adminMenu *AdminMenu) generateAdminMenuForLocale(localeID uint16) ([]*Bloc
 			items: items,
 		}
 
-		if adminMenu.itemToGenerate[k].titlePlural {
-			block.title = adminMenu.translationsRepository.Plural(localeID, adminMenu.itemToGenerate[k].title)
+		if m.itemToGenerate[k].titlePlural {
+			block.title = m.translationsRepository.Plural(localeID, m.itemToGenerate[k].title)
 		} else {
-			block.title = adminMenu.translationsRepository.Singular(localeID, adminMenu.itemToGenerate[k].title)
+			block.title = m.translationsRepository.Singular(localeID, m.itemToGenerate[k].title)
 		}
 
 		blocks = append(blocks, block)
@@ -163,17 +163,17 @@ func (adminMenu *AdminMenu) generateAdminMenuForLocale(localeID uint16) ([]*Bloc
 	return blocks, nil
 }
 
-func (adminMenu *AdminMenu) generateItems(localeID uint16, adminURL string, list []string) ([]*Item, error) {
+func (m *AdminMenu) generateItems(localeID uint16, adminURL string, list []string) ([]*Item, error) {
 	items := make([]*Item, len(list))
 
 	for k := range list {
 		// Need to uppercase the first letter to make it match-up with the style of the UserRight name
-		code, err := adminMenu.userRightsRepository.GetCode("Access" + strings.Title(list[k]))
+		code, err := m.userRightsRepository.GetCode("Access" + strings.Title(list[k]))
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
 		items[k] = &Item{
-			title: adminMenu.translationsRepository.Plural(localeID, list[k]),
+			title: m.translationsRepository.Plural(localeID, list[k]),
 			// Need to uppercase the first letter to make it match-up with the style of the URLs
 			url:         adminURL + strings.Title(list[k]),
 			accessRight: code,

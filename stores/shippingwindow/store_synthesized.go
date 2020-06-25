@@ -13,8 +13,8 @@ var _ Store = &ShippingWindowsStore{}
 type Store interface {
 }
 
-func (shippingWindowsStore *ShippingWindowsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*ShippingWindow, ok bool, err error) {
-	rows, err := shippingWindowsStore.selecterDatabase.Query(query, params...)
+func (s *ShippingWindowsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*ShippingWindow, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (shippingWindowsStore *ShippingWindowsStore) fetch(query string, withCreato
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		shippingWindow := newShippingWindow()
-		fields := []interface{}{&shippingWindow.id, &shippingWindow.createdByID, &shippingWindow.updatedByID, &shippingWindow.createdAt, &shippingWindow.updatedAt, &shippingWindow.userGroupID, &shippingWindow.startDate, &shippingWindow.endDate}
+		s := newShippingWindow()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.userGroupID, &s.startDate, &s.endDate}
 		if withCreators {
-			fields = append(fields, &shippingWindow.createdByFirstName, &shippingWindow.createdBySurname, &shippingWindow.updatedByFirstName, &shippingWindow.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, shippingWindow)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (shippingWindowsStore *ShippingWindowsStore) fetch(query string, withCreato
 
 // New returns a new instance of ShippingWindowsStore.
 func New(selecterDatabase database.Database) (*ShippingWindowsStore, error) {
-	shippingWindowsStore := &ShippingWindowsStore{
+	s := &ShippingWindowsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return shippingWindowsStore, nil
+	return s, nil
 }

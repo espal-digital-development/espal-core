@@ -30,11 +30,11 @@ type PropertyRevision struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (propertyRevision *PropertyRevision) TableName() string {
+func (p *PropertyRevision) TableName() string {
 	return "ProductPropertyRevision"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (propertyRevision *PropertyRevision) TableAlias() string {
+func (p *PropertyRevision) TableAlias() string {
 	return "propr"
 }

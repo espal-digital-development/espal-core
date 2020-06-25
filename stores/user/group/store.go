@@ -26,8 +26,8 @@ type GroupsStore struct {
 }
 
 // GetOneByID fetches by ID.
-func (groupsStore *GroupsStore) GetOneByID(id string) (*Group, bool, error) {
-	result, ok, err := groupsStore.fetch(`SELECT * FROM "UserGroup" WHERE "id" = $1 LIMIT 1`, false, id)
+func (g *GroupsStore) GetOneByID(id string) (*Group, bool, error) {
+	result, ok, err := g.fetch(`SELECT * FROM "UserGroup" WHERE "id" = $1 LIMIT 1`, false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -35,8 +35,8 @@ func (groupsStore *GroupsStore) GetOneByID(id string) (*Group, bool, error) {
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (groupsStore *GroupsStore) GetOneByIDWithCreator(id string) (*Group, bool, error) {
-	result, ok, err := groupsStore.fetch(`SELECT ug.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (g *GroupsStore) GetOneByIDWithCreator(id string) (*Group, bool, error) {
+	result, ok, err := g.fetch(`SELECT ug.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserGroup" ug
 		LEFT JOIN "User" cu ON cu."id" = ug."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = ug."updatedByID"
@@ -48,8 +48,8 @@ func (groupsStore *GroupsStore) GetOneByIDWithCreator(id string) (*Group, bool, 
 }
 
 // Delete deletes the given ID(s).
-func (groupsStore *GroupsStore) Delete(ids []string) error {
-	transaction, err := groupsStore.deletorDatabase.Begin()
+func (g *GroupsStore) Delete(ids []string) error {
+	transaction, err := g.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -69,8 +69,8 @@ func (groupsStore *GroupsStore) Delete(ids []string) error {
 }
 
 // DeleteTranslation deletes the given translation ID(s).
-func (groupsStore *GroupsStore) DeleteTranslation(ids []string) error {
-	transaction, err := groupsStore.deletorDatabase.Begin()
+func (g *GroupsStore) DeleteTranslation(ids []string) error {
+	transaction, err := g.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -84,8 +84,8 @@ func (groupsStore *GroupsStore) DeleteTranslation(ids []string) error {
 }
 
 // ToggleActive toggles the active state of the given ID(s).
-func (groupsStore *GroupsStore) ToggleActive(ids []string) error {
-	transaction, err := groupsStore.updaterDatabase.Begin()
+func (g *GroupsStore) ToggleActive(ids []string) error {
+	transaction, err := g.updaterDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -99,30 +99,30 @@ func (groupsStore *GroupsStore) ToggleActive(ids []string) error {
 }
 
 // SetUserRights sets the userRightIDs for the given id.
-func (groupsStore *GroupsStore) SetUserRights(id string, userRightIDs []string) error {
-	_, err := groupsStore.updaterDatabase.Exec(`UPDATE "UserGroup" SET "userRights" = $1 WHERE "id" = $1`, strings.Join(userRightIDs, ","), id)
+func (g *GroupsStore) SetUserRights(id string, userRightIDs []string) error {
+	_, err := g.updaterDatabase.Exec(`UPDATE "UserGroup" SET "userRights" = $1 WHERE "id" = $1`, strings.Join(userRightIDs, ","), id)
 	return errors.Trace(err)
 }
 
 // Name returns the presentable name.
-func (groupsStore *GroupsStore) Name(userGroup *Group, languageID uint16) string {
+func (g *GroupsStore) Name(userGroup *Group, languageID uint16) string {
 	var name string
-	err := groupsStore.selecterDatabase.QueryRow(
+	err := g.selecterDatabase.QueryRow(
 		`SELECT "value" FROM "UserGroupTranslation" WHERE "userGroupID" = $1 AND "field" = $2 AND "language" = $3`,
 		userGroup.ID(), database.DBTranslationFieldName, languageID).Scan(&name)
 	if err != nil && err != sql.ErrNoRows {
-		groupsStore.loggerService.Error(errors.ErrorStack(err))
+		g.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
 	if err == sql.ErrNoRows || name == "" {
-		return groupsStore.translationsRepository.Singular(languageID, "userGroup") + " " + userGroup.ID()
+		return g.translationsRepository.Singular(languageID, "userGroup") + " " + userGroup.ID()
 	}
 	return name
 }
 
 // TranslationsForID fetches UserGroupTranslations for userGroupID.
-func (groupsStore *GroupsStore) TranslationsForID(userGroupID string) (translations []*Translation, ok bool, err error) {
-	rows, err := groupsStore.selecterDatabase.Query(`SELECT ugt.*
+func (g *GroupsStore) TranslationsForID(userGroupID string) (translations []*Translation, ok bool, err error) {
+	rows, err := g.selecterDatabase.Query(`SELECT ugt.*
 		FROM "UserGroupTranslation" ugt
 		LEFT JOIN "UserGroup" ug ON ugt."userGroupID" = ug."id"
 		WHERE ugt."userGroupID" = $1`, userGroupID)

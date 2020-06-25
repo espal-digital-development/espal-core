@@ -9,124 +9,124 @@ import (
 )
 
 func TestCommentTable(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
-	if comment.TableName() == "" {
+	c := blogpost.NewCommentEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestCommentTableAlias(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
-	if comment.TableName() == "" {
+	c := blogpost.NewCommentEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestCommentIsUpdated(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
-	comment.IsUpdated()
+	c := blogpost.NewCommentEntity()
+	c.IsUpdated()
 }
 
 func TestCommentID(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
-	comment.ID()
+	c := blogpost.NewCommentEntity()
+	c.ID()
 }
 
 func TestCommentCreatedByID(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetCreatedByID(testValue)
-	if testValue != comment.CreatedByID() {
+	c.SetCreatedByID(testValue)
+	if testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentUpdatedByID(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetUpdatedByID(&testValue)
-	if &testValue != comment.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentCreatedAt(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := time.Now()
-	comment.SetCreatedAt(testValue)
-	if testValue != comment.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentUpdatedAt(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := time.Now()
-	comment.SetUpdatedAt(&testValue)
-	if &testValue != comment.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentCreatedByFirstName(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetCreatedByFirstName(&testValue)
-	if &testValue != comment.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentCreatedBySurname(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetCreatedBySurname(&testValue)
-	if &testValue != comment.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentUpdatedByFirstName(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetUpdatedByFirstName(&testValue)
-	if &testValue != comment.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentUpdatedBySurname(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetUpdatedBySurname(&testValue)
-	if &testValue != comment.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentBlogPostID(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetBlogPostID(testValue)
-	if testValue != comment.BlogPostID() {
+	c.SetBlogPostID(testValue)
+	if testValue != c.BlogPostID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentTitle(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetTitle(&testValue)
-	if &testValue != comment.Title() {
+	c.SetTitle(&testValue)
+	if &testValue != c.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCommentMessage(t *testing.T) {
-	comment := blogpost.NewCommentEntity()
+	c := blogpost.NewCommentEntity()
 	testValue := "testValue"
-	comment.SetMessage(testValue)
-	if testValue != comment.Message() {
+	c.SetMessage(testValue)
+	if testValue != c.Message() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

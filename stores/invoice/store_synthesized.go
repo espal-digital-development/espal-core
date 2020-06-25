@@ -13,8 +13,8 @@ var _ Store = &InvoicesStore{}
 type Store interface {
 }
 
-func (invoicesStore *InvoicesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Invoice, ok bool, err error) {
-	rows, err := invoicesStore.selecterDatabase.Query(query, params...)
+func (i *InvoicesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Invoice, ok bool, err error) {
+	rows, err := i.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (invoicesStore *InvoicesStore) fetch(query string, withCreators bool, param
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		invoice := newInvoice()
-		fields := []interface{}{&invoice.id, &invoice.createdByID, &invoice.updatedByID, &invoice.createdAt, &invoice.updatedAt, &invoice.domainID, &invoice.userID, &invoice.saleOrderID, &invoice.currency, &invoice.code, &invoice.userInfoBusiness, &invoice.userInfoBusinessCocNumber, &invoice.userInfoFirstName, &invoice.userInfoSurname, &invoice.userInfoStreet, &invoice.userInfoStreetLine2, &invoice.userInfoNumber, &invoice.userInfoNumberAddition, &invoice.userInfoZipCode, &invoice.userInfoCity, &invoice.userInfoState, &invoice.userInfoCountry, &invoice.userInfoPhoneNumber, &invoice.userInfoEmail, &invoice.comments, &invoice.sellingPartyAutograph, &invoice.buyingPartyAutograph}
+		i := newInvoice()
+		fields := []interface{}{&i.id, &i.createdByID, &i.updatedByID, &i.createdAt, &i.updatedAt, &i.domainID, &i.userID, &i.saleOrderID, &i.currency, &i.code, &i.userInfoBusiness, &i.userInfoBusinessCocNumber, &i.userInfoFirstName, &i.userInfoSurname, &i.userInfoStreet, &i.userInfoStreetLine2, &i.userInfoNumber, &i.userInfoNumberAddition, &i.userInfoZipCode, &i.userInfoCity, &i.userInfoState, &i.userInfoCountry, &i.userInfoPhoneNumber, &i.userInfoEmail, &i.comments, &i.sellingPartyAutograph, &i.buyingPartyAutograph}
 		if withCreators {
-			fields = append(fields, &invoice.createdByFirstName, &invoice.createdBySurname, &invoice.updatedByFirstName, &invoice.updatedBySurname)
+			fields = append(fields, &i.createdByFirstName, &i.createdBySurname, &i.updatedByFirstName, &i.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, invoice)
+		result = append(result, i)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (invoicesStore *InvoicesStore) fetch(query string, withCreators bool, param
 
 // New returns a new instance of InvoicesStore.
 func New(selecterDatabase database.Database) (*InvoicesStore, error) {
-	invoicesStore := &InvoicesStore{
+	i := &InvoicesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return invoicesStore, nil
+	return i, nil
 }

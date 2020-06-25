@@ -28,6 +28,6 @@ type Menu struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (menu *Menu) TableAlias() string {
+func (m *Menu) TableAlias() string {
 	return "men"
 }

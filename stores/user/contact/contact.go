@@ -26,6 +26,6 @@ type Contact struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (contact *Contact) TableName() string {
+func (c *Contact) TableName() string {
 	return "UserContact"
 }

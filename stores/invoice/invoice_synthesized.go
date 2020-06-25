@@ -58,323 +58,323 @@ type InvoiceEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (invoice *Invoice) TableName() string {
+func (i *Invoice) TableName() string {
 	return "Invoice"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (invoice *Invoice) TableAlias() string {
+func (i *Invoice) TableAlias() string {
 	return "ie"
 }
 
 // ID returns id.
-func (invoice *Invoice) ID() string {
-	return invoice.id
+func (i *Invoice) ID() string {
+	return i.id
 }
 
 // CreatedByID returns createdByID.
-func (invoice *Invoice) CreatedByID() string {
-	return invoice.createdByID
+func (i *Invoice) CreatedByID() string {
+	return i.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (invoice *Invoice) SetCreatedByID(createdByID string) {
-	invoice.createdByID = createdByID
+func (i *Invoice) SetCreatedByID(createdByID string) {
+	i.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (invoice *Invoice) UpdatedByID() *string {
-	return invoice.updatedByID
+func (i *Invoice) UpdatedByID() *string {
+	return i.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (invoice *Invoice) SetUpdatedByID(updatedByID *string) {
-	invoice.updatedByID = updatedByID
+func (i *Invoice) SetUpdatedByID(updatedByID *string) {
+	i.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (invoice *Invoice) CreatedAt() time.Time {
-	return invoice.createdAt
+func (i *Invoice) CreatedAt() time.Time {
+	return i.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (invoice *Invoice) SetCreatedAt(createdAt time.Time) {
-	invoice.createdAt = createdAt
+func (i *Invoice) SetCreatedAt(createdAt time.Time) {
+	i.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (invoice *Invoice) UpdatedAt() *time.Time {
-	return invoice.updatedAt
+func (i *Invoice) UpdatedAt() *time.Time {
+	return i.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (invoice *Invoice) SetUpdatedAt(updatedAt *time.Time) {
-	invoice.updatedAt = updatedAt
+func (i *Invoice) SetUpdatedAt(updatedAt *time.Time) {
+	i.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (invoice *Invoice) CreatedByFirstName() *string {
-	return invoice.createdByFirstName
+func (i *Invoice) CreatedByFirstName() *string {
+	return i.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (invoice *Invoice) SetCreatedByFirstName(createdByFirstName *string) {
-	invoice.createdByFirstName = createdByFirstName
+func (i *Invoice) SetCreatedByFirstName(createdByFirstName *string) {
+	i.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (invoice *Invoice) CreatedBySurname() *string {
-	return invoice.createdBySurname
+func (i *Invoice) CreatedBySurname() *string {
+	return i.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (invoice *Invoice) SetCreatedBySurname(createdBySurname *string) {
-	invoice.createdBySurname = createdBySurname
+func (i *Invoice) SetCreatedBySurname(createdBySurname *string) {
+	i.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (invoice *Invoice) UpdatedByFirstName() *string {
-	return invoice.updatedByFirstName
+func (i *Invoice) UpdatedByFirstName() *string {
+	return i.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (invoice *Invoice) SetUpdatedByFirstName(updatedByFirstName *string) {
-	invoice.updatedByFirstName = updatedByFirstName
+func (i *Invoice) SetUpdatedByFirstName(updatedByFirstName *string) {
+	i.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (invoice *Invoice) UpdatedBySurname() *string {
-	return invoice.updatedBySurname
+func (i *Invoice) UpdatedBySurname() *string {
+	return i.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (invoice *Invoice) SetUpdatedBySurname(updatedBySurname *string) {
-	invoice.updatedBySurname = updatedBySurname
+func (i *Invoice) SetUpdatedBySurname(updatedBySurname *string) {
+	i.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (invoice *Invoice) IsUpdated() bool {
-	return invoice.updatedByID != nil
+func (i *Invoice) IsUpdated() bool {
+	return i.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (invoice *Invoice) DomainID() string {
-	return invoice.domainID
+func (i *Invoice) DomainID() string {
+	return i.domainID
 }
 
 // SetDomainID sets the domainID.
-func (invoice *Invoice) SetDomainID(domainID string) {
-	invoice.domainID = domainID
+func (i *Invoice) SetDomainID(domainID string) {
+	i.domainID = domainID
 }
 
 // UserID returns userID.
-func (invoice *Invoice) UserID() string {
-	return invoice.userID
+func (i *Invoice) UserID() string {
+	return i.userID
 }
 
 // SetUserID sets the userID.
-func (invoice *Invoice) SetUserID(userID string) {
-	invoice.userID = userID
+func (i *Invoice) SetUserID(userID string) {
+	i.userID = userID
 }
 
 // SaleOrderID returns saleOrderID.
-func (invoice *Invoice) SaleOrderID() string {
-	return invoice.saleOrderID
+func (i *Invoice) SaleOrderID() string {
+	return i.saleOrderID
 }
 
 // SetSaleOrderID sets the saleOrderID.
-func (invoice *Invoice) SetSaleOrderID(saleOrderID string) {
-	invoice.saleOrderID = saleOrderID
+func (i *Invoice) SetSaleOrderID(saleOrderID string) {
+	i.saleOrderID = saleOrderID
 }
 
 // Currency returns currency.
-func (invoice *Invoice) Currency() uint {
-	return invoice.currency
+func (i *Invoice) Currency() uint {
+	return i.currency
 }
 
 // SetCurrency sets the currency.
-func (invoice *Invoice) SetCurrency(currency uint) {
-	invoice.currency = currency
+func (i *Invoice) SetCurrency(currency uint) {
+	i.currency = currency
 }
 
 // Code returns code.
-func (invoice *Invoice) Code() *string {
-	return invoice.code
+func (i *Invoice) Code() *string {
+	return i.code
 }
 
 // SetCode sets the code.
-func (invoice *Invoice) SetCode(code *string) {
-	invoice.code = code
+func (i *Invoice) SetCode(code *string) {
+	i.code = code
 }
 
 // UserInfoBusiness returns userInfoBusiness.
-func (invoice *Invoice) UserInfoBusiness() bool {
-	return invoice.userInfoBusiness
+func (i *Invoice) UserInfoBusiness() bool {
+	return i.userInfoBusiness
 }
 
 // SetUserInfoBusiness sets the userInfoBusiness.
-func (invoice *Invoice) SetUserInfoBusiness(userInfoBusiness bool) {
-	invoice.userInfoBusiness = userInfoBusiness
+func (i *Invoice) SetUserInfoBusiness(userInfoBusiness bool) {
+	i.userInfoBusiness = userInfoBusiness
 }
 
 // UserInfoBusinessCocNumber returns userInfoBusinessCocNumber.
-func (invoice *Invoice) UserInfoBusinessCocNumber() *string {
-	return invoice.userInfoBusinessCocNumber
+func (i *Invoice) UserInfoBusinessCocNumber() *string {
+	return i.userInfoBusinessCocNumber
 }
 
 // SetUserInfoBusinessCocNumber sets the userInfoBusinessCocNumber.
-func (invoice *Invoice) SetUserInfoBusinessCocNumber(userInfoBusinessCocNumber *string) {
-	invoice.userInfoBusinessCocNumber = userInfoBusinessCocNumber
+func (i *Invoice) SetUserInfoBusinessCocNumber(userInfoBusinessCocNumber *string) {
+	i.userInfoBusinessCocNumber = userInfoBusinessCocNumber
 }
 
 // UserInfoFirstName returns userInfoFirstName.
-func (invoice *Invoice) UserInfoFirstName() string {
-	return invoice.userInfoFirstName
+func (i *Invoice) UserInfoFirstName() string {
+	return i.userInfoFirstName
 }
 
 // SetUserInfoFirstName sets the userInfoFirstName.
-func (invoice *Invoice) SetUserInfoFirstName(userInfoFirstName string) {
-	invoice.userInfoFirstName = userInfoFirstName
+func (i *Invoice) SetUserInfoFirstName(userInfoFirstName string) {
+	i.userInfoFirstName = userInfoFirstName
 }
 
 // UserInfoSurname returns userInfoSurname.
-func (invoice *Invoice) UserInfoSurname() string {
-	return invoice.userInfoSurname
+func (i *Invoice) UserInfoSurname() string {
+	return i.userInfoSurname
 }
 
 // SetUserInfoSurname sets the userInfoSurname.
-func (invoice *Invoice) SetUserInfoSurname(userInfoSurname string) {
-	invoice.userInfoSurname = userInfoSurname
+func (i *Invoice) SetUserInfoSurname(userInfoSurname string) {
+	i.userInfoSurname = userInfoSurname
 }
 
 // UserInfoStreet returns userInfoStreet.
-func (invoice *Invoice) UserInfoStreet() string {
-	return invoice.userInfoStreet
+func (i *Invoice) UserInfoStreet() string {
+	return i.userInfoStreet
 }
 
 // SetUserInfoStreet sets the userInfoStreet.
-func (invoice *Invoice) SetUserInfoStreet(userInfoStreet string) {
-	invoice.userInfoStreet = userInfoStreet
+func (i *Invoice) SetUserInfoStreet(userInfoStreet string) {
+	i.userInfoStreet = userInfoStreet
 }
 
 // UserInfoStreetLine2 returns userInfoStreetLine2.
-func (invoice *Invoice) UserInfoStreetLine2() *string {
-	return invoice.userInfoStreetLine2
+func (i *Invoice) UserInfoStreetLine2() *string {
+	return i.userInfoStreetLine2
 }
 
 // SetUserInfoStreetLine2 sets the userInfoStreetLine2.
-func (invoice *Invoice) SetUserInfoStreetLine2(userInfoStreetLine2 *string) {
-	invoice.userInfoStreetLine2 = userInfoStreetLine2
+func (i *Invoice) SetUserInfoStreetLine2(userInfoStreetLine2 *string) {
+	i.userInfoStreetLine2 = userInfoStreetLine2
 }
 
 // UserInfoNumber returns userInfoNumber.
-func (invoice *Invoice) UserInfoNumber() string {
-	return invoice.userInfoNumber
+func (i *Invoice) UserInfoNumber() string {
+	return i.userInfoNumber
 }
 
 // SetUserInfoNumber sets the userInfoNumber.
-func (invoice *Invoice) SetUserInfoNumber(userInfoNumber string) {
-	invoice.userInfoNumber = userInfoNumber
+func (i *Invoice) SetUserInfoNumber(userInfoNumber string) {
+	i.userInfoNumber = userInfoNumber
 }
 
 // UserInfoNumberAddition returns userInfoNumberAddition.
-func (invoice *Invoice) UserInfoNumberAddition() *string {
-	return invoice.userInfoNumberAddition
+func (i *Invoice) UserInfoNumberAddition() *string {
+	return i.userInfoNumberAddition
 }
 
 // SetUserInfoNumberAddition sets the userInfoNumberAddition.
-func (invoice *Invoice) SetUserInfoNumberAddition(userInfoNumberAddition *string) {
-	invoice.userInfoNumberAddition = userInfoNumberAddition
+func (i *Invoice) SetUserInfoNumberAddition(userInfoNumberAddition *string) {
+	i.userInfoNumberAddition = userInfoNumberAddition
 }
 
 // UserInfoZipCode returns userInfoZipCode.
-func (invoice *Invoice) UserInfoZipCode() string {
-	return invoice.userInfoZipCode
+func (i *Invoice) UserInfoZipCode() string {
+	return i.userInfoZipCode
 }
 
 // SetUserInfoZipCode sets the userInfoZipCode.
-func (invoice *Invoice) SetUserInfoZipCode(userInfoZipCode string) {
-	invoice.userInfoZipCode = userInfoZipCode
+func (i *Invoice) SetUserInfoZipCode(userInfoZipCode string) {
+	i.userInfoZipCode = userInfoZipCode
 }
 
 // UserInfoCity returns userInfoCity.
-func (invoice *Invoice) UserInfoCity() string {
-	return invoice.userInfoCity
+func (i *Invoice) UserInfoCity() string {
+	return i.userInfoCity
 }
 
 // SetUserInfoCity sets the userInfoCity.
-func (invoice *Invoice) SetUserInfoCity(userInfoCity string) {
-	invoice.userInfoCity = userInfoCity
+func (i *Invoice) SetUserInfoCity(userInfoCity string) {
+	i.userInfoCity = userInfoCity
 }
 
 // UserInfoState returns userInfoState.
-func (invoice *Invoice) UserInfoState() *uint {
-	return invoice.userInfoState
+func (i *Invoice) UserInfoState() *uint {
+	return i.userInfoState
 }
 
 // SetUserInfoState sets the userInfoState.
-func (invoice *Invoice) SetUserInfoState(userInfoState *uint) {
-	invoice.userInfoState = userInfoState
+func (i *Invoice) SetUserInfoState(userInfoState *uint) {
+	i.userInfoState = userInfoState
 }
 
 // UserInfoCountry returns userInfoCountry.
-func (invoice *Invoice) UserInfoCountry() *uint16 {
-	return invoice.userInfoCountry
+func (i *Invoice) UserInfoCountry() *uint16 {
+	return i.userInfoCountry
 }
 
 // SetUserInfoCountry sets the userInfoCountry.
-func (invoice *Invoice) SetUserInfoCountry(userInfoCountry *uint16) {
-	invoice.userInfoCountry = userInfoCountry
+func (i *Invoice) SetUserInfoCountry(userInfoCountry *uint16) {
+	i.userInfoCountry = userInfoCountry
 }
 
 // UserInfoPhoneNumber returns userInfoPhoneNumber.
-func (invoice *Invoice) UserInfoPhoneNumber() *string {
-	return invoice.userInfoPhoneNumber
+func (i *Invoice) UserInfoPhoneNumber() *string {
+	return i.userInfoPhoneNumber
 }
 
 // SetUserInfoPhoneNumber sets the userInfoPhoneNumber.
-func (invoice *Invoice) SetUserInfoPhoneNumber(userInfoPhoneNumber *string) {
-	invoice.userInfoPhoneNumber = userInfoPhoneNumber
+func (i *Invoice) SetUserInfoPhoneNumber(userInfoPhoneNumber *string) {
+	i.userInfoPhoneNumber = userInfoPhoneNumber
 }
 
 // UserInfoEmail returns userInfoEmail.
-func (invoice *Invoice) UserInfoEmail() *string {
-	return invoice.userInfoEmail
+func (i *Invoice) UserInfoEmail() *string {
+	return i.userInfoEmail
 }
 
 // SetUserInfoEmail sets the userInfoEmail.
-func (invoice *Invoice) SetUserInfoEmail(userInfoEmail *string) {
-	invoice.userInfoEmail = userInfoEmail
+func (i *Invoice) SetUserInfoEmail(userInfoEmail *string) {
+	i.userInfoEmail = userInfoEmail
 }
 
 // Comments returns comments.
-func (invoice *Invoice) Comments() *string {
-	return invoice.comments
+func (i *Invoice) Comments() *string {
+	return i.comments
 }
 
 // SetComments sets the comments.
-func (invoice *Invoice) SetComments(comments *string) {
-	invoice.comments = comments
+func (i *Invoice) SetComments(comments *string) {
+	i.comments = comments
 }
 
 // SellingPartyAutograph returns sellingPartyAutograph.
-func (invoice *Invoice) SellingPartyAutograph() *string {
-	return invoice.sellingPartyAutograph
+func (i *Invoice) SellingPartyAutograph() *string {
+	return i.sellingPartyAutograph
 }
 
 // SetSellingPartyAutograph sets the sellingPartyAutograph.
-func (invoice *Invoice) SetSellingPartyAutograph(sellingPartyAutograph *string) {
-	invoice.sellingPartyAutograph = sellingPartyAutograph
+func (i *Invoice) SetSellingPartyAutograph(sellingPartyAutograph *string) {
+	i.sellingPartyAutograph = sellingPartyAutograph
 }
 
 // BuyingPartyAutograph returns buyingPartyAutograph.
-func (invoice *Invoice) BuyingPartyAutograph() *string {
-	return invoice.buyingPartyAutograph
+func (i *Invoice) BuyingPartyAutograph() *string {
+	return i.buyingPartyAutograph
 }
 
 // SetBuyingPartyAutograph sets the buyingPartyAutograph.
-func (invoice *Invoice) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
-	invoice.buyingPartyAutograph = buyingPartyAutograph
+func (i *Invoice) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
+	i.buyingPartyAutograph = buyingPartyAutograph
 }
 
 func newInvoice() *Invoice {

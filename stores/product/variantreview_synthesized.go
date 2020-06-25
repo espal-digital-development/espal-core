@@ -30,173 +30,173 @@ type VariantReviewEntity interface {
 }
 
 // ID returns id.
-func (variantReview *VariantReview) ID() string {
-	return variantReview.id
+func (v *VariantReview) ID() string {
+	return v.id
 }
 
 // CreatedByID returns createdByID.
-func (variantReview *VariantReview) CreatedByID() string {
-	return variantReview.createdByID
+func (v *VariantReview) CreatedByID() string {
+	return v.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (variantReview *VariantReview) SetCreatedByID(createdByID string) {
-	variantReview.createdByID = createdByID
+func (v *VariantReview) SetCreatedByID(createdByID string) {
+	v.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (variantReview *VariantReview) UpdatedByID() *string {
-	return variantReview.updatedByID
+func (v *VariantReview) UpdatedByID() *string {
+	return v.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (variantReview *VariantReview) SetUpdatedByID(updatedByID *string) {
-	variantReview.updatedByID = updatedByID
+func (v *VariantReview) SetUpdatedByID(updatedByID *string) {
+	v.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (variantReview *VariantReview) CreatedAt() time.Time {
-	return variantReview.createdAt
+func (v *VariantReview) CreatedAt() time.Time {
+	return v.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (variantReview *VariantReview) SetCreatedAt(createdAt time.Time) {
-	variantReview.createdAt = createdAt
+func (v *VariantReview) SetCreatedAt(createdAt time.Time) {
+	v.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (variantReview *VariantReview) UpdatedAt() *time.Time {
-	return variantReview.updatedAt
+func (v *VariantReview) UpdatedAt() *time.Time {
+	return v.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (variantReview *VariantReview) SetUpdatedAt(updatedAt *time.Time) {
-	variantReview.updatedAt = updatedAt
+func (v *VariantReview) SetUpdatedAt(updatedAt *time.Time) {
+	v.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (variantReview *VariantReview) CreatedByFirstName() *string {
-	return variantReview.createdByFirstName
+func (v *VariantReview) CreatedByFirstName() *string {
+	return v.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (variantReview *VariantReview) SetCreatedByFirstName(createdByFirstName *string) {
-	variantReview.createdByFirstName = createdByFirstName
+func (v *VariantReview) SetCreatedByFirstName(createdByFirstName *string) {
+	v.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (variantReview *VariantReview) CreatedBySurname() *string {
-	return variantReview.createdBySurname
+func (v *VariantReview) CreatedBySurname() *string {
+	return v.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (variantReview *VariantReview) SetCreatedBySurname(createdBySurname *string) {
-	variantReview.createdBySurname = createdBySurname
+func (v *VariantReview) SetCreatedBySurname(createdBySurname *string) {
+	v.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (variantReview *VariantReview) UpdatedByFirstName() *string {
-	return variantReview.updatedByFirstName
+func (v *VariantReview) UpdatedByFirstName() *string {
+	return v.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (variantReview *VariantReview) SetUpdatedByFirstName(updatedByFirstName *string) {
-	variantReview.updatedByFirstName = updatedByFirstName
+func (v *VariantReview) SetUpdatedByFirstName(updatedByFirstName *string) {
+	v.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (variantReview *VariantReview) UpdatedBySurname() *string {
-	return variantReview.updatedBySurname
+func (v *VariantReview) UpdatedBySurname() *string {
+	return v.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (variantReview *VariantReview) SetUpdatedBySurname(updatedBySurname *string) {
-	variantReview.updatedBySurname = updatedBySurname
+func (v *VariantReview) SetUpdatedBySurname(updatedBySurname *string) {
+	v.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (variantReview *VariantReview) IsUpdated() bool {
-	return variantReview.updatedByID != nil
+func (v *VariantReview) IsUpdated() bool {
+	return v.updatedByID != nil
 }
 
 // ReviewedByID returns reviewedByID.
-func (variantReview *VariantReview) ReviewedByID() *string {
-	return variantReview.reviewedByID
+func (v *VariantReview) ReviewedByID() *string {
+	return v.reviewedByID
 }
 
 // SetReviewedByID sets the reviewedByID.
-func (variantReview *VariantReview) SetReviewedByID(reviewedByID *string) {
-	variantReview.reviewedByID = reviewedByID
+func (v *VariantReview) SetReviewedByID(reviewedByID *string) {
+	v.reviewedByID = reviewedByID
 }
 
 // ReviewedOnDate returns reviewedOnDate.
-func (variantReview *VariantReview) ReviewedOnDate() *time.Time {
-	return variantReview.reviewedOnDate
+func (v *VariantReview) ReviewedOnDate() *time.Time {
+	return v.reviewedOnDate
 }
 
 // SetReviewedOnDate sets the reviewedOnDate.
-func (variantReview *VariantReview) SetReviewedOnDate(reviewedOnDate *time.Time) {
-	variantReview.reviewedOnDate = reviewedOnDate
+func (v *VariantReview) SetReviewedOnDate(reviewedOnDate *time.Time) {
+	v.reviewedOnDate = reviewedOnDate
 }
 
 // ReviewNotes returns reviewNotes.
-func (variantReview *VariantReview) ReviewNotes() *string {
-	return variantReview.reviewNotes
+func (v *VariantReview) ReviewNotes() *string {
+	return v.reviewNotes
 }
 
 // SetReviewNotes sets the reviewNotes.
-func (variantReview *VariantReview) SetReviewNotes(reviewNotes *string) {
-	variantReview.reviewNotes = reviewNotes
+func (v *VariantReview) SetReviewNotes(reviewNotes *string) {
+	v.reviewNotes = reviewNotes
 }
 
 // Approved returns approved.
-func (variantReview *VariantReview) Approved() *bool {
-	return variantReview.approved
+func (v *VariantReview) Approved() *bool {
+	return v.approved
 }
 
 // SetApproved sets the approved.
-func (variantReview *VariantReview) SetApproved(approved *bool) {
-	variantReview.approved = approved
+func (v *VariantReview) SetApproved(approved *bool) {
+	v.approved = approved
 }
 
 // Rating returns rating.
-func (variantReview *VariantReview) Rating() float32 {
-	return variantReview.rating
+func (v *VariantReview) Rating() float32 {
+	return v.rating
 }
 
 // SetRating sets the rating.
-func (variantReview *VariantReview) SetRating(rating float32) {
-	variantReview.rating = rating
+func (v *VariantReview) SetRating(rating float32) {
+	v.rating = rating
 }
 
 // Title returns title.
-func (variantReview *VariantReview) Title() string {
-	return variantReview.title
+func (v *VariantReview) Title() string {
+	return v.title
 }
 
 // SetTitle sets the title.
-func (variantReview *VariantReview) SetTitle(title string) {
-	variantReview.title = title
+func (v *VariantReview) SetTitle(title string) {
+	v.title = title
 }
 
 // Description returns description.
-func (variantReview *VariantReview) Description() string {
-	return variantReview.description
+func (v *VariantReview) Description() string {
+	return v.description
 }
 
 // SetDescription sets the description.
-func (variantReview *VariantReview) SetDescription(description string) {
-	variantReview.description = description
+func (v *VariantReview) SetDescription(description string) {
+	v.description = description
 }
 
 // VariantID returns variantID.
-func (variantReview *VariantReview) VariantID() string {
-	return variantReview.variantID
+func (v *VariantReview) VariantID() string {
+	return v.variantID
 }
 
 // SetVariantID sets the variantID.
-func (variantReview *VariantReview) SetVariantID(variantID string) {
-	variantReview.variantID = variantID
+func (v *VariantReview) SetVariantID(variantID string) {
+	v.variantID = variantID
 }
 
 func newVariantReview() *VariantReview {

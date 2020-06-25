@@ -14,11 +14,15 @@ var (
 	lockDisplayColumnMockSetPlural sync.RWMutex
 )
 
-// DisplayColumnMock is a mock implementation of DisplayColumn.
+// Ensure, that DisplayColumnMock does implement filters.DisplayColumn.
+// If this is not the case, regenerate this file with moq.
+var _ filters.DisplayColumn = &DisplayColumnMock{}
+
+// DisplayColumnMock is a mock implementation of filters.DisplayColumn.
 //
 //     func TestSomethingThatUsesDisplayColumn(t *testing.T) {
 //
-//         // make and configure a mocked DisplayColumn
+//         // make and configure a mocked filters.DisplayColumn
 //         mockedDisplayColumn := &DisplayColumnMock{
 //             NameFunc: func() string {
 // 	               panic("mock out the Name method")
@@ -31,7 +35,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedDisplayColumn in code that requires DisplayColumn
+//         // use mockedDisplayColumn in code that requires filters.DisplayColumn
 //         // and then make assertions.
 //
 //     }

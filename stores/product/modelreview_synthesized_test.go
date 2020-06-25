@@ -9,169 +9,169 @@ import (
 )
 
 func TestModelReviewTable(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
-	if modelReview.TableName() == "" {
+	m := product.NewModelReviewEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestModelReviewTableAlias(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
-	if modelReview.TableName() == "" {
+	m := product.NewModelReviewEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestModelReviewIsUpdated(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
-	modelReview.IsUpdated()
+	m := product.NewModelReviewEntity()
+	m.IsUpdated()
 }
 
 func TestModelReviewID(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
-	modelReview.ID()
+	m := product.NewModelReviewEntity()
+	m.ID()
 }
 
 func TestModelReviewCreatedByID(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetCreatedByID(testValue)
-	if testValue != modelReview.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewUpdatedByID(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetUpdatedByID(&testValue)
-	if &testValue != modelReview.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewCreatedAt(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := time.Now()
-	modelReview.SetCreatedAt(testValue)
-	if testValue != modelReview.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewUpdatedAt(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := time.Now()
-	modelReview.SetUpdatedAt(&testValue)
-	if &testValue != modelReview.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewCreatedByFirstName(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetCreatedByFirstName(&testValue)
-	if &testValue != modelReview.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewCreatedBySurname(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetCreatedBySurname(&testValue)
-	if &testValue != modelReview.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewUpdatedByFirstName(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetUpdatedByFirstName(&testValue)
-	if &testValue != modelReview.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewUpdatedBySurname(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetUpdatedBySurname(&testValue)
-	if &testValue != modelReview.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewReviewedByID(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetReviewedByID(&testValue)
-	if &testValue != modelReview.ReviewedByID() {
+	m.SetReviewedByID(&testValue)
+	if &testValue != m.ReviewedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewReviewedOnDate(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := time.Now()
-	modelReview.SetReviewedOnDate(&testValue)
-	if &testValue != modelReview.ReviewedOnDate() {
+	m.SetReviewedOnDate(&testValue)
+	if &testValue != m.ReviewedOnDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewReviewNotes(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetReviewNotes(&testValue)
-	if &testValue != modelReview.ReviewNotes() {
+	m.SetReviewNotes(&testValue)
+	if &testValue != m.ReviewNotes() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewApproved(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := true
-	modelReview.SetApproved(&testValue)
-	if &testValue != modelReview.Approved() {
+	m.SetApproved(&testValue)
+	if &testValue != m.Approved() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewRating(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := float32(3.14)
-	modelReview.SetRating(testValue)
-	if testValue != modelReview.Rating() {
+	m.SetRating(testValue)
+	if testValue != m.Rating() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewTitle(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetTitle(testValue)
-	if testValue != modelReview.Title() {
+	m.SetTitle(testValue)
+	if testValue != m.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewDescription(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetDescription(testValue)
-	if testValue != modelReview.Description() {
+	m.SetDescription(testValue)
+	if testValue != m.Description() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelReviewModelID(t *testing.T) {
-	modelReview := product.NewModelReviewEntity()
+	m := product.NewModelReviewEntity()
 	testValue := "testValue"
-	modelReview.SetModelID(testValue)
-	if testValue != modelReview.ModelID() {
+	m.SetModelID(testValue)
+	if testValue != m.ModelID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

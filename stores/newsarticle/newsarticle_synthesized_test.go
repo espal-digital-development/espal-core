@@ -9,169 +9,169 @@ import (
 )
 
 func TestNewsArticleTable(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
-	if newsArticle.TableName() == "" {
+	n := newsarticle.NewNewsArticleEntity()
+	if n.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestNewsArticleTableAlias(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
-	if newsArticle.TableName() == "" {
+	n := newsarticle.NewNewsArticleEntity()
+	if n.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestNewsArticleIsUpdated(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
-	newsArticle.IsUpdated()
+	n := newsarticle.NewNewsArticleEntity()
+	n.IsUpdated()
 }
 
 func TestNewsArticleID(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
-	newsArticle.ID()
+	n := newsarticle.NewNewsArticleEntity()
+	n.ID()
 }
 
 func TestNewsArticleCreatedByID(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetCreatedByID(testValue)
-	if testValue != newsArticle.CreatedByID() {
+	n.SetCreatedByID(testValue)
+	if testValue != n.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleUpdatedByID(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetUpdatedByID(&testValue)
-	if &testValue != newsArticle.UpdatedByID() {
+	n.SetUpdatedByID(&testValue)
+	if &testValue != n.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleCreatedAt(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := time.Now()
-	newsArticle.SetCreatedAt(testValue)
-	if testValue != newsArticle.CreatedAt() {
+	n.SetCreatedAt(testValue)
+	if testValue != n.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleUpdatedAt(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := time.Now()
-	newsArticle.SetUpdatedAt(&testValue)
-	if &testValue != newsArticle.UpdatedAt() {
+	n.SetUpdatedAt(&testValue)
+	if &testValue != n.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleCreatedByFirstName(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetCreatedByFirstName(&testValue)
-	if &testValue != newsArticle.CreatedByFirstName() {
+	n.SetCreatedByFirstName(&testValue)
+	if &testValue != n.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleCreatedBySurname(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetCreatedBySurname(&testValue)
-	if &testValue != newsArticle.CreatedBySurname() {
+	n.SetCreatedBySurname(&testValue)
+	if &testValue != n.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleUpdatedByFirstName(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetUpdatedByFirstName(&testValue)
-	if &testValue != newsArticle.UpdatedByFirstName() {
+	n.SetUpdatedByFirstName(&testValue)
+	if &testValue != n.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleUpdatedBySurname(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetUpdatedBySurname(&testValue)
-	if &testValue != newsArticle.UpdatedBySurname() {
+	n.SetUpdatedBySurname(&testValue)
+	if &testValue != n.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleActive(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := true
-	newsArticle.SetActive(testValue)
-	if testValue != newsArticle.Active() {
+	n.SetActive(testValue)
+	if testValue != n.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleSorting(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := uint(1e9)
-	newsArticle.SetSorting(testValue)
-	if testValue != newsArticle.Sorting() {
+	n.SetSorting(testValue)
+	if testValue != n.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleSectionID(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetSectionID(&testValue)
-	if &testValue != newsArticle.SectionID() {
+	n.SetSectionID(&testValue)
+	if &testValue != n.SectionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleApprovedByID(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetApprovedByID(&testValue)
-	if &testValue != newsArticle.ApprovedByID() {
+	n.SetApprovedByID(&testValue)
+	if &testValue != n.ApprovedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleApprovedDate(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := time.Now()
-	newsArticle.SetApprovedDate(&testValue)
-	if &testValue != newsArticle.ApprovedDate() {
+	n.SetApprovedDate(&testValue)
+	if &testValue != n.ApprovedDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticlePublishDate(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := time.Now()
-	newsArticle.SetPublishDate(&testValue)
-	if &testValue != newsArticle.PublishDate() {
+	n.SetPublishDate(&testValue)
+	if &testValue != n.PublishDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleExpirationDate(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := time.Now()
-	newsArticle.SetExpirationDate(&testValue)
-	if &testValue != newsArticle.ExpirationDate() {
+	n.SetExpirationDate(&testValue)
+	if &testValue != n.ExpirationDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNewsArticleComments(t *testing.T) {
-	newsArticle := newsarticle.NewNewsArticleEntity()
+	n := newsarticle.NewNewsArticleEntity()
 	testValue := "testValue"
-	newsArticle.SetComments(&testValue)
-	if &testValue != newsArticle.Comments() {
+	n.SetComments(&testValue)
+	if &testValue != n.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

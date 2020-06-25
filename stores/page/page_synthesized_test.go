@@ -9,115 +9,115 @@ import (
 )
 
 func TestPageTable(t *testing.T) {
-	page := page.NewPageEntity()
-	if page.TableName() == "" {
+	p := page.NewPageEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPageTableAlias(t *testing.T) {
-	page := page.NewPageEntity()
-	if page.TableName() == "" {
+	p := page.NewPageEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPageIsUpdated(t *testing.T) {
-	page := page.NewPageEntity()
-	page.IsUpdated()
+	p := page.NewPageEntity()
+	p.IsUpdated()
 }
 
 func TestPageID(t *testing.T) {
-	page := page.NewPageEntity()
-	page.ID()
+	p := page.NewPageEntity()
+	p.ID()
 }
 
 func TestPageCreatedByID(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetCreatedByID(testValue)
-	if testValue != page.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageUpdatedByID(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetUpdatedByID(&testValue)
-	if &testValue != page.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageCreatedAt(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := time.Now()
-	page.SetCreatedAt(testValue)
-	if testValue != page.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageUpdatedAt(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := time.Now()
-	page.SetUpdatedAt(&testValue)
-	if &testValue != page.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageCreatedByFirstName(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetCreatedByFirstName(&testValue)
-	if &testValue != page.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageCreatedBySurname(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetCreatedBySurname(&testValue)
-	if &testValue != page.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageUpdatedByFirstName(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetUpdatedByFirstName(&testValue)
-	if &testValue != page.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageUpdatedBySurname(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetUpdatedBySurname(&testValue)
-	if &testValue != page.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageDomainID(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := "testValue"
-	page.SetDomainID(testValue)
-	if testValue != page.DomainID() {
+	p.SetDomainID(testValue)
+	if testValue != p.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPageActive(t *testing.T) {
-	page := page.NewPageEntity()
+	p := page.NewPageEntity()
 	testValue := true
-	page.SetActive(testValue)
-	if testValue != page.Active() {
+	p.SetActive(testValue)
+	if testValue != p.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

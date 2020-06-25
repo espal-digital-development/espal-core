@@ -22,39 +22,39 @@ type Country struct {
 }
 
 // ID returns the internal Country id.
-func (country *Country) ID() uint16 {
-	return country.id
+func (c *Country) ID() uint16 {
+	return c.id
 }
 
 // Code returns the internal Country code.
-func (country *Country) Code() string {
-	return country.code
+func (c *Country) Code() string {
+	return c.code
 }
 
 // EnglishName returns the internal Country englishName.
-func (country *Country) EnglishName() string {
-	return country.englishName
+func (c *Country) EnglishName() string {
+	return c.englishName
 }
 
 // SetTranslation sets a translations for the Country.
-func (country *Country) SetTranslation(languageID uint16, value string) {
-	country.translations[languageID] = value
+func (c *Country) SetTranslation(languageID uint16, value string) {
+	c.translations[languageID] = value
 }
 
 // HasTranslation returns an indicator if the given country
 // has a translation for the given locale.
-func (country *Country) HasTranslation(localeID uint16) (string, bool) {
-	value, ok := country.translations[localeID]
+func (c *Country) HasTranslation(localeID uint16) (string, bool) {
+	value, ok := c.translations[localeID]
 	return value, ok
 }
 
 // Translate get's the Country's translation based on the given locale.
-func (country *Country) Translate(localeID uint16) string {
-	if localeID == country.englishLocaleID {
-		return country.englishName
+func (c *Country) Translate(localeID uint16) string {
+	if localeID == c.englishLocaleID {
+		return c.englishName
 	}
-	if _, ok := country.translations[localeID]; !ok {
-		return country.englishName
+	if _, ok := c.translations[localeID]; !ok {
+		return c.englishName
 	}
-	return country.translations[localeID]
+	return c.translations[localeID]
 }

@@ -1,32 +1,32 @@
 {% import "fmt" %}
 
-{% func (page *Page) Title() %}{%s page.displayTitle %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.displayTitle %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
-    <h1>{%s page.displayTitle %}</h1>
-    {%s= page.form.Errors() %}
-    {%s= page.rendererService.CreatedUpdatedByLinks(page.GetCoreContext(), page.language.ID(), page.userContact) %}
-    {%s= page.form.Open() %}
-        {%s= page.form.Field("_uname") %}
-        {%s= page.form.Field("_t") %}
-        {%s= page.form.Field("sorting") %}<br>
-        {%s= page.form.Field("contact") %}<br>
-        {%s= page.form.Field("comment") %}<br>
-        {%s= page.form.CreateUpdateActions("action", fmt.Sprintf("User/View?id=%s", page.user.ID())) %}
+    <h1>{%s p.displayTitle %}</h1>
+    {%s= p.form.Errors() %}
+    {%s= p.rendererService.CreatedUpdatedByLinks(p.GetCoreContext(), p.language.ID(), p.userContact) %}
+    {%s= p.form.Open() %}
+        {%s= p.form.Field("_uname") %}
+        {%s= p.form.Field("_t") %}
+        {%s= p.form.Field("sorting") %}<br>
+        {%s= p.form.Field("contact") %}<br>
+        {%s= p.form.Field("comment") %}<br>
+        {%s= p.form.CreateUpdateActions("action", fmt.Sprintf("User/View?id=%s", p.user.ID())) %}
     </form>
 </main>
 {% endstripspace %}{% endfunc%}
 
-{% func (page *Page) Stylesheets() %}{% stripspace %}
-{% if page.form.ContainsSelectSearch() %}
+{% func (p *Page) Stylesheets() %}{% stripspace %}
+{% if p.form.ContainsSelectSearch() %}
 <link rel="stylesheet" href="/c/a/selectSearch.css"></link>
 {% endif %}
 {% endstripspace %}{% endfunc%}
 
-{% func (page *Page) Javascripts() %}{% stripspace %}
+{% func (p *Page) Javascripts() %}{% stripspace %}
 <script src="/j/a/cu.js"></script>
-{% if page.form.ContainsSelectSearch() %}
+{% if p.form.ContainsSelectSearch() %}
 <script src="/j/a/selectSearch.js"></script>
 {% endif %}
 {% endstripspace %}{% endfunc%}

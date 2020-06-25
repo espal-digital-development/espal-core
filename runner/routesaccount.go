@@ -22,35 +22,35 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAccount() error {
-	if err := runner.services.router.RegisterRoute("/Login", login.New(runner.formValidators.login, loginpage.New())); err != nil {
+func (r *Runner) routesAccount() error {
+	if err := r.services.router.RegisterRoute("/Login", login.New(r.formValidators.login, loginpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/Logout", logout.New()); err != nil {
+	if err := r.services.router.RegisterRoute("/Logout", logout.New()); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/RegisterAccount", register.New(runner.services.config, runner.services.mailer, runner.stores.user, runner.formValidators.register, registerpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/RegisterAccount", register.New(r.services.config, r.services.mailer, r.stores.user, r.formValidators.register, registerpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/RegisterAccountSucceeded", registersucceeded.New(registersucceededpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/RegisterAccountSucceeded", registersucceeded.New(registersucceededpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ActivateAccount", activate.New(runner.repositories.regularExpressions, runner.stores.user)); err != nil {
+	if err := r.services.router.RegisterRoute("/ActivateAccount", activate.New(r.repositories.regularExpressions, r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ForgotPassword", forgot.New(runner.services.config, runner.services.mailer, runner.stores.user, runner.formValidators.passwordForgot, passwordforgotpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/ForgotPassword", forgot.New(r.services.config, r.services.mailer, r.stores.user, r.formValidators.passwordForgot, passwordforgotpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/ForgotPasswordSucceeded", passwordforgotsucceeded.New(passwordforgotsucceededpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/ForgotPasswordSucceeded", passwordforgotsucceeded.New(passwordforgotsucceededpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/PasswordRecovery", recovery.New(runner.services.config, runner.repositories.regularExpressions, runner.stores.user, runner.formValidators.passwordRecovery, passwordrecoverypage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/PasswordRecovery", recovery.New(r.services.config, r.repositories.regularExpressions, r.stores.user, r.formValidators.passwordRecovery, passwordrecoverypage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/Account", overview.New(overviewpage.New(runner.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/Account", overview.New(overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/Account/ChangePassword", change.New(runner.services.config, runner.stores.user, runner.formValidators.passwordChange, passwordchangepage.New(runner.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/Account/ChangePassword", change.New(r.services.config, r.stores.user, r.formValidators.passwordChange, passwordchangepage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

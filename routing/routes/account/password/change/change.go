@@ -21,7 +21,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.IsLoggedIn() {
 		context.Redirect("/Login", http.StatusTemporaryRedirect)
 		return
@@ -42,7 +42,7 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	form, err := route.changePasswordFormValidator.New(language, user)
+	form, err := r.changePasswordFormValidator.New(language, user)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -55,12 +55,12 @@ func (route *Route) Handle(context contexts.Context) {
 	}
 
 	if isSubmitted && isValid {
-		newPassword, err := bcrypt.GenerateFromPassword([]byte(form.FormFieldValue("newPassword")), route.configService.SecurityBcryptRounds())
+		newPassword, err := bcrypt.GenerateFromPassword([]byte(form.FormFieldValue("newPassword")), r.configService.SecurityBcryptRounds())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
-		if err := route.userStore.SetPasswordForUser(user.ID(), newPassword); err != nil {
+		if err := r.userStore.SetPasswordForUser(user.ID(), newPassword); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
@@ -72,7 +72,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	route.changePageFactory.NewPage(context, form.View()).Render()
+	r.changePageFactory.NewPage(context, form.View()).Render()
 }
 
 // New returns a new instance of Route.

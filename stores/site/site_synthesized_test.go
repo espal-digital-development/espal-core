@@ -9,133 +9,133 @@ import (
 )
 
 func TestSiteTable(t *testing.T) {
-	site := site.NewSiteEntity()
-	if site.TableName() == "" {
+	s := site.NewSiteEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSiteTableAlias(t *testing.T) {
-	site := site.NewSiteEntity()
-	if site.TableName() == "" {
+	s := site.NewSiteEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSiteIsUpdated(t *testing.T) {
-	site := site.NewSiteEntity()
-	site.IsUpdated()
+	s := site.NewSiteEntity()
+	s.IsUpdated()
 }
 
 func TestSiteID(t *testing.T) {
-	site := site.NewSiteEntity()
-	site.ID()
+	s := site.NewSiteEntity()
+	s.ID()
 }
 
 func TestSiteCreatedByID(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetCreatedByID(testValue)
-	if testValue != site.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteUpdatedByID(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetUpdatedByID(&testValue)
-	if &testValue != site.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteCreatedAt(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := time.Now()
-	site.SetCreatedAt(testValue)
-	if testValue != site.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteUpdatedAt(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := time.Now()
-	site.SetUpdatedAt(&testValue)
-	if &testValue != site.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteCreatedByFirstName(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetCreatedByFirstName(&testValue)
-	if &testValue != site.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteCreatedBySurname(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetCreatedBySurname(&testValue)
-	if &testValue != site.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteUpdatedByFirstName(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetUpdatedByFirstName(&testValue)
-	if &testValue != site.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteUpdatedBySurname(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetUpdatedBySurname(&testValue)
-	if &testValue != site.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteOnline(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := true
-	site.SetOnline(testValue)
-	if testValue != site.Online() {
+	s.SetOnline(testValue)
+	if testValue != s.Online() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteLanguage(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := uint16(65000)
-	site.SetLanguage(&testValue)
-	if &testValue != site.Language() {
+	s.SetLanguage(&testValue)
+	if &testValue != s.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteCountry(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := uint16(65000)
-	site.SetCountry(&testValue)
-	if &testValue != site.Country() {
+	s.SetCountry(&testValue)
+	if &testValue != s.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSiteCurrencies(t *testing.T) {
-	site := site.NewSiteEntity()
+	s := site.NewSiteEntity()
 	testValue := "testValue"
-	site.SetCurrencies(testValue)
-	if testValue != site.Currencies() {
+	s.SetCurrencies(testValue)
+	if testValue != s.Currencies() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

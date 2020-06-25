@@ -16,113 +16,113 @@ type DeliveryMethodEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (deliveryMethod *DeliveryMethod) TableName() string {
+func (d *DeliveryMethod) TableName() string {
 	return "DeliveryMethod"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (deliveryMethod *DeliveryMethod) TableAlias() string {
+func (d *DeliveryMethod) TableAlias() string {
 	return "dme"
 }
 
 // ID returns id.
-func (deliveryMethod *DeliveryMethod) ID() string {
-	return deliveryMethod.id
+func (d *DeliveryMethod) ID() string {
+	return d.id
 }
 
 // CreatedByID returns createdByID.
-func (deliveryMethod *DeliveryMethod) CreatedByID() string {
-	return deliveryMethod.createdByID
+func (d *DeliveryMethod) CreatedByID() string {
+	return d.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (deliveryMethod *DeliveryMethod) SetCreatedByID(createdByID string) {
-	deliveryMethod.createdByID = createdByID
+func (d *DeliveryMethod) SetCreatedByID(createdByID string) {
+	d.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (deliveryMethod *DeliveryMethod) UpdatedByID() *string {
-	return deliveryMethod.updatedByID
+func (d *DeliveryMethod) UpdatedByID() *string {
+	return d.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (deliveryMethod *DeliveryMethod) SetUpdatedByID(updatedByID *string) {
-	deliveryMethod.updatedByID = updatedByID
+func (d *DeliveryMethod) SetUpdatedByID(updatedByID *string) {
+	d.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (deliveryMethod *DeliveryMethod) CreatedAt() time.Time {
-	return deliveryMethod.createdAt
+func (d *DeliveryMethod) CreatedAt() time.Time {
+	return d.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (deliveryMethod *DeliveryMethod) SetCreatedAt(createdAt time.Time) {
-	deliveryMethod.createdAt = createdAt
+func (d *DeliveryMethod) SetCreatedAt(createdAt time.Time) {
+	d.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (deliveryMethod *DeliveryMethod) UpdatedAt() *time.Time {
-	return deliveryMethod.updatedAt
+func (d *DeliveryMethod) UpdatedAt() *time.Time {
+	return d.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (deliveryMethod *DeliveryMethod) SetUpdatedAt(updatedAt *time.Time) {
-	deliveryMethod.updatedAt = updatedAt
+func (d *DeliveryMethod) SetUpdatedAt(updatedAt *time.Time) {
+	d.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (deliveryMethod *DeliveryMethod) CreatedByFirstName() *string {
-	return deliveryMethod.createdByFirstName
+func (d *DeliveryMethod) CreatedByFirstName() *string {
+	return d.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (deliveryMethod *DeliveryMethod) SetCreatedByFirstName(createdByFirstName *string) {
-	deliveryMethod.createdByFirstName = createdByFirstName
+func (d *DeliveryMethod) SetCreatedByFirstName(createdByFirstName *string) {
+	d.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (deliveryMethod *DeliveryMethod) CreatedBySurname() *string {
-	return deliveryMethod.createdBySurname
+func (d *DeliveryMethod) CreatedBySurname() *string {
+	return d.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (deliveryMethod *DeliveryMethod) SetCreatedBySurname(createdBySurname *string) {
-	deliveryMethod.createdBySurname = createdBySurname
+func (d *DeliveryMethod) SetCreatedBySurname(createdBySurname *string) {
+	d.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (deliveryMethod *DeliveryMethod) UpdatedByFirstName() *string {
-	return deliveryMethod.updatedByFirstName
+func (d *DeliveryMethod) UpdatedByFirstName() *string {
+	return d.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (deliveryMethod *DeliveryMethod) SetUpdatedByFirstName(updatedByFirstName *string) {
-	deliveryMethod.updatedByFirstName = updatedByFirstName
+func (d *DeliveryMethod) SetUpdatedByFirstName(updatedByFirstName *string) {
+	d.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (deliveryMethod *DeliveryMethod) UpdatedBySurname() *string {
-	return deliveryMethod.updatedBySurname
+func (d *DeliveryMethod) UpdatedBySurname() *string {
+	return d.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (deliveryMethod *DeliveryMethod) SetUpdatedBySurname(updatedBySurname *string) {
-	deliveryMethod.updatedBySurname = updatedBySurname
+func (d *DeliveryMethod) SetUpdatedBySurname(updatedBySurname *string) {
+	d.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (deliveryMethod *DeliveryMethod) IsUpdated() bool {
-	return deliveryMethod.updatedByID != nil
+func (d *DeliveryMethod) IsUpdated() bool {
+	return d.updatedByID != nil
 }
 
 // Price returns price.
-func (deliveryMethod *DeliveryMethod) Price() float64 {
-	return deliveryMethod.price
+func (d *DeliveryMethod) Price() float64 {
+	return d.price
 }
 
 // SetPrice sets the price.
-func (deliveryMethod *DeliveryMethod) SetPrice(price float64) {
-	deliveryMethod.price = price
+func (d *DeliveryMethod) SetPrice(price float64) {
+	d.price = price
 }
 
 func newDeliveryMethod() *DeliveryMethod {

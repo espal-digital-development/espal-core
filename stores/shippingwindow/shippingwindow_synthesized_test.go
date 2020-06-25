@@ -9,124 +9,124 @@ import (
 )
 
 func TestShippingWindowTable(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
-	if shippingWindow.TableName() == "" {
+	s := shippingwindow.NewShippingWindowEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestShippingWindowTableAlias(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
-	if shippingWindow.TableName() == "" {
+	s := shippingwindow.NewShippingWindowEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestShippingWindowIsUpdated(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
-	shippingWindow.IsUpdated()
+	s := shippingwindow.NewShippingWindowEntity()
+	s.IsUpdated()
 }
 
 func TestShippingWindowID(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
-	shippingWindow.ID()
+	s := shippingwindow.NewShippingWindowEntity()
+	s.ID()
 }
 
 func TestShippingWindowCreatedByID(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetCreatedByID(testValue)
-	if testValue != shippingWindow.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowUpdatedByID(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetUpdatedByID(&testValue)
-	if &testValue != shippingWindow.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowCreatedAt(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := time.Now()
-	shippingWindow.SetCreatedAt(testValue)
-	if testValue != shippingWindow.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowUpdatedAt(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := time.Now()
-	shippingWindow.SetUpdatedAt(&testValue)
-	if &testValue != shippingWindow.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowCreatedByFirstName(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetCreatedByFirstName(&testValue)
-	if &testValue != shippingWindow.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowCreatedBySurname(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetCreatedBySurname(&testValue)
-	if &testValue != shippingWindow.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowUpdatedByFirstName(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetUpdatedByFirstName(&testValue)
-	if &testValue != shippingWindow.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowUpdatedBySurname(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetUpdatedBySurname(&testValue)
-	if &testValue != shippingWindow.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowUserGroupID(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := "testValue"
-	shippingWindow.SetUserGroupID(&testValue)
-	if &testValue != shippingWindow.UserGroupID() {
+	s.SetUserGroupID(&testValue)
+	if &testValue != s.UserGroupID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowStartDate(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := time.Now()
-	shippingWindow.SetStartDate(&testValue)
-	if &testValue != shippingWindow.StartDate() {
+	s.SetStartDate(&testValue)
+	if &testValue != s.StartDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShippingWindowEndDate(t *testing.T) {
-	shippingWindow := shippingwindow.NewShippingWindowEntity()
+	s := shippingwindow.NewShippingWindowEntity()
 	testValue := time.Now()
-	shippingWindow.SetEndDate(&testValue)
-	if &testValue != shippingWindow.EndDate() {
+	s.SetEndDate(&testValue)
+	if &testValue != s.EndDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

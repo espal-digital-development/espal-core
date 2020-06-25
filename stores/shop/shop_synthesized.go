@@ -18,118 +18,118 @@ type ShopEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (shop *Shop) TableName() string {
+func (s *Shop) TableName() string {
 	return "Shop"
 }
 
 // ID returns id.
-func (shop *Shop) ID() string {
-	return shop.id
+func (s *Shop) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (shop *Shop) CreatedByID() string {
-	return shop.createdByID
+func (s *Shop) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (shop *Shop) SetCreatedByID(createdByID string) {
-	shop.createdByID = createdByID
+func (s *Shop) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (shop *Shop) UpdatedByID() *string {
-	return shop.updatedByID
+func (s *Shop) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (shop *Shop) SetUpdatedByID(updatedByID *string) {
-	shop.updatedByID = updatedByID
+func (s *Shop) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (shop *Shop) CreatedAt() time.Time {
-	return shop.createdAt
+func (s *Shop) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (shop *Shop) SetCreatedAt(createdAt time.Time) {
-	shop.createdAt = createdAt
+func (s *Shop) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (shop *Shop) UpdatedAt() *time.Time {
-	return shop.updatedAt
+func (s *Shop) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (shop *Shop) SetUpdatedAt(updatedAt *time.Time) {
-	shop.updatedAt = updatedAt
+func (s *Shop) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (shop *Shop) CreatedByFirstName() *string {
-	return shop.createdByFirstName
+func (s *Shop) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (shop *Shop) SetCreatedByFirstName(createdByFirstName *string) {
-	shop.createdByFirstName = createdByFirstName
+func (s *Shop) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (shop *Shop) CreatedBySurname() *string {
-	return shop.createdBySurname
+func (s *Shop) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (shop *Shop) SetCreatedBySurname(createdBySurname *string) {
-	shop.createdBySurname = createdBySurname
+func (s *Shop) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (shop *Shop) UpdatedByFirstName() *string {
-	return shop.updatedByFirstName
+func (s *Shop) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (shop *Shop) SetUpdatedByFirstName(updatedByFirstName *string) {
-	shop.updatedByFirstName = updatedByFirstName
+func (s *Shop) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (shop *Shop) UpdatedBySurname() *string {
-	return shop.updatedBySurname
+func (s *Shop) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (shop *Shop) SetUpdatedBySurname(updatedBySurname *string) {
-	shop.updatedBySurname = updatedBySurname
+func (s *Shop) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (shop *Shop) IsUpdated() bool {
-	return shop.updatedByID != nil
+func (s *Shop) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Language returns language.
-func (shop *Shop) Language() *uint16 {
-	return shop.language
+func (s *Shop) Language() *uint16 {
+	return s.language
 }
 
 // SetLanguage sets the language.
-func (shop *Shop) SetLanguage(language *uint16) {
-	shop.language = language
+func (s *Shop) SetLanguage(language *uint16) {
+	s.language = language
 }
 
 // Currencies returns currencies.
-func (shop *Shop) Currencies() string {
-	return shop.currencies
+func (s *Shop) Currencies() string {
+	return s.currencies
 }
 
 // SetCurrencies sets the currencies.
-func (shop *Shop) SetCurrencies(currencies string) {
-	shop.currencies = currencies
+func (s *Shop) SetCurrencies(currencies string) {
+	s.currencies = currencies
 }
 
 func newShop() *Shop {

@@ -30,11 +30,11 @@ type MinMax struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (minMax *MinMax) TableName() string {
+func (m *MinMax) TableName() string {
 	return "PriceMinMax"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (minMax *MinMax) TableAlias() string {
+func (m *MinMax) TableAlias() string {
 	return "prmm"
 }

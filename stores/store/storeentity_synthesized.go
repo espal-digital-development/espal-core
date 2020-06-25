@@ -40,223 +40,223 @@ type StoreEntityEntity interface {
 }
 
 // ID returns id.
-func (storeEntity *StoreEntity) ID() string {
-	return storeEntity.id
+func (s *StoreEntity) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (storeEntity *StoreEntity) CreatedByID() string {
-	return storeEntity.createdByID
+func (s *StoreEntity) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (storeEntity *StoreEntity) SetCreatedByID(createdByID string) {
-	storeEntity.createdByID = createdByID
+func (s *StoreEntity) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (storeEntity *StoreEntity) UpdatedByID() *string {
-	return storeEntity.updatedByID
+func (s *StoreEntity) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (storeEntity *StoreEntity) SetUpdatedByID(updatedByID *string) {
-	storeEntity.updatedByID = updatedByID
+func (s *StoreEntity) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (storeEntity *StoreEntity) CreatedAt() time.Time {
-	return storeEntity.createdAt
+func (s *StoreEntity) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (storeEntity *StoreEntity) SetCreatedAt(createdAt time.Time) {
-	storeEntity.createdAt = createdAt
+func (s *StoreEntity) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (storeEntity *StoreEntity) UpdatedAt() *time.Time {
-	return storeEntity.updatedAt
+func (s *StoreEntity) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (storeEntity *StoreEntity) SetUpdatedAt(updatedAt *time.Time) {
-	storeEntity.updatedAt = updatedAt
+func (s *StoreEntity) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (storeEntity *StoreEntity) CreatedByFirstName() *string {
-	return storeEntity.createdByFirstName
+func (s *StoreEntity) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (storeEntity *StoreEntity) SetCreatedByFirstName(createdByFirstName *string) {
-	storeEntity.createdByFirstName = createdByFirstName
+func (s *StoreEntity) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (storeEntity *StoreEntity) CreatedBySurname() *string {
-	return storeEntity.createdBySurname
+func (s *StoreEntity) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (storeEntity *StoreEntity) SetCreatedBySurname(createdBySurname *string) {
-	storeEntity.createdBySurname = createdBySurname
+func (s *StoreEntity) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (storeEntity *StoreEntity) UpdatedByFirstName() *string {
-	return storeEntity.updatedByFirstName
+func (s *StoreEntity) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (storeEntity *StoreEntity) SetUpdatedByFirstName(updatedByFirstName *string) {
-	storeEntity.updatedByFirstName = updatedByFirstName
+func (s *StoreEntity) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (storeEntity *StoreEntity) UpdatedBySurname() *string {
-	return storeEntity.updatedBySurname
+func (s *StoreEntity) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (storeEntity *StoreEntity) SetUpdatedBySurname(updatedBySurname *string) {
-	storeEntity.updatedBySurname = updatedBySurname
+func (s *StoreEntity) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (storeEntity *StoreEntity) IsUpdated() bool {
-	return storeEntity.updatedByID != nil
+func (s *StoreEntity) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Active returns active.
-func (storeEntity *StoreEntity) Active() bool {
-	return storeEntity.active
+func (s *StoreEntity) Active() bool {
+	return s.active
 }
 
 // SetActive sets the active.
-func (storeEntity *StoreEntity) SetActive(active bool) {
-	storeEntity.active = active
+func (s *StoreEntity) SetActive(active bool) {
+	s.active = active
 }
 
 // Sorting returns sorting.
-func (storeEntity *StoreEntity) Sorting() uint {
-	return storeEntity.sorting
+func (s *StoreEntity) Sorting() uint {
+	return s.sorting
 }
 
 // SetSorting sets the sorting.
-func (storeEntity *StoreEntity) SetSorting(sorting uint) {
-	storeEntity.sorting = sorting
+func (s *StoreEntity) SetSorting(sorting uint) {
+	s.sorting = sorting
 }
 
 // PrimaryContactPerson returns primaryContactPerson.
-func (storeEntity *StoreEntity) PrimaryContactPerson() *string {
-	return storeEntity.primaryContactPerson
+func (s *StoreEntity) PrimaryContactPerson() *string {
+	return s.primaryContactPerson
 }
 
 // SetPrimaryContactPerson sets the primaryContactPerson.
-func (storeEntity *StoreEntity) SetPrimaryContactPerson(primaryContactPerson *string) {
-	storeEntity.primaryContactPerson = primaryContactPerson
+func (s *StoreEntity) SetPrimaryContactPerson(primaryContactPerson *string) {
+	s.primaryContactPerson = primaryContactPerson
 }
 
 // Street returns street.
-func (storeEntity *StoreEntity) Street() string {
-	return storeEntity.street
+func (s *StoreEntity) Street() string {
+	return s.street
 }
 
 // SetStreet sets the street.
-func (storeEntity *StoreEntity) SetStreet(street string) {
-	storeEntity.street = street
+func (s *StoreEntity) SetStreet(street string) {
+	s.street = street
 }
 
 // StreetLine2 returns streetLine2.
-func (storeEntity *StoreEntity) StreetLine2() *string {
-	return storeEntity.streetLine2
+func (s *StoreEntity) StreetLine2() *string {
+	return s.streetLine2
 }
 
 // SetStreetLine2 sets the streetLine2.
-func (storeEntity *StoreEntity) SetStreetLine2(streetLine2 *string) {
-	storeEntity.streetLine2 = streetLine2
+func (s *StoreEntity) SetStreetLine2(streetLine2 *string) {
+	s.streetLine2 = streetLine2
 }
 
 // Number returns number.
-func (storeEntity *StoreEntity) Number() string {
-	return storeEntity.number
+func (s *StoreEntity) Number() string {
+	return s.number
 }
 
 // SetNumber sets the number.
-func (storeEntity *StoreEntity) SetNumber(number string) {
-	storeEntity.number = number
+func (s *StoreEntity) SetNumber(number string) {
+	s.number = number
 }
 
 // NumberAddition returns numberAddition.
-func (storeEntity *StoreEntity) NumberAddition() *string {
-	return storeEntity.numberAddition
+func (s *StoreEntity) NumberAddition() *string {
+	return s.numberAddition
 }
 
 // SetNumberAddition sets the numberAddition.
-func (storeEntity *StoreEntity) SetNumberAddition(numberAddition *string) {
-	storeEntity.numberAddition = numberAddition
+func (s *StoreEntity) SetNumberAddition(numberAddition *string) {
+	s.numberAddition = numberAddition
 }
 
 // ZipCode returns zipCode.
-func (storeEntity *StoreEntity) ZipCode() string {
-	return storeEntity.zipCode
+func (s *StoreEntity) ZipCode() string {
+	return s.zipCode
 }
 
 // SetZipCode sets the zipCode.
-func (storeEntity *StoreEntity) SetZipCode(zipCode string) {
-	storeEntity.zipCode = zipCode
+func (s *StoreEntity) SetZipCode(zipCode string) {
+	s.zipCode = zipCode
 }
 
 // City returns city.
-func (storeEntity *StoreEntity) City() string {
-	return storeEntity.city
+func (s *StoreEntity) City() string {
+	return s.city
 }
 
 // SetCity sets the city.
-func (storeEntity *StoreEntity) SetCity(city string) {
-	storeEntity.city = city
+func (s *StoreEntity) SetCity(city string) {
+	s.city = city
 }
 
 // State returns state.
-func (storeEntity *StoreEntity) State() *string {
-	return storeEntity.state
+func (s *StoreEntity) State() *string {
+	return s.state
 }
 
 // SetState sets the state.
-func (storeEntity *StoreEntity) SetState(state *string) {
-	storeEntity.state = state
+func (s *StoreEntity) SetState(state *string) {
+	s.state = state
 }
 
 // Country returns country.
-func (storeEntity *StoreEntity) Country() *uint16 {
-	return storeEntity.country
+func (s *StoreEntity) Country() *uint16 {
+	return s.country
 }
 
 // SetCountry sets the country.
-func (storeEntity *StoreEntity) SetCountry(country *uint16) {
-	storeEntity.country = country
+func (s *StoreEntity) SetCountry(country *uint16) {
+	s.country = country
 }
 
 // PhoneNumber returns phoneNumber.
-func (storeEntity *StoreEntity) PhoneNumber() *string {
-	return storeEntity.phoneNumber
+func (s *StoreEntity) PhoneNumber() *string {
+	return s.phoneNumber
 }
 
 // SetPhoneNumber sets the phoneNumber.
-func (storeEntity *StoreEntity) SetPhoneNumber(phoneNumber *string) {
-	storeEntity.phoneNumber = phoneNumber
+func (s *StoreEntity) SetPhoneNumber(phoneNumber *string) {
+	s.phoneNumber = phoneNumber
 }
 
 // Email returns email.
-func (storeEntity *StoreEntity) Email() *string {
-	return storeEntity.email
+func (s *StoreEntity) Email() *string {
+	return s.email
 }
 
 // SetEmail sets the email.
-func (storeEntity *StoreEntity) SetEmail(email *string) {
-	storeEntity.email = email
+func (s *StoreEntity) SetEmail(email *string) {
+	s.email = email
 }
 
 func newStoreEntity() *StoreEntity {

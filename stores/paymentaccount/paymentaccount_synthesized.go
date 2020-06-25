@@ -30,183 +30,183 @@ type PaymentAccountEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (paymentAccount *PaymentAccount) TableName() string {
+func (p *PaymentAccount) TableName() string {
 	return "PaymentAccount"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (paymentAccount *PaymentAccount) TableAlias() string {
+func (p *PaymentAccount) TableAlias() string {
 	return "pae"
 }
 
 // ID returns id.
-func (paymentAccount *PaymentAccount) ID() string {
-	return paymentAccount.id
+func (p *PaymentAccount) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (paymentAccount *PaymentAccount) CreatedByID() string {
-	return paymentAccount.createdByID
+func (p *PaymentAccount) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (paymentAccount *PaymentAccount) SetCreatedByID(createdByID string) {
-	paymentAccount.createdByID = createdByID
+func (p *PaymentAccount) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (paymentAccount *PaymentAccount) UpdatedByID() *string {
-	return paymentAccount.updatedByID
+func (p *PaymentAccount) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (paymentAccount *PaymentAccount) SetUpdatedByID(updatedByID *string) {
-	paymentAccount.updatedByID = updatedByID
+func (p *PaymentAccount) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (paymentAccount *PaymentAccount) CreatedAt() time.Time {
-	return paymentAccount.createdAt
+func (p *PaymentAccount) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (paymentAccount *PaymentAccount) SetCreatedAt(createdAt time.Time) {
-	paymentAccount.createdAt = createdAt
+func (p *PaymentAccount) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (paymentAccount *PaymentAccount) UpdatedAt() *time.Time {
-	return paymentAccount.updatedAt
+func (p *PaymentAccount) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (paymentAccount *PaymentAccount) SetUpdatedAt(updatedAt *time.Time) {
-	paymentAccount.updatedAt = updatedAt
+func (p *PaymentAccount) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (paymentAccount *PaymentAccount) CreatedByFirstName() *string {
-	return paymentAccount.createdByFirstName
+func (p *PaymentAccount) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (paymentAccount *PaymentAccount) SetCreatedByFirstName(createdByFirstName *string) {
-	paymentAccount.createdByFirstName = createdByFirstName
+func (p *PaymentAccount) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (paymentAccount *PaymentAccount) CreatedBySurname() *string {
-	return paymentAccount.createdBySurname
+func (p *PaymentAccount) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (paymentAccount *PaymentAccount) SetCreatedBySurname(createdBySurname *string) {
-	paymentAccount.createdBySurname = createdBySurname
+func (p *PaymentAccount) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (paymentAccount *PaymentAccount) UpdatedByFirstName() *string {
-	return paymentAccount.updatedByFirstName
+func (p *PaymentAccount) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (paymentAccount *PaymentAccount) SetUpdatedByFirstName(updatedByFirstName *string) {
-	paymentAccount.updatedByFirstName = updatedByFirstName
+func (p *PaymentAccount) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (paymentAccount *PaymentAccount) UpdatedBySurname() *string {
-	return paymentAccount.updatedBySurname
+func (p *PaymentAccount) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (paymentAccount *PaymentAccount) SetUpdatedBySurname(updatedBySurname *string) {
-	paymentAccount.updatedBySurname = updatedBySurname
+func (p *PaymentAccount) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (paymentAccount *PaymentAccount) IsUpdated() bool {
-	return paymentAccount.updatedByID != nil
+func (p *PaymentAccount) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // PaymentMethodID returns paymentMethodID.
-func (paymentAccount *PaymentAccount) PaymentMethodID() string {
-	return paymentAccount.paymentMethodID
+func (p *PaymentAccount) PaymentMethodID() string {
+	return p.paymentMethodID
 }
 
 // SetPaymentMethodID sets the paymentMethodID.
-func (paymentAccount *PaymentAccount) SetPaymentMethodID(paymentMethodID string) {
-	paymentAccount.paymentMethodID = paymentMethodID
+func (p *PaymentAccount) SetPaymentMethodID(paymentMethodID string) {
+	p.paymentMethodID = paymentMethodID
 }
 
 // Active returns active.
-func (paymentAccount *PaymentAccount) Active() bool {
-	return paymentAccount.active
+func (p *PaymentAccount) Active() bool {
+	return p.active
 }
 
 // SetActive sets the active.
-func (paymentAccount *PaymentAccount) SetActive(active bool) {
-	paymentAccount.active = active
+func (p *PaymentAccount) SetActive(active bool) {
+	p.active = active
 }
 
 // Name returns name.
-func (paymentAccount *PaymentAccount) Name() string {
-	return paymentAccount.name
+func (p *PaymentAccount) Name() string {
+	return p.name
 }
 
 // SetName sets the name.
-func (paymentAccount *PaymentAccount) SetName(name string) {
-	paymentAccount.name = name
+func (p *PaymentAccount) SetName(name string) {
+	p.name = name
 }
 
 // Username returns username.
-func (paymentAccount *PaymentAccount) Username() *string {
-	return paymentAccount.username
+func (p *PaymentAccount) Username() *string {
+	return p.username
 }
 
 // SetUsername sets the username.
-func (paymentAccount *PaymentAccount) SetUsername(username *string) {
-	paymentAccount.username = username
+func (p *PaymentAccount) SetUsername(username *string) {
+	p.username = username
 }
 
 // Passphrase returns passphrase.
-func (paymentAccount *PaymentAccount) Passphrase() *string {
-	return paymentAccount.passphrase
+func (p *PaymentAccount) Passphrase() *string {
+	return p.passphrase
 }
 
 // SetPassphrase sets the passphrase.
-func (paymentAccount *PaymentAccount) SetPassphrase(passphrase *string) {
-	paymentAccount.passphrase = passphrase
+func (p *PaymentAccount) SetPassphrase(passphrase *string) {
+	p.passphrase = passphrase
 }
 
 // SecretKey returns secretKey.
-func (paymentAccount *PaymentAccount) SecretKey() *string {
-	return paymentAccount.secretKey
+func (p *PaymentAccount) SecretKey() *string {
+	return p.secretKey
 }
 
 // SetSecretKey sets the secretKey.
-func (paymentAccount *PaymentAccount) SetSecretKey(secretKey *string) {
-	paymentAccount.secretKey = secretKey
+func (p *PaymentAccount) SetSecretKey(secretKey *string) {
+	p.secretKey = secretKey
 }
 
 // PublicKey returns publicKey.
-func (paymentAccount *PaymentAccount) PublicKey() *string {
-	return paymentAccount.publicKey
+func (p *PaymentAccount) PublicKey() *string {
+	return p.publicKey
 }
 
 // SetPublicKey sets the publicKey.
-func (paymentAccount *PaymentAccount) SetPublicKey(publicKey *string) {
-	paymentAccount.publicKey = publicKey
+func (p *PaymentAccount) SetPublicKey(publicKey *string) {
+	p.publicKey = publicKey
 }
 
 // Certificate returns certificate.
-func (paymentAccount *PaymentAccount) Certificate() *string {
-	return paymentAccount.certificate
+func (p *PaymentAccount) Certificate() *string {
+	return p.certificate
 }
 
 // SetCertificate sets the certificate.
-func (paymentAccount *PaymentAccount) SetCertificate(certificate *string) {
-	paymentAccount.certificate = certificate
+func (p *PaymentAccount) SetCertificate(certificate *string) {
+	p.certificate = certificate
 }
 
 func newPaymentAccount() *PaymentAccount {

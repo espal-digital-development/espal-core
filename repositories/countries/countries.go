@@ -27,7 +27,7 @@ type Countries struct {
 	all                 map[uint16]Data
 }
 
-func (countriesRepository *Countries) loadTranslations() error {
+func (c *Countries) loadTranslations() error {
 	files, err := countriesdata.AssetDir("_data")
 	if err != nil {
 		return errors.Trace(err)
@@ -41,7 +41,7 @@ func (countriesRepository *Countries) loadTranslations() error {
 			return errors.Trace(err)
 		}
 
-		language, err := countriesRepository.languagesRepository.ByCode(files[k])
+		language, err := c.languagesRepository.ByCode(files[k])
 		if err != nil {
 			return errors.Trace(err)
 		}
@@ -61,11 +61,11 @@ func (countriesRepository *Countries) loadTranslations() error {
 			if len(parts) != 2 {
 				return errors.Errorf("country read failure in file `%s` for line %d", files[k], count)
 			}
-			checkCountry, err := countriesRepository.ByCode(parts[0])
+			checkCountry, err := c.ByCode(parts[0])
 			if err != nil {
 				return errors.Errorf("unknown Country code `%s` in file `%s` for line %d", parts[0], files[k], count)
 			}
-			country := countriesRepository.entries[checkCountry.Code()]
+			country := c.entries[checkCountry.Code()]
 			if parts[1] == country.EnglishName() {
 				return errors.Errorf("duplicate Country English translation for code `%s` in file `%s` for line %d", parts[0], files[k], count)
 			}
@@ -77,7 +77,7 @@ func (countriesRepository *Countries) loadTranslations() error {
 	return nil
 }
 
-func (countriesRepository *Countries) setAliases() error {
+func (c *Countries) setAliases() error {
 	aliases := map[string]string{
 		"ar_001":  "ar",
 		"de_AT":   "de",
@@ -97,46 +97,46 @@ func (countriesRepository *Countries) setAliases() error {
 		"zh_Hant": "zh",
 	}
 	for source, target := range aliases {
-		sourceLanguage, err := countriesRepository.languagesRepository.ByCode(source)
+		sourceLanguage, err := c.languagesRepository.ByCode(source)
 		if err != nil {
 			return errors.Trace(err)
 		}
-		targetLanguage, err := countriesRepository.languagesRepository.ByCode(target)
+		targetLanguage, err := c.languagesRepository.ByCode(target)
 		if err != nil {
 			return errors.Trace(err)
 		}
-		for k := range countriesRepository.entries {
-			targetTranslation := countriesRepository.entries[k].Translate(targetLanguage.ID())
-			countriesRepository.entries[k].SetTranslation(sourceLanguage.ID(), targetTranslation)
+		for k := range c.entries {
+			targetTranslation := c.entries[k].Translate(targetLanguage.ID())
+			c.entries[k].SetTranslation(sourceLanguage.ID(), targetTranslation)
 		}
 	}
 	return nil
 }
 
 // All gets all embedded Country entries.
-func (countriesRepository *Countries) All() map[uint16]Data {
-	return countriesRepository.all
+func (c *Countries) All() map[uint16]Data {
+	return c.all
 }
 
 // ByID looks for and returns the associated Country for the given id.
-func (countriesRepository *Countries) ByID(id uint16) (Data, error) {
-	if _, ok := countriesRepository.byID[id]; !ok {
+func (c *Countries) ByID(id uint16) (Data, error) {
+	if _, ok := c.byID[id]; !ok {
 		return &Country{}, errors.Errorf("no country found with given id `%d`", id)
 	}
-	return countriesRepository.byID[id], nil
+	return c.byID[id], nil
 }
 
 // ByCode looks for and returns the associated Country for the given code.
-func (countriesRepository *Countries) ByCode(code string) (Data, error) {
-	if _, ok := countriesRepository.entries[code]; !ok {
+func (c *Countries) ByCode(code string) (Data, error) {
+	if _, ok := c.entries[code]; !ok {
 		return &Country{}, errors.Errorf("no country found with given code `%s`", code)
 	}
-	return countriesRepository.entries[code], nil
+	return c.entries[code], nil
 }
 
 // New returns new a *Countries instance.
 func New(languagesRepository languages.Repository, loadTranslations bool) (*Countries, error) {
-	countries := &Countries{
+	c := &Countries{
 		languagesRepository: languagesRepository,
 		byID:                make(map[uint16]*Country, len(data)),
 		all:                 make(map[uint16]Data, len(data)),
@@ -153,19 +153,19 @@ func New(languagesRepository languages.Repository, loadTranslations bool) (*Coun
 		country.englishLocaleID = english.ID()
 		country.translations = map[uint16]string{}
 
-		countries.byID[country.ID()] = &country
-		countries.all[country.ID()] = &country
-		countries.entries[code] = &country
+		c.byID[country.ID()] = &country
+		c.all[country.ID()] = &country
+		c.entries[code] = &country
 	}
 
 	if loadTranslations {
-		if err := countries.loadTranslations(); err != nil {
+		if err := c.loadTranslations(); err != nil {
 			return nil, errors.Trace(err)
 		}
-		if err := countries.setAliases(); err != nil {
+		if err := c.setAliases(); err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
 
-	return countries, nil
+	return c, nil
 }

@@ -14,19 +14,19 @@ type route struct {
 }
 
 // Handle processes the asset calls and outputs the bytes of the requested file.
-func (route *route) Handle(context contexts.Context) {
-	context.SetContentType(route.contentType)
-	if route.cacheMaxAge != "" {
+func (r *route) Handle(context contexts.Context) {
+	context.SetContentType(r.contentType)
+	if r.cacheMaxAge != "" {
 		context.SetHeader("Cache-Control", "max-age=3600")
 	}
-	if route.allowGzip && context.AcceptsEncoding("gzip") {
+	if r.allowGzip && context.AcceptsEncoding("gzip") {
 		context.SetHeader("Content-Encoding", "gzip")
-		if _, err := context.Write(route.gzipData); err != nil {
+		if _, err := context.Write(r.gzipData); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 		}
 		return
 	}
-	if _, err := context.Write(route.data); err != nil {
+	if _, err := context.Write(r.data); err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 	}
 }

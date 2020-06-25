@@ -8,18 +8,18 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdminUserAddress() error {
-	createUpdatePage := createupdatepage.New(runner.services.renderer)
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Address/Create", createupdate.New(runner.services.entityMutators, runner.stores.user, runner.stores.userAddress, runner.formValidators.admin.userAddressCreateUpdate, createUpdatePage)); err != nil {
+func (r *Runner) routesAdminUserAddress() error {
+	createUpdatePage := createupdatepage.New(r.services.renderer)
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Address/Create", createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userAddress, r.formValidators.admin.userAddressCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Address/Update", createupdate.New(runner.services.entityMutators, runner.stores.user, runner.stores.userAddress, runner.formValidators.admin.userAddressCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Address/Update", createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userAddress, r.formValidators.admin.userAddressCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Address/ToggleActive", toggleactive.New(runner.repositories.regularExpressions, runner.stores.userAddress)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Address/ToggleActive", toggleactive.New(r.repositories.regularExpressions, r.stores.userAddress)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/User/Address/Delete", delete.New(runner.repositories.regularExpressions, runner.stores.userAddress)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Address/Delete", delete.New(r.repositories.regularExpressions, r.stores.userAddress)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

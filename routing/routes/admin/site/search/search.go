@@ -14,7 +14,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadSite") {
 		return
 	}
@@ -24,7 +24,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	sites, _, err := route.siteStore.Filter(context, language)
+	sites, _, err := r.siteStore.Filter(context, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -42,7 +42,7 @@ func (route *Route) Handle(context contexts.Context) {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
-		if _, err := context.WriteString(route.siteStore.GetTranslatedName(sites[k], language.ID())); err != nil {
+		if _, err := context.WriteString(r.siteStore.GetTranslatedName(sites[k], language.ID())); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}

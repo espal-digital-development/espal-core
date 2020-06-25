@@ -23,14 +23,14 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if context.IsLoggedIn() {
 		context.Redirect("/", http.StatusTemporaryRedirect)
 		return
 	}
 
 	hash := context.QueryValue("h")
-	if hash == "" || !route.regularExpressionsRepository.GetPasswordRecoveryhash().MatchString(hash) {
+	if hash == "" || !r.regularExpressionsRepository.GetPasswordRecoveryhash().MatchString(hash) {
 		context.RenderBadRequest()
 		return
 	}
@@ -41,7 +41,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.recoveryFormValidator.New(language)
+	form, err := r.recoveryFormValidator.New(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -53,7 +53,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 	if isSubmitted && isValid {
-		newPassword, err := bcrypt.GenerateFromPassword([]byte(form.FormFieldValue("newPassword")), route.configService.SecurityBcryptRounds())
+		newPassword, err := bcrypt.GenerateFromPassword([]byte(form.FormFieldValue("newPassword")), r.configService.SecurityBcryptRounds())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -65,7 +65,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 		resetCount++
 
-		err = route.userStore.RecoverWithNewPassword(form.GetUserID(), newPassword, resetCount)
+		err = r.userStore.RecoverWithNewPassword(form.GetUserID(), newPassword, resetCount)
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -81,7 +81,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	route.recoveryPageFactory.NewPage(context, form.View()).Render()
+	r.recoveryPageFactory.NewPage(context, form.View()).Render()
 }
 
 // New returns a new instance of Route.

@@ -21,11 +21,11 @@ type Vote struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (vote *Vote) TableName() string {
+func (v *Vote) TableName() string {
 	return "PollVote"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (vote *Vote) TableAlias() string {
+func (v *Vote) TableAlias() string {
 	return "pov"
 }

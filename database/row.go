@@ -18,6 +18,6 @@ type row struct {
 // If more than one row matches the query,
 // Scan uses the first row and discards the rest. If no row matches
 // the query, Scan returns ErrNoRows.
-func (row *row) Scan(dest ...interface{}) error {
-	return row.row.Scan(dest...)
+func (r *row) Scan(dest ...interface{}) error {
+	return r.row.Scan(dest...)
 }

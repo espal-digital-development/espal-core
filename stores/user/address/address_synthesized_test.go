@@ -9,223 +9,223 @@ import (
 )
 
 func TestAddressTable(t *testing.T) {
-	address := address.NewAddressEntity()
-	if address.TableName() == "" {
+	a := address.NewAddressEntity()
+	if a.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestAddressTableAlias(t *testing.T) {
-	address := address.NewAddressEntity()
-	if address.TableName() == "" {
+	a := address.NewAddressEntity()
+	if a.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestAddressIsUpdated(t *testing.T) {
-	address := address.NewAddressEntity()
-	address.IsUpdated()
+	a := address.NewAddressEntity()
+	a.IsUpdated()
 }
 
 func TestAddressID(t *testing.T) {
-	address := address.NewAddressEntity()
-	address.ID()
+	a := address.NewAddressEntity()
+	a.ID()
 }
 
 func TestAddressCreatedByID(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetCreatedByID(testValue)
-	if testValue != address.CreatedByID() {
+	a.SetCreatedByID(testValue)
+	if testValue != a.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressUpdatedByID(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetUpdatedByID(&testValue)
-	if &testValue != address.UpdatedByID() {
+	a.SetUpdatedByID(&testValue)
+	if &testValue != a.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressCreatedAt(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := time.Now()
-	address.SetCreatedAt(testValue)
-	if testValue != address.CreatedAt() {
+	a.SetCreatedAt(testValue)
+	if testValue != a.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressUpdatedAt(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := time.Now()
-	address.SetUpdatedAt(&testValue)
-	if &testValue != address.UpdatedAt() {
+	a.SetUpdatedAt(&testValue)
+	if &testValue != a.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressCreatedByFirstName(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetCreatedByFirstName(&testValue)
-	if &testValue != address.CreatedByFirstName() {
+	a.SetCreatedByFirstName(&testValue)
+	if &testValue != a.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressCreatedBySurname(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetCreatedBySurname(&testValue)
-	if &testValue != address.CreatedBySurname() {
+	a.SetCreatedBySurname(&testValue)
+	if &testValue != a.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressUpdatedByFirstName(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetUpdatedByFirstName(&testValue)
-	if &testValue != address.UpdatedByFirstName() {
+	a.SetUpdatedByFirstName(&testValue)
+	if &testValue != a.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressUpdatedBySurname(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetUpdatedBySurname(&testValue)
-	if &testValue != address.UpdatedBySurname() {
+	a.SetUpdatedBySurname(&testValue)
+	if &testValue != a.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressUserID(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetUserID(testValue)
-	if testValue != address.UserID() {
+	a.SetUserID(testValue)
+	if testValue != a.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressActive(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := true
-	address.SetActive(testValue)
-	if testValue != address.Active() {
+	a.SetActive(testValue)
+	if testValue != a.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressFirstName(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetFirstName(&testValue)
-	if &testValue != address.FirstName() {
+	a.SetFirstName(&testValue)
+	if &testValue != a.FirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressSurname(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetSurname(&testValue)
-	if &testValue != address.Surname() {
+	a.SetSurname(&testValue)
+	if &testValue != a.Surname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressStreet(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetStreet(testValue)
-	if testValue != address.Street() {
+	a.SetStreet(testValue)
+	if testValue != a.Street() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressStreetLine2(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetStreetLine2(&testValue)
-	if &testValue != address.StreetLine2() {
+	a.SetStreetLine2(&testValue)
+	if &testValue != a.StreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressNumber(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetNumber(testValue)
-	if testValue != address.Number() {
+	a.SetNumber(testValue)
+	if testValue != a.Number() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressNumberAddition(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetNumberAddition(&testValue)
-	if &testValue != address.NumberAddition() {
+	a.SetNumberAddition(&testValue)
+	if &testValue != a.NumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressZipCode(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetZipCode(testValue)
-	if testValue != address.ZipCode() {
+	a.SetZipCode(testValue)
+	if testValue != a.ZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressCity(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetCity(testValue)
-	if testValue != address.City() {
+	a.SetCity(testValue)
+	if testValue != a.City() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressState(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetState(&testValue)
-	if &testValue != address.State() {
+	a.SetState(&testValue)
+	if &testValue != a.State() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressCountry(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := uint16(65000)
-	address.SetCountry(&testValue)
-	if &testValue != address.Country() {
+	a.SetCountry(&testValue)
+	if &testValue != a.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressPhoneNumber(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetPhoneNumber(&testValue)
-	if &testValue != address.PhoneNumber() {
+	a.SetPhoneNumber(&testValue)
+	if &testValue != a.PhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestAddressEmail(t *testing.T) {
-	address := address.NewAddressEntity()
+	a := address.NewAddressEntity()
 	testValue := "testValue"
-	address.SetEmail(&testValue)
-	if &testValue != address.Email() {
+	a.SetEmail(&testValue)
+	if &testValue != a.Email() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

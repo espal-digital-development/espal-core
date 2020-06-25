@@ -4,6 +4,7 @@
 package storagemock
 
 import (
+	"github.com/espal-digital-development/espal-core/storage"
 	"sync"
 )
 
@@ -15,11 +16,15 @@ var (
 	lockStorageMockSet     sync.RWMutex
 )
 
-// StorageMock is a mock implementation of Storage.
+// Ensure, that StorageMock does implement storage.Storage.
+// If this is not the case, regenerate this file with moq.
+var _ storage.Storage = &StorageMock{}
+
+// StorageMock is a mock implementation of storage.Storage.
 //
 //     func TestSomethingThatUsesStorage(t *testing.T) {
 //
-//         // make and configure a mocked Storage
+//         // make and configure a mocked storage.Storage
 //         mockedStorage := &StorageMock{
 //             DeleteFunc: func(key string) error {
 // 	               panic("mock out the Delete method")
@@ -38,7 +43,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedStorage in code that requires Storage
+//         // use mockedStorage in code that requires storage.Storage
 //         // and then make assertions.
 //
 //     }

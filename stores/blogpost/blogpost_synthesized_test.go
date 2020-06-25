@@ -9,169 +9,169 @@ import (
 )
 
 func TestBlogPostTable(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
-	if blogPost.TableName() == "" {
+	b := blogpost.NewBlogPostEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestBlogPostTableAlias(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
-	if blogPost.TableName() == "" {
+	b := blogpost.NewBlogPostEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestBlogPostIsUpdated(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
-	blogPost.IsUpdated()
+	b := blogpost.NewBlogPostEntity()
+	b.IsUpdated()
 }
 
 func TestBlogPostID(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
-	blogPost.ID()
+	b := blogpost.NewBlogPostEntity()
+	b.ID()
 }
 
 func TestBlogPostCreatedByID(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetCreatedByID(testValue)
-	if testValue != blogPost.CreatedByID() {
+	b.SetCreatedByID(testValue)
+	if testValue != b.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostUpdatedByID(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetUpdatedByID(&testValue)
-	if &testValue != blogPost.UpdatedByID() {
+	b.SetUpdatedByID(&testValue)
+	if &testValue != b.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostCreatedAt(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := time.Now()
-	blogPost.SetCreatedAt(testValue)
-	if testValue != blogPost.CreatedAt() {
+	b.SetCreatedAt(testValue)
+	if testValue != b.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostUpdatedAt(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := time.Now()
-	blogPost.SetUpdatedAt(&testValue)
-	if &testValue != blogPost.UpdatedAt() {
+	b.SetUpdatedAt(&testValue)
+	if &testValue != b.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostCreatedByFirstName(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetCreatedByFirstName(&testValue)
-	if &testValue != blogPost.CreatedByFirstName() {
+	b.SetCreatedByFirstName(&testValue)
+	if &testValue != b.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostCreatedBySurname(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetCreatedBySurname(&testValue)
-	if &testValue != blogPost.CreatedBySurname() {
+	b.SetCreatedBySurname(&testValue)
+	if &testValue != b.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostUpdatedByFirstName(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetUpdatedByFirstName(&testValue)
-	if &testValue != blogPost.UpdatedByFirstName() {
+	b.SetUpdatedByFirstName(&testValue)
+	if &testValue != b.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostUpdatedBySurname(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetUpdatedBySurname(&testValue)
-	if &testValue != blogPost.UpdatedBySurname() {
+	b.SetUpdatedBySurname(&testValue)
+	if &testValue != b.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostActive(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := true
-	blogPost.SetActive(testValue)
-	if testValue != blogPost.Active() {
+	b.SetActive(testValue)
+	if testValue != b.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostSorting(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := uint(1e9)
-	blogPost.SetSorting(testValue)
-	if testValue != blogPost.Sorting() {
+	b.SetSorting(testValue)
+	if testValue != b.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostSectionID(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetSectionID(&testValue)
-	if &testValue != blogPost.SectionID() {
+	b.SetSectionID(&testValue)
+	if &testValue != b.SectionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostApprovedByID(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetApprovedByID(&testValue)
-	if &testValue != blogPost.ApprovedByID() {
+	b.SetApprovedByID(&testValue)
+	if &testValue != b.ApprovedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostApprovedDate(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := time.Now()
-	blogPost.SetApprovedDate(&testValue)
-	if &testValue != blogPost.ApprovedDate() {
+	b.SetApprovedDate(&testValue)
+	if &testValue != b.ApprovedDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostPublishDate(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := time.Now()
-	blogPost.SetPublishDate(&testValue)
-	if &testValue != blogPost.PublishDate() {
+	b.SetPublishDate(&testValue)
+	if &testValue != b.PublishDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostExpirationDate(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := time.Now()
-	blogPost.SetExpirationDate(&testValue)
-	if &testValue != blogPost.ExpirationDate() {
+	b.SetExpirationDate(&testValue)
+	if &testValue != b.ExpirationDate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBlogPostComments(t *testing.T) {
-	blogPost := blogpost.NewBlogPostEntity()
+	b := blogpost.NewBlogPostEntity()
 	testValue := "testValue"
-	blogPost.SetComments(&testValue)
-	if &testValue != blogPost.Comments() {
+	b.SetComments(&testValue)
+	if &testValue != b.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

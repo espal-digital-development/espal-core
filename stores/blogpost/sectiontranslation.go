@@ -23,11 +23,11 @@ type SectionTranslation struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (sectionTranslation *SectionTranslation) TableName() string {
+func (t *SectionTranslation) TableName() string {
 	return "BlogPostSectionTranslation"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (sectionTranslation *SectionTranslation) TableAlias() string {
+func (t *SectionTranslation) TableAlias() string {
 	return "bpst"
 }

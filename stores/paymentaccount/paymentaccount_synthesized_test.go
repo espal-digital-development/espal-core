@@ -9,169 +9,169 @@ import (
 )
 
 func TestPaymentAccountTable(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
-	if paymentAccount.TableName() == "" {
+	p := paymentaccount.NewPaymentAccountEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPaymentAccountTableAlias(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
-	if paymentAccount.TableName() == "" {
+	p := paymentaccount.NewPaymentAccountEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPaymentAccountIsUpdated(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
-	paymentAccount.IsUpdated()
+	p := paymentaccount.NewPaymentAccountEntity()
+	p.IsUpdated()
 }
 
 func TestPaymentAccountID(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
-	paymentAccount.ID()
+	p := paymentaccount.NewPaymentAccountEntity()
+	p.ID()
 }
 
 func TestPaymentAccountCreatedByID(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetCreatedByID(testValue)
-	if testValue != paymentAccount.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountUpdatedByID(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetUpdatedByID(&testValue)
-	if &testValue != paymentAccount.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountCreatedAt(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := time.Now()
-	paymentAccount.SetCreatedAt(testValue)
-	if testValue != paymentAccount.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountUpdatedAt(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := time.Now()
-	paymentAccount.SetUpdatedAt(&testValue)
-	if &testValue != paymentAccount.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountCreatedByFirstName(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetCreatedByFirstName(&testValue)
-	if &testValue != paymentAccount.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountCreatedBySurname(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetCreatedBySurname(&testValue)
-	if &testValue != paymentAccount.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountUpdatedByFirstName(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetUpdatedByFirstName(&testValue)
-	if &testValue != paymentAccount.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountUpdatedBySurname(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetUpdatedBySurname(&testValue)
-	if &testValue != paymentAccount.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountPaymentMethodID(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetPaymentMethodID(testValue)
-	if testValue != paymentAccount.PaymentMethodID() {
+	p.SetPaymentMethodID(testValue)
+	if testValue != p.PaymentMethodID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountActive(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := true
-	paymentAccount.SetActive(testValue)
-	if testValue != paymentAccount.Active() {
+	p.SetActive(testValue)
+	if testValue != p.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountName(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetName(testValue)
-	if testValue != paymentAccount.Name() {
+	p.SetName(testValue)
+	if testValue != p.Name() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountUsername(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetUsername(&testValue)
-	if &testValue != paymentAccount.Username() {
+	p.SetUsername(&testValue)
+	if &testValue != p.Username() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountPassphrase(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetPassphrase(&testValue)
-	if &testValue != paymentAccount.Passphrase() {
+	p.SetPassphrase(&testValue)
+	if &testValue != p.Passphrase() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountSecretKey(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetSecretKey(&testValue)
-	if &testValue != paymentAccount.SecretKey() {
+	p.SetSecretKey(&testValue)
+	if &testValue != p.SecretKey() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountPublicKey(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetPublicKey(&testValue)
-	if &testValue != paymentAccount.PublicKey() {
+	p.SetPublicKey(&testValue)
+	if &testValue != p.PublicKey() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentAccountCertificate(t *testing.T) {
-	paymentAccount := paymentaccount.NewPaymentAccountEntity()
+	p := paymentaccount.NewPaymentAccountEntity()
 	testValue := "testValue"
-	paymentAccount.SetCertificate(&testValue)
-	if &testValue != paymentAccount.Certificate() {
+	p.SetCertificate(&testValue)
+	if &testValue != p.Certificate() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

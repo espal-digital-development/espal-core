@@ -14,20 +14,20 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	language, err := context.GetLanguage()
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
 
-	forums, _, err := route.forumStore.GetTopLevel(language)
+	forums, _, err := r.forumStore.GetTopLevel(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
 
-	route.overviewPageFactory.NewPage(context, forums, language).Render()
+	r.overviewPageFactory.NewPage(context, forums, language).Render()
 }
 
 // New returns a new instance of Route.

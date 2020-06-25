@@ -38,60 +38,60 @@ type translation struct {
 }
 
 // Singular value based on languageCode.
-func (translations *Translations) Singular(languageID uint16, key string) string {
-	if !translations.checkExistence(languageID, key) {
+func (t *Translations) Singular(languageID uint16, key string) string {
+	if !t.checkExistence(languageID, key) {
 		return key
 	}
-	if translations.entries[languageID][key].Singular == nil {
-		translations.loggerService.Warningf(missingTranslationFormat, "Singular", key)
+	if t.entries[languageID][key].Singular == nil {
+		t.loggerService.Warningf(missingTranslationFormat, "Singular", key)
 		return key
 	}
-	return *translations.entries[languageID][key].Singular
+	return *t.entries[languageID][key].Singular
 }
 
 // Plural value based on languageID.
-func (translations *Translations) Plural(languageID uint16, key string) string {
-	if !translations.checkExistence(languageID, key) {
+func (t *Translations) Plural(languageID uint16, key string) string {
+	if !t.checkExistence(languageID, key) {
 		return key
 	}
-	if translations.entries[languageID][key].Plural == nil {
-		translations.loggerService.Warningf(missingTranslationFormat, "Plural", key)
+	if t.entries[languageID][key].Plural == nil {
+		t.loggerService.Warningf(missingTranslationFormat, "Plural", key)
 		return key
 	}
-	return *translations.entries[languageID][key].Plural
+	return *t.entries[languageID][key].Plural
 }
 
 // Formatted value based on languageID
-func (translations *Translations) Formatted(languageID uint16, key string) string {
-	if !translations.checkExistence(languageID, key) {
+func (t *Translations) Formatted(languageID uint16, key string) string {
+	if !t.checkExistence(languageID, key) {
 		return key
 	}
-	if translations.entries[languageID][key].SingularFormatted == nil {
-		translations.loggerService.Warningf(missingTranslationFormat, "Plural", key)
+	if t.entries[languageID][key].SingularFormatted == nil {
+		t.loggerService.Warningf(missingTranslationFormat, "Plural", key)
 		return key
 	}
-	return *translations.entries[languageID][key].SingularFormatted
+	return *t.entries[languageID][key].SingularFormatted
 }
 
 // FormattedPlural value based on languageID
-func (translations *Translations) FormattedPlural(languageID uint16, key string) string {
-	if !translations.checkExistence(languageID, key) {
+func (t *Translations) FormattedPlural(languageID uint16, key string) string {
+	if !t.checkExistence(languageID, key) {
 		return key
 	}
-	if translations.entries[languageID][key].PluralFormatted == nil {
-		translations.loggerService.Warningf(missingTranslationFormat, "PluralFormatted", key)
+	if t.entries[languageID][key].PluralFormatted == nil {
+		t.loggerService.Warningf(missingTranslationFormat, "PluralFormatted", key)
 		return key
 	}
-	return *translations.entries[languageID][key].PluralFormatted
+	return *t.entries[languageID][key].PluralFormatted
 }
 
-func (translations *Translations) checkExistence(languageID uint16, key string) bool {
-	if _, ok := translations.entries[languageID]; !ok {
-		translations.loggerService.Warningf(errorNoTranslationWithForCode, languageID)
+func (t *Translations) checkExistence(languageID uint16, key string) bool {
+	if _, ok := t.entries[languageID]; !ok {
+		t.loggerService.Warningf(errorNoTranslationWithForCode, languageID)
 		return false
 	}
-	if _, ok := translations.entries[languageID][key]; !ok {
-		translations.loggerService.Warningf(errorNoTranslationKeyForName, key)
+	if _, ok := t.entries[languageID][key]; !ok {
+		t.loggerService.Warningf(errorNoTranslationKeyForName, key)
 		return false
 	}
 	return true
@@ -99,7 +99,7 @@ func (translations *Translations) checkExistence(languageID uint16, key string) 
 
 // New returns new a Languages repository instance.
 func New(loggerService logger.Loggable, storage storage.Storage, availableLanguages map[uint16]string) (*Translations, error) {
-	translations := &Translations{
+	t := &Translations{
 		loggerService: loggerService,
 		storage:       storage,
 		entries:       map[uint16]map[string]translation{},
@@ -113,12 +113,12 @@ func New(loggerService logger.Loggable, storage storage.Storage, availableLangua
 		if !ok {
 			continue
 		}
-		translations.entries[languageID] = map[string]translation{}
-		err = yaml.Unmarshal(file, translations.entries[languageID])
+		t.entries[languageID] = map[string]translation{}
+		err = yaml.Unmarshal(file, t.entries[languageID])
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
 
-	return translations, nil
+	return t, nil
 }

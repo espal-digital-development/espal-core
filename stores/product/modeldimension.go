@@ -23,11 +23,11 @@ type ModelDimension struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (modelDimension *ModelDimension) TableName() string {
+func (m *ModelDimension) TableName() string {
 	return "ProductModelDimension"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (modelDimension *ModelDimension) TableAlias() string {
+func (m *ModelDimension) TableAlias() string {
 	return "promd"
 }

@@ -23,13 +23,13 @@ type Route struct {
 const tokenPassword = "42e1d1a0b8a66670a2a748a327dfffa5"
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	email, err := context.FormValue("email")
 	if err != nil {
 		context.RenderInternalServerError(err)
 		return
 	}
-	user, ok, err := route.usersStore.GetOneByEmail(email)
+	user, ok, err := r.usersStore.GetOneByEmail(email)
 	if err != nil {
 		context.RenderInternalServerError(err)
 		return

@@ -38,8 +38,8 @@ type Store interface {
 	Filter(context filters.QueryReader) (result []*User, filter filters.Filter, err error)
 }
 
-func (usersStore *UsersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*User, ok bool, err error) {
-	rows, err := usersStore.selecterDatabase.Query(query, params...)
+func (u *UsersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*User, ok bool, err error) {
+	rows, err := u.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -61,15 +61,15 @@ func (usersStore *UsersStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		user := newUser()
-		fields := []interface{}{&user.id, &user.createdByID, &user.updatedByID, &user.defaultDeliveryAddressID, &user.defaultInvoiceAddressID, &user.createdAt, &user.updatedAt, &user.active, &user.country, &user.language, &user.firstName, &user.surname, &user.dateOfBirth, &user.email, &user.password, &user.avatar, &user.priority, &user.activationHash, &user.activatedAt, &user.passwordResetHash, &user.passwordResetLastSendAt, &user.passwordLastResetAt, &user.passwordResetCount, &user.biography, &user.comments, &user.currencies}
+		u := newUser()
+		fields := []interface{}{&u.id, &u.createdByID, &u.updatedByID, &u.defaultDeliveryAddressID, &u.defaultInvoiceAddressID, &u.createdAt, &u.updatedAt, &u.active, &u.country, &u.language, &u.firstName, &u.surname, &u.dateOfBirth, &u.email, &u.password, &u.avatar, &u.priority, &u.activationHash, &u.activatedAt, &u.passwordResetHash, &u.passwordResetLastSendAt, &u.passwordLastResetAt, &u.passwordResetCount, &u.biography, &u.comments, &u.currencies}
 		if withCreators {
-			fields = append(fields, &user.createdByFirstName, &user.createdBySurname, &user.updatedByFirstName, &user.updatedBySurname)
+			fields = append(fields, &u.createdByFirstName, &u.createdBySurname, &u.updatedByFirstName, &u.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, user)
+		result = append(result, u)
 	}
 	ok = len(result) > 0
 	return
@@ -77,7 +77,7 @@ func (usersStore *UsersStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of UsersStore.
 func New(selecterDatabase database.Database, inserterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, userRightsRepository userrights.Repository) (*UsersStore, error) {
-	usersStore := &UsersStore{
+	u := &UsersStore{
 		selecterDatabase:       selecterDatabase,
 		inserterDatabase:       inserterDatabase,
 		updaterDatabase:        updaterDatabase,
@@ -86,8 +86,8 @@ func New(selecterDatabase database.Database, inserterDatabase database.Database,
 		translationsRepository: translationsRepository,
 		userRightsRepository:   userRightsRepository,
 	}
-	if err := usersStore.buildQueries(); err != nil {
+	if err := u.buildQueries(); err != nil {
 		return nil, errors.Trace(err)
 	}
-	return usersStore, nil
+	return u, nil
 }

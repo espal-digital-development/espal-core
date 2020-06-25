@@ -13,8 +13,8 @@ var _ Store = &TagsStore{}
 type Store interface {
 }
 
-func (tagsStore *TagsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Tag, ok bool, err error) {
-	rows, err := tagsStore.selecterDatabase.Query(query, params...)
+func (t *TagsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Tag, ok bool, err error) {
+	rows, err := t.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (tagsStore *TagsStore) fetch(query string, withCreators bool, params ...int
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		tag := newTag()
-		fields := []interface{}{&tag.id, &tag.createdByID, &tag.updatedByID, &tag.createdAt, &tag.updatedAt, &tag.active, &tag.sorting}
+		t := newTag()
+		fields := []interface{}{&t.id, &t.createdByID, &t.updatedByID, &t.createdAt, &t.updatedAt, &t.active, &t.sorting}
 		if withCreators {
-			fields = append(fields, &tag.createdByFirstName, &tag.createdBySurname, &tag.updatedByFirstName, &tag.updatedBySurname)
+			fields = append(fields, &t.createdByFirstName, &t.createdBySurname, &t.updatedByFirstName, &t.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, tag)
+		result = append(result, t)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (tagsStore *TagsStore) fetch(query string, withCreators bool, params ...int
 
 // New returns a new instance of TagsStore.
 func New(selecterDatabase database.Database) (*TagsStore, error) {
-	tagsStore := &TagsStore{
+	t := &TagsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return tagsStore, nil
+	return t, nil
 }

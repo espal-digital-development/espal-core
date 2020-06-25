@@ -13,8 +13,8 @@ var _ Store = &PickingSlipsStore{}
 type Store interface {
 }
 
-func (pickingSlipsStore *PickingSlipsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PickingSlip, ok bool, err error) {
-	rows, err := pickingSlipsStore.selecterDatabase.Query(query, params...)
+func (p *PickingSlipsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PickingSlip, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (pickingSlipsStore *PickingSlipsStore) fetch(query string, withCreators boo
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		pickingSlip := newPickingSlip()
-		fields := []interface{}{&pickingSlip.id, &pickingSlip.createdByID, &pickingSlip.updatedByID, &pickingSlip.createdAt, &pickingSlip.updatedAt, &pickingSlip.comments}
+		p := newPickingSlip()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.comments}
 		if withCreators {
-			fields = append(fields, &pickingSlip.createdByFirstName, &pickingSlip.createdBySurname, &pickingSlip.updatedByFirstName, &pickingSlip.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, pickingSlip)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (pickingSlipsStore *PickingSlipsStore) fetch(query string, withCreators boo
 
 // New returns a new instance of PickingSlipsStore.
 func New(selecterDatabase database.Database) (*PickingSlipsStore, error) {
-	pickingSlipsStore := &PickingSlipsStore{
+	p := &PickingSlipsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return pickingSlipsStore, nil
+	return p, nil
 }

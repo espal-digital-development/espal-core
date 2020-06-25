@@ -30,11 +30,11 @@ type Variant struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (variant *Variant) TableName() string {
+func (v *Variant) TableName() string {
 	return "ProductVariant"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (variant *Variant) TableAlias() string {
+func (v *Variant) TableAlias() string {
 	return "prov"
 }

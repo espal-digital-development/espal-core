@@ -26,153 +26,153 @@ type LineEntity interface {
 }
 
 // ID returns id.
-func (line *Line) ID() string {
-	return line.id
+func (l *Line) ID() string {
+	return l.id
 }
 
 // CreatedByID returns createdByID.
-func (line *Line) CreatedByID() string {
-	return line.createdByID
+func (l *Line) CreatedByID() string {
+	return l.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (line *Line) SetCreatedByID(createdByID string) {
-	line.createdByID = createdByID
+func (l *Line) SetCreatedByID(createdByID string) {
+	l.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (line *Line) UpdatedByID() *string {
-	return line.updatedByID
+func (l *Line) UpdatedByID() *string {
+	return l.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (line *Line) SetUpdatedByID(updatedByID *string) {
-	line.updatedByID = updatedByID
+func (l *Line) SetUpdatedByID(updatedByID *string) {
+	l.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (line *Line) CreatedAt() time.Time {
-	return line.createdAt
+func (l *Line) CreatedAt() time.Time {
+	return l.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (line *Line) SetCreatedAt(createdAt time.Time) {
-	line.createdAt = createdAt
+func (l *Line) SetCreatedAt(createdAt time.Time) {
+	l.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (line *Line) UpdatedAt() *time.Time {
-	return line.updatedAt
+func (l *Line) UpdatedAt() *time.Time {
+	return l.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (line *Line) SetUpdatedAt(updatedAt *time.Time) {
-	line.updatedAt = updatedAt
+func (l *Line) SetUpdatedAt(updatedAt *time.Time) {
+	l.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (line *Line) CreatedByFirstName() *string {
-	return line.createdByFirstName
+func (l *Line) CreatedByFirstName() *string {
+	return l.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (line *Line) SetCreatedByFirstName(createdByFirstName *string) {
-	line.createdByFirstName = createdByFirstName
+func (l *Line) SetCreatedByFirstName(createdByFirstName *string) {
+	l.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (line *Line) CreatedBySurname() *string {
-	return line.createdBySurname
+func (l *Line) CreatedBySurname() *string {
+	return l.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (line *Line) SetCreatedBySurname(createdBySurname *string) {
-	line.createdBySurname = createdBySurname
+func (l *Line) SetCreatedBySurname(createdBySurname *string) {
+	l.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (line *Line) UpdatedByFirstName() *string {
-	return line.updatedByFirstName
+func (l *Line) UpdatedByFirstName() *string {
+	return l.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (line *Line) SetUpdatedByFirstName(updatedByFirstName *string) {
-	line.updatedByFirstName = updatedByFirstName
+func (l *Line) SetUpdatedByFirstName(updatedByFirstName *string) {
+	l.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (line *Line) UpdatedBySurname() *string {
-	return line.updatedBySurname
+func (l *Line) UpdatedBySurname() *string {
+	return l.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (line *Line) SetUpdatedBySurname(updatedBySurname *string) {
-	line.updatedBySurname = updatedBySurname
+func (l *Line) SetUpdatedBySurname(updatedBySurname *string) {
+	l.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (line *Line) IsUpdated() bool {
-	return line.updatedByID != nil
+func (l *Line) IsUpdated() bool {
+	return l.updatedByID != nil
 }
 
 // ReceivingID returns receivingID.
-func (line *Line) ReceivingID() string {
-	return line.receivingID
+func (l *Line) ReceivingID() string {
+	return l.receivingID
 }
 
 // SetReceivingID sets the receivingID.
-func (line *Line) SetReceivingID(receivingID string) {
-	line.receivingID = receivingID
+func (l *Line) SetReceivingID(receivingID string) {
+	l.receivingID = receivingID
 }
 
 // LineID returns lineID.
-func (line *Line) LineID() *string {
-	return line.lineID
+func (l *Line) LineID() *string {
+	return l.lineID
 }
 
 // SetLineID sets the lineID.
-func (line *Line) SetLineID(lineID *string) {
-	line.lineID = lineID
+func (l *Line) SetLineID(lineID *string) {
+	l.lineID = lineID
 }
 
 // ProductVariantID returns productVariantID.
-func (line *Line) ProductVariantID() *string {
-	return line.productVariantID
+func (l *Line) ProductVariantID() *string {
+	return l.productVariantID
 }
 
 // SetProductVariantID sets the productVariantID.
-func (line *Line) SetProductVariantID(productVariantID *string) {
-	line.productVariantID = productVariantID
+func (l *Line) SetProductVariantID(productVariantID *string) {
+	l.productVariantID = productVariantID
 }
 
 // BundledProductID returns bundledProductID.
-func (line *Line) BundledProductID() *string {
-	return line.bundledProductID
+func (l *Line) BundledProductID() *string {
+	return l.bundledProductID
 }
 
 // SetBundledProductID sets the bundledProductID.
-func (line *Line) SetBundledProductID(bundledProductID *string) {
-	line.bundledProductID = bundledProductID
+func (l *Line) SetBundledProductID(bundledProductID *string) {
+	l.bundledProductID = bundledProductID
 }
 
 // Quantity returns quantity.
-func (line *Line) Quantity() uint {
-	return line.quantity
+func (l *Line) Quantity() uint {
+	return l.quantity
 }
 
 // SetQuantity sets the quantity.
-func (line *Line) SetQuantity(quantity uint) {
-	line.quantity = quantity
+func (l *Line) SetQuantity(quantity uint) {
+	l.quantity = quantity
 }
 
 // Comments returns comments.
-func (line *Line) Comments() *string {
-	return line.comments
+func (l *Line) Comments() *string {
+	return l.comments
 }
 
 // SetComments sets the comments.
-func (line *Line) SetComments(comments *string) {
-	line.comments = comments
+func (l *Line) SetComments(comments *string) {
+	l.comments = comments
 }
 
 func newLine() *Line {

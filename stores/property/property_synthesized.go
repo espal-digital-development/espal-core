@@ -26,158 +26,158 @@ type PropertyEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (property *Property) TableName() string {
+func (p *Property) TableName() string {
 	return "Property"
 }
 
 // ID returns id.
-func (property *Property) ID() string {
-	return property.id
+func (p *Property) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (property *Property) CreatedByID() string {
-	return property.createdByID
+func (p *Property) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (property *Property) SetCreatedByID(createdByID string) {
-	property.createdByID = createdByID
+func (p *Property) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (property *Property) UpdatedByID() *string {
-	return property.updatedByID
+func (p *Property) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (property *Property) SetUpdatedByID(updatedByID *string) {
-	property.updatedByID = updatedByID
+func (p *Property) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (property *Property) CreatedAt() time.Time {
-	return property.createdAt
+func (p *Property) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (property *Property) SetCreatedAt(createdAt time.Time) {
-	property.createdAt = createdAt
+func (p *Property) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (property *Property) UpdatedAt() *time.Time {
-	return property.updatedAt
+func (p *Property) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (property *Property) SetUpdatedAt(updatedAt *time.Time) {
-	property.updatedAt = updatedAt
+func (p *Property) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (property *Property) CreatedByFirstName() *string {
-	return property.createdByFirstName
+func (p *Property) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (property *Property) SetCreatedByFirstName(createdByFirstName *string) {
-	property.createdByFirstName = createdByFirstName
+func (p *Property) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (property *Property) CreatedBySurname() *string {
-	return property.createdBySurname
+func (p *Property) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (property *Property) SetCreatedBySurname(createdBySurname *string) {
-	property.createdBySurname = createdBySurname
+func (p *Property) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (property *Property) UpdatedByFirstName() *string {
-	return property.updatedByFirstName
+func (p *Property) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (property *Property) SetUpdatedByFirstName(updatedByFirstName *string) {
-	property.updatedByFirstName = updatedByFirstName
+func (p *Property) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (property *Property) UpdatedBySurname() *string {
-	return property.updatedBySurname
+func (p *Property) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (property *Property) SetUpdatedBySurname(updatedBySurname *string) {
-	property.updatedBySurname = updatedBySurname
+func (p *Property) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (property *Property) IsUpdated() bool {
-	return property.updatedByID != nil
+func (p *Property) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // UnitID returns unitID.
-func (property *Property) UnitID() *string {
-	return property.unitID
+func (p *Property) UnitID() *string {
+	return p.unitID
 }
 
 // SetUnitID sets the unitID.
-func (property *Property) SetUnitID(unitID *string) {
-	property.unitID = unitID
+func (p *Property) SetUnitID(unitID *string) {
+	p.unitID = unitID
 }
 
 // Active returns active.
-func (property *Property) Active() bool {
-	return property.active
+func (p *Property) Active() bool {
+	return p.active
 }
 
 // SetActive sets the active.
-func (property *Property) SetActive(active bool) {
-	property.active = active
+func (p *Property) SetActive(active bool) {
+	p.active = active
 }
 
 // Sorting returns sorting.
-func (property *Property) Sorting() uint {
-	return property.sorting
+func (p *Property) Sorting() uint {
+	return p.sorting
 }
 
 // SetSorting sets the sorting.
-func (property *Property) SetSorting(sorting uint) {
-	property.sorting = sorting
+func (p *Property) SetSorting(sorting uint) {
+	p.sorting = sorting
 }
 
 // Key returns key.
-func (property *Property) Key() *string {
-	return property.key
+func (p *Property) Key() *string {
+	return p.key
 }
 
 // SetKey sets the key.
-func (property *Property) SetKey(key *string) {
-	property.key = key
+func (p *Property) SetKey(key *string) {
+	p.key = key
 }
 
 // Type returns _type.
-func (property *Property) Type() uint8 {
-	return property._type
+func (p *Property) Type() uint8 {
+	return p._type
 }
 
 // SetType sets the _type.
-func (property *Property) SetType(_type uint8) {
-	property._type = _type
+func (p *Property) SetType(_type uint8) {
+	p._type = _type
 }
 
 // MultiLingual returns multiLingual.
-func (property *Property) MultiLingual() bool {
-	return property.multiLingual
+func (p *Property) MultiLingual() bool {
+	return p.multiLingual
 }
 
 // SetMultiLingual sets the multiLingual.
-func (property *Property) SetMultiLingual(multiLingual bool) {
-	property.multiLingual = multiLingual
+func (p *Property) SetMultiLingual(multiLingual bool) {
+	p.multiLingual = multiLingual
 }
 
 func newProperty() *Property {

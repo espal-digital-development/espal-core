@@ -30,173 +30,173 @@ type NewsArticleEntity interface {
 }
 
 // ID returns id.
-func (newsArticle *NewsArticle) ID() string {
-	return newsArticle.id
+func (n *NewsArticle) ID() string {
+	return n.id
 }
 
 // CreatedByID returns createdByID.
-func (newsArticle *NewsArticle) CreatedByID() string {
-	return newsArticle.createdByID
+func (n *NewsArticle) CreatedByID() string {
+	return n.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (newsArticle *NewsArticle) SetCreatedByID(createdByID string) {
-	newsArticle.createdByID = createdByID
+func (n *NewsArticle) SetCreatedByID(createdByID string) {
+	n.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (newsArticle *NewsArticle) UpdatedByID() *string {
-	return newsArticle.updatedByID
+func (n *NewsArticle) UpdatedByID() *string {
+	return n.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (newsArticle *NewsArticle) SetUpdatedByID(updatedByID *string) {
-	newsArticle.updatedByID = updatedByID
+func (n *NewsArticle) SetUpdatedByID(updatedByID *string) {
+	n.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (newsArticle *NewsArticle) CreatedAt() time.Time {
-	return newsArticle.createdAt
+func (n *NewsArticle) CreatedAt() time.Time {
+	return n.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (newsArticle *NewsArticle) SetCreatedAt(createdAt time.Time) {
-	newsArticle.createdAt = createdAt
+func (n *NewsArticle) SetCreatedAt(createdAt time.Time) {
+	n.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (newsArticle *NewsArticle) UpdatedAt() *time.Time {
-	return newsArticle.updatedAt
+func (n *NewsArticle) UpdatedAt() *time.Time {
+	return n.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (newsArticle *NewsArticle) SetUpdatedAt(updatedAt *time.Time) {
-	newsArticle.updatedAt = updatedAt
+func (n *NewsArticle) SetUpdatedAt(updatedAt *time.Time) {
+	n.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (newsArticle *NewsArticle) CreatedByFirstName() *string {
-	return newsArticle.createdByFirstName
+func (n *NewsArticle) CreatedByFirstName() *string {
+	return n.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (newsArticle *NewsArticle) SetCreatedByFirstName(createdByFirstName *string) {
-	newsArticle.createdByFirstName = createdByFirstName
+func (n *NewsArticle) SetCreatedByFirstName(createdByFirstName *string) {
+	n.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (newsArticle *NewsArticle) CreatedBySurname() *string {
-	return newsArticle.createdBySurname
+func (n *NewsArticle) CreatedBySurname() *string {
+	return n.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (newsArticle *NewsArticle) SetCreatedBySurname(createdBySurname *string) {
-	newsArticle.createdBySurname = createdBySurname
+func (n *NewsArticle) SetCreatedBySurname(createdBySurname *string) {
+	n.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (newsArticle *NewsArticle) UpdatedByFirstName() *string {
-	return newsArticle.updatedByFirstName
+func (n *NewsArticle) UpdatedByFirstName() *string {
+	return n.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (newsArticle *NewsArticle) SetUpdatedByFirstName(updatedByFirstName *string) {
-	newsArticle.updatedByFirstName = updatedByFirstName
+func (n *NewsArticle) SetUpdatedByFirstName(updatedByFirstName *string) {
+	n.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (newsArticle *NewsArticle) UpdatedBySurname() *string {
-	return newsArticle.updatedBySurname
+func (n *NewsArticle) UpdatedBySurname() *string {
+	return n.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (newsArticle *NewsArticle) SetUpdatedBySurname(updatedBySurname *string) {
-	newsArticle.updatedBySurname = updatedBySurname
+func (n *NewsArticle) SetUpdatedBySurname(updatedBySurname *string) {
+	n.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (newsArticle *NewsArticle) IsUpdated() bool {
-	return newsArticle.updatedByID != nil
+func (n *NewsArticle) IsUpdated() bool {
+	return n.updatedByID != nil
 }
 
 // Active returns active.
-func (newsArticle *NewsArticle) Active() bool {
-	return newsArticle.active
+func (n *NewsArticle) Active() bool {
+	return n.active
 }
 
 // SetActive sets the active.
-func (newsArticle *NewsArticle) SetActive(active bool) {
-	newsArticle.active = active
+func (n *NewsArticle) SetActive(active bool) {
+	n.active = active
 }
 
 // Sorting returns sorting.
-func (newsArticle *NewsArticle) Sorting() uint {
-	return newsArticle.sorting
+func (n *NewsArticle) Sorting() uint {
+	return n.sorting
 }
 
 // SetSorting sets the sorting.
-func (newsArticle *NewsArticle) SetSorting(sorting uint) {
-	newsArticle.sorting = sorting
+func (n *NewsArticle) SetSorting(sorting uint) {
+	n.sorting = sorting
 }
 
 // SectionID returns sectionID.
-func (newsArticle *NewsArticle) SectionID() *string {
-	return newsArticle.sectionID
+func (n *NewsArticle) SectionID() *string {
+	return n.sectionID
 }
 
 // SetSectionID sets the sectionID.
-func (newsArticle *NewsArticle) SetSectionID(sectionID *string) {
-	newsArticle.sectionID = sectionID
+func (n *NewsArticle) SetSectionID(sectionID *string) {
+	n.sectionID = sectionID
 }
 
 // ApprovedByID returns approvedByID.
-func (newsArticle *NewsArticle) ApprovedByID() *string {
-	return newsArticle.approvedByID
+func (n *NewsArticle) ApprovedByID() *string {
+	return n.approvedByID
 }
 
 // SetApprovedByID sets the approvedByID.
-func (newsArticle *NewsArticle) SetApprovedByID(approvedByID *string) {
-	newsArticle.approvedByID = approvedByID
+func (n *NewsArticle) SetApprovedByID(approvedByID *string) {
+	n.approvedByID = approvedByID
 }
 
 // ApprovedDate returns approvedDate.
-func (newsArticle *NewsArticle) ApprovedDate() *time.Time {
-	return newsArticle.approvedDate
+func (n *NewsArticle) ApprovedDate() *time.Time {
+	return n.approvedDate
 }
 
 // SetApprovedDate sets the approvedDate.
-func (newsArticle *NewsArticle) SetApprovedDate(approvedDate *time.Time) {
-	newsArticle.approvedDate = approvedDate
+func (n *NewsArticle) SetApprovedDate(approvedDate *time.Time) {
+	n.approvedDate = approvedDate
 }
 
 // PublishDate returns publishDate.
-func (newsArticle *NewsArticle) PublishDate() *time.Time {
-	return newsArticle.publishDate
+func (n *NewsArticle) PublishDate() *time.Time {
+	return n.publishDate
 }
 
 // SetPublishDate sets the publishDate.
-func (newsArticle *NewsArticle) SetPublishDate(publishDate *time.Time) {
-	newsArticle.publishDate = publishDate
+func (n *NewsArticle) SetPublishDate(publishDate *time.Time) {
+	n.publishDate = publishDate
 }
 
 // ExpirationDate returns expirationDate.
-func (newsArticle *NewsArticle) ExpirationDate() *time.Time {
-	return newsArticle.expirationDate
+func (n *NewsArticle) ExpirationDate() *time.Time {
+	return n.expirationDate
 }
 
 // SetExpirationDate sets the expirationDate.
-func (newsArticle *NewsArticle) SetExpirationDate(expirationDate *time.Time) {
-	newsArticle.expirationDate = expirationDate
+func (n *NewsArticle) SetExpirationDate(expirationDate *time.Time) {
+	n.expirationDate = expirationDate
 }
 
 // Comments returns comments.
-func (newsArticle *NewsArticle) Comments() *string {
-	return newsArticle.comments
+func (n *NewsArticle) Comments() *string {
+	return n.comments
 }
 
 // SetComments sets the comments.
-func (newsArticle *NewsArticle) SetComments(comments *string) {
-	newsArticle.comments = comments
+func (n *NewsArticle) SetComments(comments *string) {
+	n.comments = comments
 }
 
 func newNewsArticle() *NewsArticle {

@@ -9,106 +9,106 @@ import (
 )
 
 func TestReceivingTable(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
-	if receiving.TableName() == "" {
+	r := receiving.NewReceivingEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestReceivingTableAlias(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
-	if receiving.TableName() == "" {
+	r := receiving.NewReceivingEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestReceivingIsUpdated(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
-	receiving.IsUpdated()
+	r := receiving.NewReceivingEntity()
+	r.IsUpdated()
 }
 
 func TestReceivingID(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
-	receiving.ID()
+	r := receiving.NewReceivingEntity()
+	r.ID()
 }
 
 func TestReceivingCreatedByID(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetCreatedByID(testValue)
-	if testValue != receiving.CreatedByID() {
+	r.SetCreatedByID(testValue)
+	if testValue != r.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingUpdatedByID(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetUpdatedByID(&testValue)
-	if &testValue != receiving.UpdatedByID() {
+	r.SetUpdatedByID(&testValue)
+	if &testValue != r.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingCreatedAt(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := time.Now()
-	receiving.SetCreatedAt(testValue)
-	if testValue != receiving.CreatedAt() {
+	r.SetCreatedAt(testValue)
+	if testValue != r.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingUpdatedAt(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := time.Now()
-	receiving.SetUpdatedAt(&testValue)
-	if &testValue != receiving.UpdatedAt() {
+	r.SetUpdatedAt(&testValue)
+	if &testValue != r.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingCreatedByFirstName(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetCreatedByFirstName(&testValue)
-	if &testValue != receiving.CreatedByFirstName() {
+	r.SetCreatedByFirstName(&testValue)
+	if &testValue != r.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingCreatedBySurname(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetCreatedBySurname(&testValue)
-	if &testValue != receiving.CreatedBySurname() {
+	r.SetCreatedBySurname(&testValue)
+	if &testValue != r.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingUpdatedByFirstName(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetUpdatedByFirstName(&testValue)
-	if &testValue != receiving.UpdatedByFirstName() {
+	r.SetUpdatedByFirstName(&testValue)
+	if &testValue != r.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingUpdatedBySurname(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetUpdatedBySurname(&testValue)
-	if &testValue != receiving.UpdatedBySurname() {
+	r.SetUpdatedBySurname(&testValue)
+	if &testValue != r.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestReceivingComments(t *testing.T) {
-	receiving := receiving.NewReceivingEntity()
+	r := receiving.NewReceivingEntity()
 	testValue := "testValue"
-	receiving.SetComments(&testValue)
-	if &testValue != receiving.Comments() {
+	r.SetComments(&testValue)
+	if &testValue != r.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

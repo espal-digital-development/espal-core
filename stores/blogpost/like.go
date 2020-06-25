@@ -20,11 +20,11 @@ type Like struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (like *Like) TableName() string {
+func (l *Like) TableName() string {
 	return "BlogPostLike"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (like *Like) TableAlias() string {
+func (l *Like) TableAlias() string {
 	return "bpl"
 }

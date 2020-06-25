@@ -9,115 +9,115 @@ import (
 )
 
 func TestPaymentMethodTable(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
-	if paymentMethod.TableName() == "" {
+	p := paymentmethod.NewPaymentMethodEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPaymentMethodTableAlias(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
-	if paymentMethod.TableName() == "" {
+	p := paymentmethod.NewPaymentMethodEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPaymentMethodIsUpdated(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
-	paymentMethod.IsUpdated()
+	p := paymentmethod.NewPaymentMethodEntity()
+	p.IsUpdated()
 }
 
 func TestPaymentMethodID(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
-	paymentMethod.ID()
+	p := paymentmethod.NewPaymentMethodEntity()
+	p.ID()
 }
 
 func TestPaymentMethodCreatedByID(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetCreatedByID(testValue)
-	if testValue != paymentMethod.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodUpdatedByID(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetUpdatedByID(&testValue)
-	if &testValue != paymentMethod.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodCreatedAt(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := time.Now()
-	paymentMethod.SetCreatedAt(testValue)
-	if testValue != paymentMethod.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodUpdatedAt(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := time.Now()
-	paymentMethod.SetUpdatedAt(&testValue)
-	if &testValue != paymentMethod.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodCreatedByFirstName(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetCreatedByFirstName(&testValue)
-	if &testValue != paymentMethod.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodCreatedBySurname(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetCreatedBySurname(&testValue)
-	if &testValue != paymentMethod.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodUpdatedByFirstName(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetUpdatedByFirstName(&testValue)
-	if &testValue != paymentMethod.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodUpdatedBySurname(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetUpdatedBySurname(&testValue)
-	if &testValue != paymentMethod.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodName(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetName(testValue)
-	if testValue != paymentMethod.Name() {
+	p.SetName(testValue)
+	if testValue != p.Name() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPaymentMethodDescription(t *testing.T) {
-	paymentMethod := paymentmethod.NewPaymentMethodEntity()
+	p := paymentmethod.NewPaymentMethodEntity()
 	testValue := "testValue"
-	paymentMethod.SetDescription(&testValue)
-	if &testValue != paymentMethod.Description() {
+	p.SetDescription(&testValue)
+	if &testValue != p.Description() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

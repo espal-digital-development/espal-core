@@ -13,78 +13,78 @@ import (
 
 const dbURLBlueprint = "postgresql://%s@%s:%d/%s?ssl=true&sslmode=require&sslrootcert=%s&sslkey=%s&sslcert=%s"
 
-func (runner *Runner) database() error {
+func (r *Runner) database() error {
 	var err error
-	runner.databases.creator = database.New()
-	err = runner.databases.creator.Open("postgres",
+	r.databases.creator = database.New()
+	err = r.databases.creator.Open("postgres",
 		fmt.Sprintf(dbURLBlueprint,
-			runner.services.config.DatabaseMigrator(),
-			runner.services.config.DatabaseHost(),
-			runner.services.config.DatabasePort(),
-			runner.services.config.DatabaseName(),
-			runner.services.config.DatabaseSSLRootCertificateFile(),
-			runner.services.config.DatabaseMigratorSSLKeyFile(),
-			runner.services.config.DatabaseMigratorSSLCertificateFile(),
+			r.services.config.DatabaseMigrator(),
+			r.services.config.DatabaseHost(),
+			r.services.config.DatabasePort(),
+			r.services.config.DatabaseName(),
+			r.services.config.DatabaseSSLRootCertificateFile(),
+			r.services.config.DatabaseMigratorSSLKeyFile(),
+			r.services.config.DatabaseMigratorSSLCertificateFile(),
 		),
 	)
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.databases.deletor = database.New()
-	err = runner.databases.deletor.Open("postgres",
+	r.databases.deletor = database.New()
+	err = r.databases.deletor.Open("postgres",
 		fmt.Sprintf(dbURLBlueprint,
-			runner.services.config.DatabaseDeletor(),
-			runner.services.config.DatabaseHost(),
-			runner.services.config.DatabasePort(),
-			runner.services.config.DatabaseName(),
-			runner.services.config.DatabaseSSLRootCertificateFile(),
-			runner.services.config.DatabaseDeletorSSLKeyFile(),
-			runner.services.config.DatabaseDeletorSSLCertificateFile(),
+			r.services.config.DatabaseDeletor(),
+			r.services.config.DatabaseHost(),
+			r.services.config.DatabasePort(),
+			r.services.config.DatabaseName(),
+			r.services.config.DatabaseSSLRootCertificateFile(),
+			r.services.config.DatabaseDeletorSSLKeyFile(),
+			r.services.config.DatabaseDeletorSSLCertificateFile(),
 		),
 	)
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.databases.inserter = database.New()
-	err = runner.databases.inserter.Open("postgres",
+	r.databases.inserter = database.New()
+	err = r.databases.inserter.Open("postgres",
 		fmt.Sprintf(dbURLBlueprint,
-			runner.services.config.DatabaseInserter(),
-			runner.services.config.DatabaseHost(),
-			runner.services.config.DatabasePort(),
-			runner.services.config.DatabaseName(),
-			runner.services.config.DatabaseSSLRootCertificateFile(),
-			runner.services.config.DatabaseInserterSSLKeyFile(),
-			runner.services.config.DatabaseInserterSSLCertificateFile(),
+			r.services.config.DatabaseInserter(),
+			r.services.config.DatabaseHost(),
+			r.services.config.DatabasePort(),
+			r.services.config.DatabaseName(),
+			r.services.config.DatabaseSSLRootCertificateFile(),
+			r.services.config.DatabaseInserterSSLKeyFile(),
+			r.services.config.DatabaseInserterSSLCertificateFile(),
 		),
 	)
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.databases.selecter = database.New()
-	err = runner.databases.selecter.Open("postgres",
+	r.databases.selecter = database.New()
+	err = r.databases.selecter.Open("postgres",
 		fmt.Sprintf(dbURLBlueprint,
-			runner.services.config.DatabaseSelecter(),
-			runner.services.config.DatabaseHost(),
-			runner.services.config.DatabasePort(),
-			runner.services.config.DatabaseName(),
-			runner.services.config.DatabaseSSLRootCertificateFile(),
-			runner.services.config.DatabaseSelecterSSLKeyFile(),
-			runner.services.config.DatabaseSelecterSSLCertificateFile(),
+			r.services.config.DatabaseSelecter(),
+			r.services.config.DatabaseHost(),
+			r.services.config.DatabasePort(),
+			r.services.config.DatabaseName(),
+			r.services.config.DatabaseSSLRootCertificateFile(),
+			r.services.config.DatabaseSelecterSSLKeyFile(),
+			r.services.config.DatabaseSelecterSSLCertificateFile(),
 		),
 	)
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.databases.updater = database.New()
-	err = runner.databases.updater.Open("postgres",
+	r.databases.updater = database.New()
+	err = r.databases.updater.Open("postgres",
 		fmt.Sprintf(dbURLBlueprint,
-			runner.services.config.DatabaseUpdater(),
-			runner.services.config.DatabaseHost(),
-			runner.services.config.DatabasePort(),
-			runner.services.config.DatabaseName(),
-			runner.services.config.DatabaseSSLRootCertificateFile(),
-			runner.services.config.DatabaseUpdaterSSLKeyFile(),
-			runner.services.config.DatabaseUpdaterSSLCertificateFile(),
+			r.services.config.DatabaseUpdater(),
+			r.services.config.DatabaseHost(),
+			r.services.config.DatabasePort(),
+			r.services.config.DatabaseName(),
+			r.services.config.DatabaseSSLRootCertificateFile(),
+			r.services.config.DatabaseUpdaterSSLKeyFile(),
+			r.services.config.DatabaseUpdaterSSLCertificateFile(),
 		),
 	)
 	if err != nil {
@@ -94,39 +94,39 @@ func (runner *Runner) database() error {
 	migratorDatabase := database.New()
 	err = migratorDatabase.Open("postgres",
 		fmt.Sprintf(dbURLBlueprint,
-			runner.services.config.DatabaseMigrator(),
-			runner.services.config.DatabaseHost(),
-			runner.services.config.DatabasePort(),
-			runner.services.config.DatabaseName(),
-			runner.services.config.DatabaseSSLRootCertificateFile(),
-			runner.services.config.DatabaseMigratorSSLKeyFile(),
-			runner.services.config.DatabaseMigratorSSLCertificateFile(),
+			r.services.config.DatabaseMigrator(),
+			r.services.config.DatabaseHost(),
+			r.services.config.DatabasePort(),
+			r.services.config.DatabaseName(),
+			r.services.config.DatabaseSSLRootCertificateFile(),
+			r.services.config.DatabaseMigratorSSLKeyFile(),
+			r.services.config.DatabaseMigratorSSLCertificateFile(),
 		),
 	)
 	if err != nil {
 		return errors.Trace(err)
 	}
 
-	runner.services.entityMutators = entitymutators.New(runner.databases.inserter, runner.databases.updater)
-	runner.services.databaseFilters = filters.New(runner.databases.selecter)
-	migrationsService := migrations.New(migratorDatabase, runner.services.logger)
+	r.services.entityMutators = entitymutators.New(r.databases.inserter, r.databases.updater)
+	r.services.databaseFilters = filters.New(r.databases.selecter)
+	migrationsService := migrations.New(migratorDatabase, r.services.logger)
 	migrationsToRun, err := migrationsService.MigrationsToRun()
 	if err != nil {
 		return errors.Trace(err)
 	}
 	if migrationsToRun > 0 {
-		runner.services.logger.Info("Running migrations..")
+		r.services.logger.Info("Running migrations..")
 	}
 	if err := migrationsService.Run(); err != nil {
 		return errors.Trace(err)
 	}
-	fixturesService, err := fixtures.New(runner.databases.inserter, runner.databases.updater, runner.repositories.languages, runner.repositories.countries, runner.repositories.currencies, runner.repositories.userRights)
+	fixturesService, err := fixtures.New(r.databases.inserter, r.databases.updater, r.repositories.languages, r.repositories.countries, r.repositories.currencies, r.repositories.userRights)
 	if err != nil {
 		return errors.Trace(err)
 	}
 	// Run fixtures only after when it's the first migration run
 	if migrationsToRun == migrationsService.TotalMigrations() {
-		runner.services.logger.Info("Running fixtures..")
+		r.services.logger.Info("Running fixtures..")
 		if err := fixturesService.Run(); err != nil {
 			return errors.Trace(err)
 		}

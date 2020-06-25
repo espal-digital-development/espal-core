@@ -22,6 +22,6 @@ type Page struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (page *Page) TableAlias() string {
+func (p *Page) TableAlias() string {
 	return "pag"
 }

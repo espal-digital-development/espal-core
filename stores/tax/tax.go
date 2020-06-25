@@ -22,6 +22,6 @@ type Tax struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (tax *Tax) TableAlias() string {
+func (t *Tax) TableAlias() string {
 	return "ta"
 }

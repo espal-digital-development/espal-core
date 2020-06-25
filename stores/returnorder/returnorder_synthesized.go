@@ -20,133 +20,133 @@ type ReturnOrderEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (returnOrder *ReturnOrder) TableName() string {
+func (r *ReturnOrder) TableName() string {
 	return "ReturnOrder"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (returnOrder *ReturnOrder) TableAlias() string {
+func (r *ReturnOrder) TableAlias() string {
 	return "roe"
 }
 
 // ID returns id.
-func (returnOrder *ReturnOrder) ID() string {
-	return returnOrder.id
+func (r *ReturnOrder) ID() string {
+	return r.id
 }
 
 // CreatedByID returns createdByID.
-func (returnOrder *ReturnOrder) CreatedByID() string {
-	return returnOrder.createdByID
+func (r *ReturnOrder) CreatedByID() string {
+	return r.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (returnOrder *ReturnOrder) SetCreatedByID(createdByID string) {
-	returnOrder.createdByID = createdByID
+func (r *ReturnOrder) SetCreatedByID(createdByID string) {
+	r.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (returnOrder *ReturnOrder) UpdatedByID() *string {
-	return returnOrder.updatedByID
+func (r *ReturnOrder) UpdatedByID() *string {
+	return r.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (returnOrder *ReturnOrder) SetUpdatedByID(updatedByID *string) {
-	returnOrder.updatedByID = updatedByID
+func (r *ReturnOrder) SetUpdatedByID(updatedByID *string) {
+	r.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (returnOrder *ReturnOrder) CreatedAt() time.Time {
-	return returnOrder.createdAt
+func (r *ReturnOrder) CreatedAt() time.Time {
+	return r.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (returnOrder *ReturnOrder) SetCreatedAt(createdAt time.Time) {
-	returnOrder.createdAt = createdAt
+func (r *ReturnOrder) SetCreatedAt(createdAt time.Time) {
+	r.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (returnOrder *ReturnOrder) UpdatedAt() *time.Time {
-	return returnOrder.updatedAt
+func (r *ReturnOrder) UpdatedAt() *time.Time {
+	return r.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (returnOrder *ReturnOrder) SetUpdatedAt(updatedAt *time.Time) {
-	returnOrder.updatedAt = updatedAt
+func (r *ReturnOrder) SetUpdatedAt(updatedAt *time.Time) {
+	r.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (returnOrder *ReturnOrder) CreatedByFirstName() *string {
-	return returnOrder.createdByFirstName
+func (r *ReturnOrder) CreatedByFirstName() *string {
+	return r.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (returnOrder *ReturnOrder) SetCreatedByFirstName(createdByFirstName *string) {
-	returnOrder.createdByFirstName = createdByFirstName
+func (r *ReturnOrder) SetCreatedByFirstName(createdByFirstName *string) {
+	r.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (returnOrder *ReturnOrder) CreatedBySurname() *string {
-	return returnOrder.createdBySurname
+func (r *ReturnOrder) CreatedBySurname() *string {
+	return r.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (returnOrder *ReturnOrder) SetCreatedBySurname(createdBySurname *string) {
-	returnOrder.createdBySurname = createdBySurname
+func (r *ReturnOrder) SetCreatedBySurname(createdBySurname *string) {
+	r.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (returnOrder *ReturnOrder) UpdatedByFirstName() *string {
-	return returnOrder.updatedByFirstName
+func (r *ReturnOrder) UpdatedByFirstName() *string {
+	return r.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (returnOrder *ReturnOrder) SetUpdatedByFirstName(updatedByFirstName *string) {
-	returnOrder.updatedByFirstName = updatedByFirstName
+func (r *ReturnOrder) SetUpdatedByFirstName(updatedByFirstName *string) {
+	r.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (returnOrder *ReturnOrder) UpdatedBySurname() *string {
-	return returnOrder.updatedBySurname
+func (r *ReturnOrder) UpdatedBySurname() *string {
+	return r.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (returnOrder *ReturnOrder) SetUpdatedBySurname(updatedBySurname *string) {
-	returnOrder.updatedBySurname = updatedBySurname
+func (r *ReturnOrder) SetUpdatedBySurname(updatedBySurname *string) {
+	r.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (returnOrder *ReturnOrder) IsUpdated() bool {
-	return returnOrder.updatedByID != nil
+func (r *ReturnOrder) IsUpdated() bool {
+	return r.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (returnOrder *ReturnOrder) DomainID() string {
-	return returnOrder.domainID
+func (r *ReturnOrder) DomainID() string {
+	return r.domainID
 }
 
 // SetDomainID sets the domainID.
-func (returnOrder *ReturnOrder) SetDomainID(domainID string) {
-	returnOrder.domainID = domainID
+func (r *ReturnOrder) SetDomainID(domainID string) {
+	r.domainID = domainID
 }
 
 // UserID returns userID.
-func (returnOrder *ReturnOrder) UserID() string {
-	return returnOrder.userID
+func (r *ReturnOrder) UserID() string {
+	return r.userID
 }
 
 // SetUserID sets the userID.
-func (returnOrder *ReturnOrder) SetUserID(userID string) {
-	returnOrder.userID = userID
+func (r *ReturnOrder) SetUserID(userID string) {
+	r.userID = userID
 }
 
 // Comments returns comments.
-func (returnOrder *ReturnOrder) Comments() *string {
-	return returnOrder.comments
+func (r *ReturnOrder) Comments() *string {
+	return r.comments
 }
 
 // SetComments sets the comments.
-func (returnOrder *ReturnOrder) SetComments(comments *string) {
-	returnOrder.comments = comments
+func (r *ReturnOrder) SetComments(comments *string) {
+	r.comments = comments
 }
 
 func newReturnOrder() *ReturnOrder {

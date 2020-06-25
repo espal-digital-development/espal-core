@@ -18,123 +18,123 @@ type EmailTemplateEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (emailTemplate *EmailTemplate) TableName() string {
+func (e *EmailTemplate) TableName() string {
 	return "EmailTemplate"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (emailTemplate *EmailTemplate) TableAlias() string {
+func (e *EmailTemplate) TableAlias() string {
 	return "ete"
 }
 
 // ID returns id.
-func (emailTemplate *EmailTemplate) ID() string {
-	return emailTemplate.id
+func (e *EmailTemplate) ID() string {
+	return e.id
 }
 
 // CreatedByID returns createdByID.
-func (emailTemplate *EmailTemplate) CreatedByID() string {
-	return emailTemplate.createdByID
+func (e *EmailTemplate) CreatedByID() string {
+	return e.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (emailTemplate *EmailTemplate) SetCreatedByID(createdByID string) {
-	emailTemplate.createdByID = createdByID
+func (e *EmailTemplate) SetCreatedByID(createdByID string) {
+	e.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (emailTemplate *EmailTemplate) UpdatedByID() *string {
-	return emailTemplate.updatedByID
+func (e *EmailTemplate) UpdatedByID() *string {
+	return e.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (emailTemplate *EmailTemplate) SetUpdatedByID(updatedByID *string) {
-	emailTemplate.updatedByID = updatedByID
+func (e *EmailTemplate) SetUpdatedByID(updatedByID *string) {
+	e.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (emailTemplate *EmailTemplate) CreatedAt() time.Time {
-	return emailTemplate.createdAt
+func (e *EmailTemplate) CreatedAt() time.Time {
+	return e.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (emailTemplate *EmailTemplate) SetCreatedAt(createdAt time.Time) {
-	emailTemplate.createdAt = createdAt
+func (e *EmailTemplate) SetCreatedAt(createdAt time.Time) {
+	e.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (emailTemplate *EmailTemplate) UpdatedAt() *time.Time {
-	return emailTemplate.updatedAt
+func (e *EmailTemplate) UpdatedAt() *time.Time {
+	return e.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (emailTemplate *EmailTemplate) SetUpdatedAt(updatedAt *time.Time) {
-	emailTemplate.updatedAt = updatedAt
+func (e *EmailTemplate) SetUpdatedAt(updatedAt *time.Time) {
+	e.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (emailTemplate *EmailTemplate) CreatedByFirstName() *string {
-	return emailTemplate.createdByFirstName
+func (e *EmailTemplate) CreatedByFirstName() *string {
+	return e.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (emailTemplate *EmailTemplate) SetCreatedByFirstName(createdByFirstName *string) {
-	emailTemplate.createdByFirstName = createdByFirstName
+func (e *EmailTemplate) SetCreatedByFirstName(createdByFirstName *string) {
+	e.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (emailTemplate *EmailTemplate) CreatedBySurname() *string {
-	return emailTemplate.createdBySurname
+func (e *EmailTemplate) CreatedBySurname() *string {
+	return e.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (emailTemplate *EmailTemplate) SetCreatedBySurname(createdBySurname *string) {
-	emailTemplate.createdBySurname = createdBySurname
+func (e *EmailTemplate) SetCreatedBySurname(createdBySurname *string) {
+	e.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (emailTemplate *EmailTemplate) UpdatedByFirstName() *string {
-	return emailTemplate.updatedByFirstName
+func (e *EmailTemplate) UpdatedByFirstName() *string {
+	return e.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (emailTemplate *EmailTemplate) SetUpdatedByFirstName(updatedByFirstName *string) {
-	emailTemplate.updatedByFirstName = updatedByFirstName
+func (e *EmailTemplate) SetUpdatedByFirstName(updatedByFirstName *string) {
+	e.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (emailTemplate *EmailTemplate) UpdatedBySurname() *string {
-	return emailTemplate.updatedBySurname
+func (e *EmailTemplate) UpdatedBySurname() *string {
+	return e.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (emailTemplate *EmailTemplate) SetUpdatedBySurname(updatedBySurname *string) {
-	emailTemplate.updatedBySurname = updatedBySurname
+func (e *EmailTemplate) SetUpdatedBySurname(updatedBySurname *string) {
+	e.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (emailTemplate *EmailTemplate) IsUpdated() bool {
-	return emailTemplate.updatedByID != nil
+func (e *EmailTemplate) IsUpdated() bool {
+	return e.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (emailTemplate *EmailTemplate) DomainID() string {
-	return emailTemplate.domainID
+func (e *EmailTemplate) DomainID() string {
+	return e.domainID
 }
 
 // SetDomainID sets the domainID.
-func (emailTemplate *EmailTemplate) SetDomainID(domainID string) {
-	emailTemplate.domainID = domainID
+func (e *EmailTemplate) SetDomainID(domainID string) {
+	e.domainID = domainID
 }
 
 // Active returns active.
-func (emailTemplate *EmailTemplate) Active() bool {
-	return emailTemplate.active
+func (e *EmailTemplate) Active() bool {
+	return e.active
 }
 
 // SetActive sets the active.
-func (emailTemplate *EmailTemplate) SetActive(active bool) {
-	emailTemplate.active = active
+func (e *EmailTemplate) SetActive(active bool) {
+	e.active = active
 }
 
 func newEmailTemplate() *EmailTemplate {

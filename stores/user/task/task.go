@@ -24,11 +24,11 @@ type Task struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (task *Task) TableName() string {
+func (t *Task) TableName() string {
 	return "UserTask"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (task *Task) TableAlias() string {
+func (t *Task) TableAlias() string {
 	return "ut"
 }

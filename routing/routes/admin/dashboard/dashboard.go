@@ -11,13 +11,13 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasAdminAccess() {
 		context.RenderUnauthorized()
 		return
 	}
 
-	route.dashboardPageFactory.NewPage(context).Render()
+	r.dashboardPageFactory.NewPage(context).Render()
 }
 
 // New returns a new instance of Route.

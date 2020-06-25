@@ -9,106 +9,106 @@ import (
 )
 
 func TestPickingSlipTable(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
-	if pickingSlip.TableName() == "" {
+	p := pickingslip.NewPickingSlipEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPickingSlipTableAlias(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
-	if pickingSlip.TableName() == "" {
+	p := pickingslip.NewPickingSlipEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPickingSlipIsUpdated(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
-	pickingSlip.IsUpdated()
+	p := pickingslip.NewPickingSlipEntity()
+	p.IsUpdated()
 }
 
 func TestPickingSlipID(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
-	pickingSlip.ID()
+	p := pickingslip.NewPickingSlipEntity()
+	p.ID()
 }
 
 func TestPickingSlipCreatedByID(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetCreatedByID(testValue)
-	if testValue != pickingSlip.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipUpdatedByID(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetUpdatedByID(&testValue)
-	if &testValue != pickingSlip.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipCreatedAt(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := time.Now()
-	pickingSlip.SetCreatedAt(testValue)
-	if testValue != pickingSlip.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipUpdatedAt(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := time.Now()
-	pickingSlip.SetUpdatedAt(&testValue)
-	if &testValue != pickingSlip.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipCreatedByFirstName(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetCreatedByFirstName(&testValue)
-	if &testValue != pickingSlip.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipCreatedBySurname(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetCreatedBySurname(&testValue)
-	if &testValue != pickingSlip.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipUpdatedByFirstName(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetUpdatedByFirstName(&testValue)
-	if &testValue != pickingSlip.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipUpdatedBySurname(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetUpdatedBySurname(&testValue)
-	if &testValue != pickingSlip.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPickingSlipComments(t *testing.T) {
-	pickingSlip := pickingslip.NewPickingSlipEntity()
+	p := pickingslip.NewPickingSlipEntity()
 	testValue := "testValue"
-	pickingSlip.SetComments(&testValue)
-	if &testValue != pickingSlip.Comments() {
+	p.SetComments(&testValue)
+	if &testValue != p.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

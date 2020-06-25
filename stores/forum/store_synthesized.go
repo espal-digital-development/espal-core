@@ -21,8 +21,8 @@ type Store interface {
 	DeleteOneForumPostByID(id string) error
 }
 
-func (forumsStore *ForumsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Forum, ok bool, err error) {
-	rows, err := forumsStore.selecterDatabase.Query(query, params...)
+func (f *ForumsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Forum, ok bool, err error) {
+	rows, err := f.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -44,15 +44,15 @@ func (forumsStore *ForumsStore) fetch(query string, withCreators bool, params ..
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		forum := newForum()
-		fields := []interface{}{&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdAt, &forum.updatedAt, &forum.active, &forum.sorting, &forum.parentID, &forum.name, &forum.topicsCount, &forum.postsCount}
+		f := newForum()
+		fields := []interface{}{&f.id, &f.createdByID, &f.updatedByID, &f.createdAt, &f.updatedAt, &f.active, &f.sorting, &f.parentID, &f.name, &f.topicsCount, &f.postsCount}
 		if withCreators {
-			fields = append(fields, &forum.createdByFirstName, &forum.createdBySurname, &forum.updatedByFirstName, &forum.updatedBySurname)
+			fields = append(fields, &f.createdByFirstName, &f.createdBySurname, &f.updatedByFirstName, &f.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, forum)
+		result = append(result, f)
 	}
 	ok = len(result) > 0
 	return
@@ -60,9 +60,9 @@ func (forumsStore *ForumsStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of ForumsStore.
 func New(selecterDatabase database.Database, deletorDatabase database.Database) (*ForumsStore, error) {
-	forumsStore := &ForumsStore{
+	f := &ForumsStore{
 		selecterDatabase: selecterDatabase,
 		deletorDatabase:  deletorDatabase,
 	}
-	return forumsStore, nil
+	return f, nil
 }

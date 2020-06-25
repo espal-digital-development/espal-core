@@ -21,7 +21,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	id := context.QueryValue("id")
 
 	if (id == "" && !context.HasUserRightOrForbid("CreateDomain")) ||
@@ -33,7 +33,7 @@ func (route *Route) Handle(context contexts.Context) {
 	var ok bool
 	domain := &domain.Domain{}
 	if id != "" {
-		domain, ok, err = route.domainStore.GetOneByIDWithCreator(id)
+		domain, ok, err = r.domainStore.GetOneByIDWithCreator(id)
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -50,7 +50,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.createUpdateFormValidator.New(domain, language)
+	form, err := r.createUpdateFormValidator.New(domain, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -68,7 +68,7 @@ func (route *Route) Handle(context contexts.Context) {
 		currencies := strings.Join(form.FieldValues("currencies"), ",")
 		host := form.FieldValue("host")
 
-		entityMutator := route.entityMutatorsFactory.NewMutation(domain, form, "Domain")
+		entityMutator := r.entityMutatorsFactory.NewMutation(domain, form, "Domain")
 		entityMutator.SetBool("active", form.FieldValueAsBool("active"), domain.Active())
 		entityMutator.SetString("siteID", &siteID, domain.SiteID())
 		entityMutator.SetString("host", &host, domain.Host())
@@ -85,7 +85,7 @@ func (route *Route) Handle(context contexts.Context) {
 			return
 		}
 
-		domain, ok, err = route.domainStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
+		domain, ok, err = r.domainStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -96,7 +96,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	route.createUpdatePageFactory.NewPage(context, domain, language, form.View(), context.GetAdminCreateUpdateTitle(id, "domain")).Render()
+	r.createUpdatePageFactory.NewPage(context, domain, language, form.View(), context.GetAdminCreateUpdateTitle(id, "domain")).Render()
 }
 
 // New returns a new instance of Route.

@@ -4,6 +4,7 @@
 package translationsmock
 
 import (
+	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"sync"
 )
 
@@ -14,11 +15,15 @@ var (
 	lockRepositoryMockSingular        sync.RWMutex
 )
 
-// RepositoryMock is a mock implementation of Repository.
+// Ensure, that RepositoryMock does implement translations.Repository.
+// If this is not the case, regenerate this file with moq.
+var _ translations.Repository = &RepositoryMock{}
+
+// RepositoryMock is a mock implementation of translations.Repository.
 //
 //     func TestSomethingThatUsesRepository(t *testing.T) {
 //
-//         // make and configure a mocked Repository
+//         // make and configure a mocked translations.Repository
 //         mockedRepository := &RepositoryMock{
 //             FormattedFunc: func(languageID uint16, key string) string {
 // 	               panic("mock out the Formatted method")
@@ -34,7 +39,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedRepository in code that requires Repository
+//         // use mockedRepository in code that requires translations.Repository
 //         // and then make assertions.
 //
 //     }

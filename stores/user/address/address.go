@@ -34,11 +34,11 @@ type Address struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (address *Address) TableName() string {
+func (a *Address) TableName() string {
 	return "UserAddress"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (address *Address) TableAlias() string {
+func (a *Address) TableAlias() string {
 	return "ua"
 }

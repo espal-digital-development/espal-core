@@ -60,113 +60,113 @@ type paths struct {
 }
 
 // ServerSSLCertificateFilePath returns the SSL certificate file path.
-func (configuration *Configuration) ServerSSLCertificateFilePath() string {
-	return configuration.paths.Server.SSLCertificateFile
+func (c *Configuration) ServerSSLCertificateFilePath() string {
+	return c.paths.Server.SSLCertificateFile
 }
 
 // ServerSSLKeyFilePath returns the SSL key file path.
-func (configuration *Configuration) ServerSSLKeyFilePath() string {
-	return configuration.paths.Server.SSLKeyFile
+func (c *Configuration) ServerSSLKeyFilePath() string {
+	return c.paths.Server.SSLKeyFile
 }
 
 // DatabaseSSLRootCertificateFile returns the path for the database root's SSL Certificate File.
-func (configuration *Configuration) DatabaseSSLRootCertificateFile() string {
-	return configuration.paths.Database.SSLRootCertificateFile
+func (c *Configuration) DatabaseSSLRootCertificateFile() string {
+	return c.paths.Database.SSLRootCertificateFile
 }
 
 // DatabaseSelecterSSLCertificateFile returns the path for the selecter's SSL Certificate File.
-func (configuration *Configuration) DatabaseSelecterSSLCertificateFile() string {
-	return configuration.paths.Database.Selecter.SSLCertificateFile
+func (c *Configuration) DatabaseSelecterSSLCertificateFile() string {
+	return c.paths.Database.Selecter.SSLCertificateFile
 }
 
 // DatabaseSelecterSSLKeyFile returns the path for the selecter's SSL Key File.
-func (configuration *Configuration) DatabaseSelecterSSLKeyFile() string {
-	return configuration.paths.Database.Selecter.SSLKeyFile
+func (c *Configuration) DatabaseSelecterSSLKeyFile() string {
+	return c.paths.Database.Selecter.SSLKeyFile
 }
 
 // DatabaseCreatorSSLCertificateFile returns the path for the creator's SSL Certificate File.
-func (configuration *Configuration) DatabaseCreatorSSLCertificateFile() string {
-	return configuration.paths.Database.Creator.SSLCertificateFile
+func (c *Configuration) DatabaseCreatorSSLCertificateFile() string {
+	return c.paths.Database.Creator.SSLCertificateFile
 }
 
 // DatabaseCreatorSSLKeyFile returns the path for the creator's SSL Key File.
-func (configuration *Configuration) DatabaseCreatorSSLKeyFile() string {
-	return configuration.paths.Database.Creator.SSLKeyFile
+func (c *Configuration) DatabaseCreatorSSLKeyFile() string {
+	return c.paths.Database.Creator.SSLKeyFile
 }
 
 // DatabaseInserterSSLCertificateFile returns the path for the inserter's SSL Certificate File.
-func (configuration *Configuration) DatabaseInserterSSLCertificateFile() string {
-	return configuration.paths.Database.Inserter.SSLCertificateFile
+func (c *Configuration) DatabaseInserterSSLCertificateFile() string {
+	return c.paths.Database.Inserter.SSLCertificateFile
 }
 
 // DatabaseInserterSSLKeyFile returns the path for the inserter's SSL Key File.
-func (configuration *Configuration) DatabaseInserterSSLKeyFile() string {
-	return configuration.paths.Database.Inserter.SSLKeyFile
+func (c *Configuration) DatabaseInserterSSLKeyFile() string {
+	return c.paths.Database.Inserter.SSLKeyFile
 }
 
 // DatabaseUpdaterSSLCertificateFile returns the path for the updater's SSL Certificate File.
-func (configuration *Configuration) DatabaseUpdaterSSLCertificateFile() string {
-	return configuration.paths.Database.Updater.SSLCertificateFile
+func (c *Configuration) DatabaseUpdaterSSLCertificateFile() string {
+	return c.paths.Database.Updater.SSLCertificateFile
 }
 
 // DatabaseUpdaterSSLKeyFile returns the path for the updater's SSL Key File.
-func (configuration *Configuration) DatabaseUpdaterSSLKeyFile() string {
-	return configuration.paths.Database.Updater.SSLKeyFile
+func (c *Configuration) DatabaseUpdaterSSLKeyFile() string {
+	return c.paths.Database.Updater.SSLKeyFile
 }
 
 // DatabaseDeletorSSLCertificateFile returns the path for the deletor's SSL Certificate File.
-func (configuration *Configuration) DatabaseDeletorSSLCertificateFile() string {
-	return configuration.paths.Database.Deletor.SSLCertificateFile
+func (c *Configuration) DatabaseDeletorSSLCertificateFile() string {
+	return c.paths.Database.Deletor.SSLCertificateFile
 }
 
 // DatabaseDeletorSSLKeyFile returns the path for the deletor's SSL Key File.
-func (configuration *Configuration) DatabaseDeletorSSLKeyFile() string {
-	return configuration.paths.Database.Deletor.SSLKeyFile
+func (c *Configuration) DatabaseDeletorSSLKeyFile() string {
+	return c.paths.Database.Deletor.SSLKeyFile
 }
 
 // DatabaseMigratorSSLCertificateFile returns the path for the migrator's SSL Certificate File.
-func (configuration *Configuration) DatabaseMigratorSSLCertificateFile() string {
-	return configuration.paths.Database.Migrator.SSLCertificateFile
+func (c *Configuration) DatabaseMigratorSSLCertificateFile() string {
+	return c.paths.Database.Migrator.SSLCertificateFile
 }
 
 // DatabaseMigratorSSLKeyFile returns the path for the migrator's SSL Key File.
-func (configuration *Configuration) DatabaseMigratorSSLKeyFile() string {
-	return configuration.paths.Database.Migrator.SSLKeyFile
+func (c *Configuration) DatabaseMigratorSSLKeyFile() string {
+	return c.paths.Database.Migrator.SSLKeyFile
 }
 
 // StylesheetsAssetsPath returns the stylesheets path.
-func (configuration *Configuration) StylesheetsAssetsPath() string {
-	return configuration.paths.Assets.Stylesheets
+func (c *Configuration) StylesheetsAssetsPath() string {
+	return c.paths.Assets.Stylesheets
 }
 
 // JavaScriptAssetsPath returns the javaScript path.
-func (configuration *Configuration) JavaScriptAssetsPath() string {
-	return configuration.paths.Assets.JavaScript
+func (c *Configuration) JavaScriptAssetsPath() string {
+	return c.paths.Assets.JavaScript
 }
 
 // ImagesAssetsPath returns the images path.
-func (configuration *Configuration) ImagesAssetsPath() string {
-	return configuration.paths.Assets.Images
+func (c *Configuration) ImagesAssetsPath() string {
+	return c.paths.Assets.Images
 }
 
 // PublicRootFilesAssetsPath returns the public root-files path.
 // The difference from the normal public files is that
 // these will be forced on the root path of the serve.
-func (configuration *Configuration) PublicRootFilesAssetsPath() string {
-	return configuration.paths.Assets.PublicRootFiles
+func (c *Configuration) PublicRootFilesAssetsPath() string {
+	return c.paths.Assets.PublicRootFiles
 }
 
 // PublicFilesAssetsPath returns the public files path.
-func (configuration *Configuration) PublicFilesAssetsPath() string {
-	return configuration.paths.Assets.PublicFiles
+func (c *Configuration) PublicFilesAssetsPath() string {
+	return c.paths.Assets.PublicFiles
 }
 
 // PrivateFilesAssetsPath returns the private files path.
-func (configuration *Configuration) PrivateFilesAssetsPath() string {
-	return configuration.paths.Assets.PrivateFiles
+func (c *Configuration) PrivateFilesAssetsPath() string {
+	return c.paths.Assets.PrivateFiles
 }
 
 // TranslationsPath returns the translations path.
-func (configuration *Configuration) TranslationsPath() string {
-	return configuration.paths.Translations
+func (c *Configuration) TranslationsPath() string {
+	return c.paths.Translations
 }

@@ -30,11 +30,11 @@ type Post struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (post *Post) TableName() string {
+func (p *Post) TableName() string {
 	return "ForumPost"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (post *Post) TableAlias() string {
+func (p *Post) TableAlias() string {
 	return "fopo"
 }

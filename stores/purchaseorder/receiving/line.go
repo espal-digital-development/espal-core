@@ -28,11 +28,11 @@ type Line struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (line *Line) TableName() string {
+func (l *Line) TableName() string {
 	return "PurchaseOrderReceivingLine"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (line *Line) TableAlias() string {
+func (l *Line) TableAlias() string {
 	return "porrl"
 }

@@ -30,178 +30,178 @@ type PriceEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (price *Price) TableName() string {
+func (p *Price) TableName() string {
 	return "Price"
 }
 
 // ID returns id.
-func (price *Price) ID() string {
-	return price.id
+func (p *Price) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (price *Price) CreatedByID() string {
-	return price.createdByID
+func (p *Price) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (price *Price) SetCreatedByID(createdByID string) {
-	price.createdByID = createdByID
+func (p *Price) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (price *Price) UpdatedByID() *string {
-	return price.updatedByID
+func (p *Price) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (price *Price) SetUpdatedByID(updatedByID *string) {
-	price.updatedByID = updatedByID
+func (p *Price) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (price *Price) CreatedAt() time.Time {
-	return price.createdAt
+func (p *Price) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (price *Price) SetCreatedAt(createdAt time.Time) {
-	price.createdAt = createdAt
+func (p *Price) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (price *Price) UpdatedAt() *time.Time {
-	return price.updatedAt
+func (p *Price) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (price *Price) SetUpdatedAt(updatedAt *time.Time) {
-	price.updatedAt = updatedAt
+func (p *Price) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (price *Price) CreatedByFirstName() *string {
-	return price.createdByFirstName
+func (p *Price) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (price *Price) SetCreatedByFirstName(createdByFirstName *string) {
-	price.createdByFirstName = createdByFirstName
+func (p *Price) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (price *Price) CreatedBySurname() *string {
-	return price.createdBySurname
+func (p *Price) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (price *Price) SetCreatedBySurname(createdBySurname *string) {
-	price.createdBySurname = createdBySurname
+func (p *Price) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (price *Price) UpdatedByFirstName() *string {
-	return price.updatedByFirstName
+func (p *Price) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (price *Price) SetUpdatedByFirstName(updatedByFirstName *string) {
-	price.updatedByFirstName = updatedByFirstName
+func (p *Price) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (price *Price) UpdatedBySurname() *string {
-	return price.updatedBySurname
+func (p *Price) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (price *Price) SetUpdatedBySurname(updatedBySurname *string) {
-	price.updatedBySurname = updatedBySurname
+func (p *Price) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (price *Price) IsUpdated() bool {
-	return price.updatedByID != nil
+func (p *Price) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // BundledProductID returns bundledProductID.
-func (price *Price) BundledProductID() *string {
-	return price.bundledProductID
+func (p *Price) BundledProductID() *string {
+	return p.bundledProductID
 }
 
 // SetBundledProductID sets the bundledProductID.
-func (price *Price) SetBundledProductID(bundledProductID *string) {
-	price.bundledProductID = bundledProductID
+func (p *Price) SetBundledProductID(bundledProductID *string) {
+	p.bundledProductID = bundledProductID
 }
 
 // ProductModelID returns productModelID.
-func (price *Price) ProductModelID() *string {
-	return price.productModelID
+func (p *Price) ProductModelID() *string {
+	return p.productModelID
 }
 
 // SetProductModelID sets the productModelID.
-func (price *Price) SetProductModelID(productModelID *string) {
-	price.productModelID = productModelID
+func (p *Price) SetProductModelID(productModelID *string) {
+	p.productModelID = productModelID
 }
 
 // ProductVariantID returns productVariantID.
-func (price *Price) ProductVariantID() *string {
-	return price.productVariantID
+func (p *Price) ProductVariantID() *string {
+	return p.productVariantID
 }
 
 // SetProductVariantID sets the productVariantID.
-func (price *Price) SetProductVariantID(productVariantID *string) {
-	price.productVariantID = productVariantID
+func (p *Price) SetProductVariantID(productVariantID *string) {
+	p.productVariantID = productVariantID
 }
 
 // DomainID returns domainID.
-func (price *Price) DomainID() string {
-	return price.domainID
+func (p *Price) DomainID() string {
+	return p.domainID
 }
 
 // SetDomainID sets the domainID.
-func (price *Price) SetDomainID(domainID string) {
-	price.domainID = domainID
+func (p *Price) SetDomainID(domainID string) {
+	p.domainID = domainID
 }
 
 // PriceGroupID returns priceGroupID.
-func (price *Price) PriceGroupID() string {
-	return price.priceGroupID
+func (p *Price) PriceGroupID() string {
+	return p.priceGroupID
 }
 
 // SetPriceGroupID sets the priceGroupID.
-func (price *Price) SetPriceGroupID(priceGroupID string) {
-	price.priceGroupID = priceGroupID
+func (p *Price) SetPriceGroupID(priceGroupID string) {
+	p.priceGroupID = priceGroupID
 }
 
 // TaxGroup returns taxGroup.
-func (price *Price) TaxGroup() uint {
-	return price.taxGroup
+func (p *Price) TaxGroup() uint {
+	return p.taxGroup
 }
 
 // SetTaxGroup sets the taxGroup.
-func (price *Price) SetTaxGroup(taxGroup uint) {
-	price.taxGroup = taxGroup
+func (p *Price) SetTaxGroup(taxGroup uint) {
+	p.taxGroup = taxGroup
 }
 
 // Currency returns currency.
-func (price *Price) Currency() uint16 {
-	return price.currency
+func (p *Price) Currency() uint16 {
+	return p.currency
 }
 
 // SetCurrency sets the currency.
-func (price *Price) SetCurrency(currency uint16) {
-	price.currency = currency
+func (p *Price) SetCurrency(currency uint16) {
+	p.currency = currency
 }
 
 // Price returns price.
-func (price *Price) Price() float32 {
-	return price.price
+func (p *Price) Price() float32 {
+	return p.price
 }
 
 // SetPrice sets the price.
-func (priceEntity *Price) SetPrice(price float32) {
-	priceEntity.price = price
+func (p *Price) SetPrice(price float32) {
+	p.price = price
 }
 
 func newPrice() *Price {

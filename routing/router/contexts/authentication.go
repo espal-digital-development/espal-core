@@ -29,37 +29,37 @@ type AuthenticationContext interface {
 	PprofURL() string
 }
 
-func (httpContext *HTTPContext) newSession() (sessions.Session, error) {
-	session, cookie, err := httpContext.sessionsFactory.New()
+func (c *HTTPContext) newSession() (sessions.Session, error) {
+	session, cookie, err := c.sessionsFactory.New()
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
-	httpContext.session = session
-	http.SetCookie(httpContext.responseWriter, cookie)
+	c.session = session
+	http.SetCookie(c.responseWriter, cookie)
 	return session, nil
 }
 
-func (httpContext *HTTPContext) getSession() (sessions.Session, bool, error) {
-	if httpContext.session != nil {
-		return httpContext.session, true, nil
+func (c *HTTPContext) getSession() (sessions.Session, bool, error) {
+	if c.session != nil {
+		return c.session, true, nil
 	}
-	cookie, err := httpContext.request.Cookie(httpContext.configService.SessionCookieName())
+	cookie, err := c.request.Cookie(c.configService.SessionCookieName())
 	if err == http.ErrNoCookie {
 		return nil, false, nil
 	}
 	var ok bool
-	httpContext.session, ok, err = httpContext.sessionsFactory.Get(cookie.Value)
-	return httpContext.session, ok, errors.Trace(err)
+	c.session, ok, err = c.sessionsFactory.Get(cookie.Value)
+	return c.session, ok, errors.Trace(err)
 }
 
 // SetSessionValue sets the value for the given session key.
-func (httpContext *HTTPContext) SetSessionValue(key uint8, value []byte) error {
-	session, ok, err := httpContext.getSession()
+func (c *HTTPContext) SetSessionValue(key uint8, value []byte) error {
+	session, ok, err := c.getSession()
 	if err != nil {
 		return errors.Trace(err)
 	}
 	if !ok {
-		session, err = httpContext.newSession()
+		session, err = c.newSession()
 		if err != nil {
 			return errors.Trace(err)
 		}
@@ -69,8 +69,8 @@ func (httpContext *HTTPContext) SetSessionValue(key uint8, value []byte) error {
 }
 
 // GetSessionValue returns the value for the given key.
-func (httpContext *HTTPContext) GetSessionValue(key uint8) ([]byte, bool, error) {
-	session, ok, err := httpContext.getSession()
+func (c *HTTPContext) GetSessionValue(key uint8) ([]byte, bool, error) {
+	session, ok, err := c.getSession()
 	if err != nil {
 		return nil, false, errors.Trace(err)
 	}
@@ -85,8 +85,8 @@ func (httpContext *HTTPContext) GetSessionValue(key uint8) ([]byte, bool, error)
 }
 
 // UnsetSessionValue will remove the value (if it exists) for the given key.
-func (httpContext *HTTPContext) UnsetSessionValue(key uint8) error {
-	session, ok, err := httpContext.getSession()
+func (c *HTTPContext) UnsetSessionValue(key uint8) error {
+	session, ok, err := c.getSession()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -98,28 +98,28 @@ func (httpContext *HTTPContext) UnsetSessionValue(key uint8) error {
 }
 
 // SaveSessionIfNeeded saves the session if it exists or has been touched.
-func (httpContext *HTTPContext) SaveSessionIfNeeded() error {
-	if httpContext.session == nil {
+func (c *HTTPContext) SaveSessionIfNeeded() error {
+	if c.session == nil {
 		return nil
 	}
-	return httpContext.sessionsFactory.Save(httpContext.session)
+	return c.sessionsFactory.Save(c.session)
 }
 
 // IsLoggedIn returns if the user, if present, on the session is logged in.
-func (httpContext *HTTPContext) IsLoggedIn() bool {
-	user, ok, err := httpContext.GetUser()
+func (c *HTTPContext) IsLoggedIn() bool {
+	user, ok, err := c.GetUser()
 	if !ok {
 		return false
 	}
 	if !user.Active() {
-		if err := httpContext.Logout(); err != nil {
-			httpContext.loggerService.Error(errors.ErrorStack(err))
+		if err := c.Logout(); err != nil {
+			c.loggerService.Error(errors.ErrorStack(err))
 			return false
 		}
 		return false
 	}
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return false
 	}
 	return ok
@@ -127,23 +127,23 @@ func (httpContext *HTTPContext) IsLoggedIn() bool {
 
 // Login will register the User's ID to the session and assign it to the
 // existing cookie. If no cookie is present, a new one will be made.
-func (httpContext *HTTPContext) Login(userID string, rememberMe bool) error {
-	session, ok, err := httpContext.getSession()
+func (c *HTTPContext) Login(userID string, rememberMe bool) error {
+	session, ok, err := c.getSession()
 	if err != nil {
 		return errors.Trace(err)
 	}
 	if !ok {
-		session, err = httpContext.newSession()
+		session, err = c.newSession()
 		if err != nil {
 			return errors.Trace(err)
 		}
 	}
 	if rememberMe {
-		http.SetCookie(httpContext.responseWriter, httpContext.sessionsFactory.SetRememberMe(session))
+		http.SetCookie(c.responseWriter, c.sessionsFactory.SetRememberMe(session))
 	}
 	session.Set(sessions.SessionKeyUserID, []byte(userID))
-	if httpContext.user != nil && userID != httpContext.user.ID() {
-		httpContext.user = nil
+	if c.user != nil && userID != c.user.ID() {
+		c.user = nil
 	}
 
 	return nil
@@ -151,24 +151,24 @@ func (httpContext *HTTPContext) Login(userID string, rememberMe bool) error {
 
 // Logout will remove the User's ID from the session and wipe
 // the cookie if it's the last value.
-func (httpContext *HTTPContext) Logout() error {
-	if !httpContext.IsLoggedIn() {
+func (c *HTTPContext) Logout() error {
+	if !c.IsLoggedIn() {
 		return nil
 	}
-	session, ok, err := httpContext.getSession()
+	session, ok, err := c.getSession()
 	if err != nil {
 		return errors.Trace(err)
 	}
 	if ok {
 		session.Unset(sessions.SessionKeyUserID)
 	}
-	httpContext.user = nil
+	c.user = nil
 	return nil
 }
 
 // GetUser returns the logged-in User.
-func (httpContext *HTTPContext) GetUser() (*user.User, bool, error) {
-	session, ok, err := httpContext.getSession()
+func (c *HTTPContext) GetUser() (*user.User, bool, error) {
+	session, ok, err := c.getSession()
 	if err != nil || !ok {
 		return nil, ok, errors.Trace(err)
 	}
@@ -176,23 +176,23 @@ func (httpContext *HTTPContext) GetUser() (*user.User, bool, error) {
 	if !ok {
 		return nil, false, nil
 	}
-	httpContext.user, ok, err = httpContext.userStore.GetOneActive(string(userID))
-	return httpContext.user, ok, errors.Trace(err)
+	c.user, ok, err = c.userStore.GetOneActive(string(userID))
+	return c.user, ok, errors.Trace(err)
 }
 
 // HasUserRight determines if the logged-in User has the required UserRight.
-func (httpContext *HTTPContext) HasUserRight(userRightName string) bool {
-	user, ok, err := httpContext.GetUser()
+func (c *HTTPContext) HasUserRight(userRightName string) bool {
+	user, ok, err := c.GetUser()
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return false
 	}
 	if !ok {
 		return false
 	}
-	hasUserRight, err := httpContext.userStore.HasUserRight(user, userRightName)
+	hasUserRight, err := c.userStore.HasUserRight(user, userRightName)
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return false
 	}
 	return hasUserRight
@@ -200,30 +200,30 @@ func (httpContext *HTTPContext) HasUserRight(userRightName string) bool {
 
 // HasUserRightOrForbid determines if the logged-in User has the UserRight.
 // When it doesn't, it instantly sets the http status to unauthorized.
-func (httpContext *HTTPContext) HasUserRightOrForbid(userRightName string) bool {
-	if httpContext.HasUserRight(userRightName) {
+func (c *HTTPContext) HasUserRightOrForbid(userRightName string) bool {
+	if c.HasUserRight(userRightName) {
 		return true
 	}
-	httpContext.RenderUnauthorized()
+	c.RenderUnauthorized()
 	return false
 }
 
 // HasAdminAccess determines if the logged-in User has access to the admin section of the system.
-func (httpContext *HTTPContext) HasAdminAccess() bool {
-	return httpContext.HasUserRight("AccessAdminSection")
+func (c *HTTPContext) HasAdminAccess() bool {
+	return c.HasUserRight("AccessAdminSection")
 }
 
 // HasPprofEnabled determines if the logged-in User has access to the pprof section of the system.
-func (httpContext *HTTPContext) HasPprofEnabled() bool {
-	return httpContext.configService.Pprof()
+func (c *HTTPContext) HasPprofEnabled() bool {
+	return c.configService.Pprof()
 }
 
 // AdminURL returns the configurated Admin section's URL prefix.
-func (httpContext *HTTPContext) AdminURL() string {
-	return httpContext.configService.AdminURL()
+func (c *HTTPContext) AdminURL() string {
+	return c.configService.AdminURL()
 }
 
 // PprofURL returns the configurated Pprof section's URL prefix.
-func (httpContext *HTTPContext) PprofURL() string {
-	return httpContext.configService.PprofURL()
+func (c *HTTPContext) PprofURL() string {
+	return c.configService.PprofURL()
 }

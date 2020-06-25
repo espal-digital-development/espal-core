@@ -5,40 +5,40 @@ import (
 )
 
 // RenderOverviewActions renders the HTML output for the internal actions.
-func (pageActions *PageActions) RenderOverviewActions() string {
-	if !pageActions.IsFilled() {
+func (a *PageActions) RenderOverviewActions() string {
+	if !a.IsFilled() {
 		return ""
 	}
 
 	out := strings.Builder{}
 
-	pageActions.perror(out.WriteString(`<div class="actions">`))
+	a.perror(out.WriteString(`<div class="actions">`))
 
-	for k := range pageActions.actions {
-		pageActions.perror(out.WriteString(`<a href="`))
-		pageActions.perror(out.WriteString(pageActions.ctx.AdminURL()))
-		pageActions.perror(out.WriteString(`/`))
-		pageActions.perror(out.WriteString(pageActions.actions[k].targetPath))
-		pageActions.perror(out.WriteString(`"`))
+	for k := range a.actions {
+		a.perror(out.WriteString(`<a href="`))
+		a.perror(out.WriteString(a.ctx.AdminURL()))
+		a.perror(out.WriteString(`/`))
+		a.perror(out.WriteString(a.actions[k].targetPath))
+		a.perror(out.WriteString(`"`))
 
-		if pageActions.actions[k].listAction || pageActions.actions[k].class != "" {
-			pageActions.perror(out.WriteString(` class="`))
-			if pageActions.actions[k].listAction {
-				pageActions.perror(out.WriteString(`listAction`))
+		if a.actions[k].listAction || a.actions[k].class != "" {
+			a.perror(out.WriteString(` class="`))
+			if a.actions[k].listAction {
+				a.perror(out.WriteString(`listAction`))
 			}
-			if pageActions.actions[k].class != "" {
-				pageActions.perror(out.WriteString(` `))
-				pageActions.perror(out.WriteString(pageActions.actions[k].class))
+			if a.actions[k].class != "" {
+				a.perror(out.WriteString(` `))
+				a.perror(out.WriteString(a.actions[k].class))
 			}
-			pageActions.perror(out.WriteString(`"`))
+			a.perror(out.WriteString(`"`))
 		}
 
-		pageActions.perror(out.WriteString(`>`))
-		pageActions.perror(out.WriteString(pageActions.actions[k].name))
-		pageActions.perror(out.WriteString(`</a>`))
+		a.perror(out.WriteString(`>`))
+		a.perror(out.WriteString(a.actions[k].name))
+		a.perror(out.WriteString(`</a>`))
 	}
 
-	pageActions.perror(out.WriteString(`</div>`))
+	a.perror(out.WriteString(`</div>`))
 
 	return out.String()
 }

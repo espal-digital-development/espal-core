@@ -21,7 +21,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadUser") {
 		return
 	}
@@ -32,7 +32,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	user, ok, err := route.userStore.GetOne(id)
+	user, ok, err := r.userStore.GetOne(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -42,12 +42,12 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	addresses, addressesOk, err := route.userAddressStore.ForUser(user.ID())
+	addresses, addressesOk, err := r.userAddressStore.ForUser(user.ID())
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	contacts, contactsOk, err := route.userContactStore.ForUser(user.ID())
+	contacts, contactsOk, err := r.userContactStore.ForUser(user.ID())
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -80,7 +80,7 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	route.viewPageFactory.NewPage(context, language, user, addresses, addressesActions, contacts, contactsActions, canUpdateAddress, canDeleteAddress, canUpdateContact, canDeleteContact).Render()
+	r.viewPageFactory.NewPage(context, language, user, addresses, addressesActions, contacts, contactsActions, canUpdateAddress, canDeleteAddress, canUpdateContact, canDeleteContact).Render()
 }
 
 // New returns a new instance of Route.

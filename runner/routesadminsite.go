@@ -13,27 +13,27 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdminSite() error {
-	createUpdatePage := createupdatepage.New(runner.services.renderer)
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site", overview.New(runner.stores.site, overviewpage.New(runner.services.renderer))); err != nil {
+func (r *Runner) routesAdminSite() error {
+	createUpdatePage := createupdatepage.New(r.services.renderer)
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site", overview.New(r.stores.site, overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site/View", view.New(runner.repositories.languages, runner.repositories.countries, runner.repositories.currencies, runner.stores.site, viewpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/View", view.New(r.repositories.languages, r.repositories.countries, r.repositories.currencies, r.stores.site, viewpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site/Create", createupdate.New(runner.services.entityMutators, runner.stores.site, runner.formValidators.admin.siteCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Create", createupdate.New(r.services.entityMutators, r.stores.site, r.formValidators.admin.siteCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site/Update", createupdate.New(runner.services.entityMutators, runner.stores.site, runner.formValidators.admin.siteCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Update", createupdate.New(r.services.entityMutators, r.stores.site, r.formValidators.admin.siteCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site/ToggleOnline", toggleonline.New(runner.repositories.regularExpressions, runner.stores.site)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/ToggleOnline", toggleonline.New(r.repositories.regularExpressions, r.stores.site)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site/Search", search.New(runner.stores.site)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Search", search.New(r.stores.site)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute(runner.services.config.AdminURL()+"/Site/Delete", delete.New(runner.repositories.regularExpressions, runner.stores.site)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Delete", delete.New(r.repositories.regularExpressions, r.stores.site)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

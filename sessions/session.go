@@ -46,107 +46,107 @@ type UserSession struct {
 }
 
 // ID returns the unique ID of this session instance.
-func (userSession *UserSession) ID() string {
-	return userSession.id
+func (s *UserSession) ID() string {
+	return s.id
 }
 
 // CreatedAt returns the time the session was created.
-func (userSession *UserSession) CreatedAt() time.Time {
-	return userSession.createdAt
+func (s *UserSession) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // AccessedAt returns the time the session was last accessed.
-func (userSession *UserSession) AccessedAt() time.Time {
-	return userSession.accessedAt
+func (s *UserSession) AccessedAt() time.Time {
+	return s.accessedAt
 }
 
 // Timeout returns the duration of the session before it will time out
 // since it's last access time.
-func (userSession *UserSession) Timeout() time.Duration {
-	return userSession.timeout
+func (s *UserSession) Timeout() time.Duration {
+	return s.timeout
 }
 
 // SetTimeout allows the timeout to be modified dynamically.
 // It's discouraged to use this other than from within the Sessions
-func (userSession *UserSession) SetTimeout(timeout time.Duration) {
-	userSession.timeout = timeout
+func (s *UserSession) SetTimeout(timeout time.Duration) {
+	s.timeout = timeout
 }
 
 // IsNew returns an indicator if session is new and not saved yet.
-func (userSession *UserSession) IsNew() bool {
-	return userSession.isNew
+func (s *UserSession) IsNew() bool {
+	return s.isNew
 }
 
 // IsModified returns an indicator if session is has been modified.
-func (userSession *UserSession) IsModified() bool {
-	return userSession.isModified
+func (s *UserSession) IsModified() bool {
+	return s.isModified
 }
 
 // Set sets a bytes slice value for the given key.
-func (userSession *UserSession) Set(k uint8, v []byte) {
-	if _, ok := userSession.values[k]; ok {
-		if bytes.Equal(userSession.values[k], v) {
+func (s *UserSession) Set(k uint8, v []byte) {
+	if _, ok := s.values[k]; ok {
+		if bytes.Equal(s.values[k], v) {
 			return
 		}
 	}
-	userSession.isModified = true
-	userSession.accessedAt = time.Now()
-	userSession.values[k] = v
+	s.isModified = true
+	s.accessedAt = time.Now()
+	s.values[k] = v
 }
 
 // Get returns a bytes slice based on the given key.
-func (userSession *UserSession) Get(k uint8) ([]byte, bool) {
-	userSession.accessedAt = time.Now()
-	v, ok := userSession.values[k]
+func (s *UserSession) Get(k uint8) ([]byte, bool) {
+	s.accessedAt = time.Now()
+	v, ok := s.values[k]
 	return v, ok
 }
 
 // Unset unsets a bytes slice value based on given key.
-func (userSession *UserSession) Unset(k uint8) {
-	if _, ok := userSession.values[k]; !ok {
+func (s *UserSession) Unset(k uint8) {
+	if _, ok := s.values[k]; !ok {
 		return
 	}
-	userSession.isModified = true
-	delete(userSession.values, k)
+	s.isModified = true
+	delete(s.values, k)
 }
 
 // HasFlashMessage returns an indicator if a consumable flash message
 // is present in the session.
-func (userSession *UserSession) HasFlashMessage() bool {
-	_, ok := userSession.Get(SessionKeyFlashMessageType)
+func (s *UserSession) HasFlashMessage() bool {
+	_, ok := s.Get(SessionKeyFlashMessageType)
 	return ok
 }
 
 // GetFlashMessage gets and consumes the flash message for this context.
-func (userSession *UserSession) GetFlashMessage() Message {
+func (s *UserSession) GetFlashMessage() Message {
 	flashMessage := &FlashMessage{}
 
-	fmType, ok := userSession.Get(SessionKeyFlashMessageType)
+	fmType, ok := s.Get(SessionKeyFlashMessageType)
 	if !ok {
 		return nil
 	}
 	flashMessage._type = FlashMessageType(fmType[0])
-	userSession.Unset(SessionKeyFlashMessageType)
+	s.Unset(SessionKeyFlashMessageType)
 
-	fmMessage, ok := userSession.Get(SessionKeyFlashMessageMessage)
+	fmMessage, ok := s.Get(SessionKeyFlashMessageMessage)
 	if !ok {
 		return nil
 	}
 	flashMessage.message = string(fmMessage)
-	userSession.Unset(SessionKeyFlashMessageMessage)
+	s.Unset(SessionKeyFlashMessageMessage)
 
 	return flashMessage
 }
 
 // SetFlashMessage sets the consumable flash message for this context.
-func (userSession *UserSession) SetFlashMessage(fm Message) {
-	userSession.Set(SessionKeyFlashMessageType, []byte{byte(fm.Type())})
-	userSession.Set(SessionKeyFlashMessageMessage, []byte(fm.Message()))
+func (s *UserSession) SetFlashMessage(fm Message) {
+	s.Set(SessionKeyFlashMessageType, []byte{byte(fm.Type())})
+	s.Set(SessionKeyFlashMessageMessage, []byte(fm.Message()))
 }
 
 // AllValues returns all byte slice values present in this session.
-func (userSession *UserSession) AllValues() map[uint8][]byte {
-	return userSession.values
+func (s *UserSession) AllValues() map[uint8][]byte {
+	return s.values
 }
 
 // NewSession returns a new instance of Session.

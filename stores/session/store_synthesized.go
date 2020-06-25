@@ -19,8 +19,8 @@ type Store interface {
 	Update(hash string, timeout time.Duration, dataEntries DataEntries) error
 }
 
-func (sessionsStore *SessionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Session, ok bool, err error) {
-	rows, err := sessionsStore.selecterDatabase.Query(query, params...)
+func (s *SessionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Session, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -42,15 +42,15 @@ func (sessionsStore *SessionsStore) fetch(query string, withCreators bool, param
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		session := newSession()
-		fields := []interface{}{&session.id, &session.createdByID, &session.updatedByID, &session.createdAt, &session.updatedAt, &session.timeout, &session.hash, &session.data}
+		s := newSession()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.timeout, &s.hash, &s.data}
 		if withCreators {
-			fields = append(fields, &session.createdByFirstName, &session.createdBySurname, &session.updatedByFirstName, &session.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, session)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -58,10 +58,10 @@ func (sessionsStore *SessionsStore) fetch(query string, withCreators bool, param
 
 // New returns a new instance of SessionsStore.
 func New(selecterDatabase database.Database, inserterDatabase database.Database, updaterDatabase database.Database) (*SessionsStore, error) {
-	sessionsStore := &SessionsStore{
+	s := &SessionsStore{
 		selecterDatabase: selecterDatabase,
 		inserterDatabase: inserterDatabase,
 		updaterDatabase:  updaterDatabase,
 	}
-	return sessionsStore, nil
+	return s, nil
 }

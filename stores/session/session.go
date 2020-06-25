@@ -33,18 +33,18 @@ type Session struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (session *Session) TableAlias() string {
+func (s *Session) TableAlias() string {
 	return "ses"
 }
 
 // SetDataFromJSON sets the JSON data as bytes into the data.
-func (session *Session) SetDataFromJSON(entries DataEntries) error {
-	session.dataEntries = newDataEntries()
+func (s *Session) SetDataFromJSON(entries DataEntries) error {
+	s.dataEntries = newDataEntries()
 	for key, value := range entries.All() {
-		session.dataEntries.entries[key] = value
+		s.dataEntries.entries[key] = value
 	}
 	var err error
-	session.data, err = jsoniter.Marshal(session.dataEntries.entries)
+	s.data, err = jsoniter.Marshal(s.dataEntries.entries)
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -52,15 +52,15 @@ func (session *Session) SetDataFromJSON(entries DataEntries) error {
 }
 
 // GetDataAsJSON returns the marshalled JSON of the data bytes.
-func (session *Session) GetDataAsJSON() (DataEntries, error) {
-	if len(session.data) == 0 {
+func (s *Session) GetDataAsJSON() (DataEntries, error) {
+	if len(s.data) == 0 {
 		return nil, nil
 	}
-	session.dataEntries = newDataEntries()
-	if err := jsoniter.Unmarshal(session.data, &session.dataEntries.entries); err != nil {
+	s.dataEntries = newDataEntries()
+	if err := jsoniter.Unmarshal(s.data, &s.dataEntries.entries); err != nil {
 		return nil, errors.Trace(err)
 	}
-	return session.dataEntries, nil
+	return s.dataEntries, nil
 }
 
 func newSession() *Session {

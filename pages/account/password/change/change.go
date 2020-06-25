@@ -17,10 +17,10 @@ type Change struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (change *Change) NewPage(context contexts.Context, form base.Form) Template {
+func (c *Change) NewPage(context contexts.Context, form base.Form) Template {
 	page := &Page{
 		form:            form,
-		rendererService: change.rendererService,
+		rendererService: c.rendererService,
 	}
 	page.SetCoreContext(context)
 	return page
@@ -39,8 +39,8 @@ type Page struct {
 }
 
 // Render the page writing to the context.
-func (page *Page) Render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *Page) Render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of Change.

@@ -24,11 +24,11 @@ type UnitTranslation struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (unitTranslation *UnitTranslation) TableName() string {
+func (u *UnitTranslation) TableName() string {
 	return "PropertyUnitTranslation"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (unitTranslation *UnitTranslation) TableAlias() string {
+func (u *UnitTranslation) TableAlias() string {
 	return "prout"
 }

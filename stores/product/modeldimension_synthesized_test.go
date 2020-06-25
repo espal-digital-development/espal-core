@@ -9,133 +9,133 @@ import (
 )
 
 func TestModelDimensionTable(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
-	if modelDimension.TableName() == "" {
+	m := product.NewModelDimensionEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestModelDimensionTableAlias(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
-	if modelDimension.TableName() == "" {
+	m := product.NewModelDimensionEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestModelDimensionIsUpdated(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
-	modelDimension.IsUpdated()
+	m := product.NewModelDimensionEntity()
+	m.IsUpdated()
 }
 
 func TestModelDimensionID(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
-	modelDimension.ID()
+	m := product.NewModelDimensionEntity()
+	m.ID()
 }
 
 func TestModelDimensionCreatedByID(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetCreatedByID(testValue)
-	if testValue != modelDimension.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionUpdatedByID(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetUpdatedByID(&testValue)
-	if &testValue != modelDimension.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionCreatedAt(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := time.Now()
-	modelDimension.SetCreatedAt(testValue)
-	if testValue != modelDimension.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionUpdatedAt(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := time.Now()
-	modelDimension.SetUpdatedAt(&testValue)
-	if &testValue != modelDimension.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionCreatedByFirstName(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetCreatedByFirstName(&testValue)
-	if &testValue != modelDimension.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionCreatedBySurname(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetCreatedBySurname(&testValue)
-	if &testValue != modelDimension.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionUpdatedByFirstName(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetUpdatedByFirstName(&testValue)
-	if &testValue != modelDimension.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionUpdatedBySurname(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetUpdatedBySurname(&testValue)
-	if &testValue != modelDimension.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionSorting(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := uint(1e9)
-	modelDimension.SetSorting(testValue)
-	if testValue != modelDimension.Sorting() {
+	m.SetSorting(testValue)
+	if testValue != m.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionKey(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetKey(&testValue)
-	if &testValue != modelDimension.Key() {
+	m.SetKey(&testValue)
+	if &testValue != m.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionModelID(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetModelID(testValue)
-	if testValue != modelDimension.ModelID() {
+	m.SetModelID(testValue)
+	if testValue != m.ModelID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestModelDimensionPropertyID(t *testing.T) {
-	modelDimension := product.NewModelDimensionEntity()
+	m := product.NewModelDimensionEntity()
 	testValue := "testValue"
-	modelDimension.SetPropertyID(testValue)
-	if testValue != modelDimension.PropertyID() {
+	m.SetPropertyID(testValue)
+	if testValue != m.PropertyID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

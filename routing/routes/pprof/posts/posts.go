@@ -17,8 +17,8 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
-	name := strings.TrimPrefix(context.Path(), route.pprofPrefix)
+func (r *Route) Handle(context contexts.Context) {
+	name := strings.TrimPrefix(context.Path(), r.pprofPrefix)
 
 	context.SetContentType("text/plain; charset=utf-8")
 	var debug int

@@ -20,123 +20,123 @@ type NoteEntity interface {
 }
 
 // ID returns id.
-func (note *Note) ID() string {
-	return note.id
+func (n *Note) ID() string {
+	return n.id
 }
 
 // CreatedByID returns createdByID.
-func (note *Note) CreatedByID() string {
-	return note.createdByID
+func (n *Note) CreatedByID() string {
+	return n.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (note *Note) SetCreatedByID(createdByID string) {
-	note.createdByID = createdByID
+func (n *Note) SetCreatedByID(createdByID string) {
+	n.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (note *Note) UpdatedByID() *string {
-	return note.updatedByID
+func (n *Note) UpdatedByID() *string {
+	return n.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (note *Note) SetUpdatedByID(updatedByID *string) {
-	note.updatedByID = updatedByID
+func (n *Note) SetUpdatedByID(updatedByID *string) {
+	n.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (note *Note) CreatedAt() time.Time {
-	return note.createdAt
+func (n *Note) CreatedAt() time.Time {
+	return n.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (note *Note) SetCreatedAt(createdAt time.Time) {
-	note.createdAt = createdAt
+func (n *Note) SetCreatedAt(createdAt time.Time) {
+	n.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (note *Note) UpdatedAt() *time.Time {
-	return note.updatedAt
+func (n *Note) UpdatedAt() *time.Time {
+	return n.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (note *Note) SetUpdatedAt(updatedAt *time.Time) {
-	note.updatedAt = updatedAt
+func (n *Note) SetUpdatedAt(updatedAt *time.Time) {
+	n.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (note *Note) CreatedByFirstName() *string {
-	return note.createdByFirstName
+func (n *Note) CreatedByFirstName() *string {
+	return n.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (note *Note) SetCreatedByFirstName(createdByFirstName *string) {
-	note.createdByFirstName = createdByFirstName
+func (n *Note) SetCreatedByFirstName(createdByFirstName *string) {
+	n.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (note *Note) CreatedBySurname() *string {
-	return note.createdBySurname
+func (n *Note) CreatedBySurname() *string {
+	return n.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (note *Note) SetCreatedBySurname(createdBySurname *string) {
-	note.createdBySurname = createdBySurname
+func (n *Note) SetCreatedBySurname(createdBySurname *string) {
+	n.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (note *Note) UpdatedByFirstName() *string {
-	return note.updatedByFirstName
+func (n *Note) UpdatedByFirstName() *string {
+	return n.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (note *Note) SetUpdatedByFirstName(updatedByFirstName *string) {
-	note.updatedByFirstName = updatedByFirstName
+func (n *Note) SetUpdatedByFirstName(updatedByFirstName *string) {
+	n.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (note *Note) UpdatedBySurname() *string {
-	return note.updatedBySurname
+func (n *Note) UpdatedBySurname() *string {
+	return n.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (note *Note) SetUpdatedBySurname(updatedBySurname *string) {
-	note.updatedBySurname = updatedBySurname
+func (n *Note) SetUpdatedBySurname(updatedBySurname *string) {
+	n.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (note *Note) IsUpdated() bool {
-	return note.updatedByID != nil
+func (n *Note) IsUpdated() bool {
+	return n.updatedByID != nil
 }
 
 // UserID returns userID.
-func (note *Note) UserID() string {
-	return note.userID
+func (n *Note) UserID() string {
+	return n.userID
 }
 
 // SetUserID sets the userID.
-func (note *Note) SetUserID(userID string) {
-	note.userID = userID
+func (n *Note) SetUserID(userID string) {
+	n.userID = userID
 }
 
 // Title returns title.
-func (note *Note) Title() *string {
-	return note.title
+func (n *Note) Title() *string {
+	return n.title
 }
 
 // SetTitle sets the title.
-func (note *Note) SetTitle(title *string) {
-	note.title = title
+func (n *Note) SetTitle(title *string) {
+	n.title = title
 }
 
 // Contents returns contents.
-func (note *Note) Contents() string {
-	return note.contents
+func (n *Note) Contents() string {
+	return n.contents
 }
 
 // SetContents sets the contents.
-func (note *Note) SetContents(contents string) {
-	note.contents = contents
+func (n *Note) SetContents(contents string) {
+	n.contents = contents
 }
 
 func newNote() *Note {

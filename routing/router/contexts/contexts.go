@@ -39,17 +39,17 @@ type Contexts struct {
 }
 
 // NewContext returns a new instance of Context based on the given request- and router- information.
-func (contexts *Contexts) NewContext(request *http.Request, responseWriter http.ResponseWriter, domain Domain, site Site) Context {
+func (c *Contexts) NewContext(request *http.Request, responseWriter http.ResponseWriter, domain Domain, site Site) Context {
 	context := &HTTPContext{
-		configService:          contexts.configService,
-		loggerService:          contexts.loggerService,
-		languagesRepository:    contexts.languagesRepository,
-		translationsRepository: contexts.translationsRepository,
-		sessionsFactory:        contexts.sessionsFactory,
-		adminMenuService:       contexts.adminMenuService,
-		rendererService:        contexts.rendererService,
-		userStore:              contexts.userStore,
-		serverError:            contexts.serverError,
+		configService:          c.configService,
+		loggerService:          c.loggerService,
+		languagesRepository:    c.languagesRepository,
+		translationsRepository: c.translationsRepository,
+		sessionsFactory:        c.sessionsFactory,
+		adminMenuService:       c.adminMenuService,
+		rendererService:        c.rendererService,
+		userStore:              c.userStore,
+		serverError:            c.serverError,
 
 		request:        request,
 		responseWriter: responseWriter,

@@ -13,11 +13,11 @@ type urls struct {
 
 // nolint:stylecheck
 // AdminURL returns the admin url path prefix.
-func (configuration *Configuration) AdminURL() string {
-	return configuration.urls.Admin
+func (c *Configuration) AdminURL() string {
+	return c.urls.Admin
 }
 
 // PprofURL returns the pprof url path prefix.
-func (configuration *Configuration) PprofURL() string {
-	return configuration.urls.Pprof
+func (c *Configuration) PprofURL() string {
+	return c.urls.Pprof
 }

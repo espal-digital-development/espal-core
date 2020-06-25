@@ -9,160 +9,160 @@ import (
 )
 
 func TestLineTable(t *testing.T) {
-	line := shipment.NewLineEntity()
-	if line.TableName() == "" {
+	l := shipment.NewLineEntity()
+	if l.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestLineTableAlias(t *testing.T) {
-	line := shipment.NewLineEntity()
-	if line.TableName() == "" {
+	l := shipment.NewLineEntity()
+	if l.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestLineIsUpdated(t *testing.T) {
-	line := shipment.NewLineEntity()
-	line.IsUpdated()
+	l := shipment.NewLineEntity()
+	l.IsUpdated()
 }
 
 func TestLineID(t *testing.T) {
-	line := shipment.NewLineEntity()
-	line.ID()
+	l := shipment.NewLineEntity()
+	l.ID()
 }
 
 func TestLineCreatedByID(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetCreatedByID(testValue)
-	if testValue != line.CreatedByID() {
+	l.SetCreatedByID(testValue)
+	if testValue != l.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineUpdatedByID(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetUpdatedByID(&testValue)
-	if &testValue != line.UpdatedByID() {
+	l.SetUpdatedByID(&testValue)
+	if &testValue != l.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineCreatedAt(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := time.Now()
-	line.SetCreatedAt(testValue)
-	if testValue != line.CreatedAt() {
+	l.SetCreatedAt(testValue)
+	if testValue != l.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineUpdatedAt(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := time.Now()
-	line.SetUpdatedAt(&testValue)
-	if &testValue != line.UpdatedAt() {
+	l.SetUpdatedAt(&testValue)
+	if &testValue != l.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineCreatedByFirstName(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetCreatedByFirstName(&testValue)
-	if &testValue != line.CreatedByFirstName() {
+	l.SetCreatedByFirstName(&testValue)
+	if &testValue != l.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineCreatedBySurname(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetCreatedBySurname(&testValue)
-	if &testValue != line.CreatedBySurname() {
+	l.SetCreatedBySurname(&testValue)
+	if &testValue != l.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineUpdatedByFirstName(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetUpdatedByFirstName(&testValue)
-	if &testValue != line.UpdatedByFirstName() {
+	l.SetUpdatedByFirstName(&testValue)
+	if &testValue != l.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineUpdatedBySurname(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetUpdatedBySurname(&testValue)
-	if &testValue != line.UpdatedBySurname() {
+	l.SetUpdatedBySurname(&testValue)
+	if &testValue != l.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineSorting(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := uint(1e9)
-	line.SetSorting(testValue)
-	if testValue != line.Sorting() {
+	l.SetSorting(testValue)
+	if testValue != l.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineShipmentID(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetShipmentID(testValue)
-	if testValue != line.ShipmentID() {
+	l.SetShipmentID(testValue)
+	if testValue != l.ShipmentID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineSaleOrderLineID(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetSaleOrderLineID(&testValue)
-	if &testValue != line.SaleOrderLineID() {
+	l.SetSaleOrderLineID(&testValue)
+	if &testValue != l.SaleOrderLineID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineProductVariantID(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetProductVariantID(&testValue)
-	if &testValue != line.ProductVariantID() {
+	l.SetProductVariantID(&testValue)
+	if &testValue != l.ProductVariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineBundledProductID(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetBundledProductID(&testValue)
-	if &testValue != line.BundledProductID() {
+	l.SetBundledProductID(&testValue)
+	if &testValue != l.BundledProductID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineQuantity(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := int(1e8)
-	line.SetQuantity(testValue)
-	if testValue != line.Quantity() {
+	l.SetQuantity(testValue)
+	if testValue != l.Quantity() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLineComments(t *testing.T) {
-	line := shipment.NewLineEntity()
+	l := shipment.NewLineEntity()
 	testValue := "testValue"
-	line.SetComments(&testValue)
-	if &testValue != line.Comments() {
+	l.SetComments(&testValue)
+	if &testValue != l.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

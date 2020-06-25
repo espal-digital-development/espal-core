@@ -23,11 +23,11 @@ type VariantProperty struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (variantProperty *VariantProperty) TableName() string {
+func (v *VariantProperty) TableName() string {
 	return "ProductVariantProperty"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (variantProperty *VariantProperty) TableAlias() string {
+func (v *VariantProperty) TableAlias() string {
 	return "provp"
 }

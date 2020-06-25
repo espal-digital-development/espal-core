@@ -102,74 +102,74 @@ type HTTPContext struct {
 }
 
 // GetDomain returns the Domain for the current route.
-func (httpContext *HTTPContext) GetDomain() Domain {
-	return httpContext.domain
+func (c *HTTPContext) GetDomain() Domain {
+	return c.domain
 }
 
 // GetSite returns the Site for the current route.
-func (httpContext *HTTPContext) GetSite() Site {
-	return httpContext.site
+func (c *HTTPContext) GetSite() Site {
+	return c.site
 }
 
 // GetLanguage returns the relevant Language for this request.
-func (httpContext *HTTPContext) GetLanguage() (Language, error) {
-	if httpContext.language != nil {
-		return httpContext.language, nil
+func (c *HTTPContext) GetLanguage() (Language, error) {
+	if c.language != nil {
+		return c.language, nil
 	}
 	var err error
-	user, ok, err := httpContext.GetUser()
+	user, ok, err := c.GetUser()
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
 	if ok {
-		httpContext.language, err = httpContext.languagesRepository.ByID(user.Language())
+		c.language, err = c.languagesRepository.ByID(user.Language())
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
-	if httpContext.language == nil && httpContext.GetDomain().Language() != nil {
-		httpContext.language, err = httpContext.languagesRepository.ByID(*httpContext.GetDomain().Language())
+	if c.language == nil && c.GetDomain().Language() != nil {
+		c.language, err = c.languagesRepository.ByID(*c.GetDomain().Language())
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
-	if httpContext.language == nil && httpContext.GetSite().Language() != nil {
-		httpContext.language, err = httpContext.languagesRepository.ByID(*httpContext.GetSite().Language())
-		return httpContext.language, errors.Trace(err)
+	if c.language == nil && c.GetSite().Language() != nil {
+		c.language, err = c.languagesRepository.ByID(*c.GetSite().Language())
+		return c.language, errors.Trace(err)
 	}
-	if httpContext.language != nil && !httpContext.configService.LanguageIsAvailable(httpContext.language.Code()) {
-		httpContext.language, err = httpContext.languagesRepository.ByCode(httpContext.configService.DefaultLanguage())
-		return httpContext.language, errors.Trace(err)
+	if c.language != nil && !c.configService.LanguageIsAvailable(c.language.Code()) {
+		c.language, err = c.languagesRepository.ByCode(c.configService.DefaultLanguage())
+		return c.language, errors.Trace(err)
 	}
-	if httpContext.language != nil {
-		return httpContext.language, nil
+	if c.language != nil {
+		return c.language, nil
 	}
 	return nil, errors.Errorf("language not found")
 }
 
 // Translate is a shortcut to the passed translations service.
-func (httpContext *HTTPContext) Translate(key string) string {
-	language, err := httpContext.GetLanguage()
+func (c *HTTPContext) Translate(key string) string {
+	language, err := c.GetLanguage()
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
-	return httpContext.translationsRepository.Singular(language.ID(), key)
+	return c.translationsRepository.Singular(language.ID(), key)
 }
 
 // TranslatePlural is a shortcut to the passed translations service.
-func (httpContext *HTTPContext) TranslatePlural(key string) string {
-	language, err := httpContext.GetLanguage()
+func (c *HTTPContext) TranslatePlural(key string) string {
+	language, err := c.GetLanguage()
 	if err != nil {
-		httpContext.loggerService.Error(errors.ErrorStack(err))
+		c.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
-	return httpContext.translationsRepository.Plural(language.ID(), key)
+	return c.translationsRepository.Plural(language.ID(), key)
 }
 
 // GetSlugMappedURL returns the slug when the route is a slug.
-func (httpContext *HTTPContext) GetSlugMappedURL() string {
-	return httpContext.slugMappedURL
+func (c *HTTPContext) GetSlugMappedURL() string {
+	return c.slugMappedURL
 }
 
 // TODO :: 77 Maybe it's better to give it the Slug entity itself?
@@ -178,6 +178,6 @@ func (httpContext *HTTPContext) GetSlugMappedURL() string {
 // What this means is when a slug route was called (e.g. "/Inloggen")
 // and it internally forwards to "/Login" the current route this function
 // is called from will return "/Inloggen" to know the slug.
-func (httpContext *HTTPContext) SetSlugMappedURL(slugMappedURL string) {
-	httpContext.slugMappedURL = slugMappedURL
+func (c *HTTPContext) SetSlugMappedURL(slugMappedURL string) {
+	c.slugMappedURL = slugMappedURL
 }

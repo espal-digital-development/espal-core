@@ -9,214 +9,214 @@ import (
 )
 
 func TestStoreEntityTable(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
-	if storeEntity.TableName() == "" {
+	s := store.NewStoreEntityEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestStoreEntityTableAlias(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
-	if storeEntity.TableName() == "" {
+	s := store.NewStoreEntityEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestStoreEntityIsUpdated(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
-	storeEntity.IsUpdated()
+	s := store.NewStoreEntityEntity()
+	s.IsUpdated()
 }
 
 func TestStoreEntityID(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
-	storeEntity.ID()
+	s := store.NewStoreEntityEntity()
+	s.ID()
 }
 
 func TestStoreEntityCreatedByID(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetCreatedByID(testValue)
-	if testValue != storeEntity.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityUpdatedByID(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetUpdatedByID(&testValue)
-	if &testValue != storeEntity.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityCreatedAt(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := time.Now()
-	storeEntity.SetCreatedAt(testValue)
-	if testValue != storeEntity.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityUpdatedAt(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := time.Now()
-	storeEntity.SetUpdatedAt(&testValue)
-	if &testValue != storeEntity.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityCreatedByFirstName(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetCreatedByFirstName(&testValue)
-	if &testValue != storeEntity.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityCreatedBySurname(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetCreatedBySurname(&testValue)
-	if &testValue != storeEntity.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityUpdatedByFirstName(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetUpdatedByFirstName(&testValue)
-	if &testValue != storeEntity.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityUpdatedBySurname(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetUpdatedBySurname(&testValue)
-	if &testValue != storeEntity.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityActive(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := true
-	storeEntity.SetActive(testValue)
-	if testValue != storeEntity.Active() {
+	s.SetActive(testValue)
+	if testValue != s.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntitySorting(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := uint(1e9)
-	storeEntity.SetSorting(testValue)
-	if testValue != storeEntity.Sorting() {
+	s.SetSorting(testValue)
+	if testValue != s.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityPrimaryContactPerson(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetPrimaryContactPerson(&testValue)
-	if &testValue != storeEntity.PrimaryContactPerson() {
+	s.SetPrimaryContactPerson(&testValue)
+	if &testValue != s.PrimaryContactPerson() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityStreet(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetStreet(testValue)
-	if testValue != storeEntity.Street() {
+	s.SetStreet(testValue)
+	if testValue != s.Street() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityStreetLine2(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetStreetLine2(&testValue)
-	if &testValue != storeEntity.StreetLine2() {
+	s.SetStreetLine2(&testValue)
+	if &testValue != s.StreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityNumber(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetNumber(testValue)
-	if testValue != storeEntity.Number() {
+	s.SetNumber(testValue)
+	if testValue != s.Number() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityNumberAddition(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetNumberAddition(&testValue)
-	if &testValue != storeEntity.NumberAddition() {
+	s.SetNumberAddition(&testValue)
+	if &testValue != s.NumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityZipCode(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetZipCode(testValue)
-	if testValue != storeEntity.ZipCode() {
+	s.SetZipCode(testValue)
+	if testValue != s.ZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityCity(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetCity(testValue)
-	if testValue != storeEntity.City() {
+	s.SetCity(testValue)
+	if testValue != s.City() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityState(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetState(&testValue)
-	if &testValue != storeEntity.State() {
+	s.SetState(&testValue)
+	if &testValue != s.State() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityCountry(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := uint16(65000)
-	storeEntity.SetCountry(&testValue)
-	if &testValue != storeEntity.Country() {
+	s.SetCountry(&testValue)
+	if &testValue != s.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityPhoneNumber(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetPhoneNumber(&testValue)
-	if &testValue != storeEntity.PhoneNumber() {
+	s.SetPhoneNumber(&testValue)
+	if &testValue != s.PhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStoreEntityEmail(t *testing.T) {
-	storeEntity := store.NewStoreEntityEntity()
+	s := store.NewStoreEntityEntity()
 	testValue := "testValue"
-	storeEntity.SetEmail(&testValue)
-	if &testValue != storeEntity.Email() {
+	s.SetEmail(&testValue)
+	if &testValue != s.Email() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

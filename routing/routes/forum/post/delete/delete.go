@@ -14,7 +14,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("DeleteForum") {
 		return
 	}
@@ -24,7 +24,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	forumID, ok, err := route.forumStore.GetForumIDForPostID(id)
+	forumID, ok, err := r.forumStore.GetForumIDForPostID(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -34,7 +34,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	if err = route.forumStore.DeleteOneForumPostByID(id); err != nil {
+	if err = r.forumStore.DeleteOneForumPostByID(id); err != nil {
 		if err := context.SetFlashErrorMessage(context.Translate("deletionHasFailed") + ": " + err.Error()); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return

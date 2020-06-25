@@ -34,57 +34,57 @@ type FlashMessage struct {
 }
 
 // Type returns the type.
-func (flashMessage *FlashMessage) Type() FlashMessageType {
-	return flashMessage._type
+func (m *FlashMessage) Type() FlashMessageType {
+	return m._type
 }
 
 // SetType sets the type.
-func (flashMessage *FlashMessage) SetType(_type FlashMessageType) {
-	flashMessage._type = _type
+func (m *FlashMessage) SetType(_type FlashMessageType) {
+	m._type = _type
 }
 
 // Message returns the message.
-func (flashMessage *FlashMessage) Message() string {
-	return flashMessage.message
+func (m *FlashMessage) Message() string {
+	return m.message
 }
 
 // SetMessage sets the Message.
-func (flashMessage *FlashMessage) SetMessage(message string) {
-	flashMessage.message = message
+func (m *FlashMessage) SetMessage(message string) {
+	m.message = message
 }
 
 // IsSet returns an indicator boolean wether the FlashMessage was already set.
-func (flashMessage *FlashMessage) IsSet() bool {
-	return flashMessage._type != 0
+func (m *FlashMessage) IsSet() bool {
+	return m._type != 0
 }
 
 // Info sets a message of the type FlashMessageTypeInfo.
-func (flashMessage *FlashMessage) Info(message string) {
-	flashMessage._type = FlashMessageTypeInfo
-	flashMessage.message = message
+func (m *FlashMessage) Info(message string) {
+	m._type = FlashMessageTypeInfo
+	m.message = message
 }
 
 // Success sets a message of the type FlashMessageTypeSuccess.
-func (flashMessage *FlashMessage) Success(message string) {
-	flashMessage._type = FlashMessageTypeSuccess
-	flashMessage.message = message
+func (m *FlashMessage) Success(message string) {
+	m._type = FlashMessageTypeSuccess
+	m.message = message
 }
 
 // Warning sets a message of the type FlashMessageTypeWarning.
-func (flashMessage *FlashMessage) Warning(message string) {
-	flashMessage._type = FlashMessageTypeWarning
-	flashMessage.message = message
+func (m *FlashMessage) Warning(message string) {
+	m._type = FlashMessageTypeWarning
+	m.message = message
 }
 
 // Error sets a message of the type FlashMessageTypeError.
-func (flashMessage *FlashMessage) Error(message string) {
-	flashMessage._type = FlashMessageTypeError
-	flashMessage.message = message
+func (m *FlashMessage) Error(message string) {
+	m._type = FlashMessageTypeError
+	m.message = message
 }
 
 // ClassName returns the CSS class name that suits the message type.
-func (flashMessage *FlashMessage) ClassName() string {
-	switch flashMessage._type {
+func (m *FlashMessage) ClassName() string {
+	switch m._type {
 	case FlashMessageTypeInfo:
 		return "flash info"
 	case FlashMessageTypeSuccess:
@@ -98,8 +98,8 @@ func (flashMessage *FlashMessage) ClassName() string {
 }
 
 // Icon returns the icon that suits the message type.
-func (flashMessage *FlashMessage) Icon() string {
-	switch flashMessage._type {
+func (m *FlashMessage) Icon() string {
+	switch m._type {
 	case FlashMessageTypeInfo:
 		return "✯ "
 	case FlashMessageTypeSuccess:

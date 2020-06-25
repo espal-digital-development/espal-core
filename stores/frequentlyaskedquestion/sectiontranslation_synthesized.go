@@ -16,133 +16,133 @@ type SectionTranslationEntity interface {
 }
 
 // ID returns id.
-func (sectionTranslation *SectionTranslation) ID() string {
-	return sectionTranslation.id
+func (s *SectionTranslation) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (sectionTranslation *SectionTranslation) CreatedByID() string {
-	return sectionTranslation.createdByID
+func (s *SectionTranslation) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (sectionTranslation *SectionTranslation) SetCreatedByID(createdByID string) {
-	sectionTranslation.createdByID = createdByID
+func (s *SectionTranslation) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (sectionTranslation *SectionTranslation) UpdatedByID() *string {
-	return sectionTranslation.updatedByID
+func (s *SectionTranslation) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (sectionTranslation *SectionTranslation) SetUpdatedByID(updatedByID *string) {
-	sectionTranslation.updatedByID = updatedByID
+func (s *SectionTranslation) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (sectionTranslation *SectionTranslation) CreatedAt() time.Time {
-	return sectionTranslation.createdAt
+func (s *SectionTranslation) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (sectionTranslation *SectionTranslation) SetCreatedAt(createdAt time.Time) {
-	sectionTranslation.createdAt = createdAt
+func (s *SectionTranslation) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (sectionTranslation *SectionTranslation) UpdatedAt() *time.Time {
-	return sectionTranslation.updatedAt
+func (s *SectionTranslation) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (sectionTranslation *SectionTranslation) SetUpdatedAt(updatedAt *time.Time) {
-	sectionTranslation.updatedAt = updatedAt
+func (s *SectionTranslation) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (sectionTranslation *SectionTranslation) CreatedByFirstName() *string {
-	return sectionTranslation.createdByFirstName
+func (s *SectionTranslation) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (sectionTranslation *SectionTranslation) SetCreatedByFirstName(createdByFirstName *string) {
-	sectionTranslation.createdByFirstName = createdByFirstName
+func (s *SectionTranslation) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (sectionTranslation *SectionTranslation) CreatedBySurname() *string {
-	return sectionTranslation.createdBySurname
+func (s *SectionTranslation) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (sectionTranslation *SectionTranslation) SetCreatedBySurname(createdBySurname *string) {
-	sectionTranslation.createdBySurname = createdBySurname
+func (s *SectionTranslation) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (sectionTranslation *SectionTranslation) UpdatedByFirstName() *string {
-	return sectionTranslation.updatedByFirstName
+func (s *SectionTranslation) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (sectionTranslation *SectionTranslation) SetUpdatedByFirstName(updatedByFirstName *string) {
-	sectionTranslation.updatedByFirstName = updatedByFirstName
+func (s *SectionTranslation) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (sectionTranslation *SectionTranslation) UpdatedBySurname() *string {
-	return sectionTranslation.updatedBySurname
+func (s *SectionTranslation) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (sectionTranslation *SectionTranslation) SetUpdatedBySurname(updatedBySurname *string) {
-	sectionTranslation.updatedBySurname = updatedBySurname
+func (s *SectionTranslation) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (sectionTranslation *SectionTranslation) IsUpdated() bool {
-	return sectionTranslation.updatedByID != nil
+func (s *SectionTranslation) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // Language returns language.
-func (sectionTranslation *SectionTranslation) Language() uint16 {
-	return sectionTranslation.language
+func (s *SectionTranslation) Language() uint16 {
+	return s.language
 }
 
 // SetLanguage sets the language.
-func (sectionTranslation *SectionTranslation) SetLanguage(language uint16) {
-	sectionTranslation.language = language
+func (s *SectionTranslation) SetLanguage(language uint16) {
+	s.language = language
 }
 
 // Field returns field.
-func (sectionTranslation *SectionTranslation) Field() uint16 {
-	return sectionTranslation.field
+func (s *SectionTranslation) Field() uint16 {
+	return s.field
 }
 
 // SetField sets the field.
-func (sectionTranslation *SectionTranslation) SetField(field uint16) {
-	sectionTranslation.field = field
+func (s *SectionTranslation) SetField(field uint16) {
+	s.field = field
 }
 
 // Value returns value.
-func (sectionTranslation *SectionTranslation) Value() string {
-	return sectionTranslation.value
+func (s *SectionTranslation) Value() string {
+	return s.value
 }
 
 // SetValue sets the value.
-func (sectionTranslation *SectionTranslation) SetValue(value string) {
-	sectionTranslation.value = value
+func (s *SectionTranslation) SetValue(value string) {
+	s.value = value
 }
 
 // SectionID returns sectionID.
-func (sectionTranslation *SectionTranslation) SectionID() string {
-	return sectionTranslation.sectionID
+func (s *SectionTranslation) SectionID() string {
+	return s.sectionID
 }
 
 // SetSectionID sets the sectionID.
-func (sectionTranslation *SectionTranslation) SetSectionID(sectionID string) {
-	sectionTranslation.sectionID = sectionID
+func (s *SectionTranslation) SetSectionID(sectionID string) {
+	s.sectionID = sectionID
 }
 
 func newSectionTranslation() *SectionTranslation {

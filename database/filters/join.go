@@ -12,17 +12,17 @@ type join struct {
 }
 
 // Alias returns the join table alias.
-func (join *join) Alias() string {
-	return join.alias
+func (j *join) Alias() string {
+	return j.alias
 }
 
 // Alias returns the join statement.
-func (join *join) Statement() string {
-	return join.statement
+func (j *join) Statement() string {
+	return j.statement
 }
 
 // NewJoin returns a new instance of a Join.
-func (filter *filter) NewJoin(alias string, statement string) Join {
+func (f *filter) NewJoin(alias string, statement string) Join {
 	return &join{
 		alias:     alias,
 		statement: statement,

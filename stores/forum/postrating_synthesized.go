@@ -18,113 +18,113 @@ type PostRatingEntity interface {
 }
 
 // ID returns id.
-func (postRating *PostRating) ID() string {
-	return postRating.id
+func (p *PostRating) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (postRating *PostRating) CreatedByID() string {
-	return postRating.createdByID
+func (p *PostRating) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (postRating *PostRating) SetCreatedByID(createdByID string) {
-	postRating.createdByID = createdByID
+func (p *PostRating) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (postRating *PostRating) UpdatedByID() *string {
-	return postRating.updatedByID
+func (p *PostRating) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (postRating *PostRating) SetUpdatedByID(updatedByID *string) {
-	postRating.updatedByID = updatedByID
+func (p *PostRating) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (postRating *PostRating) CreatedAt() time.Time {
-	return postRating.createdAt
+func (p *PostRating) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (postRating *PostRating) SetCreatedAt(createdAt time.Time) {
-	postRating.createdAt = createdAt
+func (p *PostRating) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (postRating *PostRating) UpdatedAt() *time.Time {
-	return postRating.updatedAt
+func (p *PostRating) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (postRating *PostRating) SetUpdatedAt(updatedAt *time.Time) {
-	postRating.updatedAt = updatedAt
+func (p *PostRating) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (postRating *PostRating) CreatedByFirstName() *string {
-	return postRating.createdByFirstName
+func (p *PostRating) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (postRating *PostRating) SetCreatedByFirstName(createdByFirstName *string) {
-	postRating.createdByFirstName = createdByFirstName
+func (p *PostRating) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (postRating *PostRating) CreatedBySurname() *string {
-	return postRating.createdBySurname
+func (p *PostRating) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (postRating *PostRating) SetCreatedBySurname(createdBySurname *string) {
-	postRating.createdBySurname = createdBySurname
+func (p *PostRating) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (postRating *PostRating) UpdatedByFirstName() *string {
-	return postRating.updatedByFirstName
+func (p *PostRating) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (postRating *PostRating) SetUpdatedByFirstName(updatedByFirstName *string) {
-	postRating.updatedByFirstName = updatedByFirstName
+func (p *PostRating) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (postRating *PostRating) UpdatedBySurname() *string {
-	return postRating.updatedBySurname
+func (p *PostRating) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (postRating *PostRating) SetUpdatedBySurname(updatedBySurname *string) {
-	postRating.updatedBySurname = updatedBySurname
+func (p *PostRating) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (postRating *PostRating) IsUpdated() bool {
-	return postRating.updatedByID != nil
+func (p *PostRating) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // PostID returns postID.
-func (postRating *PostRating) PostID() *string {
-	return postRating.postID
+func (p *PostRating) PostID() *string {
+	return p.postID
 }
 
 // SetPostID sets the postID.
-func (postRating *PostRating) SetPostID(postID *string) {
-	postRating.postID = postID
+func (p *PostRating) SetPostID(postID *string) {
+	p.postID = postID
 }
 
 // Score returns score.
-func (postRating *PostRating) Score() float64 {
-	return postRating.score
+func (p *PostRating) Score() float64 {
+	return p.score
 }
 
 // SetScore sets the score.
-func (postRating *PostRating) SetScore(score float64) {
-	postRating.score = score
+func (p *PostRating) SetScore(score float64) {
+	p.score = score
 }
 
 func newPostRating() *PostRating {

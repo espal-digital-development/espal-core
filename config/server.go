@@ -14,16 +14,16 @@ type server struct {
 }
 
 // ServerHost returns the server host.
-func (configuration *Configuration) ServerHost() string {
-	return configuration.server.Host
+func (c *Configuration) ServerHost() string {
+	return c.server.Host
 }
 
 // ServerPort returns the server port.
-func (configuration *Configuration) ServerPort() int {
-	return configuration.server.Port
+func (c *Configuration) ServerPort() int {
+	return c.server.Port
 }
 
 // ServerHTTPRedirectPort returns the server HTTP redirect port.
-func (configuration *Configuration) ServerHTTPRedirectPort() int {
-	return configuration.server.HTTPRedirectPort
+func (c *Configuration) ServerHTTPRedirectPort() int {
+	return c.server.HTTPRedirectPort
 }

@@ -9,115 +9,115 @@ import (
 )
 
 func TestCartTable(t *testing.T) {
-	cart := cart.NewCartEntity()
-	if cart.TableName() == "" {
+	c := cart.NewCartEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestCartTableAlias(t *testing.T) {
-	cart := cart.NewCartEntity()
-	if cart.TableName() == "" {
+	c := cart.NewCartEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestCartIsUpdated(t *testing.T) {
-	cart := cart.NewCartEntity()
-	cart.IsUpdated()
+	c := cart.NewCartEntity()
+	c.IsUpdated()
 }
 
 func TestCartID(t *testing.T) {
-	cart := cart.NewCartEntity()
-	cart.ID()
+	c := cart.NewCartEntity()
+	c.ID()
 }
 
 func TestCartCreatedByID(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetCreatedByID(testValue)
-	if testValue != cart.CreatedByID() {
+	c.SetCreatedByID(testValue)
+	if testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartUpdatedByID(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetUpdatedByID(&testValue)
-	if &testValue != cart.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartCreatedAt(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := time.Now()
-	cart.SetCreatedAt(testValue)
-	if testValue != cart.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartUpdatedAt(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := time.Now()
-	cart.SetUpdatedAt(&testValue)
-	if &testValue != cart.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartCreatedByFirstName(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetCreatedByFirstName(&testValue)
-	if &testValue != cart.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartCreatedBySurname(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetCreatedBySurname(&testValue)
-	if &testValue != cart.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartUpdatedByFirstName(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetUpdatedByFirstName(&testValue)
-	if &testValue != cart.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartUpdatedBySurname(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetUpdatedBySurname(&testValue)
-	if &testValue != cart.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartDomainID(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetDomainID(testValue)
-	if testValue != cart.DomainID() {
+	c.SetDomainID(testValue)
+	if testValue != c.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCartUserID(t *testing.T) {
-	cart := cart.NewCartEntity()
+	c := cart.NewCartEntity()
 	testValue := "testValue"
-	cart.SetUserID(&testValue)
-	if &testValue != cart.UserID() {
+	c.SetUserID(&testValue)
+	if &testValue != c.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

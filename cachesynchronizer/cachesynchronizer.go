@@ -53,110 +53,110 @@ type subscription struct {
 }
 
 // ID returns the unique subscription ID.
-func (subscription *subscription) ID() uint {
-	return subscription.id
+func (s *subscription) ID() uint {
+	return s.id
 }
 
 // Target returns the subscription target descriptor.
-func (subscription *subscription) Target() uint {
-	return subscription.target
+func (s *subscription) Target() uint {
+	return s.target
 }
 
 // Items returns the subscription items channel to list to.
-func (subscription *subscription) Items() chan string {
-	return subscription.items
+func (s *subscription) Items() chan string {
+	return s.items
 }
 
 // Notify broadcasts a key changed for the given target.
-func (cacheSynchronizer *CacheSynchronizer) Notify(target uint, key string) error {
-	return cacheSynchronizer.cacheNotifyStore.Save(target, key)
+func (s *CacheSynchronizer) Notify(target uint, key string) error {
+	return s.cacheNotifyStore.Save(target, key)
 }
 
 // Subscribe returns a channel to listen to changes for the given target.
-func (cacheSynchronizer *CacheSynchronizer) Subscribe(target uint) (Subscription, error) {
-	cacheSynchronizer.subscribersMutex.Lock()
-	defer cacheSynchronizer.subscribersMutex.Unlock()
-	cacheSynchronizer.idCounter++
+func (s *CacheSynchronizer) Subscribe(target uint) (Subscription, error) {
+	s.subscribersMutex.Lock()
+	defer s.subscribersMutex.Unlock()
+	s.idCounter++
 	sub := &subscription{
-		id:     cacheSynchronizer.idCounter,
+		id:     s.idCounter,
 		items:  make(chan string),
 		target: target,
 	}
-	_, ok := cacheSynchronizer.subscribers[target]
+	_, ok := s.subscribers[target]
 	if !ok {
-		cacheSynchronizer.subscribers[target] = make([]*subscription, 0)
+		s.subscribers[target] = make([]*subscription, 0)
 	}
-	cacheSynchronizer.subscribers[target] = append(cacheSynchronizer.subscribers[target], sub)
+	s.subscribers[target] = append(s.subscribers[target], sub)
 	if !ok {
-		cacheSynchronizer.startCycler(target)
+		s.startCycler(target)
 	}
 	return sub, nil
 }
 
 // Unsubscribe revokes a given subscription.
-func (cacheSynchronizer *CacheSynchronizer) Unsubscribe(subscription Subscription) {
+func (s *CacheSynchronizer) Unsubscribe(subscription Subscription) {
 	target := subscription.Target()
-	cacheSynchronizer.subscribersMutex.Lock()
-	defer cacheSynchronizer.subscribersMutex.Unlock()
+	s.subscribersMutex.Lock()
+	defer s.subscribersMutex.Unlock()
 	var subscriptionsRemaining uint
-	for k := range cacheSynchronizer.subscribers[target] {
-		if cacheSynchronizer.subscribers[target][k] != nil {
+	for k := range s.subscribers[target] {
+		if s.subscribers[target][k] != nil {
 			subscriptionsRemaining++
 		}
 	}
 	if subscriptionsRemaining <= 1 {
-		cacheSynchronizer.cyclersMutex.Lock()
-		defer cacheSynchronizer.cyclersMutex.Unlock()
-		delete(cacheSynchronizer.cyclers, target)
-		delete(cacheSynchronizer.subscribers, target)
+		s.cyclersMutex.Lock()
+		defer s.cyclersMutex.Unlock()
+		delete(s.cyclers, target)
+		delete(s.subscribers, target)
 	}
 }
 
-func (cacheSynchronizer *CacheSynchronizer) startCycler(target uint) {
-	cacheSynchronizer.cyclersMutex.Lock()
-	if _, ok := cacheSynchronizer.cyclers[target]; !ok {
-		cacheSynchronizer.cyclers[target] = true
-		defer cacheSynchronizer.cyclersMutex.Unlock()
-		go cacheSynchronizer.cycler(target)
+func (s *CacheSynchronizer) startCycler(target uint) {
+	s.cyclersMutex.Lock()
+	if _, ok := s.cyclers[target]; !ok {
+		s.cyclers[target] = true
+		defer s.cyclersMutex.Unlock()
+		go s.cycler(target)
 	}
 }
 
-func (cacheSynchronizer *CacheSynchronizer) cycler(target uint) {
+func (s *CacheSynchronizer) cycler(target uint) {
 	for {
-		if !cacheSynchronizer.cycle(target) {
+		if !s.cycle(target) {
 			break
 		}
-		time.Sleep(cacheSynchronizer.checkInterval)
+		time.Sleep(s.checkInterval)
 	}
 }
 
-func (cacheSynchronizer *CacheSynchronizer) cycle(target uint) bool {
+func (s *CacheSynchronizer) cycle(target uint) bool {
 	// TODO :: 77 This package started off well, but is a bit of a mess now. Needs a revision in the future
-	// cacheSynchronizer.subscribersMutex.Lock()
-	// defer cacheSynchronizer.subscribersMutex.Unlock()
+	// s.subscribersMutex.Lock()
+	// defer s.subscribersMutex.Unlock()
 
-	if _, ok := cacheSynchronizer.subscribers[target]; !ok {
+	if _, ok := s.subscribers[target]; !ok {
 		return false
 	}
-	cacheNotifications, ok, err := cacheSynchronizer.cacheNotifyStore.GetLatest(cacheSynchronizer.checkInterval)
+	cacheNotifications, ok, err := s.cacheNotifyStore.GetLatest(s.checkInterval)
 	if err != nil {
-		cacheSynchronizer.loggerService.Error(errors.ErrorStack(err))
+		s.loggerService.Error(errors.ErrorStack(err))
 		return false
 	}
 	if ok {
 		for i := range cacheNotifications {
-			for k2 := range cacheSynchronizer.subscribers[target] {
-				// if cacheSynchronizer.subscribers[target][k2] == nil {
+			for k2 := range s.subscribers[target] {
+				// if s.subscribers[target][k2] == nil {
 				// 	return false
 				// }
-				cacheSynchronizer.subscribers[target][k2].Items() <- cacheNotifications[i].Key()
+				s.subscribers[target][k2].Items() <- cacheNotifications[i].Key()
 			}
 		}
 	}
 	return true
 }
 
-// New returns a new instance of CacheSynchronizer.
+// New returns a new instance of s.
 func New(loggerService logger.Loggable, cacheNotifyStore cachenotify.Store, checkInterval time.Duration) *CacheSynchronizer {
 	return &CacheSynchronizer{
 		loggerService:    loggerService,

@@ -22,133 +22,133 @@ type VariantPropertyEntity interface {
 }
 
 // ID returns id.
-func (variantProperty *VariantProperty) ID() string {
-	return variantProperty.id
+func (v *VariantProperty) ID() string {
+	return v.id
 }
 
 // CreatedByID returns createdByID.
-func (variantProperty *VariantProperty) CreatedByID() string {
-	return variantProperty.createdByID
+func (v *VariantProperty) CreatedByID() string {
+	return v.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (variantProperty *VariantProperty) SetCreatedByID(createdByID string) {
-	variantProperty.createdByID = createdByID
+func (v *VariantProperty) SetCreatedByID(createdByID string) {
+	v.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (variantProperty *VariantProperty) UpdatedByID() *string {
-	return variantProperty.updatedByID
+func (v *VariantProperty) UpdatedByID() *string {
+	return v.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (variantProperty *VariantProperty) SetUpdatedByID(updatedByID *string) {
-	variantProperty.updatedByID = updatedByID
+func (v *VariantProperty) SetUpdatedByID(updatedByID *string) {
+	v.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (variantProperty *VariantProperty) CreatedAt() time.Time {
-	return variantProperty.createdAt
+func (v *VariantProperty) CreatedAt() time.Time {
+	return v.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (variantProperty *VariantProperty) SetCreatedAt(createdAt time.Time) {
-	variantProperty.createdAt = createdAt
+func (v *VariantProperty) SetCreatedAt(createdAt time.Time) {
+	v.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (variantProperty *VariantProperty) UpdatedAt() *time.Time {
-	return variantProperty.updatedAt
+func (v *VariantProperty) UpdatedAt() *time.Time {
+	return v.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (variantProperty *VariantProperty) SetUpdatedAt(updatedAt *time.Time) {
-	variantProperty.updatedAt = updatedAt
+func (v *VariantProperty) SetUpdatedAt(updatedAt *time.Time) {
+	v.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (variantProperty *VariantProperty) CreatedByFirstName() *string {
-	return variantProperty.createdByFirstName
+func (v *VariantProperty) CreatedByFirstName() *string {
+	return v.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (variantProperty *VariantProperty) SetCreatedByFirstName(createdByFirstName *string) {
-	variantProperty.createdByFirstName = createdByFirstName
+func (v *VariantProperty) SetCreatedByFirstName(createdByFirstName *string) {
+	v.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (variantProperty *VariantProperty) CreatedBySurname() *string {
-	return variantProperty.createdBySurname
+func (v *VariantProperty) CreatedBySurname() *string {
+	return v.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (variantProperty *VariantProperty) SetCreatedBySurname(createdBySurname *string) {
-	variantProperty.createdBySurname = createdBySurname
+func (v *VariantProperty) SetCreatedBySurname(createdBySurname *string) {
+	v.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (variantProperty *VariantProperty) UpdatedByFirstName() *string {
-	return variantProperty.updatedByFirstName
+func (v *VariantProperty) UpdatedByFirstName() *string {
+	return v.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (variantProperty *VariantProperty) SetUpdatedByFirstName(updatedByFirstName *string) {
-	variantProperty.updatedByFirstName = updatedByFirstName
+func (v *VariantProperty) SetUpdatedByFirstName(updatedByFirstName *string) {
+	v.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (variantProperty *VariantProperty) UpdatedBySurname() *string {
-	return variantProperty.updatedBySurname
+func (v *VariantProperty) UpdatedBySurname() *string {
+	return v.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (variantProperty *VariantProperty) SetUpdatedBySurname(updatedBySurname *string) {
-	variantProperty.updatedBySurname = updatedBySurname
+func (v *VariantProperty) SetUpdatedBySurname(updatedBySurname *string) {
+	v.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (variantProperty *VariantProperty) IsUpdated() bool {
-	return variantProperty.updatedByID != nil
+func (v *VariantProperty) IsUpdated() bool {
+	return v.updatedByID != nil
 }
 
 // VariantID returns variantID.
-func (variantProperty *VariantProperty) VariantID() string {
-	return variantProperty.variantID
+func (v *VariantProperty) VariantID() string {
+	return v.variantID
 }
 
 // SetVariantID sets the variantID.
-func (variantProperty *VariantProperty) SetVariantID(variantID string) {
-	variantProperty.variantID = variantID
+func (v *VariantProperty) SetVariantID(variantID string) {
+	v.variantID = variantID
 }
 
 // PropertyID returns propertyID.
-func (variantProperty *VariantProperty) PropertyID() string {
-	return variantProperty.propertyID
+func (v *VariantProperty) PropertyID() string {
+	return v.propertyID
 }
 
 // SetPropertyID sets the propertyID.
-func (variantProperty *VariantProperty) SetPropertyID(propertyID string) {
-	variantProperty.propertyID = propertyID
+func (v *VariantProperty) SetPropertyID(propertyID string) {
+	v.propertyID = propertyID
 }
 
 // Sorting returns sorting.
-func (variantProperty *VariantProperty) Sorting() uint {
-	return variantProperty.sorting
+func (v *VariantProperty) Sorting() uint {
+	return v.sorting
 }
 
 // SetSorting sets the sorting.
-func (variantProperty *VariantProperty) SetSorting(sorting uint) {
-	variantProperty.sorting = sorting
+func (v *VariantProperty) SetSorting(sorting uint) {
+	v.sorting = sorting
 }
 
 // Key returns key.
-func (variantProperty *VariantProperty) Key() *string {
-	return variantProperty.key
+func (v *VariantProperty) Key() *string {
+	return v.key
 }
 
 // SetKey sets the key.
-func (variantProperty *VariantProperty) SetKey(key *string) {
-	variantProperty.key = key
+func (v *VariantProperty) SetKey(key *string) {
+	v.key = key
 }
 
 func newVariantProperty() *VariantProperty {

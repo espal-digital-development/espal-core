@@ -26,30 +26,30 @@ type FormView struct {
 
 // Errors will render the list of form errors.
 // Returns an empty string when no errors are present.
-func (formView *FormView) Errors() string {
-	return formView.validator.RenderErrors()
+func (v *FormView) Errors() string {
+	return v.validator.RenderErrors()
 }
 
 // Open will render the form open tag.
-func (formView *FormView) Open() string {
-	return formView.validator.RenderOpen()
+func (v *FormView) Open() string {
+	return v.validator.RenderOpen()
 }
 
 // Field will render the form field and resolve it's rules and presets.
-func (formView *FormView) Field(name string) string {
-	return formView.validator.RenderField(name)
+func (v *FormView) Field(name string) string {
+	return v.validator.RenderField(name)
 }
 
 // CreateUpdateActions will render all admin create/update
 // actions of an admin module overview page.
-func (formView *FormView) CreateUpdateActions(fieldName string, url string) string {
-	return formView.validator.RenderCreateUpdateActions(fieldName, url)
+func (v *FormView) CreateUpdateActions(fieldName string, url string) string {
+	return v.validator.RenderCreateUpdateActions(fieldName, url)
 }
 
 // ContainsSelectSearch determines if at least one ChoiceType field is
 // present with Searchable active.
-func (formView *FormView) ContainsSelectSearch() bool {
-	return formView.validator.ContainsSelectSearch()
+func (v *FormView) ContainsSelectSearch() bool {
+	return v.validator.ContainsSelectSearch()
 }
 
 // New returns a new intance of FormView.

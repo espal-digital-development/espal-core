@@ -25,8 +25,8 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
-func (forms *Forms) New(language language, user user.UserEntity) (Form, error) {
-	validator, err := forms.validatorsFactory.NewForm(language)
+func (f *Forms) New(language language, user user.UserEntity) (Form, error) {
+	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}

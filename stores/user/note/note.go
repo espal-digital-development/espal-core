@@ -22,11 +22,11 @@ type Note struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (note *Note) TableName() string {
+func (n *Note) TableName() string {
 	return "UserNote"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (note *Note) TableAlias() string {
+func (n *Note) TableAlias() string {
 	return "un"
 }

@@ -59,9 +59,9 @@ type EntityMutator struct {
 
 // Execute is a shortcut to quickly run insert/update actions
 // for Admin Create/Update routes.
-func (entityMutator *EntityMutator) Execute(context contexts.Context) error {
+func (m *EntityMutator) Execute(context contexts.Context) error {
 	var err error
-	fieldsLength := len(entityMutator.fields)
+	fieldsLength := len(m.fields)
 	if fieldsLength == 0 {
 		return context.SetFlashInfoMessage(context.Translate("noDataWasChanged"))
 	}
@@ -74,20 +74,20 @@ func (entityMutator *EntityMutator) Execute(context contexts.Context) error {
 		return errors.Errorf("user couldn't be retrieved from the context")
 	}
 
-	if entityMutator.entity.ID() == "" {
-		entityMutator.fields = append(entityMutator.fields, "createdByID")
+	if m.entity.ID() == "" {
+		m.fields = append(m.fields, "createdByID")
 	} else {
-		entityMutator.fields = append(entityMutator.fields, "updatedByID")
+		m.fields = append(m.fields, "updatedByID")
 	}
-	entityMutator.values = append(entityMutator.values, user.ID())
+	m.values = append(m.values, user.ID())
 
-	entityMutator.query = new(bytes.Buffer)
-	if entityMutator.entity.ID() == "" {
-		if err := entityMutator.buildInsertQuery(); err != nil {
+	m.query = new(bytes.Buffer)
+	if m.entity.ID() == "" {
+		if err := m.buildInsertQuery(); err != nil {
 			return errors.Trace(err)
 		}
 	} else {
-		if err := entityMutator.buildUpdateQuery(); err != nil {
+		if err := m.buildUpdateQuery(); err != nil {
 			return errors.Trace(err)
 		}
 	}
@@ -95,17 +95,17 @@ func (entityMutator *EntityMutator) Execute(context contexts.Context) error {
 	var row database.Row
 	var lastInsertedID string
 
-	if entityMutator.entity.ID() == "" {
-		row = entityMutator.inserterDatabase.QueryRow(entityMutator.query.String()+` RETURNING "id"`, entityMutator.values...)
+	if m.entity.ID() == "" {
+		row = m.inserterDatabase.QueryRow(m.query.String()+` RETURNING "id"`, m.values...)
 	} else {
-		row = entityMutator.updaterDatabase.QueryRow(entityMutator.query.String()+` RETURNING "id"`, entityMutator.values...)
+		row = m.updaterDatabase.QueryRow(m.query.String()+` RETURNING "id"`, m.values...)
 	}
 	if err := row.Scan(&lastInsertedID); err != nil {
 		return errors.Trace(err)
 	}
 
 	if err != nil {
-		if entityMutator.entity.ID() == "" {
+		if m.entity.ID() == "" {
 			if err := context.SetFlashErrorMessage(context.Translate("creationHasFailed") + ": " + err.Error()); err != nil {
 				return errors.Trace(err)
 			}
@@ -117,13 +117,13 @@ func (entityMutator *EntityMutator) Execute(context contexts.Context) error {
 		return errors.Trace(err)
 	}
 
-	if entityMutator.entity.ID() == "" && lastInsertedID == "" {
+	if m.entity.ID() == "" && lastInsertedID == "" {
 		return errors.Errorf("lastInsertedID was not set")
 	}
 
-	entityMutator.lastInsertedID = lastInsertedID
+	m.lastInsertedID = lastInsertedID
 
-	if entityMutator.entity.ID() == "" {
+	if m.entity.ID() == "" {
 		if err := context.SetFlashSuccessMessage(context.Translate("creationWasSuccessful")); err != nil {
 			return errors.Trace(err)
 		}
@@ -137,58 +137,58 @@ func (entityMutator *EntityMutator) Execute(context contexts.Context) error {
 }
 
 // incrementParameterCount increments the parameter count and then returns the new value.
-func (entityMutator *EntityMutator) incrementParameterCount() uint16 {
-	entityMutator.parameterCount++
-	return entityMutator.parameterCount
+func (m *EntityMutator) incrementParameterCount() uint16 {
+	m.parameterCount++
+	return m.parameterCount
 }
 
 // SetCustomReturnPath sets a custom return path to redirect to
-func (entityMutator *EntityMutator) SetCustomReturnPath(returnPath string) {
-	entityMutator.returnPath = returnPath
+func (m *EntityMutator) SetCustomReturnPath(returnPath string) {
+	m.returnPath = returnPath
 }
 
 // SetExtraURLQueryParams adds extra query parameters to the RedirectURL call.
 // No need to add prefixed `?` or `&`
-func (entityMutator *EntityMutator) SetExtraURLQueryParams(paramsString string) {
-	entityMutator.extraQueryParams = strings.TrimLeft(paramsString, "&")
+func (m *EntityMutator) SetExtraURLQueryParams(paramsString string) {
+	m.extraQueryParams = strings.TrimLeft(paramsString, "&")
 }
 
 // GetInsertedOrUpdatedID returns the last inserted ID.
-func (entityMutator *EntityMutator) GetInsertedOrUpdatedID() string {
-	if entityMutator.entity.ID() != "" {
-		return entityMutator.entity.ID()
+func (m *EntityMutator) GetInsertedOrUpdatedID() string {
+	if m.entity.ID() != "" {
+		return m.entity.ID()
 	}
-	return entityMutator.lastInsertedID
+	return m.lastInsertedID
 }
 
 // RedirectURL returns where the
-func (entityMutator *EntityMutator) RedirectURL() string {
+func (m *EntityMutator) RedirectURL() string {
 	var url string
 	var skipParams bool
 
 	switch {
-	case validators.SaveAndCreate == entityMutator.formAction:
-		url = "/" + entityMutator.path + "/Create"
-	case validators.SaveAndClone == entityMutator.formAction:
-		if entityMutator.entity.ID() != "" {
+	case validators.SaveAndCreate == m.formAction:
+		url = "/" + m.path + "/Create"
+	case validators.SaveAndClone == m.formAction:
+		if m.entity.ID() != "" {
 			// TODO :: Clone; forward post-data without actually posting?
 			//         This doesn't work yet. Also fields like FileField give issues.
 			url = "/Create"
 		}
-	case entityMutator.returnPath != "":
-		url = "/" + entityMutator.returnPath
+	case m.returnPath != "":
+		url = "/" + m.returnPath
 		skipParams = true
 	default:
-		url = "/" + entityMutator.path
+		url = "/" + m.path
 	}
 
-	if !skipParams && entityMutator.extraQueryParams != "" {
+	if !skipParams && m.extraQueryParams != "" {
 		if !strings.Contains(url, "?") {
 			url += "?"
 		} else {
 			url += "&"
 		}
-		url += entityMutator.extraQueryParams
+		url += m.extraQueryParams
 	}
 
 	return url

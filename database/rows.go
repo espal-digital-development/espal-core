@@ -22,27 +22,27 @@ type rows struct {
 // the two cases.
 //
 // Every call to Scan, even the first one, must be preceded by a call to Next.
-func (rows *rows) Next() bool {
-	return rows.rows.Next()
+func (r *rows) Next() bool {
+	return r.rows.Next()
 }
 
 // Scan copies the columns in the current row into the values pointed
 // at by dest. The number of values in dest must be the same as the
 // number of columns in Rows.
-func (rows *rows) Scan(dest ...interface{}) error {
-	return rows.rows.Scan(dest...)
+func (r *rows) Scan(dest ...interface{}) error {
+	return r.rows.Scan(dest...)
 }
 
 // Err returns the error, if any, that was encountered during iteration.
 // Err may be called after an explicit or implicit Close.
-func (rows *rows) Err() error {
-	return rows.rows.Err()
+func (r *rows) Err() error {
+	return r.rows.Err()
 }
 
 // Close closes the Rows, preventing further enumeration. If Next is called
 // and returns false and there are no further result sets,
 // the Rows are closed automatically and it will suffice to check the
 // result of Err. Close is idempotent and does not affect the result of Err.
-func (rows *rows) Close() error {
-	return rows.rows.Close()
+func (r *rows) Close() error {
+	return r.rows.Close()
 }

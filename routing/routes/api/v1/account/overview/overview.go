@@ -24,7 +24,7 @@ type Route struct {
 const tokenPassword = "42e1d1a0b8a66670a2a748a327dfffa5"
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	tokenHeader := context.GetHeader("Authorization")
 	if tokenHeader == "" {
 		spew.Dump("empty authorization")

@@ -13,8 +13,8 @@ var _ Store = &NewslettersStore{}
 type Store interface {
 }
 
-func (newslettersStore *NewslettersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Newsletter, ok bool, err error) {
-	rows, err := newslettersStore.selecterDatabase.Query(query, params...)
+func (n *NewslettersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Newsletter, ok bool, err error) {
+	rows, err := n.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (newslettersStore *NewslettersStore) fetch(query string, withCreators bool,
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		newsletter := newNewsletter()
-		fields := []interface{}{&newsletter.id, &newsletter.createdByID, &newsletter.updatedByID, &newsletter.createdAt, &newsletter.updatedAt, &newsletter.domainID, &newsletter.active, &newsletter.sendAt}
+		n := newNewsletter()
+		fields := []interface{}{&n.id, &n.createdByID, &n.updatedByID, &n.createdAt, &n.updatedAt, &n.domainID, &n.active, &n.sendAt}
 		if withCreators {
-			fields = append(fields, &newsletter.createdByFirstName, &newsletter.createdBySurname, &newsletter.updatedByFirstName, &newsletter.updatedBySurname)
+			fields = append(fields, &n.createdByFirstName, &n.createdBySurname, &n.updatedByFirstName, &n.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, newsletter)
+		result = append(result, n)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (newslettersStore *NewslettersStore) fetch(query string, withCreators bool,
 
 // New returns a new instance of NewslettersStore.
 func New(selecterDatabase database.Database) (*NewslettersStore, error) {
-	newslettersStore := &NewslettersStore{
+	n := &NewslettersStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return newslettersStore, nil
+	return n, nil
 }

@@ -16,133 +16,133 @@ type OptionTranslationEntity interface {
 }
 
 // ID returns id.
-func (optionTranslation *OptionTranslation) ID() string {
-	return optionTranslation.id
+func (o *OptionTranslation) ID() string {
+	return o.id
 }
 
 // CreatedByID returns createdByID.
-func (optionTranslation *OptionTranslation) CreatedByID() string {
-	return optionTranslation.createdByID
+func (o *OptionTranslation) CreatedByID() string {
+	return o.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (optionTranslation *OptionTranslation) SetCreatedByID(createdByID string) {
-	optionTranslation.createdByID = createdByID
+func (o *OptionTranslation) SetCreatedByID(createdByID string) {
+	o.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (optionTranslation *OptionTranslation) UpdatedByID() *string {
-	return optionTranslation.updatedByID
+func (o *OptionTranslation) UpdatedByID() *string {
+	return o.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (optionTranslation *OptionTranslation) SetUpdatedByID(updatedByID *string) {
-	optionTranslation.updatedByID = updatedByID
+func (o *OptionTranslation) SetUpdatedByID(updatedByID *string) {
+	o.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (optionTranslation *OptionTranslation) CreatedAt() time.Time {
-	return optionTranslation.createdAt
+func (o *OptionTranslation) CreatedAt() time.Time {
+	return o.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (optionTranslation *OptionTranslation) SetCreatedAt(createdAt time.Time) {
-	optionTranslation.createdAt = createdAt
+func (o *OptionTranslation) SetCreatedAt(createdAt time.Time) {
+	o.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (optionTranslation *OptionTranslation) UpdatedAt() *time.Time {
-	return optionTranslation.updatedAt
+func (o *OptionTranslation) UpdatedAt() *time.Time {
+	return o.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (optionTranslation *OptionTranslation) SetUpdatedAt(updatedAt *time.Time) {
-	optionTranslation.updatedAt = updatedAt
+func (o *OptionTranslation) SetUpdatedAt(updatedAt *time.Time) {
+	o.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (optionTranslation *OptionTranslation) CreatedByFirstName() *string {
-	return optionTranslation.createdByFirstName
+func (o *OptionTranslation) CreatedByFirstName() *string {
+	return o.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (optionTranslation *OptionTranslation) SetCreatedByFirstName(createdByFirstName *string) {
-	optionTranslation.createdByFirstName = createdByFirstName
+func (o *OptionTranslation) SetCreatedByFirstName(createdByFirstName *string) {
+	o.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (optionTranslation *OptionTranslation) CreatedBySurname() *string {
-	return optionTranslation.createdBySurname
+func (o *OptionTranslation) CreatedBySurname() *string {
+	return o.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (optionTranslation *OptionTranslation) SetCreatedBySurname(createdBySurname *string) {
-	optionTranslation.createdBySurname = createdBySurname
+func (o *OptionTranslation) SetCreatedBySurname(createdBySurname *string) {
+	o.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (optionTranslation *OptionTranslation) UpdatedByFirstName() *string {
-	return optionTranslation.updatedByFirstName
+func (o *OptionTranslation) UpdatedByFirstName() *string {
+	return o.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (optionTranslation *OptionTranslation) SetUpdatedByFirstName(updatedByFirstName *string) {
-	optionTranslation.updatedByFirstName = updatedByFirstName
+func (o *OptionTranslation) SetUpdatedByFirstName(updatedByFirstName *string) {
+	o.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (optionTranslation *OptionTranslation) UpdatedBySurname() *string {
-	return optionTranslation.updatedBySurname
+func (o *OptionTranslation) UpdatedBySurname() *string {
+	return o.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (optionTranslation *OptionTranslation) SetUpdatedBySurname(updatedBySurname *string) {
-	optionTranslation.updatedBySurname = updatedBySurname
+func (o *OptionTranslation) SetUpdatedBySurname(updatedBySurname *string) {
+	o.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (optionTranslation *OptionTranslation) IsUpdated() bool {
-	return optionTranslation.updatedByID != nil
+func (o *OptionTranslation) IsUpdated() bool {
+	return o.updatedByID != nil
 }
 
 // Language returns language.
-func (optionTranslation *OptionTranslation) Language() uint16 {
-	return optionTranslation.language
+func (o *OptionTranslation) Language() uint16 {
+	return o.language
 }
 
 // SetLanguage sets the language.
-func (optionTranslation *OptionTranslation) SetLanguage(language uint16) {
-	optionTranslation.language = language
+func (o *OptionTranslation) SetLanguage(language uint16) {
+	o.language = language
 }
 
 // Field returns field.
-func (optionTranslation *OptionTranslation) Field() uint16 {
-	return optionTranslation.field
+func (o *OptionTranslation) Field() uint16 {
+	return o.field
 }
 
 // SetField sets the field.
-func (optionTranslation *OptionTranslation) SetField(field uint16) {
-	optionTranslation.field = field
+func (o *OptionTranslation) SetField(field uint16) {
+	o.field = field
 }
 
 // Value returns value.
-func (optionTranslation *OptionTranslation) Value() string {
-	return optionTranslation.value
+func (o *OptionTranslation) Value() string {
+	return o.value
 }
 
 // SetValue sets the value.
-func (optionTranslation *OptionTranslation) SetValue(value string) {
-	optionTranslation.value = value
+func (o *OptionTranslation) SetValue(value string) {
+	o.value = value
 }
 
 // OptionID returns optionID.
-func (optionTranslation *OptionTranslation) OptionID() string {
-	return optionTranslation.optionID
+func (o *OptionTranslation) OptionID() string {
+	return o.optionID
 }
 
 // SetOptionID sets the optionID.
-func (optionTranslation *OptionTranslation) SetOptionID(optionID string) {
-	optionTranslation.optionID = optionID
+func (o *OptionTranslation) SetOptionID(optionID string) {
+	o.optionID = optionID
 }
 
 func newOptionTranslation() *OptionTranslation {

@@ -86,463 +86,463 @@ type SaleOrderEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (saleOrder *SaleOrder) TableName() string {
+func (s *SaleOrder) TableName() string {
 	return "SaleOrder"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (saleOrder *SaleOrder) TableAlias() string {
+func (s *SaleOrder) TableAlias() string {
 	return "soe"
 }
 
 // ID returns id.
-func (saleOrder *SaleOrder) ID() string {
-	return saleOrder.id
+func (s *SaleOrder) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (saleOrder *SaleOrder) CreatedByID() string {
-	return saleOrder.createdByID
+func (s *SaleOrder) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (saleOrder *SaleOrder) SetCreatedByID(createdByID string) {
-	saleOrder.createdByID = createdByID
+func (s *SaleOrder) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (saleOrder *SaleOrder) UpdatedByID() *string {
-	return saleOrder.updatedByID
+func (s *SaleOrder) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (saleOrder *SaleOrder) SetUpdatedByID(updatedByID *string) {
-	saleOrder.updatedByID = updatedByID
+func (s *SaleOrder) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (saleOrder *SaleOrder) CreatedAt() time.Time {
-	return saleOrder.createdAt
+func (s *SaleOrder) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (saleOrder *SaleOrder) SetCreatedAt(createdAt time.Time) {
-	saleOrder.createdAt = createdAt
+func (s *SaleOrder) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (saleOrder *SaleOrder) UpdatedAt() *time.Time {
-	return saleOrder.updatedAt
+func (s *SaleOrder) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (saleOrder *SaleOrder) SetUpdatedAt(updatedAt *time.Time) {
-	saleOrder.updatedAt = updatedAt
+func (s *SaleOrder) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (saleOrder *SaleOrder) CreatedByFirstName() *string {
-	return saleOrder.createdByFirstName
+func (s *SaleOrder) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (saleOrder *SaleOrder) SetCreatedByFirstName(createdByFirstName *string) {
-	saleOrder.createdByFirstName = createdByFirstName
+func (s *SaleOrder) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (saleOrder *SaleOrder) CreatedBySurname() *string {
-	return saleOrder.createdBySurname
+func (s *SaleOrder) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (saleOrder *SaleOrder) SetCreatedBySurname(createdBySurname *string) {
-	saleOrder.createdBySurname = createdBySurname
+func (s *SaleOrder) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (saleOrder *SaleOrder) UpdatedByFirstName() *string {
-	return saleOrder.updatedByFirstName
+func (s *SaleOrder) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (saleOrder *SaleOrder) SetUpdatedByFirstName(updatedByFirstName *string) {
-	saleOrder.updatedByFirstName = updatedByFirstName
+func (s *SaleOrder) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (saleOrder *SaleOrder) UpdatedBySurname() *string {
-	return saleOrder.updatedBySurname
+func (s *SaleOrder) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (saleOrder *SaleOrder) SetUpdatedBySurname(updatedBySurname *string) {
-	saleOrder.updatedBySurname = updatedBySurname
+func (s *SaleOrder) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (saleOrder *SaleOrder) IsUpdated() bool {
-	return saleOrder.updatedByID != nil
+func (s *SaleOrder) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // UserID returns userID.
-func (saleOrder *SaleOrder) UserID() string {
-	return saleOrder.userID
+func (s *SaleOrder) UserID() string {
+	return s.userID
 }
 
 // SetUserID sets the userID.
-func (saleOrder *SaleOrder) SetUserID(userID string) {
-	saleOrder.userID = userID
+func (s *SaleOrder) SetUserID(userID string) {
+	s.userID = userID
 }
 
 // DomainID returns domainID.
-func (saleOrder *SaleOrder) DomainID() string {
-	return saleOrder.domainID
+func (s *SaleOrder) DomainID() string {
+	return s.domainID
 }
 
 // SetDomainID sets the domainID.
-func (saleOrder *SaleOrder) SetDomainID(domainID string) {
-	saleOrder.domainID = domainID
+func (s *SaleOrder) SetDomainID(domainID string) {
+	s.domainID = domainID
 }
 
 // Currency returns currency.
-func (saleOrder *SaleOrder) Currency() uint16 {
-	return saleOrder.currency
+func (s *SaleOrder) Currency() uint16 {
+	return s.currency
 }
 
 // SetCurrency sets the currency.
-func (saleOrder *SaleOrder) SetCurrency(currency uint16) {
-	saleOrder.currency = currency
+func (s *SaleOrder) SetCurrency(currency uint16) {
+	s.currency = currency
 }
 
 // Code returns code.
-func (saleOrder *SaleOrder) Code() *string {
-	return saleOrder.code
+func (s *SaleOrder) Code() *string {
+	return s.code
 }
 
 // SetCode sets the code.
-func (saleOrder *SaleOrder) SetCode(code *string) {
-	saleOrder.code = code
+func (s *SaleOrder) SetCode(code *string) {
+	s.code = code
 }
 
 // UserInfoBusiness returns userInfoBusiness.
-func (saleOrder *SaleOrder) UserInfoBusiness() bool {
-	return saleOrder.userInfoBusiness
+func (s *SaleOrder) UserInfoBusiness() bool {
+	return s.userInfoBusiness
 }
 
 // SetUserInfoBusiness sets the userInfoBusiness.
-func (saleOrder *SaleOrder) SetUserInfoBusiness(userInfoBusiness bool) {
-	saleOrder.userInfoBusiness = userInfoBusiness
+func (s *SaleOrder) SetUserInfoBusiness(userInfoBusiness bool) {
+	s.userInfoBusiness = userInfoBusiness
 }
 
 // UserInfoBusinessCocNumber returns userInfoBusinessCocNumber.
-func (saleOrder *SaleOrder) UserInfoBusinessCocNumber() *string {
-	return saleOrder.userInfoBusinessCocNumber
+func (s *SaleOrder) UserInfoBusinessCocNumber() *string {
+	return s.userInfoBusinessCocNumber
 }
 
 // SetUserInfoBusinessCocNumber sets the userInfoBusinessCocNumber.
-func (saleOrder *SaleOrder) SetUserInfoBusinessCocNumber(userInfoBusinessCocNumber *string) {
-	saleOrder.userInfoBusinessCocNumber = userInfoBusinessCocNumber
+func (s *SaleOrder) SetUserInfoBusinessCocNumber(userInfoBusinessCocNumber *string) {
+	s.userInfoBusinessCocNumber = userInfoBusinessCocNumber
 }
 
 // UserInfoFirstName returns userInfoFirstName.
-func (saleOrder *SaleOrder) UserInfoFirstName() string {
-	return saleOrder.userInfoFirstName
+func (s *SaleOrder) UserInfoFirstName() string {
+	return s.userInfoFirstName
 }
 
 // SetUserInfoFirstName sets the userInfoFirstName.
-func (saleOrder *SaleOrder) SetUserInfoFirstName(userInfoFirstName string) {
-	saleOrder.userInfoFirstName = userInfoFirstName
+func (s *SaleOrder) SetUserInfoFirstName(userInfoFirstName string) {
+	s.userInfoFirstName = userInfoFirstName
 }
 
 // UserInfoSurname returns userInfoSurname.
-func (saleOrder *SaleOrder) UserInfoSurname() string {
-	return saleOrder.userInfoSurname
+func (s *SaleOrder) UserInfoSurname() string {
+	return s.userInfoSurname
 }
 
 // SetUserInfoSurname sets the userInfoSurname.
-func (saleOrder *SaleOrder) SetUserInfoSurname(userInfoSurname string) {
-	saleOrder.userInfoSurname = userInfoSurname
+func (s *SaleOrder) SetUserInfoSurname(userInfoSurname string) {
+	s.userInfoSurname = userInfoSurname
 }
 
 // UserInfoStreet returns userInfoStreet.
-func (saleOrder *SaleOrder) UserInfoStreet() string {
-	return saleOrder.userInfoStreet
+func (s *SaleOrder) UserInfoStreet() string {
+	return s.userInfoStreet
 }
 
 // SetUserInfoStreet sets the userInfoStreet.
-func (saleOrder *SaleOrder) SetUserInfoStreet(userInfoStreet string) {
-	saleOrder.userInfoStreet = userInfoStreet
+func (s *SaleOrder) SetUserInfoStreet(userInfoStreet string) {
+	s.userInfoStreet = userInfoStreet
 }
 
 // UserInfoStreetLine2 returns userInfoStreetLine2.
-func (saleOrder *SaleOrder) UserInfoStreetLine2() *string {
-	return saleOrder.userInfoStreetLine2
+func (s *SaleOrder) UserInfoStreetLine2() *string {
+	return s.userInfoStreetLine2
 }
 
 // SetUserInfoStreetLine2 sets the userInfoStreetLine2.
-func (saleOrder *SaleOrder) SetUserInfoStreetLine2(userInfoStreetLine2 *string) {
-	saleOrder.userInfoStreetLine2 = userInfoStreetLine2
+func (s *SaleOrder) SetUserInfoStreetLine2(userInfoStreetLine2 *string) {
+	s.userInfoStreetLine2 = userInfoStreetLine2
 }
 
 // UserInfoNumber returns userInfoNumber.
-func (saleOrder *SaleOrder) UserInfoNumber() string {
-	return saleOrder.userInfoNumber
+func (s *SaleOrder) UserInfoNumber() string {
+	return s.userInfoNumber
 }
 
 // SetUserInfoNumber sets the userInfoNumber.
-func (saleOrder *SaleOrder) SetUserInfoNumber(userInfoNumber string) {
-	saleOrder.userInfoNumber = userInfoNumber
+func (s *SaleOrder) SetUserInfoNumber(userInfoNumber string) {
+	s.userInfoNumber = userInfoNumber
 }
 
 // UserInfoNumberAddition returns userInfoNumberAddition.
-func (saleOrder *SaleOrder) UserInfoNumberAddition() *string {
-	return saleOrder.userInfoNumberAddition
+func (s *SaleOrder) UserInfoNumberAddition() *string {
+	return s.userInfoNumberAddition
 }
 
 // SetUserInfoNumberAddition sets the userInfoNumberAddition.
-func (saleOrder *SaleOrder) SetUserInfoNumberAddition(userInfoNumberAddition *string) {
-	saleOrder.userInfoNumberAddition = userInfoNumberAddition
+func (s *SaleOrder) SetUserInfoNumberAddition(userInfoNumberAddition *string) {
+	s.userInfoNumberAddition = userInfoNumberAddition
 }
 
 // UserInfoZipCode returns userInfoZipCode.
-func (saleOrder *SaleOrder) UserInfoZipCode() string {
-	return saleOrder.userInfoZipCode
+func (s *SaleOrder) UserInfoZipCode() string {
+	return s.userInfoZipCode
 }
 
 // SetUserInfoZipCode sets the userInfoZipCode.
-func (saleOrder *SaleOrder) SetUserInfoZipCode(userInfoZipCode string) {
-	saleOrder.userInfoZipCode = userInfoZipCode
+func (s *SaleOrder) SetUserInfoZipCode(userInfoZipCode string) {
+	s.userInfoZipCode = userInfoZipCode
 }
 
 // UserInfoCity returns userInfoCity.
-func (saleOrder *SaleOrder) UserInfoCity() string {
-	return saleOrder.userInfoCity
+func (s *SaleOrder) UserInfoCity() string {
+	return s.userInfoCity
 }
 
 // SetUserInfoCity sets the userInfoCity.
-func (saleOrder *SaleOrder) SetUserInfoCity(userInfoCity string) {
-	saleOrder.userInfoCity = userInfoCity
+func (s *SaleOrder) SetUserInfoCity(userInfoCity string) {
+	s.userInfoCity = userInfoCity
 }
 
 // UserInfoState returns userInfoState.
-func (saleOrder *SaleOrder) UserInfoState() *uint {
-	return saleOrder.userInfoState
+func (s *SaleOrder) UserInfoState() *uint {
+	return s.userInfoState
 }
 
 // SetUserInfoState sets the userInfoState.
-func (saleOrder *SaleOrder) SetUserInfoState(userInfoState *uint) {
-	saleOrder.userInfoState = userInfoState
+func (s *SaleOrder) SetUserInfoState(userInfoState *uint) {
+	s.userInfoState = userInfoState
 }
 
 // UserInfoCountry returns userInfoCountry.
-func (saleOrder *SaleOrder) UserInfoCountry() *uint16 {
-	return saleOrder.userInfoCountry
+func (s *SaleOrder) UserInfoCountry() *uint16 {
+	return s.userInfoCountry
 }
 
 // SetUserInfoCountry sets the userInfoCountry.
-func (saleOrder *SaleOrder) SetUserInfoCountry(userInfoCountry *uint16) {
-	saleOrder.userInfoCountry = userInfoCountry
+func (s *SaleOrder) SetUserInfoCountry(userInfoCountry *uint16) {
+	s.userInfoCountry = userInfoCountry
 }
 
 // UserInfoPhoneNumber returns userInfoPhoneNumber.
-func (saleOrder *SaleOrder) UserInfoPhoneNumber() *string {
-	return saleOrder.userInfoPhoneNumber
+func (s *SaleOrder) UserInfoPhoneNumber() *string {
+	return s.userInfoPhoneNumber
 }
 
 // SetUserInfoPhoneNumber sets the userInfoPhoneNumber.
-func (saleOrder *SaleOrder) SetUserInfoPhoneNumber(userInfoPhoneNumber *string) {
-	saleOrder.userInfoPhoneNumber = userInfoPhoneNumber
+func (s *SaleOrder) SetUserInfoPhoneNumber(userInfoPhoneNumber *string) {
+	s.userInfoPhoneNumber = userInfoPhoneNumber
 }
 
 // UserInfoEmail returns userInfoEmail.
-func (saleOrder *SaleOrder) UserInfoEmail() *string {
-	return saleOrder.userInfoEmail
+func (s *SaleOrder) UserInfoEmail() *string {
+	return s.userInfoEmail
 }
 
 // SetUserInfoEmail sets the userInfoEmail.
-func (saleOrder *SaleOrder) SetUserInfoEmail(userInfoEmail *string) {
-	saleOrder.userInfoEmail = userInfoEmail
+func (s *SaleOrder) SetUserInfoEmail(userInfoEmail *string) {
+	s.userInfoEmail = userInfoEmail
 }
 
 // ShippingAddressBusiness returns shippingAddressBusiness.
-func (saleOrder *SaleOrder) ShippingAddressBusiness() bool {
-	return saleOrder.shippingAddressBusiness
+func (s *SaleOrder) ShippingAddressBusiness() bool {
+	return s.shippingAddressBusiness
 }
 
 // SetShippingAddressBusiness sets the shippingAddressBusiness.
-func (saleOrder *SaleOrder) SetShippingAddressBusiness(shippingAddressBusiness bool) {
-	saleOrder.shippingAddressBusiness = shippingAddressBusiness
+func (s *SaleOrder) SetShippingAddressBusiness(shippingAddressBusiness bool) {
+	s.shippingAddressBusiness = shippingAddressBusiness
 }
 
 // ShippingAddressBusinessCocNumber returns shippingAddressBusinessCocNumber.
-func (saleOrder *SaleOrder) ShippingAddressBusinessCocNumber() *string {
-	return saleOrder.shippingAddressBusinessCocNumber
+func (s *SaleOrder) ShippingAddressBusinessCocNumber() *string {
+	return s.shippingAddressBusinessCocNumber
 }
 
 // SetShippingAddressBusinessCocNumber sets the shippingAddressBusinessCocNumber.
-func (saleOrder *SaleOrder) SetShippingAddressBusinessCocNumber(shippingAddressBusinessCocNumber *string) {
-	saleOrder.shippingAddressBusinessCocNumber = shippingAddressBusinessCocNumber
+func (s *SaleOrder) SetShippingAddressBusinessCocNumber(shippingAddressBusinessCocNumber *string) {
+	s.shippingAddressBusinessCocNumber = shippingAddressBusinessCocNumber
 }
 
 // ShippingAddressFirstName returns shippingAddressFirstName.
-func (saleOrder *SaleOrder) ShippingAddressFirstName() string {
-	return saleOrder.shippingAddressFirstName
+func (s *SaleOrder) ShippingAddressFirstName() string {
+	return s.shippingAddressFirstName
 }
 
 // SetShippingAddressFirstName sets the shippingAddressFirstName.
-func (saleOrder *SaleOrder) SetShippingAddressFirstName(shippingAddressFirstName string) {
-	saleOrder.shippingAddressFirstName = shippingAddressFirstName
+func (s *SaleOrder) SetShippingAddressFirstName(shippingAddressFirstName string) {
+	s.shippingAddressFirstName = shippingAddressFirstName
 }
 
 // ShippingAddressSurname returns shippingAddressSurname.
-func (saleOrder *SaleOrder) ShippingAddressSurname() string {
-	return saleOrder.shippingAddressSurname
+func (s *SaleOrder) ShippingAddressSurname() string {
+	return s.shippingAddressSurname
 }
 
 // SetShippingAddressSurname sets the shippingAddressSurname.
-func (saleOrder *SaleOrder) SetShippingAddressSurname(shippingAddressSurname string) {
-	saleOrder.shippingAddressSurname = shippingAddressSurname
+func (s *SaleOrder) SetShippingAddressSurname(shippingAddressSurname string) {
+	s.shippingAddressSurname = shippingAddressSurname
 }
 
 // ShippingAddressStreet returns shippingAddressStreet.
-func (saleOrder *SaleOrder) ShippingAddressStreet() string {
-	return saleOrder.shippingAddressStreet
+func (s *SaleOrder) ShippingAddressStreet() string {
+	return s.shippingAddressStreet
 }
 
 // SetShippingAddressStreet sets the shippingAddressStreet.
-func (saleOrder *SaleOrder) SetShippingAddressStreet(shippingAddressStreet string) {
-	saleOrder.shippingAddressStreet = shippingAddressStreet
+func (s *SaleOrder) SetShippingAddressStreet(shippingAddressStreet string) {
+	s.shippingAddressStreet = shippingAddressStreet
 }
 
 // ShippingAddressStreetLine2 returns shippingAddressStreetLine2.
-func (saleOrder *SaleOrder) ShippingAddressStreetLine2() *string {
-	return saleOrder.shippingAddressStreetLine2
+func (s *SaleOrder) ShippingAddressStreetLine2() *string {
+	return s.shippingAddressStreetLine2
 }
 
 // SetShippingAddressStreetLine2 sets the shippingAddressStreetLine2.
-func (saleOrder *SaleOrder) SetShippingAddressStreetLine2(shippingAddressStreetLine2 *string) {
-	saleOrder.shippingAddressStreetLine2 = shippingAddressStreetLine2
+func (s *SaleOrder) SetShippingAddressStreetLine2(shippingAddressStreetLine2 *string) {
+	s.shippingAddressStreetLine2 = shippingAddressStreetLine2
 }
 
 // ShippingAddressNumber returns shippingAddressNumber.
-func (saleOrder *SaleOrder) ShippingAddressNumber() string {
-	return saleOrder.shippingAddressNumber
+func (s *SaleOrder) ShippingAddressNumber() string {
+	return s.shippingAddressNumber
 }
 
 // SetShippingAddressNumber sets the shippingAddressNumber.
-func (saleOrder *SaleOrder) SetShippingAddressNumber(shippingAddressNumber string) {
-	saleOrder.shippingAddressNumber = shippingAddressNumber
+func (s *SaleOrder) SetShippingAddressNumber(shippingAddressNumber string) {
+	s.shippingAddressNumber = shippingAddressNumber
 }
 
 // ShippingAddressNumberAddition returns shippingAddressNumberAddition.
-func (saleOrder *SaleOrder) ShippingAddressNumberAddition() *string {
-	return saleOrder.shippingAddressNumberAddition
+func (s *SaleOrder) ShippingAddressNumberAddition() *string {
+	return s.shippingAddressNumberAddition
 }
 
 // SetShippingAddressNumberAddition sets the shippingAddressNumberAddition.
-func (saleOrder *SaleOrder) SetShippingAddressNumberAddition(shippingAddressNumberAddition *string) {
-	saleOrder.shippingAddressNumberAddition = shippingAddressNumberAddition
+func (s *SaleOrder) SetShippingAddressNumberAddition(shippingAddressNumberAddition *string) {
+	s.shippingAddressNumberAddition = shippingAddressNumberAddition
 }
 
 // ShippingAddressZipCode returns shippingAddressZipCode.
-func (saleOrder *SaleOrder) ShippingAddressZipCode() string {
-	return saleOrder.shippingAddressZipCode
+func (s *SaleOrder) ShippingAddressZipCode() string {
+	return s.shippingAddressZipCode
 }
 
 // SetShippingAddressZipCode sets the shippingAddressZipCode.
-func (saleOrder *SaleOrder) SetShippingAddressZipCode(shippingAddressZipCode string) {
-	saleOrder.shippingAddressZipCode = shippingAddressZipCode
+func (s *SaleOrder) SetShippingAddressZipCode(shippingAddressZipCode string) {
+	s.shippingAddressZipCode = shippingAddressZipCode
 }
 
 // ShippingAddressCity returns shippingAddressCity.
-func (saleOrder *SaleOrder) ShippingAddressCity() string {
-	return saleOrder.shippingAddressCity
+func (s *SaleOrder) ShippingAddressCity() string {
+	return s.shippingAddressCity
 }
 
 // SetShippingAddressCity sets the shippingAddressCity.
-func (saleOrder *SaleOrder) SetShippingAddressCity(shippingAddressCity string) {
-	saleOrder.shippingAddressCity = shippingAddressCity
+func (s *SaleOrder) SetShippingAddressCity(shippingAddressCity string) {
+	s.shippingAddressCity = shippingAddressCity
 }
 
 // ShippingAddressState returns shippingAddressState.
-func (saleOrder *SaleOrder) ShippingAddressState() *uint {
-	return saleOrder.shippingAddressState
+func (s *SaleOrder) ShippingAddressState() *uint {
+	return s.shippingAddressState
 }
 
 // SetShippingAddressState sets the shippingAddressState.
-func (saleOrder *SaleOrder) SetShippingAddressState(shippingAddressState *uint) {
-	saleOrder.shippingAddressState = shippingAddressState
+func (s *SaleOrder) SetShippingAddressState(shippingAddressState *uint) {
+	s.shippingAddressState = shippingAddressState
 }
 
 // ShippingAddressCountry returns shippingAddressCountry.
-func (saleOrder *SaleOrder) ShippingAddressCountry() *uint16 {
-	return saleOrder.shippingAddressCountry
+func (s *SaleOrder) ShippingAddressCountry() *uint16 {
+	return s.shippingAddressCountry
 }
 
 // SetShippingAddressCountry sets the shippingAddressCountry.
-func (saleOrder *SaleOrder) SetShippingAddressCountry(shippingAddressCountry *uint16) {
-	saleOrder.shippingAddressCountry = shippingAddressCountry
+func (s *SaleOrder) SetShippingAddressCountry(shippingAddressCountry *uint16) {
+	s.shippingAddressCountry = shippingAddressCountry
 }
 
 // ShippingAddressPhoneNumber returns shippingAddressPhoneNumber.
-func (saleOrder *SaleOrder) ShippingAddressPhoneNumber() *string {
-	return saleOrder.shippingAddressPhoneNumber
+func (s *SaleOrder) ShippingAddressPhoneNumber() *string {
+	return s.shippingAddressPhoneNumber
 }
 
 // SetShippingAddressPhoneNumber sets the shippingAddressPhoneNumber.
-func (saleOrder *SaleOrder) SetShippingAddressPhoneNumber(shippingAddressPhoneNumber *string) {
-	saleOrder.shippingAddressPhoneNumber = shippingAddressPhoneNumber
+func (s *SaleOrder) SetShippingAddressPhoneNumber(shippingAddressPhoneNumber *string) {
+	s.shippingAddressPhoneNumber = shippingAddressPhoneNumber
 }
 
 // ShippingAddressEmail returns shippingAddressEmail.
-func (saleOrder *SaleOrder) ShippingAddressEmail() *string {
-	return saleOrder.shippingAddressEmail
+func (s *SaleOrder) ShippingAddressEmail() *string {
+	return s.shippingAddressEmail
 }
 
 // SetShippingAddressEmail sets the shippingAddressEmail.
-func (saleOrder *SaleOrder) SetShippingAddressEmail(shippingAddressEmail *string) {
-	saleOrder.shippingAddressEmail = shippingAddressEmail
+func (s *SaleOrder) SetShippingAddressEmail(shippingAddressEmail *string) {
+	s.shippingAddressEmail = shippingAddressEmail
 }
 
 // Comments returns comments.
-func (saleOrder *SaleOrder) Comments() *string {
-	return saleOrder.comments
+func (s *SaleOrder) Comments() *string {
+	return s.comments
 }
 
 // SetComments sets the comments.
-func (saleOrder *SaleOrder) SetComments(comments *string) {
-	saleOrder.comments = comments
+func (s *SaleOrder) SetComments(comments *string) {
+	s.comments = comments
 }
 
 // SellingPartyAutograph returns sellingPartyAutograph.
-func (saleOrder *SaleOrder) SellingPartyAutograph() *string {
-	return saleOrder.sellingPartyAutograph
+func (s *SaleOrder) SellingPartyAutograph() *string {
+	return s.sellingPartyAutograph
 }
 
 // SetSellingPartyAutograph sets the sellingPartyAutograph.
-func (saleOrder *SaleOrder) SetSellingPartyAutograph(sellingPartyAutograph *string) {
-	saleOrder.sellingPartyAutograph = sellingPartyAutograph
+func (s *SaleOrder) SetSellingPartyAutograph(sellingPartyAutograph *string) {
+	s.sellingPartyAutograph = sellingPartyAutograph
 }
 
 // BuyingPartyAutograph returns buyingPartyAutograph.
-func (saleOrder *SaleOrder) BuyingPartyAutograph() *string {
-	return saleOrder.buyingPartyAutograph
+func (s *SaleOrder) BuyingPartyAutograph() *string {
+	return s.buyingPartyAutograph
 }
 
 // SetBuyingPartyAutograph sets the buyingPartyAutograph.
-func (saleOrder *SaleOrder) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
-	saleOrder.buyingPartyAutograph = buyingPartyAutograph
+func (s *SaleOrder) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
+	s.buyingPartyAutograph = buyingPartyAutograph
 }
 
 // SaleOfferID returns saleOfferID.
-func (saleOrder *SaleOrder) SaleOfferID() *string {
-	return saleOrder.saleOfferID
+func (s *SaleOrder) SaleOfferID() *string {
+	return s.saleOfferID
 }
 
 // SetSaleOfferID sets the saleOfferID.
-func (saleOrder *SaleOrder) SetSaleOfferID(saleOfferID *string) {
-	saleOrder.saleOfferID = saleOfferID
+func (s *SaleOrder) SetSaleOfferID(saleOfferID *string) {
+	s.saleOfferID = saleOfferID
 }
 
 func newSaleOrder() *SaleOrder {

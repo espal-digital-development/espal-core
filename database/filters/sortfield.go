@@ -15,28 +15,28 @@ type sortField struct {
 }
 
 // Name returns the field name.
-func (sortField *sortField) Name() string {
-	return sortField.name
+func (f *sortField) Name() string {
+	return f.name
 }
 
 // TableAlias returns the field it's table alias.
-func (sortField *sortField) TableAlias() string {
-	return sortField.tableAlias
+func (f *sortField) TableAlias() string {
+	return f.tableAlias
 }
 
 // Descending returns if the field should be sorted descending.
-func (sortField *sortField) Descending() bool {
-	return sortField.descending
+func (f *sortField) Descending() bool {
+	return f.descending
 }
 
 // SetTableAlias sets the field table alias.
-func (sortField *sortField) SetTableAlias(tableAlias string) SortField {
-	sortField.tableAlias = tableAlias
-	return sortField
+func (f *sortField) SetTableAlias(tableAlias string) SortField {
+	f.tableAlias = tableAlias
+	return f
 }
 
 // NewSortField returns a new instance of a SortField.
-func (filter *filter) NewSortField(name string, descending bool) SortField {
+func (f *filter) NewSortField(name string, descending bool) SortField {
 	return &sortField{
 		name:       name,
 		descending: descending,

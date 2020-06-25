@@ -7,13 +7,13 @@ import (
 	"github.com/juju/errors"
 )
 
-func (assetHandler *AssetHandler) registerFilesRoutes() error {
+func (h *AssetHandler) registerFilesRoutes() error {
 	var loopErr error
-	assetHandler.publicRootFilesStorage.Iterate(func(path string, data []byte, err error) bool {
+	h.publicRootFilesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") {
 			return true
 		}
-		if err := assetHandler.RegisterFileRoute(path, "", data); err != nil {
+		if err := h.RegisterFileRoute(path, "", data); err != nil {
 			loopErr = errors.Trace(err)
 			return false
 		}
@@ -23,11 +23,11 @@ func (assetHandler *AssetHandler) registerFilesRoutes() error {
 		return errors.Trace(loopErr)
 	}
 
-	assetHandler.publicFilesStorage.Iterate(func(path string, data []byte, err error) bool {
+	h.publicFilesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") {
 			return true
 		}
-		if err := assetHandler.RegisterFileRoute(path, "f/", data); err != nil {
+		if err := h.RegisterFileRoute(path, "f/", data); err != nil {
 			loopErr = errors.Trace(err)
 			return false
 		}
@@ -37,12 +37,12 @@ func (assetHandler *AssetHandler) registerFilesRoutes() error {
 }
 
 // RegisterPublicFileRoute registers a route for the given file path with the default path prefix.
-func (assetHandler *AssetHandler) RegisterPublicFileRoute(path string, data []byte) error {
-	return assetHandler.RegisterFileRoute(path, "f/", data)
+func (h *AssetHandler) RegisterPublicFileRoute(path string, data []byte) error {
+	return h.RegisterFileRoute(path, "f/", data)
 }
 
 // RegisterFileRoute registers a dynamically created route for the given file path.
-func (assetHandler *AssetHandler) RegisterFileRoute(path string, prefix string, data []byte) error {
+func (h *AssetHandler) RegisterFileRoute(path string, prefix string, data []byte) error {
 	var gzipData []byte
 	var err error
 	var allowGzip bool
@@ -54,7 +54,7 @@ func (assetHandler *AssetHandler) RegisterFileRoute(path string, prefix string, 
 	// but also options to keep certains files up until certain sizes or a total treshhold in memory. This engine
 	// would also need to hold metadata of the files in memory, as determining it on each load will be too taxing.
 	// if _, err := os.Stat(path + ".gz"); !os.IsNotExist(err) {
-	gzipData, err = assetHandler.convertToGzip(data)
+	gzipData, err = h.convertToGzip(data)
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -69,7 +69,7 @@ func (assetHandler *AssetHandler) RegisterFileRoute(path string, prefix string, 
 	// TODO :: 7 For very big systems having all the data and gzipData in-memory might be
 	//           an issue. Need some smart logic that detects which files are accessed
 	//           most and to priotize keeping those in memory.
-	return assetHandler.routerService.RegisterRoute(prefix+path, &route{
+	return h.routerService.RegisterRoute(prefix+path, &route{
 		data:        data,
 		gzipData:    gzipData,
 		contentType: mime.TypeByExtension(path),
@@ -79,6 +79,6 @@ func (assetHandler *AssetHandler) RegisterFileRoute(path string, prefix string, 
 }
 
 // UnregisterFileRoute unregisters a dynamically created route for the given file path.
-func (assetHandler *AssetHandler) UnregisterFileRoute(path string) error {
-	return assetHandler.routerService.UnregisterRoute(path)
+func (h *AssetHandler) UnregisterFileRoute(path string) error {
+	return h.routerService.UnregisterRoute(path)
 }

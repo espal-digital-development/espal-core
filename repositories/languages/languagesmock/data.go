@@ -4,6 +4,7 @@
 package languagesmock
 
 import (
+	"github.com/espal-digital-development/espal-core/repositories/languages"
 	"sync"
 )
 
@@ -16,11 +17,15 @@ var (
 	lockDataMockTranslate              sync.RWMutex
 )
 
-// DataMock is a mock implementation of Data.
+// Ensure, that DataMock does implement languages.Data.
+// If this is not the case, regenerate this file with moq.
+var _ languages.Data = &DataMock{}
+
+// DataMock is a mock implementation of languages.Data.
 //
 //     func TestSomethingThatUsesData(t *testing.T) {
 //
-//         // make and configure a mocked Data
+//         // make and configure a mocked languages.Data
 //         mockedData := &DataMock{
 //             AlternativeEnglishNameFunc: func() string {
 // 	               panic("mock out the AlternativeEnglishName method")
@@ -42,7 +47,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedData in code that requires Data
+//         // use mockedData in code that requires languages.Data
 //         // and then make assertions.
 //
 //     }

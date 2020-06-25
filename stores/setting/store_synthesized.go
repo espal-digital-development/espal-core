@@ -14,8 +14,8 @@ type Store interface {
 	GetOneForSite(key uint16, userID string, domainID string, siteID string) (string, error)
 }
 
-func (settingsStore *SettingsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Setting, ok bool, err error) {
-	rows, err := settingsStore.selecterDatabase.Query(query, params...)
+func (s *SettingsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Setting, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -37,15 +37,15 @@ func (settingsStore *SettingsStore) fetch(query string, withCreators bool, param
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		setting := newSetting()
-		fields := []interface{}{&setting.id, &setting.createdByID, &setting.updatedByID, &setting.createdAt, &setting.updatedAt, &setting.domainID, &setting.siteID, &setting.userID, &setting.key, &setting.value}
+		s := newSetting()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.domainID, &s.siteID, &s.userID, &s.key, &s.value}
 		if withCreators {
-			fields = append(fields, &setting.createdByFirstName, &setting.createdBySurname, &setting.updatedByFirstName, &setting.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, setting)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -53,8 +53,8 @@ func (settingsStore *SettingsStore) fetch(query string, withCreators bool, param
 
 // New returns a new instance of SettingsStore.
 func New(selecterDatabase database.Database) (*SettingsStore, error) {
-	settingsStore := &SettingsStore{
+	s := &SettingsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return settingsStore, nil
+	return s, nil
 }

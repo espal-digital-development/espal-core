@@ -1,8 +1,8 @@
 package validators
 
 // NewPasswordField returns a new instance of FormField with the type Password.
-func (form *Form) NewPasswordField(name string) FormField {
-	return form.defaultChecks(&formField{
+func (f *Form) NewPasswordField(name string) FormField {
+	return f.defaultChecks(&formField{
 		name:      name,
 		_type:     PasswordFormField,
 		minLength: 5,

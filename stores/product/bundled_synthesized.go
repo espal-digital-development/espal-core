@@ -30,173 +30,173 @@ type BundledEntity interface {
 }
 
 // ID returns id.
-func (bundled *Bundled) ID() string {
-	return bundled.id
+func (b *Bundled) ID() string {
+	return b.id
 }
 
 // CreatedByID returns createdByID.
-func (bundled *Bundled) CreatedByID() string {
-	return bundled.createdByID
+func (b *Bundled) CreatedByID() string {
+	return b.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (bundled *Bundled) SetCreatedByID(createdByID string) {
-	bundled.createdByID = createdByID
+func (b *Bundled) SetCreatedByID(createdByID string) {
+	b.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (bundled *Bundled) UpdatedByID() *string {
-	return bundled.updatedByID
+func (b *Bundled) UpdatedByID() *string {
+	return b.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (bundled *Bundled) SetUpdatedByID(updatedByID *string) {
-	bundled.updatedByID = updatedByID
+func (b *Bundled) SetUpdatedByID(updatedByID *string) {
+	b.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (bundled *Bundled) CreatedAt() time.Time {
-	return bundled.createdAt
+func (b *Bundled) CreatedAt() time.Time {
+	return b.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (bundled *Bundled) SetCreatedAt(createdAt time.Time) {
-	bundled.createdAt = createdAt
+func (b *Bundled) SetCreatedAt(createdAt time.Time) {
+	b.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (bundled *Bundled) UpdatedAt() *time.Time {
-	return bundled.updatedAt
+func (b *Bundled) UpdatedAt() *time.Time {
+	return b.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (bundled *Bundled) SetUpdatedAt(updatedAt *time.Time) {
-	bundled.updatedAt = updatedAt
+func (b *Bundled) SetUpdatedAt(updatedAt *time.Time) {
+	b.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (bundled *Bundled) CreatedByFirstName() *string {
-	return bundled.createdByFirstName
+func (b *Bundled) CreatedByFirstName() *string {
+	return b.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (bundled *Bundled) SetCreatedByFirstName(createdByFirstName *string) {
-	bundled.createdByFirstName = createdByFirstName
+func (b *Bundled) SetCreatedByFirstName(createdByFirstName *string) {
+	b.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (bundled *Bundled) CreatedBySurname() *string {
-	return bundled.createdBySurname
+func (b *Bundled) CreatedBySurname() *string {
+	return b.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (bundled *Bundled) SetCreatedBySurname(createdBySurname *string) {
-	bundled.createdBySurname = createdBySurname
+func (b *Bundled) SetCreatedBySurname(createdBySurname *string) {
+	b.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (bundled *Bundled) UpdatedByFirstName() *string {
-	return bundled.updatedByFirstName
+func (b *Bundled) UpdatedByFirstName() *string {
+	return b.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (bundled *Bundled) SetUpdatedByFirstName(updatedByFirstName *string) {
-	bundled.updatedByFirstName = updatedByFirstName
+func (b *Bundled) SetUpdatedByFirstName(updatedByFirstName *string) {
+	b.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (bundled *Bundled) UpdatedBySurname() *string {
-	return bundled.updatedBySurname
+func (b *Bundled) UpdatedBySurname() *string {
+	return b.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (bundled *Bundled) SetUpdatedBySurname(updatedBySurname *string) {
-	bundled.updatedBySurname = updatedBySurname
+func (b *Bundled) SetUpdatedBySurname(updatedBySurname *string) {
+	b.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (bundled *Bundled) IsUpdated() bool {
-	return bundled.updatedByID != nil
+func (b *Bundled) IsUpdated() bool {
+	return b.updatedByID != nil
 }
 
 // Active returns active.
-func (bundled *Bundled) Active() bool {
-	return bundled.active
+func (b *Bundled) Active() bool {
+	return b.active
 }
 
 // SetActive sets the active.
-func (bundled *Bundled) SetActive(active bool) {
-	bundled.active = active
+func (b *Bundled) SetActive(active bool) {
+	b.active = active
 }
 
 // Sorting returns sorting.
-func (bundled *Bundled) Sorting() uint {
-	return bundled.sorting
+func (b *Bundled) Sorting() uint {
+	return b.sorting
 }
 
 // SetSorting sets the sorting.
-func (bundled *Bundled) SetSorting(sorting uint) {
-	bundled.sorting = sorting
+func (b *Bundled) SetSorting(sorting uint) {
+	b.sorting = sorting
 }
 
 // Key returns key.
-func (bundled *Bundled) Key() *string {
-	return bundled.key
+func (b *Bundled) Key() *string {
+	return b.key
 }
 
 // SetKey sets the key.
-func (bundled *Bundled) SetKey(key *string) {
-	bundled.key = key
+func (b *Bundled) SetKey(key *string) {
+	b.key = key
 }
 
 // VariantsCanBeSoldSeperately returns variantsCanBeSoldSeperately.
-func (bundled *Bundled) VariantsCanBeSoldSeperately() bool {
-	return bundled.variantsCanBeSoldSeperately
+func (b *Bundled) VariantsCanBeSoldSeperately() bool {
+	return b.variantsCanBeSoldSeperately
 }
 
 // SetVariantsCanBeSoldSeperately sets the variantsCanBeSoldSeperately.
-func (bundled *Bundled) SetVariantsCanBeSoldSeperately(variantsCanBeSoldSeperately bool) {
-	bundled.variantsCanBeSoldSeperately = variantsCanBeSoldSeperately
+func (b *Bundled) SetVariantsCanBeSoldSeperately(variantsCanBeSoldSeperately bool) {
+	b.variantsCanBeSoldSeperately = variantsCanBeSoldSeperately
 }
 
 // TaxGroupID returns taxGroupID.
-func (bundled *Bundled) TaxGroupID() string {
-	return bundled.taxGroupID
+func (b *Bundled) TaxGroupID() string {
+	return b.taxGroupID
 }
 
 // SetTaxGroupID sets the taxGroupID.
-func (bundled *Bundled) SetTaxGroupID(taxGroupID string) {
-	bundled.taxGroupID = taxGroupID
+func (b *Bundled) SetTaxGroupID(taxGroupID string) {
+	b.taxGroupID = taxGroupID
 }
 
 // NameRepresentationID returns nameRepresentationID.
-func (bundled *Bundled) NameRepresentationID() *string {
-	return bundled.nameRepresentationID
+func (b *Bundled) NameRepresentationID() *string {
+	return b.nameRepresentationID
 }
 
 // SetNameRepresentationID sets the nameRepresentationID.
-func (bundled *Bundled) SetNameRepresentationID(nameRepresentationID *string) {
-	bundled.nameRepresentationID = nameRepresentationID
+func (b *Bundled) SetNameRepresentationID(nameRepresentationID *string) {
+	b.nameRepresentationID = nameRepresentationID
 }
 
 // DescriptionRepresentationID returns descriptionRepresentationID.
-func (bundled *Bundled) DescriptionRepresentationID() *string {
-	return bundled.descriptionRepresentationID
+func (b *Bundled) DescriptionRepresentationID() *string {
+	return b.descriptionRepresentationID
 }
 
 // SetDescriptionRepresentationID sets the descriptionRepresentationID.
-func (bundled *Bundled) SetDescriptionRepresentationID(descriptionRepresentationID *string) {
-	bundled.descriptionRepresentationID = descriptionRepresentationID
+func (b *Bundled) SetDescriptionRepresentationID(descriptionRepresentationID *string) {
+	b.descriptionRepresentationID = descriptionRepresentationID
 }
 
 // ImageRepresentationID returns imageRepresentationID.
-func (bundled *Bundled) ImageRepresentationID() *string {
-	return bundled.imageRepresentationID
+func (b *Bundled) ImageRepresentationID() *string {
+	return b.imageRepresentationID
 }
 
 // SetImageRepresentationID sets the imageRepresentationID.
-func (bundled *Bundled) SetImageRepresentationID(imageRepresentationID *string) {
-	bundled.imageRepresentationID = imageRepresentationID
+func (b *Bundled) SetImageRepresentationID(imageRepresentationID *string) {
+	b.imageRepresentationID = imageRepresentationID
 }
 
 func newBundled() *Bundled {

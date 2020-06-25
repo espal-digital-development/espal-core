@@ -16,113 +16,113 @@ type PointOfSaleEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (pointOfSale *PointOfSale) TableName() string {
+func (p *PointOfSale) TableName() string {
 	return "PointOfSale"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (pointOfSale *PointOfSale) TableAlias() string {
+func (p *PointOfSale) TableAlias() string {
 	return "pose"
 }
 
 // ID returns id.
-func (pointOfSale *PointOfSale) ID() string {
-	return pointOfSale.id
+func (p *PointOfSale) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (pointOfSale *PointOfSale) CreatedByID() string {
-	return pointOfSale.createdByID
+func (p *PointOfSale) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (pointOfSale *PointOfSale) SetCreatedByID(createdByID string) {
-	pointOfSale.createdByID = createdByID
+func (p *PointOfSale) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (pointOfSale *PointOfSale) UpdatedByID() *string {
-	return pointOfSale.updatedByID
+func (p *PointOfSale) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (pointOfSale *PointOfSale) SetUpdatedByID(updatedByID *string) {
-	pointOfSale.updatedByID = updatedByID
+func (p *PointOfSale) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (pointOfSale *PointOfSale) CreatedAt() time.Time {
-	return pointOfSale.createdAt
+func (p *PointOfSale) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (pointOfSale *PointOfSale) SetCreatedAt(createdAt time.Time) {
-	pointOfSale.createdAt = createdAt
+func (p *PointOfSale) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (pointOfSale *PointOfSale) UpdatedAt() *time.Time {
-	return pointOfSale.updatedAt
+func (p *PointOfSale) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (pointOfSale *PointOfSale) SetUpdatedAt(updatedAt *time.Time) {
-	pointOfSale.updatedAt = updatedAt
+func (p *PointOfSale) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (pointOfSale *PointOfSale) CreatedByFirstName() *string {
-	return pointOfSale.createdByFirstName
+func (p *PointOfSale) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (pointOfSale *PointOfSale) SetCreatedByFirstName(createdByFirstName *string) {
-	pointOfSale.createdByFirstName = createdByFirstName
+func (p *PointOfSale) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (pointOfSale *PointOfSale) CreatedBySurname() *string {
-	return pointOfSale.createdBySurname
+func (p *PointOfSale) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (pointOfSale *PointOfSale) SetCreatedBySurname(createdBySurname *string) {
-	pointOfSale.createdBySurname = createdBySurname
+func (p *PointOfSale) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (pointOfSale *PointOfSale) UpdatedByFirstName() *string {
-	return pointOfSale.updatedByFirstName
+func (p *PointOfSale) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (pointOfSale *PointOfSale) SetUpdatedByFirstName(updatedByFirstName *string) {
-	pointOfSale.updatedByFirstName = updatedByFirstName
+func (p *PointOfSale) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (pointOfSale *PointOfSale) UpdatedBySurname() *string {
-	return pointOfSale.updatedBySurname
+func (p *PointOfSale) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (pointOfSale *PointOfSale) SetUpdatedBySurname(updatedBySurname *string) {
-	pointOfSale.updatedBySurname = updatedBySurname
+func (p *PointOfSale) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (pointOfSale *PointOfSale) IsUpdated() bool {
-	return pointOfSale.updatedByID != nil
+func (p *PointOfSale) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // ShopID returns shopID.
-func (pointOfSale *PointOfSale) ShopID() string {
-	return pointOfSale.shopID
+func (p *PointOfSale) ShopID() string {
+	return p.shopID
 }
 
 // SetShopID sets the shopID.
-func (pointOfSale *PointOfSale) SetShopID(shopID string) {
-	pointOfSale.shopID = shopID
+func (p *PointOfSale) SetShopID(shopID string) {
+	p.shopID = shopID
 }
 
 func newPointOfSale() *PointOfSale {

@@ -15,11 +15,15 @@ var (
 	lockTransactionMockRollback sync.RWMutex
 )
 
-// TransactionMock is a mock implementation of Transaction.
+// Ensure, that TransactionMock does implement database.Transaction.
+// If this is not the case, regenerate this file with moq.
+var _ database.Transaction = &TransactionMock{}
+
+// TransactionMock is a mock implementation of database.Transaction.
 //
 //     func TestSomethingThatUsesTransaction(t *testing.T) {
 //
-//         // make and configure a mocked Transaction
+//         // make and configure a mocked database.Transaction
 //         mockedTransaction := &TransactionMock{
 //             CommitFunc: func() error {
 // 	               panic("mock out the Commit method")
@@ -35,7 +39,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedTransaction in code that requires Transaction
+//         // use mockedTransaction in code that requires database.Transaction
 //         // and then make assertions.
 //
 //     }

@@ -19,15 +19,15 @@ var (
 	lockStoreMockToggleActive          sync.RWMutex
 )
 
-// Ensure, that StoreMock does implement Store.
+// Ensure, that StoreMock does implement domain.Store.
 // If this is not the case, regenerate this file with moq.
 var _ domain.Store = &StoreMock{}
 
-// StoreMock is a mock implementation of Store.
+// StoreMock is a mock implementation of domain.Store.
 //
 //     func TestSomethingThatUsesStore(t *testing.T) {
 //
-//         // make and configure a mocked Store
+//         // make and configure a mocked domain.Store
 //         mockedStore := &StoreMock{
 //             AllFunc: func() ([]*domain.Domain, bool, error) {
 // 	               panic("mock out the All method")
@@ -52,7 +52,7 @@ var _ domain.Store = &StoreMock{}
 //             },
 //         }
 //
-//         // use mockedStore in code that requires Store
+//         // use mockedStore in code that requires domain.Store
 //         // and then make assertions.
 //
 //     }

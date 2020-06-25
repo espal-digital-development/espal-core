@@ -16,7 +16,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadDomain") {
 		return
 	}
@@ -27,7 +27,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	domain, ok, err := route.domainStore.GetOneByIDWithCreator(id)
+	domain, ok, err := r.domainStore.GetOneByIDWithCreator(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -45,13 +45,13 @@ func (route *Route) Handle(context contexts.Context) {
 
 	var domainLanguage languages.Data
 	if domain.Language() != nil {
-		domainLanguage, err = route.languagesRepository.ByID(*domain.Language())
+		domainLanguage, err = r.languagesRepository.ByID(*domain.Language())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
 	}
-	route.viewPageFactory.NewPage(context, language, domain, domainLanguage).Render()
+	r.viewPageFactory.NewPage(context, language, domain, domainLanguage).Render()
 }
 
 // New returns a new instance of Route.

@@ -22,13 +22,13 @@ type Post struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (post *Post) NewPage(context contexts.Context, language contexts.Language, user *user.User, postEntity *forum.Post, replies []*forum.Post) Template {
+func (p *Post) NewPage(context contexts.Context, language contexts.Language, user *user.User, postEntity *forum.Post, replies []*forum.Post) Template {
 	page := &Page{
 		language:        language,
 		user:            user,
 		post:            postEntity,
 		replies:         replies,
-		rendererService: post.rendererService,
+		rendererService: p.rendererService,
 	}
 	page.SetCoreContext(context)
 	return page
@@ -50,8 +50,8 @@ type Page struct {
 }
 
 // Render the page writing to the context.
-func (page *Page) Render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *Page) Render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of Post.

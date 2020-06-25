@@ -25,11 +25,11 @@ type Attachment struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (attachment *Attachment) TableName() string {
+func (a *Attachment) TableName() string {
 	return "EmailTemplateAttachment"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (attachment *Attachment) TableAlias() string {
+func (a *Attachment) TableAlias() string {
 	return "eta"
 }

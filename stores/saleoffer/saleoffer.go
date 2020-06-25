@@ -57,6 +57,6 @@ type SaleOffer struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (saleOffer *SaleOffer) TableAlias() string {
+func (s *SaleOffer) TableAlias() string {
 	return "sof"
 }

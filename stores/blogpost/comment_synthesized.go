@@ -20,123 +20,123 @@ type CommentEntity interface {
 }
 
 // ID returns id.
-func (comment *Comment) ID() string {
-	return comment.id
+func (c *Comment) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (comment *Comment) CreatedByID() string {
-	return comment.createdByID
+func (c *Comment) CreatedByID() string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (comment *Comment) SetCreatedByID(createdByID string) {
-	comment.createdByID = createdByID
+func (c *Comment) SetCreatedByID(createdByID string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (comment *Comment) UpdatedByID() *string {
-	return comment.updatedByID
+func (c *Comment) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (comment *Comment) SetUpdatedByID(updatedByID *string) {
-	comment.updatedByID = updatedByID
+func (c *Comment) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (comment *Comment) CreatedAt() time.Time {
-	return comment.createdAt
+func (c *Comment) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (comment *Comment) SetCreatedAt(createdAt time.Time) {
-	comment.createdAt = createdAt
+func (c *Comment) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (comment *Comment) UpdatedAt() *time.Time {
-	return comment.updatedAt
+func (c *Comment) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (comment *Comment) SetUpdatedAt(updatedAt *time.Time) {
-	comment.updatedAt = updatedAt
+func (c *Comment) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (comment *Comment) CreatedByFirstName() *string {
-	return comment.createdByFirstName
+func (c *Comment) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (comment *Comment) SetCreatedByFirstName(createdByFirstName *string) {
-	comment.createdByFirstName = createdByFirstName
+func (c *Comment) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (comment *Comment) CreatedBySurname() *string {
-	return comment.createdBySurname
+func (c *Comment) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (comment *Comment) SetCreatedBySurname(createdBySurname *string) {
-	comment.createdBySurname = createdBySurname
+func (c *Comment) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (comment *Comment) UpdatedByFirstName() *string {
-	return comment.updatedByFirstName
+func (c *Comment) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (comment *Comment) SetUpdatedByFirstName(updatedByFirstName *string) {
-	comment.updatedByFirstName = updatedByFirstName
+func (c *Comment) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (comment *Comment) UpdatedBySurname() *string {
-	return comment.updatedBySurname
+func (c *Comment) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (comment *Comment) SetUpdatedBySurname(updatedBySurname *string) {
-	comment.updatedBySurname = updatedBySurname
+func (c *Comment) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (comment *Comment) IsUpdated() bool {
-	return comment.updatedByID != nil
+func (c *Comment) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 // BlogPostID returns blogPostID.
-func (comment *Comment) BlogPostID() string {
-	return comment.blogPostID
+func (c *Comment) BlogPostID() string {
+	return c.blogPostID
 }
 
 // SetBlogPostID sets the blogPostID.
-func (comment *Comment) SetBlogPostID(blogPostID string) {
-	comment.blogPostID = blogPostID
+func (c *Comment) SetBlogPostID(blogPostID string) {
+	c.blogPostID = blogPostID
 }
 
 // Title returns title.
-func (comment *Comment) Title() *string {
-	return comment.title
+func (c *Comment) Title() *string {
+	return c.title
 }
 
 // SetTitle sets the title.
-func (comment *Comment) SetTitle(title *string) {
-	comment.title = title
+func (c *Comment) SetTitle(title *string) {
+	c.title = title
 }
 
 // Message returns message.
-func (comment *Comment) Message() string {
-	return comment.message
+func (c *Comment) Message() string {
+	return c.message
 }
 
 // SetMessage sets the message.
-func (comment *Comment) SetMessage(message string) {
-	comment.message = message
+func (c *Comment) SetMessage(message string) {
+	c.message = message
 }
 
 func newComment() *Comment {

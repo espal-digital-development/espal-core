@@ -30,173 +30,173 @@ type BundledReviewEntity interface {
 }
 
 // ID returns id.
-func (bundledReview *BundledReview) ID() string {
-	return bundledReview.id
+func (b *BundledReview) ID() string {
+	return b.id
 }
 
 // CreatedByID returns createdByID.
-func (bundledReview *BundledReview) CreatedByID() string {
-	return bundledReview.createdByID
+func (b *BundledReview) CreatedByID() string {
+	return b.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (bundledReview *BundledReview) SetCreatedByID(createdByID string) {
-	bundledReview.createdByID = createdByID
+func (b *BundledReview) SetCreatedByID(createdByID string) {
+	b.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (bundledReview *BundledReview) UpdatedByID() *string {
-	return bundledReview.updatedByID
+func (b *BundledReview) UpdatedByID() *string {
+	return b.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (bundledReview *BundledReview) SetUpdatedByID(updatedByID *string) {
-	bundledReview.updatedByID = updatedByID
+func (b *BundledReview) SetUpdatedByID(updatedByID *string) {
+	b.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (bundledReview *BundledReview) CreatedAt() time.Time {
-	return bundledReview.createdAt
+func (b *BundledReview) CreatedAt() time.Time {
+	return b.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (bundledReview *BundledReview) SetCreatedAt(createdAt time.Time) {
-	bundledReview.createdAt = createdAt
+func (b *BundledReview) SetCreatedAt(createdAt time.Time) {
+	b.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (bundledReview *BundledReview) UpdatedAt() *time.Time {
-	return bundledReview.updatedAt
+func (b *BundledReview) UpdatedAt() *time.Time {
+	return b.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (bundledReview *BundledReview) SetUpdatedAt(updatedAt *time.Time) {
-	bundledReview.updatedAt = updatedAt
+func (b *BundledReview) SetUpdatedAt(updatedAt *time.Time) {
+	b.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (bundledReview *BundledReview) CreatedByFirstName() *string {
-	return bundledReview.createdByFirstName
+func (b *BundledReview) CreatedByFirstName() *string {
+	return b.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (bundledReview *BundledReview) SetCreatedByFirstName(createdByFirstName *string) {
-	bundledReview.createdByFirstName = createdByFirstName
+func (b *BundledReview) SetCreatedByFirstName(createdByFirstName *string) {
+	b.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (bundledReview *BundledReview) CreatedBySurname() *string {
-	return bundledReview.createdBySurname
+func (b *BundledReview) CreatedBySurname() *string {
+	return b.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (bundledReview *BundledReview) SetCreatedBySurname(createdBySurname *string) {
-	bundledReview.createdBySurname = createdBySurname
+func (b *BundledReview) SetCreatedBySurname(createdBySurname *string) {
+	b.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (bundledReview *BundledReview) UpdatedByFirstName() *string {
-	return bundledReview.updatedByFirstName
+func (b *BundledReview) UpdatedByFirstName() *string {
+	return b.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (bundledReview *BundledReview) SetUpdatedByFirstName(updatedByFirstName *string) {
-	bundledReview.updatedByFirstName = updatedByFirstName
+func (b *BundledReview) SetUpdatedByFirstName(updatedByFirstName *string) {
+	b.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (bundledReview *BundledReview) UpdatedBySurname() *string {
-	return bundledReview.updatedBySurname
+func (b *BundledReview) UpdatedBySurname() *string {
+	return b.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (bundledReview *BundledReview) SetUpdatedBySurname(updatedBySurname *string) {
-	bundledReview.updatedBySurname = updatedBySurname
+func (b *BundledReview) SetUpdatedBySurname(updatedBySurname *string) {
+	b.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (bundledReview *BundledReview) IsUpdated() bool {
-	return bundledReview.updatedByID != nil
+func (b *BundledReview) IsUpdated() bool {
+	return b.updatedByID != nil
 }
 
 // ReviewedByID returns reviewedByID.
-func (bundledReview *BundledReview) ReviewedByID() *string {
-	return bundledReview.reviewedByID
+func (b *BundledReview) ReviewedByID() *string {
+	return b.reviewedByID
 }
 
 // SetReviewedByID sets the reviewedByID.
-func (bundledReview *BundledReview) SetReviewedByID(reviewedByID *string) {
-	bundledReview.reviewedByID = reviewedByID
+func (b *BundledReview) SetReviewedByID(reviewedByID *string) {
+	b.reviewedByID = reviewedByID
 }
 
 // ReviewedOnDate returns reviewedOnDate.
-func (bundledReview *BundledReview) ReviewedOnDate() *time.Time {
-	return bundledReview.reviewedOnDate
+func (b *BundledReview) ReviewedOnDate() *time.Time {
+	return b.reviewedOnDate
 }
 
 // SetReviewedOnDate sets the reviewedOnDate.
-func (bundledReview *BundledReview) SetReviewedOnDate(reviewedOnDate *time.Time) {
-	bundledReview.reviewedOnDate = reviewedOnDate
+func (b *BundledReview) SetReviewedOnDate(reviewedOnDate *time.Time) {
+	b.reviewedOnDate = reviewedOnDate
 }
 
 // ReviewNotes returns reviewNotes.
-func (bundledReview *BundledReview) ReviewNotes() *string {
-	return bundledReview.reviewNotes
+func (b *BundledReview) ReviewNotes() *string {
+	return b.reviewNotes
 }
 
 // SetReviewNotes sets the reviewNotes.
-func (bundledReview *BundledReview) SetReviewNotes(reviewNotes *string) {
-	bundledReview.reviewNotes = reviewNotes
+func (b *BundledReview) SetReviewNotes(reviewNotes *string) {
+	b.reviewNotes = reviewNotes
 }
 
 // Approved returns approved.
-func (bundledReview *BundledReview) Approved() *bool {
-	return bundledReview.approved
+func (b *BundledReview) Approved() *bool {
+	return b.approved
 }
 
 // SetApproved sets the approved.
-func (bundledReview *BundledReview) SetApproved(approved *bool) {
-	bundledReview.approved = approved
+func (b *BundledReview) SetApproved(approved *bool) {
+	b.approved = approved
 }
 
 // Rating returns rating.
-func (bundledReview *BundledReview) Rating() float32 {
-	return bundledReview.rating
+func (b *BundledReview) Rating() float32 {
+	return b.rating
 }
 
 // SetRating sets the rating.
-func (bundledReview *BundledReview) SetRating(rating float32) {
-	bundledReview.rating = rating
+func (b *BundledReview) SetRating(rating float32) {
+	b.rating = rating
 }
 
 // Title returns title.
-func (bundledReview *BundledReview) Title() string {
-	return bundledReview.title
+func (b *BundledReview) Title() string {
+	return b.title
 }
 
 // SetTitle sets the title.
-func (bundledReview *BundledReview) SetTitle(title string) {
-	bundledReview.title = title
+func (b *BundledReview) SetTitle(title string) {
+	b.title = title
 }
 
 // Description returns description.
-func (bundledReview *BundledReview) Description() string {
-	return bundledReview.description
+func (b *BundledReview) Description() string {
+	return b.description
 }
 
 // SetDescription sets the description.
-func (bundledReview *BundledReview) SetDescription(description string) {
-	bundledReview.description = description
+func (b *BundledReview) SetDescription(description string) {
+	b.description = description
 }
 
 // BundledID returns bundledID.
-func (bundledReview *BundledReview) BundledID() string {
-	return bundledReview.bundledID
+func (b *BundledReview) BundledID() string {
+	return b.bundledID
 }
 
 // SetBundledID sets the bundledID.
-func (bundledReview *BundledReview) SetBundledID(bundledID string) {
-	bundledReview.bundledID = bundledID
+func (b *BundledReview) SetBundledID(bundledID string) {
+	b.bundledID = bundledID
 }
 
 func newBundledReview() *BundledReview {

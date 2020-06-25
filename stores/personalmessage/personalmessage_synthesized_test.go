@@ -9,142 +9,142 @@ import (
 )
 
 func TestPersonalMessageTable(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
-	if personalMessage.TableName() == "" {
+	p := personalmessage.NewPersonalMessageEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPersonalMessageTableAlias(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
-	if personalMessage.TableName() == "" {
+	p := personalmessage.NewPersonalMessageEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPersonalMessageIsUpdated(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
-	personalMessage.IsUpdated()
+	p := personalmessage.NewPersonalMessageEntity()
+	p.IsUpdated()
 }
 
 func TestPersonalMessageID(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
-	personalMessage.ID()
+	p := personalmessage.NewPersonalMessageEntity()
+	p.ID()
 }
 
 func TestPersonalMessageCreatedByID(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetCreatedByID(testValue)
-	if testValue != personalMessage.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageUpdatedByID(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetUpdatedByID(&testValue)
-	if &testValue != personalMessage.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageCreatedAt(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := time.Now()
-	personalMessage.SetCreatedAt(testValue)
-	if testValue != personalMessage.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageUpdatedAt(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := time.Now()
-	personalMessage.SetUpdatedAt(&testValue)
-	if &testValue != personalMessage.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageCreatedByFirstName(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetCreatedByFirstName(&testValue)
-	if &testValue != personalMessage.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageCreatedBySurname(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetCreatedBySurname(&testValue)
-	if &testValue != personalMessage.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageUpdatedByFirstName(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetUpdatedByFirstName(&testValue)
-	if &testValue != personalMessage.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageUpdatedBySurname(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetUpdatedBySurname(&testValue)
-	if &testValue != personalMessage.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageUserID(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetUserID(testValue)
-	if testValue != personalMessage.UserID() {
+	p.SetUserID(testValue)
+	if testValue != p.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageRecipientID(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetRecipientID(testValue)
-	if testValue != personalMessage.RecipientID() {
+	p.SetRecipientID(testValue)
+	if testValue != p.RecipientID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageResponseToID(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetResponseToID(&testValue)
-	if &testValue != personalMessage.ResponseToID() {
+	p.SetResponseToID(&testValue)
+	if &testValue != p.ResponseToID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageTitle(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetTitle(&testValue)
-	if &testValue != personalMessage.Title() {
+	p.SetTitle(&testValue)
+	if &testValue != p.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPersonalMessageMessage(t *testing.T) {
-	personalMessage := personalmessage.NewPersonalMessageEntity()
+	p := personalmessage.NewPersonalMessageEntity()
 	testValue := "testValue"
-	personalMessage.SetMessage(testValue)
-	if testValue != personalMessage.Message() {
+	p.SetMessage(testValue)
+	if testValue != p.Message() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

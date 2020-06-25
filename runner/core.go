@@ -18,88 +18,88 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) core(path string) error {
+func (r *Runner) core(path string) error {
 	if path == "" {
 		path = filepath.FromSlash("./app")
 	}
 
 	var err error
-	runner.storages.core, err = filesystem.New(path)
+	r.storages.core, err = filesystem.New(path)
 	if err != nil {
 		return errors.Trace(err)
 	}
 
-	runner.services.config, err = config.New(runner.storages.core)
+	r.services.config, err = config.New(r.storages.core)
 	if err != nil {
 		return errors.Trace(err)
 	}
 
-	runner.storages.translations, err = filesystem.New(runner.services.config.TranslationsPath())
+	r.storages.translations, err = filesystem.New(r.services.config.TranslationsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.storages.assetsPrivateFiles, err = filesystem.New(runner.services.config.PrivateFilesAssetsPath())
+	r.storages.assetsPrivateFiles, err = filesystem.New(r.services.config.PrivateFilesAssetsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.storages.assetsPublicFiles, err = filesystem.New(runner.services.config.PublicFilesAssetsPath())
+	r.storages.assetsPublicFiles, err = filesystem.New(r.services.config.PublicFilesAssetsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.storages.assetsPublicRootFiles, err = filesystem.New(runner.services.config.PublicRootFilesAssetsPath())
+	r.storages.assetsPublicRootFiles, err = filesystem.New(r.services.config.PublicRootFilesAssetsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.storages.assetsImages, err = filesystem.New(runner.services.config.ImagesAssetsPath())
+	r.storages.assetsImages, err = filesystem.New(r.services.config.ImagesAssetsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.storages.assetsStylesheets, err = filesystem.New(runner.services.config.StylesheetsAssetsPath())
+	r.storages.assetsStylesheets, err = filesystem.New(r.services.config.StylesheetsAssetsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.storages.assetsJavaScript, err = filesystem.New(runner.services.config.JavaScriptAssetsPath())
+	r.storages.assetsJavaScript, err = filesystem.New(r.services.config.JavaScriptAssetsPath())
 	if err != nil {
 		return errors.Trace(err)
 	}
 
-	runner.repositories.languages, err = languages.New()
+	r.repositories.languages, err = languages.New()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.services.logger = logger.New()
+	r.services.logger = logger.New()
 
 	availableLanguages := map[uint16]string{}
-	for _, languageCode := range runner.services.config.AvailableLanguages() {
-		language, err := runner.repositories.languages.ByCode(languageCode)
+	for _, languageCode := range r.services.config.AvailableLanguages() {
+		language, err := r.repositories.languages.ByCode(languageCode)
 		if err != nil {
 			return errors.Trace(err)
 		}
 		availableLanguages[language.ID()] = language.Code()
 	}
-	runner.repositories.translations, err = translations.New(runner.services.logger, runner.storages.translations, availableLanguages)
+	r.repositories.translations, err = translations.New(r.services.logger, r.storages.translations, availableLanguages)
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.repositories.countries, err = countries.New(runner.repositories.languages, true)
+	r.repositories.countries, err = countries.New(r.repositories.languages, true)
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.repositories.currencies, err = currencies.New(runner.repositories.languages)
+	r.repositories.currencies, err = currencies.New(r.repositories.languages)
 	if err != nil {
 		return errors.Trace(err)
 	}
 
-	runner.repositories.userRights = userrights.New()
-	runner.repositories.regularExpressions, err = regularexpressions.New()
+	r.repositories.userRights = userrights.New()
+	r.repositories.regularExpressions, err = regularexpressions.New()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	runner.services.mailer = mailer.New(runner.services.config.EmailHost(), runner.services.config.EmailPort(), runner.services.config.EmailUsername(), runner.services.config.EmailPassword())
-	if runner.services.mailer == nil {
+	r.services.mailer = mailer.New(r.services.config.EmailHost(), r.services.config.EmailPort(), r.services.config.EmailUsername(), r.services.config.EmailPassword())
+	if r.services.mailer == nil {
 		return errors.Errorf("runner.services.mailer returned nil")
 	}
-	runner.services.tokenPool = tokenpool.New(runner.services.config.SecurityFormTokenLifespan(), runner.services.config.SecurityFormTokenCleanupInterval())
-	runner.services.validators = validators.New(runner.services.config, runner.services.logger, runner.repositories.languages, runner.repositories.countries, runner.repositories.currencies, runner.repositories.translations, runner.repositories.regularExpressions, runner.services.tokenPool)
+	r.services.tokenPool = tokenpool.New(r.services.config.SecurityFormTokenLifespan(), r.services.config.SecurityFormTokenCleanupInterval())
+	r.services.validators = validators.New(r.services.config, r.services.logger, r.repositories.languages, r.repositories.countries, r.repositories.currencies, r.repositories.translations, r.repositories.regularExpressions, r.services.tokenPool)
 	return nil
 }

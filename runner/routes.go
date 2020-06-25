@@ -6,23 +6,23 @@ import (
 	"github.com/tdewolff/minify"
 )
 
-func (runner *Runner) routes() error {
-	runner.services.assetHandler = assethandler.New(runner.services.config, runner.services.router, minify.New(), runner.storages.assetsStylesheets, runner.storages.assetsJavaScript, runner.storages.assetsImages, runner.storages.assetsPublicFiles, runner.storages.assetsPublicRootFiles)
-	if err := runner.services.assetHandler.RegisterAll(); err != nil {
+func (r *Runner) routes() error {
+	r.services.assetHandler = assethandler.New(r.services.config, r.services.router, minify.New(), r.storages.assetsStylesheets, r.storages.assetsJavaScript, r.storages.assetsImages, r.storages.assetsPublicFiles, r.storages.assetsPublicRootFiles)
+	if err := r.services.assetHandler.RegisterAll(); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.services.config.Pprof() {
-		if err := runner.routesPprof(); err != nil {
+	if r.services.config.Pprof() {
+		if err := r.routesPprof(); err != nil {
 			return errors.Trace(err)
 		}
 	}
-	if err := runner.routesAPI(); err != nil {
+	if err := r.routesAPI(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesFrontend(); err != nil {
+	if err := r.routesFrontend(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdmin(); err != nil {
+	if err := r.routesAdmin(); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

@@ -27,6 +27,6 @@ type Price struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (price *Price) TableAlias() string {
+func (p *Price) TableAlias() string {
 	return "pr"
 }

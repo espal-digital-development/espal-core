@@ -18,118 +18,118 @@ type PaymentMethodEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (paymentMethod *PaymentMethod) TableName() string {
+func (p *PaymentMethod) TableName() string {
 	return "PaymentMethod"
 }
 
 // ID returns id.
-func (paymentMethod *PaymentMethod) ID() string {
-	return paymentMethod.id
+func (p *PaymentMethod) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (paymentMethod *PaymentMethod) CreatedByID() string {
-	return paymentMethod.createdByID
+func (p *PaymentMethod) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (paymentMethod *PaymentMethod) SetCreatedByID(createdByID string) {
-	paymentMethod.createdByID = createdByID
+func (p *PaymentMethod) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (paymentMethod *PaymentMethod) UpdatedByID() *string {
-	return paymentMethod.updatedByID
+func (p *PaymentMethod) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (paymentMethod *PaymentMethod) SetUpdatedByID(updatedByID *string) {
-	paymentMethod.updatedByID = updatedByID
+func (p *PaymentMethod) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (paymentMethod *PaymentMethod) CreatedAt() time.Time {
-	return paymentMethod.createdAt
+func (p *PaymentMethod) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (paymentMethod *PaymentMethod) SetCreatedAt(createdAt time.Time) {
-	paymentMethod.createdAt = createdAt
+func (p *PaymentMethod) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (paymentMethod *PaymentMethod) UpdatedAt() *time.Time {
-	return paymentMethod.updatedAt
+func (p *PaymentMethod) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (paymentMethod *PaymentMethod) SetUpdatedAt(updatedAt *time.Time) {
-	paymentMethod.updatedAt = updatedAt
+func (p *PaymentMethod) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (paymentMethod *PaymentMethod) CreatedByFirstName() *string {
-	return paymentMethod.createdByFirstName
+func (p *PaymentMethod) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (paymentMethod *PaymentMethod) SetCreatedByFirstName(createdByFirstName *string) {
-	paymentMethod.createdByFirstName = createdByFirstName
+func (p *PaymentMethod) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (paymentMethod *PaymentMethod) CreatedBySurname() *string {
-	return paymentMethod.createdBySurname
+func (p *PaymentMethod) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (paymentMethod *PaymentMethod) SetCreatedBySurname(createdBySurname *string) {
-	paymentMethod.createdBySurname = createdBySurname
+func (p *PaymentMethod) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (paymentMethod *PaymentMethod) UpdatedByFirstName() *string {
-	return paymentMethod.updatedByFirstName
+func (p *PaymentMethod) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (paymentMethod *PaymentMethod) SetUpdatedByFirstName(updatedByFirstName *string) {
-	paymentMethod.updatedByFirstName = updatedByFirstName
+func (p *PaymentMethod) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (paymentMethod *PaymentMethod) UpdatedBySurname() *string {
-	return paymentMethod.updatedBySurname
+func (p *PaymentMethod) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (paymentMethod *PaymentMethod) SetUpdatedBySurname(updatedBySurname *string) {
-	paymentMethod.updatedBySurname = updatedBySurname
+func (p *PaymentMethod) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (paymentMethod *PaymentMethod) IsUpdated() bool {
-	return paymentMethod.updatedByID != nil
+func (p *PaymentMethod) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // Name returns name.
-func (paymentMethod *PaymentMethod) Name() string {
-	return paymentMethod.name
+func (p *PaymentMethod) Name() string {
+	return p.name
 }
 
 // SetName sets the name.
-func (paymentMethod *PaymentMethod) SetName(name string) {
-	paymentMethod.name = name
+func (p *PaymentMethod) SetName(name string) {
+	p.name = name
 }
 
 // Description returns description.
-func (paymentMethod *PaymentMethod) Description() *string {
-	return paymentMethod.description
+func (p *PaymentMethod) Description() *string {
+	return p.description
 }
 
 // SetDescription sets the description.
-func (paymentMethod *PaymentMethod) SetDescription(description *string) {
-	paymentMethod.description = description
+func (p *PaymentMethod) SetDescription(description *string) {
+	p.description = description
 }
 
 func newPaymentMethod() *PaymentMethod {

@@ -14,103 +14,103 @@ type FilterEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (filter *Filter) TableName() string {
+func (f *Filter) TableName() string {
 	return "Filter"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (filter *Filter) TableAlias() string {
+func (f *Filter) TableAlias() string {
 	return "fe"
 }
 
 // ID returns id.
-func (filter *Filter) ID() string {
-	return filter.id
+func (f *Filter) ID() string {
+	return f.id
 }
 
 // CreatedByID returns createdByID.
-func (filter *Filter) CreatedByID() string {
-	return filter.createdByID
+func (f *Filter) CreatedByID() string {
+	return f.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (filter *Filter) SetCreatedByID(createdByID string) {
-	filter.createdByID = createdByID
+func (f *Filter) SetCreatedByID(createdByID string) {
+	f.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (filter *Filter) UpdatedByID() *string {
-	return filter.updatedByID
+func (f *Filter) UpdatedByID() *string {
+	return f.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (filter *Filter) SetUpdatedByID(updatedByID *string) {
-	filter.updatedByID = updatedByID
+func (f *Filter) SetUpdatedByID(updatedByID *string) {
+	f.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (filter *Filter) CreatedAt() time.Time {
-	return filter.createdAt
+func (f *Filter) CreatedAt() time.Time {
+	return f.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (filter *Filter) SetCreatedAt(createdAt time.Time) {
-	filter.createdAt = createdAt
+func (f *Filter) SetCreatedAt(createdAt time.Time) {
+	f.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (filter *Filter) UpdatedAt() *time.Time {
-	return filter.updatedAt
+func (f *Filter) UpdatedAt() *time.Time {
+	return f.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (filter *Filter) SetUpdatedAt(updatedAt *time.Time) {
-	filter.updatedAt = updatedAt
+func (f *Filter) SetUpdatedAt(updatedAt *time.Time) {
+	f.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (filter *Filter) CreatedByFirstName() *string {
-	return filter.createdByFirstName
+func (f *Filter) CreatedByFirstName() *string {
+	return f.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (filter *Filter) SetCreatedByFirstName(createdByFirstName *string) {
-	filter.createdByFirstName = createdByFirstName
+func (f *Filter) SetCreatedByFirstName(createdByFirstName *string) {
+	f.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (filter *Filter) CreatedBySurname() *string {
-	return filter.createdBySurname
+func (f *Filter) CreatedBySurname() *string {
+	return f.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (filter *Filter) SetCreatedBySurname(createdBySurname *string) {
-	filter.createdBySurname = createdBySurname
+func (f *Filter) SetCreatedBySurname(createdBySurname *string) {
+	f.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (filter *Filter) UpdatedByFirstName() *string {
-	return filter.updatedByFirstName
+func (f *Filter) UpdatedByFirstName() *string {
+	return f.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (filter *Filter) SetUpdatedByFirstName(updatedByFirstName *string) {
-	filter.updatedByFirstName = updatedByFirstName
+func (f *Filter) SetUpdatedByFirstName(updatedByFirstName *string) {
+	f.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (filter *Filter) UpdatedBySurname() *string {
-	return filter.updatedBySurname
+func (f *Filter) UpdatedBySurname() *string {
+	return f.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (filter *Filter) SetUpdatedBySurname(updatedBySurname *string) {
-	filter.updatedBySurname = updatedBySurname
+func (f *Filter) SetUpdatedBySurname(updatedBySurname *string) {
+	f.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (filter *Filter) IsUpdated() bool {
-	return filter.updatedByID != nil
+func (f *Filter) IsUpdated() bool {
+	return f.updatedByID != nil
 }
 
 func newFilter() *Filter {

@@ -9,133 +9,133 @@ import (
 )
 
 func TestFrequentlyAskedQuestionTable(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
-	if frequentlyAskedQuestion.TableName() == "" {
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	if f.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestFrequentlyAskedQuestionTableAlias(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
-	if frequentlyAskedQuestion.TableName() == "" {
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	if f.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestFrequentlyAskedQuestionIsUpdated(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
-	frequentlyAskedQuestion.IsUpdated()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f.IsUpdated()
 }
 
 func TestFrequentlyAskedQuestionID(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
-	frequentlyAskedQuestion.ID()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f.ID()
 }
 
 func TestFrequentlyAskedQuestionCreatedByID(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetCreatedByID(testValue)
-	if testValue != frequentlyAskedQuestion.CreatedByID() {
+	f.SetCreatedByID(testValue)
+	if testValue != f.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionUpdatedByID(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetUpdatedByID(&testValue)
-	if &testValue != frequentlyAskedQuestion.UpdatedByID() {
+	f.SetUpdatedByID(&testValue)
+	if &testValue != f.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionCreatedAt(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := time.Now()
-	frequentlyAskedQuestion.SetCreatedAt(testValue)
-	if testValue != frequentlyAskedQuestion.CreatedAt() {
+	f.SetCreatedAt(testValue)
+	if testValue != f.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionUpdatedAt(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := time.Now()
-	frequentlyAskedQuestion.SetUpdatedAt(&testValue)
-	if &testValue != frequentlyAskedQuestion.UpdatedAt() {
+	f.SetUpdatedAt(&testValue)
+	if &testValue != f.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionCreatedByFirstName(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetCreatedByFirstName(&testValue)
-	if &testValue != frequentlyAskedQuestion.CreatedByFirstName() {
+	f.SetCreatedByFirstName(&testValue)
+	if &testValue != f.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionCreatedBySurname(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetCreatedBySurname(&testValue)
-	if &testValue != frequentlyAskedQuestion.CreatedBySurname() {
+	f.SetCreatedBySurname(&testValue)
+	if &testValue != f.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionUpdatedByFirstName(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetUpdatedByFirstName(&testValue)
-	if &testValue != frequentlyAskedQuestion.UpdatedByFirstName() {
+	f.SetUpdatedByFirstName(&testValue)
+	if &testValue != f.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionUpdatedBySurname(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetUpdatedBySurname(&testValue)
-	if &testValue != frequentlyAskedQuestion.UpdatedBySurname() {
+	f.SetUpdatedBySurname(&testValue)
+	if &testValue != f.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionFrequentlyAskedQuestionSectionID(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetFrequentlyAskedQuestionSectionID(&testValue)
-	if &testValue != frequentlyAskedQuestion.FrequentlyAskedQuestionSectionID() {
+	f.SetFrequentlyAskedQuestionSectionID(&testValue)
+	if &testValue != f.FrequentlyAskedQuestionSectionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionDomainID(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := "testValue"
-	frequentlyAskedQuestion.SetDomainID(testValue)
-	if testValue != frequentlyAskedQuestion.DomainID() {
+	f.SetDomainID(testValue)
+	if testValue != f.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionActive(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := true
-	frequentlyAskedQuestion.SetActive(testValue)
-	if testValue != frequentlyAskedQuestion.Active() {
+	f.SetActive(testValue)
+	if testValue != f.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFrequentlyAskedQuestionSorting(t *testing.T) {
-	frequentlyAskedQuestion := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
+	f := frequentlyaskedquestion.NewFrequentlyAskedQuestionEntity()
 	testValue := uint(1e9)
-	frequentlyAskedQuestion.SetSorting(testValue)
-	if testValue != frequentlyAskedQuestion.Sorting() {
+	f.SetSorting(testValue)
+	if testValue != f.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

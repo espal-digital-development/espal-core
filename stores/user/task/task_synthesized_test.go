@@ -9,142 +9,142 @@ import (
 )
 
 func TestTaskTable(t *testing.T) {
-	task := task.NewTaskEntity()
-	if task.TableName() == "" {
+	tt := task.NewTaskEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestTaskTableAlias(t *testing.T) {
-	task := task.NewTaskEntity()
-	if task.TableName() == "" {
+	tt := task.NewTaskEntity()
+	if tt.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestTaskIsUpdated(t *testing.T) {
-	task := task.NewTaskEntity()
-	task.IsUpdated()
+	tt := task.NewTaskEntity()
+	tt.IsUpdated()
 }
 
 func TestTaskID(t *testing.T) {
-	task := task.NewTaskEntity()
-	task.ID()
+	tt := task.NewTaskEntity()
+	tt.ID()
 }
 
 func TestTaskCreatedByID(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetCreatedByID(testValue)
-	if testValue != task.CreatedByID() {
+	tt.SetCreatedByID(testValue)
+	if testValue != tt.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskUpdatedByID(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetUpdatedByID(&testValue)
-	if &testValue != task.UpdatedByID() {
+	tt.SetUpdatedByID(&testValue)
+	if &testValue != tt.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskCreatedAt(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := time.Now()
-	task.SetCreatedAt(testValue)
-	if testValue != task.CreatedAt() {
+	tt.SetCreatedAt(testValue)
+	if testValue != tt.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskUpdatedAt(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := time.Now()
-	task.SetUpdatedAt(&testValue)
-	if &testValue != task.UpdatedAt() {
+	tt.SetUpdatedAt(&testValue)
+	if &testValue != tt.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskCreatedByFirstName(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetCreatedByFirstName(&testValue)
-	if &testValue != task.CreatedByFirstName() {
+	tt.SetCreatedByFirstName(&testValue)
+	if &testValue != tt.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskCreatedBySurname(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetCreatedBySurname(&testValue)
-	if &testValue != task.CreatedBySurname() {
+	tt.SetCreatedBySurname(&testValue)
+	if &testValue != tt.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskUpdatedByFirstName(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetUpdatedByFirstName(&testValue)
-	if &testValue != task.UpdatedByFirstName() {
+	tt.SetUpdatedByFirstName(&testValue)
+	if &testValue != tt.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskUpdatedBySurname(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetUpdatedBySurname(&testValue)
-	if &testValue != task.UpdatedBySurname() {
+	tt.SetUpdatedBySurname(&testValue)
+	if &testValue != tt.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskIssuedByID(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetIssuedByID(testValue)
-	if testValue != task.IssuedByID() {
+	tt.SetIssuedByID(testValue)
+	if testValue != tt.IssuedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskAssignedToID(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetAssignedToID(&testValue)
-	if &testValue != task.AssignedToID() {
+	tt.SetAssignedToID(&testValue)
+	if &testValue != tt.AssignedToID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskDescription(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetDescription(testValue)
-	if testValue != task.Description() {
+	tt.SetDescription(testValue)
+	if testValue != tt.Description() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskCompletedNotes(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := "testValue"
-	task.SetCompletedNotes(&testValue)
-	if &testValue != task.CompletedNotes() {
+	tt.SetCompletedNotes(&testValue)
+	if &testValue != tt.CompletedNotes() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestTaskCompletedAt(t *testing.T) {
-	task := task.NewTaskEntity()
+	tt := task.NewTaskEntity()
 	testValue := time.Now()
-	task.SetCompletedAt(&testValue)
-	if &testValue != task.CompletedAt() {
+	tt.SetCompletedAt(&testValue)
+	if &testValue != tt.CompletedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

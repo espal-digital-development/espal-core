@@ -14,93 +14,93 @@ type CostEntity interface {
 }
 
 // ID returns id.
-func (cost *Cost) ID() string {
-	return cost.id
+func (c *Cost) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (cost *Cost) CreatedByID() string {
-	return cost.createdByID
+func (c *Cost) CreatedByID() string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (cost *Cost) SetCreatedByID(createdByID string) {
-	cost.createdByID = createdByID
+func (c *Cost) SetCreatedByID(createdByID string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (cost *Cost) UpdatedByID() *string {
-	return cost.updatedByID
+func (c *Cost) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (cost *Cost) SetUpdatedByID(updatedByID *string) {
-	cost.updatedByID = updatedByID
+func (c *Cost) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (cost *Cost) CreatedAt() time.Time {
-	return cost.createdAt
+func (c *Cost) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (cost *Cost) SetCreatedAt(createdAt time.Time) {
-	cost.createdAt = createdAt
+func (c *Cost) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (cost *Cost) UpdatedAt() *time.Time {
-	return cost.updatedAt
+func (c *Cost) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (cost *Cost) SetUpdatedAt(updatedAt *time.Time) {
-	cost.updatedAt = updatedAt
+func (c *Cost) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (cost *Cost) CreatedByFirstName() *string {
-	return cost.createdByFirstName
+func (c *Cost) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (cost *Cost) SetCreatedByFirstName(createdByFirstName *string) {
-	cost.createdByFirstName = createdByFirstName
+func (c *Cost) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (cost *Cost) CreatedBySurname() *string {
-	return cost.createdBySurname
+func (c *Cost) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (cost *Cost) SetCreatedBySurname(createdBySurname *string) {
-	cost.createdBySurname = createdBySurname
+func (c *Cost) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (cost *Cost) UpdatedByFirstName() *string {
-	return cost.updatedByFirstName
+func (c *Cost) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (cost *Cost) SetUpdatedByFirstName(updatedByFirstName *string) {
-	cost.updatedByFirstName = updatedByFirstName
+func (c *Cost) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (cost *Cost) UpdatedBySurname() *string {
-	return cost.updatedBySurname
+func (c *Cost) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (cost *Cost) SetUpdatedBySurname(updatedBySurname *string) {
-	cost.updatedBySurname = updatedBySurname
+func (c *Cost) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (cost *Cost) IsUpdated() bool {
-	return cost.updatedByID != nil
+func (c *Cost) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 func newCost() *Cost {

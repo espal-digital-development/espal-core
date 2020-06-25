@@ -18,118 +18,118 @@ type PageEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (page *Page) TableName() string {
+func (p *Page) TableName() string {
 	return "Page"
 }
 
 // ID returns id.
-func (page *Page) ID() string {
-	return page.id
+func (p *Page) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (page *Page) CreatedByID() string {
-	return page.createdByID
+func (p *Page) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (page *Page) SetCreatedByID(createdByID string) {
-	page.createdByID = createdByID
+func (p *Page) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (page *Page) UpdatedByID() *string {
-	return page.updatedByID
+func (p *Page) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (page *Page) SetUpdatedByID(updatedByID *string) {
-	page.updatedByID = updatedByID
+func (p *Page) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (page *Page) CreatedAt() time.Time {
-	return page.createdAt
+func (p *Page) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (page *Page) SetCreatedAt(createdAt time.Time) {
-	page.createdAt = createdAt
+func (p *Page) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (page *Page) UpdatedAt() *time.Time {
-	return page.updatedAt
+func (p *Page) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (page *Page) SetUpdatedAt(updatedAt *time.Time) {
-	page.updatedAt = updatedAt
+func (p *Page) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (page *Page) CreatedByFirstName() *string {
-	return page.createdByFirstName
+func (p *Page) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (page *Page) SetCreatedByFirstName(createdByFirstName *string) {
-	page.createdByFirstName = createdByFirstName
+func (p *Page) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (page *Page) CreatedBySurname() *string {
-	return page.createdBySurname
+func (p *Page) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (page *Page) SetCreatedBySurname(createdBySurname *string) {
-	page.createdBySurname = createdBySurname
+func (p *Page) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (page *Page) UpdatedByFirstName() *string {
-	return page.updatedByFirstName
+func (p *Page) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (page *Page) SetUpdatedByFirstName(updatedByFirstName *string) {
-	page.updatedByFirstName = updatedByFirstName
+func (p *Page) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (page *Page) UpdatedBySurname() *string {
-	return page.updatedBySurname
+func (p *Page) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (page *Page) SetUpdatedBySurname(updatedBySurname *string) {
-	page.updatedBySurname = updatedBySurname
+func (p *Page) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (page *Page) IsUpdated() bool {
-	return page.updatedByID != nil
+func (p *Page) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (page *Page) DomainID() string {
-	return page.domainID
+func (p *Page) DomainID() string {
+	return p.domainID
 }
 
 // SetDomainID sets the domainID.
-func (page *Page) SetDomainID(domainID string) {
-	page.domainID = domainID
+func (p *Page) SetDomainID(domainID string) {
+	p.domainID = domainID
 }
 
 // Active returns active.
-func (page *Page) Active() bool {
-	return page.active
+func (p *Page) Active() bool {
+	return p.active
 }
 
 // SetActive sets the active.
-func (page *Page) SetActive(active bool) {
-	page.active = active
+func (p *Page) SetActive(active bool) {
+	p.active = active
 }
 
 func newPage() *Page {

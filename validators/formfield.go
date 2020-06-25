@@ -239,192 +239,192 @@ type formField struct {
 }
 
 // Type returns the form type.
-func (formField *formField) Type() FieldType {
-	return formField._type
+func (f *formField) Type() FieldType {
+	return f._type
 }
 
 // Name returns the form name.
-func (formField *formField) Name() string {
-	return formField.name
+func (f *formField) Name() string {
+	return f.name
 }
 
 // Value returns the form field value.
-func (formField *formField) Value() string {
-	return formField.value
+func (f *formField) Value() string {
+	return f.value
 }
 
 // PointerValue returns the pointer to the form field value.
-func (formField *formField) PointerValue() *string {
-	return &formField.value
+func (f *formField) PointerValue() *string {
+	return &f.value
 }
 
 // SetValue sets the form field value.
-func (formField *formField) SetValue(value string) {
-	formField.value = value
+func (f *formField) SetValue(value string) {
+	f.value = value
 }
 
 // Values returns the form field values.
-func (formField *formField) Values() []string {
-	return formField.values
+func (f *formField) Values() []string {
+	return f.values
 }
 
 // SetValues sets the form field values.
-func (formField *formField) SetValues(values []string) error {
-	if ChoiceFormField != formField._type {
+func (f *formField) SetValues(values []string) error {
+	if ChoiceFormField != f._type {
 		return errors.Errorf("can only set values on a choice field")
 	}
-	formField.values = values
+	f.values = values
 	return nil
 }
 
 // SetPlaceholder sets the form field placeholder value.
-func (formField *formField) SetPlaceholder(placeholder string) {
-	formField.placeholder = placeholder
+func (f *formField) SetPlaceholder(placeholder string) {
+	f.placeholder = placeholder
 }
 
 // Placeholder returns the field placeholder value.
-func (formField *formField) Placeholder() string {
-	return formField.placeholder
+func (f *formField) Placeholder() string {
+	return f.placeholder
 }
 
 // SetOptional makes the form field value input optional.
-func (formField *formField) SetOptional() {
-	formField.optional = true
+func (f *formField) SetOptional() {
+	f.optional = true
 }
 
 // SetTranslatePlural makes the form field label translated plural.
-func (formField *formField) SetTranslatePlural() {
-	formField.translatePlural = true
+func (f *formField) SetTranslatePlural() {
+	f.translatePlural = true
 }
 
 // TranslatePlural returns if the form field label should be translated plural.
-func (formField *formField) TranslatePlural() bool {
-	return formField.translatePlural
+func (f *formField) TranslatePlural() bool {
+	return f.translatePlural
 }
 
 // SetDontTranslate marks the field to not translate it's label.
-func (formField *formField) SetDontTranslate() {
-	formField.dontTranslate = true
+func (f *formField) SetDontTranslate() {
+	f.dontTranslate = true
 }
 
 // DontTranslate returns if the field's label shouldn't be translated.
-func (formField *formField) DontTranslate() bool {
-	return formField.dontTranslate
+func (f *formField) DontTranslate() bool {
+	return f.dontTranslate
 }
 
 // SetTrim marks the field that it should trim the value before it gets processed.
-func (formField *formField) SetTrim() {
-	formField.trim = true
+func (f *formField) SetTrim() {
+	f.trim = true
 }
 
 // Trim returns if the field value needs to be trimmed.
-func (formField *formField) Trim() bool {
-	return formField.trim
+func (f *formField) Trim() bool {
+	return f.trim
 }
 
 // SetMinLength sets the form field min length.
-func (formField *formField) SetMinLength(minLength uint) {
-	formField.minLength = minLength
+func (f *formField) SetMinLength(minLength uint) {
+	f.minLength = minLength
 }
 
 // MinLength returns the minimal required length of the field's value.
-func (formField *formField) MinLength() uint {
-	return formField.minLength
+func (f *formField) MinLength() uint {
+	return f.minLength
 }
 
 // SetMaxLength sets the form field max length.
-func (formField *formField) SetMaxLength(maxLength uint) {
-	formField.maxLength = maxLength
+func (f *formField) SetMaxLength(maxLength uint) {
+	f.maxLength = maxLength
 }
 
 // MaxLength returns the maximum allowed length of the field's value.
-func (formField *formField) MaxLength() uint {
-	return formField.maxLength
+func (f *formField) MaxLength() uint {
+	return f.maxLength
 }
 
 // SetValidate marks the form field should be validated according to it's type.
-func (formField *formField) SetValidate() {
-	formField.validate = true
+func (f *formField) SetValidate() {
+	f.validate = true
 }
 
 // Validate returns if the validators for the field should be triggered.
-func (formField *formField) Validate() bool {
-	return formField.validate
+func (f *formField) Validate() bool {
+	return f.validate
 }
 
 // SetHideLabel marks the form field to not render the label.
-func (formField *formField) SetHideLabel() {
-	formField.hideLabel = true
+func (f *formField) SetHideLabel() {
+	f.hideLabel = true
 }
 
 // HideLabel returns if the field's label should be rendered on the page.
-func (formField *formField) HideLabel() bool {
-	return formField.hideLabel
+func (f *formField) HideLabel() bool {
+	return f.hideLabel
 }
 
 // SetClass sets the class that will be rendered on the HTML field.
-func (formField *formField) SetClass(class string) {
-	formField.class = class
+func (f *formField) SetClass(class string) {
+	f.class = class
 }
 
 // Class returns the class that will be rendered on the HTML field.
-func (formField *formField) Class() string {
-	return formField.class
+func (f *formField) Class() string {
+	return f.class
 }
 
 // SetID sets the id that will be rendered on the HTML field.
-func (formField *formField) SetID(id string) {
-	formField.id = id
+func (f *formField) SetID(id string) {
+	f.id = id
 }
 
 // ID returns the id that will be rendered on the HTML field.
-func (formField *formField) ID() string {
-	return formField.id
+func (f *formField) ID() string {
+	return f.id
 }
 
 // SetCannotBeEqualToField sets which field field this form field cannot be equal to.
-func (formField *formField) SetCannotBeEqualToField(field string) {
-	formField.cannotBeEqualToField = field
+func (f *formField) SetCannotBeEqualToField(field string) {
+	f.cannotBeEqualToField = field
 }
 
 // CannotBeEqualToField gets which field field this form field cannot be equal to.
-func (formField *formField) CannotBeEqualToField() string {
-	return formField.cannotBeEqualToField
+func (f *formField) CannotBeEqualToField() string {
+	return f.cannotBeEqualToField
 }
 
 // SetNeedsToBeEqualToField sets which field field this form field should be equal to.
-func (formField *formField) SetNeedsToBeEqualToField(field string) {
-	formField.needsToBeEqualToField = field
+func (f *formField) SetNeedsToBeEqualToField(field string) {
+	f.needsToBeEqualToField = field
 }
 
 // AddError adds a field-error to the Errors stack.
-func (formField *formField) AddError(errorString string) {
-	formField.errors = append(formField.errors, errorString)
+func (f *formField) AddError(errorString string) {
+	f.errors = append(f.errors, errorString)
 }
 
 // HasErrors indicates if the field has errors.
-func (formField *formField) HasErrors() bool {
-	return len(formField.errors) > 0
+func (f *formField) HasErrors() bool {
+	return len(f.errors) > 0
 }
 
 // Errors returns the errors of the field.
-func (formField *formField) Errors() []string {
-	return formField.errors
+func (f *formField) Errors() []string {
+	return f.errors
 }
 
 // RemoveAllErrors purges all errors from the field.
-func (formField *formField) RemoveAllErrors() {
-	formField.errors = make([]string, 0)
+func (f *formField) RemoveAllErrors() {
+	f.errors = make([]string, 0)
 }
 
 // ValueAsBool converts the string-value and returns it as bool.
-func (formField *formField) ValueAsBool() bool {
-	return formField.value == "1"
+func (f *formField) ValueAsBool() bool {
+	return f.value == "1"
 }
 
 // ValueAsUint converts the string-value and returns it as uint.
-func (formField *formField) ValueAsUint() uint {
-	i, err := strconv.ParseUint(formField.value, 10, 64)
+func (f *formField) ValueAsUint() uint {
+	i, err := strconv.ParseUint(f.value, 10, 64)
 	if err != nil {
 		return 0
 	}
@@ -432,8 +432,8 @@ func (formField *formField) ValueAsUint() uint {
 }
 
 // ValueAsUint16 converts the string-value and returns it as uint16.
-func (formField *formField) ValueAsUint16() uint16 {
-	i, err := strconv.ParseUint(formField.value, 10, 16)
+func (f *formField) ValueAsUint16() uint16 {
+	i, err := strconv.ParseUint(f.value, 10, 16)
 	if err != nil {
 		return 0
 	}
@@ -441,8 +441,8 @@ func (formField *formField) ValueAsUint16() uint16 {
 }
 
 // ValueAsTime converts the string-value and returns it as uint16.
-func (formField *formField) ValueAsTime() *time.Time {
-	formattedTime, err := time.Parse(time.RFC3339[0:9], formField.value)
+func (f *formField) ValueAsTime() *time.Time {
+	formattedTime, err := time.Parse(time.RFC3339[0:9], f.value)
 	if err != nil {
 		panic(errors.ErrorStack(err))
 	}
@@ -450,56 +450,56 @@ func (formField *formField) ValueAsTime() *time.Time {
 }
 
 // SetToBeEqualToField marks the field to be equal to the given targetField name.
-func (formField *formField) SetToBeEqualToField(targetField string) {
-	formField.needsToBeEqualToField = targetField
+func (f *formField) SetToBeEqualToField(targetField string) {
+	f.needsToBeEqualToField = targetField
 }
 
 // NeedsToBeEqualToField returns the field this field should be equal to.
-func (formField *formField) NeedsToBeEqualToField() string {
-	return formField.needsToBeEqualToField
+func (f *formField) NeedsToBeEqualToField() string {
+	return f.needsToBeEqualToField
 }
 
 // SetNotToBeEqualToField marks the field to not to be equal to the given targetField name.
-func (formField *formField) SetNotToBeEqualToField(targetField string) {
-	formField.cannotBeEqualToField = targetField
+func (f *formField) SetNotToBeEqualToField(targetField string) {
+	f.cannotBeEqualToField = targetField
 }
 
 // NeedsToBeEqualToField returns the field this field should not be equal to.
-func (formField *formField) CannotToBeEqualToField() string {
-	return formField.cannotBeEqualToField
+func (f *formField) CannotToBeEqualToField() string {
+	return f.cannotBeEqualToField
 }
 
 // Optional returns an indicator if the field's filling is optional.
-func (formField *formField) Optional() bool {
-	return formField.optional
+func (f *formField) Optional() bool {
+	return f.optional
 }
 
 // SetNoSelectionText sets the no-selection option entry text.
-func (formField *formField) SetNoSelectionText(noSelectionText string) {
-	formField.noSelectionText = noSelectionText
+func (f *formField) SetNoSelectionText(noSelectionText string) {
+	f.noSelectionText = noSelectionText
 }
 
 // NoSelectionText returns the no-selection option entry text.
-func (formField *formField) NoSelectionText() string {
-	return formField.noSelectionText
+func (f *formField) NoSelectionText() string {
+	return f.noSelectionText
 }
 
 // SetAllowedValues sets the field's allowed values.
-func (formField *formField) SetAllowedValues(allowValues []string) {
-	formField.allowedValues = allowValues
+func (f *formField) SetAllowedValues(allowValues []string) {
+	f.allowedValues = allowValues
 }
 
 // AllowedValues returns the field's allowed values.
-func (formField *formField) AllowedValues() []string {
-	return formField.allowedValues
+func (f *formField) AllowedValues() []string {
+	return f.allowedValues
 }
 
 // SetDisallowValues sets the field's disallowed values.
-func (formField *formField) SetDisallowValues(disallowValues []string) {
-	formField.disallowValues = disallowValues
+func (f *formField) SetDisallowValues(disallowValues []string) {
+	f.disallowValues = disallowValues
 }
 
 // DisallowValues returns the field's disallowed values.
-func (formField *formField) DisallowValues() []string {
-	return formField.disallowValues
+func (f *formField) DisallowValues() []string {
+	return f.disallowValues
 }

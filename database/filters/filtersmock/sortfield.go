@@ -15,11 +15,15 @@ var (
 	lockSortFieldMockTableAlias    sync.RWMutex
 )
 
-// SortFieldMock is a mock implementation of SortField.
+// Ensure, that SortFieldMock does implement filters.SortField.
+// If this is not the case, regenerate this file with moq.
+var _ filters.SortField = &SortFieldMock{}
+
+// SortFieldMock is a mock implementation of filters.SortField.
 //
 //     func TestSomethingThatUsesSortField(t *testing.T) {
 //
-//         // make and configure a mocked SortField
+//         // make and configure a mocked filters.SortField
 //         mockedSortField := &SortFieldMock{
 //             DescendingFunc: func() bool {
 // 	               panic("mock out the Descending method")
@@ -35,7 +39,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedSortField in code that requires SortField
+//         // use mockedSortField in code that requires filters.SortField
 //         // and then make assertions.
 //
 //     }

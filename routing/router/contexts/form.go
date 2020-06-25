@@ -17,36 +17,36 @@ type FormContext interface {
 // MultipartForm returns the submitted multipart form.
 // maxMemory is not the upload size limit, but purely what stays in memory and
 // the remainder being written to the disk.
-func (httpContext *HTTPContext) MultipartForm(maxMemory int64) (*multipart.Form, error) {
-	if err := httpContext.request.ParseMultipartForm(maxMemory); err != nil {
+func (c *HTTPContext) MultipartForm(maxMemory int64) (*multipart.Form, error) {
+	if err := c.request.ParseMultipartForm(maxMemory); err != nil {
 		return nil, errors.Trace(err)
 	}
-	return httpContext.request.MultipartForm, nil
+	return c.request.MultipartForm, nil
 }
 
 // FormFile returns the submitted form file by the given key.
-func (httpContext *HTTPContext) FormFile(key string) (multipart.File, *multipart.FileHeader, error) {
-	return httpContext.request.FormFile(key)
+func (c *HTTPContext) FormFile(key string) (multipart.File, *multipart.FileHeader, error) {
+	return c.request.FormFile(key)
 }
 
 // FormValue returns a submitted form value.
-func (httpContext *HTTPContext) FormValue(key string) (string, error) {
-	if !httpContext.formIsParsed {
-		if err := httpContext.request.ParseForm(); err != nil {
+func (c *HTTPContext) FormValue(key string) (string, error) {
+	if !c.formIsParsed {
+		if err := c.request.ParseForm(); err != nil {
 			return "", errors.Trace(err)
 		}
 	}
-	httpContext.formIsParsed = true
-	return httpContext.request.Form.Get(key), nil
+	c.formIsParsed = true
+	return c.request.Form.Get(key), nil
 }
 
 // FormValues returns all given values for the given field.
-func (httpContext *HTTPContext) FormValues(key string) ([]string, error) {
-	if !httpContext.formIsParsed {
-		if err := httpContext.request.ParseForm(); err != nil {
+func (c *HTTPContext) FormValues(key string) ([]string, error) {
+	if !c.formIsParsed {
+		if err := c.request.ParseForm(); err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
-	httpContext.formIsParsed = true
-	return httpContext.request.Form[key], nil
+	c.formIsParsed = true
+	return c.request.Form[key], nil
 }

@@ -40,223 +40,223 @@ type OfficeEntity interface {
 }
 
 // ID returns id.
-func (office *Office) ID() string {
-	return office.id
+func (o *Office) ID() string {
+	return o.id
 }
 
 // CreatedByID returns createdByID.
-func (office *Office) CreatedByID() string {
-	return office.createdByID
+func (o *Office) CreatedByID() string {
+	return o.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (office *Office) SetCreatedByID(createdByID string) {
-	office.createdByID = createdByID
+func (o *Office) SetCreatedByID(createdByID string) {
+	o.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (office *Office) UpdatedByID() *string {
-	return office.updatedByID
+func (o *Office) UpdatedByID() *string {
+	return o.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (office *Office) SetUpdatedByID(updatedByID *string) {
-	office.updatedByID = updatedByID
+func (o *Office) SetUpdatedByID(updatedByID *string) {
+	o.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (office *Office) CreatedAt() time.Time {
-	return office.createdAt
+func (o *Office) CreatedAt() time.Time {
+	return o.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (office *Office) SetCreatedAt(createdAt time.Time) {
-	office.createdAt = createdAt
+func (o *Office) SetCreatedAt(createdAt time.Time) {
+	o.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (office *Office) UpdatedAt() *time.Time {
-	return office.updatedAt
+func (o *Office) UpdatedAt() *time.Time {
+	return o.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (office *Office) SetUpdatedAt(updatedAt *time.Time) {
-	office.updatedAt = updatedAt
+func (o *Office) SetUpdatedAt(updatedAt *time.Time) {
+	o.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (office *Office) CreatedByFirstName() *string {
-	return office.createdByFirstName
+func (o *Office) CreatedByFirstName() *string {
+	return o.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (office *Office) SetCreatedByFirstName(createdByFirstName *string) {
-	office.createdByFirstName = createdByFirstName
+func (o *Office) SetCreatedByFirstName(createdByFirstName *string) {
+	o.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (office *Office) CreatedBySurname() *string {
-	return office.createdBySurname
+func (o *Office) CreatedBySurname() *string {
+	return o.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (office *Office) SetCreatedBySurname(createdBySurname *string) {
-	office.createdBySurname = createdBySurname
+func (o *Office) SetCreatedBySurname(createdBySurname *string) {
+	o.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (office *Office) UpdatedByFirstName() *string {
-	return office.updatedByFirstName
+func (o *Office) UpdatedByFirstName() *string {
+	return o.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (office *Office) SetUpdatedByFirstName(updatedByFirstName *string) {
-	office.updatedByFirstName = updatedByFirstName
+func (o *Office) SetUpdatedByFirstName(updatedByFirstName *string) {
+	o.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (office *Office) UpdatedBySurname() *string {
-	return office.updatedBySurname
+func (o *Office) UpdatedBySurname() *string {
+	return o.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (office *Office) SetUpdatedBySurname(updatedBySurname *string) {
-	office.updatedBySurname = updatedBySurname
+func (o *Office) SetUpdatedBySurname(updatedBySurname *string) {
+	o.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (office *Office) IsUpdated() bool {
-	return office.updatedByID != nil
+func (o *Office) IsUpdated() bool {
+	return o.updatedByID != nil
 }
 
 // Active returns active.
-func (office *Office) Active() bool {
-	return office.active
+func (o *Office) Active() bool {
+	return o.active
 }
 
 // SetActive sets the active.
-func (office *Office) SetActive(active bool) {
-	office.active = active
+func (o *Office) SetActive(active bool) {
+	o.active = active
 }
 
 // Sorting returns sorting.
-func (office *Office) Sorting() uint {
-	return office.sorting
+func (o *Office) Sorting() uint {
+	return o.sorting
 }
 
 // SetSorting sets the sorting.
-func (office *Office) SetSorting(sorting uint) {
-	office.sorting = sorting
+func (o *Office) SetSorting(sorting uint) {
+	o.sorting = sorting
 }
 
 // PrimaryContactPerson returns primaryContactPerson.
-func (office *Office) PrimaryContactPerson() *string {
-	return office.primaryContactPerson
+func (o *Office) PrimaryContactPerson() *string {
+	return o.primaryContactPerson
 }
 
 // SetPrimaryContactPerson sets the primaryContactPerson.
-func (office *Office) SetPrimaryContactPerson(primaryContactPerson *string) {
-	office.primaryContactPerson = primaryContactPerson
+func (o *Office) SetPrimaryContactPerson(primaryContactPerson *string) {
+	o.primaryContactPerson = primaryContactPerson
 }
 
 // Street returns street.
-func (office *Office) Street() string {
-	return office.street
+func (o *Office) Street() string {
+	return o.street
 }
 
 // SetStreet sets the street.
-func (office *Office) SetStreet(street string) {
-	office.street = street
+func (o *Office) SetStreet(street string) {
+	o.street = street
 }
 
 // StreetLine2 returns streetLine2.
-func (office *Office) StreetLine2() *string {
-	return office.streetLine2
+func (o *Office) StreetLine2() *string {
+	return o.streetLine2
 }
 
 // SetStreetLine2 sets the streetLine2.
-func (office *Office) SetStreetLine2(streetLine2 *string) {
-	office.streetLine2 = streetLine2
+func (o *Office) SetStreetLine2(streetLine2 *string) {
+	o.streetLine2 = streetLine2
 }
 
 // Number returns number.
-func (office *Office) Number() string {
-	return office.number
+func (o *Office) Number() string {
+	return o.number
 }
 
 // SetNumber sets the number.
-func (office *Office) SetNumber(number string) {
-	office.number = number
+func (o *Office) SetNumber(number string) {
+	o.number = number
 }
 
 // NumberAddition returns numberAddition.
-func (office *Office) NumberAddition() *string {
-	return office.numberAddition
+func (o *Office) NumberAddition() *string {
+	return o.numberAddition
 }
 
 // SetNumberAddition sets the numberAddition.
-func (office *Office) SetNumberAddition(numberAddition *string) {
-	office.numberAddition = numberAddition
+func (o *Office) SetNumberAddition(numberAddition *string) {
+	o.numberAddition = numberAddition
 }
 
 // ZipCode returns zipCode.
-func (office *Office) ZipCode() string {
-	return office.zipCode
+func (o *Office) ZipCode() string {
+	return o.zipCode
 }
 
 // SetZipCode sets the zipCode.
-func (office *Office) SetZipCode(zipCode string) {
-	office.zipCode = zipCode
+func (o *Office) SetZipCode(zipCode string) {
+	o.zipCode = zipCode
 }
 
 // City returns city.
-func (office *Office) City() string {
-	return office.city
+func (o *Office) City() string {
+	return o.city
 }
 
 // SetCity sets the city.
-func (office *Office) SetCity(city string) {
-	office.city = city
+func (o *Office) SetCity(city string) {
+	o.city = city
 }
 
 // State returns state.
-func (office *Office) State() *string {
-	return office.state
+func (o *Office) State() *string {
+	return o.state
 }
 
 // SetState sets the state.
-func (office *Office) SetState(state *string) {
-	office.state = state
+func (o *Office) SetState(state *string) {
+	o.state = state
 }
 
 // Country returns country.
-func (office *Office) Country() *uint16 {
-	return office.country
+func (o *Office) Country() *uint16 {
+	return o.country
 }
 
 // SetCountry sets the country.
-func (office *Office) SetCountry(country *uint16) {
-	office.country = country
+func (o *Office) SetCountry(country *uint16) {
+	o.country = country
 }
 
 // PhoneNumber returns phoneNumber.
-func (office *Office) PhoneNumber() *string {
-	return office.phoneNumber
+func (o *Office) PhoneNumber() *string {
+	return o.phoneNumber
 }
 
 // SetPhoneNumber sets the phoneNumber.
-func (office *Office) SetPhoneNumber(phoneNumber *string) {
-	office.phoneNumber = phoneNumber
+func (o *Office) SetPhoneNumber(phoneNumber *string) {
+	o.phoneNumber = phoneNumber
 }
 
 // Email returns email.
-func (office *Office) Email() *string {
-	return office.email
+func (o *Office) Email() *string {
+	return o.email
 }
 
 // SetEmail sets the email.
-func (office *Office) SetEmail(email *string) {
-	office.email = email
+func (o *Office) SetEmail(email *string) {
+	o.email = email
 }
 
 func newOffice() *Office {

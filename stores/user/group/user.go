@@ -21,11 +21,11 @@ type User struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (user *User) TableName() string {
+func (u *User) TableName() string {
 	return "UserGroupsUser"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (user *User) TableAlias() string {
+func (u *User) TableAlias() string {
 	return "ugu"
 }

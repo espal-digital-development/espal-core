@@ -22,23 +22,23 @@ type security struct {
 // SecurityGlobalAuthentication returns if the global authentication is
 // enabled. This will cause a global login barrier over the whole
 // environment, like BasicAuth, but managed by the normal requests.
-func (configuration *Configuration) SecurityGlobalAuthentication() bool {
-	return configuration.security.GlobalAuthentication
+func (c *Configuration) SecurityGlobalAuthentication() bool {
+	return c.security.GlobalAuthentication
 }
 
 // SecurityBcryptRounds returns the bcrypt encryption rounds.
 // The value lies between 1 and 30 and relies on gradual improvment
 // of hardware.
-func (configuration *Configuration) SecurityBcryptRounds() int {
-	return configuration.security.BcryptRounds
+func (c *Configuration) SecurityBcryptRounds() int {
+	return c.security.BcryptRounds
 }
 
 // SecurityFormTokenLifespan returns the form token's lifespan.
-func (configuration *Configuration) SecurityFormTokenLifespan() time.Duration {
-	return configuration.security.FormTokenLifespan
+func (c *Configuration) SecurityFormTokenLifespan() time.Duration {
+	return c.security.FormTokenLifespan
 }
 
 // SecurityFormTokenCleanupInterval returns the form token's cleanup interval.
-func (configuration *Configuration) SecurityFormTokenCleanupInterval() time.Duration {
-	return configuration.security.FormTokenCleanupInterval
+func (c *Configuration) SecurityFormTokenCleanupInterval() time.Duration {
+	return c.security.FormTokenCleanupInterval
 }

@@ -13,8 +13,8 @@ var _ Store = &SubscriptionsStore{}
 type Store interface {
 }
 
-func (subscriptionsStore *SubscriptionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Subscription, ok bool, err error) {
-	rows, err := subscriptionsStore.selecterDatabase.Query(query, params...)
+func (s *SubscriptionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Subscription, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (subscriptionsStore *SubscriptionsStore) fetch(query string, withCreators b
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		subscription := newSubscription()
-		fields := []interface{}{&subscription.id, &subscription.createdByID, &subscription.updatedByID, &subscription.createdAt, &subscription.updatedAt}
+		s := newSubscription()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt}
 		if withCreators {
-			fields = append(fields, &subscription.createdByFirstName, &subscription.createdBySurname, &subscription.updatedByFirstName, &subscription.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, subscription)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (subscriptionsStore *SubscriptionsStore) fetch(query string, withCreators b
 
 // New returns a new instance of SubscriptionsStore.
 func New(selecterDatabase database.Database) (*SubscriptionsStore, error) {
-	subscriptionsStore := &SubscriptionsStore{
+	s := &SubscriptionsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return subscriptionsStore, nil
+	return s, nil
 }

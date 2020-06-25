@@ -9,97 +9,97 @@ import (
 )
 
 func TestStockLocationTable(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
-	if stockLocation.TableName() == "" {
+	s := stocklocation.NewStockLocationEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestStockLocationTableAlias(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
-	if stockLocation.TableName() == "" {
+	s := stocklocation.NewStockLocationEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestStockLocationIsUpdated(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
-	stockLocation.IsUpdated()
+	s := stocklocation.NewStockLocationEntity()
+	s.IsUpdated()
 }
 
 func TestStockLocationID(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
-	stockLocation.ID()
+	s := stocklocation.NewStockLocationEntity()
+	s.ID()
 }
 
 func TestStockLocationCreatedByID(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := "testValue"
-	stockLocation.SetCreatedByID(testValue)
-	if testValue != stockLocation.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationUpdatedByID(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := "testValue"
-	stockLocation.SetUpdatedByID(&testValue)
-	if &testValue != stockLocation.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationCreatedAt(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := time.Now()
-	stockLocation.SetCreatedAt(testValue)
-	if testValue != stockLocation.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationUpdatedAt(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := time.Now()
-	stockLocation.SetUpdatedAt(&testValue)
-	if &testValue != stockLocation.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationCreatedByFirstName(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := "testValue"
-	stockLocation.SetCreatedByFirstName(&testValue)
-	if &testValue != stockLocation.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationCreatedBySurname(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := "testValue"
-	stockLocation.SetCreatedBySurname(&testValue)
-	if &testValue != stockLocation.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationUpdatedByFirstName(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := "testValue"
-	stockLocation.SetUpdatedByFirstName(&testValue)
-	if &testValue != stockLocation.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestStockLocationUpdatedBySurname(t *testing.T) {
-	stockLocation := stocklocation.NewStockLocationEntity()
+	s := stocklocation.NewStockLocationEntity()
 	testValue := "testValue"
-	stockLocation.SetUpdatedBySurname(&testValue)
-	if &testValue != stockLocation.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

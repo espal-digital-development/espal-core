@@ -20,123 +20,123 @@ type GroupEntity interface {
 }
 
 // ID returns id.
-func (group *Group) ID() string {
-	return group.id
+func (g *Group) ID() string {
+	return g.id
 }
 
 // CreatedByID returns createdByID.
-func (group *Group) CreatedByID() string {
-	return group.createdByID
+func (g *Group) CreatedByID() string {
+	return g.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (group *Group) SetCreatedByID(createdByID string) {
-	group.createdByID = createdByID
+func (g *Group) SetCreatedByID(createdByID string) {
+	g.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (group *Group) UpdatedByID() *string {
-	return group.updatedByID
+func (g *Group) UpdatedByID() *string {
+	return g.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (group *Group) SetUpdatedByID(updatedByID *string) {
-	group.updatedByID = updatedByID
+func (g *Group) SetUpdatedByID(updatedByID *string) {
+	g.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (group *Group) CreatedAt() time.Time {
-	return group.createdAt
+func (g *Group) CreatedAt() time.Time {
+	return g.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (group *Group) SetCreatedAt(createdAt time.Time) {
-	group.createdAt = createdAt
+func (g *Group) SetCreatedAt(createdAt time.Time) {
+	g.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (group *Group) UpdatedAt() *time.Time {
-	return group.updatedAt
+func (g *Group) UpdatedAt() *time.Time {
+	return g.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (group *Group) SetUpdatedAt(updatedAt *time.Time) {
-	group.updatedAt = updatedAt
+func (g *Group) SetUpdatedAt(updatedAt *time.Time) {
+	g.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (group *Group) CreatedByFirstName() *string {
-	return group.createdByFirstName
+func (g *Group) CreatedByFirstName() *string {
+	return g.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (group *Group) SetCreatedByFirstName(createdByFirstName *string) {
-	group.createdByFirstName = createdByFirstName
+func (g *Group) SetCreatedByFirstName(createdByFirstName *string) {
+	g.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (group *Group) CreatedBySurname() *string {
-	return group.createdBySurname
+func (g *Group) CreatedBySurname() *string {
+	return g.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (group *Group) SetCreatedBySurname(createdBySurname *string) {
-	group.createdBySurname = createdBySurname
+func (g *Group) SetCreatedBySurname(createdBySurname *string) {
+	g.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (group *Group) UpdatedByFirstName() *string {
-	return group.updatedByFirstName
+func (g *Group) UpdatedByFirstName() *string {
+	return g.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (group *Group) SetUpdatedByFirstName(updatedByFirstName *string) {
-	group.updatedByFirstName = updatedByFirstName
+func (g *Group) SetUpdatedByFirstName(updatedByFirstName *string) {
+	g.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (group *Group) UpdatedBySurname() *string {
-	return group.updatedBySurname
+func (g *Group) UpdatedBySurname() *string {
+	return g.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (group *Group) SetUpdatedBySurname(updatedBySurname *string) {
-	group.updatedBySurname = updatedBySurname
+func (g *Group) SetUpdatedBySurname(updatedBySurname *string) {
+	g.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (group *Group) IsUpdated() bool {
-	return group.updatedByID != nil
+func (g *Group) IsUpdated() bool {
+	return g.updatedByID != nil
 }
 
 // Active returns active.
-func (group *Group) Active() bool {
-	return group.active
+func (g *Group) Active() bool {
+	return g.active
 }
 
 // SetActive sets the active.
-func (group *Group) SetActive(active bool) {
-	group.active = active
+func (g *Group) SetActive(active bool) {
+	g.active = active
 }
 
 // Sorting returns sorting.
-func (group *Group) Sorting() uint {
-	return group.sorting
+func (g *Group) Sorting() uint {
+	return g.sorting
 }
 
 // SetSorting sets the sorting.
-func (group *Group) SetSorting(sorting uint) {
-	group.sorting = sorting
+func (g *Group) SetSorting(sorting uint) {
+	g.sorting = sorting
 }
 
 // Code returns code.
-func (group *Group) Code() string {
-	return group.code
+func (g *Group) Code() string {
+	return g.code
 }
 
 // SetCode sets the code.
-func (group *Group) SetCode(code string) {
-	group.code = code
+func (g *Group) SetCode(code string) {
+	g.code = code
 }
 
 func newGroup() *Group {

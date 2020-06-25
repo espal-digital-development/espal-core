@@ -41,16 +41,16 @@ type Forum struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (forum *Forum) TableAlias() string {
+func (f *Forum) TableAlias() string {
 	return "fo"
 }
 
 // TopicsCountAsString returns the model's TopicsCount as a string.
-func (forum *Forum) TopicsCountAsString() string {
-	return strconv.FormatUint(uint64(forum.topicsCount), 10)
+func (f *Forum) TopicsCountAsString() string {
+	return strconv.FormatUint(uint64(f.topicsCount), 10)
 }
 
 // PostsCountAsString returns the model's PostsCount as a string.
-func (forum *Forum) PostsCountAsString() string {
-	return strconv.FormatUint(uint64(forum.postsCount), 10)
+func (f *Forum) PostsCountAsString() string {
+	return strconv.FormatUint(uint64(f.postsCount), 10)
 }

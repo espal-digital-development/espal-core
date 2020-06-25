@@ -20,26 +20,26 @@ type uploadedFile struct {
 }
 
 // Header returns the uploaded file's header information.
-func (uploadedFile *uploadedFile) Header() *multipart.FileHeader {
-	return uploadedFile.header
+func (f *uploadedFile) Header() *multipart.FileHeader {
+	return f.header
 }
 
 // SetSanitizedName sets the file name that is safe for filesystem storage.
-func (uploadedFile *uploadedFile) SetSanitizedName(sanitizedName string) {
-	uploadedFile.sanitizedName = sanitizedName
+func (f *uploadedFile) SetSanitizedName(sanitizedName string) {
+	f.sanitizedName = sanitizedName
 }
 
 // SanitizedName returns the file name that is safe for filesystem storage.
-func (uploadedFile *uploadedFile) SanitizedName() string {
-	return uploadedFile.sanitizedName
+func (f *uploadedFile) SanitizedName() string {
+	return f.sanitizedName
 }
 
 // SetSavedPath sets the location path the uploaded file is saved at.
-func (uploadedFile *uploadedFile) SetSavedPath(savedPath string) {
-	uploadedFile.savedPath = savedPath
+func (f *uploadedFile) SetSavedPath(savedPath string) {
+	f.savedPath = savedPath
 }
 
 // SavedPath returns the location path the uploaded file is saved at.
-func (uploadedFile *uploadedFile) SavedPath() string {
-	return uploadedFile.savedPath
+func (f *uploadedFile) SavedPath() string {
+	return f.savedPath
 }

@@ -30,7 +30,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	id := context.QueryValue("id")
 
 	if (id == "" && !context.HasUserRightOrForbid("CreateUser")) ||
@@ -42,7 +42,7 @@ func (route *Route) Handle(context contexts.Context) {
 	var ok bool
 	user := &user.User{}
 	if id != "" {
-		user, ok, err = route.userStore.GetOneByIDWithCreator(id)
+		user, ok, err = r.userStore.GetOneByIDWithCreator(id)
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -59,7 +59,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	form, err := route.createUpdateFormValidator.New(user, language)
+	form, err := r.createUpdateFormValidator.New(user, language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -75,7 +75,7 @@ func (route *Route) Handle(context contexts.Context) {
 		countryID := form.FieldValueAsUint16("country")
 		currencies := strings.Join(form.FieldValues("currencies"), ",")
 
-		entityMutator := route.entityMutatorsFactory.NewMutation(user, form, "User")
+		entityMutator := r.entityMutatorsFactory.NewMutation(user, form, "User")
 		entityMutator.SetBool("active", form.FieldValueAsBool("active"), user.Active())
 		entityMutator.SetUint16("language", form.FieldValueAsUint16("language"), user.Language())
 		entityMutator.SetNullableUint16("country", &countryID, user.Country())
@@ -94,7 +94,7 @@ func (route *Route) Handle(context contexts.Context) {
 		entityMutator.SetNullableString("comments", form.FieldPointerValue("comments"), user.Comments())
 
 		if form.FieldValue("password") != "" {
-			encryptedPassword, err := bcrypt.GenerateFromPassword([]byte(form.FieldValue("password")), route.configService.SecurityBcryptRounds())
+			encryptedPassword, err := bcrypt.GenerateFromPassword([]byte(form.FieldValue("password")), r.configService.SecurityBcryptRounds())
 			if err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
@@ -111,7 +111,7 @@ func (route *Route) Handle(context contexts.Context) {
 
 			fileName := form.AvatarFileName()
 			entityMutator.SetNullableString("avatar", &fileName, user.Avatar())
-			data, ok, err := route.assetsPublicFilesStorage.Get(form.AvatarSavedPath())
+			data, ok, err := r.assetsPublicFilesStorage.Get(form.AvatarSavedPath())
 			if err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
@@ -120,7 +120,7 @@ func (route *Route) Handle(context contexts.Context) {
 				context.RenderInternalServerError(errors.Errorf("saved avatar file wasn't found after seemily been correctly saved by the form"))
 				return
 			}
-			if err := route.assetHandler.RegisterPublicFileRoute(form.AvatarSavedPath(), data); err != nil {
+			if err := r.assetHandler.RegisterPublicFileRoute(form.AvatarSavedPath(), data); err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
 			}
@@ -131,7 +131,7 @@ func (route *Route) Handle(context contexts.Context) {
 			return
 		}
 
-		user, ok, err = route.userStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
+		user, ok, err = r.userStore.GetOneByIDWithCreator(entityMutator.GetInsertedOrUpdatedID())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -147,7 +147,7 @@ func (route *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	route.createUpdatePageFactory.NewPage(context, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "user")).Render()
+	r.createUpdatePageFactory.NewPage(context, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "user")).Render()
 }
 
 // New returns a new instance of Route.

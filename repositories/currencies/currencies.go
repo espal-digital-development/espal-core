@@ -28,28 +28,28 @@ type Currencies struct {
 	all                 map[uint]Data
 }
 
-// All gets all embedded currencies.
-func (currencies *Currencies) All() map[uint]Data {
-	return currencies.all
+// All gets all embedded c.
+func (c *Currencies) All() map[uint]Data {
+	return c.all
 }
 
 // ByID looks for and returns the associated Currency for the given id.
-func (currencies *Currencies) ByID(id uint) (Data, error) {
-	if _, ok := currencies.byID[id]; !ok {
+func (c *Currencies) ByID(id uint) (Data, error) {
+	if _, ok := c.byID[id]; !ok {
 		return &Currency{}, errors.Errorf("no currency found with given id `%d`", id)
 	}
-	return currencies.byID[id], nil
+	return c.byID[id], nil
 }
 
 // ByCode looks for and returns the associated Currency for the given code.
-func (currencies *Currencies) ByCode(code string) (Data, error) {
-	if _, ok := currencies.entries[code]; !ok {
+func (c *Currencies) ByCode(code string) (Data, error) {
+	if _, ok := c.entries[code]; !ok {
 		return &Currency{}, errors.Errorf("no currency found with given code `%s`", code)
 	}
-	return currencies.entries[code], nil
+	return c.entries[code], nil
 }
 
-func (currencies *Currencies) loadTranslations() error {
+func (c *Currencies) loadTranslations() error {
 	files, err := currenciesdata.AssetDir("_data")
 	if err != nil {
 		return errors.Trace(err)
@@ -63,7 +63,7 @@ func (currencies *Currencies) loadTranslations() error {
 			return errors.Trace(err)
 		}
 
-		language, err := currencies.languagesRepository.ByCode(files[k])
+		language, err := c.languagesRepository.ByCode(files[k])
 		if err != nil {
 			return errors.Trace(err)
 		}
@@ -83,11 +83,11 @@ func (currencies *Currencies) loadTranslations() error {
 			if len(parts) != 2 {
 				return errors.Errorf("currency read failure in file `%s` for line %d", files[k], count)
 			}
-			checkCurrency, err := currencies.ByCode(parts[0])
+			checkCurrency, err := c.ByCode(parts[0])
 			if err != nil {
 				return errors.Errorf("unknown Currency code `%s` in file `%s` for line %d", parts[0], files[k], count)
 			}
-			currency := currencies.entries[checkCurrency.Code()]
+			currency := c.entries[checkCurrency.Code()]
 			if parts[1] == currency.EnglishName() {
 				return errors.Errorf("duplicate Currency English translation for code `%s` in file `%s` for line %d", parts[0], files[k], count)
 			}
@@ -101,7 +101,7 @@ func (currencies *Currencies) loadTranslations() error {
 
 // New returns new a *Currencies repository instance.
 func New(languagesRepository languages.Repository) (*Currencies, error) {
-	currencies := &Currencies{
+	c := &Currencies{
 		languagesRepository: languagesRepository,
 		byID:                make(map[uint]*Currency, len(data)),
 		all:                 make(map[uint]Data, len(data)),
@@ -118,14 +118,14 @@ func New(languagesRepository languages.Repository) (*Currencies, error) {
 		currency := data[k]
 		currency.translations = make(map[uint16]string)
 		currency.englishLocaleID = english.ID()
-		currencies.byID[currency.id] = &currency
-		currencies.all[currency.id] = &currency
-		currencies.entries[currency.Code()] = &currency
+		c.byID[currency.id] = &currency
+		c.all[currency.id] = &currency
+		c.entries[currency.Code()] = &currency
 	}
 
-	if err := currencies.loadTranslations(); err != nil {
+	if err := c.loadTranslations(); err != nil {
 		return nil, errors.Trace(err)
 	}
 
-	return currencies, nil
+	return c, nil
 }

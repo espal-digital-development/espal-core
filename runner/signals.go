@@ -8,7 +8,7 @@ import (
 )
 
 // Listen for syscalls to execute wind-down calls.
-func (runner *Runner) listenToSystemSignals() {
+func (r *Runner) listenToSystemSignals() {
 	go func(appRunner *Runner) {
 		sigc := make(chan os.Signal, 1)
 		signal.Notify(sigc, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
@@ -18,5 +18,5 @@ func (runner *Runner) listenToSystemSignals() {
 			appRunner.services.logger.Infof("The Server ran for %v", time.Since(appRunner.serverStartTime))
 		}
 		os.Exit(0)
-	}(runner)
+	}(r)
 }

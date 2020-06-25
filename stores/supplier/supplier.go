@@ -37,6 +37,6 @@ type Supplier struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (supplier *Supplier) TableAlias() string {
+func (s *Supplier) TableAlias() string {
 	return "sup"
 }

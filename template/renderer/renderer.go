@@ -49,7 +49,7 @@ type TemplateRenderer struct {
 }
 
 // CreatedBy returns the presentable name for the User that created this entity.
-func (templateRenderer *TemplateRenderer) CreatedBy(entity entity, languageID uint16) string {
+func (r *TemplateRenderer) CreatedBy(entity entity, languageID uint16) string {
 	var createdBy string
 	if entity.CreatedByFirstName() != nil {
 		createdBy = *entity.CreatedByFirstName()
@@ -58,13 +58,13 @@ func (templateRenderer *TemplateRenderer) CreatedBy(entity entity, languageID ui
 		createdBy += " " + *entity.CreatedBySurname()
 	}
 	if createdBy == "" {
-		createdBy = templateRenderer.translationsRepository.Singular(languageID, "user") + " " + entity.CreatedByID()
+		createdBy = r.translationsRepository.Singular(languageID, "user") + " " + entity.CreatedByID()
 	}
 	return createdBy
 }
 
 // UpdatedBy returns the presentable name for the User that last updated this entity.
-func (templateRenderer *TemplateRenderer) UpdatedBy(entity entity, languageID uint16) string {
+func (r *TemplateRenderer) UpdatedBy(entity entity, languageID uint16) string {
 	if entity.UpdatedByID() == nil {
 		return ""
 	}
@@ -76,34 +76,34 @@ func (templateRenderer *TemplateRenderer) UpdatedBy(entity entity, languageID ui
 		updatedBy += " " + *entity.UpdatedBySurname()
 	}
 	if updatedBy == "" {
-		updatedBy = templateRenderer.translationsRepository.Singular(languageID, "user") + " " + *entity.UpdatedByID()
+		updatedBy = r.translationsRepository.Singular(languageID, "user") + " " + *entity.UpdatedByID()
 	}
 	return updatedBy
 }
 
 // CountryName returns the localized name for the given countryID and languageID.
-func (templateRenderer *TemplateRenderer) CountryName(countryID uint16, languageID uint16) string {
-	country, err := templateRenderer.countriesRepository.ByID(countryID)
+func (r *TemplateRenderer) CountryName(countryID uint16, languageID uint16) string {
+	country, err := r.countriesRepository.ByID(countryID)
 	if err != nil {
-		templateRenderer.loggerService.Error(errors.ErrorStack(err))
+		r.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
 	return country.Translate(languageID)
 }
 
 // LanguageName returns the localized name for the given languageID and targetLanguageID.
-func (templateRenderer *TemplateRenderer) LanguageName(languageID uint16, targetLanguageID uint16) string {
-	language, err := templateRenderer.languagesRepository.ByID(languageID)
+func (r *TemplateRenderer) LanguageName(languageID uint16, targetLanguageID uint16) string {
+	language, err := r.languagesRepository.ByID(languageID)
 	if err != nil {
-		templateRenderer.loggerService.Error(errors.ErrorStack(err))
+		r.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
 	return language.Translate(targetLanguageID)
 }
 
-func (templateRenderer *TemplateRenderer) perror(i int, err error) {
+func (r *TemplateRenderer) perror(i int, err error) {
 	if err != nil {
-		templateRenderer.loggerService.Error(errors.ErrorStack(err))
+		r.loggerService.Error(errors.ErrorStack(err))
 	}
 }
 

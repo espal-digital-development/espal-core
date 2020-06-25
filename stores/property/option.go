@@ -23,11 +23,11 @@ type Option struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (option *Option) TableName() string {
+func (o *Option) TableName() string {
 	return "PropertyOption"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (option *Option) TableAlias() string {
+func (o *Option) TableAlias() string {
 	return "proo"
 }

@@ -20,123 +20,123 @@ type SubscriberEntity interface {
 }
 
 // ID returns id.
-func (subscriber *Subscriber) ID() string {
-	return subscriber.id
+func (s *Subscriber) ID() string {
+	return s.id
 }
 
 // CreatedByID returns createdByID.
-func (subscriber *Subscriber) CreatedByID() string {
-	return subscriber.createdByID
+func (s *Subscriber) CreatedByID() string {
+	return s.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (subscriber *Subscriber) SetCreatedByID(createdByID string) {
-	subscriber.createdByID = createdByID
+func (s *Subscriber) SetCreatedByID(createdByID string) {
+	s.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (subscriber *Subscriber) UpdatedByID() *string {
-	return subscriber.updatedByID
+func (s *Subscriber) UpdatedByID() *string {
+	return s.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (subscriber *Subscriber) SetUpdatedByID(updatedByID *string) {
-	subscriber.updatedByID = updatedByID
+func (s *Subscriber) SetUpdatedByID(updatedByID *string) {
+	s.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (subscriber *Subscriber) CreatedAt() time.Time {
-	return subscriber.createdAt
+func (s *Subscriber) CreatedAt() time.Time {
+	return s.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (subscriber *Subscriber) SetCreatedAt(createdAt time.Time) {
-	subscriber.createdAt = createdAt
+func (s *Subscriber) SetCreatedAt(createdAt time.Time) {
+	s.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (subscriber *Subscriber) UpdatedAt() *time.Time {
-	return subscriber.updatedAt
+func (s *Subscriber) UpdatedAt() *time.Time {
+	return s.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (subscriber *Subscriber) SetUpdatedAt(updatedAt *time.Time) {
-	subscriber.updatedAt = updatedAt
+func (s *Subscriber) SetUpdatedAt(updatedAt *time.Time) {
+	s.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (subscriber *Subscriber) CreatedByFirstName() *string {
-	return subscriber.createdByFirstName
+func (s *Subscriber) CreatedByFirstName() *string {
+	return s.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (subscriber *Subscriber) SetCreatedByFirstName(createdByFirstName *string) {
-	subscriber.createdByFirstName = createdByFirstName
+func (s *Subscriber) SetCreatedByFirstName(createdByFirstName *string) {
+	s.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (subscriber *Subscriber) CreatedBySurname() *string {
-	return subscriber.createdBySurname
+func (s *Subscriber) CreatedBySurname() *string {
+	return s.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (subscriber *Subscriber) SetCreatedBySurname(createdBySurname *string) {
-	subscriber.createdBySurname = createdBySurname
+func (s *Subscriber) SetCreatedBySurname(createdBySurname *string) {
+	s.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (subscriber *Subscriber) UpdatedByFirstName() *string {
-	return subscriber.updatedByFirstName
+func (s *Subscriber) UpdatedByFirstName() *string {
+	return s.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (subscriber *Subscriber) SetUpdatedByFirstName(updatedByFirstName *string) {
-	subscriber.updatedByFirstName = updatedByFirstName
+func (s *Subscriber) SetUpdatedByFirstName(updatedByFirstName *string) {
+	s.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (subscriber *Subscriber) UpdatedBySurname() *string {
-	return subscriber.updatedBySurname
+func (s *Subscriber) UpdatedBySurname() *string {
+	return s.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (subscriber *Subscriber) SetUpdatedBySurname(updatedBySurname *string) {
-	subscriber.updatedBySurname = updatedBySurname
+func (s *Subscriber) SetUpdatedBySurname(updatedBySurname *string) {
+	s.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (subscriber *Subscriber) IsUpdated() bool {
-	return subscriber.updatedByID != nil
+func (s *Subscriber) IsUpdated() bool {
+	return s.updatedByID != nil
 }
 
 // NewsletterID returns newsletterID.
-func (subscriber *Subscriber) NewsletterID() string {
-	return subscriber.newsletterID
+func (s *Subscriber) NewsletterID() string {
+	return s.newsletterID
 }
 
 // SetNewsletterID sets the newsletterID.
-func (subscriber *Subscriber) SetNewsletterID(newsletterID string) {
-	subscriber.newsletterID = newsletterID
+func (s *Subscriber) SetNewsletterID(newsletterID string) {
+	s.newsletterID = newsletterID
 }
 
 // UserID returns userID.
-func (subscriber *Subscriber) UserID() *string {
-	return subscriber.userID
+func (s *Subscriber) UserID() *string {
+	return s.userID
 }
 
 // SetUserID sets the userID.
-func (subscriber *Subscriber) SetUserID(userID *string) {
-	subscriber.userID = userID
+func (s *Subscriber) SetUserID(userID *string) {
+	s.userID = userID
 }
 
 // Email returns email.
-func (subscriber *Subscriber) Email() *string {
-	return subscriber.email
+func (s *Subscriber) Email() *string {
+	return s.email
 }
 
 // SetEmail sets the email.
-func (subscriber *Subscriber) SetEmail(email *string) {
-	subscriber.email = email
+func (s *Subscriber) SetEmail(email *string) {
+	s.email = email
 }
 
 func newSubscriber() *Subscriber {

@@ -4,26 +4,26 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAdmin() error {
-	if err := runner.routesAdminCore(); err != nil {
+func (r *Runner) routesAdmin() error {
+	if err := r.routesAdminCore(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdminUser(); err != nil {
+	if err := r.routesAdminUser(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdminUserAddress(); err != nil {
+	if err := r.routesAdminUserAddress(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdminUserContact(); err != nil {
+	if err := r.routesAdminUserContact(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdminUserGroup(); err != nil {
+	if err := r.routesAdminUserGroup(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdminSite(); err != nil {
+	if err := r.routesAdminSite(); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.routesAdminDomain(); err != nil {
+	if err := r.routesAdminDomain(); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

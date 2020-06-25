@@ -29,39 +29,39 @@ type stores struct {
 	forum       forum.Store
 }
 
-func (runner *Runner) dataStores() error {
+func (r *Runner) dataStores() error {
 	var err error
-	if runner.stores.setting, err = setting.New(runner.databases.selecter); err != nil {
+	if r.stores.setting, err = setting.New(r.databases.selecter); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.cacheNotify, err = cachenotify.New(runner.databases.selecter, runner.databases.updater); err != nil {
+	if r.stores.cacheNotify, err = cachenotify.New(r.databases.selecter, r.databases.updater); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.session, err = session.New(runner.databases.selecter, runner.databases.inserter, runner.databases.updater); err != nil {
+	if r.stores.session, err = session.New(r.databases.selecter, r.databases.inserter, r.databases.updater); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.domain, err = domain.New(runner.databases.selecter, runner.databases.updater, runner.databases.deletor, runner.services.databaseFilters); err != nil {
+	if r.stores.domain, err = domain.New(r.databases.selecter, r.databases.updater, r.databases.deletor, r.services.databaseFilters); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.site, err = site.New(runner.databases.selecter, runner.databases.updater, runner.databases.deletor, runner.services.databaseFilters, runner.repositories.translations, runner.services.logger); err != nil {
+	if r.stores.site, err = site.New(r.databases.selecter, r.databases.updater, r.databases.deletor, r.services.databaseFilters, r.repositories.translations, r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.slug, err = slug.New(runner.databases.selecter); err != nil {
+	if r.stores.slug, err = slug.New(r.databases.selecter); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.userGroup, err = group.New(runner.databases.selecter, runner.databases.updater, runner.databases.deletor, runner.services.databaseFilters, runner.repositories.translations, runner.services.logger); err != nil {
+	if r.stores.userGroup, err = group.New(r.databases.selecter, r.databases.updater, r.databases.deletor, r.services.databaseFilters, r.repositories.translations, r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.user, err = user.New(runner.databases.selecter, runner.databases.inserter, runner.databases.updater, runner.databases.deletor, runner.services.databaseFilters, runner.repositories.translations, runner.repositories.userRights); err != nil {
+	if r.stores.user, err = user.New(r.databases.selecter, r.databases.inserter, r.databases.updater, r.databases.deletor, r.services.databaseFilters, r.repositories.translations, r.repositories.userRights); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.userAddress, err = address.New(runner.databases.selecter, runner.databases.updater, runner.databases.deletor, runner.repositories.translations, runner.repositories.countries, runner.services.logger); err != nil {
+	if r.stores.userAddress, err = address.New(r.databases.selecter, r.databases.updater, r.databases.deletor, r.repositories.translations, r.repositories.countries, r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.userContact, err = contact.New(runner.databases.selecter, runner.databases.deletor, runner.repositories.translations); err != nil {
+	if r.stores.userContact, err = contact.New(r.databases.selecter, r.databases.deletor, r.repositories.translations); err != nil {
 		return errors.Trace(err)
 	}
-	if runner.stores.forum, err = forum.New(runner.databases.selecter, runner.databases.deletor); err != nil {
+	if r.stores.forum, err = forum.New(r.databases.selecter, r.databases.deletor); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

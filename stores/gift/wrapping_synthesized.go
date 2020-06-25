@@ -14,93 +14,93 @@ type WrappingEntity interface {
 }
 
 // ID returns id.
-func (wrapping *Wrapping) ID() string {
-	return wrapping.id
+func (w *Wrapping) ID() string {
+	return w.id
 }
 
 // CreatedByID returns createdByID.
-func (wrapping *Wrapping) CreatedByID() string {
-	return wrapping.createdByID
+func (w *Wrapping) CreatedByID() string {
+	return w.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (wrapping *Wrapping) SetCreatedByID(createdByID string) {
-	wrapping.createdByID = createdByID
+func (w *Wrapping) SetCreatedByID(createdByID string) {
+	w.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (wrapping *Wrapping) UpdatedByID() *string {
-	return wrapping.updatedByID
+func (w *Wrapping) UpdatedByID() *string {
+	return w.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (wrapping *Wrapping) SetUpdatedByID(updatedByID *string) {
-	wrapping.updatedByID = updatedByID
+func (w *Wrapping) SetUpdatedByID(updatedByID *string) {
+	w.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (wrapping *Wrapping) CreatedAt() time.Time {
-	return wrapping.createdAt
+func (w *Wrapping) CreatedAt() time.Time {
+	return w.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (wrapping *Wrapping) SetCreatedAt(createdAt time.Time) {
-	wrapping.createdAt = createdAt
+func (w *Wrapping) SetCreatedAt(createdAt time.Time) {
+	w.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (wrapping *Wrapping) UpdatedAt() *time.Time {
-	return wrapping.updatedAt
+func (w *Wrapping) UpdatedAt() *time.Time {
+	return w.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (wrapping *Wrapping) SetUpdatedAt(updatedAt *time.Time) {
-	wrapping.updatedAt = updatedAt
+func (w *Wrapping) SetUpdatedAt(updatedAt *time.Time) {
+	w.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (wrapping *Wrapping) CreatedByFirstName() *string {
-	return wrapping.createdByFirstName
+func (w *Wrapping) CreatedByFirstName() *string {
+	return w.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (wrapping *Wrapping) SetCreatedByFirstName(createdByFirstName *string) {
-	wrapping.createdByFirstName = createdByFirstName
+func (w *Wrapping) SetCreatedByFirstName(createdByFirstName *string) {
+	w.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (wrapping *Wrapping) CreatedBySurname() *string {
-	return wrapping.createdBySurname
+func (w *Wrapping) CreatedBySurname() *string {
+	return w.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (wrapping *Wrapping) SetCreatedBySurname(createdBySurname *string) {
-	wrapping.createdBySurname = createdBySurname
+func (w *Wrapping) SetCreatedBySurname(createdBySurname *string) {
+	w.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (wrapping *Wrapping) UpdatedByFirstName() *string {
-	return wrapping.updatedByFirstName
+func (w *Wrapping) UpdatedByFirstName() *string {
+	return w.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (wrapping *Wrapping) SetUpdatedByFirstName(updatedByFirstName *string) {
-	wrapping.updatedByFirstName = updatedByFirstName
+func (w *Wrapping) SetUpdatedByFirstName(updatedByFirstName *string) {
+	w.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (wrapping *Wrapping) UpdatedBySurname() *string {
-	return wrapping.updatedBySurname
+func (w *Wrapping) UpdatedBySurname() *string {
+	return w.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (wrapping *Wrapping) SetUpdatedBySurname(updatedBySurname *string) {
-	wrapping.updatedBySurname = updatedBySurname
+func (w *Wrapping) SetUpdatedBySurname(updatedBySurname *string) {
+	w.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (wrapping *Wrapping) IsUpdated() bool {
-	return wrapping.updatedByID != nil
+func (w *Wrapping) IsUpdated() bool {
+	return w.updatedByID != nil
 }
 
 func newWrapping() *Wrapping {

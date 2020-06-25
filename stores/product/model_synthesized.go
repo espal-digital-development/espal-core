@@ -28,163 +28,163 @@ type ModelEntity interface {
 }
 
 // ID returns id.
-func (model *Model) ID() string {
-	return model.id
+func (m *Model) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (model *Model) CreatedByID() string {
-	return model.createdByID
+func (m *Model) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (model *Model) SetCreatedByID(createdByID string) {
-	model.createdByID = createdByID
+func (m *Model) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (model *Model) UpdatedByID() *string {
-	return model.updatedByID
+func (m *Model) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (model *Model) SetUpdatedByID(updatedByID *string) {
-	model.updatedByID = updatedByID
+func (m *Model) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (model *Model) CreatedAt() time.Time {
-	return model.createdAt
+func (m *Model) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (model *Model) SetCreatedAt(createdAt time.Time) {
-	model.createdAt = createdAt
+func (m *Model) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (model *Model) UpdatedAt() *time.Time {
-	return model.updatedAt
+func (m *Model) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (model *Model) SetUpdatedAt(updatedAt *time.Time) {
-	model.updatedAt = updatedAt
+func (m *Model) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (model *Model) CreatedByFirstName() *string {
-	return model.createdByFirstName
+func (m *Model) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (model *Model) SetCreatedByFirstName(createdByFirstName *string) {
-	model.createdByFirstName = createdByFirstName
+func (m *Model) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (model *Model) CreatedBySurname() *string {
-	return model.createdBySurname
+func (m *Model) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (model *Model) SetCreatedBySurname(createdBySurname *string) {
-	model.createdBySurname = createdBySurname
+func (m *Model) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (model *Model) UpdatedByFirstName() *string {
-	return model.updatedByFirstName
+func (m *Model) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (model *Model) SetUpdatedByFirstName(updatedByFirstName *string) {
-	model.updatedByFirstName = updatedByFirstName
+func (m *Model) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (model *Model) UpdatedBySurname() *string {
-	return model.updatedBySurname
+func (m *Model) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (model *Model) SetUpdatedBySurname(updatedBySurname *string) {
-	model.updatedBySurname = updatedBySurname
+func (m *Model) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (model *Model) IsUpdated() bool {
-	return model.updatedByID != nil
+func (m *Model) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // Active returns active.
-func (model *Model) Active() bool {
-	return model.active
+func (m *Model) Active() bool {
+	return m.active
 }
 
 // SetActive sets the active.
-func (model *Model) SetActive(active bool) {
-	model.active = active
+func (m *Model) SetActive(active bool) {
+	m.active = active
 }
 
 // Sorting returns sorting.
-func (model *Model) Sorting() uint {
-	return model.sorting
+func (m *Model) Sorting() uint {
+	return m.sorting
 }
 
 // SetSorting sets the sorting.
-func (model *Model) SetSorting(sorting uint) {
-	model.sorting = sorting
+func (m *Model) SetSorting(sorting uint) {
+	m.sorting = sorting
 }
 
 // Key returns key.
-func (model *Model) Key() *string {
-	return model.key
+func (m *Model) Key() *string {
+	return m.key
 }
 
 // SetKey sets the key.
-func (model *Model) SetKey(key *string) {
-	model.key = key
+func (m *Model) SetKey(key *string) {
+	m.key = key
 }
 
 // TaxGroupID returns taxGroupID.
-func (model *Model) TaxGroupID() string {
-	return model.taxGroupID
+func (m *Model) TaxGroupID() string {
+	return m.taxGroupID
 }
 
 // SetTaxGroupID sets the taxGroupID.
-func (model *Model) SetTaxGroupID(taxGroupID string) {
-	model.taxGroupID = taxGroupID
+func (m *Model) SetTaxGroupID(taxGroupID string) {
+	m.taxGroupID = taxGroupID
 }
 
 // NameRepresentationID returns nameRepresentationID.
-func (model *Model) NameRepresentationID() *string {
-	return model.nameRepresentationID
+func (m *Model) NameRepresentationID() *string {
+	return m.nameRepresentationID
 }
 
 // SetNameRepresentationID sets the nameRepresentationID.
-func (model *Model) SetNameRepresentationID(nameRepresentationID *string) {
-	model.nameRepresentationID = nameRepresentationID
+func (m *Model) SetNameRepresentationID(nameRepresentationID *string) {
+	m.nameRepresentationID = nameRepresentationID
 }
 
 // DescriptionRepresentationID returns descriptionRepresentationID.
-func (model *Model) DescriptionRepresentationID() *string {
-	return model.descriptionRepresentationID
+func (m *Model) DescriptionRepresentationID() *string {
+	return m.descriptionRepresentationID
 }
 
 // SetDescriptionRepresentationID sets the descriptionRepresentationID.
-func (model *Model) SetDescriptionRepresentationID(descriptionRepresentationID *string) {
-	model.descriptionRepresentationID = descriptionRepresentationID
+func (m *Model) SetDescriptionRepresentationID(descriptionRepresentationID *string) {
+	m.descriptionRepresentationID = descriptionRepresentationID
 }
 
 // ImageRepresentationID returns imageRepresentationID.
-func (model *Model) ImageRepresentationID() *string {
-	return model.imageRepresentationID
+func (m *Model) ImageRepresentationID() *string {
+	return m.imageRepresentationID
 }
 
 // SetImageRepresentationID sets the imageRepresentationID.
-func (model *Model) SetImageRepresentationID(imageRepresentationID *string) {
-	model.imageRepresentationID = imageRepresentationID
+func (m *Model) SetImageRepresentationID(imageRepresentationID *string) {
+	m.imageRepresentationID = imageRepresentationID
 }
 
 func newModel() *Model {

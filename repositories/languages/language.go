@@ -23,37 +23,37 @@ type Language struct {
 }
 
 // ID returns the internalanguage Language id.
-func (language *Language) ID() uint16 {
-	return language.id
+func (l *Language) ID() uint16 {
+	return l.id
 }
 
 // Code returns the internalanguage Language code.
-func (language *Language) Code() string {
-	return language.code
+func (l *Language) Code() string {
+	return l.code
 }
 
 // EnglishName returns the internalanguage Language englishName.
-func (language *Language) EnglishName() string {
-	return language.englishName
+func (l *Language) EnglishName() string {
+	return l.englishName
 }
 
-// SetTranslation sets a translations for the Language.
-func (language *Language) SetTranslation(languageID uint16, value string) {
-	language.translations[languageID] = value
+// SetTranslation sets a translations for the l.
+func (l *Language) SetTranslation(languageID uint16, value string) {
+	l.translations[languageID] = value
 }
 
 // AlternativeEnglishName returns the internalanguage Language alternativeEnglishName.
-func (language *Language) AlternativeEnglishName() string {
-	return language.alternativeEnglishName
+func (l *Language) AlternativeEnglishName() string {
+	return l.alternativeEnglishName
 }
 
 // Translate get's the Language's translation based on the given locale.
-func (language *Language) Translate(localeID uint16) string {
-	if localeID == language.englishLocaleID {
-		return language.EnglishName()
+func (l *Language) Translate(localeID uint16) string {
+	if localeID == l.englishLocaleID {
+		return l.EnglishName()
 	}
-	if _, ok := language.translations[localeID]; !ok {
-		return language.EnglishName()
+	if _, ok := l.translations[localeID]; !ok {
+		return l.EnglishName()
 	}
-	return language.translations[localeID]
+	return l.translations[localeID]
 }

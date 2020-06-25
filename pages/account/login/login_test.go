@@ -44,5 +44,5 @@ func TestNewPage(t *testing.T) {
 
 // func TestPageRender(t *testing.T) {
 // 	page := newPage()
-// 	page.Render()
+// 	p.Render()
 // }

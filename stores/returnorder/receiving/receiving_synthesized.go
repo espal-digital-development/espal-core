@@ -18,113 +18,113 @@ type ReceivingEntity interface {
 }
 
 // ID returns id.
-func (receiving *Receiving) ID() string {
-	return receiving.id
+func (r *Receiving) ID() string {
+	return r.id
 }
 
 // CreatedByID returns createdByID.
-func (receiving *Receiving) CreatedByID() string {
-	return receiving.createdByID
+func (r *Receiving) CreatedByID() string {
+	return r.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (receiving *Receiving) SetCreatedByID(createdByID string) {
-	receiving.createdByID = createdByID
+func (r *Receiving) SetCreatedByID(createdByID string) {
+	r.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (receiving *Receiving) UpdatedByID() *string {
-	return receiving.updatedByID
+func (r *Receiving) UpdatedByID() *string {
+	return r.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (receiving *Receiving) SetUpdatedByID(updatedByID *string) {
-	receiving.updatedByID = updatedByID
+func (r *Receiving) SetUpdatedByID(updatedByID *string) {
+	r.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (receiving *Receiving) CreatedAt() time.Time {
-	return receiving.createdAt
+func (r *Receiving) CreatedAt() time.Time {
+	return r.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (receiving *Receiving) SetCreatedAt(createdAt time.Time) {
-	receiving.createdAt = createdAt
+func (r *Receiving) SetCreatedAt(createdAt time.Time) {
+	r.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (receiving *Receiving) UpdatedAt() *time.Time {
-	return receiving.updatedAt
+func (r *Receiving) UpdatedAt() *time.Time {
+	return r.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (receiving *Receiving) SetUpdatedAt(updatedAt *time.Time) {
-	receiving.updatedAt = updatedAt
+func (r *Receiving) SetUpdatedAt(updatedAt *time.Time) {
+	r.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (receiving *Receiving) CreatedByFirstName() *string {
-	return receiving.createdByFirstName
+func (r *Receiving) CreatedByFirstName() *string {
+	return r.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (receiving *Receiving) SetCreatedByFirstName(createdByFirstName *string) {
-	receiving.createdByFirstName = createdByFirstName
+func (r *Receiving) SetCreatedByFirstName(createdByFirstName *string) {
+	r.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (receiving *Receiving) CreatedBySurname() *string {
-	return receiving.createdBySurname
+func (r *Receiving) CreatedBySurname() *string {
+	return r.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (receiving *Receiving) SetCreatedBySurname(createdBySurname *string) {
-	receiving.createdBySurname = createdBySurname
+func (r *Receiving) SetCreatedBySurname(createdBySurname *string) {
+	r.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (receiving *Receiving) UpdatedByFirstName() *string {
-	return receiving.updatedByFirstName
+func (r *Receiving) UpdatedByFirstName() *string {
+	return r.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (receiving *Receiving) SetUpdatedByFirstName(updatedByFirstName *string) {
-	receiving.updatedByFirstName = updatedByFirstName
+func (r *Receiving) SetUpdatedByFirstName(updatedByFirstName *string) {
+	r.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (receiving *Receiving) UpdatedBySurname() *string {
-	return receiving.updatedBySurname
+func (r *Receiving) UpdatedBySurname() *string {
+	return r.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (receiving *Receiving) SetUpdatedBySurname(updatedBySurname *string) {
-	receiving.updatedBySurname = updatedBySurname
+func (r *Receiving) SetUpdatedBySurname(updatedBySurname *string) {
+	r.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (receiving *Receiving) IsUpdated() bool {
-	return receiving.updatedByID != nil
+func (r *Receiving) IsUpdated() bool {
+	return r.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (receiving *Receiving) DomainID() string {
-	return receiving.domainID
+func (r *Receiving) DomainID() string {
+	return r.domainID
 }
 
 // SetDomainID sets the domainID.
-func (receiving *Receiving) SetDomainID(domainID string) {
-	receiving.domainID = domainID
+func (r *Receiving) SetDomainID(domainID string) {
+	r.domainID = domainID
 }
 
 // Comments returns comments.
-func (receiving *Receiving) Comments() *string {
-	return receiving.comments
+func (r *Receiving) Comments() *string {
+	return r.comments
 }
 
 // SetComments sets the comments.
-func (receiving *Receiving) SetComments(comments *string) {
-	receiving.comments = comments
+func (r *Receiving) SetComments(comments *string) {
+	r.comments = comments
 }
 
 func newReceiving() *Receiving {

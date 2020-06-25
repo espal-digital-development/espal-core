@@ -13,8 +13,8 @@ var _ Store = &ReceivingsStore{}
 type Store interface {
 }
 
-func (receivingsStore *ReceivingsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Receiving, ok bool, err error) {
-	rows, err := receivingsStore.selecterDatabase.Query(query, params...)
+func (r *ReceivingsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Receiving, ok bool, err error) {
+	rows, err := r.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (receivingsStore *ReceivingsStore) fetch(query string, withCreators bool, p
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		receiving := newReceiving()
-		fields := []interface{}{&receiving.id, &receiving.createdByID, &receiving.updatedByID, &receiving.createdAt, &receiving.updatedAt, &receiving.domainID, &receiving.comments}
+		r := newReceiving()
+		fields := []interface{}{&r.id, &r.createdByID, &r.updatedByID, &r.createdAt, &r.updatedAt, &r.domainID, &r.comments}
 		if withCreators {
-			fields = append(fields, &receiving.createdByFirstName, &receiving.createdBySurname, &receiving.updatedByFirstName, &receiving.updatedBySurname)
+			fields = append(fields, &r.createdByFirstName, &r.createdBySurname, &r.updatedByFirstName, &r.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, receiving)
+		result = append(result, r)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (receivingsStore *ReceivingsStore) fetch(query string, withCreators bool, p
 
 // New returns a new instance of ReceivingsStore.
 func New(selecterDatabase database.Database) (*ReceivingsStore, error) {
-	receivingsStore := &ReceivingsStore{
+	r := &ReceivingsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return receivingsStore, nil
+	return r, nil
 }

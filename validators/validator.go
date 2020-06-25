@@ -92,40 +92,40 @@ type Form struct {
 }
 
 // LoadViewData will explicitly trigger the preViewCallback and return the instance.
-func (form *Form) LoadViewData() Validator {
-	if form.preViewCallback != nil {
-		form.preViewCallback(form)
+func (f *Form) LoadViewData() Validator {
+	if f.preViewCallback != nil {
+		f.preViewCallback(f)
 	}
-	return form
+	return f
 }
 
 // SetPostloadCallback will call the callback function before the Form is handled in initial request.
 // In a typical Form request-cycle this will be the initial (GET) load of the Form.
-func (form *Form) SetPostloadCallback(callback func(Validator)) {
-	form.postloadCallback = callback
+func (f *Form) SetPostloadCallback(callback func(Validator)) {
+	f.postloadCallback = callback
 }
 
 // SetPreSubmitCallback will call the callback function before the Form submit is processed in the posted request.
 // In a typical Form request-cycle this will be the pre-submit (POST) of the Form.
-func (form *Form) SetPreSubmitCallback(callback func(Validator)) {
-	form.preSubmitCallback = callback
+func (f *Form) SetPreSubmitCallback(callback func(Validator)) {
+	f.preSubmitCallback = callback
 }
 
 // SetPostSubmitCallback will call the callback function after the Form submit is processed in the posted request.
 // In a typical Form request-cycle this will be the post-submit (POST) of the Form.
-func (form *Form) SetPostSubmitCallback(callback func(Validator)) {
-	form.postSubmitCallback = callback
+func (f *Form) SetPostSubmitCallback(callback func(Validator)) {
+	f.postSubmitCallback = callback
 }
 
 // SetPreViewCallback will call the callback function when the .LoadViewData() function is called.
-func (form *Form) SetPreViewCallback(callback func(Validator)) {
-	form.preViewCallback = callback
+func (f *Form) SetPreViewCallback(callback func(Validator)) {
+	f.preViewCallback = callback
 }
 
 // ContainsSelectSearch determines if at least one ChoiceType field is
 // present with Searchable active.
-func (form *Form) ContainsSelectSearch() bool {
-	for _, field := range form.fields {
+func (f *Form) ContainsSelectSearch() bool {
+	for _, field := range f.fields {
 		if ChoiceFormField == field.Type() && field.Searchable() {
 			return true
 		}
@@ -134,26 +134,26 @@ func (form *Form) ContainsSelectSearch() bool {
 }
 
 // IsSubmitted checks and returns if the form was submitted.
-func (form *Form) IsSubmitted() bool {
-	return form.isSubmitted
+func (f *Form) IsSubmitted() bool {
+	return f.isSubmitted
 }
 
 // AddError adds a submit-error to the submitErrors stack.
-func (form *Form) AddError(errorString string) {
-	form.submitErrors = append(form.submitErrors, errorString)
-	form.isValid = false
+func (f *Form) AddError(errorString string) {
+	f.submitErrors = append(f.submitErrors, errorString)
+	f.isValid = false
 }
 
-func (form *Form) field(name string) *formField {
-	if !form.isFormValidator {
+func (f *Form) field(name string) *formField {
+	if !f.isFormValidator {
 		err := errors.Errorf("cannot call Field on a non-form validator")
-		form.loggerService.Error(err.Error())
+		f.loggerService.Error(err.Error())
 		panic(err)
 	}
-	field, ok := form.fields[name]
+	field, ok := f.fields[name]
 	if !ok {
 		err := errors.Errorf("field %s couldn't be found", name)
-		form.loggerService.Error(err.Error())
+		f.loggerService.Error(err.Error())
 		panic(err)
 	}
 	return field
@@ -161,41 +161,41 @@ func (form *Form) field(name string) *formField {
 
 // Field returns the definition of a given field from the Form object.
 // Keeping the panics here because it's chained constantly.
-func (form *Form) Field(name string) FormField {
-	return form.field(name)
+func (f *Form) Field(name string) FormField {
+	return f.field(name)
 }
 
 // FieldValue instantly returns the value of the given field.
-func (form *Form) FieldValue(name string) string {
-	return form.Field(name).Value()
+func (f *Form) FieldValue(name string) string {
+	return f.Field(name).Value()
 }
 
 // FieldExists returns if the requested field exists
-func (form *Form) FieldExists(name string) (exists bool) {
-	if _, ok := form.fields[name]; ok {
+func (f *Form) FieldExists(name string) (exists bool) {
+	if _, ok := f.fields[name]; ok {
 		exists = true
 	}
 	return
 }
 
 // AddField adds a new field to the form.
-func (form *Form) AddField(field FormField) error {
+func (f *Form) AddField(field FormField) error {
 	if field.Name() == "" {
 		return errors.Errorf("field should have a name")
 	}
-	if form.FieldExists(field.Name()) {
+	if f.FieldExists(field.Name()) {
 		return errors.Errorf("field %s already exists", field.Name())
 	}
-	form.fields[field.Name()] = field.(*formField)
+	f.fields[field.Name()] = field.(*formField)
 	return nil
 }
 
 // ClearFields clears all fields except the token and honeypot.
 // The validity of the form will automatically be disqualified too.
-func (form *Form) ClearFields() error {
-	form.isValid = false
-	form.isValidated = false
-	for _, field := range form.fields {
+func (f *Form) ClearFields() error {
+	f.isValid = false
+	f.isValidated = false
+	for _, field := range f.fields {
 		if TokenFormField == field.Type() || HoneypotFormField == field.Type() {
 			continue
 		}
@@ -209,8 +209,8 @@ func (form *Form) ClearFields() error {
 	return nil
 }
 
-func (form *Form) isMultipart() bool {
-	for _, field := range form.fields {
+func (f *Form) isMultipart() bool {
+	for _, field := range f.fields {
 		if FileFormField == field.Type() {
 			return true
 		}
@@ -218,14 +218,14 @@ func (form *Form) isMultipart() bool {
 	return false
 }
 
-func (form *Form) refreshToken() error {
-	field := form.Field("_t")
+func (f *Form) refreshToken() error {
+	field := f.Field("_t")
 	oldToken, err := strconv.Atoi(field.Value())
 	if err != nil {
 		return errors.Trace(err)
 	}
-	form.tokenPoolService.Expire(oldToken)
-	token, err := form.tokenPoolService.RequestToken()
+	f.tokenPoolService.Expire(oldToken)
+	token, err := f.tokenPoolService.RequestToken()
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -233,17 +233,17 @@ func (form *Form) refreshToken() error {
 	return nil
 }
 
-func (form *Form) defaultChecks(formField *formField) *formField {
+func (f *Form) defaultChecks(formField *formField) *formField {
 	if formField.Name() == "" {
-		formField.AddError("nameless fields aren't allowed")
+		f.AddError("nameless fields aren't allowed")
 		return formField
 	}
 
 	return formField
 }
 
-func (form *Form) perror(i int, err error) {
+func (f *Form) perror(i int, err error) {
 	if err != nil {
-		form.loggerService.Error(errors.ErrorStack(err))
+		f.loggerService.Error(errors.ErrorStack(err))
 	}
 }

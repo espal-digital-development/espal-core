@@ -8,11 +8,11 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesCore() error {
-	if err := runner.services.router.RegisterRoute("/", root.New(rootpage.New())); err != nil {
+func (r *Runner) routesCore() error {
+	if err := r.services.router.RegisterRoute("/", root.New(rootpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/Auth", auth.New(runner.formValidators.auth, authpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/Auth", auth.New(r.formValidators.auth, authpage.New())); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

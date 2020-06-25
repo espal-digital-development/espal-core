@@ -9,151 +9,151 @@ import (
 )
 
 func TestContactTable(t *testing.T) {
-	contact := contact.NewContactEntity()
-	if contact.TableName() == "" {
+	c := contact.NewContactEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestContactTableAlias(t *testing.T) {
-	contact := contact.NewContactEntity()
-	if contact.TableName() == "" {
+	c := contact.NewContactEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestContactIsUpdated(t *testing.T) {
-	contact := contact.NewContactEntity()
-	contact.IsUpdated()
+	c := contact.NewContactEntity()
+	c.IsUpdated()
 }
 
 func TestContactID(t *testing.T) {
-	contact := contact.NewContactEntity()
-	contact.ID()
+	c := contact.NewContactEntity()
+	c.ID()
 }
 
 func TestContactCreatedByID(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetCreatedByID(testValue)
-	if testValue != contact.CreatedByID() {
+	c.SetCreatedByID(testValue)
+	if testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactUpdatedByID(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetUpdatedByID(&testValue)
-	if &testValue != contact.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactCreatedAt(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := time.Now()
-	contact.SetCreatedAt(testValue)
-	if testValue != contact.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactUpdatedAt(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := time.Now()
-	contact.SetUpdatedAt(&testValue)
-	if &testValue != contact.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactCreatedByFirstName(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetCreatedByFirstName(&testValue)
-	if &testValue != contact.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactCreatedBySurname(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetCreatedBySurname(&testValue)
-	if &testValue != contact.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactUpdatedByFirstName(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetUpdatedByFirstName(&testValue)
-	if &testValue != contact.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactUpdatedBySurname(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetUpdatedBySurname(&testValue)
-	if &testValue != contact.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactUserID(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetUserID(&testValue)
-	if &testValue != contact.UserID() {
+	c.SetUserID(&testValue)
+	if &testValue != c.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactContactID(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetContactID(testValue)
-	if testValue != contact.ContactID() {
+	c.SetContactID(testValue)
+	if testValue != c.ContactID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactSorting(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := uint(1e9)
-	contact.SetSorting(testValue)
-	if testValue != contact.Sorting() {
+	c.SetSorting(testValue)
+	if testValue != c.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactComments(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetComments(&testValue)
-	if &testValue != contact.Comments() {
+	c.SetComments(&testValue)
+	if &testValue != c.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactContactFirstName(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetContactFirstName(&testValue)
-	if &testValue != contact.ContactFirstName() {
+	c.SetContactFirstName(&testValue)
+	if &testValue != c.ContactFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestContactContactSurname(t *testing.T) {
-	contact := contact.NewContactEntity()
+	c := contact.NewContactEntity()
 	testValue := "testValue"
-	contact.SetContactSurname(&testValue)
-	if &testValue != contact.ContactSurname() {
+	c.SetContactSurname(&testValue)
+	if &testValue != c.ContactSurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

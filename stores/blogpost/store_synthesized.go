@@ -13,8 +13,8 @@ var _ Store = &BlogPostsStore{}
 type Store interface {
 }
 
-func (blogPostsStore *BlogPostsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*BlogPost, ok bool, err error) {
-	rows, err := blogPostsStore.selecterDatabase.Query(query, params...)
+func (b *BlogPostsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*BlogPost, ok bool, err error) {
+	rows, err := b.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (blogPostsStore *BlogPostsStore) fetch(query string, withCreators bool, par
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		blogPost := newBlogPost()
-		fields := []interface{}{&blogPost.id, &blogPost.createdByID, &blogPost.updatedByID, &blogPost.createdAt, &blogPost.updatedAt, &blogPost.active, &blogPost.sorting, &blogPost.sectionID, &blogPost.approvedByID, &blogPost.approvedDate, &blogPost.publishDate, &blogPost.expirationDate, &blogPost.comments}
+		b := newBlogPost()
+		fields := []interface{}{&b.id, &b.createdByID, &b.updatedByID, &b.createdAt, &b.updatedAt, &b.active, &b.sorting, &b.sectionID, &b.approvedByID, &b.approvedDate, &b.publishDate, &b.expirationDate, &b.comments}
 		if withCreators {
-			fields = append(fields, &blogPost.createdByFirstName, &blogPost.createdBySurname, &blogPost.updatedByFirstName, &blogPost.updatedBySurname)
+			fields = append(fields, &b.createdByFirstName, &b.createdBySurname, &b.updatedByFirstName, &b.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, blogPost)
+		result = append(result, b)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (blogPostsStore *BlogPostsStore) fetch(query string, withCreators bool, par
 
 // New returns a new instance of BlogPostsStore.
 func New(selecterDatabase database.Database) (*BlogPostsStore, error) {
-	blogPostsStore := &BlogPostsStore{
+	b := &BlogPostsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return blogPostsStore, nil
+	return b, nil
 }

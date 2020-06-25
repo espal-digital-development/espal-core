@@ -13,8 +13,8 @@ var _ Store = &OfficesStore{}
 type Store interface {
 }
 
-func (officesStore *OfficesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Office, ok bool, err error) {
-	rows, err := officesStore.selecterDatabase.Query(query, params...)
+func (o *OfficesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Office, ok bool, err error) {
+	rows, err := o.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (officesStore *OfficesStore) fetch(query string, withCreators bool, params 
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		office := newOffice()
-		fields := []interface{}{&office.id, &office.createdByID, &office.updatedByID, &office.createdAt, &office.updatedAt, &office.active, &office.sorting, &office.primaryContactPerson, &office.street, &office.streetLine2, &office.number, &office.numberAddition, &office.zipCode, &office.city, &office.state, &office.country, &office.phoneNumber, &office.email}
+		o := newOffice()
+		fields := []interface{}{&o.id, &o.createdByID, &o.updatedByID, &o.createdAt, &o.updatedAt, &o.active, &o.sorting, &o.primaryContactPerson, &o.street, &o.streetLine2, &o.number, &o.numberAddition, &o.zipCode, &o.city, &o.state, &o.country, &o.phoneNumber, &o.email}
 		if withCreators {
-			fields = append(fields, &office.createdByFirstName, &office.createdBySurname, &office.updatedByFirstName, &office.updatedBySurname)
+			fields = append(fields, &o.createdByFirstName, &o.createdBySurname, &o.updatedByFirstName, &o.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, office)
+		result = append(result, o)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (officesStore *OfficesStore) fetch(query string, withCreators bool, params 
 
 // New returns a new instance of OfficesStore.
 func New(selecterDatabase database.Database) (*OfficesStore, error) {
-	officesStore := &OfficesStore{
+	o := &OfficesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return officesStore, nil
+	return o, nil
 }

@@ -9,124 +9,124 @@ import (
 )
 
 func TestBundledVariantTable(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
-	if bundledVariant.TableName() == "" {
+	b := product.NewBundledVariantEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestBundledVariantTableAlias(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
-	if bundledVariant.TableName() == "" {
+	b := product.NewBundledVariantEntity()
+	if b.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestBundledVariantIsUpdated(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
-	bundledVariant.IsUpdated()
+	b := product.NewBundledVariantEntity()
+	b.IsUpdated()
 }
 
 func TestBundledVariantID(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
-	bundledVariant.ID()
+	b := product.NewBundledVariantEntity()
+	b.ID()
 }
 
 func TestBundledVariantCreatedByID(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetCreatedByID(testValue)
-	if testValue != bundledVariant.CreatedByID() {
+	b.SetCreatedByID(testValue)
+	if testValue != b.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantUpdatedByID(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetUpdatedByID(&testValue)
-	if &testValue != bundledVariant.UpdatedByID() {
+	b.SetUpdatedByID(&testValue)
+	if &testValue != b.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantCreatedAt(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := time.Now()
-	bundledVariant.SetCreatedAt(testValue)
-	if testValue != bundledVariant.CreatedAt() {
+	b.SetCreatedAt(testValue)
+	if testValue != b.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantUpdatedAt(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := time.Now()
-	bundledVariant.SetUpdatedAt(&testValue)
-	if &testValue != bundledVariant.UpdatedAt() {
+	b.SetUpdatedAt(&testValue)
+	if &testValue != b.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantCreatedByFirstName(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetCreatedByFirstName(&testValue)
-	if &testValue != bundledVariant.CreatedByFirstName() {
+	b.SetCreatedByFirstName(&testValue)
+	if &testValue != b.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantCreatedBySurname(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetCreatedBySurname(&testValue)
-	if &testValue != bundledVariant.CreatedBySurname() {
+	b.SetCreatedBySurname(&testValue)
+	if &testValue != b.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantUpdatedByFirstName(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetUpdatedByFirstName(&testValue)
-	if &testValue != bundledVariant.UpdatedByFirstName() {
+	b.SetUpdatedByFirstName(&testValue)
+	if &testValue != b.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantUpdatedBySurname(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetUpdatedBySurname(&testValue)
-	if &testValue != bundledVariant.UpdatedBySurname() {
+	b.SetUpdatedBySurname(&testValue)
+	if &testValue != b.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantBundledID(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetBundledID(testValue)
-	if testValue != bundledVariant.BundledID() {
+	b.SetBundledID(testValue)
+	if testValue != b.BundledID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantVariantID(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := "testValue"
-	bundledVariant.SetVariantID(testValue)
-	if testValue != bundledVariant.VariantID() {
+	b.SetVariantID(testValue)
+	if testValue != b.VariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestBundledVariantQuantity(t *testing.T) {
-	bundledVariant := product.NewBundledVariantEntity()
+	b := product.NewBundledVariantEntity()
 	testValue := uint(1e9)
-	bundledVariant.SetQuantity(testValue)
-	if testValue != bundledVariant.Quantity() {
+	b.SetQuantity(testValue)
+	if testValue != b.Quantity() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

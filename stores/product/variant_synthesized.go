@@ -30,173 +30,173 @@ type VariantEntity interface {
 }
 
 // ID returns id.
-func (variant *Variant) ID() string {
-	return variant.id
+func (v *Variant) ID() string {
+	return v.id
 }
 
 // CreatedByID returns createdByID.
-func (variant *Variant) CreatedByID() string {
-	return variant.createdByID
+func (v *Variant) CreatedByID() string {
+	return v.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (variant *Variant) SetCreatedByID(createdByID string) {
-	variant.createdByID = createdByID
+func (v *Variant) SetCreatedByID(createdByID string) {
+	v.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (variant *Variant) UpdatedByID() *string {
-	return variant.updatedByID
+func (v *Variant) UpdatedByID() *string {
+	return v.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (variant *Variant) SetUpdatedByID(updatedByID *string) {
-	variant.updatedByID = updatedByID
+func (v *Variant) SetUpdatedByID(updatedByID *string) {
+	v.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (variant *Variant) CreatedAt() time.Time {
-	return variant.createdAt
+func (v *Variant) CreatedAt() time.Time {
+	return v.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (variant *Variant) SetCreatedAt(createdAt time.Time) {
-	variant.createdAt = createdAt
+func (v *Variant) SetCreatedAt(createdAt time.Time) {
+	v.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (variant *Variant) UpdatedAt() *time.Time {
-	return variant.updatedAt
+func (v *Variant) UpdatedAt() *time.Time {
+	return v.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (variant *Variant) SetUpdatedAt(updatedAt *time.Time) {
-	variant.updatedAt = updatedAt
+func (v *Variant) SetUpdatedAt(updatedAt *time.Time) {
+	v.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (variant *Variant) CreatedByFirstName() *string {
-	return variant.createdByFirstName
+func (v *Variant) CreatedByFirstName() *string {
+	return v.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (variant *Variant) SetCreatedByFirstName(createdByFirstName *string) {
-	variant.createdByFirstName = createdByFirstName
+func (v *Variant) SetCreatedByFirstName(createdByFirstName *string) {
+	v.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (variant *Variant) CreatedBySurname() *string {
-	return variant.createdBySurname
+func (v *Variant) CreatedBySurname() *string {
+	return v.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (variant *Variant) SetCreatedBySurname(createdBySurname *string) {
-	variant.createdBySurname = createdBySurname
+func (v *Variant) SetCreatedBySurname(createdBySurname *string) {
+	v.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (variant *Variant) UpdatedByFirstName() *string {
-	return variant.updatedByFirstName
+func (v *Variant) UpdatedByFirstName() *string {
+	return v.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (variant *Variant) SetUpdatedByFirstName(updatedByFirstName *string) {
-	variant.updatedByFirstName = updatedByFirstName
+func (v *Variant) SetUpdatedByFirstName(updatedByFirstName *string) {
+	v.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (variant *Variant) UpdatedBySurname() *string {
-	return variant.updatedBySurname
+func (v *Variant) UpdatedBySurname() *string {
+	return v.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (variant *Variant) SetUpdatedBySurname(updatedBySurname *string) {
-	variant.updatedBySurname = updatedBySurname
+func (v *Variant) SetUpdatedBySurname(updatedBySurname *string) {
+	v.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (variant *Variant) IsUpdated() bool {
-	return variant.updatedByID != nil
+func (v *Variant) IsUpdated() bool {
+	return v.updatedByID != nil
 }
 
 // ModelID returns modelID.
-func (variant *Variant) ModelID() string {
-	return variant.modelID
+func (v *Variant) ModelID() string {
+	return v.modelID
 }
 
 // SetModelID sets the modelID.
-func (variant *Variant) SetModelID(modelID string) {
-	variant.modelID = modelID
+func (v *Variant) SetModelID(modelID string) {
+	v.modelID = modelID
 }
 
 // Active returns active.
-func (variant *Variant) Active() bool {
-	return variant.active
+func (v *Variant) Active() bool {
+	return v.active
 }
 
 // SetActive sets the active.
-func (variant *Variant) SetActive(active bool) {
-	variant.active = active
+func (v *Variant) SetActive(active bool) {
+	v.active = active
 }
 
 // Key returns key.
-func (variant *Variant) Key() *string {
-	return variant.key
+func (v *Variant) Key() *string {
+	return v.key
 }
 
 // SetKey sets the key.
-func (variant *Variant) SetKey(key *string) {
-	variant.key = key
+func (v *Variant) SetKey(key *string) {
+	v.key = key
 }
 
 // Sorting returns sorting.
-func (variant *Variant) Sorting() uint {
-	return variant.sorting
+func (v *Variant) Sorting() uint {
+	return v.sorting
 }
 
 // SetSorting sets the sorting.
-func (variant *Variant) SetSorting(sorting uint) {
-	variant.sorting = sorting
+func (v *Variant) SetSorting(sorting uint) {
+	v.sorting = sorting
 }
 
 // TaxGroupID returns taxGroupID.
-func (variant *Variant) TaxGroupID() string {
-	return variant.taxGroupID
+func (v *Variant) TaxGroupID() string {
+	return v.taxGroupID
 }
 
 // SetTaxGroupID sets the taxGroupID.
-func (variant *Variant) SetTaxGroupID(taxGroupID string) {
-	variant.taxGroupID = taxGroupID
+func (v *Variant) SetTaxGroupID(taxGroupID string) {
+	v.taxGroupID = taxGroupID
 }
 
 // NameRepresentationID returns nameRepresentationID.
-func (variant *Variant) NameRepresentationID() *string {
-	return variant.nameRepresentationID
+func (v *Variant) NameRepresentationID() *string {
+	return v.nameRepresentationID
 }
 
 // SetNameRepresentationID sets the nameRepresentationID.
-func (variant *Variant) SetNameRepresentationID(nameRepresentationID *string) {
-	variant.nameRepresentationID = nameRepresentationID
+func (v *Variant) SetNameRepresentationID(nameRepresentationID *string) {
+	v.nameRepresentationID = nameRepresentationID
 }
 
 // DescriptionRepresentationID returns descriptionRepresentationID.
-func (variant *Variant) DescriptionRepresentationID() *string {
-	return variant.descriptionRepresentationID
+func (v *Variant) DescriptionRepresentationID() *string {
+	return v.descriptionRepresentationID
 }
 
 // SetDescriptionRepresentationID sets the descriptionRepresentationID.
-func (variant *Variant) SetDescriptionRepresentationID(descriptionRepresentationID *string) {
-	variant.descriptionRepresentationID = descriptionRepresentationID
+func (v *Variant) SetDescriptionRepresentationID(descriptionRepresentationID *string) {
+	v.descriptionRepresentationID = descriptionRepresentationID
 }
 
 // ImageRepresentationID returns imageRepresentationID.
-func (variant *Variant) ImageRepresentationID() *string {
-	return variant.imageRepresentationID
+func (v *Variant) ImageRepresentationID() *string {
+	return v.imageRepresentationID
 }
 
 // SetImageRepresentationID sets the imageRepresentationID.
-func (variant *Variant) SetImageRepresentationID(imageRepresentationID *string) {
-	variant.imageRepresentationID = imageRepresentationID
+func (v *Variant) SetImageRepresentationID(imageRepresentationID *string) {
+	v.imageRepresentationID = imageRepresentationID
 }
 
 func newVariant() *Variant {

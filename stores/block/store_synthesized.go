@@ -13,8 +13,8 @@ var _ Store = &BlocksStore{}
 type Store interface {
 }
 
-func (blocksStore *BlocksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Block, ok bool, err error) {
-	rows, err := blocksStore.selecterDatabase.Query(query, params...)
+func (b *BlocksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Block, ok bool, err error) {
+	rows, err := b.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (blocksStore *BlocksStore) fetch(query string, withCreators bool, params ..
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		block := newBlock()
-		fields := []interface{}{&block.id, &block.createdByID, &block.updatedByID, &block.createdAt, &block.updatedAt, &block.domainID, &block.active}
+		b := newBlock()
+		fields := []interface{}{&b.id, &b.createdByID, &b.updatedByID, &b.createdAt, &b.updatedAt, &b.domainID, &b.active}
 		if withCreators {
-			fields = append(fields, &block.createdByFirstName, &block.createdBySurname, &block.updatedByFirstName, &block.updatedBySurname)
+			fields = append(fields, &b.createdByFirstName, &b.createdBySurname, &b.updatedByFirstName, &b.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, block)
+		result = append(result, b)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (blocksStore *BlocksStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of BlocksStore.
 func New(selecterDatabase database.Database) (*BlocksStore, error) {
-	blocksStore := &BlocksStore{
+	b := &BlocksStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return blocksStore, nil
+	return b, nil
 }

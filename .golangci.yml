@@ -24,7 +24,7 @@ linters:
     - gochecknoinits
     - whitespace
     - goprintffuncname
-    # - gomnd
+    - gomnd
     # - goerr113
     - gomodguard # This probably needs custom configuration
     - testpackage
@@ -34,7 +34,7 @@ linters:
     # These are enabled, but can slow down global scanning.
     # Disable them if you want to scan other things more quickly.
     # - gocyclo
-    # - lll
+    - lll
     # - dogsled
     # - nakedret
     # - prealloc

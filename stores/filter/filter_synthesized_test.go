@@ -9,97 +9,97 @@ import (
 )
 
 func TestFilterTable(t *testing.T) {
-	filter := filter.NewFilterEntity()
-	if filter.TableName() == "" {
+	f := filter.NewFilterEntity()
+	if f.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestFilterTableAlias(t *testing.T) {
-	filter := filter.NewFilterEntity()
-	if filter.TableName() == "" {
+	f := filter.NewFilterEntity()
+	if f.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestFilterIsUpdated(t *testing.T) {
-	filter := filter.NewFilterEntity()
-	filter.IsUpdated()
+	f := filter.NewFilterEntity()
+	f.IsUpdated()
 }
 
 func TestFilterID(t *testing.T) {
-	filter := filter.NewFilterEntity()
-	filter.ID()
+	f := filter.NewFilterEntity()
+	f.ID()
 }
 
 func TestFilterCreatedByID(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := "testValue"
-	filter.SetCreatedByID(testValue)
-	if testValue != filter.CreatedByID() {
+	f.SetCreatedByID(testValue)
+	if testValue != f.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterUpdatedByID(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := "testValue"
-	filter.SetUpdatedByID(&testValue)
-	if &testValue != filter.UpdatedByID() {
+	f.SetUpdatedByID(&testValue)
+	if &testValue != f.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterCreatedAt(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := time.Now()
-	filter.SetCreatedAt(testValue)
-	if testValue != filter.CreatedAt() {
+	f.SetCreatedAt(testValue)
+	if testValue != f.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterUpdatedAt(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := time.Now()
-	filter.SetUpdatedAt(&testValue)
-	if &testValue != filter.UpdatedAt() {
+	f.SetUpdatedAt(&testValue)
+	if &testValue != f.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterCreatedByFirstName(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := "testValue"
-	filter.SetCreatedByFirstName(&testValue)
-	if &testValue != filter.CreatedByFirstName() {
+	f.SetCreatedByFirstName(&testValue)
+	if &testValue != f.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterCreatedBySurname(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := "testValue"
-	filter.SetCreatedBySurname(&testValue)
-	if &testValue != filter.CreatedBySurname() {
+	f.SetCreatedBySurname(&testValue)
+	if &testValue != f.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterUpdatedByFirstName(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := "testValue"
-	filter.SetUpdatedByFirstName(&testValue)
-	if &testValue != filter.UpdatedByFirstName() {
+	f.SetUpdatedByFirstName(&testValue)
+	if &testValue != f.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestFilterUpdatedBySurname(t *testing.T) {
-	filter := filter.NewFilterEntity()
+	f := filter.NewFilterEntity()
 	testValue := "testValue"
-	filter.SetUpdatedBySurname(&testValue)
-	if &testValue != filter.UpdatedBySurname() {
+	f.SetUpdatedBySurname(&testValue)
+	if &testValue != f.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

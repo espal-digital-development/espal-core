@@ -34,20 +34,20 @@ type CreateUpdate struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (createUpdate *CreateUpdate) Submit(context context) (isSubmitted bool, isValid bool, err error) {
-	if createUpdate.isClosed {
+func (c *CreateUpdate) Submit(context context) (isSubmitted bool, isValid bool, err error) {
+	if c.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = createUpdate.validator.HandleFromRequest(context); err != nil {
+	if err = c.validator.HandleFromRequest(context); err != nil {
 		return
 	}
-	isSubmitted = createUpdate.validator.IsSubmitted()
+	isSubmitted = c.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = createUpdate.validator.IsValid()
+		isValid, err = c.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -59,37 +59,37 @@ func (createUpdate *CreateUpdate) Submit(context context) (isSubmitted bool, isV
 }
 
 // FieldValue returns a single form value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValue(name string) string {
-	return createUpdate.validator.FieldValue(name)
+func (c *CreateUpdate) FieldValue(name string) string {
+	return c.validator.FieldValue(name)
 }
 
 // FieldValues returns a single form values that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValues(name string) []string {
-	return createUpdate.validator.Field(name).Values()
+func (c *CreateUpdate) FieldValues(name string) []string {
+	return c.validator.Field(name).Values()
 }
 
 // FieldValueAsBool returns a single form bool value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsBool(name string) bool {
-	return createUpdate.validator.Field(name).ValueAsBool()
+func (c *CreateUpdate) FieldValueAsBool(name string) bool {
+	return c.validator.Field(name).ValueAsBool()
 }
 
 // FieldValueAsUint returns a single form uint value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsUint(name string) uint {
-	return createUpdate.validator.Field(name).ValueAsUint()
+func (c *CreateUpdate) FieldValueAsUint(name string) uint {
+	return c.validator.Field(name).ValueAsUint()
 }
 
 // FieldValueAsUint16 returns a single form uint16 value that was resolved while submitting the form.
-func (createUpdate *CreateUpdate) FieldValueAsUint16(name string) uint16 {
-	return createUpdate.validator.Field(name).ValueAsUint16()
+func (c *CreateUpdate) FieldValueAsUint16(name string) uint16 {
+	return c.validator.Field(name).ValueAsUint16()
 }
 
 // View returns the FormView internal to help render inside html output.
-func (createUpdate *CreateUpdate) View() formview.View {
-	return createUpdate.view
+func (c *CreateUpdate) View() formview.View {
+	return c.view
 }
 
 // Close will release internals.
-func (createUpdate *CreateUpdate) Close() {
-	createUpdate.validator = nil
-	createUpdate.view = nil
+func (c *CreateUpdate) Close() {
+	c.validator = nil
+	c.view = nil
 }

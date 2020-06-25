@@ -9,241 +9,241 @@ import (
 )
 
 func TestSupplierTable(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
-	if supplier.TableName() == "" {
+	s := supplier.NewSupplierEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSupplierTableAlias(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
-	if supplier.TableName() == "" {
+	s := supplier.NewSupplierEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSupplierIsUpdated(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
-	supplier.IsUpdated()
+	s := supplier.NewSupplierEntity()
+	s.IsUpdated()
 }
 
 func TestSupplierID(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
-	supplier.ID()
+	s := supplier.NewSupplierEntity()
+	s.ID()
 }
 
 func TestSupplierCreatedByID(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetCreatedByID(testValue)
-	if testValue != supplier.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierUpdatedByID(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetUpdatedByID(&testValue)
-	if &testValue != supplier.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierCreatedAt(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := time.Now()
-	supplier.SetCreatedAt(testValue)
-	if testValue != supplier.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierUpdatedAt(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := time.Now()
-	supplier.SetUpdatedAt(&testValue)
-	if &testValue != supplier.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierCreatedByFirstName(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetCreatedByFirstName(&testValue)
-	if &testValue != supplier.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierCreatedBySurname(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetCreatedBySurname(&testValue)
-	if &testValue != supplier.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierUpdatedByFirstName(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetUpdatedByFirstName(&testValue)
-	if &testValue != supplier.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierUpdatedBySurname(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetUpdatedBySurname(&testValue)
-	if &testValue != supplier.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierActive(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := true
-	supplier.SetActive(testValue)
-	if testValue != supplier.Active() {
+	s.SetActive(testValue)
+	if testValue != s.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierKey(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetKey(&testValue)
-	if &testValue != supplier.Key() {
+	s.SetKey(&testValue)
+	if &testValue != s.Key() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierName(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetName(testValue)
-	if testValue != supplier.Name() {
+	s.SetName(testValue)
+	if testValue != s.Name() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierContactFirstName(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetContactFirstName(&testValue)
-	if &testValue != supplier.ContactFirstName() {
+	s.SetContactFirstName(&testValue)
+	if &testValue != s.ContactFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierContactSurname(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetContactSurname(&testValue)
-	if &testValue != supplier.ContactSurname() {
+	s.SetContactSurname(&testValue)
+	if &testValue != s.ContactSurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierStreet(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetStreet(&testValue)
-	if &testValue != supplier.Street() {
+	s.SetStreet(&testValue)
+	if &testValue != s.Street() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierStreetLine2(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetStreetLine2(&testValue)
-	if &testValue != supplier.StreetLine2() {
+	s.SetStreetLine2(&testValue)
+	if &testValue != s.StreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierNumber(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetNumber(&testValue)
-	if &testValue != supplier.Number() {
+	s.SetNumber(&testValue)
+	if &testValue != s.Number() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierNumberAddition(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetNumberAddition(&testValue)
-	if &testValue != supplier.NumberAddition() {
+	s.SetNumberAddition(&testValue)
+	if &testValue != s.NumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierZipCode(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetZipCode(&testValue)
-	if &testValue != supplier.ZipCode() {
+	s.SetZipCode(&testValue)
+	if &testValue != s.ZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierCity(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetCity(&testValue)
-	if &testValue != supplier.City() {
+	s.SetCity(&testValue)
+	if &testValue != s.City() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierState(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetState(&testValue)
-	if &testValue != supplier.State() {
+	s.SetState(&testValue)
+	if &testValue != s.State() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierCountry(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := uint16(65000)
-	supplier.SetCountry(&testValue)
-	if &testValue != supplier.Country() {
+	s.SetCountry(&testValue)
+	if &testValue != s.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierPhoneNumber(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetPhoneNumber(&testValue)
-	if &testValue != supplier.PhoneNumber() {
+	s.SetPhoneNumber(&testValue)
+	if &testValue != s.PhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierEmail(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetEmail(&testValue)
-	if &testValue != supplier.Email() {
+	s.SetEmail(&testValue)
+	if &testValue != s.Email() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSupplierComments(t *testing.T) {
-	supplier := supplier.NewSupplierEntity()
+	s := supplier.NewSupplierEntity()
 	testValue := "testValue"
-	supplier.SetComments(&testValue)
-	if &testValue != supplier.Comments() {
+	s.SetComments(&testValue)
+	if &testValue != s.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

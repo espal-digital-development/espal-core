@@ -14,8 +14,8 @@ type Store interface {
 	GetOneByDomainIDAndPath(domainID string, path string) (*Slug, bool, error)
 }
 
-func (slugsStore *SlugsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Slug, ok bool, err error) {
-	rows, err := slugsStore.selecterDatabase.Query(query, params...)
+func (s *SlugsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Slug, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -37,15 +37,15 @@ func (slugsStore *SlugsStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		slug := newSlug()
-		fields := []interface{}{&slug.id, &slug.createdByID, &slug.updatedByID, &slug.createdAt, &slug.updatedAt, &slug.domainID, &slug.language, &slug.path, &slug.rerouteTo, &slug.invalidWithStatus, &slug.invalidMessage, &slug.redirectToRawPath, &slug.redirectStatusCode}
+		s := newSlug()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.domainID, &s.language, &s.path, &s.rerouteTo, &s.invalidWithStatus, &s.invalidMessage, &s.redirectToRawPath, &s.redirectStatusCode}
 		if withCreators {
-			fields = append(fields, &slug.createdByFirstName, &slug.createdBySurname, &slug.updatedByFirstName, &slug.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, slug)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -53,8 +53,8 @@ func (slugsStore *SlugsStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of SlugsStore.
 func New(selecterDatabase database.Database) (*SlugsStore, error) {
-	slugsStore := &SlugsStore{
+	s := &SlugsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return slugsStore, nil
+	return s, nil
 }

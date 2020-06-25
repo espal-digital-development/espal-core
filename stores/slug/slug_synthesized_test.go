@@ -9,169 +9,169 @@ import (
 )
 
 func TestSlugTable(t *testing.T) {
-	slug := slug.NewSlugEntity()
-	if slug.TableName() == "" {
+	s := slug.NewSlugEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSlugTableAlias(t *testing.T) {
-	slug := slug.NewSlugEntity()
-	if slug.TableName() == "" {
+	s := slug.NewSlugEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSlugIsUpdated(t *testing.T) {
-	slug := slug.NewSlugEntity()
-	slug.IsUpdated()
+	s := slug.NewSlugEntity()
+	s.IsUpdated()
 }
 
 func TestSlugID(t *testing.T) {
-	slug := slug.NewSlugEntity()
-	slug.ID()
+	s := slug.NewSlugEntity()
+	s.ID()
 }
 
 func TestSlugCreatedByID(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetCreatedByID(testValue)
-	if testValue != slug.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugUpdatedByID(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetUpdatedByID(&testValue)
-	if &testValue != slug.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugCreatedAt(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := time.Now()
-	slug.SetCreatedAt(testValue)
-	if testValue != slug.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugUpdatedAt(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := time.Now()
-	slug.SetUpdatedAt(&testValue)
-	if &testValue != slug.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugCreatedByFirstName(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetCreatedByFirstName(&testValue)
-	if &testValue != slug.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugCreatedBySurname(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetCreatedBySurname(&testValue)
-	if &testValue != slug.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugUpdatedByFirstName(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetUpdatedByFirstName(&testValue)
-	if &testValue != slug.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugUpdatedBySurname(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetUpdatedBySurname(&testValue)
-	if &testValue != slug.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugDomainID(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetDomainID(testValue)
-	if testValue != slug.DomainID() {
+	s.SetDomainID(testValue)
+	if testValue != s.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugLanguage(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := uint16(65000)
-	slug.SetLanguage(testValue)
-	if testValue != slug.Language() {
+	s.SetLanguage(testValue)
+	if testValue != s.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugPath(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetPath(testValue)
-	if testValue != slug.Path() {
+	s.SetPath(testValue)
+	if testValue != s.Path() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugRerouteTo(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetRerouteTo(testValue)
-	if testValue != slug.RerouteTo() {
+	s.SetRerouteTo(testValue)
+	if testValue != s.RerouteTo() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugInvalidWithStatus(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := uint16(65000)
-	slug.SetInvalidWithStatus(&testValue)
-	if &testValue != slug.InvalidWithStatus() {
+	s.SetInvalidWithStatus(&testValue)
+	if &testValue != s.InvalidWithStatus() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugInvalidMessage(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetInvalidMessage(&testValue)
-	if &testValue != slug.InvalidMessage() {
+	s.SetInvalidMessage(&testValue)
+	if &testValue != s.InvalidMessage() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugRedirectToRawPath(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := "testValue"
-	slug.SetRedirectToRawPath(&testValue)
-	if &testValue != slug.RedirectToRawPath() {
+	s.SetRedirectToRawPath(&testValue)
+	if &testValue != s.RedirectToRawPath() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSlugRedirectStatusCode(t *testing.T) {
-	slug := slug.NewSlugEntity()
+	s := slug.NewSlugEntity()
 	testValue := uint16(65000)
-	slug.SetRedirectStatusCode(&testValue)
-	if &testValue != slug.RedirectStatusCode() {
+	s.SetRedirectStatusCode(&testValue)
+	if &testValue != s.RedirectStatusCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

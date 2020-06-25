@@ -18,7 +18,7 @@ type Mailer struct {
 }
 
 // NewMessage returns a new instance of Data.
-func (mailer *Mailer) NewMessage() Data {
+func (m *Mailer) NewMessage() Data {
 	return &Message{
 		headers: map[string][]string{},
 		msg:     gomail.NewMessage(),
@@ -26,11 +26,11 @@ func (mailer *Mailer) NewMessage() Data {
 }
 
 // Send will send the supplied message.
-func (mailer *Mailer) Send(message Data) error {
+func (m *Mailer) Send(message Data) error {
 	msg := gomail.NewMessage()
 	msg.SetBody(message.GetContentType(), message.GetBody())
 	msg.SetHeaders(message.GetHeaders())
-	return mailer.dailer.DialAndSend(msg)
+	return m.dailer.DialAndSend(msg)
 }
 
 // New returns a new instance of Mailer.

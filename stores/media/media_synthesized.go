@@ -18,123 +18,123 @@ type MediaEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (media *Media) TableName() string {
+func (m *Media) TableName() string {
 	return "Media"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (media *Media) TableAlias() string {
+func (m *Media) TableAlias() string {
 	return "me"
 }
 
 // ID returns id.
-func (media *Media) ID() string {
-	return media.id
+func (m *Media) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (media *Media) CreatedByID() string {
-	return media.createdByID
+func (m *Media) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (media *Media) SetCreatedByID(createdByID string) {
-	media.createdByID = createdByID
+func (m *Media) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (media *Media) UpdatedByID() *string {
-	return media.updatedByID
+func (m *Media) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (media *Media) SetUpdatedByID(updatedByID *string) {
-	media.updatedByID = updatedByID
+func (m *Media) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (media *Media) CreatedAt() time.Time {
-	return media.createdAt
+func (m *Media) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (media *Media) SetCreatedAt(createdAt time.Time) {
-	media.createdAt = createdAt
+func (m *Media) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (media *Media) UpdatedAt() *time.Time {
-	return media.updatedAt
+func (m *Media) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (media *Media) SetUpdatedAt(updatedAt *time.Time) {
-	media.updatedAt = updatedAt
+func (m *Media) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (media *Media) CreatedByFirstName() *string {
-	return media.createdByFirstName
+func (m *Media) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (media *Media) SetCreatedByFirstName(createdByFirstName *string) {
-	media.createdByFirstName = createdByFirstName
+func (m *Media) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (media *Media) CreatedBySurname() *string {
-	return media.createdBySurname
+func (m *Media) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (media *Media) SetCreatedBySurname(createdBySurname *string) {
-	media.createdBySurname = createdBySurname
+func (m *Media) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (media *Media) UpdatedByFirstName() *string {
-	return media.updatedByFirstName
+func (m *Media) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (media *Media) SetUpdatedByFirstName(updatedByFirstName *string) {
-	media.updatedByFirstName = updatedByFirstName
+func (m *Media) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (media *Media) UpdatedBySurname() *string {
-	return media.updatedBySurname
+func (m *Media) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (media *Media) SetUpdatedBySurname(updatedBySurname *string) {
-	media.updatedBySurname = updatedBySurname
+func (m *Media) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (media *Media) IsUpdated() bool {
-	return media.updatedByID != nil
+func (m *Media) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // Active returns active.
-func (media *Media) Active() bool {
-	return media.active
+func (m *Media) Active() bool {
+	return m.active
 }
 
 // SetActive sets the active.
-func (media *Media) SetActive(active bool) {
-	media.active = active
+func (m *Media) SetActive(active bool) {
+	m.active = active
 }
 
 // FilePath returns filePath.
-func (media *Media) FilePath() string {
-	return media.filePath
+func (m *Media) FilePath() string {
+	return m.filePath
 }
 
 // SetFilePath sets the filePath.
-func (media *Media) SetFilePath(filePath string) {
-	media.filePath = filePath
+func (m *Media) SetFilePath(filePath string) {
+	m.filePath = filePath
 }
 
 func newMedia() *Media {

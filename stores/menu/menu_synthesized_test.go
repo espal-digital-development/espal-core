@@ -9,151 +9,151 @@ import (
 )
 
 func TestMenuTable(t *testing.T) {
-	menu := menu.NewMenuEntity()
-	if menu.TableName() == "" {
+	m := menu.NewMenuEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestMenuTableAlias(t *testing.T) {
-	menu := menu.NewMenuEntity()
-	if menu.TableName() == "" {
+	m := menu.NewMenuEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestMenuIsUpdated(t *testing.T) {
-	menu := menu.NewMenuEntity()
-	menu.IsUpdated()
+	m := menu.NewMenuEntity()
+	m.IsUpdated()
 }
 
 func TestMenuID(t *testing.T) {
-	menu := menu.NewMenuEntity()
-	menu.ID()
+	m := menu.NewMenuEntity()
+	m.ID()
 }
 
 func TestMenuCreatedByID(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetCreatedByID(testValue)
-	if testValue != menu.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuUpdatedByID(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetUpdatedByID(&testValue)
-	if &testValue != menu.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuCreatedAt(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := time.Now()
-	menu.SetCreatedAt(testValue)
-	if testValue != menu.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuUpdatedAt(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := time.Now()
-	menu.SetUpdatedAt(&testValue)
-	if &testValue != menu.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuCreatedByFirstName(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetCreatedByFirstName(&testValue)
-	if &testValue != menu.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuCreatedBySurname(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetCreatedBySurname(&testValue)
-	if &testValue != menu.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuUpdatedByFirstName(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetUpdatedByFirstName(&testValue)
-	if &testValue != menu.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuUpdatedBySurname(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetUpdatedBySurname(&testValue)
-	if &testValue != menu.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuActive(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := true
-	menu.SetActive(testValue)
-	if testValue != menu.Active() {
+	m.SetActive(testValue)
+	if testValue != m.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuSorting(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := uint(1e9)
-	menu.SetSorting(testValue)
-	if testValue != menu.Sorting() {
+	m.SetSorting(testValue)
+	if testValue != m.Sorting() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuSlugID(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetSlugID(&testValue)
-	if &testValue != menu.SlugID() {
+	m.SetSlugID(&testValue)
+	if &testValue != m.SlugID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuExternalLink(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetExternalLink(&testValue)
-	if &testValue != menu.ExternalLink() {
+	m.SetExternalLink(&testValue)
+	if &testValue != m.ExternalLink() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuInternalLink(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetInternalLink(&testValue)
-	if &testValue != menu.InternalLink() {
+	m.SetInternalLink(&testValue)
+	if &testValue != m.InternalLink() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMenuParentID(t *testing.T) {
-	menu := menu.NewMenuEntity()
+	m := menu.NewMenuEntity()
 	testValue := "testValue"
-	menu.SetParentID(&testValue)
-	if &testValue != menu.ParentID() {
+	m.SetParentID(&testValue)
+	if &testValue != m.ParentID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

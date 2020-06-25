@@ -15,11 +15,15 @@ var (
 	lockRepositoryMockEnglishLocaleID sync.RWMutex
 )
 
-// RepositoryMock is a mock implementation of Repository.
+// Ensure, that RepositoryMock does implement languages.Repository.
+// If this is not the case, regenerate this file with moq.
+var _ languages.Repository = &RepositoryMock{}
+
+// RepositoryMock is a mock implementation of languages.Repository.
 //
 //     func TestSomethingThatUsesRepository(t *testing.T) {
 //
-//         // make and configure a mocked Repository
+//         // make and configure a mocked languages.Repository
 //         mockedRepository := &RepositoryMock{
 //             AllFunc: func() map[uint16]languages.Data {
 // 	               panic("mock out the All method")
@@ -35,7 +39,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedRepository in code that requires Repository
+//         // use mockedRepository in code that requires languages.Repository
 //         // and then make assertions.
 //
 //     }

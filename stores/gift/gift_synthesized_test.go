@@ -9,97 +9,97 @@ import (
 )
 
 func TestGiftTable(t *testing.T) {
-	gift := gift.NewGiftEntity()
-	if gift.TableName() == "" {
+	g := gift.NewGiftEntity()
+	if g.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestGiftTableAlias(t *testing.T) {
-	gift := gift.NewGiftEntity()
-	if gift.TableName() == "" {
+	g := gift.NewGiftEntity()
+	if g.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestGiftIsUpdated(t *testing.T) {
-	gift := gift.NewGiftEntity()
-	gift.IsUpdated()
+	g := gift.NewGiftEntity()
+	g.IsUpdated()
 }
 
 func TestGiftID(t *testing.T) {
-	gift := gift.NewGiftEntity()
-	gift.ID()
+	g := gift.NewGiftEntity()
+	g.ID()
 }
 
 func TestGiftCreatedByID(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := "testValue"
-	gift.SetCreatedByID(testValue)
-	if testValue != gift.CreatedByID() {
+	g.SetCreatedByID(testValue)
+	if testValue != g.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftUpdatedByID(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := "testValue"
-	gift.SetUpdatedByID(&testValue)
-	if &testValue != gift.UpdatedByID() {
+	g.SetUpdatedByID(&testValue)
+	if &testValue != g.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftCreatedAt(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := time.Now()
-	gift.SetCreatedAt(testValue)
-	if testValue != gift.CreatedAt() {
+	g.SetCreatedAt(testValue)
+	if testValue != g.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftUpdatedAt(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := time.Now()
-	gift.SetUpdatedAt(&testValue)
-	if &testValue != gift.UpdatedAt() {
+	g.SetUpdatedAt(&testValue)
+	if &testValue != g.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftCreatedByFirstName(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := "testValue"
-	gift.SetCreatedByFirstName(&testValue)
-	if &testValue != gift.CreatedByFirstName() {
+	g.SetCreatedByFirstName(&testValue)
+	if &testValue != g.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftCreatedBySurname(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := "testValue"
-	gift.SetCreatedBySurname(&testValue)
-	if &testValue != gift.CreatedBySurname() {
+	g.SetCreatedBySurname(&testValue)
+	if &testValue != g.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftUpdatedByFirstName(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := "testValue"
-	gift.SetUpdatedByFirstName(&testValue)
-	if &testValue != gift.UpdatedByFirstName() {
+	g.SetUpdatedByFirstName(&testValue)
+	if &testValue != g.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestGiftUpdatedBySurname(t *testing.T) {
-	gift := gift.NewGiftEntity()
+	g := gift.NewGiftEntity()
 	testValue := "testValue"
-	gift.SetUpdatedBySurname(&testValue)
-	if &testValue != gift.UpdatedBySurname() {
+	g.SetUpdatedBySurname(&testValue)
+	if &testValue != g.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

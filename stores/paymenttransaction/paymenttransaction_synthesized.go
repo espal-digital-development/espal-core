@@ -26,163 +26,163 @@ type PaymentTransactionEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (paymentTransaction *PaymentTransaction) TableName() string {
+func (p *PaymentTransaction) TableName() string {
 	return "PaymentTransaction"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (paymentTransaction *PaymentTransaction) TableAlias() string {
+func (p *PaymentTransaction) TableAlias() string {
 	return "pte"
 }
 
 // ID returns id.
-func (paymentTransaction *PaymentTransaction) ID() string {
-	return paymentTransaction.id
+func (p *PaymentTransaction) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (paymentTransaction *PaymentTransaction) CreatedByID() string {
-	return paymentTransaction.createdByID
+func (p *PaymentTransaction) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (paymentTransaction *PaymentTransaction) SetCreatedByID(createdByID string) {
-	paymentTransaction.createdByID = createdByID
+func (p *PaymentTransaction) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (paymentTransaction *PaymentTransaction) UpdatedByID() *string {
-	return paymentTransaction.updatedByID
+func (p *PaymentTransaction) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (paymentTransaction *PaymentTransaction) SetUpdatedByID(updatedByID *string) {
-	paymentTransaction.updatedByID = updatedByID
+func (p *PaymentTransaction) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (paymentTransaction *PaymentTransaction) CreatedAt() time.Time {
-	return paymentTransaction.createdAt
+func (p *PaymentTransaction) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (paymentTransaction *PaymentTransaction) SetCreatedAt(createdAt time.Time) {
-	paymentTransaction.createdAt = createdAt
+func (p *PaymentTransaction) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (paymentTransaction *PaymentTransaction) UpdatedAt() *time.Time {
-	return paymentTransaction.updatedAt
+func (p *PaymentTransaction) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (paymentTransaction *PaymentTransaction) SetUpdatedAt(updatedAt *time.Time) {
-	paymentTransaction.updatedAt = updatedAt
+func (p *PaymentTransaction) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (paymentTransaction *PaymentTransaction) CreatedByFirstName() *string {
-	return paymentTransaction.createdByFirstName
+func (p *PaymentTransaction) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (paymentTransaction *PaymentTransaction) SetCreatedByFirstName(createdByFirstName *string) {
-	paymentTransaction.createdByFirstName = createdByFirstName
+func (p *PaymentTransaction) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (paymentTransaction *PaymentTransaction) CreatedBySurname() *string {
-	return paymentTransaction.createdBySurname
+func (p *PaymentTransaction) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (paymentTransaction *PaymentTransaction) SetCreatedBySurname(createdBySurname *string) {
-	paymentTransaction.createdBySurname = createdBySurname
+func (p *PaymentTransaction) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (paymentTransaction *PaymentTransaction) UpdatedByFirstName() *string {
-	return paymentTransaction.updatedByFirstName
+func (p *PaymentTransaction) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (paymentTransaction *PaymentTransaction) SetUpdatedByFirstName(updatedByFirstName *string) {
-	paymentTransaction.updatedByFirstName = updatedByFirstName
+func (p *PaymentTransaction) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (paymentTransaction *PaymentTransaction) UpdatedBySurname() *string {
-	return paymentTransaction.updatedBySurname
+func (p *PaymentTransaction) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (paymentTransaction *PaymentTransaction) SetUpdatedBySurname(updatedBySurname *string) {
-	paymentTransaction.updatedBySurname = updatedBySurname
+func (p *PaymentTransaction) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (paymentTransaction *PaymentTransaction) IsUpdated() bool {
-	return paymentTransaction.updatedByID != nil
+func (p *PaymentTransaction) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // PaymentAccountID returns paymentAccountID.
-func (paymentTransaction *PaymentTransaction) PaymentAccountID() string {
-	return paymentTransaction.paymentAccountID
+func (p *PaymentTransaction) PaymentAccountID() string {
+	return p.paymentAccountID
 }
 
 // SetPaymentAccountID sets the paymentAccountID.
-func (paymentTransaction *PaymentTransaction) SetPaymentAccountID(paymentAccountID string) {
-	paymentTransaction.paymentAccountID = paymentAccountID
+func (p *PaymentTransaction) SetPaymentAccountID(paymentAccountID string) {
+	p.paymentAccountID = paymentAccountID
 }
 
 // SaleOrderID returns saleOrderID.
-func (paymentTransaction *PaymentTransaction) SaleOrderID() string {
-	return paymentTransaction.saleOrderID
+func (p *PaymentTransaction) SaleOrderID() string {
+	return p.saleOrderID
 }
 
 // SetSaleOrderID sets the saleOrderID.
-func (paymentTransaction *PaymentTransaction) SetSaleOrderID(saleOrderID string) {
-	paymentTransaction.saleOrderID = saleOrderID
+func (p *PaymentTransaction) SetSaleOrderID(saleOrderID string) {
+	p.saleOrderID = saleOrderID
 }
 
 // ResponseCode returns responseCode.
-func (paymentTransaction *PaymentTransaction) ResponseCode() int {
-	return paymentTransaction.responseCode
+func (p *PaymentTransaction) ResponseCode() int {
+	return p.responseCode
 }
 
 // SetResponseCode sets the responseCode.
-func (paymentTransaction *PaymentTransaction) SetResponseCode(responseCode int) {
-	paymentTransaction.responseCode = responseCode
+func (p *PaymentTransaction) SetResponseCode(responseCode int) {
+	p.responseCode = responseCode
 }
 
 // Amount returns amount.
-func (paymentTransaction *PaymentTransaction) Amount() float32 {
-	return paymentTransaction.amount
+func (p *PaymentTransaction) Amount() float32 {
+	return p.amount
 }
 
 // SetAmount sets the amount.
-func (paymentTransaction *PaymentTransaction) SetAmount(amount float32) {
-	paymentTransaction.amount = amount
+func (p *PaymentTransaction) SetAmount(amount float32) {
+	p.amount = amount
 }
 
 // Hash returns hash.
-func (paymentTransaction *PaymentTransaction) Hash() *string {
-	return paymentTransaction.hash
+func (p *PaymentTransaction) Hash() *string {
+	return p.hash
 }
 
 // SetHash sets the hash.
-func (paymentTransaction *PaymentTransaction) SetHash(hash *string) {
-	paymentTransaction.hash = hash
+func (p *PaymentTransaction) SetHash(hash *string) {
+	p.hash = hash
 }
 
 // Message returns message.
-func (paymentTransaction *PaymentTransaction) Message() *string {
-	return paymentTransaction.message
+func (p *PaymentTransaction) Message() *string {
+	return p.message
 }
 
 // SetMessage sets the message.
-func (paymentTransaction *PaymentTransaction) SetMessage(message *string) {
-	paymentTransaction.message = message
+func (p *PaymentTransaction) SetMessage(message *string) {
+	p.message = message
 }
 
 func newPaymentTransaction() *PaymentTransaction {

@@ -13,8 +13,8 @@ var _ Store = &MenusStore{}
 type Store interface {
 }
 
-func (menusStore *MenusStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Menu, ok bool, err error) {
-	rows, err := menusStore.selecterDatabase.Query(query, params...)
+func (m *MenusStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Menu, ok bool, err error) {
+	rows, err := m.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (menusStore *MenusStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		menu := newMenu()
-		fields := []interface{}{&menu.id, &menu.createdByID, &menu.updatedByID, &menu.createdAt, &menu.updatedAt, &menu.active, &menu.sorting, &menu.slugID, &menu.externalLink, &menu.internalLink, &menu.parentID}
+		m := newMenu()
+		fields := []interface{}{&m.id, &m.createdByID, &m.updatedByID, &m.createdAt, &m.updatedAt, &m.active, &m.sorting, &m.slugID, &m.externalLink, &m.internalLink, &m.parentID}
 		if withCreators {
-			fields = append(fields, &menu.createdByFirstName, &menu.createdBySurname, &menu.updatedByFirstName, &menu.updatedBySurname)
+			fields = append(fields, &m.createdByFirstName, &m.createdBySurname, &m.updatedByFirstName, &m.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, menu)
+		result = append(result, m)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (menusStore *MenusStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of MenusStore.
 func New(selecterDatabase database.Database) (*MenusStore, error) {
-	menusStore := &MenusStore{
+	m := &MenusStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return menusStore, nil
+	return m, nil
 }

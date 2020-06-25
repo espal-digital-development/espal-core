@@ -9,106 +9,106 @@ import (
 )
 
 func TestLikeTable(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
-	if like.TableName() == "" {
+	l := newsarticle.NewLikeEntity()
+	if l.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestLikeTableAlias(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
-	if like.TableName() == "" {
+	l := newsarticle.NewLikeEntity()
+	if l.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestLikeIsUpdated(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
-	like.IsUpdated()
+	l := newsarticle.NewLikeEntity()
+	l.IsUpdated()
 }
 
 func TestLikeID(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
-	like.ID()
+	l := newsarticle.NewLikeEntity()
+	l.ID()
 }
 
 func TestLikeCreatedByID(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetCreatedByID(testValue)
-	if testValue != like.CreatedByID() {
+	l.SetCreatedByID(testValue)
+	if testValue != l.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeUpdatedByID(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetUpdatedByID(&testValue)
-	if &testValue != like.UpdatedByID() {
+	l.SetUpdatedByID(&testValue)
+	if &testValue != l.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeCreatedAt(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := time.Now()
-	like.SetCreatedAt(testValue)
-	if testValue != like.CreatedAt() {
+	l.SetCreatedAt(testValue)
+	if testValue != l.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeUpdatedAt(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := time.Now()
-	like.SetUpdatedAt(&testValue)
-	if &testValue != like.UpdatedAt() {
+	l.SetUpdatedAt(&testValue)
+	if &testValue != l.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeCreatedByFirstName(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetCreatedByFirstName(&testValue)
-	if &testValue != like.CreatedByFirstName() {
+	l.SetCreatedByFirstName(&testValue)
+	if &testValue != l.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeCreatedBySurname(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetCreatedBySurname(&testValue)
-	if &testValue != like.CreatedBySurname() {
+	l.SetCreatedBySurname(&testValue)
+	if &testValue != l.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeUpdatedByFirstName(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetUpdatedByFirstName(&testValue)
-	if &testValue != like.UpdatedByFirstName() {
+	l.SetUpdatedByFirstName(&testValue)
+	if &testValue != l.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeUpdatedBySurname(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetUpdatedBySurname(&testValue)
-	if &testValue != like.UpdatedBySurname() {
+	l.SetUpdatedBySurname(&testValue)
+	if &testValue != l.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestLikeNewsArticleID(t *testing.T) {
-	like := newsarticle.NewLikeEntity()
+	l := newsarticle.NewLikeEntity()
 	testValue := "testValue"
-	like.SetNewsArticleID(testValue)
-	if testValue != like.NewsArticleID() {
+	l.SetNewsArticleID(testValue)
+	if testValue != l.NewsArticleID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

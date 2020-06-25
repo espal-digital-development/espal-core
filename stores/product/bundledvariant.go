@@ -22,11 +22,11 @@ type BundledVariant struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (bundledVariant *BundledVariant) TableName() string {
+func (b *BundledVariant) TableName() string {
 	return "BundledProductVariant"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (bundledVariant *BundledVariant) TableAlias() string {
+func (b *BundledVariant) TableAlias() string {
 	return "bprv"
 }

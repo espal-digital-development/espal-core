@@ -26,41 +26,41 @@ type UserRights struct {
 }
 
 // GetName returns a specific UserRight name based on the requested code.
-func (userRights *UserRights) GetName(code uint16) (string, error) {
-	if userRights.entries[code] == "" {
+func (r *UserRights) GetName(code uint16) (string, error) {
+	if r.entries[code] == "" {
 		return "", errors.Errorf("userright `%d` doesn't exist", code)
 	}
-	return userRights.entries[code], nil
+	return r.entries[code], nil
 }
 
 // GetCode returns a specific UserRight code based on the requested name.
-func (userRights *UserRights) GetCode(name string) (uint16, error) {
-	if userRights.entriesByName[name] == 0 {
+func (r *UserRights) GetCode(name string) (uint16, error) {
+	if r.entriesByName[name] == 0 {
 		return 0, errors.Errorf("userright `%s` doesn't exist", name)
 	}
-	return userRights.entriesByName[name], nil
+	return r.entriesByName[name], nil
 }
 
 // AllByCode returns all known UserRights with uint16 index.
-func (userRights *UserRights) AllByCode() map[uint16]string {
-	return userRights.entries
+func (r *UserRights) AllByCode() map[uint16]string {
+	return r.entries
 }
 
 // AllByName returns all known UserRights with string index.
-func (userRights *UserRights) AllByName() map[string]uint16 {
-	return userRights.entriesByName
+func (r *UserRights) AllByName() map[string]uint16 {
+	return r.entriesByName
 }
 
 // UserRightCodes returns a slice all known UserRights codes in uint16.
-func (userRights *UserRights) UserRightCodes() []uint16 {
-	return userRights.codes
+func (r *UserRights) UserRightCodes() []uint16 {
+	return r.codes
 }
 
-// New returns a new instance of UserRights.
+// New returns a new instance of r.
 func New() *UserRights {
 	// Everything under 3e4 is for auto-generation
 	// Everything over 3e4 is for manual addition
-	userRights := &UserRights{
+	r := &UserRights{
 		entries: map[uint16]string{
 			30000: "AccessAuth",
 			30001: "AccessAdminSection",
@@ -93,29 +93,29 @@ func New() *UserRights {
 
 	var userRightCode uint16 = 1
 	actions := []string{"Access", "Read", "Create", "Update", "Delete"}
-	for k := range userRights.entriesSubjectsForCRUD {
+	for k := range r.entriesSubjectsForCRUD {
 		for k2 := range actions {
-			userRights.entriesByName[actions[k2]+userRights.entriesSubjectsForCRUD[k]] = userRightCode
-			userRights.entries[userRightCode] = actions[k2] + userRights.entriesSubjectsForCRUD[k]
+			r.entriesByName[actions[k2]+r.entriesSubjectsForCRUD[k]] = userRightCode
+			r.entries[userRightCode] = actions[k2] + r.entriesSubjectsForCRUD[k]
 			userRightCode++
 		}
 	}
 
-	userRightCodesInts := make([]int, len(userRights.entries))
+	userRightCodesInts := make([]int, len(r.entries))
 
 	var c int
-	for userRight := range userRights.entries {
+	for userRight := range r.entries {
 		userRightCodesInts[c] = int(userRight)
 		c++
 	}
 
 	sort.Ints(userRightCodesInts)
 
-	userRights.codes = make([]uint16, len(userRightCodesInts))
+	r.codes = make([]uint16, len(userRightCodesInts))
 
 	for k := range userRightCodesInts {
-		userRights.codes[k] = uint16(userRightCodesInts[k])
+		r.codes[k] = uint16(userRightCodesInts[k])
 	}
 
-	return userRights
+	return r
 }

@@ -13,13 +13,13 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if context.IsLoggedIn() {
 		context.Redirect("/", http.StatusTemporaryRedirect)
 		return
 	}
 
-	route.succeededPageFactory.NewPage(context).Render()
+	r.succeededPageFactory.NewPage(context).Render()
 }
 
 // New returns a new instance of Route.

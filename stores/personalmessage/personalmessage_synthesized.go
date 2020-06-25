@@ -24,148 +24,148 @@ type PersonalMessageEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (personalMessage *PersonalMessage) TableName() string {
+func (p *PersonalMessage) TableName() string {
 	return "PersonalMessage"
 }
 
 // ID returns id.
-func (personalMessage *PersonalMessage) ID() string {
-	return personalMessage.id
+func (p *PersonalMessage) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (personalMessage *PersonalMessage) CreatedByID() string {
-	return personalMessage.createdByID
+func (p *PersonalMessage) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (personalMessage *PersonalMessage) SetCreatedByID(createdByID string) {
-	personalMessage.createdByID = createdByID
+func (p *PersonalMessage) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (personalMessage *PersonalMessage) UpdatedByID() *string {
-	return personalMessage.updatedByID
+func (p *PersonalMessage) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (personalMessage *PersonalMessage) SetUpdatedByID(updatedByID *string) {
-	personalMessage.updatedByID = updatedByID
+func (p *PersonalMessage) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (personalMessage *PersonalMessage) CreatedAt() time.Time {
-	return personalMessage.createdAt
+func (p *PersonalMessage) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (personalMessage *PersonalMessage) SetCreatedAt(createdAt time.Time) {
-	personalMessage.createdAt = createdAt
+func (p *PersonalMessage) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (personalMessage *PersonalMessage) UpdatedAt() *time.Time {
-	return personalMessage.updatedAt
+func (p *PersonalMessage) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (personalMessage *PersonalMessage) SetUpdatedAt(updatedAt *time.Time) {
-	personalMessage.updatedAt = updatedAt
+func (p *PersonalMessage) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (personalMessage *PersonalMessage) CreatedByFirstName() *string {
-	return personalMessage.createdByFirstName
+func (p *PersonalMessage) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (personalMessage *PersonalMessage) SetCreatedByFirstName(createdByFirstName *string) {
-	personalMessage.createdByFirstName = createdByFirstName
+func (p *PersonalMessage) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (personalMessage *PersonalMessage) CreatedBySurname() *string {
-	return personalMessage.createdBySurname
+func (p *PersonalMessage) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (personalMessage *PersonalMessage) SetCreatedBySurname(createdBySurname *string) {
-	personalMessage.createdBySurname = createdBySurname
+func (p *PersonalMessage) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (personalMessage *PersonalMessage) UpdatedByFirstName() *string {
-	return personalMessage.updatedByFirstName
+func (p *PersonalMessage) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (personalMessage *PersonalMessage) SetUpdatedByFirstName(updatedByFirstName *string) {
-	personalMessage.updatedByFirstName = updatedByFirstName
+func (p *PersonalMessage) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (personalMessage *PersonalMessage) UpdatedBySurname() *string {
-	return personalMessage.updatedBySurname
+func (p *PersonalMessage) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (personalMessage *PersonalMessage) SetUpdatedBySurname(updatedBySurname *string) {
-	personalMessage.updatedBySurname = updatedBySurname
+func (p *PersonalMessage) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (personalMessage *PersonalMessage) IsUpdated() bool {
-	return personalMessage.updatedByID != nil
+func (p *PersonalMessage) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // UserID returns userID.
-func (personalMessage *PersonalMessage) UserID() string {
-	return personalMessage.userID
+func (p *PersonalMessage) UserID() string {
+	return p.userID
 }
 
 // SetUserID sets the userID.
-func (personalMessage *PersonalMessage) SetUserID(userID string) {
-	personalMessage.userID = userID
+func (p *PersonalMessage) SetUserID(userID string) {
+	p.userID = userID
 }
 
 // RecipientID returns recipientID.
-func (personalMessage *PersonalMessage) RecipientID() string {
-	return personalMessage.recipientID
+func (p *PersonalMessage) RecipientID() string {
+	return p.recipientID
 }
 
 // SetRecipientID sets the recipientID.
-func (personalMessage *PersonalMessage) SetRecipientID(recipientID string) {
-	personalMessage.recipientID = recipientID
+func (p *PersonalMessage) SetRecipientID(recipientID string) {
+	p.recipientID = recipientID
 }
 
 // ResponseToID returns responseToID.
-func (personalMessage *PersonalMessage) ResponseToID() *string {
-	return personalMessage.responseToID
+func (p *PersonalMessage) ResponseToID() *string {
+	return p.responseToID
 }
 
 // SetResponseToID sets the responseToID.
-func (personalMessage *PersonalMessage) SetResponseToID(responseToID *string) {
-	personalMessage.responseToID = responseToID
+func (p *PersonalMessage) SetResponseToID(responseToID *string) {
+	p.responseToID = responseToID
 }
 
 // Title returns title.
-func (personalMessage *PersonalMessage) Title() *string {
-	return personalMessage.title
+func (p *PersonalMessage) Title() *string {
+	return p.title
 }
 
 // SetTitle sets the title.
-func (personalMessage *PersonalMessage) SetTitle(title *string) {
-	personalMessage.title = title
+func (p *PersonalMessage) SetTitle(title *string) {
+	p.title = title
 }
 
 // Message returns message.
-func (personalMessage *PersonalMessage) Message() string {
-	return personalMessage.message
+func (p *PersonalMessage) Message() string {
+	return p.message
 }
 
 // SetMessage sets the message.
-func (personalMessage *PersonalMessage) SetMessage(message string) {
-	personalMessage.message = message
+func (p *PersonalMessage) SetMessage(message string) {
+	p.message = message
 }
 
 func newPersonalMessage() *PersonalMessage {

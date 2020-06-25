@@ -9,286 +9,286 @@ import (
 )
 
 func TestShipmentTable(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
-	if shipment.TableName() == "" {
+	s := shipment.NewShipmentEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestShipmentTableAlias(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
-	if shipment.TableName() == "" {
+	s := shipment.NewShipmentEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestShipmentIsUpdated(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
-	shipment.IsUpdated()
+	s := shipment.NewShipmentEntity()
+	s.IsUpdated()
 }
 
 func TestShipmentID(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
-	shipment.ID()
+	s := shipment.NewShipmentEntity()
+	s.ID()
 }
 
 func TestShipmentCreatedByID(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetCreatedByID(testValue)
-	if testValue != shipment.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUpdatedByID(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUpdatedByID(&testValue)
-	if &testValue != shipment.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentCreatedAt(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := time.Now()
-	shipment.SetCreatedAt(testValue)
-	if testValue != shipment.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUpdatedAt(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := time.Now()
-	shipment.SetUpdatedAt(&testValue)
-	if &testValue != shipment.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentCreatedByFirstName(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetCreatedByFirstName(&testValue)
-	if &testValue != shipment.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentCreatedBySurname(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetCreatedBySurname(&testValue)
-	if &testValue != shipment.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUpdatedByFirstName(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUpdatedByFirstName(&testValue)
-	if &testValue != shipment.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUpdatedBySurname(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUpdatedBySurname(&testValue)
-	if &testValue != shipment.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentDomainID(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetDomainID(testValue)
-	if testValue != shipment.DomainID() {
+	s.SetDomainID(testValue)
+	if testValue != s.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserID(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserID(testValue)
-	if testValue != shipment.UserID() {
+	s.SetUserID(testValue)
+	if testValue != s.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentSaleOrderID(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetSaleOrderID(testValue)
-	if testValue != shipment.SaleOrderID() {
+	s.SetSaleOrderID(testValue)
+	if testValue != s.SaleOrderID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentCode(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetCode(&testValue)
-	if &testValue != shipment.Code() {
+	s.SetCode(&testValue)
+	if &testValue != s.Code() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoBusiness(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := true
-	shipment.SetUserInfoBusiness(testValue)
-	if testValue != shipment.UserInfoBusiness() {
+	s.SetUserInfoBusiness(testValue)
+	if testValue != s.UserInfoBusiness() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoBusinessCocNumber(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoBusinessCocNumber(&testValue)
-	if &testValue != shipment.UserInfoBusinessCocNumber() {
+	s.SetUserInfoBusinessCocNumber(&testValue)
+	if &testValue != s.UserInfoBusinessCocNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoFirstName(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoFirstName(testValue)
-	if testValue != shipment.UserInfoFirstName() {
+	s.SetUserInfoFirstName(testValue)
+	if testValue != s.UserInfoFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoSurname(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoSurname(testValue)
-	if testValue != shipment.UserInfoSurname() {
+	s.SetUserInfoSurname(testValue)
+	if testValue != s.UserInfoSurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoStreet(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoStreet(testValue)
-	if testValue != shipment.UserInfoStreet() {
+	s.SetUserInfoStreet(testValue)
+	if testValue != s.UserInfoStreet() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoStreetLine2(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoStreetLine2(&testValue)
-	if &testValue != shipment.UserInfoStreetLine2() {
+	s.SetUserInfoStreetLine2(&testValue)
+	if &testValue != s.UserInfoStreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoNumber(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoNumber(testValue)
-	if testValue != shipment.UserInfoNumber() {
+	s.SetUserInfoNumber(testValue)
+	if testValue != s.UserInfoNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoNumberAddition(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoNumberAddition(&testValue)
-	if &testValue != shipment.UserInfoNumberAddition() {
+	s.SetUserInfoNumberAddition(&testValue)
+	if &testValue != s.UserInfoNumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoZipCode(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoZipCode(testValue)
-	if testValue != shipment.UserInfoZipCode() {
+	s.SetUserInfoZipCode(testValue)
+	if testValue != s.UserInfoZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoCity(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoCity(testValue)
-	if testValue != shipment.UserInfoCity() {
+	s.SetUserInfoCity(testValue)
+	if testValue != s.UserInfoCity() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoState(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := uint(1e9)
-	shipment.SetUserInfoState(&testValue)
-	if &testValue != shipment.UserInfoState() {
+	s.SetUserInfoState(&testValue)
+	if &testValue != s.UserInfoState() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoCountry(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := uint16(65000)
-	shipment.SetUserInfoCountry(&testValue)
-	if &testValue != shipment.UserInfoCountry() {
+	s.SetUserInfoCountry(&testValue)
+	if &testValue != s.UserInfoCountry() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoPhoneNumber(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoPhoneNumber(&testValue)
-	if &testValue != shipment.UserInfoPhoneNumber() {
+	s.SetUserInfoPhoneNumber(&testValue)
+	if &testValue != s.UserInfoPhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentUserInfoEmail(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetUserInfoEmail(&testValue)
-	if &testValue != shipment.UserInfoEmail() {
+	s.SetUserInfoEmail(&testValue)
+	if &testValue != s.UserInfoEmail() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentComments(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetComments(&testValue)
-	if &testValue != shipment.Comments() {
+	s.SetComments(&testValue)
+	if &testValue != s.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentSellingPartyAutograph(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetSellingPartyAutograph(&testValue)
-	if &testValue != shipment.SellingPartyAutograph() {
+	s.SetSellingPartyAutograph(&testValue)
+	if &testValue != s.SellingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestShipmentBuyingPartyAutograph(t *testing.T) {
-	shipment := shipment.NewShipmentEntity()
+	s := shipment.NewShipmentEntity()
 	testValue := "testValue"
-	shipment.SetBuyingPartyAutograph(&testValue)
-	if &testValue != shipment.BuyingPartyAutograph() {
+	s.SetBuyingPartyAutograph(&testValue)
+	if &testValue != s.BuyingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

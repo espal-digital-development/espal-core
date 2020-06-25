@@ -29,11 +29,11 @@ type Model struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (model *Model) TableName() string {
+func (m *Model) TableName() string {
 	return "ProductModel"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (model *Model) TableAlias() string {
+func (m *Model) TableAlias() string {
 	return "prom"
 }

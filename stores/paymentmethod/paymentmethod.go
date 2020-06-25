@@ -22,6 +22,6 @@ type PaymentMethod struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (paymentMethod *PaymentMethod) TableAlias() string {
+func (p *PaymentMethod) TableAlias() string {
 	return "pmet"
 }

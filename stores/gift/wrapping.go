@@ -20,11 +20,11 @@ type Wrapping struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (wrapping *Wrapping) TableName() string {
+func (w *Wrapping) TableName() string {
 	return "GiftWrapping"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (wrapping *Wrapping) TableAlias() string {
+func (w *Wrapping) TableAlias() string {
 	return "gw"
 }

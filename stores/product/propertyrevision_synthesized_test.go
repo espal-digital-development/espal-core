@@ -9,187 +9,187 @@ import (
 )
 
 func TestPropertyRevisionTable(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
-	if propertyRevision.TableName() == "" {
+	p := product.NewPropertyRevisionEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestPropertyRevisionTableAlias(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
-	if propertyRevision.TableName() == "" {
+	p := product.NewPropertyRevisionEntity()
+	if p.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestPropertyRevisionIsUpdated(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
-	propertyRevision.IsUpdated()
+	p := product.NewPropertyRevisionEntity()
+	p.IsUpdated()
 }
 
 func TestPropertyRevisionID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
-	propertyRevision.ID()
+	p := product.NewPropertyRevisionEntity()
+	p.ID()
 }
 
 func TestPropertyRevisionCreatedByID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetCreatedByID(testValue)
-	if testValue != propertyRevision.CreatedByID() {
+	p.SetCreatedByID(testValue)
+	if testValue != p.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionUpdatedByID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetUpdatedByID(&testValue)
-	if &testValue != propertyRevision.UpdatedByID() {
+	p.SetUpdatedByID(&testValue)
+	if &testValue != p.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionCreatedAt(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := time.Now()
-	propertyRevision.SetCreatedAt(testValue)
-	if testValue != propertyRevision.CreatedAt() {
+	p.SetCreatedAt(testValue)
+	if testValue != p.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionUpdatedAt(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := time.Now()
-	propertyRevision.SetUpdatedAt(&testValue)
-	if &testValue != propertyRevision.UpdatedAt() {
+	p.SetUpdatedAt(&testValue)
+	if &testValue != p.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionCreatedByFirstName(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetCreatedByFirstName(&testValue)
-	if &testValue != propertyRevision.CreatedByFirstName() {
+	p.SetCreatedByFirstName(&testValue)
+	if &testValue != p.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionCreatedBySurname(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetCreatedBySurname(&testValue)
-	if &testValue != propertyRevision.CreatedBySurname() {
+	p.SetCreatedBySurname(&testValue)
+	if &testValue != p.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionUpdatedByFirstName(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetUpdatedByFirstName(&testValue)
-	if &testValue != propertyRevision.UpdatedByFirstName() {
+	p.SetUpdatedByFirstName(&testValue)
+	if &testValue != p.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionUpdatedBySurname(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetUpdatedBySurname(&testValue)
-	if &testValue != propertyRevision.UpdatedBySurname() {
+	p.SetUpdatedBySurname(&testValue)
+	if &testValue != p.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionDomainID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetDomainID(&testValue)
-	if &testValue != propertyRevision.DomainID() {
+	p.SetDomainID(&testValue)
+	if &testValue != p.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionLanguage(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := uint16(65000)
-	propertyRevision.SetLanguage(&testValue)
-	if &testValue != propertyRevision.Language() {
+	p.SetLanguage(&testValue)
+	if &testValue != p.Language() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionBundledID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetBundledID(&testValue)
-	if &testValue != propertyRevision.BundledID() {
+	p.SetBundledID(&testValue)
+	if &testValue != p.BundledID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionModelID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetModelID(&testValue)
-	if &testValue != propertyRevision.ModelID() {
+	p.SetModelID(&testValue)
+	if &testValue != p.ModelID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionVariantID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetVariantID(&testValue)
-	if &testValue != propertyRevision.VariantID() {
+	p.SetVariantID(&testValue)
+	if &testValue != p.VariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionPropertyID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetPropertyID(testValue)
-	if testValue != propertyRevision.PropertyID() {
+	p.SetPropertyID(testValue)
+	if testValue != p.PropertyID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionPropertyOptionID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetPropertyOptionID(&testValue)
-	if &testValue != propertyRevision.PropertyOptionID() {
+	p.SetPropertyOptionID(&testValue)
+	if &testValue != p.PropertyOptionID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionRevertedFromID(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetRevertedFromID(&testValue)
-	if &testValue != propertyRevision.RevertedFromID() {
+	p.SetRevertedFromID(&testValue)
+	if &testValue != p.RevertedFromID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionRevision(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := uint(1e9)
-	propertyRevision.SetRevision(testValue)
-	if testValue != propertyRevision.Revision() {
+	p.SetRevision(testValue)
+	if testValue != p.Revision() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestPropertyRevisionValue(t *testing.T) {
-	propertyRevision := product.NewPropertyRevisionEntity()
+	p := product.NewPropertyRevisionEntity()
 	testValue := "testValue"
-	propertyRevision.SetValue(&testValue)
-	if &testValue != propertyRevision.Value() {
+	p.SetValue(&testValue)
+	if &testValue != p.Value() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

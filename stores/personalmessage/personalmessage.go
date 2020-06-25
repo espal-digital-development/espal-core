@@ -24,6 +24,6 @@ type PersonalMessage struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (personalMessage *PersonalMessage) TableAlias() string {
+func (p *PersonalMessage) TableAlias() string {
 	return "pme"
 }

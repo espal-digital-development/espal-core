@@ -1,189 +1,189 @@
 package validators
 
 // NewDateTimeField returns a new instance of FormField with the type DateTime.
-func (form *Form) NewDateTimeField(name string) FormField {
-	return form.defaultChecks(&formField{
+func (f *Form) NewDateTimeField(name string) FormField {
+	return f.defaultChecks(&formField{
 		name:  name,
 		_type: DateTimeFormField,
 	})
 }
 
 // SetMinYear sets the form field min year.
-func (formField *formField) SetMinYear(minYear uint) {
-	formField.minYear = minYear
+func (f *formField) SetMinYear(minYear uint) {
+	f.minYear = minYear
 }
 
 // MinYear gets the form field min year.
-func (formField *formField) MinYear() uint {
-	return formField.minYear
+func (f *formField) MinYear() uint {
+	return f.minYear
 }
 
 // SetMaxYear sets the form field max year.
-func (formField *formField) SetMaxYear(maxYear uint) {
-	formField.maxYear = maxYear
+func (f *formField) SetMaxYear(maxYear uint) {
+	f.maxYear = maxYear
 }
 
 // MaxYear gets the form field max year.
-func (formField *formField) MaxYear() uint {
-	return formField.maxYear
+func (f *formField) MaxYear() uint {
+	return f.maxYear
 }
 
 // SetMinMonth sets the form field min month.
-func (formField *formField) SetMinMonth(minMonth uint) {
-	formField.minMonth = minMonth
+func (f *formField) SetMinMonth(minMonth uint) {
+	f.minMonth = minMonth
 }
 
 // MinMonth gets the form field min month.
-func (formField *formField) MinMonth() uint {
-	return formField.minMonth
+func (f *formField) MinMonth() uint {
+	return f.minMonth
 }
 
 // SetMaxMonth sets the form field max month.
-func (formField *formField) SetMaxMonth(maxMonth uint) {
-	formField.maxMonth = maxMonth
+func (f *formField) SetMaxMonth(maxMonth uint) {
+	f.maxMonth = maxMonth
 }
 
 // MaxMonth gets the form field max month.
-func (formField *formField) MaxMonth() uint {
-	return formField.maxMonth
+func (f *formField) MaxMonth() uint {
+	return f.maxMonth
 }
 
 // SetMinDay sets the form field min day.
-func (formField *formField) SetMinDay(minDay uint) {
-	formField.minDay = minDay
+func (f *formField) SetMinDay(minDay uint) {
+	f.minDay = minDay
 }
 
 // MinDay gets the form field min day.
-func (formField *formField) MinDay() uint {
-	return formField.minDay
+func (f *formField) MinDay() uint {
+	return f.minDay
 }
 
 // SetMaxDay sets the form field max day.
-func (formField *formField) SetMaxDay(maxDay uint) {
-	formField.maxDay = maxDay
+func (f *formField) SetMaxDay(maxDay uint) {
+	f.maxDay = maxDay
 }
 
 // MaxDay gets the form field max day.
-func (formField *formField) MaxDay() uint {
-	return formField.maxDay
+func (f *formField) MaxDay() uint {
+	return f.maxDay
 }
 
 // SetMaxHour sets the form field max hour.
-func (formField *formField) SetMaxHour(maxHour uint) {
-	formField.maxHour = maxHour
+func (f *formField) SetMaxHour(maxHour uint) {
+	f.maxHour = maxHour
 }
 
 // MaxDay gets the form field max hour.
-func (formField *formField) MaxHour() uint {
-	return formField.maxHour
+func (f *formField) MaxHour() uint {
+	return f.maxHour
 }
 
 // SetMinHour sets the form field min hour.
-func (formField *formField) SetMinHour(minHour uint) {
-	formField.minDay = minHour
+func (f *formField) SetMinHour(minHour uint) {
+	f.minDay = minHour
 }
 
 // MinHour gets the form field min hour.
-func (formField *formField) MinHour() uint {
-	return formField.minHour
+func (f *formField) MinHour() uint {
+	return f.minHour
 }
 
 // SetMaxMinute sets the form field max minute.
-func (formField *formField) SetMaxMinute(maxMinute uint) {
-	formField.maxMinute = maxMinute
+func (f *formField) SetMaxMinute(maxMinute uint) {
+	f.maxMinute = maxMinute
 }
 
 // MaxMinute gets the form field max minute.
-func (formField *formField) MaxMinute() uint {
-	return formField.maxMinute
+func (f *formField) MaxMinute() uint {
+	return f.maxMinute
 }
 
 // SetMinMinute sets the form field min minute.
-func (formField *formField) SetMinMinute(minMinute uint) {
-	formField.minMinute = minMinute
+func (f *formField) SetMinMinute(minMinute uint) {
+	f.minMinute = minMinute
 }
 
 // MinMinute gets the form field min minute.
-func (formField *formField) MinMinute() uint {
-	return formField.minMinute
+func (f *formField) MinMinute() uint {
+	return f.minMinute
 }
 
 // SetMaxSecond sets the form field max second.
-func (formField *formField) SetMaxSecond(maxSecond uint) {
-	formField.maxSecond = maxSecond
+func (f *formField) SetMaxSecond(maxSecond uint) {
+	f.maxSecond = maxSecond
 }
 
 // MaxSecond gets the form field max second.
-func (formField *formField) MaxSecond() uint {
-	return formField.maxSecond
+func (f *formField) MaxSecond() uint {
+	return f.maxSecond
 }
 
 // SetMinSecond sets the form field min second.
-func (formField *formField) SetMinSecond(minSecond uint) {
-	formField.minSecond = minSecond
+func (f *formField) SetMinSecond(minSecond uint) {
+	f.minSecond = minSecond
 }
 
 // MinSecond gets the form field min second.
-func (formField *formField) MinSecond() uint {
-	return formField.minSecond
+func (f *formField) MinSecond() uint {
+	return f.minSecond
 }
 
 // SetExlucdeYear marks the field's date to not show and use the year part.
-func (formField *formField) SetExcludeYear() {
-	formField.excludeYear = true
+func (f *formField) SetExcludeYear() {
+	f.excludeYear = true
 }
 
 // ExcludeYear returns if the field's date should not show and use the year part.
-func (formField *formField) ExcludeYear() bool {
-	return formField.excludeYear
+func (f *formField) ExcludeYear() bool {
+	return f.excludeYear
 }
 
 // SetExcludeMonth marks the field's date to not show and use the month part.
-func (formField *formField) SetExcludeMonth() {
-	formField.excludeMonth = true
+func (f *formField) SetExcludeMonth() {
+	f.excludeMonth = true
 }
 
 // ExcludeMonth returns if the field's date should not show and use the month part.
-func (formField *formField) ExcludeMonth() bool {
-	return formField.excludeMonth
+func (f *formField) ExcludeMonth() bool {
+	return f.excludeMonth
 }
 
 // SetExcludeDay marks the field's date to not show and use the day part.
-func (formField *formField) SetExcludeDay() {
-	formField.excludeDay = true
+func (f *formField) SetExcludeDay() {
+	f.excludeDay = true
 }
 
 // ExcludeDay returns if the field's date should not show and use the day part.
-func (formField *formField) ExcludeDay() bool {
-	return formField.excludeDay
+func (f *formField) ExcludeDay() bool {
+	return f.excludeDay
 }
 
 // SetExcludeHour marks the field's date to not show and use the hour part.
-func (formField *formField) SetExcludeHour() {
-	formField.excludeHour = true
+func (f *formField) SetExcludeHour() {
+	f.excludeHour = true
 }
 
 // ExcludeHour returns if the field's date should not show and use the hour part.
-func (formField *formField) ExcludeHour() bool {
-	return formField.excludeHour
+func (f *formField) ExcludeHour() bool {
+	return f.excludeHour
 }
 
 // SetExcludeMinute marks the field's date to not show and use the minute part.
-func (formField *formField) SetExcludeMinute() {
-	formField.excludeMinute = true
+func (f *formField) SetExcludeMinute() {
+	f.excludeMinute = true
 }
 
 // ExcludeMinute returns if the field's date should not show and use the minute part.
-func (formField *formField) ExcludeMinute() bool {
-	return formField.excludeMinute
+func (f *formField) ExcludeMinute() bool {
+	return f.excludeMinute
 }
 
 // SetExcludeSecond marks the field's date to not show and use the second part.
-func (formField *formField) SetExcludeSecond() {
-	formField.excludeMinute = true
+func (f *formField) SetExcludeSecond() {
+	f.excludeMinute = true
 }
 
 // ExcludeSecond returns if the field's date should not show and use the second part.
-func (formField *formField) ExcludeSecond() bool {
-	return formField.excludeSecond
+func (f *formField) ExcludeSecond() bool {
+	return f.excludeSecond
 }

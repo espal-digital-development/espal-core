@@ -21,7 +21,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("ReadUserGroup") {
 		return
 	}
@@ -32,7 +32,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	userGroup, ok, err := route.userGroupStore.GetOneByIDWithCreator(id)
+	userGroup, ok, err := r.userGroupStore.GetOneByIDWithCreator(id)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -42,7 +42,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	translations, translationsFound, err := route.userGroupStore.TranslationsForID(userGroup.ID())
+	translations, translationsFound, err := r.userGroupStore.TranslationsForID(userGroup.ID())
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -82,12 +82,12 @@ func (route *Route) Handle(context contexts.Context) {
 	}
 	pageActions := pageactions.New(context, "UserGroup", len(userRightsList) > 0)
 	pageActions.AddUpdateWithFieldAndPath("userright", fmt.Sprintf("UserGroup/UserRights/Update?id=%s", userGroup.ID()))
-	route.viewPageFactory.NewPage(
+	r.viewPageFactory.NewPage(
 		context,
 		language,
 		userGroup,
-		route.userRightsRepository.AllByCode(),
-		route.userRightsRepository.UserRightCodes(),
+		r.userRightsRepository.AllByCode(),
+		r.userRightsRepository.UserRightCodes(),
 		userGroupUserRights,
 		pageActions,
 		translations,

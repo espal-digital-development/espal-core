@@ -148,7 +148,7 @@ func TestCountryHasTranslation(t *testing.T) {
 	if !ok {
 		t.Fatal("Failed to find the Spanish translations for United Kingdom")
 	}
-	if strings.Trim(trans, " ") == "" {
+	if strings.TrimSpace(trans) == "" {
 		t.Fatal("Translation returned empty")
 	}
 }

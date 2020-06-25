@@ -9,97 +9,97 @@ import (
 )
 
 func TestSubscriptionTable(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
-	if subscription.TableName() == "" {
+	s := subscription.NewSubscriptionEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSubscriptionTableAlias(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
-	if subscription.TableName() == "" {
+	s := subscription.NewSubscriptionEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSubscriptionIsUpdated(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
-	subscription.IsUpdated()
+	s := subscription.NewSubscriptionEntity()
+	s.IsUpdated()
 }
 
 func TestSubscriptionID(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
-	subscription.ID()
+	s := subscription.NewSubscriptionEntity()
+	s.ID()
 }
 
 func TestSubscriptionCreatedByID(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := "testValue"
-	subscription.SetCreatedByID(testValue)
-	if testValue != subscription.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionUpdatedByID(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := "testValue"
-	subscription.SetUpdatedByID(&testValue)
-	if &testValue != subscription.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionCreatedAt(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := time.Now()
-	subscription.SetCreatedAt(testValue)
-	if testValue != subscription.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionUpdatedAt(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := time.Now()
-	subscription.SetUpdatedAt(&testValue)
-	if &testValue != subscription.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionCreatedByFirstName(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := "testValue"
-	subscription.SetCreatedByFirstName(&testValue)
-	if &testValue != subscription.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionCreatedBySurname(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := "testValue"
-	subscription.SetCreatedBySurname(&testValue)
-	if &testValue != subscription.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionUpdatedByFirstName(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := "testValue"
-	subscription.SetUpdatedByFirstName(&testValue)
-	if &testValue != subscription.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSubscriptionUpdatedBySurname(t *testing.T) {
-	subscription := subscription.NewSubscriptionEntity()
+	s := subscription.NewSubscriptionEntity()
 	testValue := "testValue"
-	subscription.SetUpdatedBySurname(&testValue)
-	if &testValue != subscription.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

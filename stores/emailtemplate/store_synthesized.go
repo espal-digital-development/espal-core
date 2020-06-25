@@ -13,8 +13,8 @@ var _ Store = &EmailTemplatesStore{}
 type Store interface {
 }
 
-func (emailTemplatesStore *EmailTemplatesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*EmailTemplate, ok bool, err error) {
-	rows, err := emailTemplatesStore.selecterDatabase.Query(query, params...)
+func (e *EmailTemplatesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*EmailTemplate, ok bool, err error) {
+	rows, err := e.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (emailTemplatesStore *EmailTemplatesStore) fetch(query string, withCreators
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		emailTemplate := newEmailTemplate()
-		fields := []interface{}{&emailTemplate.id, &emailTemplate.createdByID, &emailTemplate.updatedByID, &emailTemplate.createdAt, &emailTemplate.updatedAt, &emailTemplate.domainID, &emailTemplate.active}
+		e := newEmailTemplate()
+		fields := []interface{}{&e.id, &e.createdByID, &e.updatedByID, &e.createdAt, &e.updatedAt, &e.domainID, &e.active}
 		if withCreators {
-			fields = append(fields, &emailTemplate.createdByFirstName, &emailTemplate.createdBySurname, &emailTemplate.updatedByFirstName, &emailTemplate.updatedBySurname)
+			fields = append(fields, &e.createdByFirstName, &e.createdBySurname, &e.updatedByFirstName, &e.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, emailTemplate)
+		result = append(result, e)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (emailTemplatesStore *EmailTemplatesStore) fetch(query string, withCreators
 
 // New returns a new instance of EmailTemplatesStore.
 func New(selecterDatabase database.Database) (*EmailTemplatesStore, error) {
-	emailTemplatesStore := &EmailTemplatesStore{
+	e := &EmailTemplatesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return emailTemplatesStore, nil
+	return e, nil
 }

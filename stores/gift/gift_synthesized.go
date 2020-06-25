@@ -14,103 +14,103 @@ type GiftEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (gift *Gift) TableName() string {
+func (g *Gift) TableName() string {
 	return "Gift"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (gift *Gift) TableAlias() string {
+func (g *Gift) TableAlias() string {
 	return "ge"
 }
 
 // ID returns id.
-func (gift *Gift) ID() string {
-	return gift.id
+func (g *Gift) ID() string {
+	return g.id
 }
 
 // CreatedByID returns createdByID.
-func (gift *Gift) CreatedByID() string {
-	return gift.createdByID
+func (g *Gift) CreatedByID() string {
+	return g.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (gift *Gift) SetCreatedByID(createdByID string) {
-	gift.createdByID = createdByID
+func (g *Gift) SetCreatedByID(createdByID string) {
+	g.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (gift *Gift) UpdatedByID() *string {
-	return gift.updatedByID
+func (g *Gift) UpdatedByID() *string {
+	return g.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (gift *Gift) SetUpdatedByID(updatedByID *string) {
-	gift.updatedByID = updatedByID
+func (g *Gift) SetUpdatedByID(updatedByID *string) {
+	g.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (gift *Gift) CreatedAt() time.Time {
-	return gift.createdAt
+func (g *Gift) CreatedAt() time.Time {
+	return g.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (gift *Gift) SetCreatedAt(createdAt time.Time) {
-	gift.createdAt = createdAt
+func (g *Gift) SetCreatedAt(createdAt time.Time) {
+	g.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (gift *Gift) UpdatedAt() *time.Time {
-	return gift.updatedAt
+func (g *Gift) UpdatedAt() *time.Time {
+	return g.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (gift *Gift) SetUpdatedAt(updatedAt *time.Time) {
-	gift.updatedAt = updatedAt
+func (g *Gift) SetUpdatedAt(updatedAt *time.Time) {
+	g.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (gift *Gift) CreatedByFirstName() *string {
-	return gift.createdByFirstName
+func (g *Gift) CreatedByFirstName() *string {
+	return g.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (gift *Gift) SetCreatedByFirstName(createdByFirstName *string) {
-	gift.createdByFirstName = createdByFirstName
+func (g *Gift) SetCreatedByFirstName(createdByFirstName *string) {
+	g.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (gift *Gift) CreatedBySurname() *string {
-	return gift.createdBySurname
+func (g *Gift) CreatedBySurname() *string {
+	return g.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (gift *Gift) SetCreatedBySurname(createdBySurname *string) {
-	gift.createdBySurname = createdBySurname
+func (g *Gift) SetCreatedBySurname(createdBySurname *string) {
+	g.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (gift *Gift) UpdatedByFirstName() *string {
-	return gift.updatedByFirstName
+func (g *Gift) UpdatedByFirstName() *string {
+	return g.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (gift *Gift) SetUpdatedByFirstName(updatedByFirstName *string) {
-	gift.updatedByFirstName = updatedByFirstName
+func (g *Gift) SetUpdatedByFirstName(updatedByFirstName *string) {
+	g.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (gift *Gift) UpdatedBySurname() *string {
-	return gift.updatedBySurname
+func (g *Gift) UpdatedBySurname() *string {
+	return g.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (gift *Gift) SetUpdatedBySurname(updatedBySurname *string) {
-	gift.updatedBySurname = updatedBySurname
+func (g *Gift) SetUpdatedBySurname(updatedBySurname *string) {
+	g.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (gift *Gift) IsUpdated() bool {
-	return gift.updatedByID != nil
+func (g *Gift) IsUpdated() bool {
+	return g.updatedByID != nil
 }
 
 func newGift() *Gift {

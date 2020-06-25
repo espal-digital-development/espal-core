@@ -18,123 +18,123 @@ type BlockEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (block *Block) TableName() string {
+func (b *Block) TableName() string {
 	return "Block"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (block *Block) TableAlias() string {
+func (b *Block) TableAlias() string {
 	return "be"
 }
 
 // ID returns id.
-func (block *Block) ID() string {
-	return block.id
+func (b *Block) ID() string {
+	return b.id
 }
 
 // CreatedByID returns createdByID.
-func (block *Block) CreatedByID() string {
-	return block.createdByID
+func (b *Block) CreatedByID() string {
+	return b.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (block *Block) SetCreatedByID(createdByID string) {
-	block.createdByID = createdByID
+func (b *Block) SetCreatedByID(createdByID string) {
+	b.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (block *Block) UpdatedByID() *string {
-	return block.updatedByID
+func (b *Block) UpdatedByID() *string {
+	return b.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (block *Block) SetUpdatedByID(updatedByID *string) {
-	block.updatedByID = updatedByID
+func (b *Block) SetUpdatedByID(updatedByID *string) {
+	b.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (block *Block) CreatedAt() time.Time {
-	return block.createdAt
+func (b *Block) CreatedAt() time.Time {
+	return b.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (block *Block) SetCreatedAt(createdAt time.Time) {
-	block.createdAt = createdAt
+func (b *Block) SetCreatedAt(createdAt time.Time) {
+	b.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (block *Block) UpdatedAt() *time.Time {
-	return block.updatedAt
+func (b *Block) UpdatedAt() *time.Time {
+	return b.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (block *Block) SetUpdatedAt(updatedAt *time.Time) {
-	block.updatedAt = updatedAt
+func (b *Block) SetUpdatedAt(updatedAt *time.Time) {
+	b.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (block *Block) CreatedByFirstName() *string {
-	return block.createdByFirstName
+func (b *Block) CreatedByFirstName() *string {
+	return b.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (block *Block) SetCreatedByFirstName(createdByFirstName *string) {
-	block.createdByFirstName = createdByFirstName
+func (b *Block) SetCreatedByFirstName(createdByFirstName *string) {
+	b.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (block *Block) CreatedBySurname() *string {
-	return block.createdBySurname
+func (b *Block) CreatedBySurname() *string {
+	return b.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (block *Block) SetCreatedBySurname(createdBySurname *string) {
-	block.createdBySurname = createdBySurname
+func (b *Block) SetCreatedBySurname(createdBySurname *string) {
+	b.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (block *Block) UpdatedByFirstName() *string {
-	return block.updatedByFirstName
+func (b *Block) UpdatedByFirstName() *string {
+	return b.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (block *Block) SetUpdatedByFirstName(updatedByFirstName *string) {
-	block.updatedByFirstName = updatedByFirstName
+func (b *Block) SetUpdatedByFirstName(updatedByFirstName *string) {
+	b.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (block *Block) UpdatedBySurname() *string {
-	return block.updatedBySurname
+func (b *Block) UpdatedBySurname() *string {
+	return b.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (block *Block) SetUpdatedBySurname(updatedBySurname *string) {
-	block.updatedBySurname = updatedBySurname
+func (b *Block) SetUpdatedBySurname(updatedBySurname *string) {
+	b.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (block *Block) IsUpdated() bool {
-	return block.updatedByID != nil
+func (b *Block) IsUpdated() bool {
+	return b.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (block *Block) DomainID() string {
-	return block.domainID
+func (b *Block) DomainID() string {
+	return b.domainID
 }
 
 // SetDomainID sets the domainID.
-func (block *Block) SetDomainID(domainID string) {
-	block.domainID = domainID
+func (b *Block) SetDomainID(domainID string) {
+	b.domainID = domainID
 }
 
 // Active returns active.
-func (block *Block) Active() bool {
-	return block.active
+func (b *Block) Active() bool {
+	return b.active
 }
 
 // SetActive sets the active.
-func (block *Block) SetActive(active bool) {
-	block.active = active
+func (b *Block) SetActive(active bool) {
+	b.active = active
 }
 
 func newBlock() *Block {

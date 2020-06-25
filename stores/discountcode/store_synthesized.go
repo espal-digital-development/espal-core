@@ -13,8 +13,8 @@ var _ Store = &DiscountCodesStore{}
 type Store interface {
 }
 
-func (discountCodesStore *DiscountCodesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*DiscountCode, ok bool, err error) {
-	rows, err := discountCodesStore.selecterDatabase.Query(query, params...)
+func (d *DiscountCodesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*DiscountCode, ok bool, err error) {
+	rows, err := d.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (discountCodesStore *DiscountCodesStore) fetch(query string, withCreators b
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		discountCode := newDiscountCode()
-		fields := []interface{}{&discountCode.id, &discountCode.createdByID, &discountCode.updatedByID, &discountCode.createdAt, &discountCode.updatedAt, &discountCode.key, &discountCode.maxUses, &discountCode.usesCounter, &discountCode.availableFrom, &discountCode.availableUntil, &discountCode.discountPercentage, &discountCode.discountAmount}
+		d := newDiscountCode()
+		fields := []interface{}{&d.id, &d.createdByID, &d.updatedByID, &d.createdAt, &d.updatedAt, &d.key, &d.maxUses, &d.usesCounter, &d.availableFrom, &d.availableUntil, &d.discountPercentage, &d.discountAmount}
 		if withCreators {
-			fields = append(fields, &discountCode.createdByFirstName, &discountCode.createdBySurname, &discountCode.updatedByFirstName, &discountCode.updatedBySurname)
+			fields = append(fields, &d.createdByFirstName, &d.createdBySurname, &d.updatedByFirstName, &d.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, discountCode)
+		result = append(result, d)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (discountCodesStore *DiscountCodesStore) fetch(query string, withCreators b
 
 // New returns a new instance of DiscountCodesStore.
 func New(selecterDatabase database.Database) (*DiscountCodesStore, error) {
-	discountCodesStore := &DiscountCodesStore{
+	d := &DiscountCodesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return discountCodesStore, nil
+	return d, nil
 }

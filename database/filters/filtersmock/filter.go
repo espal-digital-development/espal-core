@@ -39,11 +39,15 @@ var (
 	lockFilterMockTotalResults                     sync.RWMutex
 )
 
-// FilterMock is a mock implementation of Filter.
+// Ensure, that FilterMock does implement filters.Filter.
+// If this is not the case, regenerate this file with moq.
+var _ filters.Filter = &FilterMock{}
+
+// FilterMock is a mock implementation of filters.Filter.
 //
 //     func TestSomethingThatUsesFilter(t *testing.T) {
 //
-//         // make and configure a mocked Filter
+//         // make and configure a mocked filters.Filter
 //         mockedFilter := &FilterMock{
 //             AddColumnFunc: func(displayColumn filters.DisplayColumn) filters.Filter {
 // 	               panic("mock out the AddColumn method")
@@ -128,7 +132,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedFilter in code that requires Filter
+//         // use mockedFilter in code that requires filters.Filter
 //         // and then make assertions.
 //
 //     }

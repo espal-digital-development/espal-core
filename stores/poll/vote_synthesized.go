@@ -16,103 +16,103 @@ type VoteEntity interface {
 }
 
 // ID returns id.
-func (vote *Vote) ID() string {
-	return vote.id
+func (v *Vote) ID() string {
+	return v.id
 }
 
 // CreatedByID returns createdByID.
-func (vote *Vote) CreatedByID() string {
-	return vote.createdByID
+func (v *Vote) CreatedByID() string {
+	return v.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (vote *Vote) SetCreatedByID(createdByID string) {
-	vote.createdByID = createdByID
+func (v *Vote) SetCreatedByID(createdByID string) {
+	v.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (vote *Vote) UpdatedByID() *string {
-	return vote.updatedByID
+func (v *Vote) UpdatedByID() *string {
+	return v.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (vote *Vote) SetUpdatedByID(updatedByID *string) {
-	vote.updatedByID = updatedByID
+func (v *Vote) SetUpdatedByID(updatedByID *string) {
+	v.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (vote *Vote) CreatedAt() time.Time {
-	return vote.createdAt
+func (v *Vote) CreatedAt() time.Time {
+	return v.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (vote *Vote) SetCreatedAt(createdAt time.Time) {
-	vote.createdAt = createdAt
+func (v *Vote) SetCreatedAt(createdAt time.Time) {
+	v.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (vote *Vote) UpdatedAt() *time.Time {
-	return vote.updatedAt
+func (v *Vote) UpdatedAt() *time.Time {
+	return v.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (vote *Vote) SetUpdatedAt(updatedAt *time.Time) {
-	vote.updatedAt = updatedAt
+func (v *Vote) SetUpdatedAt(updatedAt *time.Time) {
+	v.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (vote *Vote) CreatedByFirstName() *string {
-	return vote.createdByFirstName
+func (v *Vote) CreatedByFirstName() *string {
+	return v.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (vote *Vote) SetCreatedByFirstName(createdByFirstName *string) {
-	vote.createdByFirstName = createdByFirstName
+func (v *Vote) SetCreatedByFirstName(createdByFirstName *string) {
+	v.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (vote *Vote) CreatedBySurname() *string {
-	return vote.createdBySurname
+func (v *Vote) CreatedBySurname() *string {
+	return v.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (vote *Vote) SetCreatedBySurname(createdBySurname *string) {
-	vote.createdBySurname = createdBySurname
+func (v *Vote) SetCreatedBySurname(createdBySurname *string) {
+	v.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (vote *Vote) UpdatedByFirstName() *string {
-	return vote.updatedByFirstName
+func (v *Vote) UpdatedByFirstName() *string {
+	return v.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (vote *Vote) SetUpdatedByFirstName(updatedByFirstName *string) {
-	vote.updatedByFirstName = updatedByFirstName
+func (v *Vote) SetUpdatedByFirstName(updatedByFirstName *string) {
+	v.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (vote *Vote) UpdatedBySurname() *string {
-	return vote.updatedBySurname
+func (v *Vote) UpdatedBySurname() *string {
+	return v.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (vote *Vote) SetUpdatedBySurname(updatedBySurname *string) {
-	vote.updatedBySurname = updatedBySurname
+func (v *Vote) SetUpdatedBySurname(updatedBySurname *string) {
+	v.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (vote *Vote) IsUpdated() bool {
-	return vote.updatedByID != nil
+func (v *Vote) IsUpdated() bool {
+	return v.updatedByID != nil
 }
 
 // PollOptionID returns pollOptionID.
-func (vote *Vote) PollOptionID() string {
-	return vote.pollOptionID
+func (v *Vote) PollOptionID() string {
+	return v.pollOptionID
 }
 
 // SetPollOptionID sets the pollOptionID.
-func (vote *Vote) SetPollOptionID(pollOptionID string) {
-	vote.pollOptionID = pollOptionID
+func (v *Vote) SetPollOptionID(pollOptionID string) {
+	v.pollOptionID = pollOptionID
 }
 
 func newVote() *Vote {

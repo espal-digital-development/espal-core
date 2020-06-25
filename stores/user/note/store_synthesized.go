@@ -13,8 +13,8 @@ var _ Store = &NotesStore{}
 type Store interface {
 }
 
-func (notesStore *NotesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Note, ok bool, err error) {
-	rows, err := notesStore.selecterDatabase.Query(query, params...)
+func (n *NotesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Note, ok bool, err error) {
+	rows, err := n.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (notesStore *NotesStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		note := newNote()
-		fields := []interface{}{&note.id, &note.createdByID, &note.updatedByID, &note.createdAt, &note.updatedAt, &note.userID, &note.title, &note.contents}
+		n := newNote()
+		fields := []interface{}{&n.id, &n.createdByID, &n.updatedByID, &n.createdAt, &n.updatedAt, &n.userID, &n.title, &n.contents}
 		if withCreators {
-			fields = append(fields, &note.createdByFirstName, &note.createdBySurname, &note.updatedByFirstName, &note.updatedBySurname)
+			fields = append(fields, &n.createdByFirstName, &n.createdBySurname, &n.updatedByFirstName, &n.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, note)
+		result = append(result, n)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (notesStore *NotesStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of NotesStore.
 func New(selecterDatabase database.Database) (*NotesStore, error) {
-	notesStore := &NotesStore{
+	n := &NotesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return notesStore, nil
+	return n, nil
 }

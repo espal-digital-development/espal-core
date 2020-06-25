@@ -15,11 +15,15 @@ var (
 	lockSelectFieldMockSetMapTo sync.RWMutex
 )
 
-// SelectFieldMock is a mock implementation of SelectField.
+// Ensure, that SelectFieldMock does implement filters.SelectField.
+// If this is not the case, regenerate this file with moq.
+var _ filters.SelectField = &SelectFieldMock{}
+
+// SelectFieldMock is a mock implementation of filters.SelectField.
 //
 //     func TestSomethingThatUsesSelectField(t *testing.T) {
 //
-//         // make and configure a mocked SelectField
+//         // make and configure a mocked filters.SelectField
 //         mockedSelectField := &SelectFieldMock{
 //             AliasFunc: func() string {
 // 	               panic("mock out the Alias method")
@@ -35,7 +39,7 @@ var (
 //             },
 //         }
 //
-//         // use mockedSelectField in code that requires SelectField
+//         // use mockedSelectField in code that requires filters.SelectField
 //         // and then make assertions.
 //
 //     }

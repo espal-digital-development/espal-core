@@ -23,10 +23,10 @@ func (options options) Swap(i, j int) {
 }
 
 // GetCountryOptionsForLanguage returns all countries translated in the given language.
-func (validators *Validators) GetCountryOptionsForLanguage(language language) []ChoiceOption {
-	options, ok := validators.countryChoicesCache.Load(language.Code())
+func (v *Validators) GetCountryOptionsForLanguage(language language) []ChoiceOption {
+	options, ok := v.countryChoicesCache.Load(language.Code())
 	if !ok {
-		entries := validators.countriesRepository.All()
+		entries := v.countriesRepository.All()
 		options = make([]ChoiceOption, 0, len(entries))
 		for k := range entries {
 			options = append(options, &choiceOption{
@@ -35,16 +35,16 @@ func (validators *Validators) GetCountryOptionsForLanguage(language language) []
 			})
 		}
 		sort.Sort(options)
-		validators.countryChoicesCache.Store(language.Code(), []ChoiceOption(options))
+		v.countryChoicesCache.Store(language.Code(), []ChoiceOption(options))
 	}
 	return []ChoiceOption(options)
 }
 
 // GetLanguageOptionsForLanguage returns all languages translated in the given language.
-func (validators *Validators) GetLanguageOptionsForLanguage(language language) []ChoiceOption {
-	options, ok := validators.languageChoicesCache.Load(language.Code())
+func (v *Validators) GetLanguageOptionsForLanguage(language language) []ChoiceOption {
+	options, ok := v.languageChoicesCache.Load(language.Code())
 	if !ok {
-		entries := validators.languagesRepository.All()
+		entries := v.languagesRepository.All()
 		options = make([]ChoiceOption, 0, len(entries))
 		for k := range entries {
 			options = append(options, &choiceOption{
@@ -53,16 +53,16 @@ func (validators *Validators) GetLanguageOptionsForLanguage(language language) [
 			})
 		}
 		sort.Sort(options)
-		validators.languageChoicesCache.Store(language.Code(), []ChoiceOption(options))
+		v.languageChoicesCache.Store(language.Code(), []ChoiceOption(options))
 	}
 	return []ChoiceOption(options)
 }
 
 // GetCurrencyOptionsForLanguage returns all currencies translated in the given language.
-func (validators *Validators) GetCurrencyOptionsForLanguage(language language) []ChoiceOption {
-	options, ok := validators.currencyChoicesCache.Load(language.Code())
+func (v *Validators) GetCurrencyOptionsForLanguage(language language) []ChoiceOption {
+	options, ok := v.currencyChoicesCache.Load(language.Code())
 	if !ok {
-		entries := validators.currenciesRepository.All()
+		entries := v.currenciesRepository.All()
 		options = make([]ChoiceOption, 0, len(entries))
 		for k := range entries {
 			options = append(options, &choiceOption{
@@ -71,7 +71,7 @@ func (validators *Validators) GetCurrencyOptionsForLanguage(language language) [
 			})
 		}
 		sort.Sort(options)
-		validators.currencyChoicesCache.Store(language.Code(), []ChoiceOption(options))
+		v.currencyChoicesCache.Store(language.Code(), []ChoiceOption(options))
 	}
 	return []ChoiceOption(options)
 }

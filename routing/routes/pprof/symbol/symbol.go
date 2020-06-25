@@ -16,7 +16,7 @@ import (
 type Route struct{}
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	context.SetContentType("text/plain")
 	responseBuffer := bytes.NewBuffer(nil)
 	if _, err := responseBuffer.WriteString("num_symbols: 1\n"); err != nil {

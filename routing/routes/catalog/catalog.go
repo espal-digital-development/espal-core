@@ -11,8 +11,8 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
-	route.catalogPageFactory.NewPage(context).Render()
+func (r *Route) Handle(context contexts.Context) {
+	r.catalogPageFactory.NewPage(context).Render()
 }
 
 // New returns a new instance of Route.

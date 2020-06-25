@@ -9,124 +9,124 @@ import (
 )
 
 func TestNoteTable(t *testing.T) {
-	note := note.NewNoteEntity()
-	if note.TableName() == "" {
+	n := note.NewNoteEntity()
+	if n.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestNoteTableAlias(t *testing.T) {
-	note := note.NewNoteEntity()
-	if note.TableName() == "" {
+	n := note.NewNoteEntity()
+	if n.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestNoteIsUpdated(t *testing.T) {
-	note := note.NewNoteEntity()
-	note.IsUpdated()
+	n := note.NewNoteEntity()
+	n.IsUpdated()
 }
 
 func TestNoteID(t *testing.T) {
-	note := note.NewNoteEntity()
-	note.ID()
+	n := note.NewNoteEntity()
+	n.ID()
 }
 
 func TestNoteCreatedByID(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetCreatedByID(testValue)
-	if testValue != note.CreatedByID() {
+	n.SetCreatedByID(testValue)
+	if testValue != n.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteUpdatedByID(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetUpdatedByID(&testValue)
-	if &testValue != note.UpdatedByID() {
+	n.SetUpdatedByID(&testValue)
+	if &testValue != n.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteCreatedAt(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := time.Now()
-	note.SetCreatedAt(testValue)
-	if testValue != note.CreatedAt() {
+	n.SetCreatedAt(testValue)
+	if testValue != n.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteUpdatedAt(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := time.Now()
-	note.SetUpdatedAt(&testValue)
-	if &testValue != note.UpdatedAt() {
+	n.SetUpdatedAt(&testValue)
+	if &testValue != n.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteCreatedByFirstName(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetCreatedByFirstName(&testValue)
-	if &testValue != note.CreatedByFirstName() {
+	n.SetCreatedByFirstName(&testValue)
+	if &testValue != n.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteCreatedBySurname(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetCreatedBySurname(&testValue)
-	if &testValue != note.CreatedBySurname() {
+	n.SetCreatedBySurname(&testValue)
+	if &testValue != n.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteUpdatedByFirstName(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetUpdatedByFirstName(&testValue)
-	if &testValue != note.UpdatedByFirstName() {
+	n.SetUpdatedByFirstName(&testValue)
+	if &testValue != n.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteUpdatedBySurname(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetUpdatedBySurname(&testValue)
-	if &testValue != note.UpdatedBySurname() {
+	n.SetUpdatedBySurname(&testValue)
+	if &testValue != n.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteUserID(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetUserID(testValue)
-	if testValue != note.UserID() {
+	n.SetUserID(testValue)
+	if testValue != n.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteTitle(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetTitle(&testValue)
-	if &testValue != note.Title() {
+	n.SetTitle(&testValue)
+	if &testValue != n.Title() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestNoteContents(t *testing.T) {
-	note := note.NewNoteEntity()
+	n := note.NewNoteEntity()
 	testValue := "testValue"
-	note.SetContents(testValue)
-	if testValue != note.Contents() {
+	n.SetContents(testValue)
+	if testValue != n.Contents() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

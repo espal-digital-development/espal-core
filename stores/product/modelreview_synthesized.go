@@ -30,173 +30,173 @@ type ModelReviewEntity interface {
 }
 
 // ID returns id.
-func (modelReview *ModelReview) ID() string {
-	return modelReview.id
+func (m *ModelReview) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (modelReview *ModelReview) CreatedByID() string {
-	return modelReview.createdByID
+func (m *ModelReview) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (modelReview *ModelReview) SetCreatedByID(createdByID string) {
-	modelReview.createdByID = createdByID
+func (m *ModelReview) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (modelReview *ModelReview) UpdatedByID() *string {
-	return modelReview.updatedByID
+func (m *ModelReview) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (modelReview *ModelReview) SetUpdatedByID(updatedByID *string) {
-	modelReview.updatedByID = updatedByID
+func (m *ModelReview) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (modelReview *ModelReview) CreatedAt() time.Time {
-	return modelReview.createdAt
+func (m *ModelReview) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (modelReview *ModelReview) SetCreatedAt(createdAt time.Time) {
-	modelReview.createdAt = createdAt
+func (m *ModelReview) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (modelReview *ModelReview) UpdatedAt() *time.Time {
-	return modelReview.updatedAt
+func (m *ModelReview) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (modelReview *ModelReview) SetUpdatedAt(updatedAt *time.Time) {
-	modelReview.updatedAt = updatedAt
+func (m *ModelReview) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (modelReview *ModelReview) CreatedByFirstName() *string {
-	return modelReview.createdByFirstName
+func (m *ModelReview) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (modelReview *ModelReview) SetCreatedByFirstName(createdByFirstName *string) {
-	modelReview.createdByFirstName = createdByFirstName
+func (m *ModelReview) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (modelReview *ModelReview) CreatedBySurname() *string {
-	return modelReview.createdBySurname
+func (m *ModelReview) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (modelReview *ModelReview) SetCreatedBySurname(createdBySurname *string) {
-	modelReview.createdBySurname = createdBySurname
+func (m *ModelReview) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (modelReview *ModelReview) UpdatedByFirstName() *string {
-	return modelReview.updatedByFirstName
+func (m *ModelReview) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (modelReview *ModelReview) SetUpdatedByFirstName(updatedByFirstName *string) {
-	modelReview.updatedByFirstName = updatedByFirstName
+func (m *ModelReview) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (modelReview *ModelReview) UpdatedBySurname() *string {
-	return modelReview.updatedBySurname
+func (m *ModelReview) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (modelReview *ModelReview) SetUpdatedBySurname(updatedBySurname *string) {
-	modelReview.updatedBySurname = updatedBySurname
+func (m *ModelReview) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (modelReview *ModelReview) IsUpdated() bool {
-	return modelReview.updatedByID != nil
+func (m *ModelReview) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // ReviewedByID returns reviewedByID.
-func (modelReview *ModelReview) ReviewedByID() *string {
-	return modelReview.reviewedByID
+func (m *ModelReview) ReviewedByID() *string {
+	return m.reviewedByID
 }
 
 // SetReviewedByID sets the reviewedByID.
-func (modelReview *ModelReview) SetReviewedByID(reviewedByID *string) {
-	modelReview.reviewedByID = reviewedByID
+func (m *ModelReview) SetReviewedByID(reviewedByID *string) {
+	m.reviewedByID = reviewedByID
 }
 
 // ReviewedOnDate returns reviewedOnDate.
-func (modelReview *ModelReview) ReviewedOnDate() *time.Time {
-	return modelReview.reviewedOnDate
+func (m *ModelReview) ReviewedOnDate() *time.Time {
+	return m.reviewedOnDate
 }
 
 // SetReviewedOnDate sets the reviewedOnDate.
-func (modelReview *ModelReview) SetReviewedOnDate(reviewedOnDate *time.Time) {
-	modelReview.reviewedOnDate = reviewedOnDate
+func (m *ModelReview) SetReviewedOnDate(reviewedOnDate *time.Time) {
+	m.reviewedOnDate = reviewedOnDate
 }
 
 // ReviewNotes returns reviewNotes.
-func (modelReview *ModelReview) ReviewNotes() *string {
-	return modelReview.reviewNotes
+func (m *ModelReview) ReviewNotes() *string {
+	return m.reviewNotes
 }
 
 // SetReviewNotes sets the reviewNotes.
-func (modelReview *ModelReview) SetReviewNotes(reviewNotes *string) {
-	modelReview.reviewNotes = reviewNotes
+func (m *ModelReview) SetReviewNotes(reviewNotes *string) {
+	m.reviewNotes = reviewNotes
 }
 
 // Approved returns approved.
-func (modelReview *ModelReview) Approved() *bool {
-	return modelReview.approved
+func (m *ModelReview) Approved() *bool {
+	return m.approved
 }
 
 // SetApproved sets the approved.
-func (modelReview *ModelReview) SetApproved(approved *bool) {
-	modelReview.approved = approved
+func (m *ModelReview) SetApproved(approved *bool) {
+	m.approved = approved
 }
 
 // Rating returns rating.
-func (modelReview *ModelReview) Rating() float32 {
-	return modelReview.rating
+func (m *ModelReview) Rating() float32 {
+	return m.rating
 }
 
 // SetRating sets the rating.
-func (modelReview *ModelReview) SetRating(rating float32) {
-	modelReview.rating = rating
+func (m *ModelReview) SetRating(rating float32) {
+	m.rating = rating
 }
 
 // Title returns title.
-func (modelReview *ModelReview) Title() string {
-	return modelReview.title
+func (m *ModelReview) Title() string {
+	return m.title
 }
 
 // SetTitle sets the title.
-func (modelReview *ModelReview) SetTitle(title string) {
-	modelReview.title = title
+func (m *ModelReview) SetTitle(title string) {
+	m.title = title
 }
 
 // Description returns description.
-func (modelReview *ModelReview) Description() string {
-	return modelReview.description
+func (m *ModelReview) Description() string {
+	return m.description
 }
 
 // SetDescription sets the description.
-func (modelReview *ModelReview) SetDescription(description string) {
-	modelReview.description = description
+func (m *ModelReview) SetDescription(description string) {
+	m.description = description
 }
 
 // ModelID returns modelID.
-func (modelReview *ModelReview) ModelID() string {
-	return modelReview.modelID
+func (m *ModelReview) ModelID() string {
+	return m.modelID
 }
 
 // SetModelID sets the modelID.
-func (modelReview *ModelReview) SetModelID(modelID string) {
-	modelReview.modelID = modelID
+func (m *ModelReview) SetModelID(modelID string) {
+	m.modelID = modelID
 }
 
 func newModelReview() *ModelReview {

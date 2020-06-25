@@ -19,29 +19,29 @@ type general struct {
 
 // Development returns the indicator if the application is in
 // development mode and might sacrifice speed over being more verbose.
-func (configuration *Configuration) Development() bool {
-	return configuration.general.Development
+func (c *Configuration) Development() bool {
+	return c.general.Development
 }
 
 // Logging returns an indicator if the logger should be called
 // when routes are visited, and when info-, warning- and errors
 // messages are being reported.
-func (configuration *Configuration) Logging() bool {
-	return configuration.general.Logging
+func (c *Configuration) Logging() bool {
+	return c.general.Logging
 }
 
 // Pprof returns an indicator if pprof logging should be possible
 // and the routes will be made available for the pprof tool.
-func (configuration *Configuration) Pprof() bool {
-	return configuration.general.Pprof
+func (c *Configuration) Pprof() bool {
+	return c.general.Pprof
 }
 
 // Languages returns the list of available language codes.
-func (configuration *Configuration) Languages() []string {
-	return configuration.general.Languages
+func (c *Configuration) Languages() []string {
+	return c.general.Languages
 }
 
 // DefaultLanguage returns the default language code.
-func (configuration *Configuration) DefaultLanguage() string {
-	return configuration.general.DefaultLanguage
+func (c *Configuration) DefaultLanguage() string {
+	return c.general.DefaultLanguage
 }

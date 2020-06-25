@@ -9,115 +9,115 @@ import (
 )
 
 func TestMutationTable(t *testing.T) {
-	mutation := price.NewMutationEntity()
-	if mutation.TableName() == "" {
+	m := price.NewMutationEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestMutationTableAlias(t *testing.T) {
-	mutation := price.NewMutationEntity()
-	if mutation.TableName() == "" {
+	m := price.NewMutationEntity()
+	if m.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestMutationIsUpdated(t *testing.T) {
-	mutation := price.NewMutationEntity()
-	mutation.IsUpdated()
+	m := price.NewMutationEntity()
+	m.IsUpdated()
 }
 
 func TestMutationID(t *testing.T) {
-	mutation := price.NewMutationEntity()
-	mutation.ID()
+	m := price.NewMutationEntity()
+	m.ID()
 }
 
 func TestMutationCreatedByID(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetCreatedByID(testValue)
-	if testValue != mutation.CreatedByID() {
+	m.SetCreatedByID(testValue)
+	if testValue != m.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedByID(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetUpdatedByID(&testValue)
-	if &testValue != mutation.UpdatedByID() {
+	m.SetUpdatedByID(&testValue)
+	if &testValue != m.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationCreatedAt(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := time.Now()
-	mutation.SetCreatedAt(testValue)
-	if testValue != mutation.CreatedAt() {
+	m.SetCreatedAt(testValue)
+	if testValue != m.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedAt(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := time.Now()
-	mutation.SetUpdatedAt(&testValue)
-	if &testValue != mutation.UpdatedAt() {
+	m.SetUpdatedAt(&testValue)
+	if &testValue != m.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationCreatedByFirstName(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetCreatedByFirstName(&testValue)
-	if &testValue != mutation.CreatedByFirstName() {
+	m.SetCreatedByFirstName(&testValue)
+	if &testValue != m.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationCreatedBySurname(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetCreatedBySurname(&testValue)
-	if &testValue != mutation.CreatedBySurname() {
+	m.SetCreatedBySurname(&testValue)
+	if &testValue != m.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedByFirstName(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetUpdatedByFirstName(&testValue)
-	if &testValue != mutation.UpdatedByFirstName() {
+	m.SetUpdatedByFirstName(&testValue)
+	if &testValue != m.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationUpdatedBySurname(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetUpdatedBySurname(&testValue)
-	if &testValue != mutation.UpdatedBySurname() {
+	m.SetUpdatedBySurname(&testValue)
+	if &testValue != m.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationProductVariantID(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := "testValue"
-	mutation.SetProductVariantID(testValue)
-	if testValue != mutation.ProductVariantID() {
+	m.SetProductVariantID(testValue)
+	if testValue != m.ProductVariantID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestMutationPrice(t *testing.T) {
-	mutation := price.NewMutationEntity()
+	m := price.NewMutationEntity()
 	testValue := 6.28
-	mutation.SetPrice(testValue)
-	if testValue != mutation.Price() {
+	m.SetPrice(testValue)
+	if testValue != m.Price() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

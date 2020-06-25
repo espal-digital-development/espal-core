@@ -17,7 +17,7 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if !context.HasUserRightOrForbid("UpdateUserGroup") {
 		return
 	}
@@ -26,16 +26,16 @@ func (route *Route) Handle(context contexts.Context) {
 		context.RenderNotFound()
 		return
 	}
-	if !route.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
+	if !r.regularExpressionsRepository.GetRouteIDs().MatchString(id) {
 		context.RenderBadRequest()
 		return
 	}
 	ids := context.QueryValue("ids")
-	if !route.regularExpressionsRepository.GetRouteIDs().MatchString(ids) {
+	if !r.regularExpressionsRepository.GetRouteIDs().MatchString(ids) {
 		context.RenderBadRequest()
 		return
 	}
-	if err := route.userGroupStore.SetUserRights(id, strings.Split(ids, ",")); err != nil {
+	if err := r.userGroupStore.SetUserRights(id, strings.Split(ids, ",")); err != nil {
 		if err := context.SetFlashErrorMessage(context.Translate("updateHasFailed") + ": " + err.Error()); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return

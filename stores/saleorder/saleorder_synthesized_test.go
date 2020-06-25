@@ -9,421 +9,421 @@ import (
 )
 
 func TestSaleOrderTable(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
-	if saleOrder.TableName() == "" {
+	s := saleorder.NewSaleOrderEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSaleOrderTableAlias(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
-	if saleOrder.TableName() == "" {
+	s := saleorder.NewSaleOrderEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSaleOrderIsUpdated(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
-	saleOrder.IsUpdated()
+	s := saleorder.NewSaleOrderEntity()
+	s.IsUpdated()
 }
 
 func TestSaleOrderID(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
-	saleOrder.ID()
+	s := saleorder.NewSaleOrderEntity()
+	s.ID()
 }
 
 func TestSaleOrderCreatedByID(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetCreatedByID(testValue)
-	if testValue != saleOrder.CreatedByID() {
+	s.SetCreatedByID(testValue)
+	if testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUpdatedByID(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUpdatedByID(&testValue)
-	if &testValue != saleOrder.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderCreatedAt(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := time.Now()
-	saleOrder.SetCreatedAt(testValue)
-	if testValue != saleOrder.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUpdatedAt(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := time.Now()
-	saleOrder.SetUpdatedAt(&testValue)
-	if &testValue != saleOrder.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderCreatedByFirstName(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetCreatedByFirstName(&testValue)
-	if &testValue != saleOrder.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderCreatedBySurname(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetCreatedBySurname(&testValue)
-	if &testValue != saleOrder.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUpdatedByFirstName(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUpdatedByFirstName(&testValue)
-	if &testValue != saleOrder.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUpdatedBySurname(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUpdatedBySurname(&testValue)
-	if &testValue != saleOrder.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserID(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserID(testValue)
-	if testValue != saleOrder.UserID() {
+	s.SetUserID(testValue)
+	if testValue != s.UserID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderDomainID(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetDomainID(testValue)
-	if testValue != saleOrder.DomainID() {
+	s.SetDomainID(testValue)
+	if testValue != s.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderCurrency(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := uint16(65000)
-	saleOrder.SetCurrency(testValue)
-	if testValue != saleOrder.Currency() {
+	s.SetCurrency(testValue)
+	if testValue != s.Currency() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderCode(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetCode(&testValue)
-	if &testValue != saleOrder.Code() {
+	s.SetCode(&testValue)
+	if &testValue != s.Code() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoBusiness(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := true
-	saleOrder.SetUserInfoBusiness(testValue)
-	if testValue != saleOrder.UserInfoBusiness() {
+	s.SetUserInfoBusiness(testValue)
+	if testValue != s.UserInfoBusiness() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoBusinessCocNumber(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoBusinessCocNumber(&testValue)
-	if &testValue != saleOrder.UserInfoBusinessCocNumber() {
+	s.SetUserInfoBusinessCocNumber(&testValue)
+	if &testValue != s.UserInfoBusinessCocNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoFirstName(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoFirstName(testValue)
-	if testValue != saleOrder.UserInfoFirstName() {
+	s.SetUserInfoFirstName(testValue)
+	if testValue != s.UserInfoFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoSurname(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoSurname(testValue)
-	if testValue != saleOrder.UserInfoSurname() {
+	s.SetUserInfoSurname(testValue)
+	if testValue != s.UserInfoSurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoStreet(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoStreet(testValue)
-	if testValue != saleOrder.UserInfoStreet() {
+	s.SetUserInfoStreet(testValue)
+	if testValue != s.UserInfoStreet() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoStreetLine2(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoStreetLine2(&testValue)
-	if &testValue != saleOrder.UserInfoStreetLine2() {
+	s.SetUserInfoStreetLine2(&testValue)
+	if &testValue != s.UserInfoStreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoNumber(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoNumber(testValue)
-	if testValue != saleOrder.UserInfoNumber() {
+	s.SetUserInfoNumber(testValue)
+	if testValue != s.UserInfoNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoNumberAddition(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoNumberAddition(&testValue)
-	if &testValue != saleOrder.UserInfoNumberAddition() {
+	s.SetUserInfoNumberAddition(&testValue)
+	if &testValue != s.UserInfoNumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoZipCode(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoZipCode(testValue)
-	if testValue != saleOrder.UserInfoZipCode() {
+	s.SetUserInfoZipCode(testValue)
+	if testValue != s.UserInfoZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoCity(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoCity(testValue)
-	if testValue != saleOrder.UserInfoCity() {
+	s.SetUserInfoCity(testValue)
+	if testValue != s.UserInfoCity() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoState(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := uint(1e9)
-	saleOrder.SetUserInfoState(&testValue)
-	if &testValue != saleOrder.UserInfoState() {
+	s.SetUserInfoState(&testValue)
+	if &testValue != s.UserInfoState() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoCountry(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := uint16(65000)
-	saleOrder.SetUserInfoCountry(&testValue)
-	if &testValue != saleOrder.UserInfoCountry() {
+	s.SetUserInfoCountry(&testValue)
+	if &testValue != s.UserInfoCountry() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoPhoneNumber(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoPhoneNumber(&testValue)
-	if &testValue != saleOrder.UserInfoPhoneNumber() {
+	s.SetUserInfoPhoneNumber(&testValue)
+	if &testValue != s.UserInfoPhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderUserInfoEmail(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetUserInfoEmail(&testValue)
-	if &testValue != saleOrder.UserInfoEmail() {
+	s.SetUserInfoEmail(&testValue)
+	if &testValue != s.UserInfoEmail() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressBusiness(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := true
-	saleOrder.SetShippingAddressBusiness(testValue)
-	if testValue != saleOrder.ShippingAddressBusiness() {
+	s.SetShippingAddressBusiness(testValue)
+	if testValue != s.ShippingAddressBusiness() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressBusinessCocNumber(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressBusinessCocNumber(&testValue)
-	if &testValue != saleOrder.ShippingAddressBusinessCocNumber() {
+	s.SetShippingAddressBusinessCocNumber(&testValue)
+	if &testValue != s.ShippingAddressBusinessCocNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressFirstName(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressFirstName(testValue)
-	if testValue != saleOrder.ShippingAddressFirstName() {
+	s.SetShippingAddressFirstName(testValue)
+	if testValue != s.ShippingAddressFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressSurname(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressSurname(testValue)
-	if testValue != saleOrder.ShippingAddressSurname() {
+	s.SetShippingAddressSurname(testValue)
+	if testValue != s.ShippingAddressSurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressStreet(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressStreet(testValue)
-	if testValue != saleOrder.ShippingAddressStreet() {
+	s.SetShippingAddressStreet(testValue)
+	if testValue != s.ShippingAddressStreet() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressStreetLine2(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressStreetLine2(&testValue)
-	if &testValue != saleOrder.ShippingAddressStreetLine2() {
+	s.SetShippingAddressStreetLine2(&testValue)
+	if &testValue != s.ShippingAddressStreetLine2() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressNumber(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressNumber(testValue)
-	if testValue != saleOrder.ShippingAddressNumber() {
+	s.SetShippingAddressNumber(testValue)
+	if testValue != s.ShippingAddressNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressNumberAddition(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressNumberAddition(&testValue)
-	if &testValue != saleOrder.ShippingAddressNumberAddition() {
+	s.SetShippingAddressNumberAddition(&testValue)
+	if &testValue != s.ShippingAddressNumberAddition() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressZipCode(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressZipCode(testValue)
-	if testValue != saleOrder.ShippingAddressZipCode() {
+	s.SetShippingAddressZipCode(testValue)
+	if testValue != s.ShippingAddressZipCode() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressCity(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressCity(testValue)
-	if testValue != saleOrder.ShippingAddressCity() {
+	s.SetShippingAddressCity(testValue)
+	if testValue != s.ShippingAddressCity() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressState(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := uint(1e9)
-	saleOrder.SetShippingAddressState(&testValue)
-	if &testValue != saleOrder.ShippingAddressState() {
+	s.SetShippingAddressState(&testValue)
+	if &testValue != s.ShippingAddressState() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressCountry(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := uint16(65000)
-	saleOrder.SetShippingAddressCountry(&testValue)
-	if &testValue != saleOrder.ShippingAddressCountry() {
+	s.SetShippingAddressCountry(&testValue)
+	if &testValue != s.ShippingAddressCountry() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressPhoneNumber(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressPhoneNumber(&testValue)
-	if &testValue != saleOrder.ShippingAddressPhoneNumber() {
+	s.SetShippingAddressPhoneNumber(&testValue)
+	if &testValue != s.ShippingAddressPhoneNumber() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderShippingAddressEmail(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetShippingAddressEmail(&testValue)
-	if &testValue != saleOrder.ShippingAddressEmail() {
+	s.SetShippingAddressEmail(&testValue)
+	if &testValue != s.ShippingAddressEmail() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderComments(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetComments(&testValue)
-	if &testValue != saleOrder.Comments() {
+	s.SetComments(&testValue)
+	if &testValue != s.Comments() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderSellingPartyAutograph(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetSellingPartyAutograph(&testValue)
-	if &testValue != saleOrder.SellingPartyAutograph() {
+	s.SetSellingPartyAutograph(&testValue)
+	if &testValue != s.SellingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderBuyingPartyAutograph(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetBuyingPartyAutograph(&testValue)
-	if &testValue != saleOrder.BuyingPartyAutograph() {
+	s.SetBuyingPartyAutograph(&testValue)
+	if &testValue != s.BuyingPartyAutograph() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSaleOrderSaleOfferID(t *testing.T) {
-	saleOrder := saleorder.NewSaleOrderEntity()
+	s := saleorder.NewSaleOrderEntity()
 	testValue := "testValue"
-	saleOrder.SetSaleOfferID(&testValue)
-	if &testValue != saleOrder.SaleOfferID() {
+	s.SetSaleOfferID(&testValue)
+	if &testValue != s.SaleOfferID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

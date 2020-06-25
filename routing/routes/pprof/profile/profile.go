@@ -14,7 +14,7 @@ import (
 type Route struct{}
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	var err error
 	var seconds int
 	if secondsStrings := context.QueryValue("seconds"); secondsStrings != "" {

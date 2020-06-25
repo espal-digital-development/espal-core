@@ -26,28 +26,28 @@ type Languages struct {
 	all     map[uint16]Data
 }
 
-// All gets all embedded languages.
-func (languages *Languages) All() map[uint16]Data {
-	return languages.all
+// All gets all embedded l.
+func (l *Languages) All() map[uint16]Data {
+	return l.all
 }
 
 // ByID looks for and returns the associated Language for the given id.
-func (languages *Languages) ByID(id uint16) (Data, error) {
-	if _, ok := languages.byID[id]; !ok {
+func (l *Languages) ByID(id uint16) (Data, error) {
+	if _, ok := l.byID[id]; !ok {
 		return &Language{}, errors.Errorf("no language found with given id `%d`", id)
 	}
-	return languages.byID[id], nil
+	return l.byID[id], nil
 }
 
 // ByCode looks for and returns the associated Language for the given code.
-func (languages *Languages) ByCode(code string) (Data, error) {
-	if _, ok := languages.entries[code]; !ok {
+func (l *Languages) ByCode(code string) (Data, error) {
+	if _, ok := l.entries[code]; !ok {
 		return &Language{}, errors.Errorf("no language found with given code `%s`", code)
 	}
-	return languages.entries[code], nil
+	return l.entries[code], nil
 }
 
-func (languages *Languages) loadTranslations() error {
+func (l *Languages) loadTranslations() error {
 	files, err := languagesdata.AssetDir("_data")
 	if err != nil {
 		return errors.Trace(err)
@@ -56,7 +56,7 @@ func (languages *Languages) loadTranslations() error {
 		if len(files[k]) == 0 || files[k][0] == '.' {
 			continue
 		}
-		language := languages.entries[files[k]]
+		language := l.entries[files[k]]
 		data, err := languagesdata.Asset("_data/" + files[k])
 		if err != nil {
 			return errors.Trace(err)
@@ -73,7 +73,7 @@ func (languages *Languages) loadTranslations() error {
 				return errors.Trace(err)
 			}
 			if len(t) > 0 && t[0] != '\n' {
-				targetLanguage, err := languages.ByID(count)
+				targetLanguage, err := l.ByID(count)
 				if err != nil {
 					return errors.Trace(err)
 				}
@@ -86,32 +86,32 @@ func (languages *Languages) loadTranslations() error {
 }
 
 // EnglishLocaleID returns the actual default English locale ID number.
-func (languages *Languages) EnglishLocaleID() uint16 {
+func (l *Languages) EnglishLocaleID() uint16 {
 	return data["en"].id
 }
 
 // New returns new a *Languages repository instance.
 func New() (*Languages, error) {
-	english := data["en"]
-	languages := &Languages{
+	l := &Languages{
 		byID:    make(map[uint16]*Language, len(data)),
 		all:     make(map[uint16]Data, len(data)),
 		entries: make(map[string]*Language, len(data)),
 	}
 
+	english := data["en"]
 	for code := range data {
 		language := data[code]
 		language.englishLocaleID = english.ID()
 		language.translations = map[uint16]string{}
 
-		languages.byID[language.ID()] = &language
-		languages.all[language.ID()] = &language
-		languages.entries[code] = &language
+		l.byID[language.ID()] = &language
+		l.all[language.ID()] = &language
+		l.entries[code] = &language
 	}
 
-	if err := languages.loadTranslations(); err != nil {
+	if err := l.loadTranslations(); err != nil {
 		return nil, errors.Trace(err)
 	}
 
-	return languages, nil
+	return l, nil
 }

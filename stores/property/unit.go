@@ -21,11 +21,11 @@ type Unit struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (unit *Unit) TableName() string {
+func (u *Unit) TableName() string {
 	return "PropertyUnit"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (unit *Unit) TableAlias() string {
+func (u *Unit) TableAlias() string {
 	return "prou"
 }

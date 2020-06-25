@@ -16,19 +16,19 @@ type Route struct {
 }
 
 // Handle route handler.
-func (route *Route) Handle(context contexts.Context) {
+func (r *Route) Handle(context contexts.Context) {
 	if context.IsLoggedIn() {
 		context.Redirect("/", http.StatusTemporaryRedirect)
 		return
 	}
 
 	hash := context.QueryValue("h")
-	if hash == "" || !route.regularExpressionsRepository.GetActivateAccounthash().MatchString(hash) {
+	if hash == "" || !r.regularExpressionsRepository.GetActivateAccounthash().MatchString(hash) {
 		context.RenderBadRequest()
 		return
 	}
 
-	id, ok, err := route.userStore.GetOneIDForActivationHash(hash)
+	id, ok, err := r.userStore.GetOneIDForActivationHash(hash)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
@@ -40,7 +40,7 @@ func (route *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	if err := route.userStore.Activate(id); err != nil {
+	if err := r.userStore.Activate(id); err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}

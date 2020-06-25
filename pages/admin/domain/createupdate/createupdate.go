@@ -21,13 +21,13 @@ type CreateUpdate struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (createUpdate *CreateUpdate) NewPage(context contexts.Context, domain *domain.Domain, language contexts.Language, form base.Form, displayTitle string) Template {
+func (c *CreateUpdate) NewPage(context contexts.Context, domain *domain.Domain, language contexts.Language, form base.Form, displayTitle string) Template {
 	page := &Page{
 		domain:          domain,
 		language:        language,
 		form:            form,
 		displayTitle:    displayTitle,
-		rendererService: createUpdate.rendererService,
+		rendererService: c.rendererService,
 	}
 	page.SetCoreContext(context)
 	return page
@@ -49,8 +49,8 @@ type Page struct {
 }
 
 // Render the page writing to the context.
-func (page *Page) Render() {
-	base.WritePageTemplate(page.GetCoreContext(), page)
+func (p *Page) Render() {
+	base.WritePageTemplate(p.GetCoreContext(), p)
 }
 
 // New returns a new instance of CreateUpdate.

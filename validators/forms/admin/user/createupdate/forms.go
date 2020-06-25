@@ -37,8 +37,8 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
-func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
-	validator, err := forms.validatorsFactory.NewForm(language)
+func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
+	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -69,7 +69,7 @@ func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
 		return nil, errors.Trace(err)
 	}
 
-	avatarField := validator.NewFileField("avatar", forms.storage)
+	avatarField := validator.NewFileField("avatar", f.storage)
 	avatarField.SetOptional()
 	avatarField.SetMaxLength(75)
 	avatarField.SetAllowedMIMETypes([]string{"image/jpeg", "image/png"})
@@ -133,7 +133,7 @@ func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
 	countryField.SetOptional()
 	countryField.SetSearchable()
 	countryField.SetCheckValuesInChoices()
-	countryField.SetChoices(forms.validatorsFactory.GetCountryOptionsForLanguage(language))
+	countryField.SetChoices(f.validatorsFactory.GetCountryOptionsForLanguage(language))
 	if user.ID() != "" && user.Country() != nil {
 		countryField.SetValue(strconv.FormatUint(uint64(*user.Country()), 10))
 	}
@@ -144,7 +144,7 @@ func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
 	languageField := validator.NewChoiceField("language")
 	languageField.SetSearchable()
 	languageField.SetCheckValuesInChoices()
-	languageField.SetChoices(forms.validatorsFactory.GetLanguageOptionsForLanguage(language))
+	languageField.SetChoices(f.validatorsFactory.GetLanguageOptionsForLanguage(language))
 	if user.ID() != "" {
 		languageField.SetValue(strconv.FormatUint(uint64(user.Language()), 10))
 	}
@@ -165,7 +165,7 @@ func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
 	commentsField := validator.NewTextAreaField("comments")
 	commentsField.SetOptional()
 	commentsField.SetMaxLength(1000)
-	commentsField.SetPlaceholder(forms.translationsRepository.Plural(language.ID(), "comment") + " (" + forms.translationsRepository.Singular(language.ID(), "optional") + ")")
+	commentsField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "comment") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	commentsField.SetDontTranslate()
 	if user.ID() != "" && user.Comments() != nil {
 		commentsField.SetValue(*user.Comments())
@@ -176,11 +176,11 @@ func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
 
 	currenciesField := validator.NewChoiceField("currencies")
 	currenciesField.SetOptional()
-	currenciesField.SetPlaceholder(forms.translationsRepository.Plural(language.ID(), "currency") + " (" + forms.translationsRepository.Singular(language.ID(), "optional") + ")")
+	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	currenciesField.SetDontTranslate()
 	currenciesField.SetSearchable()
 	currenciesField.SetCheckValuesInChoices()
-	currenciesField.SetChoices(forms.validatorsFactory.GetCurrencyOptionsForLanguage(language))
+	currenciesField.SetChoices(f.validatorsFactory.GetCurrencyOptionsForLanguage(language))
 	currenciesField.SetMultiple()
 	if user.ID() != "" {
 		if err := currenciesField.SetValues(strings.Split(user.Currencies(), ",")); err != nil {
@@ -194,13 +194,13 @@ func (forms *Forms) New(user user.UserEntity, language language) (Form, error) {
 	if user.ID() != "" {
 		var deliveryAddresses []validators.ChoiceOption
 		var invoiceAddresses []validators.ChoiceOption
-		addresses, ok, err := forms.userAddressStore.ForUser(user.ID())
+		addresses, ok, err := f.userAddressStore.ForUser(user.ID())
 		if err != nil {
 			return nil, errors.Trace(err)
 		}
 		if ok {
 			for k := range addresses {
-				option := forms.validatorsFactory.NewChoiceOption(addresses[k].ID(), forms.userAddressStore.DisplayValue(addresses[k], language.ID()))
+				option := f.validatorsFactory.NewChoiceOption(addresses[k].ID(), f.userAddressStore.DisplayValue(addresses[k], language.ID()))
 				deliveryAddresses = append(deliveryAddresses, option)
 				invoiceAddresses = append(invoiceAddresses, option)
 			}

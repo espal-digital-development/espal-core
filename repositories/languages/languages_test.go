@@ -29,7 +29,7 @@ func TestAll(t *testing.T) {
 			t.Fatal(err)
 		}
 		code := l.Code()
-		if strings.Trim(code, " ") == "" {
+		if strings.TrimSpace(code) == "" {
 			t.Errorf("`%s` is an invalid code", code)
 		}
 		name := l.EnglishName()

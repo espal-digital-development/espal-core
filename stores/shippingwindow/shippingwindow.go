@@ -22,6 +22,6 @@ type ShippingWindow struct {
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (shippingWindow *ShippingWindow) TableAlias() string {
+func (s *ShippingWindow) TableAlias() string {
 	return "sw"
 }

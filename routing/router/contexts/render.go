@@ -9,21 +9,21 @@ type RenderContext interface {
 }
 
 // CreatedBy returns the presentable name for the User that created this entity.
-func (httpContext *HTTPContext) CreatedBy(entity Entity) string {
-	return httpContext.rendererService.CreatedBy(entity, httpContext.language.ID())
+func (c *HTTPContext) CreatedBy(entity Entity) string {
+	return c.rendererService.CreatedBy(entity, c.language.ID())
 }
 
 // UpdatedBy returns the presentable name for the User that last updated this entity.
-func (httpContext *HTTPContext) UpdatedBy(entity Entity) string {
-	return httpContext.rendererService.UpdatedBy(entity, httpContext.language.ID())
+func (c *HTTPContext) UpdatedBy(entity Entity) string {
+	return c.rendererService.UpdatedBy(entity, c.language.ID())
 }
 
 // CountryName returns the localized name for the given countryID and languageID.
-func (httpContext *HTTPContext) CountryName(countryID uint16) string {
-	return httpContext.rendererService.CountryName(countryID, httpContext.language.ID())
+func (c *HTTPContext) CountryName(countryID uint16) string {
+	return c.rendererService.CountryName(countryID, c.language.ID())
 }
 
 // LanguageName returns the localized name for the given languageID and targetLanguageID.
-func (httpContext *HTTPContext) LanguageName(languageID uint16) string {
-	return httpContext.rendererService.LanguageName(languageID, httpContext.language.ID())
+func (c *HTTPContext) LanguageName(languageID uint16) string {
+	return c.rendererService.LanguageName(languageID, c.language.ID())
 }

@@ -16,133 +16,133 @@ type TranslationEntity interface {
 }
 
 // ID returns id.
-func (translation *Translation) ID() string {
-	return translation.id
+func (t *Translation) ID() string {
+	return t.id
 }
 
 // CreatedByID returns createdByID.
-func (translation *Translation) CreatedByID() string {
-	return translation.createdByID
+func (t *Translation) CreatedByID() string {
+	return t.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (translation *Translation) SetCreatedByID(createdByID string) {
-	translation.createdByID = createdByID
+func (t *Translation) SetCreatedByID(createdByID string) {
+	t.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (translation *Translation) UpdatedByID() *string {
-	return translation.updatedByID
+func (t *Translation) UpdatedByID() *string {
+	return t.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (translation *Translation) SetUpdatedByID(updatedByID *string) {
-	translation.updatedByID = updatedByID
+func (t *Translation) SetUpdatedByID(updatedByID *string) {
+	t.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (translation *Translation) CreatedAt() time.Time {
-	return translation.createdAt
+func (t *Translation) CreatedAt() time.Time {
+	return t.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (translation *Translation) SetCreatedAt(createdAt time.Time) {
-	translation.createdAt = createdAt
+func (t *Translation) SetCreatedAt(createdAt time.Time) {
+	t.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (translation *Translation) UpdatedAt() *time.Time {
-	return translation.updatedAt
+func (t *Translation) UpdatedAt() *time.Time {
+	return t.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (translation *Translation) SetUpdatedAt(updatedAt *time.Time) {
-	translation.updatedAt = updatedAt
+func (t *Translation) SetUpdatedAt(updatedAt *time.Time) {
+	t.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (translation *Translation) CreatedByFirstName() *string {
-	return translation.createdByFirstName
+func (t *Translation) CreatedByFirstName() *string {
+	return t.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (translation *Translation) SetCreatedByFirstName(createdByFirstName *string) {
-	translation.createdByFirstName = createdByFirstName
+func (t *Translation) SetCreatedByFirstName(createdByFirstName *string) {
+	t.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (translation *Translation) CreatedBySurname() *string {
-	return translation.createdBySurname
+func (t *Translation) CreatedBySurname() *string {
+	return t.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (translation *Translation) SetCreatedBySurname(createdBySurname *string) {
-	translation.createdBySurname = createdBySurname
+func (t *Translation) SetCreatedBySurname(createdBySurname *string) {
+	t.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (translation *Translation) UpdatedByFirstName() *string {
-	return translation.updatedByFirstName
+func (t *Translation) UpdatedByFirstName() *string {
+	return t.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (translation *Translation) SetUpdatedByFirstName(updatedByFirstName *string) {
-	translation.updatedByFirstName = updatedByFirstName
+func (t *Translation) SetUpdatedByFirstName(updatedByFirstName *string) {
+	t.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (translation *Translation) UpdatedBySurname() *string {
-	return translation.updatedBySurname
+func (t *Translation) UpdatedBySurname() *string {
+	return t.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (translation *Translation) SetUpdatedBySurname(updatedBySurname *string) {
-	translation.updatedBySurname = updatedBySurname
+func (t *Translation) SetUpdatedBySurname(updatedBySurname *string) {
+	t.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (translation *Translation) IsUpdated() bool {
-	return translation.updatedByID != nil
+func (t *Translation) IsUpdated() bool {
+	return t.updatedByID != nil
 }
 
 // Language returns language.
-func (translation *Translation) Language() uint16 {
-	return translation.language
+func (t *Translation) Language() uint16 {
+	return t.language
 }
 
 // SetLanguage sets the language.
-func (translation *Translation) SetLanguage(language uint16) {
-	translation.language = language
+func (t *Translation) SetLanguage(language uint16) {
+	t.language = language
 }
 
 // Field returns field.
-func (translation *Translation) Field() uint16 {
-	return translation.field
+func (t *Translation) Field() uint16 {
+	return t.field
 }
 
 // SetField sets the field.
-func (translation *Translation) SetField(field uint16) {
-	translation.field = field
+func (t *Translation) SetField(field uint16) {
+	t.field = field
 }
 
 // Value returns value.
-func (translation *Translation) Value() string {
-	return translation.value
+func (t *Translation) Value() string {
+	return t.value
 }
 
 // SetValue sets the value.
-func (translation *Translation) SetValue(value string) {
-	translation.value = value
+func (t *Translation) SetValue(value string) {
+	t.value = value
 }
 
 // ResellerID returns resellerID.
-func (translation *Translation) ResellerID() string {
-	return translation.resellerID
+func (t *Translation) ResellerID() string {
+	return t.resellerID
 }
 
 // SetResellerID sets the resellerID.
-func (translation *Translation) SetResellerID(resellerID string) {
-	translation.resellerID = resellerID
+func (t *Translation) SetResellerID(resellerID string) {
+	t.resellerID = resellerID
 }
 
 func newTranslation() *Translation {

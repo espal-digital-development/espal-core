@@ -13,8 +13,8 @@ var _ Store = &PersonalMessagesStore{}
 type Store interface {
 }
 
-func (personalMessagesStore *PersonalMessagesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PersonalMessage, ok bool, err error) {
-	rows, err := personalMessagesStore.selecterDatabase.Query(query, params...)
+func (p *PersonalMessagesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PersonalMessage, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (personalMessagesStore *PersonalMessagesStore) fetch(query string, withCrea
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		personalMessage := newPersonalMessage()
-		fields := []interface{}{&personalMessage.id, &personalMessage.createdByID, &personalMessage.updatedByID, &personalMessage.createdAt, &personalMessage.updatedAt, &personalMessage.userID, &personalMessage.recipientID, &personalMessage.responseToID, &personalMessage.title, &personalMessage.message}
+		p := newPersonalMessage()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.userID, &p.recipientID, &p.responseToID, &p.title, &p.message}
 		if withCreators {
-			fields = append(fields, &personalMessage.createdByFirstName, &personalMessage.createdBySurname, &personalMessage.updatedByFirstName, &personalMessage.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, personalMessage)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (personalMessagesStore *PersonalMessagesStore) fetch(query string, withCrea
 
 // New returns a new instance of PersonalMessagesStore.
 func New(selecterDatabase database.Database) (*PersonalMessagesStore, error) {
-	personalMessagesStore := &PersonalMessagesStore{
+	p := &PersonalMessagesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return personalMessagesStore, nil
+	return p, nil
 }

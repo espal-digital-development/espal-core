@@ -24,153 +24,153 @@ type PollEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (poll *Poll) TableName() string {
+func (p *Poll) TableName() string {
 	return "Poll"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (poll *Poll) TableAlias() string {
+func (p *Poll) TableAlias() string {
 	return "pe"
 }
 
 // ID returns id.
-func (poll *Poll) ID() string {
-	return poll.id
+func (p *Poll) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (poll *Poll) CreatedByID() string {
-	return poll.createdByID
+func (p *Poll) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (poll *Poll) SetCreatedByID(createdByID string) {
-	poll.createdByID = createdByID
+func (p *Poll) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (poll *Poll) UpdatedByID() *string {
-	return poll.updatedByID
+func (p *Poll) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (poll *Poll) SetUpdatedByID(updatedByID *string) {
-	poll.updatedByID = updatedByID
+func (p *Poll) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (poll *Poll) CreatedAt() time.Time {
-	return poll.createdAt
+func (p *Poll) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (poll *Poll) SetCreatedAt(createdAt time.Time) {
-	poll.createdAt = createdAt
+func (p *Poll) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (poll *Poll) UpdatedAt() *time.Time {
-	return poll.updatedAt
+func (p *Poll) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (poll *Poll) SetUpdatedAt(updatedAt *time.Time) {
-	poll.updatedAt = updatedAt
+func (p *Poll) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (poll *Poll) CreatedByFirstName() *string {
-	return poll.createdByFirstName
+func (p *Poll) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (poll *Poll) SetCreatedByFirstName(createdByFirstName *string) {
-	poll.createdByFirstName = createdByFirstName
+func (p *Poll) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (poll *Poll) CreatedBySurname() *string {
-	return poll.createdBySurname
+func (p *Poll) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (poll *Poll) SetCreatedBySurname(createdBySurname *string) {
-	poll.createdBySurname = createdBySurname
+func (p *Poll) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (poll *Poll) UpdatedByFirstName() *string {
-	return poll.updatedByFirstName
+func (p *Poll) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (poll *Poll) SetUpdatedByFirstName(updatedByFirstName *string) {
-	poll.updatedByFirstName = updatedByFirstName
+func (p *Poll) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (poll *Poll) UpdatedBySurname() *string {
-	return poll.updatedBySurname
+func (p *Poll) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (poll *Poll) SetUpdatedBySurname(updatedBySurname *string) {
-	poll.updatedBySurname = updatedBySurname
+func (p *Poll) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (poll *Poll) IsUpdated() bool {
-	return poll.updatedByID != nil
+func (p *Poll) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // Active returns active.
-func (poll *Poll) Active() bool {
-	return poll.active
+func (p *Poll) Active() bool {
+	return p.active
 }
 
 // SetActive sets the active.
-func (poll *Poll) SetActive(active bool) {
-	poll.active = active
+func (p *Poll) SetActive(active bool) {
+	p.active = active
 }
 
 // StartDate returns startDate.
-func (poll *Poll) StartDate() *time.Time {
-	return poll.startDate
+func (p *Poll) StartDate() *time.Time {
+	return p.startDate
 }
 
 // SetStartDate sets the startDate.
-func (poll *Poll) SetStartDate(startDate *time.Time) {
-	poll.startDate = startDate
+func (p *Poll) SetStartDate(startDate *time.Time) {
+	p.startDate = startDate
 }
 
 // EndDate returns endDate.
-func (poll *Poll) EndDate() *time.Time {
-	return poll.endDate
+func (p *Poll) EndDate() *time.Time {
+	return p.endDate
 }
 
 // SetEndDate sets the endDate.
-func (poll *Poll) SetEndDate(endDate *time.Time) {
-	poll.endDate = endDate
+func (p *Poll) SetEndDate(endDate *time.Time) {
+	p.endDate = endDate
 }
 
 // AllowAnonymousVoting returns allowAnonymousVoting.
-func (poll *Poll) AllowAnonymousVoting() bool {
-	return poll.allowAnonymousVoting
+func (p *Poll) AllowAnonymousVoting() bool {
+	return p.allowAnonymousVoting
 }
 
 // SetAllowAnonymousVoting sets the allowAnonymousVoting.
-func (poll *Poll) SetAllowAnonymousVoting(allowAnonymousVoting bool) {
-	poll.allowAnonymousVoting = allowAnonymousVoting
+func (p *Poll) SetAllowAnonymousVoting(allowAnonymousVoting bool) {
+	p.allowAnonymousVoting = allowAnonymousVoting
 }
 
 // Comments returns comments.
-func (poll *Poll) Comments() *string {
-	return poll.comments
+func (p *Poll) Comments() *string {
+	return p.comments
 }
 
 // SetComments sets the comments.
-func (poll *Poll) SetComments(comments *string) {
-	poll.comments = comments
+func (p *Poll) SetComments(comments *string) {
+	p.comments = comments
 }
 
 func newPoll() *Poll {

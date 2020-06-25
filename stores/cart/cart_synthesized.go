@@ -18,118 +18,118 @@ type CartEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (cart *Cart) TableName() string {
+func (c *Cart) TableName() string {
 	return "Cart"
 }
 
 // ID returns id.
-func (cart *Cart) ID() string {
-	return cart.id
+func (c *Cart) ID() string {
+	return c.id
 }
 
 // CreatedByID returns createdByID.
-func (cart *Cart) CreatedByID() string {
-	return cart.createdByID
+func (c *Cart) CreatedByID() string {
+	return c.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (cart *Cart) SetCreatedByID(createdByID string) {
-	cart.createdByID = createdByID
+func (c *Cart) SetCreatedByID(createdByID string) {
+	c.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (cart *Cart) UpdatedByID() *string {
-	return cart.updatedByID
+func (c *Cart) UpdatedByID() *string {
+	return c.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (cart *Cart) SetUpdatedByID(updatedByID *string) {
-	cart.updatedByID = updatedByID
+func (c *Cart) SetUpdatedByID(updatedByID *string) {
+	c.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (cart *Cart) CreatedAt() time.Time {
-	return cart.createdAt
+func (c *Cart) CreatedAt() time.Time {
+	return c.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (cart *Cart) SetCreatedAt(createdAt time.Time) {
-	cart.createdAt = createdAt
+func (c *Cart) SetCreatedAt(createdAt time.Time) {
+	c.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (cart *Cart) UpdatedAt() *time.Time {
-	return cart.updatedAt
+func (c *Cart) UpdatedAt() *time.Time {
+	return c.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (cart *Cart) SetUpdatedAt(updatedAt *time.Time) {
-	cart.updatedAt = updatedAt
+func (c *Cart) SetUpdatedAt(updatedAt *time.Time) {
+	c.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (cart *Cart) CreatedByFirstName() *string {
-	return cart.createdByFirstName
+func (c *Cart) CreatedByFirstName() *string {
+	return c.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (cart *Cart) SetCreatedByFirstName(createdByFirstName *string) {
-	cart.createdByFirstName = createdByFirstName
+func (c *Cart) SetCreatedByFirstName(createdByFirstName *string) {
+	c.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (cart *Cart) CreatedBySurname() *string {
-	return cart.createdBySurname
+func (c *Cart) CreatedBySurname() *string {
+	return c.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (cart *Cart) SetCreatedBySurname(createdBySurname *string) {
-	cart.createdBySurname = createdBySurname
+func (c *Cart) SetCreatedBySurname(createdBySurname *string) {
+	c.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (cart *Cart) UpdatedByFirstName() *string {
-	return cart.updatedByFirstName
+func (c *Cart) UpdatedByFirstName() *string {
+	return c.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (cart *Cart) SetUpdatedByFirstName(updatedByFirstName *string) {
-	cart.updatedByFirstName = updatedByFirstName
+func (c *Cart) SetUpdatedByFirstName(updatedByFirstName *string) {
+	c.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (cart *Cart) UpdatedBySurname() *string {
-	return cart.updatedBySurname
+func (c *Cart) UpdatedBySurname() *string {
+	return c.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (cart *Cart) SetUpdatedBySurname(updatedBySurname *string) {
-	cart.updatedBySurname = updatedBySurname
+func (c *Cart) SetUpdatedBySurname(updatedBySurname *string) {
+	c.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (cart *Cart) IsUpdated() bool {
-	return cart.updatedByID != nil
+func (c *Cart) IsUpdated() bool {
+	return c.updatedByID != nil
 }
 
 // DomainID returns domainID.
-func (cart *Cart) DomainID() string {
-	return cart.domainID
+func (c *Cart) DomainID() string {
+	return c.domainID
 }
 
 // SetDomainID sets the domainID.
-func (cart *Cart) SetDomainID(domainID string) {
-	cart.domainID = domainID
+func (c *Cart) SetDomainID(domainID string) {
+	c.domainID = domainID
 }
 
 // UserID returns userID.
-func (cart *Cart) UserID() *string {
-	return cart.userID
+func (c *Cart) UserID() *string {
+	return c.userID
 }
 
 // SetUserID sets the userID.
-func (cart *Cart) SetUserID(userID *string) {
-	cart.userID = userID
+func (c *Cart) SetUserID(userID *string) {
+	c.userID = userID
 }
 
 func newCart() *Cart {

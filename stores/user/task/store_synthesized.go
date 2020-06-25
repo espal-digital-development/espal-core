@@ -13,8 +13,8 @@ var _ Store = &TasksStore{}
 type Store interface {
 }
 
-func (tasksStore *TasksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Task, ok bool, err error) {
-	rows, err := tasksStore.selecterDatabase.Query(query, params...)
+func (t *TasksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Task, ok bool, err error) {
+	rows, err := t.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (tasksStore *TasksStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		task := newTask()
-		fields := []interface{}{&task.id, &task.createdByID, &task.updatedByID, &task.createdAt, &task.updatedAt, &task.issuedByID, &task.assignedToID, &task.description, &task.completedNotes, &task.completedAt}
+		t := newTask()
+		fields := []interface{}{&t.id, &t.createdByID, &t.updatedByID, &t.createdAt, &t.updatedAt, &t.issuedByID, &t.assignedToID, &t.description, &t.completedNotes, &t.completedAt}
 		if withCreators {
-			fields = append(fields, &task.createdByFirstName, &task.createdBySurname, &task.updatedByFirstName, &task.updatedBySurname)
+			fields = append(fields, &t.createdByFirstName, &t.createdBySurname, &t.updatedByFirstName, &t.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, task)
+		result = append(result, t)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (tasksStore *TasksStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of TasksStore.
 func New(selecterDatabase database.Database) (*TasksStore, error) {
-	tasksStore := &TasksStore{
+	t := &TasksStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return tasksStore, nil
+	return t, nil
 }

@@ -24,30 +24,30 @@ type Message struct {
 }
 
 // SetHeader sets a value to the given header field.
-func (message *Message) SetHeader(field string, value ...string) {
-	message.headers[field] = value
-	message.msg.SetHeader(field, value...)
+func (m *Message) SetHeader(field string, value ...string) {
+	m.headers[field] = value
+	m.msg.SetHeader(field, value...)
 }
 
 // GetHeaders returns all the message's set headers.
-func (message *Message) GetHeaders() map[string][]string {
-	return message.headers
+func (m *Message) GetHeaders() map[string][]string {
+	return m.headers
 }
 
 // SetBody sets the body of the message. It replaces any content previously set
 // by SetBody, AddAlternative or AddAlternativeWriter.
-func (message *Message) SetBody(contentType, body string) {
-	message.contentType = contentType
-	message.body = body
-	message.msg.SetBody(contentType, body)
+func (m *Message) SetBody(contentType, body string) {
+	m.contentType = contentType
+	m.body = body
+	m.msg.SetBody(contentType, body)
 }
 
 // GetContentType returns the message's content type.
-func (message *Message) GetContentType() string {
-	return message.contentType
+func (m *Message) GetContentType() string {
+	return m.contentType
 }
 
 // GetBody returns the message's body content.
-func (message *Message) GetBody() string {
-	return message.body
+func (m *Message) GetBody() string {
+	return m.body
 }

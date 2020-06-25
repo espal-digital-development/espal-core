@@ -18,123 +18,123 @@ type TagEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (tag *Tag) TableName() string {
+func (t *Tag) TableName() string {
 	return "Tag"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (tag *Tag) TableAlias() string {
+func (t *Tag) TableAlias() string {
 	return "te"
 }
 
 // ID returns id.
-func (tag *Tag) ID() string {
-	return tag.id
+func (t *Tag) ID() string {
+	return t.id
 }
 
 // CreatedByID returns createdByID.
-func (tag *Tag) CreatedByID() string {
-	return tag.createdByID
+func (t *Tag) CreatedByID() string {
+	return t.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (tag *Tag) SetCreatedByID(createdByID string) {
-	tag.createdByID = createdByID
+func (t *Tag) SetCreatedByID(createdByID string) {
+	t.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (tag *Tag) UpdatedByID() *string {
-	return tag.updatedByID
+func (t *Tag) UpdatedByID() *string {
+	return t.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (tag *Tag) SetUpdatedByID(updatedByID *string) {
-	tag.updatedByID = updatedByID
+func (t *Tag) SetUpdatedByID(updatedByID *string) {
+	t.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (tag *Tag) CreatedAt() time.Time {
-	return tag.createdAt
+func (t *Tag) CreatedAt() time.Time {
+	return t.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (tag *Tag) SetCreatedAt(createdAt time.Time) {
-	tag.createdAt = createdAt
+func (t *Tag) SetCreatedAt(createdAt time.Time) {
+	t.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (tag *Tag) UpdatedAt() *time.Time {
-	return tag.updatedAt
+func (t *Tag) UpdatedAt() *time.Time {
+	return t.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (tag *Tag) SetUpdatedAt(updatedAt *time.Time) {
-	tag.updatedAt = updatedAt
+func (t *Tag) SetUpdatedAt(updatedAt *time.Time) {
+	t.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (tag *Tag) CreatedByFirstName() *string {
-	return tag.createdByFirstName
+func (t *Tag) CreatedByFirstName() *string {
+	return t.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (tag *Tag) SetCreatedByFirstName(createdByFirstName *string) {
-	tag.createdByFirstName = createdByFirstName
+func (t *Tag) SetCreatedByFirstName(createdByFirstName *string) {
+	t.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (tag *Tag) CreatedBySurname() *string {
-	return tag.createdBySurname
+func (t *Tag) CreatedBySurname() *string {
+	return t.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (tag *Tag) SetCreatedBySurname(createdBySurname *string) {
-	tag.createdBySurname = createdBySurname
+func (t *Tag) SetCreatedBySurname(createdBySurname *string) {
+	t.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (tag *Tag) UpdatedByFirstName() *string {
-	return tag.updatedByFirstName
+func (t *Tag) UpdatedByFirstName() *string {
+	return t.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (tag *Tag) SetUpdatedByFirstName(updatedByFirstName *string) {
-	tag.updatedByFirstName = updatedByFirstName
+func (t *Tag) SetUpdatedByFirstName(updatedByFirstName *string) {
+	t.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (tag *Tag) UpdatedBySurname() *string {
-	return tag.updatedBySurname
+func (t *Tag) UpdatedBySurname() *string {
+	return t.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (tag *Tag) SetUpdatedBySurname(updatedBySurname *string) {
-	tag.updatedBySurname = updatedBySurname
+func (t *Tag) SetUpdatedBySurname(updatedBySurname *string) {
+	t.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (tag *Tag) IsUpdated() bool {
-	return tag.updatedByID != nil
+func (t *Tag) IsUpdated() bool {
+	return t.updatedByID != nil
 }
 
 // Active returns active.
-func (tag *Tag) Active() bool {
-	return tag.active
+func (t *Tag) Active() bool {
+	return t.active
 }
 
 // SetActive sets the active.
-func (tag *Tag) SetActive(active bool) {
-	tag.active = active
+func (t *Tag) SetActive(active bool) {
+	t.active = active
 }
 
 // Sorting returns sorting.
-func (tag *Tag) Sorting() uint {
-	return tag.sorting
+func (t *Tag) Sorting() uint {
+	return t.sorting
 }
 
 // SetSorting sets the sorting.
-func (tag *Tag) SetSorting(sorting uint) {
-	tag.sorting = sorting
+func (t *Tag) SetSorting(sorting uint) {
+	t.sorting = sorting
 }
 
 func newTag() *Tag {

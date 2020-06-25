@@ -22,133 +22,133 @@ type BundledPropertyEntity interface {
 }
 
 // ID returns id.
-func (bundledProperty *BundledProperty) ID() string {
-	return bundledProperty.id
+func (b *BundledProperty) ID() string {
+	return b.id
 }
 
 // CreatedByID returns createdByID.
-func (bundledProperty *BundledProperty) CreatedByID() string {
-	return bundledProperty.createdByID
+func (b *BundledProperty) CreatedByID() string {
+	return b.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (bundledProperty *BundledProperty) SetCreatedByID(createdByID string) {
-	bundledProperty.createdByID = createdByID
+func (b *BundledProperty) SetCreatedByID(createdByID string) {
+	b.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (bundledProperty *BundledProperty) UpdatedByID() *string {
-	return bundledProperty.updatedByID
+func (b *BundledProperty) UpdatedByID() *string {
+	return b.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (bundledProperty *BundledProperty) SetUpdatedByID(updatedByID *string) {
-	bundledProperty.updatedByID = updatedByID
+func (b *BundledProperty) SetUpdatedByID(updatedByID *string) {
+	b.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (bundledProperty *BundledProperty) CreatedAt() time.Time {
-	return bundledProperty.createdAt
+func (b *BundledProperty) CreatedAt() time.Time {
+	return b.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (bundledProperty *BundledProperty) SetCreatedAt(createdAt time.Time) {
-	bundledProperty.createdAt = createdAt
+func (b *BundledProperty) SetCreatedAt(createdAt time.Time) {
+	b.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (bundledProperty *BundledProperty) UpdatedAt() *time.Time {
-	return bundledProperty.updatedAt
+func (b *BundledProperty) UpdatedAt() *time.Time {
+	return b.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (bundledProperty *BundledProperty) SetUpdatedAt(updatedAt *time.Time) {
-	bundledProperty.updatedAt = updatedAt
+func (b *BundledProperty) SetUpdatedAt(updatedAt *time.Time) {
+	b.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (bundledProperty *BundledProperty) CreatedByFirstName() *string {
-	return bundledProperty.createdByFirstName
+func (b *BundledProperty) CreatedByFirstName() *string {
+	return b.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (bundledProperty *BundledProperty) SetCreatedByFirstName(createdByFirstName *string) {
-	bundledProperty.createdByFirstName = createdByFirstName
+func (b *BundledProperty) SetCreatedByFirstName(createdByFirstName *string) {
+	b.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (bundledProperty *BundledProperty) CreatedBySurname() *string {
-	return bundledProperty.createdBySurname
+func (b *BundledProperty) CreatedBySurname() *string {
+	return b.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (bundledProperty *BundledProperty) SetCreatedBySurname(createdBySurname *string) {
-	bundledProperty.createdBySurname = createdBySurname
+func (b *BundledProperty) SetCreatedBySurname(createdBySurname *string) {
+	b.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (bundledProperty *BundledProperty) UpdatedByFirstName() *string {
-	return bundledProperty.updatedByFirstName
+func (b *BundledProperty) UpdatedByFirstName() *string {
+	return b.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (bundledProperty *BundledProperty) SetUpdatedByFirstName(updatedByFirstName *string) {
-	bundledProperty.updatedByFirstName = updatedByFirstName
+func (b *BundledProperty) SetUpdatedByFirstName(updatedByFirstName *string) {
+	b.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (bundledProperty *BundledProperty) UpdatedBySurname() *string {
-	return bundledProperty.updatedBySurname
+func (b *BundledProperty) UpdatedBySurname() *string {
+	return b.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (bundledProperty *BundledProperty) SetUpdatedBySurname(updatedBySurname *string) {
-	bundledProperty.updatedBySurname = updatedBySurname
+func (b *BundledProperty) SetUpdatedBySurname(updatedBySurname *string) {
+	b.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (bundledProperty *BundledProperty) IsUpdated() bool {
-	return bundledProperty.updatedByID != nil
+func (b *BundledProperty) IsUpdated() bool {
+	return b.updatedByID != nil
 }
 
 // Sorting returns sorting.
-func (bundledProperty *BundledProperty) Sorting() uint {
-	return bundledProperty.sorting
+func (b *BundledProperty) Sorting() uint {
+	return b.sorting
 }
 
 // SetSorting sets the sorting.
-func (bundledProperty *BundledProperty) SetSorting(sorting uint) {
-	bundledProperty.sorting = sorting
+func (b *BundledProperty) SetSorting(sorting uint) {
+	b.sorting = sorting
 }
 
 // Key returns key.
-func (bundledProperty *BundledProperty) Key() *string {
-	return bundledProperty.key
+func (b *BundledProperty) Key() *string {
+	return b.key
 }
 
 // SetKey sets the key.
-func (bundledProperty *BundledProperty) SetKey(key *string) {
-	bundledProperty.key = key
+func (b *BundledProperty) SetKey(key *string) {
+	b.key = key
 }
 
 // BundledProductID returns bundledProductID.
-func (bundledProperty *BundledProperty) BundledProductID() string {
-	return bundledProperty.bundledProductID
+func (b *BundledProperty) BundledProductID() string {
+	return b.bundledProductID
 }
 
 // SetBundledProductID sets the bundledProductID.
-func (bundledProperty *BundledProperty) SetBundledProductID(bundledProductID string) {
-	bundledProperty.bundledProductID = bundledProductID
+func (b *BundledProperty) SetBundledProductID(bundledProductID string) {
+	b.bundledProductID = bundledProductID
 }
 
 // PropertyID returns propertyID.
-func (bundledProperty *BundledProperty) PropertyID() string {
-	return bundledProperty.propertyID
+func (b *BundledProperty) PropertyID() string {
+	return b.propertyID
 }
 
 // SetPropertyID sets the propertyID.
-func (bundledProperty *BundledProperty) SetPropertyID(propertyID string) {
-	bundledProperty.propertyID = propertyID
+func (b *BundledProperty) SetPropertyID(propertyID string) {
+	b.propertyID = propertyID
 }
 
 func newBundledProperty() *BundledProperty {

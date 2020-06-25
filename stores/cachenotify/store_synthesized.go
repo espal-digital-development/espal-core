@@ -16,8 +16,8 @@ type Store interface {
 	Save(target uint, key string) error
 }
 
-func (cacheNotifiesStore *CacheNotifiesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CacheNotify, ok bool, err error) {
-	rows, err := cacheNotifiesStore.selecterDatabase.Query(query, params...)
+func (c *CacheNotifiesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CacheNotify, ok bool, err error) {
+	rows, err := c.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -39,15 +39,15 @@ func (cacheNotifiesStore *CacheNotifiesStore) fetch(query string, withCreators b
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		cacheNotify := newCacheNotify()
-		fields := []interface{}{&cacheNotify.id, &cacheNotify.createdByID, &cacheNotify.updatedByID, &cacheNotify.createdAt, &cacheNotify.updatedAt, &cacheNotify.target, &cacheNotify.key}
+		c := newCacheNotify()
+		fields := []interface{}{&c.id, &c.createdByID, &c.updatedByID, &c.createdAt, &c.updatedAt, &c.target, &c.key}
 		if withCreators {
-			fields = append(fields, &cacheNotify.createdByFirstName, &cacheNotify.createdBySurname, &cacheNotify.updatedByFirstName, &cacheNotify.updatedBySurname)
+			fields = append(fields, &c.createdByFirstName, &c.createdBySurname, &c.updatedByFirstName, &c.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, cacheNotify)
+		result = append(result, c)
 	}
 	ok = len(result) > 0
 	return
@@ -55,9 +55,9 @@ func (cacheNotifiesStore *CacheNotifiesStore) fetch(query string, withCreators b
 
 // New returns a new instance of CacheNotifiesStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database) (*CacheNotifiesStore, error) {
-	cacheNotifiesStore := &CacheNotifiesStore{
+	c := &CacheNotifiesStore{
 		selecterDatabase: selecterDatabase,
 		updaterDatabase:  updaterDatabase,
 	}
-	return cacheNotifiesStore, nil
+	return c, nil
 }

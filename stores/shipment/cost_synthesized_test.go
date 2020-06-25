@@ -9,97 +9,97 @@ import (
 )
 
 func TestCostTable(t *testing.T) {
-	cost := shipment.NewCostEntity()
-	if cost.TableName() == "" {
+	c := shipment.NewCostEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestCostTableAlias(t *testing.T) {
-	cost := shipment.NewCostEntity()
-	if cost.TableName() == "" {
+	c := shipment.NewCostEntity()
+	if c.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestCostIsUpdated(t *testing.T) {
-	cost := shipment.NewCostEntity()
-	cost.IsUpdated()
+	c := shipment.NewCostEntity()
+	c.IsUpdated()
 }
 
 func TestCostID(t *testing.T) {
-	cost := shipment.NewCostEntity()
-	cost.ID()
+	c := shipment.NewCostEntity()
+	c.ID()
 }
 
 func TestCostCreatedByID(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := "testValue"
-	cost.SetCreatedByID(testValue)
-	if testValue != cost.CreatedByID() {
+	c.SetCreatedByID(testValue)
+	if testValue != c.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostUpdatedByID(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := "testValue"
-	cost.SetUpdatedByID(&testValue)
-	if &testValue != cost.UpdatedByID() {
+	c.SetUpdatedByID(&testValue)
+	if &testValue != c.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostCreatedAt(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := time.Now()
-	cost.SetCreatedAt(testValue)
-	if testValue != cost.CreatedAt() {
+	c.SetCreatedAt(testValue)
+	if testValue != c.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostUpdatedAt(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := time.Now()
-	cost.SetUpdatedAt(&testValue)
-	if &testValue != cost.UpdatedAt() {
+	c.SetUpdatedAt(&testValue)
+	if &testValue != c.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostCreatedByFirstName(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := "testValue"
-	cost.SetCreatedByFirstName(&testValue)
-	if &testValue != cost.CreatedByFirstName() {
+	c.SetCreatedByFirstName(&testValue)
+	if &testValue != c.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostCreatedBySurname(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := "testValue"
-	cost.SetCreatedBySurname(&testValue)
-	if &testValue != cost.CreatedBySurname() {
+	c.SetCreatedBySurname(&testValue)
+	if &testValue != c.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostUpdatedByFirstName(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := "testValue"
-	cost.SetUpdatedByFirstName(&testValue)
-	if &testValue != cost.UpdatedByFirstName() {
+	c.SetUpdatedByFirstName(&testValue)
+	if &testValue != c.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestCostUpdatedBySurname(t *testing.T) {
-	cost := shipment.NewCostEntity()
+	c := shipment.NewCostEntity()
 	testValue := "testValue"
-	cost.SetUpdatedBySurname(&testValue)
-	if &testValue != cost.UpdatedBySurname() {
+	c.SetUpdatedBySurname(&testValue)
+	if &testValue != c.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

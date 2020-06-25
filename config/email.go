@@ -18,26 +18,26 @@ type email struct {
 }
 
 // EmailHost returns the email server host path.
-func (configuration *Configuration) EmailHost() string {
-	return configuration.email.Host
+func (c *Configuration) EmailHost() string {
+	return c.email.Host
 }
 
 // EmailPort returns the email server port number.
-func (configuration *Configuration) EmailPort() int {
-	return configuration.email.Port
+func (c *Configuration) EmailPort() int {
+	return c.email.Port
 }
 
 // EmailUsername returns the email server username.
-func (configuration *Configuration) EmailUsername() string {
-	return configuration.email.Username
+func (c *Configuration) EmailUsername() string {
+	return c.email.Username
 }
 
 // EmailPassword returns the email server password.
-func (configuration *Configuration) EmailPassword() string {
-	return configuration.email.Password
+func (c *Configuration) EmailPassword() string {
+	return c.email.Password
 }
 
 // EmailNoReplyAddress returns the email server no-reply address.
-func (configuration *Configuration) EmailNoReplyAddress() string {
-	return configuration.email.NoReplyAddress
+func (c *Configuration) EmailNoReplyAddress() string {
+	return c.email.NoReplyAddress
 }

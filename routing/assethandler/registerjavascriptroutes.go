@@ -6,35 +6,35 @@ import (
 	"github.com/juju/errors"
 )
 
-func (assetHandler *AssetHandler) registerJavaScriptsRoutes() error {
+func (h *AssetHandler) registerJavaScriptsRoutes() error {
 	var gzipData []byte
 	var loopErr error
-	assetHandler.javaScriptStorage.Iterate(func(path string, data []byte, err error) bool {
+	h.javaScriptStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
 			loopErr = err
 			return false
 		}
-		data, err = assetHandler.minifier.Bytes("application/javascript", data)
+		data, err = h.minifier.Bytes("application/javascript", data)
 		if err != nil {
 			loopErr = errors.Trace(err)
 			return false
 		}
-		if !assetHandler.configService.Development() {
+		if !h.configService.Development() {
 			data = []byte(strings.Replace(string(data), "'use strict';", "", -1))
 		}
-		if assetHandler.configService.AssetsGZip() {
-			gzipData, err = assetHandler.convertToGzip(data)
+		if h.configService.AssetsGZip() {
+			gzipData, err = h.convertToGzip(data)
 			if err != nil {
 				loopErr = errors.Trace(err)
 				return false
 			}
 		}
-		err = assetHandler.routerService.RegisterRoute("/j/"+path, &route{
+		err = h.routerService.RegisterRoute("/j/"+path, &route{
 			data:        data,
 			gzipData:    gzipData,
 			contentType: "application/javascript",
-			cacheMaxAge: assetHandler.configService.AssetsCacheMaxAge(),
-			allowGzip:   assetHandler.configService.AssetsGZip(),
+			cacheMaxAge: h.configService.AssetsCacheMaxAge(),
+			allowGzip:   h.configService.AssetsGZip(),
 		})
 		if err != nil {
 			loopErr = errors.Trace(err)

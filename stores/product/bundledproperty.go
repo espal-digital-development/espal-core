@@ -23,11 +23,11 @@ type BundledProperty struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (bundledProperty *BundledProperty) TableName() string {
+func (b *BundledProperty) TableName() string {
 	return "BundledProductProperty"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (bundledProperty *BundledProperty) TableAlias() string {
+func (b *BundledProperty) TableAlias() string {
 	return "bprp"
 }

@@ -57,313 +57,313 @@ type UserEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (user *User) TableName() string {
+func (u *User) TableName() string {
 	return "User"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (user *User) TableAlias() string {
+func (u *User) TableAlias() string {
 	return "ue"
 }
 
 // ID returns id.
-func (user *User) ID() string {
-	return user.id
+func (u *User) ID() string {
+	return u.id
 }
 
 // CreatedByID returns createdByID.
-func (user *User) CreatedByID() string {
-	return user.createdByID
+func (u *User) CreatedByID() string {
+	return u.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (user *User) SetCreatedByID(createdByID string) {
-	user.createdByID = createdByID
+func (u *User) SetCreatedByID(createdByID string) {
+	u.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (user *User) UpdatedByID() *string {
-	return user.updatedByID
+func (u *User) UpdatedByID() *string {
+	return u.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (user *User) SetUpdatedByID(updatedByID *string) {
-	user.updatedByID = updatedByID
+func (u *User) SetUpdatedByID(updatedByID *string) {
+	u.updatedByID = updatedByID
 }
 
 // DefaultDeliveryAddressID returns defaultDeliveryAddressID.
-func (user *User) DefaultDeliveryAddressID() *string {
-	return user.defaultDeliveryAddressID
+func (u *User) DefaultDeliveryAddressID() *string {
+	return u.defaultDeliveryAddressID
 }
 
 // SetDefaultDeliveryAddressID sets the defaultDeliveryAddressID.
-func (user *User) SetDefaultDeliveryAddressID(defaultDeliveryAddressID *string) {
-	user.defaultDeliveryAddressID = defaultDeliveryAddressID
+func (u *User) SetDefaultDeliveryAddressID(defaultDeliveryAddressID *string) {
+	u.defaultDeliveryAddressID = defaultDeliveryAddressID
 }
 
 // DefaultInvoiceAddressID returns defaultInvoiceAddressID.
-func (user *User) DefaultInvoiceAddressID() *string {
-	return user.defaultInvoiceAddressID
+func (u *User) DefaultInvoiceAddressID() *string {
+	return u.defaultInvoiceAddressID
 }
 
 // SetDefaultInvoiceAddressID sets the defaultInvoiceAddressID.
-func (user *User) SetDefaultInvoiceAddressID(defaultInvoiceAddressID *string) {
-	user.defaultInvoiceAddressID = defaultInvoiceAddressID
+func (u *User) SetDefaultInvoiceAddressID(defaultInvoiceAddressID *string) {
+	u.defaultInvoiceAddressID = defaultInvoiceAddressID
 }
 
 // CreatedAt returns createdAt.
-func (user *User) CreatedAt() time.Time {
-	return user.createdAt
+func (u *User) CreatedAt() time.Time {
+	return u.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (user *User) SetCreatedAt(createdAt time.Time) {
-	user.createdAt = createdAt
+func (u *User) SetCreatedAt(createdAt time.Time) {
+	u.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (user *User) UpdatedAt() *time.Time {
-	return user.updatedAt
+func (u *User) UpdatedAt() *time.Time {
+	return u.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (user *User) SetUpdatedAt(updatedAt *time.Time) {
-	user.updatedAt = updatedAt
+func (u *User) SetUpdatedAt(updatedAt *time.Time) {
+	u.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (user *User) CreatedByFirstName() *string {
-	return user.createdByFirstName
+func (u *User) CreatedByFirstName() *string {
+	return u.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (user *User) SetCreatedByFirstName(createdByFirstName *string) {
-	user.createdByFirstName = createdByFirstName
+func (u *User) SetCreatedByFirstName(createdByFirstName *string) {
+	u.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (user *User) CreatedBySurname() *string {
-	return user.createdBySurname
+func (u *User) CreatedBySurname() *string {
+	return u.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (user *User) SetCreatedBySurname(createdBySurname *string) {
-	user.createdBySurname = createdBySurname
+func (u *User) SetCreatedBySurname(createdBySurname *string) {
+	u.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (user *User) UpdatedByFirstName() *string {
-	return user.updatedByFirstName
+func (u *User) UpdatedByFirstName() *string {
+	return u.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (user *User) SetUpdatedByFirstName(updatedByFirstName *string) {
-	user.updatedByFirstName = updatedByFirstName
+func (u *User) SetUpdatedByFirstName(updatedByFirstName *string) {
+	u.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (user *User) UpdatedBySurname() *string {
-	return user.updatedBySurname
+func (u *User) UpdatedBySurname() *string {
+	return u.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (user *User) SetUpdatedBySurname(updatedBySurname *string) {
-	user.updatedBySurname = updatedBySurname
+func (u *User) SetUpdatedBySurname(updatedBySurname *string) {
+	u.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (user *User) IsUpdated() bool {
-	return user.updatedByID != nil
+func (u *User) IsUpdated() bool {
+	return u.updatedByID != nil
 }
 
 // Active returns active.
-func (user *User) Active() bool {
-	return user.active
+func (u *User) Active() bool {
+	return u.active
 }
 
 // SetActive sets the active.
-func (user *User) SetActive(active bool) {
-	user.active = active
+func (u *User) SetActive(active bool) {
+	u.active = active
 }
 
 // Country returns country.
-func (user *User) Country() *uint16 {
-	return user.country
+func (u *User) Country() *uint16 {
+	return u.country
 }
 
 // SetCountry sets the country.
-func (user *User) SetCountry(country *uint16) {
-	user.country = country
+func (u *User) SetCountry(country *uint16) {
+	u.country = country
 }
 
 // Language returns language.
-func (user *User) Language() uint16 {
-	return user.language
+func (u *User) Language() uint16 {
+	return u.language
 }
 
 // SetLanguage sets the language.
-func (user *User) SetLanguage(language uint16) {
-	user.language = language
+func (u *User) SetLanguage(language uint16) {
+	u.language = language
 }
 
 // FirstName returns firstName.
-func (user *User) FirstName() *string {
-	return user.firstName
+func (u *User) FirstName() *string {
+	return u.firstName
 }
 
 // SetFirstName sets the firstName.
-func (user *User) SetFirstName(firstName *string) {
-	user.firstName = firstName
+func (u *User) SetFirstName(firstName *string) {
+	u.firstName = firstName
 }
 
 // Surname returns surname.
-func (user *User) Surname() *string {
-	return user.surname
+func (u *User) Surname() *string {
+	return u.surname
 }
 
 // SetSurname sets the surname.
-func (user *User) SetSurname(surname *string) {
-	user.surname = surname
+func (u *User) SetSurname(surname *string) {
+	u.surname = surname
 }
 
 // DateOfBirth returns dateOfBirth.
-func (user *User) DateOfBirth() *time.Time {
-	return user.dateOfBirth
+func (u *User) DateOfBirth() *time.Time {
+	return u.dateOfBirth
 }
 
 // SetDateOfBirth sets the dateOfBirth.
-func (user *User) SetDateOfBirth(dateOfBirth *time.Time) {
-	user.dateOfBirth = dateOfBirth
+func (u *User) SetDateOfBirth(dateOfBirth *time.Time) {
+	u.dateOfBirth = dateOfBirth
 }
 
 // Email returns email.
-func (user *User) Email() string {
-	return user.email
+func (u *User) Email() string {
+	return u.email
 }
 
 // SetEmail sets the email.
-func (user *User) SetEmail(email string) {
-	user.email = email
+func (u *User) SetEmail(email string) {
+	u.email = email
 }
 
 // Password returns password.
-func (user *User) Password() string {
-	return user.password
+func (u *User) Password() string {
+	return u.password
 }
 
 // SetPassword sets the password.
-func (user *User) SetPassword(password string) {
-	user.password = password
+func (u *User) SetPassword(password string) {
+	u.password = password
 }
 
 // Avatar returns avatar.
-func (user *User) Avatar() *string {
-	return user.avatar
+func (u *User) Avatar() *string {
+	return u.avatar
 }
 
 // SetAvatar sets the avatar.
-func (user *User) SetAvatar(avatar *string) {
-	user.avatar = avatar
+func (u *User) SetAvatar(avatar *string) {
+	u.avatar = avatar
 }
 
 // Priority returns priority.
-func (user *User) Priority() uint {
-	return user.priority
+func (u *User) Priority() uint {
+	return u.priority
 }
 
 // SetPriority sets the priority.
-func (user *User) SetPriority(priority uint) {
-	user.priority = priority
+func (u *User) SetPriority(priority uint) {
+	u.priority = priority
 }
 
 // ActivationHash returns activationHash.
-func (user *User) ActivationHash() *string {
-	return user.activationHash
+func (u *User) ActivationHash() *string {
+	return u.activationHash
 }
 
 // SetActivationHash sets the activationHash.
-func (user *User) SetActivationHash(activationHash *string) {
-	user.activationHash = activationHash
+func (u *User) SetActivationHash(activationHash *string) {
+	u.activationHash = activationHash
 }
 
 // ActivatedAt returns activatedAt.
-func (user *User) ActivatedAt() *time.Time {
-	return user.activatedAt
+func (u *User) ActivatedAt() *time.Time {
+	return u.activatedAt
 }
 
 // SetActivatedAt sets the activatedAt.
-func (user *User) SetActivatedAt(activatedAt *time.Time) {
-	user.activatedAt = activatedAt
+func (u *User) SetActivatedAt(activatedAt *time.Time) {
+	u.activatedAt = activatedAt
 }
 
 // PasswordResetHash returns passwordResetHash.
-func (user *User) PasswordResetHash() *string {
-	return user.passwordResetHash
+func (u *User) PasswordResetHash() *string {
+	return u.passwordResetHash
 }
 
 // SetPasswordResetHash sets the passwordResetHash.
-func (user *User) SetPasswordResetHash(passwordResetHash *string) {
-	user.passwordResetHash = passwordResetHash
+func (u *User) SetPasswordResetHash(passwordResetHash *string) {
+	u.passwordResetHash = passwordResetHash
 }
 
 // PasswordResetLastSendAt returns passwordResetLastSendAt.
-func (user *User) PasswordResetLastSendAt() *time.Time {
-	return user.passwordResetLastSendAt
+func (u *User) PasswordResetLastSendAt() *time.Time {
+	return u.passwordResetLastSendAt
 }
 
 // SetPasswordResetLastSendAt sets the passwordResetLastSendAt.
-func (user *User) SetPasswordResetLastSendAt(passwordResetLastSendAt *time.Time) {
-	user.passwordResetLastSendAt = passwordResetLastSendAt
+func (u *User) SetPasswordResetLastSendAt(passwordResetLastSendAt *time.Time) {
+	u.passwordResetLastSendAt = passwordResetLastSendAt
 }
 
 // PasswordLastResetAt returns passwordLastResetAt.
-func (user *User) PasswordLastResetAt() *time.Time {
-	return user.passwordLastResetAt
+func (u *User) PasswordLastResetAt() *time.Time {
+	return u.passwordLastResetAt
 }
 
 // SetPasswordLastResetAt sets the passwordLastResetAt.
-func (user *User) SetPasswordLastResetAt(passwordLastResetAt *time.Time) {
-	user.passwordLastResetAt = passwordLastResetAt
+func (u *User) SetPasswordLastResetAt(passwordLastResetAt *time.Time) {
+	u.passwordLastResetAt = passwordLastResetAt
 }
 
 // PasswordResetCount returns passwordResetCount.
-func (user *User) PasswordResetCount() *uint8 {
-	return user.passwordResetCount
+func (u *User) PasswordResetCount() *uint8 {
+	return u.passwordResetCount
 }
 
 // SetPasswordResetCount sets the passwordResetCount.
-func (user *User) SetPasswordResetCount(passwordResetCount *uint8) {
-	user.passwordResetCount = passwordResetCount
+func (u *User) SetPasswordResetCount(passwordResetCount *uint8) {
+	u.passwordResetCount = passwordResetCount
 }
 
 // Biography returns biography.
-func (user *User) Biography() *string {
-	return user.biography
+func (u *User) Biography() *string {
+	return u.biography
 }
 
 // SetBiography sets the biography.
-func (user *User) SetBiography(biography *string) {
-	user.biography = biography
+func (u *User) SetBiography(biography *string) {
+	u.biography = biography
 }
 
 // Comments returns comments.
-func (user *User) Comments() *string {
-	return user.comments
+func (u *User) Comments() *string {
+	return u.comments
 }
 
 // SetComments sets the comments.
-func (user *User) SetComments(comments *string) {
-	user.comments = comments
+func (u *User) SetComments(comments *string) {
+	u.comments = comments
 }
 
 // Currencies returns currencies.
-func (user *User) Currencies() string {
-	return user.currencies
+func (u *User) Currencies() string {
+	return u.currencies
 }
 
 // SetCurrencies sets the currencies.
-func (user *User) SetCurrencies(currencies string) {
-	user.currencies = currencies
+func (u *User) SetCurrencies(currencies string) {
+	u.currencies = currencies
 }
 
 func newUser() *User {

@@ -1,10 +1,10 @@
-{% func (page *Page) Stylesheets() %}<link rel="stylesheet" href="/c/catalog.css">{% endfunc%}
+{% func (p *Page) Stylesheets() %}<link rel="stylesheet" href="/c/catalog.css">{% endfunc%}
 
-{% func (page *Page) Title() %}{%s page.Translate("catalog") %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.Translate("catalog") %}{% endfunc%}
 
-{% func (page *Page) Content() %}{% stripspace %}
+{% func (p *Page) Content() %}{% stripspace %}
 <div class="catalog">
     <div class="filters"></div>
-    <h1>{%s page.Translate("catalog") %}</h1>
+    <h1>{%s p.Translate("catalog") %}</h1>
 </div>
 {% endstripspace %}{% endfunc%}

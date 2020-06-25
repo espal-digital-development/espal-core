@@ -21,11 +21,11 @@ type Mutation struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (mutation *Mutation) TableName() string {
+func (m *Mutation) TableName() string {
 	return "PriceMutation"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (mutation *Mutation) TableAlias() string {
+func (m *Mutation) TableAlias() string {
 	return "prm"
 }

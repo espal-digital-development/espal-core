@@ -9,23 +9,23 @@ import (
 	"github.com/juju/errors"
 )
 
-func (runner *Runner) routesAPI() error {
-	if err := runner.services.router.RegisterRoute("/API/V1/Account", overview.New(runner.stores.user)); err != nil {
+func (r *Runner) routesAPI() error {
+	if err := r.services.router.RegisterRoute("/API/V1/Account", overview.New(r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/API/V1/Login", login.New(runner.stores.user)); err != nil {
+	if err := r.services.router.RegisterRoute("/API/V1/Login", login.New(r.stores.user)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/API/V1/Account/Register", &apiEndPointNotImplemented{}); err != nil {
+	if err := r.services.router.RegisterRoute("/API/V1/Account/Register", &apiEndPointNotImplemented{}); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/API/V1/ForgotPassword", &apiEndPointNotImplemented{}); err != nil {
+	if err := r.services.router.RegisterRoute("/API/V1/ForgotPassword", &apiEndPointNotImplemented{}); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/API/V1/ForgotPasswordSucceeded", &apiEndPointNotImplemented{}); err != nil {
+	if err := r.services.router.RegisterRoute("/API/V1/ForgotPasswordSucceeded", &apiEndPointNotImplemented{}); err != nil {
 		return errors.Trace(err)
 	}
-	if err := runner.services.router.RegisterRoute("/API/V1/PasswordRecovery", &apiEndPointNotImplemented{}); err != nil {
+	if err := r.services.router.RegisterRoute("/API/V1/PasswordRecovery", &apiEndPointNotImplemented{}); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

@@ -42,20 +42,20 @@ type Recovery struct {
 }
 
 // Submit will submit and validate the form and handle all the rules.
-func (recovery *Recovery) Submit(context routeCtx) (isSubmitted bool, isValid bool, err error) {
-	if recovery.isClosed {
+func (r *Recovery) Submit(context routeCtx) (isSubmitted bool, isValid bool, err error) {
+	if r.isClosed {
 		err = errors.Errorf("form is already closed")
 		return
 	}
-	if err = recovery.validator.HandleFromRequest(context); err != nil {
+	if err = r.validator.HandleFromRequest(context); err != nil {
 		return
 	}
-	isSubmitted = recovery.validator.IsSubmitted()
+	isSubmitted = r.validator.IsSubmitted()
 	if !isSubmitted {
 		return
 	}
 	if isSubmitted {
-		isValid, err = recovery.validator.IsValid()
+		isValid, err = r.validator.IsValid()
 		if err != nil {
 			return
 		}
@@ -63,53 +63,53 @@ func (recovery *Recovery) Submit(context routeCtx) (isSubmitted bool, isValid bo
 	if !isValid {
 		return
 	}
-	if isValid, err = recovery.process(context); err != nil {
+	if isValid, err = r.process(context); err != nil {
 		return
 	}
 	return
 }
 
-func (recovery *Recovery) process(translator translator) (bool, error) {
-	user, ok, err := recovery.userStore.GetOneByEmail(recovery.validator.Field("email").Value())
+func (r *Recovery) process(translator translator) (bool, error) {
+	user, ok, err := r.userStore.GetOneByEmail(r.validator.Field("email").Value())
 	if err != nil {
 		return false, errors.Trace(err)
 	}
 	if !ok {
-		recovery.validator.AddError(translator.Translate("theSuppliedInformationDoesNotMatchAnyActiveAccount"))
+		r.validator.AddError(translator.Translate("theSuppliedInformationDoesNotMatchAnyActiveAccount"))
 		return false, nil
 	}
-	if err := bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(recovery.validator.Field("newPassword").Value())); err == nil {
-		recovery.validator.AddError(translator.Translate("yourPasswordShouldNotBeTheSameAsBefore"))
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(r.validator.Field("newPassword").Value())); err == nil {
+		r.validator.AddError(translator.Translate("yourPasswordShouldNotBeTheSameAsBefore"))
 		return false, nil
 	}
-	recovery.userID = user.ID()
-	recovery.passwordResetCount = user.PasswordResetCount()
+	r.userID = user.ID()
+	r.passwordResetCount = user.PasswordResetCount()
 	return true, nil
 }
 
 // GetUserID returns the User ID that was resolved while submitting the form.
-func (recovery *Recovery) GetUserID() string {
-	return recovery.userID
+func (r *Recovery) GetUserID() string {
+	return r.userID
 }
 
 // GetPasswordResetCount returns the User PasswordResetCount that was resolved while submitting the form.
-func (recovery *Recovery) GetPasswordResetCount() *uint8 {
-	return recovery.passwordResetCount
+func (r *Recovery) GetPasswordResetCount() *uint8 {
+	return r.passwordResetCount
 }
 
 // FormFieldValue returns a single form value that was resolved while submitting the form.
-func (recovery *Recovery) FormFieldValue(name string) string {
-	return recovery.validator.FieldValue(name)
+func (r *Recovery) FormFieldValue(name string) string {
+	return r.validator.FieldValue(name)
 }
 
 // View returns the FormView internal to help render inside html output.
-func (recovery *Recovery) View() formview.View {
-	return recovery.view
+func (r *Recovery) View() formview.View {
+	return r.view
 }
 
 // Close will release internals.
-func (recovery *Recovery) Close() {
-	recovery.validator = nil
-	recovery.userStore = nil
-	recovery.view = nil
+func (r *Recovery) Close() {
+	r.validator = nil
+	r.userStore = nil
+	r.view = nil
 }

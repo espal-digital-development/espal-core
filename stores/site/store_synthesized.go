@@ -26,8 +26,8 @@ type Store interface {
 	Filter(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error)
 }
 
-func (sitesStore *SitesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Site, ok bool, err error) {
-	rows, err := sitesStore.selecterDatabase.Query(query, params...)
+func (s *SitesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Site, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -49,15 +49,15 @@ func (sitesStore *SitesStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		site := newSite()
-		fields := []interface{}{&site.id, &site.createdByID, &site.updatedByID, &site.createdAt, &site.updatedAt, &site.online, &site.language, &site.country, &site.currencies}
+		s := newSite()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.online, &s.language, &s.country, &s.currencies}
 		if withCreators {
-			fields = append(fields, &site.createdByFirstName, &site.createdBySurname, &site.updatedByFirstName, &site.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, site)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -65,7 +65,7 @@ func (sitesStore *SitesStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of SitesStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, loggerService logger.Loggable) (*SitesStore, error) {
-	sitesStore := &SitesStore{
+	s := &SitesStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
@@ -73,5 +73,5 @@ func New(selecterDatabase database.Database, updaterDatabase database.Database, 
 		translationsRepository: translationsRepository,
 		loggerService:          loggerService,
 	}
-	return sitesStore, nil
+	return s, nil
 }

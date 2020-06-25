@@ -22,133 +22,133 @@ type ModelPropertyEntity interface {
 }
 
 // ID returns id.
-func (modelProperty *ModelProperty) ID() string {
-	return modelProperty.id
+func (m *ModelProperty) ID() string {
+	return m.id
 }
 
 // CreatedByID returns createdByID.
-func (modelProperty *ModelProperty) CreatedByID() string {
-	return modelProperty.createdByID
+func (m *ModelProperty) CreatedByID() string {
+	return m.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (modelProperty *ModelProperty) SetCreatedByID(createdByID string) {
-	modelProperty.createdByID = createdByID
+func (m *ModelProperty) SetCreatedByID(createdByID string) {
+	m.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (modelProperty *ModelProperty) UpdatedByID() *string {
-	return modelProperty.updatedByID
+func (m *ModelProperty) UpdatedByID() *string {
+	return m.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (modelProperty *ModelProperty) SetUpdatedByID(updatedByID *string) {
-	modelProperty.updatedByID = updatedByID
+func (m *ModelProperty) SetUpdatedByID(updatedByID *string) {
+	m.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (modelProperty *ModelProperty) CreatedAt() time.Time {
-	return modelProperty.createdAt
+func (m *ModelProperty) CreatedAt() time.Time {
+	return m.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (modelProperty *ModelProperty) SetCreatedAt(createdAt time.Time) {
-	modelProperty.createdAt = createdAt
+func (m *ModelProperty) SetCreatedAt(createdAt time.Time) {
+	m.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (modelProperty *ModelProperty) UpdatedAt() *time.Time {
-	return modelProperty.updatedAt
+func (m *ModelProperty) UpdatedAt() *time.Time {
+	return m.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (modelProperty *ModelProperty) SetUpdatedAt(updatedAt *time.Time) {
-	modelProperty.updatedAt = updatedAt
+func (m *ModelProperty) SetUpdatedAt(updatedAt *time.Time) {
+	m.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (modelProperty *ModelProperty) CreatedByFirstName() *string {
-	return modelProperty.createdByFirstName
+func (m *ModelProperty) CreatedByFirstName() *string {
+	return m.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (modelProperty *ModelProperty) SetCreatedByFirstName(createdByFirstName *string) {
-	modelProperty.createdByFirstName = createdByFirstName
+func (m *ModelProperty) SetCreatedByFirstName(createdByFirstName *string) {
+	m.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (modelProperty *ModelProperty) CreatedBySurname() *string {
-	return modelProperty.createdBySurname
+func (m *ModelProperty) CreatedBySurname() *string {
+	return m.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (modelProperty *ModelProperty) SetCreatedBySurname(createdBySurname *string) {
-	modelProperty.createdBySurname = createdBySurname
+func (m *ModelProperty) SetCreatedBySurname(createdBySurname *string) {
+	m.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (modelProperty *ModelProperty) UpdatedByFirstName() *string {
-	return modelProperty.updatedByFirstName
+func (m *ModelProperty) UpdatedByFirstName() *string {
+	return m.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (modelProperty *ModelProperty) SetUpdatedByFirstName(updatedByFirstName *string) {
-	modelProperty.updatedByFirstName = updatedByFirstName
+func (m *ModelProperty) SetUpdatedByFirstName(updatedByFirstName *string) {
+	m.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (modelProperty *ModelProperty) UpdatedBySurname() *string {
-	return modelProperty.updatedBySurname
+func (m *ModelProperty) UpdatedBySurname() *string {
+	return m.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (modelProperty *ModelProperty) SetUpdatedBySurname(updatedBySurname *string) {
-	modelProperty.updatedBySurname = updatedBySurname
+func (m *ModelProperty) SetUpdatedBySurname(updatedBySurname *string) {
+	m.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (modelProperty *ModelProperty) IsUpdated() bool {
-	return modelProperty.updatedByID != nil
+func (m *ModelProperty) IsUpdated() bool {
+	return m.updatedByID != nil
 }
 
 // ProductModelID returns productModelID.
-func (modelProperty *ModelProperty) ProductModelID() string {
-	return modelProperty.productModelID
+func (m *ModelProperty) ProductModelID() string {
+	return m.productModelID
 }
 
 // SetProductModelID sets the productModelID.
-func (modelProperty *ModelProperty) SetProductModelID(productModelID string) {
-	modelProperty.productModelID = productModelID
+func (m *ModelProperty) SetProductModelID(productModelID string) {
+	m.productModelID = productModelID
 }
 
 // PropertyID returns propertyID.
-func (modelProperty *ModelProperty) PropertyID() string {
-	return modelProperty.propertyID
+func (m *ModelProperty) PropertyID() string {
+	return m.propertyID
 }
 
 // SetPropertyID sets the propertyID.
-func (modelProperty *ModelProperty) SetPropertyID(propertyID string) {
-	modelProperty.propertyID = propertyID
+func (m *ModelProperty) SetPropertyID(propertyID string) {
+	m.propertyID = propertyID
 }
 
 // Sorting returns sorting.
-func (modelProperty *ModelProperty) Sorting() uint {
-	return modelProperty.sorting
+func (m *ModelProperty) Sorting() uint {
+	return m.sorting
 }
 
 // SetSorting sets the sorting.
-func (modelProperty *ModelProperty) SetSorting(sorting uint) {
-	modelProperty.sorting = sorting
+func (m *ModelProperty) SetSorting(sorting uint) {
+	m.sorting = sorting
 }
 
 // Key returns key.
-func (modelProperty *ModelProperty) Key() *string {
-	return modelProperty.key
+func (m *ModelProperty) Key() *string {
+	return m.key
 }
 
 // SetKey sets the key.
-func (modelProperty *ModelProperty) SetKey(key *string) {
-	modelProperty.key = key
+func (m *ModelProperty) SetKey(key *string) {
+	m.key = key
 }
 
 func newModelProperty() *ModelProperty {

@@ -10,124 +10,124 @@ import (
 )
 
 func TestSessionTable(t *testing.T) {
-	session := session.NewSessionEntity()
-	if session.TableName() == "" {
+	s := session.NewSessionEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestSessionTableAlias(t *testing.T) {
-	session := session.NewSessionEntity()
-	if session.TableName() == "" {
+	s := session.NewSessionEntity()
+	if s.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestSessionIsUpdated(t *testing.T) {
-	session := session.NewSessionEntity()
-	session.IsUpdated()
+	s := session.NewSessionEntity()
+	s.IsUpdated()
 }
 
 func TestSessionID(t *testing.T) {
-	session := session.NewSessionEntity()
-	session.ID()
+	s := session.NewSessionEntity()
+	s.ID()
 }
 
 func TestSessionCreatedByID(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetCreatedByID(&testValue)
-	if &testValue != session.CreatedByID() {
+	s.SetCreatedByID(&testValue)
+	if &testValue != s.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionUpdatedByID(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetUpdatedByID(&testValue)
-	if &testValue != session.UpdatedByID() {
+	s.SetUpdatedByID(&testValue)
+	if &testValue != s.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionCreatedAt(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := time.Now()
-	session.SetCreatedAt(testValue)
-	if testValue != session.CreatedAt() {
+	s.SetCreatedAt(testValue)
+	if testValue != s.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionUpdatedAt(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := time.Now()
-	session.SetUpdatedAt(&testValue)
-	if &testValue != session.UpdatedAt() {
+	s.SetUpdatedAt(&testValue)
+	if &testValue != s.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionCreatedByFirstName(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetCreatedByFirstName(&testValue)
-	if &testValue != session.CreatedByFirstName() {
+	s.SetCreatedByFirstName(&testValue)
+	if &testValue != s.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionCreatedBySurname(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetCreatedBySurname(&testValue)
-	if &testValue != session.CreatedBySurname() {
+	s.SetCreatedBySurname(&testValue)
+	if &testValue != s.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionUpdatedByFirstName(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetUpdatedByFirstName(&testValue)
-	if &testValue != session.UpdatedByFirstName() {
+	s.SetUpdatedByFirstName(&testValue)
+	if &testValue != s.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionUpdatedBySurname(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetUpdatedBySurname(&testValue)
-	if &testValue != session.UpdatedBySurname() {
+	s.SetUpdatedBySurname(&testValue)
+	if &testValue != s.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionTimeout(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := time.Second * 8
-	session.SetTimeout(testValue)
-	if testValue != session.Timeout() {
+	s.SetTimeout(testValue)
+	if testValue != s.Timeout() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionHash(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := "testValue"
-	session.SetHash(testValue)
-	if testValue != session.Hash() {
+	s.SetHash(testValue)
+	if testValue != s.Hash() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestSessionData(t *testing.T) {
-	session := session.NewSessionEntity()
+	s := session.NewSessionEntity()
 	testValue := []byte("testData")
-	session.SetData(testValue)
-	if !bytes.Equal(testValue, session.Data()) {
+	s.SetData(testValue)
+	if !bytes.Equal(testValue, s.Data()) {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

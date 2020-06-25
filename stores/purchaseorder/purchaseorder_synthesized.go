@@ -24,148 +24,148 @@ type PurchaseOrderEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (purchaseOrder *PurchaseOrder) TableName() string {
+func (p *PurchaseOrder) TableName() string {
 	return "PurchaseOrder"
 }
 
 // ID returns id.
-func (purchaseOrder *PurchaseOrder) ID() string {
-	return purchaseOrder.id
+func (p *PurchaseOrder) ID() string {
+	return p.id
 }
 
 // CreatedByID returns createdByID.
-func (purchaseOrder *PurchaseOrder) CreatedByID() string {
-	return purchaseOrder.createdByID
+func (p *PurchaseOrder) CreatedByID() string {
+	return p.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (purchaseOrder *PurchaseOrder) SetCreatedByID(createdByID string) {
-	purchaseOrder.createdByID = createdByID
+func (p *PurchaseOrder) SetCreatedByID(createdByID string) {
+	p.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (purchaseOrder *PurchaseOrder) UpdatedByID() *string {
-	return purchaseOrder.updatedByID
+func (p *PurchaseOrder) UpdatedByID() *string {
+	return p.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (purchaseOrder *PurchaseOrder) SetUpdatedByID(updatedByID *string) {
-	purchaseOrder.updatedByID = updatedByID
+func (p *PurchaseOrder) SetUpdatedByID(updatedByID *string) {
+	p.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (purchaseOrder *PurchaseOrder) CreatedAt() time.Time {
-	return purchaseOrder.createdAt
+func (p *PurchaseOrder) CreatedAt() time.Time {
+	return p.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (purchaseOrder *PurchaseOrder) SetCreatedAt(createdAt time.Time) {
-	purchaseOrder.createdAt = createdAt
+func (p *PurchaseOrder) SetCreatedAt(createdAt time.Time) {
+	p.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (purchaseOrder *PurchaseOrder) UpdatedAt() *time.Time {
-	return purchaseOrder.updatedAt
+func (p *PurchaseOrder) UpdatedAt() *time.Time {
+	return p.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (purchaseOrder *PurchaseOrder) SetUpdatedAt(updatedAt *time.Time) {
-	purchaseOrder.updatedAt = updatedAt
+func (p *PurchaseOrder) SetUpdatedAt(updatedAt *time.Time) {
+	p.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (purchaseOrder *PurchaseOrder) CreatedByFirstName() *string {
-	return purchaseOrder.createdByFirstName
+func (p *PurchaseOrder) CreatedByFirstName() *string {
+	return p.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (purchaseOrder *PurchaseOrder) SetCreatedByFirstName(createdByFirstName *string) {
-	purchaseOrder.createdByFirstName = createdByFirstName
+func (p *PurchaseOrder) SetCreatedByFirstName(createdByFirstName *string) {
+	p.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (purchaseOrder *PurchaseOrder) CreatedBySurname() *string {
-	return purchaseOrder.createdBySurname
+func (p *PurchaseOrder) CreatedBySurname() *string {
+	return p.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (purchaseOrder *PurchaseOrder) SetCreatedBySurname(createdBySurname *string) {
-	purchaseOrder.createdBySurname = createdBySurname
+func (p *PurchaseOrder) SetCreatedBySurname(createdBySurname *string) {
+	p.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (purchaseOrder *PurchaseOrder) UpdatedByFirstName() *string {
-	return purchaseOrder.updatedByFirstName
+func (p *PurchaseOrder) UpdatedByFirstName() *string {
+	return p.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (purchaseOrder *PurchaseOrder) SetUpdatedByFirstName(updatedByFirstName *string) {
-	purchaseOrder.updatedByFirstName = updatedByFirstName
+func (p *PurchaseOrder) SetUpdatedByFirstName(updatedByFirstName *string) {
+	p.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (purchaseOrder *PurchaseOrder) UpdatedBySurname() *string {
-	return purchaseOrder.updatedBySurname
+func (p *PurchaseOrder) UpdatedBySurname() *string {
+	return p.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (purchaseOrder *PurchaseOrder) SetUpdatedBySurname(updatedBySurname *string) {
-	purchaseOrder.updatedBySurname = updatedBySurname
+func (p *PurchaseOrder) SetUpdatedBySurname(updatedBySurname *string) {
+	p.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (purchaseOrder *PurchaseOrder) IsUpdated() bool {
-	return purchaseOrder.updatedByID != nil
+func (p *PurchaseOrder) IsUpdated() bool {
+	return p.updatedByID != nil
 }
 
 // SupplierID returns supplierID.
-func (purchaseOrder *PurchaseOrder) SupplierID() string {
-	return purchaseOrder.supplierID
+func (p *PurchaseOrder) SupplierID() string {
+	return p.supplierID
 }
 
 // SetSupplierID sets the supplierID.
-func (purchaseOrder *PurchaseOrder) SetSupplierID(supplierID string) {
-	purchaseOrder.supplierID = supplierID
+func (p *PurchaseOrder) SetSupplierID(supplierID string) {
+	p.supplierID = supplierID
 }
 
 // Currency returns currency.
-func (purchaseOrder *PurchaseOrder) Currency() uint16 {
-	return purchaseOrder.currency
+func (p *PurchaseOrder) Currency() uint16 {
+	return p.currency
 }
 
 // SetCurrency sets the currency.
-func (purchaseOrder *PurchaseOrder) SetCurrency(currency uint16) {
-	purchaseOrder.currency = currency
+func (p *PurchaseOrder) SetCurrency(currency uint16) {
+	p.currency = currency
 }
 
 // Comments returns comments.
-func (purchaseOrder *PurchaseOrder) Comments() *string {
-	return purchaseOrder.comments
+func (p *PurchaseOrder) Comments() *string {
+	return p.comments
 }
 
 // SetComments sets the comments.
-func (purchaseOrder *PurchaseOrder) SetComments(comments *string) {
-	purchaseOrder.comments = comments
+func (p *PurchaseOrder) SetComments(comments *string) {
+	p.comments = comments
 }
 
 // SellingPartyAutograph returns sellingPartyAutograph.
-func (purchaseOrder *PurchaseOrder) SellingPartyAutograph() *string {
-	return purchaseOrder.sellingPartyAutograph
+func (p *PurchaseOrder) SellingPartyAutograph() *string {
+	return p.sellingPartyAutograph
 }
 
 // SetSellingPartyAutograph sets the sellingPartyAutograph.
-func (purchaseOrder *PurchaseOrder) SetSellingPartyAutograph(sellingPartyAutograph *string) {
-	purchaseOrder.sellingPartyAutograph = sellingPartyAutograph
+func (p *PurchaseOrder) SetSellingPartyAutograph(sellingPartyAutograph *string) {
+	p.sellingPartyAutograph = sellingPartyAutograph
 }
 
 // BuyingPartyAutograph returns buyingPartyAutograph.
-func (purchaseOrder *PurchaseOrder) BuyingPartyAutograph() *string {
-	return purchaseOrder.buyingPartyAutograph
+func (p *PurchaseOrder) BuyingPartyAutograph() *string {
+	return p.buyingPartyAutograph
 }
 
 // SetBuyingPartyAutograph sets the buyingPartyAutograph.
-func (purchaseOrder *PurchaseOrder) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
-	purchaseOrder.buyingPartyAutograph = buyingPartyAutograph
+func (p *PurchaseOrder) SetBuyingPartyAutograph(buyingPartyAutograph *string) {
+	p.buyingPartyAutograph = buyingPartyAutograph
 }
 
 func newPurchaseOrder() *PurchaseOrder {

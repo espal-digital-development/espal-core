@@ -7,9 +7,9 @@ import (
 )
 
 // Filter filters results based on the given context.
-func (domainsStore *DomainsStore) Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error) {
+func (d *DomainsStore) Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error) {
 	alias := (&Domain{}).TableAlias()
-	filter = domainsStore.databaseFiltersFactory.NewFilter(context, newDomain())
+	filter = d.databaseFiltersFactory.NewFilter(context, newDomain())
 	filter.AddSelectField(filter.NewSelectField("id")).
 		AddSelectField(filter.NewSelectField("createdByID")).
 		AddSelectField(filter.NewSelectField("updatedByID")).

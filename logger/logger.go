@@ -55,92 +55,92 @@ type Logger struct {
 }
 
 // Disable disables logging going outward.
-func (logger *Logger) Disable() {
-	logger.enabled = false
+func (l *Logger) Disable() {
+	l.enabled = false
 }
 
 // Enable enables logging going outward.
-func (logger *Logger) Enable() {
-	logger.enabled = true
+func (l *Logger) Enable() {
+	l.enabled = true
 }
 
 // IsEnabled indicates if the loggin is currently active.
-func (logger *Logger) IsEnabled() bool {
-	return logger.enabled
+func (l *Logger) IsEnabled() bool {
+	return l.enabled
 }
 
 // Info logs a message to the Logger of the type TypeInfo.
-func (logger *Logger) Info(message string) {
-	if !logger.enabled {
+func (l *Logger) Info(message string) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:   TypeInfo,
 		message: message,
 	}
 }
 
 // Infof logs a formatted message to the Logger of the type TypeInfo.
-func (logger *Logger) Infof(message string, params ...interface{}) {
-	if !logger.enabled {
+func (l *Logger) Infof(message string, params ...interface{}) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:   TypeInfo,
 		message: fmt.Sprintf(message, params...),
 	}
 }
 
 // Warning logs a message to the Logger of the type TypeWarning.
-func (logger *Logger) Warning(message string) {
-	if !logger.enabled {
+func (l *Logger) Warning(message string) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:   TypeWarning,
 		message: message,
 	}
 }
 
 // Warningf logs a formatted message to the Logger of the type TypeWarning.
-func (logger *Logger) Warningf(message string, params ...interface{}) {
-	if !logger.enabled {
+func (l *Logger) Warningf(message string, params ...interface{}) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:   TypeWarning,
 		message: fmt.Sprintf(message, params...),
 	}
 }
 
 // Error logs a message to the Logger of the type TypeError.
-func (logger *Logger) Error(message string) {
-	if !logger.enabled {
+func (l *Logger) Error(message string) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:   TypeError,
 		message: message,
 	}
 }
 
 // Errorf logs a formatted message to the Logger of the type TypeError.
-func (logger *Logger) Errorf(message string, params ...interface{}) {
-	if !logger.enabled {
+func (l *Logger) Errorf(message string, params ...interface{}) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:   TypeError,
 		message: fmt.Sprintf(message, params...),
 	}
 }
 
 // Custom logs a message to the Logger of the type TypeCustom.
-func (logger *Logger) Custom(message string, callback func(string) string) {
-	if !logger.enabled {
+func (l *Logger) Custom(message string, callback func(string) string) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:          TypeCustom,
 		message:        message,
 		customCallback: callback,
@@ -148,11 +148,11 @@ func (logger *Logger) Custom(message string, callback func(string) string) {
 }
 
 // Customf logs a message to the Logger of the type TypeCustom.
-func (logger *Logger) Customf(message string, callback func(string) string, params ...interface{}) {
-	if !logger.enabled {
+func (l *Logger) Customf(message string, callback func(string) string, params ...interface{}) {
+	if !l.enabled {
 		return
 	}
-	logger.messages <- logMessage{
+	l.messages <- logMessage{
 		_type:          TypeCustom,
 		message:        fmt.Sprintf(message, params...),
 		customCallback: callback,
@@ -161,65 +161,65 @@ func (logger *Logger) Customf(message string, callback func(string) string, para
 
 // GetLastMessage returns the last message that was logged.
 // This only works when testMode is active. Don't use in production.
-func (logger *Logger) GetLastMessage() string {
-	logger.testMutex.RLock()
-	defer logger.testMutex.RUnlock()
-	return logger.lastMessage
+func (l *Logger) GetLastMessage() string {
+	l.testMutex.RLock()
+	defer l.testMutex.RUnlock()
+	return l.lastMessage
 }
 
-func (logger *Logger) setLastMessage(message string) {
-	logger.testMutex.Lock()
-	defer logger.testMutex.Unlock()
-	logger.lastMessage = message
+func (l *Logger) setLastMessage(message string) {
+	l.testMutex.Lock()
+	defer l.testMutex.Unlock()
+	l.lastMessage = message
 }
 
 // EnableTestMode enables test mode for tests interaction.
-func (logger *Logger) EnableTestMode() {
-	logger.testMode = true
+func (l *Logger) EnableTestMode() {
+	l.testMode = true
 }
 
-func (logger *Logger) startListener(listener func(*Logger)) {
-	go listener(logger)
+func (l *Logger) startListener(listener func(*Logger)) {
+	go listener(l)
 }
 
 // New returns a new pointer-instance of Logger.
 func New() *Logger {
-	loggerInstance := &Logger{
+	l := &Logger{
 		messages:  make(chan logMessage),
 		testMutex: &sync.RWMutex{},
 	}
-	loggerInstance.Enable()
-	loggerInstance.startListener(func(logger *Logger) {
+	l.Enable()
+	l.startListener(func(logger *Logger) {
 		for logger != nil {
 			message := <-logger.messages
 			switch message._type {
 			case TypeInfo:
 				fmt.Println("INFO  :", message.message)
-				if logger.testMode {
+				if l.testMode {
 					logger.setLastMessage(fmt.Sprint("INFO  : ", message.message))
 				}
 			case TypeWarning:
 				fmt.Println("WARN  :", message.message)
-				if logger.testMode {
+				if l.testMode {
 					logger.setLastMessage(fmt.Sprint("WARN  : ", message.message))
 				}
 			case TypeError:
 				fmt.Println("ERROR :", message.message)
-				if logger.testMode {
+				if l.testMode {
 					logger.setLastMessage(fmt.Sprint("ERROR : ", message.message))
 				}
 			case TypeCustom:
 				fmt.Println(message.customCallback(message.message))
-				if logger.testMode {
+				if l.testMode {
 					logger.setLastMessage(fmt.Sprint(message.customCallback(message.message)))
 				}
 			default:
 				fmt.Printf("Unknown Logger Message Type `%d`\n", message._type)
-				if logger.testMode {
+				if l.testMode {
 					logger.setLastMessage(fmt.Sprintf("Unknown Logger Message Type `%d`\n", message._type))
 				}
 			}
 		}
 	})
-	return loggerInstance
+	return l
 }

@@ -9,124 +9,124 @@ import (
 )
 
 func TestResellerTable(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
-	if reseller.TableName() == "" {
+	r := reseller.NewResellerEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableName shouldn't be empty")
 	}
 }
 
 func TestResellerTableAlias(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
-	if reseller.TableName() == "" {
+	r := reseller.NewResellerEntity()
+	if r.TableName() == "" {
 		t.Fatal("TableAlias shouldn't be empty")
 	}
 }
 
 func TestResellerIsUpdated(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
-	reseller.IsUpdated()
+	r := reseller.NewResellerEntity()
+	r.IsUpdated()
 }
 
 func TestResellerID(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
-	reseller.ID()
+	r := reseller.NewResellerEntity()
+	r.ID()
 }
 
 func TestResellerCreatedByID(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetCreatedByID(testValue)
-	if testValue != reseller.CreatedByID() {
+	r.SetCreatedByID(testValue)
+	if testValue != r.CreatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerUpdatedByID(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetUpdatedByID(&testValue)
-	if &testValue != reseller.UpdatedByID() {
+	r.SetUpdatedByID(&testValue)
+	if &testValue != r.UpdatedByID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerCreatedAt(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := time.Now()
-	reseller.SetCreatedAt(testValue)
-	if testValue != reseller.CreatedAt() {
+	r.SetCreatedAt(testValue)
+	if testValue != r.CreatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerUpdatedAt(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := time.Now()
-	reseller.SetUpdatedAt(&testValue)
-	if &testValue != reseller.UpdatedAt() {
+	r.SetUpdatedAt(&testValue)
+	if &testValue != r.UpdatedAt() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerCreatedByFirstName(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetCreatedByFirstName(&testValue)
-	if &testValue != reseller.CreatedByFirstName() {
+	r.SetCreatedByFirstName(&testValue)
+	if &testValue != r.CreatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerCreatedBySurname(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetCreatedBySurname(&testValue)
-	if &testValue != reseller.CreatedBySurname() {
+	r.SetCreatedBySurname(&testValue)
+	if &testValue != r.CreatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerUpdatedByFirstName(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetUpdatedByFirstName(&testValue)
-	if &testValue != reseller.UpdatedByFirstName() {
+	r.SetUpdatedByFirstName(&testValue)
+	if &testValue != r.UpdatedByFirstName() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerUpdatedBySurname(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetUpdatedBySurname(&testValue)
-	if &testValue != reseller.UpdatedBySurname() {
+	r.SetUpdatedBySurname(&testValue)
+	if &testValue != r.UpdatedBySurname() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerActive(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := true
-	reseller.SetActive(testValue)
-	if testValue != reseller.Active() {
+	r.SetActive(testValue)
+	if testValue != r.Active() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerCountry(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := uint16(65000)
-	reseller.SetCountry(&testValue)
-	if &testValue != reseller.Country() {
+	r.SetCountry(&testValue)
+	if &testValue != r.Country() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }
 
 func TestResellerAddress(t *testing.T) {
-	reseller := reseller.NewResellerEntity()
+	r := reseller.NewResellerEntity()
 	testValue := "testValue"
-	reseller.SetAddress(&testValue)
-	if &testValue != reseller.Address() {
+	r.SetAddress(&testValue)
+	if &testValue != r.Address() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

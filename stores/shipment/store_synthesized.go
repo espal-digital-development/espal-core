@@ -13,8 +13,8 @@ var _ Store = &ShipmentsStore{}
 type Store interface {
 }
 
-func (shipmentsStore *ShipmentsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Shipment, ok bool, err error) {
-	rows, err := shipmentsStore.selecterDatabase.Query(query, params...)
+func (s *ShipmentsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Shipment, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (shipmentsStore *ShipmentsStore) fetch(query string, withCreators bool, par
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		shipment := newShipment()
-		fields := []interface{}{&shipment.id, &shipment.createdByID, &shipment.updatedByID, &shipment.createdAt, &shipment.updatedAt, &shipment.domainID, &shipment.userID, &shipment.saleOrderID, &shipment.code, &shipment.userInfoBusiness, &shipment.userInfoBusinessCocNumber, &shipment.userInfoFirstName, &shipment.userInfoSurname, &shipment.userInfoStreet, &shipment.userInfoStreetLine2, &shipment.userInfoNumber, &shipment.userInfoNumberAddition, &shipment.userInfoZipCode, &shipment.userInfoCity, &shipment.userInfoState, &shipment.userInfoCountry, &shipment.userInfoPhoneNumber, &shipment.userInfoEmail, &shipment.comments, &shipment.sellingPartyAutograph, &shipment.buyingPartyAutograph}
+		s := newShipment()
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.domainID, &s.userID, &s.saleOrderID, &s.code, &s.userInfoBusiness, &s.userInfoBusinessCocNumber, &s.userInfoFirstName, &s.userInfoSurname, &s.userInfoStreet, &s.userInfoStreetLine2, &s.userInfoNumber, &s.userInfoNumberAddition, &s.userInfoZipCode, &s.userInfoCity, &s.userInfoState, &s.userInfoCountry, &s.userInfoPhoneNumber, &s.userInfoEmail, &s.comments, &s.sellingPartyAutograph, &s.buyingPartyAutograph}
 		if withCreators {
-			fields = append(fields, &shipment.createdByFirstName, &shipment.createdBySurname, &shipment.updatedByFirstName, &shipment.updatedBySurname)
+			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, shipment)
+		result = append(result, s)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (shipmentsStore *ShipmentsStore) fetch(query string, withCreators bool, par
 
 // New returns a new instance of ShipmentsStore.
 func New(selecterDatabase database.Database) (*ShipmentsStore, error) {
-	shipmentsStore := &ShipmentsStore{
+	s := &ShipmentsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return shipmentsStore, nil
+	return s, nil
 }

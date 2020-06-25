@@ -13,8 +13,8 @@ var _ Store = &PagesStore{}
 type Store interface {
 }
 
-func (pagesStore *PagesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Page, ok bool, err error) {
-	rows, err := pagesStore.selecterDatabase.Query(query, params...)
+func (p *PagesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Page, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (pagesStore *PagesStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		page := newPage()
-		fields := []interface{}{&page.id, &page.createdByID, &page.updatedByID, &page.createdAt, &page.updatedAt, &page.domainID, &page.active}
+		p := newPage()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.domainID, &p.active}
 		if withCreators {
-			fields = append(fields, &page.createdByFirstName, &page.createdBySurname, &page.updatedByFirstName, &page.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, page)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (pagesStore *PagesStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of PagesStore.
 func New(selecterDatabase database.Database) (*PagesStore, error) {
-	pagesStore := &PagesStore{
+	p := &PagesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return pagesStore, nil
+	return p, nil
 }

@@ -13,8 +13,8 @@ var _ Store = &TaxesStore{}
 type Store interface {
 }
 
-func (taxesStore *TaxesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Tax, ok bool, err error) {
-	rows, err := taxesStore.selecterDatabase.Query(query, params...)
+func (t *TaxesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Tax, ok bool, err error) {
+	rows, err := t.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (taxesStore *TaxesStore) fetch(query string, withCreators bool, params ...i
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		tax := newTax()
-		fields := []interface{}{&tax.id, &tax.createdByID, &tax.updatedByID, &tax.createdAt, &tax.updatedAt, &tax.taxGroupID, &tax.country, &tax.rate}
+		t := newTax()
+		fields := []interface{}{&t.id, &t.createdByID, &t.updatedByID, &t.createdAt, &t.updatedAt, &t.taxGroupID, &t.country, &t.rate}
 		if withCreators {
-			fields = append(fields, &tax.createdByFirstName, &tax.createdBySurname, &tax.updatedByFirstName, &tax.updatedBySurname)
+			fields = append(fields, &t.createdByFirstName, &t.createdBySurname, &t.updatedByFirstName, &t.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, tax)
+		result = append(result, t)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (taxesStore *TaxesStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of TaxesStore.
 func New(selecterDatabase database.Database) (*TaxesStore, error) {
-	taxesStore := &TaxesStore{
+	t := &TaxesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return taxesStore, nil
+	return t, nil
 }

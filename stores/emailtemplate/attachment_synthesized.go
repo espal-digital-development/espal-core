@@ -20,123 +20,123 @@ type AttachmentEntity interface {
 }
 
 // ID returns id.
-func (attachment *Attachment) ID() string {
-	return attachment.id
+func (a *Attachment) ID() string {
+	return a.id
 }
 
 // CreatedByID returns createdByID.
-func (attachment *Attachment) CreatedByID() string {
-	return attachment.createdByID
+func (a *Attachment) CreatedByID() string {
+	return a.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (attachment *Attachment) SetCreatedByID(createdByID string) {
-	attachment.createdByID = createdByID
+func (a *Attachment) SetCreatedByID(createdByID string) {
+	a.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (attachment *Attachment) UpdatedByID() *string {
-	return attachment.updatedByID
+func (a *Attachment) UpdatedByID() *string {
+	return a.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (attachment *Attachment) SetUpdatedByID(updatedByID *string) {
-	attachment.updatedByID = updatedByID
+func (a *Attachment) SetUpdatedByID(updatedByID *string) {
+	a.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (attachment *Attachment) CreatedAt() time.Time {
-	return attachment.createdAt
+func (a *Attachment) CreatedAt() time.Time {
+	return a.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (attachment *Attachment) SetCreatedAt(createdAt time.Time) {
-	attachment.createdAt = createdAt
+func (a *Attachment) SetCreatedAt(createdAt time.Time) {
+	a.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (attachment *Attachment) UpdatedAt() *time.Time {
-	return attachment.updatedAt
+func (a *Attachment) UpdatedAt() *time.Time {
+	return a.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (attachment *Attachment) SetUpdatedAt(updatedAt *time.Time) {
-	attachment.updatedAt = updatedAt
+func (a *Attachment) SetUpdatedAt(updatedAt *time.Time) {
+	a.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (attachment *Attachment) CreatedByFirstName() *string {
-	return attachment.createdByFirstName
+func (a *Attachment) CreatedByFirstName() *string {
+	return a.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (attachment *Attachment) SetCreatedByFirstName(createdByFirstName *string) {
-	attachment.createdByFirstName = createdByFirstName
+func (a *Attachment) SetCreatedByFirstName(createdByFirstName *string) {
+	a.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (attachment *Attachment) CreatedBySurname() *string {
-	return attachment.createdBySurname
+func (a *Attachment) CreatedBySurname() *string {
+	return a.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (attachment *Attachment) SetCreatedBySurname(createdBySurname *string) {
-	attachment.createdBySurname = createdBySurname
+func (a *Attachment) SetCreatedBySurname(createdBySurname *string) {
+	a.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (attachment *Attachment) UpdatedByFirstName() *string {
-	return attachment.updatedByFirstName
+func (a *Attachment) UpdatedByFirstName() *string {
+	return a.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (attachment *Attachment) SetUpdatedByFirstName(updatedByFirstName *string) {
-	attachment.updatedByFirstName = updatedByFirstName
+func (a *Attachment) SetUpdatedByFirstName(updatedByFirstName *string) {
+	a.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (attachment *Attachment) UpdatedBySurname() *string {
-	return attachment.updatedBySurname
+func (a *Attachment) UpdatedBySurname() *string {
+	return a.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (attachment *Attachment) SetUpdatedBySurname(updatedBySurname *string) {
-	attachment.updatedBySurname = updatedBySurname
+func (a *Attachment) SetUpdatedBySurname(updatedBySurname *string) {
+	a.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (attachment *Attachment) IsUpdated() bool {
-	return attachment.updatedByID != nil
+func (a *Attachment) IsUpdated() bool {
+	return a.updatedByID != nil
 }
 
 // EmailTemplateID returns emailTemplateID.
-func (attachment *Attachment) EmailTemplateID() string {
-	return attachment.emailTemplateID
+func (a *Attachment) EmailTemplateID() string {
+	return a.emailTemplateID
 }
 
 // SetEmailTemplateID sets the emailTemplateID.
-func (attachment *Attachment) SetEmailTemplateID(emailTemplateID string) {
-	attachment.emailTemplateID = emailTemplateID
+func (a *Attachment) SetEmailTemplateID(emailTemplateID string) {
+	a.emailTemplateID = emailTemplateID
 }
 
 // FilePath returns filePath.
-func (attachment *Attachment) FilePath() string {
-	return attachment.filePath
+func (a *Attachment) FilePath() string {
+	return a.filePath
 }
 
 // SetFilePath sets the filePath.
-func (attachment *Attachment) SetFilePath(filePath string) {
-	attachment.filePath = filePath
+func (a *Attachment) SetFilePath(filePath string) {
+	a.filePath = filePath
 }
 
 // Language returns language.
-func (attachment *Attachment) Language() *uint16 {
-	return attachment.language
+func (a *Attachment) Language() *uint16 {
+	return a.language
 }
 
 // SetLanguage sets the language.
-func (attachment *Attachment) SetLanguage(language *uint16) {
-	attachment.language = language
+func (a *Attachment) SetLanguage(language *uint16) {
+	a.language = language
 }
 
 func newAttachment() *Attachment {

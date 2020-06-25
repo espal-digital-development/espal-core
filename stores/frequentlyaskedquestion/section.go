@@ -25,11 +25,11 @@ type Section struct {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (section *Section) TableName() string {
+func (s *Section) TableName() string {
 	return "FrequentlyAskedQuestionSection"
 }
 
 // TableAlias returns the unique resolved table alias for use in queries.
-func (section *Section) TableAlias() string {
+func (s *Section) TableAlias() string {
 	return "faqs"
 }

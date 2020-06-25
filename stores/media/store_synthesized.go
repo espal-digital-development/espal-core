@@ -13,8 +13,8 @@ var _ Store = &MediasStore{}
 type Store interface {
 }
 
-func (mediasStore *MediasStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Media, ok bool, err error) {
-	rows, err := mediasStore.selecterDatabase.Query(query, params...)
+func (m *MediasStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Media, ok bool, err error) {
+	rows, err := m.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (mediasStore *MediasStore) fetch(query string, withCreators bool, params ..
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		media := newMedia()
-		fields := []interface{}{&media.id, &media.createdByID, &media.updatedByID, &media.createdAt, &media.updatedAt, &media.active, &media.filePath}
+		m := newMedia()
+		fields := []interface{}{&m.id, &m.createdByID, &m.updatedByID, &m.createdAt, &m.updatedAt, &m.active, &m.filePath}
 		if withCreators {
-			fields = append(fields, &media.createdByFirstName, &media.createdBySurname, &media.updatedByFirstName, &media.updatedBySurname)
+			fields = append(fields, &m.createdByFirstName, &m.createdBySurname, &m.updatedByFirstName, &m.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, media)
+		result = append(result, m)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (mediasStore *MediasStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of MediasStore.
 func New(selecterDatabase database.Database) (*MediasStore, error) {
-	mediasStore := &MediasStore{
+	m := &MediasStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return mediasStore, nil
+	return m, nil
 }

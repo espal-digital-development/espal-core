@@ -42,233 +42,233 @@ type AddressEntity interface {
 }
 
 // ID returns id.
-func (address *Address) ID() string {
-	return address.id
+func (a *Address) ID() string {
+	return a.id
 }
 
 // CreatedByID returns createdByID.
-func (address *Address) CreatedByID() string {
-	return address.createdByID
+func (a *Address) CreatedByID() string {
+	return a.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (address *Address) SetCreatedByID(createdByID string) {
-	address.createdByID = createdByID
+func (a *Address) SetCreatedByID(createdByID string) {
+	a.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (address *Address) UpdatedByID() *string {
-	return address.updatedByID
+func (a *Address) UpdatedByID() *string {
+	return a.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (address *Address) SetUpdatedByID(updatedByID *string) {
-	address.updatedByID = updatedByID
+func (a *Address) SetUpdatedByID(updatedByID *string) {
+	a.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (address *Address) CreatedAt() time.Time {
-	return address.createdAt
+func (a *Address) CreatedAt() time.Time {
+	return a.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (address *Address) SetCreatedAt(createdAt time.Time) {
-	address.createdAt = createdAt
+func (a *Address) SetCreatedAt(createdAt time.Time) {
+	a.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (address *Address) UpdatedAt() *time.Time {
-	return address.updatedAt
+func (a *Address) UpdatedAt() *time.Time {
+	return a.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (address *Address) SetUpdatedAt(updatedAt *time.Time) {
-	address.updatedAt = updatedAt
+func (a *Address) SetUpdatedAt(updatedAt *time.Time) {
+	a.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (address *Address) CreatedByFirstName() *string {
-	return address.createdByFirstName
+func (a *Address) CreatedByFirstName() *string {
+	return a.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (address *Address) SetCreatedByFirstName(createdByFirstName *string) {
-	address.createdByFirstName = createdByFirstName
+func (a *Address) SetCreatedByFirstName(createdByFirstName *string) {
+	a.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (address *Address) CreatedBySurname() *string {
-	return address.createdBySurname
+func (a *Address) CreatedBySurname() *string {
+	return a.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (address *Address) SetCreatedBySurname(createdBySurname *string) {
-	address.createdBySurname = createdBySurname
+func (a *Address) SetCreatedBySurname(createdBySurname *string) {
+	a.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (address *Address) UpdatedByFirstName() *string {
-	return address.updatedByFirstName
+func (a *Address) UpdatedByFirstName() *string {
+	return a.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (address *Address) SetUpdatedByFirstName(updatedByFirstName *string) {
-	address.updatedByFirstName = updatedByFirstName
+func (a *Address) SetUpdatedByFirstName(updatedByFirstName *string) {
+	a.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (address *Address) UpdatedBySurname() *string {
-	return address.updatedBySurname
+func (a *Address) UpdatedBySurname() *string {
+	return a.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (address *Address) SetUpdatedBySurname(updatedBySurname *string) {
-	address.updatedBySurname = updatedBySurname
+func (a *Address) SetUpdatedBySurname(updatedBySurname *string) {
+	a.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (address *Address) IsUpdated() bool {
-	return address.updatedByID != nil
+func (a *Address) IsUpdated() bool {
+	return a.updatedByID != nil
 }
 
 // UserID returns userID.
-func (address *Address) UserID() string {
-	return address.userID
+func (a *Address) UserID() string {
+	return a.userID
 }
 
 // SetUserID sets the userID.
-func (address *Address) SetUserID(userID string) {
-	address.userID = userID
+func (a *Address) SetUserID(userID string) {
+	a.userID = userID
 }
 
 // Active returns active.
-func (address *Address) Active() bool {
-	return address.active
+func (a *Address) Active() bool {
+	return a.active
 }
 
 // SetActive sets the active.
-func (address *Address) SetActive(active bool) {
-	address.active = active
+func (a *Address) SetActive(active bool) {
+	a.active = active
 }
 
 // FirstName returns firstName.
-func (address *Address) FirstName() *string {
-	return address.firstName
+func (a *Address) FirstName() *string {
+	return a.firstName
 }
 
 // SetFirstName sets the firstName.
-func (address *Address) SetFirstName(firstName *string) {
-	address.firstName = firstName
+func (a *Address) SetFirstName(firstName *string) {
+	a.firstName = firstName
 }
 
 // Surname returns surname.
-func (address *Address) Surname() *string {
-	return address.surname
+func (a *Address) Surname() *string {
+	return a.surname
 }
 
 // SetSurname sets the surname.
-func (address *Address) SetSurname(surname *string) {
-	address.surname = surname
+func (a *Address) SetSurname(surname *string) {
+	a.surname = surname
 }
 
 // Street returns street.
-func (address *Address) Street() string {
-	return address.street
+func (a *Address) Street() string {
+	return a.street
 }
 
 // SetStreet sets the street.
-func (address *Address) SetStreet(street string) {
-	address.street = street
+func (a *Address) SetStreet(street string) {
+	a.street = street
 }
 
 // StreetLine2 returns streetLine2.
-func (address *Address) StreetLine2() *string {
-	return address.streetLine2
+func (a *Address) StreetLine2() *string {
+	return a.streetLine2
 }
 
 // SetStreetLine2 sets the streetLine2.
-func (address *Address) SetStreetLine2(streetLine2 *string) {
-	address.streetLine2 = streetLine2
+func (a *Address) SetStreetLine2(streetLine2 *string) {
+	a.streetLine2 = streetLine2
 }
 
 // Number returns number.
-func (address *Address) Number() string {
-	return address.number
+func (a *Address) Number() string {
+	return a.number
 }
 
 // SetNumber sets the number.
-func (address *Address) SetNumber(number string) {
-	address.number = number
+func (a *Address) SetNumber(number string) {
+	a.number = number
 }
 
 // NumberAddition returns numberAddition.
-func (address *Address) NumberAddition() *string {
-	return address.numberAddition
+func (a *Address) NumberAddition() *string {
+	return a.numberAddition
 }
 
 // SetNumberAddition sets the numberAddition.
-func (address *Address) SetNumberAddition(numberAddition *string) {
-	address.numberAddition = numberAddition
+func (a *Address) SetNumberAddition(numberAddition *string) {
+	a.numberAddition = numberAddition
 }
 
 // ZipCode returns zipCode.
-func (address *Address) ZipCode() string {
-	return address.zipCode
+func (a *Address) ZipCode() string {
+	return a.zipCode
 }
 
 // SetZipCode sets the zipCode.
-func (address *Address) SetZipCode(zipCode string) {
-	address.zipCode = zipCode
+func (a *Address) SetZipCode(zipCode string) {
+	a.zipCode = zipCode
 }
 
 // City returns city.
-func (address *Address) City() string {
-	return address.city
+func (a *Address) City() string {
+	return a.city
 }
 
 // SetCity sets the city.
-func (address *Address) SetCity(city string) {
-	address.city = city
+func (a *Address) SetCity(city string) {
+	a.city = city
 }
 
 // State returns state.
-func (address *Address) State() *string {
-	return address.state
+func (a *Address) State() *string {
+	return a.state
 }
 
 // SetState sets the state.
-func (address *Address) SetState(state *string) {
-	address.state = state
+func (a *Address) SetState(state *string) {
+	a.state = state
 }
 
 // Country returns country.
-func (address *Address) Country() *uint16 {
-	return address.country
+func (a *Address) Country() *uint16 {
+	return a.country
 }
 
 // SetCountry sets the country.
-func (address *Address) SetCountry(country *uint16) {
-	address.country = country
+func (a *Address) SetCountry(country *uint16) {
+	a.country = country
 }
 
 // PhoneNumber returns phoneNumber.
-func (address *Address) PhoneNumber() *string {
-	return address.phoneNumber
+func (a *Address) PhoneNumber() *string {
+	return a.phoneNumber
 }
 
 // SetPhoneNumber sets the phoneNumber.
-func (address *Address) SetPhoneNumber(phoneNumber *string) {
-	address.phoneNumber = phoneNumber
+func (a *Address) SetPhoneNumber(phoneNumber *string) {
+	a.phoneNumber = phoneNumber
 }
 
 // Email returns email.
-func (address *Address) Email() *string {
-	return address.email
+func (a *Address) Email() *string {
+	return a.email
 }
 
 // SetEmail sets the email.
-func (address *Address) SetEmail(email *string) {
-	address.email = email
+func (a *Address) SetEmail(email *string) {
+	a.email = email
 }
 
 func newAddress() *Address {

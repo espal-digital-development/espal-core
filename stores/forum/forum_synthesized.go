@@ -28,158 +28,158 @@ type ForumEntity interface {
 }
 
 // TableName returns the table name that belongs to the current model.
-func (forum *Forum) TableName() string {
+func (f *Forum) TableName() string {
 	return "Forum"
 }
 
 // ID returns id.
-func (forum *Forum) ID() string {
-	return forum.id
+func (f *Forum) ID() string {
+	return f.id
 }
 
 // CreatedByID returns createdByID.
-func (forum *Forum) CreatedByID() string {
-	return forum.createdByID
+func (f *Forum) CreatedByID() string {
+	return f.createdByID
 }
 
 // SetCreatedByID sets the createdByID.
-func (forum *Forum) SetCreatedByID(createdByID string) {
-	forum.createdByID = createdByID
+func (f *Forum) SetCreatedByID(createdByID string) {
+	f.createdByID = createdByID
 }
 
 // UpdatedByID returns updatedByID.
-func (forum *Forum) UpdatedByID() *string {
-	return forum.updatedByID
+func (f *Forum) UpdatedByID() *string {
+	return f.updatedByID
 }
 
 // SetUpdatedByID sets the updatedByID.
-func (forum *Forum) SetUpdatedByID(updatedByID *string) {
-	forum.updatedByID = updatedByID
+func (f *Forum) SetUpdatedByID(updatedByID *string) {
+	f.updatedByID = updatedByID
 }
 
 // CreatedAt returns createdAt.
-func (forum *Forum) CreatedAt() time.Time {
-	return forum.createdAt
+func (f *Forum) CreatedAt() time.Time {
+	return f.createdAt
 }
 
 // SetCreatedAt sets the createdAt.
-func (forum *Forum) SetCreatedAt(createdAt time.Time) {
-	forum.createdAt = createdAt
+func (f *Forum) SetCreatedAt(createdAt time.Time) {
+	f.createdAt = createdAt
 }
 
 // UpdatedAt returns updatedAt.
-func (forum *Forum) UpdatedAt() *time.Time {
-	return forum.updatedAt
+func (f *Forum) UpdatedAt() *time.Time {
+	return f.updatedAt
 }
 
 // SetUpdatedAt sets the updatedAt.
-func (forum *Forum) SetUpdatedAt(updatedAt *time.Time) {
-	forum.updatedAt = updatedAt
+func (f *Forum) SetUpdatedAt(updatedAt *time.Time) {
+	f.updatedAt = updatedAt
 }
 
 // CreatedByFirstName returns createdByFirstName.
-func (forum *Forum) CreatedByFirstName() *string {
-	return forum.createdByFirstName
+func (f *Forum) CreatedByFirstName() *string {
+	return f.createdByFirstName
 }
 
 // SetCreatedByFirstName sets the createdByFirstName.
-func (forum *Forum) SetCreatedByFirstName(createdByFirstName *string) {
-	forum.createdByFirstName = createdByFirstName
+func (f *Forum) SetCreatedByFirstName(createdByFirstName *string) {
+	f.createdByFirstName = createdByFirstName
 }
 
 // CreatedBySurname returns createdBySurname.
-func (forum *Forum) CreatedBySurname() *string {
-	return forum.createdBySurname
+func (f *Forum) CreatedBySurname() *string {
+	return f.createdBySurname
 }
 
 // SetCreatedBySurname sets the createdBySurname.
-func (forum *Forum) SetCreatedBySurname(createdBySurname *string) {
-	forum.createdBySurname = createdBySurname
+func (f *Forum) SetCreatedBySurname(createdBySurname *string) {
+	f.createdBySurname = createdBySurname
 }
 
 // UpdatedByFirstName returns updatedByFirstName.
-func (forum *Forum) UpdatedByFirstName() *string {
-	return forum.updatedByFirstName
+func (f *Forum) UpdatedByFirstName() *string {
+	return f.updatedByFirstName
 }
 
 // SetUpdatedByFirstName sets the updatedByFirstName.
-func (forum *Forum) SetUpdatedByFirstName(updatedByFirstName *string) {
-	forum.updatedByFirstName = updatedByFirstName
+func (f *Forum) SetUpdatedByFirstName(updatedByFirstName *string) {
+	f.updatedByFirstName = updatedByFirstName
 }
 
 // UpdatedBySurname returns updatedBySurname.
-func (forum *Forum) UpdatedBySurname() *string {
-	return forum.updatedBySurname
+func (f *Forum) UpdatedBySurname() *string {
+	return f.updatedBySurname
 }
 
 // SetUpdatedBySurname sets the updatedBySurname.
-func (forum *Forum) SetUpdatedBySurname(updatedBySurname *string) {
-	forum.updatedBySurname = updatedBySurname
+func (f *Forum) SetUpdatedBySurname(updatedBySurname *string) {
+	f.updatedBySurname = updatedBySurname
 }
 
 // IsUpdated returns true if UpdatedByID is set.
-func (forum *Forum) IsUpdated() bool {
-	return forum.updatedByID != nil
+func (f *Forum) IsUpdated() bool {
+	return f.updatedByID != nil
 }
 
 // Active returns active.
-func (forum *Forum) Active() bool {
-	return forum.active
+func (f *Forum) Active() bool {
+	return f.active
 }
 
 // SetActive sets the active.
-func (forum *Forum) SetActive(active bool) {
-	forum.active = active
+func (f *Forum) SetActive(active bool) {
+	f.active = active
 }
 
 // Sorting returns sorting.
-func (forum *Forum) Sorting() uint {
-	return forum.sorting
+func (f *Forum) Sorting() uint {
+	return f.sorting
 }
 
 // SetSorting sets the sorting.
-func (forum *Forum) SetSorting(sorting uint) {
-	forum.sorting = sorting
+func (f *Forum) SetSorting(sorting uint) {
+	f.sorting = sorting
 }
 
 // ParentID returns parentID.
-func (forum *Forum) ParentID() *string {
-	return forum.parentID
+func (f *Forum) ParentID() *string {
+	return f.parentID
 }
 
 // SetParentID sets the parentID.
-func (forum *Forum) SetParentID(parentID *string) {
-	forum.parentID = parentID
+func (f *Forum) SetParentID(parentID *string) {
+	f.parentID = parentID
 }
 
 // Name returns name.
-func (forum *Forum) Name() string {
-	return forum.name
+func (f *Forum) Name() string {
+	return f.name
 }
 
 // SetName sets the name.
-func (forum *Forum) SetName(name string) {
-	forum.name = name
+func (f *Forum) SetName(name string) {
+	f.name = name
 }
 
 // TopicsCount returns topicsCount.
-func (forum *Forum) TopicsCount() uint {
-	return forum.topicsCount
+func (f *Forum) TopicsCount() uint {
+	return f.topicsCount
 }
 
 // SetTopicsCount sets the topicsCount.
-func (forum *Forum) SetTopicsCount(topicsCount uint) {
-	forum.topicsCount = topicsCount
+func (f *Forum) SetTopicsCount(topicsCount uint) {
+	f.topicsCount = topicsCount
 }
 
 // PostsCount returns postsCount.
-func (forum *Forum) PostsCount() uint {
-	return forum.postsCount
+func (f *Forum) PostsCount() uint {
+	return f.postsCount
 }
 
 // SetPostsCount sets the postsCount.
-func (forum *Forum) SetPostsCount(postsCount uint) {
-	forum.postsCount = postsCount
+func (f *Forum) SetPostsCount(postsCount uint) {
+	f.postsCount = postsCount
 }
 
 func newForum() *Forum {

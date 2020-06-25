@@ -13,8 +13,8 @@ var _ Store = &PaymentMethodsStore{}
 type Store interface {
 }
 
-func (paymentMethodsStore *PaymentMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PaymentMethod, ok bool, err error) {
-	rows, err := paymentMethodsStore.selecterDatabase.Query(query, params...)
+func (p *PaymentMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PaymentMethod, ok bool, err error) {
+	rows, err := p.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -36,15 +36,15 @@ func (paymentMethodsStore *PaymentMethodsStore) fetch(query string, withCreators
 		if err := rows.Err(); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		paymentMethod := newPaymentMethod()
-		fields := []interface{}{&paymentMethod.id, &paymentMethod.createdByID, &paymentMethod.updatedByID, &paymentMethod.createdAt, &paymentMethod.updatedAt, &paymentMethod.name, &paymentMethod.description}
+		p := newPaymentMethod()
+		fields := []interface{}{&p.id, &p.createdByID, &p.updatedByID, &p.createdAt, &p.updatedAt, &p.name, &p.description}
 		if withCreators {
-			fields = append(fields, &paymentMethod.createdByFirstName, &paymentMethod.createdBySurname, &paymentMethod.updatedByFirstName, &paymentMethod.updatedBySurname)
+			fields = append(fields, &p.createdByFirstName, &p.createdBySurname, &p.updatedByFirstName, &p.updatedBySurname)
 		}
 		if err := rows.Scan(fields...); err != nil {
 			return nil, false, errors.Trace(err)
 		}
-		result = append(result, paymentMethod)
+		result = append(result, p)
 	}
 	ok = len(result) > 0
 	return
@@ -52,8 +52,8 @@ func (paymentMethodsStore *PaymentMethodsStore) fetch(query string, withCreators
 
 // New returns a new instance of PaymentMethodsStore.
 func New(selecterDatabase database.Database) (*PaymentMethodsStore, error) {
-	paymentMethodsStore := &PaymentMethodsStore{
+	p := &PaymentMethodsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return paymentMethodsStore, nil
+	return p, nil
 }

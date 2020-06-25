@@ -20,13 +20,13 @@ type forms struct {
 	register         register.Factory
 }
 
-func (runner *Runner) forms() {
-	runner.formValidators.auth = auth.New(runner.services.validators, runner.stores.user)
-	runner.formValidators.login = login.New(runner.services.validators, runner.stores.user)
-	runner.formValidators.passwordChange = change.New(runner.services.validators)
-	runner.formValidators.passwordForgot = forgot.New(runner.services.validators)
-	runner.formValidators.passwordRecovery = recovery.New(runner.services.validators, runner.stores.user)
-	runner.formValidators.register = register.New(runner.services.validators, runner.stores.user)
+func (r *Runner) forms() {
+	r.formValidators.auth = auth.New(r.services.validators, r.stores.user)
+	r.formValidators.login = login.New(r.services.validators, r.stores.user)
+	r.formValidators.passwordChange = change.New(r.services.validators)
+	r.formValidators.passwordForgot = forgot.New(r.services.validators)
+	r.formValidators.passwordRecovery = recovery.New(r.services.validators, r.stores.user)
+	r.formValidators.register = register.New(r.services.validators, r.stores.user)
 
-	runner.formsAdmin()
+	r.formsAdmin()
 }
