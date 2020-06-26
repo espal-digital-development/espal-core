@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// nolint:deadcode
+// nolint:deadcode,unused
 type siteMethods interface {
 	CurrenciesCount() uint
 }

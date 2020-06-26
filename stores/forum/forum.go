@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// nolint:deadcode
+// nolint:deadcode,unused
 type forumMethods interface {
 	TopicsCountAsString() string
 	PostsCountAsString() string

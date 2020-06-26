@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// nolint:deadcode
+// nolint:deadcode,unused
 type domainMethods interface {
 	CurrenciesCount() uint
 	HostWithProtocol() string

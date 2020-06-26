@@ -7,7 +7,7 @@ import (
 	"github.com/juju/errors"
 )
 
-// nolint:deadcode
+// nolint:deadcode,unused
 type sessionMethods interface {
 	SetDataFromJSON(entries DataEntries) error
 	GetDataAsJSON() (DataEntries, error)
