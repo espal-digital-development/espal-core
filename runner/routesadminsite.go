@@ -15,25 +15,35 @@ import (
 
 func (r *Runner) routesAdminSite() error {
 	createUpdatePage := createupdatepage.New(r.services.renderer)
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site", overview.New(r.stores.site, overviewpage.New(r.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site",
+		overview.New(r.stores.site, overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/View", view.New(r.repositories.languages, r.repositories.countries, r.repositories.currencies, r.stores.site, viewpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/View",
+		view.New(r.repositories.languages, r.repositories.countries, r.repositories.currencies,
+			r.stores.site, viewpage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Create", createupdate.New(r.services.entityMutators, r.stores.site, r.formValidators.admin.siteCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Create",
+		createupdate.New(r.services.entityMutators, r.stores.site, r.formValidators.admin.siteCreateUpdate,
+			createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Update", createupdate.New(r.services.entityMutators, r.stores.site, r.formValidators.admin.siteCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Update",
+		createupdate.New(r.services.entityMutators, r.stores.site, r.formValidators.admin.siteCreateUpdate,
+			createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/ToggleOnline", toggleonline.New(r.repositories.regularExpressions, r.stores.site)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/ToggleOnline",
+		toggleonline.New(r.repositories.regularExpressions, r.stores.site)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Search", search.New(r.stores.site)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Search",
+		search.New(r.stores.site)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Delete", delete.New(r.repositories.regularExpressions, r.stores.site)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/Site/Delete",
+		delete.New(r.repositories.regularExpressions, r.stores.site)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

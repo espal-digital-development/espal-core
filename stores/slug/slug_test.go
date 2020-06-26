@@ -36,7 +36,8 @@ package slug_test
 // 	getDefault(t)
 // }
 
-// TODO :: 777 Why does this fail? `arguments do not match: expected 1, but got 2 arguments` but there are $1 and $2 (2)..
+// TODO :: 777 Why does this fail? `arguments do not match: expected 1,
+// but got 2 arguments` but there are $1 and $2 (2)..
 // func TestGetOneByDomainIDAndPath(t *testing.T) {
 // 	store := getDefault(t)
 // 	rows := sqlmock.NewRows(allFields).AddRow(allValues...)

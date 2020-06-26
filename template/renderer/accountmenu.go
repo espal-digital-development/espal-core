@@ -5,6 +5,7 @@ import (
 )
 
 // AccountMenu will render the shared account side menu.
+// nolint:funlen
 func (r *TemplateRenderer) AccountMenu(ctx context) string {
 	out := strings.Builder{}
 

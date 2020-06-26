@@ -80,11 +80,13 @@ func (r *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	r.viewPageFactory.NewPage(context, language, user, addresses, addressesActions, contacts, contactsActions, canUpdateAddress, canDeleteAddress, canUpdateContact, canDeleteContact).Render()
+	r.viewPageFactory.NewPage(context, language, user, addresses, addressesActions, contacts, contactsActions,
+		canUpdateAddress, canDeleteAddress, canUpdateContact, canDeleteContact).Render()
 }
 
 // New returns a new instance of Route.
-func New(userStore user.Store, userAddressStore address.Store, userContactStore contact.Store, viewPageFactory page.Factory) *Route {
+func New(userStore user.Store, userAddressStore address.Store, userContactStore contact.Store,
+	viewPageFactory page.Factory) *Route {
 	return &Route{
 		userStore:        userStore,
 		userAddressStore: userAddressStore,

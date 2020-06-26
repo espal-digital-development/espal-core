@@ -9,7 +9,9 @@ import (
 )
 
 // Filter filters results based on the given context.
-func (g *GroupsStore) Filter(context filters.QueryReader, language language) (result []*Group, filter filters.Filter, err error) {
+// nolint:nakedret
+func (g *GroupsStore) Filter(context filters.QueryReader, language language) (result []*Group,
+	filter filters.Filter, err error) {
 	alias := (&Group{}).TableAlias()
 	filter = g.databaseFiltersFactory.NewFilter(context, newGroup())
 	filter.AddSelectField(filter.NewSelectField("id")).
@@ -37,8 +39,9 @@ func (g *GroupsStore) Filter(context filters.QueryReader, language language) (re
 		AddSearchField(filter.NewSearchField("value").SetTableAlias("t")).
 		AddJoinStatement(filter.NewJoin("cu", `LEFT JOIN "User" cu ON cu."id" = `+alias+`."createdByID"`)).
 		AddJoinStatement(filter.NewJoin("uu", `LEFT JOIN "User" uu ON cu."id" = `+alias+`."updatedByID"`)).
-		AddJoinStatement(filter.NewJoin("t", fmt.Sprintf(
-			`LEFT JOIN "UserGroupTranslation" t ON t."userGroupID" = %s."id" AND t."language" = %d AND t."field" = %d`, alias, language.ID(), database.DBTranslationFieldName))).
+		AddJoinStatement(filter.NewJoin("t", fmt.Sprintf(`LEFT JOIN "UserGroupTranslation" t
+			ON t."userGroupID" = %s."id" AND t."language" = %d AND t."field" = %d`, alias, language.ID(),
+			database.DBTranslationFieldName))).
 		AddSortField(filter.NewSortField("id", true).SetTableAlias(alias))
 
 	if err = filter.Process(); err != nil {

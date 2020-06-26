@@ -47,7 +47,8 @@ func (s *SessionsStore) Create(hash string, timeout time.Duration, dataEntries D
 	if err := session.SetDataFromJSON(dataEntries); err != nil {
 		return errors.Trace(err)
 	}
-	_, err := s.inserterDatabase.Exec(`INSERT INTO "Session"("hash","timeout","data") VALUES($1,$2,$3)`, hash, timeout, session.Data())
+	_, err := s.inserterDatabase.Exec(`INSERT INTO "Session"("hash","timeout","data") VALUES($1,$2,$3)`,
+		hash, timeout, session.Data())
 	return errors.Trace(err)
 }
 
@@ -57,6 +58,7 @@ func (s *SessionsStore) Update(hash string, timeout time.Duration, dataEntries D
 	if err := session.SetDataFromJSON(dataEntries); err != nil {
 		return errors.Trace(err)
 	}
-	_, err := s.updaterDatabase.Exec(`UPDATE "Session" SET "timeout" = $1, "data" = $2 WHERE "hash" = $3`, timeout, session.Data(), hash)
+	_, err := s.updaterDatabase.Exec(`UPDATE "Session" SET "timeout" = $1, "data" = $2 WHERE "hash" = $3`,
+		timeout, session.Data(), hash)
 	return errors.Trace(err)
 }

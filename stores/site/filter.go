@@ -9,7 +9,9 @@ import (
 )
 
 // Filter filters results based on the given context.
-func (s *SitesStore) Filter(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error) {
+// nolint:nakedret
+func (s *SitesStore) Filter(context filters.QueryReader, language language) (sites []*Site,
+	filter filters.Filter, err error) {
 	alias := (&Site{}).TableAlias()
 	filter = s.databaseFiltersFactory.NewFilter(context, newSite())
 	filter.AddSelectField(filter.NewSelectField("id")).
@@ -39,7 +41,9 @@ func (s *SitesStore) Filter(context filters.QueryReader, language language) (sit
 		AddSearchField(filter.NewSearchField("value").SetTableAlias("t")).
 		AddJoinStatement(filter.NewJoin("cu", `LEFT JOIN "User" cu ON cu."id" = `+alias+`."createdByID"`)).
 		AddJoinStatement(filter.NewJoin("uu", `LEFT JOIN "User" uu ON cu."id" = `+alias+`."updatedByID"`)).
-		AddJoinStatement(filter.NewJoin("t", fmt.Sprintf(`LEFT JOIN "SiteTranslation" t ON t."siteID" = %s."id" AND t."language" = %d AND t."field" = %d`, alias, language.ID(), database.DBTranslationFieldName))).
+		AddJoinStatement(filter.NewJoin("t", fmt.Sprintf(`LEFT JOIN "SiteTranslation" t ON t."siteID" = %s."id"
+			AND t."language" = %d AND t."field" = %d`, alias, language.ID(),
+			database.DBTranslationFieldName))).
 		AddSortField(filter.NewSortField("id", true).SetTableAlias(alias))
 
 	if err = filter.Process(); err != nil {
@@ -62,7 +66,9 @@ func (s *SitesStore) Filter(context filters.QueryReader, language language) (sit
 				return
 			}
 			site := newSite()
-			if err = filter.Rows().Scan(&site.id, &site.createdByID, &site.updatedByID, &site.createdByFirstName, &site.createdBySurname, &site.updatedByFirstName, &site.updatedBySurname, &site.localizedName, &site.online, &site.createdAt, &site.updatedAt, &site.language, &site.country, &site.currencies); err != nil {
+			if err = filter.Rows().Scan(&site.id, &site.createdByID, &site.updatedByID, &site.createdByFirstName,
+				&site.createdBySurname, &site.updatedByFirstName, &site.updatedBySurname, &site.localizedName,
+				&site.online, &site.createdAt, &site.updatedAt, &site.language, &site.country, &site.currencies); err != nil {
 				err = errors.Trace(err)
 				return
 			}

@@ -14,7 +14,8 @@ var _ Template = &Page{}
 
 // Factory represents an object that serves new pages.
 type Factory interface {
-	NewPage(context contexts.Context, language contexts.Language, actions pageactions.Actions, filter filters.Filter, sites []*site.Site, canUpdate bool, canDelete bool) Template
+	NewPage(context contexts.Context, language contexts.Language, actions pageactions.Actions, filter filters.Filter,
+		sites []*site.Site, canUpdate bool, canDelete bool) Template
 }
 
 // Overview page service.
@@ -23,7 +24,8 @@ type Overview struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (o *Overview) NewPage(context contexts.Context, language contexts.Language, actions pageactions.Actions, filter filters.Filter, sites []*site.Site, canUpdate bool, canDelete bool) Template {
+func (o *Overview) NewPage(context contexts.Context, language contexts.Language, actions pageactions.Actions,
+	filter filters.Filter, sites []*site.Site, canUpdate bool, canDelete bool) Template {
 	page := &Page{
 		language:        language,
 		actions:         actions,

@@ -93,7 +93,8 @@ func (a *Auth) process(translator translator) (bool, error) {
 	if err != nil || !isValid {
 		return isValid, errors.Trace(err)
 	}
-	if err = bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(a.validator.Field("password").Value())); err != nil {
+	if err = bcrypt.CompareHashAndPassword([]byte(user.Password()),
+		[]byte(a.validator.Field("password").Value())); err != nil {
 		a.validator.AddError(translator.Translate("theSuppliedCredentialsAreNotValid"))
 		return false, nil
 	}

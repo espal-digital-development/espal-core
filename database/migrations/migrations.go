@@ -104,7 +104,8 @@ func (m *Migrations) TotalMigrations() uint {
 func (m *Migrations) migrationsToRun() ([]string, error) {
 	var lastMigration string
 	var migrationsToRun []string
-	if err := m.migratorDatabase.QueryRow(`SELECT "revision" FROM "Migration" ORDER BY "id" DESC LIMIT 1`).Scan(&lastMigration); err != nil {
+	if err := m.migratorDatabase.QueryRow(`SELECT "revision" FROM "Migration" ORDER BY "id" DESC LIMIT 1`).
+		Scan(&lastMigration); err != nil {
 		if !strings.Contains(err.Error(), `relation "Migration" does not exist`) {
 			return nil, errors.Trace(err)
 		}

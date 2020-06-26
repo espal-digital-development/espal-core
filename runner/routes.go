@@ -7,7 +7,9 @@ import (
 )
 
 func (r *Runner) routes() error {
-	r.services.assetHandler = assethandler.New(r.services.config, r.services.router, minify.New(), r.storages.assetsStylesheets, r.storages.assetsJavaScript, r.storages.assetsImages, r.storages.assetsPublicFiles, r.storages.assetsPublicRootFiles)
+	r.services.assetHandler = assethandler.New(r.services.config, r.services.router, minify.New(),
+		r.storages.assetsStylesheets, r.storages.assetsJavaScript, r.storages.assetsImages,
+		r.storages.assetsPublicFiles, r.storages.assetsPublicRootFiles)
 	if err := r.services.assetHandler.RegisterAll(); err != nil {
 		return errors.Trace(err)
 	}

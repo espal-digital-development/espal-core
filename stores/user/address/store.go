@@ -22,6 +22,7 @@ type AddressesStore struct {
 }
 
 // ForUser fetches Addresses for userID.
+// nolint:nakedret
 func (a *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err error) {
 	rows, err := a.selecterDatabase.Query(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserAddress" u
@@ -51,10 +52,11 @@ func (a *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err
 			return
 		}
 		address := newAddress()
-		err = rows.Scan(&address.id, &address.createdByID, &address.updatedByID, &address.userID, &address.createdAt, &address.updatedAt,
-			&address.active, &address.firstName, &address.surname, &address.street, &address.streetLine2, &address.number,
-			&address.numberAddition, &address.zipCode, &address.city, &address.state, &address.country, &address.phoneNumber, &address.email,
-			&address.createdByFirstName, &address.createdBySurname, &address.updatedByFirstName, &address.updatedBySurname,
+		err = rows.Scan(&address.id, &address.createdByID, &address.updatedByID, &address.userID, &address.createdAt,
+			&address.updatedAt, &address.active, &address.firstName, &address.surname, &address.street,
+			&address.streetLine2, &address.number, &address.numberAddition, &address.zipCode, &address.city,
+			&address.state, &address.country, &address.phoneNumber, &address.email, &address.createdByFirstName,
+			&address.createdBySurname, &address.updatedByFirstName, &address.updatedBySurname,
 		)
 		if err != nil {
 			err = errors.Trace(err)
@@ -145,7 +147,8 @@ func (a *AddressesStore) ToggleActive(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(`UPDATE "UserAddress" SET "active" = NOT "active" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Query(`UPDATE "UserAddress" SET "active" = NOT "active" WHERE "id"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

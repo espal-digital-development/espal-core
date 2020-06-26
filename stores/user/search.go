@@ -7,6 +7,7 @@ import (
 )
 
 // Search searches results based on the given context through the filter mechanics.
+// nolint:nakedret
 func (u *UsersStore) Search(context filters.QueryReader) (result []*User, filter filters.Filter, err error) {
 	alias := (&User{}).TableAlias()
 	filter = u.databaseFiltersFactory.NewFilter(context, newUser())
@@ -38,7 +39,10 @@ func (u *UsersStore) Search(context filters.QueryReader) (result []*User, filter
 				return
 			}
 			user := newUser()
-			if err = filter.Rows().Scan(&user.id, &user.createdByID, &user.updatedByID, &user.createdByFirstName, &user.createdBySurname, &user.updatedByFirstName, &user.updatedBySurname, &user.active, &user.createdAt, &user.updatedAt, &user.firstName, &user.surname, &user.email, &user.dateOfBirth, &user.language, &user.country, &user.currencies); err != nil {
+			if err = filter.Rows().Scan(&user.id, &user.createdByID, &user.updatedByID, &user.createdByFirstName,
+				&user.createdBySurname, &user.updatedByFirstName, &user.updatedBySurname, &user.active,
+				&user.createdAt, &user.updatedAt, &user.firstName, &user.surname, &user.email, &user.dateOfBirth,
+				&user.language, &user.country, &user.currencies); err != nil {
 				err = errors.Trace(err)
 				return
 			}

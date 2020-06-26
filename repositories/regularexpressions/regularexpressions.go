@@ -57,7 +57,8 @@ func New() (*RegularExpressions, error) {
 	if r.activateAccounthash, err = regexp.Compile(`^[a-zA-Z0-9]{72}$`); err != nil {
 		return nil, errors.Trace(err)
 	}
-	if r.routeIDs, err = regexp.Compile(`^(?:\w{8}-\w{4}-\w{4}-\w{4}-\w{12})(?:,\w{8}-\w{4}-\w{4}-\w{4}-\w{12})*$`); err != nil { // `^[\w-]+(?:,[\w-]+)*$`
+	if r.routeIDs, err = regexp.Compile(
+		`^(?:\w{8}-\w{4}-\w{4}-\w{4}-\w{12})(?:,\w{8}-\w{4}-\w{4}-\w{4}-\w{12})*$`); err != nil {
 		return nil, errors.Trace(err)
 	}
 	return r, nil

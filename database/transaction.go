@@ -24,6 +24,7 @@ func (t *transaction) Exec(query string, args ...interface{}) (Result, error) {
 
 // Query executes a query that returns rows, typically a SELECT.
 func (t *transaction) Query(query string, args ...interface{}) (Rows, error) {
+	// nolint:rowserrcheck
 	return t.tx.Query(query, args...)
 }
 

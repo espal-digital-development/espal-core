@@ -18,6 +18,7 @@ import (
 	"github.com/juju/errors"
 )
 
+// nolint:funlen
 func (r *Runner) core(path string) error {
 	if path == "" {
 		path = filepath.FromSlash("./app")
@@ -95,11 +96,15 @@ func (r *Runner) core(path string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	r.services.mailer = mailer.New(r.services.config.EmailHost(), r.services.config.EmailPort(), r.services.config.EmailUsername(), r.services.config.EmailPassword())
+	r.services.mailer = mailer.New(r.services.config.EmailHost(), r.services.config.EmailPort(),
+		r.services.config.EmailUsername(), r.services.config.EmailPassword())
 	if r.services.mailer == nil {
 		return errors.Errorf("runner.services.mailer returned nil")
 	}
-	r.services.tokenPool = tokenpool.New(r.services.config.SecurityFormTokenLifespan(), r.services.config.SecurityFormTokenCleanupInterval())
-	r.services.validators = validators.New(r.services.config, r.services.logger, r.repositories.languages, r.repositories.countries, r.repositories.currencies, r.repositories.translations, r.repositories.regularExpressions, r.services.tokenPool)
+	r.services.tokenPool = tokenpool.New(r.services.config.SecurityFormTokenLifespan(),
+		r.services.config.SecurityFormTokenCleanupInterval())
+	r.services.validators = validators.New(r.services.config, r.services.logger, r.repositories.languages,
+		r.repositories.countries, r.repositories.currencies, r.repositories.translations,
+		r.repositories.regularExpressions, r.services.tokenPool)
 	return nil
 }

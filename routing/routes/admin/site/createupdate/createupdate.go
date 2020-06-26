@@ -97,11 +97,13 @@ func (r *Route) Handle(context contexts.Context) {
 	}
 
 	// TODO :: 77 Creation succeeds but still shows `Validation token invalid/expired`
-	r.createUpdatePageFactory.NewPage(context, site, language, form.View(), context.GetAdminCreateUpdateTitle(id, "site")).Render()
+	r.createUpdatePageFactory.NewPage(context, site, language, form.View(),
+		context.GetAdminCreateUpdateTitle(id, "site")).Render()
 }
 
 // New returns a new instance of Route.
-func New(entityMutatorsFactory entitymutators.Factory, siteStore site.Store, createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
+func New(entityMutatorsFactory entitymutators.Factory, siteStore site.Store,
+	createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
 	return &Route{
 		entityMutatorsFactory:     entityMutatorsFactory,
 		siteStore:                 siteStore,

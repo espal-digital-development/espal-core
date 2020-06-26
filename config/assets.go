@@ -30,21 +30,21 @@ func (c *Configuration) AssetsGZip() bool {
 
 // AssetsBrotli returns an indicator if assets calls like CSS, JS
 // and images should be served as Brotli compressed.
-// This function has the same behavior as GzipAssets
+// This function has the same behavior as GzipAssets.
 func (c *Configuration) AssetsBrotli() bool {
 	return c.assets.Brotli
 }
 
 // AssetsGZipFiles returns an indicator if files calls should be served
 // as GZip compressed.
-// This function has the same behavior as GzipAssets
+// This function has the same behavior as GzipAssets.
 func (c *Configuration) AssetsGZipFiles() bool {
 	return c.assets.GzipFiles
 }
 
 // AssetsBrotliFiles returns an indicator if files calls should be served
 // as Brotli compressed.
-// This function has the same behavior as GzipAssets
+// This function has the same behavior as GzipAssets.
 func (c *Configuration) AssetsBrotliFiles() bool {
 	return c.assets.BrotliFiles
 }

@@ -9,7 +9,8 @@ import (
 
 const (
 	getForParentQuery = `SELECT
-			f."id", f."createdByID", f."updatedByID", u."firstName", u."surname", uu."firstName" AS fn, uu."surname" AS sn, ft."value",
+			f."id", f."createdByID", f."updatedByID", u."firstName", u."surname", uu."firstName" AS fn,
+			uu."surname" AS sn, ft."value",
 			(SELECT COUNT(*) FROM "ForumPost" WHERE "forumID" = f."id" AND "responseToID" IS NULL) AS TopicCount,
 			(SELECT COUNT(*) FROM "ForumPost" WHERE "forumID" = f."id" AND "responseToID" IS NOT NULL) AS PostCount
 		FROM "Forum" f
@@ -17,7 +18,8 @@ const (
 		LEFT JOIN "User" u ON u."id" = f."createdByID" LEFT JOIN "User" uu ON uu."id" = f."updatedByID"
 		WHERE f."parentID" = $3 AND f."active" = true ORDER BY f."sorting" LIMIT 10`
 	getForParentTopLevelQuery = `SELECT
-			f."id", f."createdByID", f."updatedByID", u."firstName", u."surname", uu."firstName" AS fn, uu."surname" AS sn, ft."value",
+			f."id", f."createdByID", f."updatedByID", u."firstName", u."surname", uu."firstName" AS fn,
+			uu."surname" AS sn, ft."value",
 			(SELECT COUNT(*) FROM "ForumPost" WHERE "forumID" = f."id" AND "responseToID" IS NULL) AS TopicCount,
 			(SELECT COUNT(*) FROM "ForumPost" WHERE "forumID" = f."id" AND "responseToID" IS NOT NULL) AS PostCount
 		FROM "Forum" f
@@ -60,7 +62,9 @@ func (f *ForumsStore) GetOneByID(forumID string, language Language) (*Forum, boo
 		WHERE f."id" = $3 AND f."active" = true
 		LIMIT 1
 	`, language.ID(), database.DBTranslationFieldName, forumID).
-		Scan(&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdByFirstName, &forum.createdBySurname, &forum.updatedByFirstName, &forum.updatedBySurname, &nameTranslation, &forum.topicsCount, &forum.postsCount)
+		Scan(&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdByFirstName, &forum.createdBySurname,
+			&forum.updatedByFirstName, &forum.updatedBySurname, &nameTranslation, &forum.topicsCount,
+			&forum.postsCount)
 	if err == sql.ErrNoRows {
 		return nil, false, nil
 	}
@@ -89,7 +93,8 @@ func (f *ForumsStore) GetOnePostByID(postID string) (*Post, bool, error) {
 		ORDER BY f."sticky" ASC, f."updatedAt" DESC,
 			f."createdAt" DESC
 		LIMIT 10
-	`, postID).Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname, &post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
+	`, postID).Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname,
+		&post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
 	if err != nil && err != sql.ErrNoRows {
 		return post, false, errors.Trace(err)
 	}
@@ -102,6 +107,7 @@ func (f *ForumsStore) GetTopLevel(language Language) ([]*Forum, bool, error) {
 }
 
 // GetForParent returns all Forum entries for the given parent.
+// nolint:nakedret
 func (f *ForumsStore) GetForParent(parentID string, language Language) (result []*Forum, ok bool, err error) {
 	var rows database.Rows
 	if parentID == "" {
@@ -111,7 +117,8 @@ func (f *ForumsStore) GetForParent(parentID string, language Language) (result [
 		if parentID != "" {
 			parentIDPointer = &parentID
 		}
-		rows, err = f.selecterDatabase.Query(getForParentQuery, language.ID(), database.DBTranslationFieldName, parentIDPointer)
+		rows, err = f.selecterDatabase.Query(getForParentQuery, language.ID(), database.DBTranslationFieldName,
+			parentIDPointer)
 	}
 	if err == sql.ErrNoRows {
 		err = nil
@@ -152,13 +159,15 @@ func (f *ForumsStore) GetForParent(parentID string, language Language) (result [
 }
 
 // GetPosts returns the posts for the given Forum ID.
+// nolint:nakedret
 func (f *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err error) {
 	rows, err := f.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName", u."surname",
 			uu."firstName" AS fn, uu."surname" AS sn, f."sticky", f."title", f."message"
 		FROM "ForumPost" f
 		LEFT JOIN "User" u ON u."id" = f."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = f."updatedByID"
-		WHERE f."forumID" = $1 AND f."responseToID" IS NULL ORDER BY f."sticky" ASC, f."updatedAt" DESC, f."createdAt" DESC LIMIT 10
+		WHERE f."forumID" = $1 AND f."responseToID" IS NULL ORDER BY f."sticky" ASC, f."updatedAt" DESC,
+			f."createdAt" DESC LIMIT 10
 	`, forumID)
 	if err == sql.ErrNoRows {
 		err = nil
@@ -183,7 +192,9 @@ func (f *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err erro
 			return
 		}
 		post := newPost()
-		err = rows.Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname, &post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
+		err = rows.Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName,
+			&post.createdBySurname, &post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title,
+			&post.message)
 		if err != nil {
 			err = errors.Trace(err)
 			return
@@ -195,6 +206,7 @@ func (f *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err erro
 }
 
 // GetPostReplies returns the posted replies for the given Post ID.
+// nolint:nakedret
 func (f *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, err error) {
 	rows, err := f.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName",
 			u."surname", uu."firstName" AS fn, uu."surname" AS sn, f."sticky", f."title", f."message"
@@ -263,7 +275,9 @@ func (f *ForumsStore) DeleteOneForumPostByID(id string) error {
 
 func (f *ForumsStore) scanDefaultFieldsIntoForum(row database.Row, forum *Forum) (*string, error) {
 	var nameTranslation *string
-	err := row.Scan(&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdByFirstName, &forum.createdBySurname, &forum.updatedByFirstName, &forum.updatedBySurname, &nameTranslation, &forum.topicsCount, &forum.postsCount)
+	err := row.Scan(&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdByFirstName,
+		&forum.createdBySurname, &forum.updatedByFirstName, &forum.updatedBySurname, &nameTranslation,
+		&forum.topicsCount, &forum.postsCount)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -271,7 +285,8 @@ func (f *ForumsStore) scanDefaultFieldsIntoForum(row database.Row, forum *Forum)
 }
 
 func (f *ForumsStore) scanDefaultFieldsIntoPost(row database.Row, post *Post) error {
-	err := row.Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname, &post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
+	err := row.Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname,
+		&post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
 	if err != nil {
 		return errors.Trace(err)
 	}

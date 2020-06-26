@@ -7,18 +7,19 @@ import (
 // Invoice database object.
 // @synthesize
 type Invoice struct {
-	id                        string
-	createdByID               string
-	updatedByID               *string
-	createdAt                 time.Time
-	updatedAt                 *time.Time
-	createdByFirstName        *string
-	createdBySurname          *string
-	updatedByFirstName        *string
-	updatedBySurname          *string
-	domainID                  string
-	userID                    string
-	saleOrderID               string // TODO :: This probably needs to be SaleOrders, as you can make an Invoice of multiple (partial) SaleOrders
+	id                 string
+	createdByID        string
+	updatedByID        *string
+	createdAt          time.Time
+	updatedAt          *time.Time
+	createdByFirstName *string
+	createdBySurname   *string
+	updatedByFirstName *string
+	updatedBySurname   *string
+	domainID           string
+	userID             string
+	// TODO :: This probably needs to be SaleOrders, as you can make an Invoice of multiple (partial) SaleOrders
+	saleOrderID               string
 	currency                  uint
 	code                      *string
 	userInfoBusiness          bool

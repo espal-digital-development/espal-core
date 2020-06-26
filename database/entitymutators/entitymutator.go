@@ -142,13 +142,13 @@ func (m *EntityMutator) incrementParameterCount() uint16 {
 	return m.parameterCount
 }
 
-// SetCustomReturnPath sets a custom return path to redirect to
+// SetCustomReturnPath sets a custom return path to redirect to.
 func (m *EntityMutator) SetCustomReturnPath(returnPath string) {
 	m.returnPath = returnPath
 }
 
 // SetExtraURLQueryParams adds extra query parameters to the RedirectURL call.
-// No need to add prefixed `?` or `&`
+// No need to add prefixed `?` or `&`.
 func (m *EntityMutator) SetExtraURLQueryParams(paramsString string) {
 	m.extraQueryParams = strings.TrimLeft(paramsString, "&")
 }
@@ -161,7 +161,7 @@ func (m *EntityMutator) GetInsertedOrUpdatedID() string {
 	return m.lastInsertedID
 }
 
-// RedirectURL returns where the
+// RedirectURL returns where the.
 func (m *EntityMutator) RedirectURL() string {
 	var url string
 	var skipParams bool

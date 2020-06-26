@@ -78,7 +78,8 @@ func (r *Recovery) process(translator translator) (bool, error) {
 		r.validator.AddError(translator.Translate("theSuppliedInformationDoesNotMatchAnyActiveAccount"))
 		return false, nil
 	}
-	if err := bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(r.validator.Field("newPassword").Value())); err == nil {
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password()),
+		[]byte(r.validator.Field("newPassword").Value())); err == nil {
 		r.validator.AddError(translator.Translate("yourPasswordShouldNotBeTheSameAsBefore"))
 		return false, nil
 	}

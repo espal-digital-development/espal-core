@@ -10,6 +10,7 @@ import (
 
 // IsValid checks and returns if all data rules are met.
 // IsValid is not idempotent and might change when new errors are added to the validator.
+// nolint:gocyclo,funlen
 func (f *Form) IsValid() (bool, error) {
 	isValid := false
 	if len(f.submitErrors) > 0 {
@@ -50,18 +51,21 @@ func (f *Form) IsValid() (bool, error) {
 			}
 
 			if field.Value() != targetField.Value() {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "theXFieldAndXFieldHaveToBeTheSame"), field.Name(), field.NeedsToBeEqualToField()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"theXFieldAndXFieldHaveToBeTheSame"), field.Name(), field.NeedsToBeEqualToField()))
 			}
 		}
 
 		if field.CannotToBeEqualToField() != "" {
 			targetField, ok := f.fields[field.CannotToBeEqualToField()]
 			if !ok {
-				return false, errors.Errorf("target field `%s` for -not equal- matching cannot be found", field.CannotToBeEqualToField())
+				return false, errors.Errorf("target field `%s` for -not equal- matching cannot be found",
+					field.CannotToBeEqualToField())
 			}
 
 			if field.Value() == targetField.Value() {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "theXFieldAndXFieldCannotBeTheSame"), field.Name(), field.CannotToBeEqualToField()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"theXFieldAndXFieldCannotBeTheSame"), field.Name(), field.CannotToBeEqualToField()))
 			}
 		}
 
@@ -79,15 +83,18 @@ func (f *Form) IsValid() (bool, error) {
 		case PasswordFormField, HiddenFormField, TextFormField, TextAreaFormField, SearchFormField, EmailFormField:
 			fieldLength := uint(len(field.Value()))
 			if !field.Optional() && fieldLength == 0 {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeEmpty"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXCannotBeEmpty"), field.Name()))
 			}
 			if field.Optional() && fieldLength == 0 {
 				// Empty fields allowed on Optional and having a MinLength
 			} else if field.MinLength() > 0 && fieldLength < field.MinLength() {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXHasToBeAtLeastXCharactersLong"), field.Name(), field.MinLength()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXHasToBeAtLeastXCharactersLong"), field.Name(), field.MinLength()))
 			}
 			if field.MaxLength() > 0 && fieldLength > field.MaxLength() {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeLongerThanXCharacters"), field.Name(), field.MaxLength()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXCannotBeLongerThanXCharacters"), field.Name(), field.MaxLength()))
 			}
 		case NumberFormField:
 			err = f.validateNumberFormField(field)
@@ -131,20 +138,25 @@ func (f *Form) IsValid() (bool, error) {
 				break
 			}
 			if field.Validate() && !f.regularExpressionsRepository.GetEmail().MatchString(field.Value()) {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXIsNotAValidEmail"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXIsNotAValidEmail"), field.Name()))
 			}
 		case PasswordFormField:
-			if field.Validate() && field.Value() != "" && zxcvbn.PasswordStrength(field.Value(), make([]string, 0)).Score < 3 {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXPasswordIsNotSafeEnough"), field.Name()))
+			if field.Validate() && field.Value() != "" &&
+				zxcvbn.PasswordStrength(field.Value(), make([]string, 0)).Score < 3 {
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXPasswordIsNotSafeEnough"), field.Name()))
 			}
 		}
 	}
 
 	if !honeypotSupplied {
-		f.submitErrors = append(f.submitErrors, f.translationsRepository.Singular(f.language.ID(), "honeypotFieldNotSupplied"))
+		f.submitErrors = append(f.submitErrors, f.translationsRepository.Singular(f.language.ID(),
+			"honeypotFieldNotSupplied"))
 	}
 	if !tokenSupplied {
-		f.submitErrors = append(f.submitErrors, f.translationsRepository.Singular(f.language.ID(), "validationTokenNotSupplied"))
+		f.submitErrors = append(f.submitErrors, f.translationsRepository.Singular(f.language.ID(),
+			"validationTokenNotSupplied"))
 	}
 
 	if err := f.refreshToken(); err != nil {

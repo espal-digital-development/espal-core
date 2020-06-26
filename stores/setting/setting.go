@@ -5,8 +5,8 @@ import (
 )
 
 // Setting constants are used for Setting Keys.
-// Access order is: User < Domain < Site
-// Should not set DomainID/SiteID/UserID all to NULL
+// Access order is: User < Domain < Site.
+// Should not set DomainID/SiteID/UserID all to NULL.
 const (
 	// Levels: Domain, Site
 	SettingUserSiteAccess       uint16 = 1

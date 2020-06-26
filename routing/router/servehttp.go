@@ -11,6 +11,7 @@ import (
 )
 
 // ServeHTTP functions as a callback for server routing binding.
+// nolint:funlen
 func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http.Request) {
 	var start time.Time
 	if r.configService.Logging() {
@@ -33,7 +34,8 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context := r.contextsFactory.NewContext(request, responseWriter, nil, nil)
 		context.RenderInternalServerError(errors.Trace(err))
 
-		r.loggerService.Errorf("domain `%s` fetch threw an error `%s`. The data integrity has been violated", request.Host, err.Error())
+		r.loggerService.Errorf("domain `%s` fetch threw an error `%s`. The data integrity has been violated",
+			request.Host, err.Error())
 		return
 	}
 	if !ok {
@@ -55,7 +57,8 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context := r.contextsFactory.NewContext(request, responseWriter, nil, nil)
 		context.RenderInternalServerError(errors.Trace(err))
 
-		r.loggerService.Errorf("site `%s` fetch threw an error `%s`. The data integrity has been violated", request.Host, err.Error())
+		r.loggerService.Errorf("site `%s` fetch threw an error `%s`. The data integrity has been violated",
+			request.Host, err.Error())
 		return
 	}
 	if !ok {
@@ -89,7 +92,8 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		slug, ok, err := r.slugStore.GetOneByDomainIDAndPath(domain.ID(), context.Host())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
-			r.loggerService.Errorf("slug `%s` fetch threw an error `%s`. The data integrity has been violated", context.Host(), err.Error())
+			r.loggerService.Errorf("slug `%s` fetch threw an error `%s`. The data integrity has been violated",
+				context.Host(), err.Error())
 			return
 		}
 		var routeFound bool
@@ -107,7 +111,8 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		} else {
 			context.RenderNotFound()
 		}
-		// TODO :: Slug; bounce it against the actual route (it needs to start to honor being a slug tho; not suddenly go back from /Inloggen to /Login again)
+		// TODO :: Slug; bounce it against the actual route (it needs to start to honor being a slug tho;
+		// not suddenly go back from /Inloggen to /Login again).
 	}
 
 	if context.StatusCode() == 0 || context.StatusCode() < 300 {
@@ -155,5 +160,6 @@ func (r *HTTPRouter) log(start time.Time, context contexts.RequestContext) {
 
 	r.loggerService.Customf("\033[0;%dm%d\033[m %6s %12v \033[0;%dm%s\033[m\033[0;%dm%s\033[m", func(s string) string {
 		return s
-	}, statusColor, statusCode, context.Method(), float64(time.Since(start).Nanoseconds())/1e3, pathColor, context.Path(), queryStringColor, queryString)
+	}, statusColor, statusCode, context.Method(), float64(time.Since(start).Nanoseconds())/1e3, pathColor,
+		context.Path(), queryStringColor, queryString)
 }

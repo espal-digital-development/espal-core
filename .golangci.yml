@@ -1,12 +1,35 @@
 run:
   concurrency: 4
-  timeout: 30s # First run might be very slow. Afterwards it should be fast
+  timeout: 60s
   issues-exit-code: 25
-  # linters-settings:
+linters-settings:
+  nakedret:
+    max-func-lines: 40
+  gocritic:
+    disabled-checks:
+      - regexpMust
+  funlen:
+    lines: 120
+    statements: 55
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gochecknoglobals
+    - path: data\.go
+      linters:
+        - gochecknoglobals
+    - linters:
+      - gochecknoglobals
+      text: "randomStringSrc"
+    - linters:
+      - godot
+      source: "@synthesize"
+    # - linters:
+    #   - whitespace
+    #   source: "stripspace"
 linters:
   enable:
-    # TODO :: Unquoted linters without an extra comments still need to
-    # be enabled and then have the code fixed.
     - bodyclose
     - golint
     - stylecheck
@@ -14,7 +37,7 @@ linters:
     - interfacer
     - unconvert
     - goconst
-    # - gocognit # TODO :: Try making the complex functions less long winding
+    # - gocognit # TODO :: Cleanup
     - asciicheck
     - gofmt
     - goimports
@@ -22,48 +45,28 @@ linters:
     - misspell
     - unparam
     - gochecknoinits
-    - whitespace
+    # - whitespace # The exclude rules for .qtpl aren't working..
     - goprintffuncname
-    - gomnd
-    # - goerr113
+    # - gomnd # TODO :: Cleanup
+    # - goerr113 # TODO :: Cleanup
     - gomodguard # This probably needs custom configuration
     - testpackage
-    # - nestif
+    # - nestif # TODO :: Cleanup
     - nolintlint
-
-    # These are enabled, but can slow down global scanning.
-    # Disable them if you want to scan other things more quickly.
-    # - gocyclo
+    - gocyclo
     - lll
-    # - dogsled
-    # - nakedret
-    # - prealloc
-    # - scopelint
-    # - gocritic
-    # - funlen
-    # - godot
+    - dogsled
+    - nakedret
+    - prealloc
+    - scopelint
+    - gocritic
+    - funlen
+    - godot
+    - gochecknoglobals
+    - rowserrcheck # It already checks the extra error
 
     # Unused (mutliple reasons):
-    # - rowserrcheck # It already checks the extra error
     # - dupl # We intentionally use duplicated code in places
     # - maligned # These changes are very small (might be fun for some tweaking later)
-    # - gochecknoglobals # Can't disable test files, which uses many variable
     # - godox # Maybe be handy to quickly find TODO's, but might as well just use search
     # - wsl # Too aggressive
-linters-settings:
-  gocyclo:
-    # TODO :: This can be lowered with some refactoring
-    min-complexity: 56
-  lll:
-    # TODO :: This can be lowered with some refactoring
-    line-length: 170
-  nakedret:
-    # TODO :: This can be lowered with some refactoring
-    max-func-lines: 70
-  gocritic:
-    disabled-checks:
-      - regexpMust
-  funlen:
-    # TODO :: This can be lowered with some refactoring
-    lines: 200
-    statements: 140

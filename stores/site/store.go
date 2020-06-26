@@ -77,7 +77,8 @@ func (s *SitesStore) All() ([]*Site, bool, error) {
 // HasUser returns if Site has User connected to it.
 func (s *SitesStore) HasUser(siteID string, userID string) (bool, error) {
 	var id string
-	err := s.selecterDatabase.QueryRow(`SELECT "id" FROM "SiteUser" WHERE "siteID" = $1 AND "userID" = $2 LIMIT 1`, siteID, userID).Scan(&id)
+	err := s.selecterDatabase.QueryRow(`SELECT "id" FROM "SiteUser" WHERE "siteID" = $1 AND "userID" = $2 LIMIT 1`,
+		siteID, userID).Scan(&id)
 	if err != nil && err != sql.ErrNoRows {
 		return false, errors.Trace(err)
 	}
@@ -100,7 +101,8 @@ func (s *SitesStore) GetOneByIDWithCreator(id string) (*Site, bool, error) {
 // GetTranslatedName returns the presentable name.
 func (s *SitesStore) GetTranslatedName(site *Site, languageID uint16) string {
 	var name string
-	err := s.selecterDatabase.QueryRow(`SELECT "value" FROM "SiteTranslation" WHERE "siteID" = $1 AND "field" = $2 AND "language" = $3`, site.ID(), database.DBTranslationFieldName, languageID).Scan(&name)
+	err := s.selecterDatabase.QueryRow(`SELECT "value" FROM "SiteTranslation" WHERE "siteID" = $1 AND "field" = $2
+		AND "language" = $3`, site.ID(), database.DBTranslationFieldName, languageID).Scan(&name)
 	if err != nil && err != sql.ErrNoRows {
 		s.loggerService.Error(errors.ErrorStack(err))
 		return ""
@@ -117,7 +119,8 @@ func (s *SitesStore) Delete(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "SiteTranslation" WHERE "siteID" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Exec(`DELETE FROM "SiteTranslation" WHERE "siteID"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -138,7 +141,8 @@ func (s *SitesStore) ToggleOnline(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(`UPDATE "User" SET "online" = NOT "online" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Query(`UPDATE "User" SET "online" = NOT "online" WHERE "id"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

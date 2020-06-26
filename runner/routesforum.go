@@ -16,19 +16,24 @@ import (
 )
 
 func (r *Runner) routesForum() error {
-	if err := r.services.router.RegisterRoute("/Forums", overview.New(r.stores.forum, overviewpage.New(r.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/Forums",
+		overview.New(r.stores.forum, overviewpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute("/Forum", forum.New(r.repositories.regularExpressions, r.stores.forum, forumpage.New(r.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/Forum", forum.New(r.repositories.regularExpressions,
+		r.stores.forum, forumpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute("/ForumPost", post.New(r.repositories.regularExpressions, r.stores.forum, postpage.New(r.services.renderer))); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPost", post.New(r.repositories.regularExpressions,
+		r.stores.forum, postpage.New(r.services.renderer))); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute("/ForumPostCreate", create.New(r.repositories.regularExpressions, r.stores.forum, postcreatepage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPostCreate", create.New(r.repositories.regularExpressions,
+		r.stores.forum, postcreatepage.New())); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute("/ForumPostEdit", edit.New(r.repositories.regularExpressions, r.stores.forum, posteditpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute("/ForumPostEdit", edit.New(r.repositories.regularExpressions,
+		r.stores.forum, posteditpage.New())); err != nil {
 		return errors.Trace(err)
 	}
 	if err := r.services.router.RegisterRoute("/ForumPostDelete", delete.New(r.stores.forum)); err != nil {

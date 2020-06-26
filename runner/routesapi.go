@@ -22,7 +22,8 @@ func (r *Runner) routesAPI() error {
 	if err := r.services.router.RegisterRoute("/API/V1/ForgotPassword", &apiEndPointNotImplemented{}); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute("/API/V1/ForgotPasswordSucceeded", &apiEndPointNotImplemented{}); err != nil {
+	if err := r.services.router.RegisterRoute("/API/V1/ForgotPasswordSucceeded",
+		&apiEndPointNotImplemented{}); err != nil {
 		return errors.Trace(err)
 	}
 	if err := r.services.router.RegisterRoute("/API/V1/PasswordRecovery", &apiEndPointNotImplemented{}); err != nil {

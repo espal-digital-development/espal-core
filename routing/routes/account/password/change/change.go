@@ -55,7 +55,8 @@ func (r *Route) Handle(context contexts.Context) {
 	}
 
 	if isSubmitted && isValid {
-		newPassword, err := bcrypt.GenerateFromPassword([]byte(form.FormFieldValue("newPassword")), r.configService.SecurityBcryptRounds())
+		newPassword, err := bcrypt.GenerateFromPassword([]byte(form.FormFieldValue("newPassword")),
+			r.configService.SecurityBcryptRounds())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -76,7 +77,8 @@ func (r *Route) Handle(context contexts.Context) {
 }
 
 // New returns a new instance of Route.
-func New(configService config.Config, userStore user.Store, changePasswordFormValidator change.Factory, changePageFactory page.Factory) *Route {
+func New(configService config.Config, userStore user.Store, changePasswordFormValidator change.Factory,
+	changePageFactory page.Factory) *Route {
 	return &Route{
 		configService:               configService,
 		userStore:                   userStore,

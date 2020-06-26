@@ -4,8 +4,6 @@ import (
 	"testing"
 
 	"github.com/espal-digital-development/espal-core/pages/account/login"
-	"github.com/espal-digital-development/espal-core/pages/base"
-	"github.com/espal-digital-development/espal-core/pages/base/basemock"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts/contextsmock"
 )
@@ -17,9 +15,9 @@ func getNewMockContext() contexts.Context {
 	return &contextsmock.ContextMock{}
 }
 
-func getNewMockForm() base.Form {
-	return &basemock.FormMock{}
-}
+// func getNewMockForm() base.Form {
+// 	return &basemock.FormMock{}
+// }
 
 func newPage() login.Template {
 	login := login.New()

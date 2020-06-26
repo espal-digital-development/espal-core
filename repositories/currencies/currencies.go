@@ -89,7 +89,8 @@ func (c *Currencies) loadTranslations() error {
 			}
 			currency := c.entries[checkCurrency.Code()]
 			if parts[1] == currency.EnglishName() {
-				return errors.Errorf("duplicate Currency English translation for code `%s` in file `%s` for line %d", parts[0], files[k], count)
+				return errors.Errorf("duplicate Currency English translation for code `%s` in file `%s` for line %d",
+					parts[0], files[k], count)
 			}
 			currency.SetTranslation(language.ID(), parts[1])
 

@@ -96,11 +96,13 @@ func (r *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	r.createUpdatePageFactory.NewPage(context, domain, language, form.View(), context.GetAdminCreateUpdateTitle(id, "domain")).Render()
+	r.createUpdatePageFactory.NewPage(context, domain, language, form.View(),
+		context.GetAdminCreateUpdateTitle(id, "domain")).Render()
 }
 
 // New returns a new instance of Route.
-func New(entityMutatorsFactory entitymutators.Factory, domainStore domain.Store, createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
+func New(entityMutatorsFactory entitymutators.Factory, domainStore domain.Store,
+	createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
 	return &Route{
 		entityMutatorsFactory:     entityMutatorsFactory,
 		domainStore:               domainStore,

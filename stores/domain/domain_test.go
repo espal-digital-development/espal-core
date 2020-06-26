@@ -17,7 +17,8 @@ import (
 var (
 	fakeDomainID = "fake-domain-id-1"
 	fakeHost     = "example.com"
-	allValues    = []interface{}{"fake-domain-id-1", "fake-user-id-2", nil, "fake-site-id-1", time.Now(), nil, true, "example.com", nil, "33"}
+	allValues    = []interface{}{"fake-domain-id-1", "fake-user-id-2", nil, "fake-site-id-1", time.Now(), nil, true,
+		"example.com", nil, "33"}
 
 	transaction      *databasemock.TransactionMock
 	dbRows           *databasemock.RowsMock

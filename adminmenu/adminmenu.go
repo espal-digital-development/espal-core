@@ -25,7 +25,9 @@ type AdminMenu struct {
 }
 
 // New returns a new instance of AdminMenu.
-func New(configService config.Config, selecterDatabase database.Database, translationsRepository translations.Repository, userRightsRepository userrights.Repository) *AdminMenu {
+func New(configService config.Config, selecterDatabase database.Database,
+	translationsRepository translations.Repository,
+	userRightsRepository userrights.Repository) *AdminMenu {
 	return &AdminMenu{
 		configService:          configService,
 		selecterDatabase:       selecterDatabase,
@@ -34,21 +36,26 @@ func New(configService config.Config, selecterDatabase database.Database, transl
 
 		itemToGenerate: []itemToGenerate{{
 			title: "catalog",
-			items: []string{"productModel", "productVariant", "bundledProduct", "subscription", "propertyGroup", "property", "productReview", "filter", "cart", "wishlist", "discountCode", "couponCode", "credit"},
+			items: []string{"productModel", "productVariant", "bundledProduct", "subscription", "propertyGroup",
+				"property", "productReview", "filter", "cart", "wishlist", "discountCode", "couponCode", "credit"},
 		}, {
 			title: "financial",
-			items: []string{"saleOrder", "invoice", "purchaseOrder", "paymentTransaction", "paymentAccount", "paymentProvider", "priceGroup", "priceList", "shipmentCost", "tax"},
+			items: []string{"saleOrder", "invoice", "purchaseOrder", "paymentTransaction", "paymentAccount",
+				"paymentProvider", "priceGroup", "priceList", "shipmentCost", "tax"},
 		}, {
 			title:       "customerRelation",
 			titlePlural: true,
-			items:       []string{"lead", "opportunity", "account", "contact", "report", "group", "person", "offer", "prospect", "campaign", "project"},
+			items: []string{"lead", "opportunity", "account", "contact", "report", "group", "person", "offer",
+				"prospect", "campaign", "project"},
 		}, {
 			title:       "logistic",
 			titlePlural: true,
-			items:       []string{"shipment", "returnOrder", "receiving", "pickingSlip", "shippingWindow", "deliveryMethod", "stock", "stockLocation", "supplier"},
+			items: []string{"shipment", "returnOrder", "receiving", "pickingSlip", "shippingWindow",
+				"deliveryMethod", "stock", "stockLocation", "supplier"},
 		}, {
 			title: "content",
-			items: []string{"menu", "page", "block", "poll", "newsArticle", "blogPost", "forum", "office", "reseller", "frequentlyAskedQuestion", "emailTemplate", "newsletter", "gift", "giftWrapping", "media", "download"},
+			items: []string{"menu", "page", "block", "poll", "newsArticle", "blogPost", "forum", "office", "reseller",
+				"frequentlyAskedQuestion", "emailTemplate", "newsletter", "gift", "giftWrapping", "media", "download"},
 		}, {
 			title: "productLifecycle",
 			items: []string{"phase", "prototype", "sizescreen", "billOfMaterial"},
@@ -61,7 +68,8 @@ func New(configService config.Config, selecterDatabase database.Database, transl
 			items:       []string{"accessLog", "errorLog", "searchHistory", "emailLog"},
 		}, {
 			title: "core",
-			items: []string{"user", "userGroup", "userTask", "shop", "slug", "tag", "site", "domain", "setting", "technicalStatistic"},
+			items: []string{"user", "userGroup", "userTask", "shop", "slug", "tag", "site", "domain", "setting",
+				"technicalStatistic"},
 		}},
 	}
 }

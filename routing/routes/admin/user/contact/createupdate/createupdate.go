@@ -103,13 +103,16 @@ func (r *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	// TODO :: 77 Pressing the action `cancel` acts strange and goes to a broken URL (e.g. `/_PY0l/User/Contact/User/View?id=385509484458901505`)
+	// TODO :: 77 Pressing the action `cancel` acts strange and goes to a
+	// broken URL (e.g. `/_PY0l/User/Contact/User/View?id=385509484458901505`).
 
-	r.createUpdatePageFactory.NewPage(context, userContact, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "userContact")).Render()
+	r.createUpdatePageFactory.NewPage(context, userContact, user, language, form.View(),
+		context.GetAdminCreateUpdateTitle(id, "userContact")).Render()
 }
 
 // New returns a new instance of Route.
-func New(entityMutatorsFactory entitymutators.Factory, userStore user.Store, userContactStore contact.Store, createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
+func New(entityMutatorsFactory entitymutators.Factory, userStore user.Store, userContactStore contact.Store,
+	createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
 	return &Route{
 		entityMutatorsFactory:     entityMutatorsFactory,
 		userStore:                 userStore,

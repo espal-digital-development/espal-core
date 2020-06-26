@@ -170,7 +170,7 @@ func (f *Form) FieldValue(name string) string {
 	return f.Field(name).Value()
 }
 
-// FieldExists returns if the requested field exists
+// FieldExists returns if the requested field exists.
 func (f *Form) FieldExists(name string) (exists bool) {
 	if _, ok := f.fields[name]; ok {
 		exists = true

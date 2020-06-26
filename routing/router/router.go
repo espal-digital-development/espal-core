@@ -70,7 +70,8 @@ func (r *HTTPRouter) getRoute(path string) (handler, bool) {
 }
 
 // New returns a new instance of a Router.
-func New(configService config.Config, loggerService logger.Loggable, contextsFactory contexts.Factory, domainStore domain.Store, siteStore site.Store, slugStore slug.Store) *HTTPRouter {
+func New(configService config.Config, loggerService logger.Loggable, contextsFactory contexts.Factory,
+	domainStore domain.Store, siteStore site.Store, slugStore slug.Store) *HTTPRouter {
 	return &HTTPRouter{
 		configService:   configService,
 		loggerService:   loggerService,

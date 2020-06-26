@@ -90,7 +90,8 @@ func (f *Forms) New(domain domain, language language) (Form, error) {
 	currenciesField.SetSearchable()
 	currenciesField.SetCheckValuesInChoices()
 	currenciesField.SetMultiple()
-	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
+	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" +
+		f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	currenciesField.SetChoices(f.validatorsFactory.GetCurrencyOptionsForLanguage(language))
 	if domain.ID() != "" {
 		if err := currenciesField.SetValues(strings.Split(domain.Currencies(), ",")); err != nil {
@@ -132,7 +133,8 @@ func (f *Forms) New(domain domain, language language) (Form, error) {
 }
 
 // New returns a new instance of LoginForm.
-func New(validatorsFactory validators.Factory, translationsRepository translations.Repository, configService config.Config, siteStore site.Store) *Forms {
+func New(validatorsFactory validators.Factory, translationsRepository translations.Repository,
+	configService config.Config, siteStore site.Store) *Forms {
 	return &Forms{
 		validatorsFactory:      validatorsFactory,
 		translationsRepository: translationsRepository,

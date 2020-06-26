@@ -55,7 +55,8 @@ func TestYamlFileError(t *testing.T) {
 
 func TestYamlFileNotExist(t *testing.T) {
 	initMocks()
-	yamlFileNotExistError := errors.New("no config.yml file found. Please create one. The espal-run command can help automate this process")
+	yamlFileNotExistError := errors.New(
+		"no config.yml file found. Please create one. The espal-run command can help automate this process")
 	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
 		return nil, false, nil
 	}
@@ -180,6 +181,7 @@ func TestLanguageIsNotAvailable(t *testing.T) {
 	}
 }
 
+// nolint:funlen
 func TestConfigCallers(t *testing.T) {
 	initMocks()
 	config, err := config.New(coreStorage)
@@ -225,19 +227,32 @@ func TestConfigCallers(t *testing.T) {
 	testtools.EqString(t, "paths.assets.publicFiles", config.PublicFilesAssetsPath(), "./app/assets/files/public")
 	testtools.EqString(t, "paths.assets.publicRootFiles", config.PublicRootFilesAssetsPath(), "./app/assets/files/root")
 	testtools.EqString(t, "paths.assets.stylesheets", config.StylesheetsAssetsPath(), "./app/assets/css")
-	testtools.EqString(t, "paths.database.sslRootCertificateFile", config.DatabaseSSLRootCertificateFile(), "./app/database/ca.crt")
-	testtools.EqString(t, "paths.database.selecter.sslCertificateFile", config.DatabaseCreatorSSLCertificateFile(), "./app/database/client.espal_creator.crt")
-	testtools.EqString(t, "paths.database.selecter.sslKeyFile", config.DatabaseCreatorSSLKeyFile(), "./app/database/client.espal_creator.key")
-	testtools.EqString(t, "paths.database.deletor.sslCertificateFile", config.DatabaseDeletorSSLCertificateFile(), "./app/database/client.espal_deletor.crt")
-	testtools.EqString(t, "paths.database.deletor.sslKeyFile", config.DatabaseDeletorSSLKeyFile(), "./app/database/client.espal_deletor.key")
-	testtools.EqString(t, "paths.database.inserter.sslCertificateFile", config.DatabaseInserterSSLCertificateFile(), "./app/database/client.espal_inserter.crt")
-	testtools.EqString(t, "paths.database.inserter.sslKeyFile", config.DatabaseInserterSSLKeyFile(), "./app/database/client.espal_inserter.key")
-	testtools.EqString(t, "paths.database.migrator.sslCertificateFile", config.DatabaseMigratorSSLCertificateFile(), "./app/database/client.espal_migrator.crt")
-	testtools.EqString(t, "paths.database.migrator.sslKeyFile", config.DatabaseMigratorSSLKeyFile(), "./app/database/client.espal_migrator.key")
-	testtools.EqString(t, "paths.database.selecter.sslCertificateFile", config.DatabaseSelecterSSLCertificateFile(), "./app/database/client.espal_selecter.crt")
-	testtools.EqString(t, "paths.database.selecter.sslKeyFile", config.DatabaseSelecterSSLKeyFile(), "./app/database/client.espal_selecter.key")
-	testtools.EqString(t, "paths.database.updater.sslCertificateFile", config.DatabaseUpdaterSSLCertificateFile(), "./app/database/client.espal_updater.crt")
-	testtools.EqString(t, "paths.database.updater.sslKeyFile", config.DatabaseUpdaterSSLKeyFile(), "./app/database/client.espal_updater.key")
+	testtools.EqString(t, "paths.database.sslRootCertificateFile", config.DatabaseSSLRootCertificateFile(),
+		"./app/database/ca.crt")
+	testtools.EqString(t, "paths.database.selecter.sslCertificateFile", config.DatabaseCreatorSSLCertificateFile(),
+		"./app/database/client.espal_creator.crt")
+	testtools.EqString(t, "paths.database.selecter.sslKeyFile", config.DatabaseCreatorSSLKeyFile(),
+		"./app/database/client.espal_creator.key")
+	testtools.EqString(t, "paths.database.deletor.sslCertificateFile", config.DatabaseDeletorSSLCertificateFile(),
+		"./app/database/client.espal_deletor.crt")
+	testtools.EqString(t, "paths.database.deletor.sslKeyFile", config.DatabaseDeletorSSLKeyFile(),
+		"./app/database/client.espal_deletor.key")
+	testtools.EqString(t, "paths.database.inserter.sslCertificateFile", config.DatabaseInserterSSLCertificateFile(),
+		"./app/database/client.espal_inserter.crt")
+	testtools.EqString(t, "paths.database.inserter.sslKeyFile", config.DatabaseInserterSSLKeyFile(),
+		"./app/database/client.espal_inserter.key")
+	testtools.EqString(t, "paths.database.migrator.sslCertificateFile", config.DatabaseMigratorSSLCertificateFile(),
+		"./app/database/client.espal_migrator.crt")
+	testtools.EqString(t, "paths.database.migrator.sslKeyFile", config.DatabaseMigratorSSLKeyFile(),
+		"./app/database/client.espal_migrator.key")
+	testtools.EqString(t, "paths.database.selecter.sslCertificateFile", config.DatabaseSelecterSSLCertificateFile(),
+		"./app/database/client.espal_selecter.crt")
+	testtools.EqString(t, "paths.database.selecter.sslKeyFile", config.DatabaseSelecterSSLKeyFile(),
+		"./app/database/client.espal_selecter.key")
+	testtools.EqString(t, "paths.database.updater.sslCertificateFile", config.DatabaseUpdaterSSLCertificateFile(),
+		"./app/database/client.espal_updater.crt")
+	testtools.EqString(t, "paths.database.updater.sslKeyFile", config.DatabaseUpdaterSSLKeyFile(),
+		"./app/database/client.espal_updater.key")
 	testtools.EqString(t, "paths.server.sslCertificateFile", config.ServerSSLCertificateFilePath(), "./app/localhost.crt")
 	testtools.EqString(t, "paths.server.sslKeyFile", config.ServerSSLKeyFilePath(), "./app/localhost.key")
 	testtools.EqString(t, "paths.translations", config.TranslationsPath(), "./app/translations")

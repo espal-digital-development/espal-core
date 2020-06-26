@@ -108,7 +108,8 @@ func (r *TemplateRenderer) perror(i int, err error) {
 }
 
 // New returns a new instance of Renderer.
-func New(languagesRepository languages.Repository, countriesRepository countries.Repository, translationsRepository translations.Repository, loggerService logger.Loggable) *TemplateRenderer {
+func New(languagesRepository languages.Repository, countriesRepository countries.Repository,
+	translationsRepository translations.Repository, loggerService logger.Loggable) *TemplateRenderer {
 	return &TemplateRenderer{
 		languagesRepository:    languagesRepository,
 		countriesRepository:    countriesRepository,

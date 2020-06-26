@@ -76,7 +76,8 @@ func (f *Forms) New(site site, language language) (Form, error) {
 
 	currenciesField := validator.NewChoiceField("currencies")
 	currenciesField.SetOptional()
-	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
+	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" +
+		f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	currenciesField.SetDontTranslate()
 	currenciesField.SetSearchable()
 	currenciesField.SetCheckValuesInChoices()

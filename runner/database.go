@@ -13,6 +13,7 @@ import (
 
 const dbURLBlueprint = "postgresql://%s@%s:%d/%s?ssl=true&sslmode=require&sslrootcert=%s&sslkey=%s&sslcert=%s"
 
+// nolint:funlen
 func (r *Runner) database() error {
 	var err error
 	r.databases.creator = database.New()
@@ -120,7 +121,8 @@ func (r *Runner) database() error {
 	if err := migrationsService.Run(); err != nil {
 		return errors.Trace(err)
 	}
-	fixturesService, err := fixtures.New(r.databases.inserter, r.databases.updater, r.repositories.languages, r.repositories.countries, r.repositories.currencies, r.repositories.userRights)
+	fixturesService, err := fixtures.New(r.databases.inserter, r.databases.updater, r.repositories.languages,
+		r.repositories.countries, r.repositories.currencies, r.repositories.userRights)
 	if err != nil {
 		return errors.Trace(err)
 	}

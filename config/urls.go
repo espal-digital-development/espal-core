@@ -11,7 +11,6 @@ type urls struct {
 	Pprof string
 }
 
-// nolint:stylecheck
 // AdminURL returns the admin url path prefix.
 func (c *Configuration) AdminURL() string {
 	return c.urls.Admin

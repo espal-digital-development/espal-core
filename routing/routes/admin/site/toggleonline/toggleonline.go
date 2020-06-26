@@ -27,7 +27,8 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 	if err := r.siteStore.ToggleOnline(strings.Split(ids, ",")); err != nil {
-		if err := context.SetFlashErrorMessage(context.Translate("onlineTogglingHasFailed") + ": " + err.Error()); err != nil {
+		if err := context.SetFlashErrorMessage(context.Translate("onlineTogglingHasFailed") + ": " +
+			err.Error()); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}

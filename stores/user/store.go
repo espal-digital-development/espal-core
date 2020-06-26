@@ -37,25 +37,34 @@ func (u *UsersStore) buildQueries() error {
 	name := (&User{}).TableName()
 	alias := (&User{}).TableAlias()
 	u.queries = map[string]string{
-		"GetOne":                              fmt.Sprintf(`SELECT * FROM "%s" WHERE "id" = $1 LIMIT 1`, name),
-		"GetOneActive":                        fmt.Sprintf(`SELECT * FROM "%s" WHERE "id" = $1 AND "active" = true LIMIT 1`, name),
-		"GetOneByIDWithCreator":               fmt.Sprintf(`SELECT %s.*, cu."firstName", cu."surname", uu."firstName", uu."surname" FROM "%s" %s LEFT JOIN "User" cu ON cu."id" = %s."createdByID" LEFT JOIN "User" uu ON uu."id" = %s."updatedByID" WHERE %s."id" = $1 LIMIT 1`, alias, name, alias, alias, alias, alias),
-		"GetOneByEmail":                       fmt.Sprintf(`SELECT * FROM "%s" WHERE "email" = $1 LIMIT 1`, name),
-		"GetOneActiveByEmail":                 fmt.Sprintf(`SELECT * FROM "%s" WHERE "email" = $1 AND "active" = true LIMIT 1`, name),
-		"GetOneIDAndPasswordForActiveByEmail": fmt.Sprintf(`SELECT "id", "password" FROM "%s" WHERE "email" = $1 AND "active" = true LIMIT 1`, name),
-		"GetOneIDForActivationHash":           fmt.Sprintf(`SELECT "id" FROM "%s" WHERE "activationHash" = $1 LIMIT 1`, name),
-		"ExistsByEmail":                       fmt.Sprintf(`SELECT 1 FROM "%s" WHERE "email" = $1 LIMIT 1`, name),
-		"SetPasswordResetHashForUser":         fmt.Sprintf(`UPDATE "%s" SET "passwordResetHash" = $1 WHERE "id" = $2`, name),
-		"SetPasswordForUser":                  fmt.Sprintf(`UPDATE "%s" SET "password" = $1 WHERE "id" = $2`, name),
-		"Activate":                            fmt.Sprintf(`UPDATE "%s" SET "activatedAt" = NOW(), "activationhash" = NULL, "active" = true WHERE "id" = $1`, name),
-		"GetAvatar":                           fmt.Sprintf(`SELECT "avatar" FROM "%s" WHERE "id" = $1 LIMIT 1`, name),
-		"UnsetAvatar":                         fmt.Sprintf(`UPDATE "%s" SET "avatar" = NULL WHERE "id" = $1`, name),
-		"DeleteUserGroupUser":                 fmt.Sprintf(`DELETE FROM "UserGroupUser" WHERE "userID" IN ('%%s')`),
-		"Delete":                              fmt.Sprintf(`DELETE FROM "%s" WHERE "id" IN ('%%s')`, name),
-		"ToggleActive":                        fmt.Sprintf(`UPDATE "%s" SET "active" = NOT "active" WHERE "id" IN ('%%s')`, name),
-		"Register":                            fmt.Sprintf(`INSERT INTO "%s"("createdByID","language","email","password","activationHash","firstName","surname") VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING "id"`, name),
-		"RegisterUpdate":                      `UPDATE "User" SET "createdByID" = $1 WHERE "id" = $2 LIMIT 1`,
-		"RecoverWithNewPassword":              fmt.Sprintf(`UPDATE "%s" SET "passwordResetHash" = NULL, "password" = $1, "passwordLastResetAt" = NOW(), "passwordResetCount" = $2 WHERE "id" = $3`, name),
+		"GetOne": fmt.Sprintf(`SELECT * FROM "%s" WHERE "id" = $1 LIMIT 1`, name),
+		"GetOneActive": fmt.Sprintf(`SELECT * FROM "%s" WHERE "id" = $1 `+
+			`AND "active" = true LIMIT 1`, name),
+		"GetOneByIDWithCreator": fmt.Sprintf(`SELECT %s.*, cu."firstName", cu."surname", `+
+			`uu."firstName", uu."surname" FROM "%s" %s LEFT JOIN "User" cu ON cu."id" = %s."createdByID" `+
+			`LEFT JOIN "User" uu ON uu."id" = %s."updatedByID" WHERE %s."id" = $1 LIMIT 1`,
+			alias, name, alias, alias, alias, alias),
+		"GetOneByEmail": fmt.Sprintf(`SELECT * FROM "%s" WHERE "email" = $1 LIMIT 1`, name),
+		"GetOneActiveByEmail": fmt.Sprintf(`SELECT * FROM "%s" WHERE "email" = $1 `+
+			`AND "active" = true LIMIT 1`, name),
+		"GetOneIDAndPasswordForActiveByEmail": fmt.Sprintf(`SELECT "id", "password" FROM "%s" `+
+			`WHERE "email" = $1 AND "active" = true LIMIT 1`, name),
+		"GetOneIDForActivationHash":   fmt.Sprintf(`SELECT "id" FROM "%s" WHERE "activationHash" = $1 LIMIT 1`, name),
+		"ExistsByEmail":               fmt.Sprintf(`SELECT 1 FROM "%s" WHERE "email" = $1 LIMIT 1`, name),
+		"SetPasswordResetHashForUser": fmt.Sprintf(`UPDATE "%s" SET "passwordResetHash" = $1 WHERE "id" = $2`, name),
+		"SetPasswordForUser":          fmt.Sprintf(`UPDATE "%s" SET "password" = $1 WHERE "id" = $2`, name),
+		"Activate": fmt.Sprintf(`UPDATE "%s" SET "activatedAt" = NOW(), "activationhash" = NULL, `+
+			`"active" = true WHERE "id" = $1`, name),
+		"GetAvatar":           fmt.Sprintf(`SELECT "avatar" FROM "%s" WHERE "id" = $1 LIMIT 1`, name),
+		"UnsetAvatar":         fmt.Sprintf(`UPDATE "%s" SET "avatar" = NULL WHERE "id" = $1`, name),
+		"DeleteUserGroupUser": fmt.Sprintf(`DELETE FROM "UserGroupUser" WHERE "userID" IN ('%%s')`),
+		"Delete":              fmt.Sprintf(`DELETE FROM "%s" WHERE "id" IN ('%%s')`, name),
+		"ToggleActive":        fmt.Sprintf(`UPDATE "%s" SET "active" = NOT "active" WHERE "id" IN ('%%s')`, name),
+		"Register": fmt.Sprintf(`INSERT INTO "%s"("createdByID","language","email","password",`+
+			`"activationHash","firstName","surname") VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING "id"`, name),
+		"RegisterUpdate": `UPDATE "User" SET "createdByID" = $1 WHERE "id" = $2 LIMIT 1`,
+		"RecoverWithNewPassword": fmt.Sprintf(`UPDATE "%s" SET "passwordResetHash" = NULL, "password" = $1, `+
+			`"passwordLastResetAt" = NOW(), "passwordResetCount" = $2 WHERE "id" = $3`, name),
 		"HasUserRight": `SELECT 1 FROM "UserGroupUser" uu
 		JOIN "UserGroup" ug ON ug."id" = uu."userGroupID" AND $1:::STRING = ANY (string_to_array(ug."userRights",','))
 		WHERE uu."userID" = $2 LIMIT 1`,
@@ -227,7 +236,8 @@ func (u *UsersStore) ToggleActive(ids []string) error {
 }
 
 // Register registers a new User with the given base information.
-func (u *UsersStore) Register(email string, password []byte, firstName *string, surname *string, languageID uint16) (string, error) {
+func (u *UsersStore) Register(email string, password []byte, firstName *string, surname *string,
+	languageID uint16) (string, error) {
 	activationHash := text.RandomString(72)
 	var insertedID string
 	row := u.inserterDatabase.QueryRow(u.queries["Register"],

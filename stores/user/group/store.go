@@ -53,13 +53,15 @@ func (g *GroupsStore) Delete(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "UserGroupTranslation" WHERE "userGroupID" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Exec(`DELETE FROM "UserGroupTranslation" WHERE "userGroupID"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "UserGroup" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Exec(`DELETE FROM "UserGroup" WHERE "id"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -74,7 +76,8 @@ func (g *GroupsStore) DeleteTranslation(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "UserGroupTranslation" WHERE "userGroupID" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Exec(`DELETE FROM "UserGroupTranslation" WHERE "userGroupID"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -89,7 +92,8 @@ func (g *GroupsStore) ToggleActive(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(`UPDATE "UserGroup" SET "active" = NOT "active" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Query(`UPDATE "UserGroup" SET "active" = NOT "active" WHERE "id"
+		IN (` + strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -100,7 +104,8 @@ func (g *GroupsStore) ToggleActive(ids []string) error {
 
 // SetUserRights sets the userRightIDs for the given id.
 func (g *GroupsStore) SetUserRights(id string, userRightIDs []string) error {
-	_, err := g.updaterDatabase.Exec(`UPDATE "UserGroup" SET "userRights" = $1 WHERE "id" = $1`, strings.Join(userRightIDs, ","), id)
+	_, err := g.updaterDatabase.Exec(`UPDATE "UserGroup" SET "userRights" = $1
+		WHERE "id" = $1`, strings.Join(userRightIDs, ","), id)
 	return errors.Trace(err)
 }
 
@@ -121,6 +126,7 @@ func (g *GroupsStore) Name(userGroup *Group, languageID uint16) string {
 }
 
 // TranslationsForID fetches UserGroupTranslations for userGroupID.
+// nolint:nakedret
 func (g *GroupsStore) TranslationsForID(userGroupID string) (translations []*Translation, ok bool, err error) {
 	rows, err := g.selecterDatabase.Query(`SELECT ugt.*
 		FROM "UserGroupTranslation" ugt

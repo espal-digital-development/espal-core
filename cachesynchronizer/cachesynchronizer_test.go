@@ -43,7 +43,8 @@ package cachesynchronizer_test
 // 		t.Fatal("ID should not be 0")
 // 	}
 // 	if cachenotify.CacheNotifyKeyDomain != subscription.Target() {
-// 		t.Fatalf("Target `%d` isn't equal to the one in the subscription `%d`", subscription.Target(), cachenotify.CacheNotifyKeyDomain)
+// 		t.Fatalf("Target `%d` isn't equal to the one in the subscription `%d`",
+//  	subscription.Target(), cachenotify.CacheNotifyKeyDomain)
 // 	}
 
 // 	time.Sleep(time.Millisecond * 5)

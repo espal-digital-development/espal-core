@@ -79,7 +79,8 @@ func (f *Forms) New(contact contact, language language) (Form, error) {
 				panic(errors.ErrorStack(err))
 			}
 			if !ok {
-				contactField.AddChoice(f.validatorsFactory.NewChoiceOption(contactID, f.userContactStore.Name(contactUser, language.ID())))
+				contactField.AddChoice(f.validatorsFactory.NewChoiceOption(contactID,
+					f.userContactStore.Name(contactUser, language.ID())))
 				contactField.SetValue(contactID)
 			}
 		}

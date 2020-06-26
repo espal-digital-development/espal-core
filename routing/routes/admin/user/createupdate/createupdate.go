@@ -30,6 +30,7 @@ type Route struct {
 }
 
 // Handle route handler.
+// nolint:funlen
 func (r *Route) Handle(context contexts.Context) {
 	id := context.QueryValue("id")
 
@@ -81,20 +82,24 @@ func (r *Route) Handle(context contexts.Context) {
 		entityMutator.SetNullableUint16("country", &countryID, user.Country())
 		entityMutator.SetNullableString("firstName", form.FieldPointerValue("firstName"), user.FirstName())
 		entityMutator.SetNullableString("surname", form.FieldPointerValue("surname"), user.Surname())
-		if err := entityMutator.SetNullableTime("dateOfBirth", form.FieldPointerValue("dateOfBirth"), user.DateOfBirth()); err != nil {
+		if err := entityMutator.SetNullableTime("dateOfBirth", form.FieldPointerValue("dateOfBirth"),
+			user.DateOfBirth()); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}
 		entityMutator.SetString("email", form.FieldPointerValue("email"), user.Email())
 		entityMutator.SetUint("priority", form.FieldValueAsUint("priority"), user.Priority())
-		entityMutator.SetNullableString("defaultDeliveryAddressID", form.FieldPointerValue("defaultDeliveryAddress"), user.DefaultDeliveryAddressID())
-		entityMutator.SetNullableString("defaultInvoiceAddressID", form.FieldPointerValue("defaultInvoiceAddress"), user.DefaultInvoiceAddressID())
+		entityMutator.SetNullableString("defaultDeliveryAddressID", form.FieldPointerValue("defaultDeliveryAddress"),
+			user.DefaultDeliveryAddressID())
+		entityMutator.SetNullableString("defaultInvoiceAddressID", form.FieldPointerValue("defaultInvoiceAddress"),
+			user.DefaultInvoiceAddressID())
 		entityMutator.SetString("currencies", &currencies, user.Currencies())
 		entityMutator.SetNullableString("biography", form.FieldPointerValue("biography"), user.Comments())
 		entityMutator.SetNullableString("comments", form.FieldPointerValue("comments"), user.Comments())
 
 		if form.FieldValue("password") != "" {
-			encryptedPassword, err := bcrypt.GenerateFromPassword([]byte(form.FieldValue("password")), r.configService.SecurityBcryptRounds())
+			encryptedPassword, err := bcrypt.GenerateFromPassword([]byte(form.FieldValue("password")),
+				r.configService.SecurityBcryptRounds())
 			if err != nil {
 				context.RenderInternalServerError(errors.Trace(err))
 				return
@@ -117,7 +122,8 @@ func (r *Route) Handle(context contexts.Context) {
 				return
 			}
 			if !ok {
-				context.RenderInternalServerError(errors.Errorf("saved avatar file wasn't found after seemily been correctly saved by the form"))
+				context.RenderInternalServerError(
+					errors.Errorf("saved avatar file wasn't found after seemily been correctly saved by the form"))
 				return
 			}
 			if err := r.assetHandler.RegisterPublicFileRoute(form.AvatarSavedPath(), data); err != nil {
@@ -147,11 +153,15 @@ func (r *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	r.createUpdatePageFactory.NewPage(context, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "user")).Render()
+	r.createUpdatePageFactory.NewPage(context, user, language, form.View(),
+		context.GetAdminCreateUpdateTitle(id, "user")).Render()
 }
 
 // New returns a new instance of Route.
-func New(configService config.Config, assetHandler assethandler.Handler, entityMutatorsFactory entitymutators.Factory, assetsPublicFilesStorage storage.Storage, userStore user.Store, userAddressStore address.Store, createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
+func New(configService config.Config, assetHandler assethandler.Handler,
+	entityMutatorsFactory entitymutators.Factory, assetsPublicFilesStorage storage.Storage, userStore user.Store,
+	userAddressStore address.Store, createUpdateFormValidator createupdate.Factory,
+	createUpdatePageFactory page.Factory) *Route {
 	return &Route{
 		configService:             configService,
 		assetHandler:              assetHandler,

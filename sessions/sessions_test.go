@@ -8,7 +8,8 @@ package sessions_test
 // 		t.Fatal(err)
 // 	}
 // 	storageService := NewFileSystemStorage(configService.Paths().Store() + "sessions")
-// 	sessions, err := new(storageService, configService.SessionCookieName(), configService.SessionExpiration(), configService.SessionRememberMeExpiration())
+// 	sessions, err := new(storageService, configService.SessionCookieName(), configService.SessionExpiration(),
+//  	configService.SessionRememberMeExpiration())
 // 	if err != nil {
 // 		t.Fatal(err)
 // 	}

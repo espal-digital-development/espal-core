@@ -6,6 +6,7 @@ import (
 	"github.com/juju/errors"
 )
 
+// nolint:gocyclo,funlen
 func (f *filter) addSearchToQuery() error {
 	if f.firstWhereStatementHad {
 		if _, err := f.query.WriteString(" AND ("); err != nil {

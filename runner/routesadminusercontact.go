@@ -9,13 +9,18 @@ import (
 
 func (r *Runner) routesAdminUserContact() error {
 	createUpdatePage := createupdatepage.New(r.services.renderer)
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Create", createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userContact, r.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Create",
+		createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userContact,
+			r.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Update", createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userContact, r.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Update",
+		createupdate.New(r.services.entityMutators, r.stores.user, r.stores.userContact,
+			r.formValidators.admin.userContactCreateUpdate, createUpdatePage)); err != nil {
 		return errors.Trace(err)
 	}
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Delete", delete.New(r.repositories.regularExpressions, r.stores.userContact)); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL()+"/User/Contact/Delete",
+		delete.New(r.repositories.regularExpressions, r.stores.userContact)); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

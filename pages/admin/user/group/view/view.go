@@ -13,7 +13,10 @@ var _ Template = &Page{}
 
 // Factory represents an object that serves new pages.
 type Factory interface {
-	NewPage(context contexts.Context, language contexts.Language, userGroup *group.Group, userRights map[uint16]string, userRightsOrder []uint16, userGroupUserRights map[uint16]bool, userRightsActions pageactions.Actions, translations []*group.Translation, translationsActions pageactions.Actions, canUpdate bool, canDelete bool) Template
+	NewPage(context contexts.Context, language contexts.Language, userGroup *group.Group, userRights map[uint16]string,
+		userRightsOrder []uint16, userGroupUserRights map[uint16]bool, userRightsActions pageactions.Actions,
+		translations []*group.Translation, translationsActions pageactions.Actions, canUpdate bool,
+		canDelete bool) Template
 }
 
 // View page service.
@@ -22,7 +25,10 @@ type View struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (v *View) NewPage(context contexts.Context, language contexts.Language, userGroup *group.Group, userRights map[uint16]string, userRightsOrder []uint16, userGroupUserRights map[uint16]bool, userRightsActions pageactions.Actions, translations []*group.Translation, translationsActions pageactions.Actions, canUpdate bool, canDelete bool) Template {
+func (v *View) NewPage(context contexts.Context, language contexts.Language, userGroup *group.Group,
+	userRights map[uint16]string, userRightsOrder []uint16, userGroupUserRights map[uint16]bool,
+	userRightsActions pageactions.Actions, translations []*group.Translation,
+	translationsActions pageactions.Actions, canUpdate bool, canDelete bool) Template {
 	page := &Page{
 		language:            language,
 		userGroup:           userGroup,

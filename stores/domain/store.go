@@ -99,7 +99,8 @@ func (d *DomainsStore) ToggleActive(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(`UPDATE "Domain" SET "active" = NOT "active" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	if _, err := transaction.Query(`UPDATE "Domain" SET "active" = NOT "active" WHERE "id" IN (` +
+		strings.Join(ids, ",") + `)`); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

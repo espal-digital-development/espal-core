@@ -67,7 +67,8 @@ func (r *Route) Handle(context contexts.Context) {
 	var canUpdate bool
 	var canDelete bool
 	translationsActions := pageactions.New(context, "UserGroup", translationsFound)
-	translationsActions.AddCreateWithFieldAndPath("translation", fmt.Sprintf("UserGroup/Translation/Create?id=%s", userGroup.ID()))
+	translationsActions.AddCreateWithFieldAndPath("translation", fmt.Sprintf("UserGroup/Translation/Create?id=%s",
+		userGroup.ID()))
 
 	if translationsFound {
 		translationsActions.AddDeleteWithPath(fmt.Sprintf("UserGroup/Translation/Delete?id=%s", userGroup.ID()))

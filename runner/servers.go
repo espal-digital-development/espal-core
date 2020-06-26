@@ -17,9 +17,11 @@ type redirectRouter struct {
 func (r *redirectRouter) ServeHTTP(response http.ResponseWriter, request *http.Request) {
 	// TODO :: 77 Redirect to default port should be left out? And what about internal ports vs external normal ports?
 	if len(request.URL.RequestURI()) == 1 && request.URL.RequestURI()[0] == '/' {
-		http.Redirect(response, request, fmt.Sprintf("https://%s:%d", r.serverHost, r.serverPort), http.StatusMovedPermanently)
+		http.Redirect(response, request, fmt.Sprintf("https://%s:%d", r.serverHost, r.serverPort),
+			http.StatusMovedPermanently)
 	} else {
-		http.Redirect(response, request, fmt.Sprintf("https://%s:%d%s", r.serverHost, r.serverPort, request.URL.RequestURI()), http.StatusMovedPermanently)
+		http.Redirect(response, request, fmt.Sprintf("https://%s:%d%s", r.serverHost, r.serverPort,
+			request.URL.RequestURI()), http.StatusMovedPermanently)
 	}
 }
 
@@ -27,7 +29,8 @@ func (r *redirectRouter) ServeHTTP(response http.ResponseWriter, request *http.R
 func (r *Runner) startRedirectNonTLSServer() {
 	go func(appRunner *Runner) {
 		server := &http.Server{
-			Addr: fmt.Sprintf("%s:%d", appRunner.services.config.ServerHost(), appRunner.services.config.ServerHTTPRedirectPort()),
+			Addr: fmt.Sprintf("%s:%d", appRunner.services.config.ServerHost(),
+				appRunner.services.config.ServerHTTPRedirectPort()),
 			Handler: &redirectRouter{
 				serverHost: appRunner.services.config.ServerHost(),
 				serverPort: appRunner.services.config.ServerPort(),
@@ -54,10 +57,12 @@ func (r *Runner) startTLSServer() {
 			TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler)),
 		}
 
-		if err := server.ListenAndServeTLS(appRunner.services.config.ServerSSLCertificateFilePath(), appRunner.services.config.ServerSSLKeyFilePath()); err != nil {
+		if err := server.ListenAndServeTLS(appRunner.services.config.ServerSSLCertificateFilePath(),
+			appRunner.services.config.ServerSSLKeyFilePath()); err != nil {
 			appRunner.services.logger.Errorf("error in server.ListenAndServeTLS: %s", err)
 		}
 	}(r)
 
-	r.services.logger.Infof("Server running TLS on `%s` port %d and redirecting non-TLS from port %d.", r.services.config.ServerHost(), r.services.config.ServerPort(), r.services.config.ServerHTTPRedirectPort())
+	r.services.logger.Infof("Server running TLS on `%s` port %d and redirecting non-TLS from port %d.",
+		r.services.config.ServerHost(), r.services.config.ServerPort(), r.services.config.ServerHTTPRedirectPort())
 }

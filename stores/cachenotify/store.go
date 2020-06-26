@@ -15,7 +15,8 @@ type CacheNotifiesStore struct {
 
 // GetLatest fetches the latest entries since the given interval.
 func (c *CacheNotifiesStore) GetLatest(interval time.Duration) ([]*CacheNotify, bool, error) {
-	result, ok, err := c.fetch(`SELECT DISTINCT ON("target", "key") * FROM "CacheNotify" WHERE "createdAt" > NOW() - INTERVAL '$1 SECONDS' ORDER BY "target", "key", "createdAt" DESC`, false, interval.Seconds())
+	result, ok, err := c.fetch(`SELECT DISTINCT ON("target", "key") * FROM "CacheNotify" WHERE "createdAt" > NOW()
+		- INTERVAL '$1 SECONDS' ORDER BY "target", "key", "createdAt" DESC`, false, interval.Seconds())
 	return result, ok, errors.Trace(err)
 }
 

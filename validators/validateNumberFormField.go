@@ -20,10 +20,12 @@ func (f *Form) validateNumberFormField(field *formField) error {
 	if field.Optional() && value == 0 {
 		// Empty fields allowed on `optional` and having a `minLength`
 	} else if field.MinValue() > 0 && value < field.MinValue() {
-		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeSmallerThanX"), field.Name(), field.MinValue()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+			"fieldXCannotBeSmallerThanX"), field.Name(), field.MinValue()))
 	}
 	if field.MaxValue() > 0 && value > field.MaxValue() {
-		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeGreaterThanX"), field.Name(), field.MaxValue()))
+		field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+			"fieldXCannotBeGreaterThanX"), field.Name(), field.MaxValue()))
 	}
 
 	return nil

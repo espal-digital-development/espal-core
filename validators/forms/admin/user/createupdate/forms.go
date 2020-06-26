@@ -37,6 +37,7 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
+// nolint:gocyclo,funlen
 func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {
@@ -165,7 +166,8 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 	commentsField := validator.NewTextAreaField("comments")
 	commentsField.SetOptional()
 	commentsField.SetMaxLength(1000)
-	commentsField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "comment") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
+	commentsField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "comment") + " (" +
+		f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	commentsField.SetDontTranslate()
 	if user.ID() != "" && user.Comments() != nil {
 		commentsField.SetValue(*user.Comments())
@@ -176,7 +178,8 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 
 	currenciesField := validator.NewChoiceField("currencies")
 	currenciesField.SetOptional()
-	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" + f.translationsRepository.Singular(language.ID(), "optional") + ")")
+	currenciesField.SetPlaceholder(f.translationsRepository.Plural(language.ID(), "currency") + " (" +
+		f.translationsRepository.Singular(language.ID(), "optional") + ")")
 	currenciesField.SetDontTranslate()
 	currenciesField.SetSearchable()
 	currenciesField.SetCheckValuesInChoices()
@@ -200,7 +203,8 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 		}
 		if ok {
 			for k := range addresses {
-				option := f.validatorsFactory.NewChoiceOption(addresses[k].ID(), f.userAddressStore.DisplayValue(addresses[k], language.ID()))
+				option := f.validatorsFactory.NewChoiceOption(addresses[k].ID(),
+					f.userAddressStore.DisplayValue(addresses[k], language.ID()))
 				deliveryAddresses = append(deliveryAddresses, option)
 				invoiceAddresses = append(invoiceAddresses, option)
 			}
@@ -240,7 +244,9 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 }
 
 // New returns a new instance of LoginForm.
-func New(validatorsFactory validators.Factory, translationsRepository translations.Repository, storage storage.Storage, userAddressStore useraddressstore.Store, userContactStore usercontactstore.Store) *Forms {
+func New(validatorsFactory validators.Factory, translationsRepository translations.Repository,
+	storage storage.Storage, userAddressStore useraddressstore.Store,
+	userContactStore usercontactstore.Store) *Forms {
 	return &Forms{
 		validatorsFactory:      validatorsFactory,
 		translationsRepository: translationsRepository,

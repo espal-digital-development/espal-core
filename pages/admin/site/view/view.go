@@ -12,14 +12,16 @@ var _ Template = &Page{}
 
 // Factory represents an object that serves new pages.
 type Factory interface {
-	NewPage(context contexts.Context, language contexts.Language, site *site.Site, translatedName string, siteLanguage contexts.Language, siteCountry countries.Data, currencies []string) Template
+	NewPage(context contexts.Context, language contexts.Language, site *site.Site, translatedName string,
+		siteLanguage contexts.Language, siteCountry countries.Data, currencies []string) Template
 }
 
 // View page service.
 type View struct{}
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (v *View) NewPage(context contexts.Context, language contexts.Language, site *site.Site, translatedName string, siteLanguage contexts.Language, siteCountry countries.Data, currencies []string) Template {
+func (v *View) NewPage(context contexts.Context, language contexts.Language, site *site.Site, translatedName string,
+	siteLanguage contexts.Language, siteCountry countries.Data, currencies []string) Template {
 	page := &Page{
 		language:       language,
 		site:           site,

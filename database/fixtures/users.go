@@ -8,7 +8,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-const userQuery = `INSERT INTO "User"("createdByID","active","language","firstName","surname","email","password","currencies") VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING "id"`
+const userQuery = `INSERT INTO "User"("createdByID","active","language","firstName","surname","email","password",
+	"currencies") VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING "id"`
 
 func (f *Fixtures) users() error {
 	// TODO :: 77777 Generate and print new passwords/emails on-the-fly for security
@@ -18,11 +19,13 @@ func (f *Fixtures) users() error {
 	}
 
 	// User
-	row := f.inserterDatabase.QueryRow(userQuery, nil, true, f.dutchLanguage.ID(), "No", "One", "no@one.com", string(password), "")
+	row := f.inserterDatabase.QueryRow(userQuery, nil, true, f.dutchLanguage.ID(), "No", "One", "no@one.com",
+		string(password), "")
 	if err := row.Scan(&f.mainUserID); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := f.updaterDatabase.Exec(`UPDATE "User" SET "createdByID" = "id" WHERE "id" = $1`, f.mainUserID); err != nil {
+	if _, err := f.updaterDatabase.Exec(`UPDATE "User" SET "createdByID" = "id" WHERE "id" = $1`,
+		f.mainUserID); err != nil {
 		return errors.Trace(err)
 	}
 
@@ -32,7 +35,9 @@ func (f *Fixtures) users() error {
 		return errors.Trace(err)
 	}
 	for i := 1; i <= 1e3; i++ {
-		if _, err := tx.Exec(userQuery, f.mainUserID, true, f.englishLanguage.ID(), gofakeit.FirstName(), gofakeit.LastName(), gofakeit.Email(), gofakeit.Password(true, true, true, true, true, 32), ""); err != nil {
+		if _, err := tx.Exec(userQuery, f.mainUserID, true, f.englishLanguage.ID(), gofakeit.FirstName(),
+			gofakeit.LastName(), gofakeit.Email(), gofakeit.Password(true, true, true, true, true, 32),
+			""); err != nil {
 			return errors.Trace(err)
 		}
 	}
@@ -54,7 +59,9 @@ func (f *Fixtures) users() error {
 	}
 
 	// UserAddress
-	if _, err := f.inserterDatabase.Exec(`INSERT INTO "UserAddress"("createdByID","userID","active","firstName","surname","street","number","zipCode","city") VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)`, f.mainUserID, f.mainUserID, true, "No", "One", "Memory Lane", "7", "123456HI", "Villeville"); err != nil {
+	if _, err := f.inserterDatabase.Exec(`INSERT INTO "UserAddress"("createdByID","userID","active","firstName",
+		"surname","street","number","zipCode","city") VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)`, f.mainUserID,
+		f.mainUserID, true, "No", "One", "Memory Lane", "7", "123456HI", "Villeville"); err != nil {
 		return errors.Trace(err)
 	}
 

@@ -7,7 +7,7 @@ const (
 	DBTranslationFieldDescription = 2
 )
 
-// PropertyTypes
+// PropertyTypes.
 const (
 	// PropertytypeText for plain text (string) properties.
 	PropertytypeText uint8 = iota + 1

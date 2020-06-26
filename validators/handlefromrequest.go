@@ -18,7 +18,8 @@ func (f *Form) HandleFromRequest(context context) error {
 			f.fields[k].AddError("maxLength cannot be smaller than minLength")
 		}
 
-		if HiddenFormField != f.fields[k].Type() && HoneypotFormField != f.fields[k].Type() && TokenFormField != f.fields[k].Type() && !f.fields[k].DontTranslate() && f.fields[k].Placeholder() == "" {
+		if HiddenFormField != f.fields[k].Type() && HoneypotFormField != f.fields[k].Type() &&
+			TokenFormField != f.fields[k].Type() && !f.fields[k].DontTranslate() && f.fields[k].Placeholder() == "" {
 			if f.fields[k].TranslatePlural() {
 				f.fields[k].SetPlaceholder(f.translationsRepository.Plural(f.language.ID(), f.fields[k].Name()))
 			} else {
@@ -26,7 +27,8 @@ func (f *Form) HandleFromRequest(context context) error {
 			}
 
 			if f.fields[k].Optional() {
-				f.fields[k].SetPlaceholder(f.fields[k].Placeholder() + " (" + f.translationsRepository.Singular(f.language.ID(), "optional") + ")")
+				f.fields[k].SetPlaceholder(f.fields[k].Placeholder() + " (" +
+					f.translationsRepository.Singular(f.language.ID(), "optional") + ")")
 			}
 		}
 
@@ -55,6 +57,7 @@ func (f *Form) HandleFromRequest(context context) error {
 }
 
 // submit processed the data values that are supplied.
+// nolint:gocyclo,funlen
 func (f *Form) submit(context contexts.FormContext) error {
 	if !f.isFormValidator {
 		return errors.Errorf("cannot submit a non-Form type Validator")

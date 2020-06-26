@@ -11,7 +11,8 @@ func (f *Form) validateFileFormField(field *formField) {
 	} else if filesCount > 0 {
 		for _, uploadedFile := range field.UploadedFiles() {
 			if field.MaxLength() > 0 && field.MaxLength() < uint(len(uploadedFile.SanitizedName())) {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXCannotBeLongerThanXCharacters"), field.Name()+": "+uploadedFile.SanitizedName(), field.MaxLength()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXCannotBeLongerThanXCharacters"), field.Name()+": "+uploadedFile.SanitizedName(), field.MaxLength()))
 			}
 		}
 	}

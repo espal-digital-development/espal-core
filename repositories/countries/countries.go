@@ -67,7 +67,8 @@ func (c *Countries) loadTranslations() error {
 			}
 			country := c.entries[checkCountry.Code()]
 			if parts[1] == country.EnglishName() {
-				return errors.Errorf("duplicate Country English translation for code `%s` in file `%s` for line %d", parts[0], files[k], count)
+				return errors.Errorf("duplicate Country English translation for code `%s` in file `%s` for line %d",
+					parts[0], files[k], count)
 			}
 			country.SetTranslation(language.ID(), parts[1])
 

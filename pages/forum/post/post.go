@@ -13,7 +13,8 @@ var _ Template = &Page{}
 
 // Factory represents an object that serves new pages.
 type Factory interface {
-	NewPage(context contexts.Context, language contexts.Language, user *user.User, postEntity *forum.Post, replies []*forum.Post) Template
+	NewPage(context contexts.Context, language contexts.Language, user *user.User, postEntity *forum.Post,
+		replies []*forum.Post) Template
 }
 
 // Post page service.
@@ -22,7 +23,8 @@ type Post struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (p *Post) NewPage(context contexts.Context, language contexts.Language, user *user.User, postEntity *forum.Post, replies []*forum.Post) Template {
+func (p *Post) NewPage(context contexts.Context, language contexts.Language, user *user.User, postEntity *forum.Post,
+	replies []*forum.Post) Template {
 	page := &Page{
 		language:        language,
 		user:            user,

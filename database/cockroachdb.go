@@ -56,6 +56,7 @@ func (c *CockroachDB) Exec(query string, args ...interface{}) (Result, error) {
 func (c *CockroachDB) Query(query string, args ...interface{}) (Rows, error) {
 	var err error
 	dbRows := &rows{}
+	// nolint:rowserrcheck
 	dbRows.rows, err = c.db.Query(query, args...)
 	if err != nil {
 		return nil, errors.Trace(err)

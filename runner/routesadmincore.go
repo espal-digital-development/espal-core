@@ -7,7 +7,8 @@ import (
 )
 
 func (r *Runner) routesAdminCore() error {
-	if err := r.services.router.RegisterRoute(r.services.config.AdminURL(), dashboard.New(dashboardpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.AdminURL(),
+		dashboard.New(dashboardpage.New())); err != nil {
 		return errors.Trace(err)
 	}
 	return nil

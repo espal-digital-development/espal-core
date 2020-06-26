@@ -51,7 +51,8 @@ func (r *Route) Handle(context contexts.Context) {
 }
 
 // New returns a new instance of Route.
-func New(regularExpressionsRepository regularexpressions.Repository, forumStore forum.Store, forumPageFactory page.Factory) *Route {
+func New(regularExpressionsRepository regularexpressions.Repository, forumStore forum.Store,
+	forumPageFactory page.Factory) *Route {
 	return &Route{
 		regularExpressionsRepository: regularExpressionsRepository,
 		forumStore:                   forumStore,

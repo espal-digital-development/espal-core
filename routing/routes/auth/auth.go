@@ -27,7 +27,8 @@ func (r *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	// TODO :: 7 This is ok for now, but the Auth should be blocking the site to such an extent that it shouldn't even show the design or expose the assets.
+	// TODO :: 7 This is ok for now, but the Auth should be blocking the site to such an extent
+	// that it shouldn't even show the design or expose the assets.
 	form, err := r.authFormValidator.New(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))

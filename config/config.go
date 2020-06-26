@@ -118,7 +118,8 @@ func New(coreStorage storage.Storage) (*Configuration, error) {
 		return nil, errors.Trace(err)
 	}
 	if !ok {
-		return nil, errors.Errorf("no config.yml file found. Please create one. The espal-run command can help automate this process")
+		return nil, errors.Errorf(
+			"no config.yml file found. Please create one. The espal-run command can help automate this process")
 	}
 
 	var values configYaml

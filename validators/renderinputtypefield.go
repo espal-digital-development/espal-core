@@ -74,7 +74,8 @@ func (f *Form) renderInputTypeField(field *formField) string {
 		f.perror(out.WriteString(field.Value()))
 		f.perror(out.WriteString(`"`))
 	}
-	if !field.Optional() && HiddenFormField != field.Type() && HoneypotFormField != field.Type() && TokenFormField != field.Type() {
+	if !field.Optional() && HiddenFormField != field.Type() && HoneypotFormField != field.Type() &&
+		TokenFormField != field.Type() {
 		f.perror(out.WriteString(` required`))
 	}
 	f.perror(out.WriteString(`>`))

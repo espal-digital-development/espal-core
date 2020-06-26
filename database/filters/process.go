@@ -16,6 +16,7 @@ import (
 // o = Ordering (Order By)
 // c = Columns (Select ~)
 // s = Search (LIKE %Word%)
+// nolint:gocyclo,funlen
 func (f *filter) Process() error {
 	// TODO :: Handle posted data when send (still to do; `o`, `c` & `s`)
 	resultsPerPage, err := strconv.ParseUint(f.queryReader.QueryValue("r"), 10, 64)
@@ -111,7 +112,8 @@ func (f *filter) Process() error {
 
 	f.handleParams()
 
-	// TODO :: If there is no WHERE and all joins are LEFT, all joins could be removed. Yet there is only one exception; if a JOIN results in an expansion of results it could result in unexpected results.
+	// TODO :: If there is no WHERE and all joins are LEFT, all joins could be removed. Yet there is only one
+	// exception; if a JOIN results in an expansion of results it could result in unexpected results.
 
 	// TODO :: 7 :: COUNT() on is not very efficient. Need a better way (UPDATE: Better way in Cockroach?)
 	if err := f.selecterDatabase.QueryRow(f.countQuery.String(), f.params...).Scan(&f.totalResults); err != nil {
@@ -188,7 +190,8 @@ func (f *filter) handleSelectFields() error {
 }
 
 func (f *filter) handleJoinStatements() error {
-	// TODO :: 77 Maybe JOIN can be done too in a way with sub-WHERE structs to fully build it instead of concatenating a custom written piece of SQL
+	// TODO :: 77 Maybe JOIN can be done too in a way with sub-WHERE structs to fully build it instead of
+	// concatenating a custom written piece of SQL.
 	for k := range f.joinStatements {
 		var found bool
 		for k2 := range f.selectFields {

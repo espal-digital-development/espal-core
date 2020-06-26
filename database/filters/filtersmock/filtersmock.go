@@ -14,7 +14,8 @@ import (
 //go:generate moq -pkg filtersmock -out join.go .. Join
 
 // DefaultMocks returns a quick-to-use set of Mock instances.
-func DefaultMocks() (*FactoryMock, *FilterMock, *SelectFieldMock, *SearchFieldMock, *JoinMock, *SortFieldMock, *DisplayColumnMock) {
+func DefaultMocks() (*FactoryMock, *FilterMock, *SelectFieldMock, *SearchFieldMock, *JoinMock, *SortFieldMock,
+	*DisplayColumnMock) {
 	selectField := &SelectFieldMock{}
 	selectField.SetMapToFunc = func(mapTo string) filters.SelectField {
 		return selectField

@@ -157,7 +157,8 @@ func (s *CacheSynchronizer) cycle(target uint) bool {
 }
 
 // New returns a new instance of s.
-func New(loggerService logger.Loggable, cacheNotifyStore cachenotify.Store, checkInterval time.Duration) *CacheSynchronizer {
+func New(loggerService logger.Loggable, cacheNotifyStore cachenotify.Store,
+	checkInterval time.Duration) *CacheSynchronizer {
 	return &CacheSynchronizer{
 		loggerService:    loggerService,
 		cacheNotifyStore: cacheNotifyStore,

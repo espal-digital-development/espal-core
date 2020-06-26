@@ -40,7 +40,9 @@ func (h *AssetHandler) RegisterAll() error {
 	h.minifier.AddFunc("text/css", css.Minify)
 	h.minifier.AddFunc("application/javascript", js.Minify)
 
-	// TODO :: 7 Images that get saved in Forms could be optimized and then compressed to gzip/brotli besides the original file and instantly served by keeping a buffer in cache of which files have gzip/brotli variations on disk
+	// TODO :: 7 Images that get saved in Forms could be optimized and then compressed to gzip/brotli besides
+	// the original file and instantly served by keeping a buffer in cache of which files have gzip/brotli
+	// variations on disk.
 	// TODO :: 7 Max-Age header for files too. A bit more complex tho
 
 	if err := h.registerStylesheetsRoutes(); err != nil {
@@ -76,7 +78,9 @@ func (h *AssetHandler) convertToGzip(bts []byte) ([]byte, error) {
 }
 
 // New returns a new instance of Handler.
-func New(configService config.Config, routerService router.Router, minifier *minify.M, stylesheetsStorage storage.Storage, javaScriptStorage storage.Storage, imagesStorage storage.Storage, publicFilesStorage storage.Storage, publicRootFilesStorage storage.Storage) *AssetHandler {
+func New(configService config.Config, routerService router.Router, minifier *minify.M,
+	stylesheetsStorage storage.Storage, javaScriptStorage storage.Storage, imagesStorage storage.Storage,
+	publicFilesStorage storage.Storage, publicRootFilesStorage storage.Storage) *AssetHandler {
 	return &AssetHandler{
 		configService:          configService,
 		routerService:          routerService,

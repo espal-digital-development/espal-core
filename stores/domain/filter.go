@@ -7,6 +7,7 @@ import (
 )
 
 // Filter filters results based on the given context.
+// nolint:nakedret
 func (d *DomainsStore) Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error) {
 	alias := (&Domain{}).TableAlias()
 	filter = d.databaseFiltersFactory.NewFilter(context, newDomain())
@@ -58,7 +59,10 @@ func (d *DomainsStore) Filter(context filters.QueryReader) (result []*Domain, fi
 				return
 			}
 			domain := newDomain()
-			if err = filter.Rows().Scan(&domain.id, &domain.createdByID, &domain.updatedByID, &domain.siteID, &domain.createdByFirstName, &domain.createdBySurname, &domain.updatedByFirstName, &domain.updatedBySurname, &domain.active, &domain.createdAt, &domain.updatedAt, &domain.host, &domain.language, &domain.currencies); err != nil {
+			if err = filter.Rows().Scan(&domain.id, &domain.createdByID, &domain.updatedByID, &domain.siteID,
+				&domain.createdByFirstName, &domain.createdBySurname, &domain.updatedByFirstName,
+				&domain.updatedBySurname, &domain.active, &domain.createdAt, &domain.updatedAt, &domain.host,
+				&domain.language, &domain.currencies); err != nil {
 				err = errors.Trace(err)
 				return
 			}

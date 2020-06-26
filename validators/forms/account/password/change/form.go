@@ -66,7 +66,8 @@ func (c *Change) Submit(context routeCtx) (isSubmitted bool, isValid bool, err e
 }
 
 func (c *Change) process(translator translator) (bool, error) {
-	if err := bcrypt.CompareHashAndPassword([]byte(c.user.Password()), []byte(c.validator.Field("currentPassword").Value())); err != nil {
+	if err := bcrypt.CompareHashAndPassword([]byte(c.user.Password()),
+		[]byte(c.validator.Field("currentPassword").Value())); err != nil {
 		c.validator.AddError(translator.Translate("yourCurrentPasswordDidNotMatch"))
 	}
 	isValid, err := c.validator.IsValid()

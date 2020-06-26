@@ -85,11 +85,13 @@ func (r *Route) Handle(context contexts.Context) {
 			return
 		}
 	}
-	r.viewPageFactory.NewPage(context, language, site, r.siteStore.GetTranslatedName(site, language.ID()), siteLanguage, siteCountry, siteCurrencies).Render()
+	r.viewPageFactory.NewPage(context, language, site, r.siteStore.GetTranslatedName(site, language.ID()),
+		siteLanguage, siteCountry, siteCurrencies).Render()
 }
 
 // New returns a new instance of Route.
-func New(languagesRepository languages.Repository, countriesRepository countries.Repository, currenciesRepository currencies.Repository, siteStore site.Store, viewPageFactory page.Factory) *Route {
+func New(languagesRepository languages.Repository, countriesRepository countries.Repository,
+	currenciesRepository currencies.Repository, siteStore site.Store, viewPageFactory page.Factory) *Route {
 	return &Route{
 		languagesRepository:  languagesRepository,
 		countriesRepository:  countriesRepository,

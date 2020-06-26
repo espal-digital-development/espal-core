@@ -36,7 +36,8 @@ func (r *Route) Handle(context contexts.Context) {
 	if !ok {
 		// TODO :: 7 Support email and/or internal Support requests/chat module?
 		context.SetStatusCode(http.StatusBadRequest)
-		context.RenderNon200Custom(context.Translate("unknownActivationHash"), context.Translate("unknownActivationHashMessage"))
+		context.RenderNon200Custom(context.Translate("unknownActivationHash"),
+			context.Translate("unknownActivationHashMessage"))
 		return
 	}
 

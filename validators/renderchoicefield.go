@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+// nolint:funlen
 func (f *Form) renderChoiceField(field *formField) string {
 	out := strings.Builder{}
 	f.addLabel(field, &out)
@@ -29,7 +30,8 @@ func (f *Form) renderChoiceField(field *formField) string {
 		f.perror(out.WriteString(`>`))
 
 		f.perror(out.WriteString(`<div>`))
-		f.perror(out.WriteString(`<span class="selectedBadge"><span class="selectedValue"></span><span class="clearSelectedValue">x</span></span>`))
+		f.perror(out.WriteString(`<span class="selectedBadge"><span class="selectedValue"></span>` +
+			`<span class="clearSelectedValue">x</span></span>`))
 		for _, choice := range field.Choices() {
 			if !field.ChoiceIsSelected(choice) {
 				continue

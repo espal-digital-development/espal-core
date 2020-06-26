@@ -43,6 +43,7 @@ type Forms struct {
 }
 
 // New creates a new Form instance with the required logic.
+// nolint:gocyclo,funlen
 func (f *Forms) New(address address, language language) (Form, error) {
 	validator, err := f.validatorsFactory.NewForm(language)
 	if err != nil {

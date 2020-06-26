@@ -9,6 +9,7 @@ import (
 	"github.com/juju/errors"
 )
 
+// nolint:gocyclo
 // TODO :: Format can come in different formats on different browsers. Localize before continuing.
 func (f *Form) validateDateFormField(field *formField) error {
 	var err error
@@ -38,7 +39,8 @@ func (f *Form) validateDateFormField(field *formField) error {
 
 		parts := strings.Split(field.Value(), "-")
 		if len(parts) != partsExpected {
-			field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXPasswordIsNotSafeEnough"), field.Name()))
+			field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+				"fieldXPasswordIsNotSafeEnough"), field.Name()))
 
 			var yearError bool
 			var monthError bool
@@ -69,7 +71,8 @@ func (f *Form) validateDateFormField(field *formField) error {
 					monthError = true
 				} else {
 					month, err = strconv.ParseUint(field.Value(), 10, 64)
-					if err != nil || month > 12 || (uint(month) <= field.MinMonth()) || (field.MaxMonth() > 0 && uint(month) > field.MaxMonth()) {
+					if err != nil || month > 12 || (uint(month) <= field.MinMonth()) ||
+						(field.MaxMonth() > 0 && uint(month) > field.MaxMonth()) {
 						monthError = true
 					}
 				}
@@ -108,15 +111,18 @@ func (f *Form) validateDateFormField(field *formField) error {
 			}
 
 			if yearError {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXYearIsIncorrectlyFormatted"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXYearIsIncorrectlyFormatted"), field.Name()))
 			}
 
 			if monthError {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXMonthIsIncorrectlyFormatted"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXMonthIsIncorrectlyFormatted"), field.Name()))
 			}
 
 			if dayError {
-				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(), "fieldXDayIsIncorrectlyFormatted"), field.Name()))
+				field.AddError(fmt.Sprintf(f.translationsRepository.Formatted(f.language.ID(),
+					"fieldXDayIsIncorrectlyFormatted"), field.Name()))
 			}
 		}
 	}

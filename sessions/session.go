@@ -67,7 +67,7 @@ func (s *UserSession) Timeout() time.Duration {
 }
 
 // SetTimeout allows the timeout to be modified dynamically.
-// It's discouraged to use this other than from within the Sessions
+// It's discouraged to use this other than from within the Sessions.
 func (s *UserSession) SetTimeout(timeout time.Duration) {
 	s.timeout = timeout
 }
@@ -150,7 +150,8 @@ func (s *UserSession) AllValues() map[uint8][]byte {
 }
 
 // NewSession returns a new instance of Session.
-func NewSession(id string, createdAt time.Time, accessedAt time.Time, timeout time.Duration, uintValues map[uint8]uint, values map[uint8][]byte) *UserSession {
+func NewSession(id string, createdAt time.Time, accessedAt time.Time, timeout time.Duration,
+	uintValues map[uint8]uint, values map[uint8][]byte) *UserSession {
 	return &UserSession{
 		id:         id,
 		createdAt:  createdAt,

@@ -13,7 +13,8 @@ var _ Template = &Page{}
 
 // Factory represents an object that serves new pages.
 type Factory interface {
-	NewPage(context contexts.Context, userContact *contact.Contact, user *user.User, language contexts.Language, form base.Form, displayTitle string) Template
+	NewPage(context contexts.Context, userContact *contact.Contact, user *user.User, language contexts.Language,
+		form base.Form, displayTitle string) Template
 }
 
 // CreateUpdate page service.
@@ -22,7 +23,8 @@ type CreateUpdate struct {
 }
 
 // NewPage generates a new instance of Page based on the given parameters.
-func (c *CreateUpdate) NewPage(context contexts.Context, userContact *contact.Contact, user *user.User, language contexts.Language, form base.Form, displayTitle string) Template {
+func (c *CreateUpdate) NewPage(context contexts.Context, userContact *contact.Contact, user *user.User,
+	language contexts.Language, form base.Form, displayTitle string) Template {
 	page := &Page{
 		userContact:     userContact,
 		user:            user,

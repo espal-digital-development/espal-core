@@ -27,7 +27,8 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 	if err := r.domainStore.ToggleActive(strings.Split(ids, ",")); err != nil {
-		if err := context.SetFlashErrorMessage(context.Translate("activeTogglingHasFailed") + ": " + err.Error()); err != nil {
+		if err := context.SetFlashErrorMessage(context.Translate("activeTogglingHasFailed") + ": " +
+			err.Error()); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
 		}

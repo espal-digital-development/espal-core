@@ -129,7 +129,8 @@ func (r *Route) Handle(context contexts.Context) {
 }
 
 // New returns a new instance of Route.
-func New(configService config.Config, mailerService mailer.Engine, userStore user.Store, registerFormValidator register.Factory, registerPageFactory page.Factory) *Route {
+func New(configService config.Config, mailerService mailer.Engine, userStore user.Store,
+	registerFormValidator register.Factory, registerPageFactory page.Factory) *Route {
 	return &Route{
 		configService:         configService,
 		mailerService:         mailerService,

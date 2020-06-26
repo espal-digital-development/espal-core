@@ -47,7 +47,7 @@ type Validators struct {
 	currencyChoicesCache *choicesCache
 }
 
-// NewForm builds a new form-based validator based on the ValidatorFields given
+// NewForm builds a new form-based validator based on the ValidatorFields given.
 func (v *Validators) NewForm(language language) (Validator, error) {
 	validator := &Form{
 		configService:                v.configService,
@@ -77,7 +77,10 @@ func (v *Validators) NewForm(language language) (Validator, error) {
 }
 
 // New returns a new instance of Validators.
-func New(configService config.Config, loggerService logger.Loggable, languagesRepository languages.Repository, countriesRepository countries.Repository, currenciesRepository currencies.Repository, translationsRepository translations.Repository, regularExpressionsRepository regularexpressions.Repository, tokenPoolService tokenpool.Pool) *Validators {
+func New(configService config.Config, loggerService logger.Loggable, languagesRepository languages.Repository,
+	countriesRepository countries.Repository, currenciesRepository currencies.Repository,
+	translationsRepository translations.Repository, regularExpressionsRepository regularexpressions.Repository,
+	tokenPoolService tokenpool.Pool) *Validators {
 	return &Validators{
 		configService:                configService,
 		loggerService:                loggerService,

@@ -61,7 +61,7 @@ func (t *Translations) Plural(languageID uint16, key string) string {
 	return *t.entries[languageID][key].Plural
 }
 
-// Formatted value based on languageID
+// Formatted value based on languageID.
 func (t *Translations) Formatted(languageID uint16, key string) string {
 	if !t.checkExistence(languageID, key) {
 		return key
@@ -73,7 +73,7 @@ func (t *Translations) Formatted(languageID uint16, key string) string {
 	return *t.entries[languageID][key].SingularFormatted
 }
 
-// FormattedPlural value based on languageID
+// FormattedPlural value based on languageID.
 func (t *Translations) FormattedPlural(languageID uint16, key string) string {
 	if !t.checkExistence(languageID, key) {
 		return key
@@ -98,7 +98,8 @@ func (t *Translations) checkExistence(languageID uint16, key string) bool {
 }
 
 // New returns new a Languages repository instance.
-func New(loggerService logger.Loggable, storage storage.Storage, availableLanguages map[uint16]string) (*Translations, error) {
+func New(loggerService logger.Loggable, storage storage.Storage,
+	availableLanguages map[uint16]string) (*Translations, error) {
 	t := &Translations{
 		loggerService: loggerService,
 		storage:       storage,

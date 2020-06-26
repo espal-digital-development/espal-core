@@ -23,6 +23,7 @@ type Route struct {
 }
 
 // Handle route handler.
+// nolint:funlen
 func (r *Route) Handle(context contexts.Context) {
 	// TODO :: 77777 :: This doesn't fetch (id issue?)
 	user, ok, err := r.userStore.GetOne(context.QueryValue("id"))
@@ -84,7 +85,8 @@ func (r *Route) Handle(context contexts.Context) {
 		entityMutator.SetNullableString("surname", form.FieldPointerValue("surname"), userAddress.Surname())
 		entityMutator.SetString("street", form.FieldPointerValue("street"), userAddress.Street())
 		entityMutator.SetString("number", form.FieldPointerValue("number"), userAddress.Number())
-		entityMutator.SetNullableString("numberAddition", form.FieldPointerValue("numberAddition"), userAddress.NumberAddition())
+		entityMutator.SetNullableString("numberAddition", form.FieldPointerValue("numberAddition"),
+			userAddress.NumberAddition())
 		entityMutator.SetString("zipCode", form.FieldPointerValue("zipCode"), userAddress.ZipCode())
 		entityMutator.SetString("city", form.FieldPointerValue("city"), userAddress.City())
 		entityMutator.SetNullableUint16("country", &countryID, userAddress.Country())
@@ -114,11 +116,13 @@ func (r *Route) Handle(context contexts.Context) {
 		}
 	}
 
-	r.createUpdatePageFactory.NewPage(context, userAddress, user, language, form.View(), context.GetAdminCreateUpdateTitle(id, "userAddress")).Render()
+	r.createUpdatePageFactory.NewPage(context, userAddress, user, language, form.View(),
+		context.GetAdminCreateUpdateTitle(id, "userAddress")).Render()
 }
 
 // New returns a new instance of Route.
-func New(entityMutatorsFactory entitymutators.Factory, userStore user.Store, userAddressStore address.Store, createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
+func New(entityMutatorsFactory entitymutators.Factory, userStore user.Store, userAddressStore address.Store,
+	createUpdateFormValidator createupdate.Factory, createUpdatePageFactory page.Factory) *Route {
 	return &Route{
 		entityMutatorsFactory:     entityMutatorsFactory,
 		userStore:                 userStore,

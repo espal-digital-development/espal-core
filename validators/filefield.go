@@ -108,6 +108,7 @@ func (f *formField) FileSaveFolder() string {
 
 // SaveFiles saves the file(s) that were uploaded to the private
 // or public folder based on the field.PublicFile setting.
+// nolint:funlen
 func (f *formField) SaveFiles() error {
 	if FileFormField != f._type {
 		return errors.Errorf("cannot run SaveFiles on a non-FileFormField")

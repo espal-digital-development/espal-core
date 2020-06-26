@@ -45,7 +45,8 @@ func (f *Form) RenderOpen() string {
 func (f *Form) RenderField(name string) string {
 	field := f.field(name)
 	switch field.Type() {
-	case HiddenFormField, TokenFormField, HoneypotFormField, TextFormField, NumberFormField, DateTimeFormField, EmailFormField, SearchFormField, PasswordFormField, FileFormField:
+	case HiddenFormField, TokenFormField, HoneypotFormField, TextFormField, NumberFormField, DateTimeFormField,
+		EmailFormField, SearchFormField, PasswordFormField, FileFormField:
 		return f.renderInputTypeField(field)
 	case TextAreaFormField:
 		return f.renderTextAreaField(field)

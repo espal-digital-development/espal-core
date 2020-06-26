@@ -18,7 +18,8 @@ type ContactsStore struct {
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
 func (c *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, bool, error) {
-	result, ok, err := c.fetch(`SELECT u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
+	result, ok, err := c.fetch(`SELECT
+			u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserContact" u
 		LEFT JOIN "User" c ON c."id" = u."contactID"
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
@@ -61,8 +62,10 @@ func (c *ContactsStore) Name(contact *Contact, languageID uint16) string {
 }
 
 // ForUser fetches UserContacts for userID.
+// nolint:nakedret
 func (c *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err error) {
-	rows, err := c.selecterDatabase.Query(`SELECT u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
+	rows, err := c.selecterDatabase.Query(`SELECT
+			u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserContact" u
 		LEFT JOIN "User" c ON c."id" = u."contactID"
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
@@ -92,9 +95,10 @@ func (c *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err 
 			return
 		}
 		contact := newContact()
-		err = rows.Scan(&contact.id, &contact.createdByID, &contact.updatedByID, &contact.userID, &contact.contactID, &contact.createdAt,
-			&contact.updatedAt, &contact.sorting, &contact.comments, &contact.contactFirstName, &contact.contactSurname,
-			&contact.createdByFirstName, &contact.createdBySurname, &contact.updatedByFirstName, &contact.updatedBySurname,
+		err = rows.Scan(&contact.id, &contact.createdByID, &contact.updatedByID, &contact.userID, &contact.contactID,
+			&contact.createdAt, &contact.updatedAt, &contact.sorting, &contact.comments, &contact.contactFirstName,
+			&contact.contactSurname, &contact.createdByFirstName, &contact.createdBySurname,
+			&contact.updatedByFirstName, &contact.updatedBySurname,
 		)
 		if err != nil {
 			err = errors.Trace(err)
