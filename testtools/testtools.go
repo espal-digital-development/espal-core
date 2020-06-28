@@ -13,9 +13,11 @@ import (
 // This package is solely meant to assist in testing functions.
 // Don't globally call them inside normal package code-flows.
 
+const hashLength = 8
+
 // RequestNewTempDir will spawn a new temporary directory for tests to use.
 func RequestNewTempDir(t *testing.T) string {
-	tmpDir, err := filePathAbs(os.TempDir() + "/espal-tests-" + randomString(8))
+	tmpDir, err := filePathAbs(os.TempDir() + "/espal-tests-" + randomString(hashLength))
 	if err != nil {
 		t.Fatal(err)
 	}

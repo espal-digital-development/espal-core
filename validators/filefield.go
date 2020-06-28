@@ -12,6 +12,8 @@ import (
 	"github.com/juju/errors"
 )
 
+const fileExtraHashLength = 4
+
 // NewFileField returns a new instance of FormField with the type File.
 func (f *Form) NewFileField(name string, storage storage.Storage) FormField {
 	return f.defaultChecks(&formField{
@@ -146,7 +148,7 @@ func (f *formField) SaveFiles() error {
 			}
 
 			for i := 0; i < 25; i++ {
-				extra := text.RandomString(4)
+				extra := text.RandomString(fileExtraHashLength)
 				newName := baseName + "_" + extra + "." + extension
 				var checkPath string
 				if f.fileSaveFolder != "" {

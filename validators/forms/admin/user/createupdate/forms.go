@@ -17,6 +17,8 @@ import (
 
 var _ Factory = &Forms{}
 
+const maxHumanAgeRange = 120
+
 type language interface {
 	ID() uint16
 	Code() string
@@ -72,7 +74,7 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 
 	avatarField := validator.NewFileField("avatar", f.storage)
 	avatarField.SetOptional()
-	avatarField.SetMaxLength(75)
+	avatarField.SetMaxLength(75) // nolint:gomind
 	avatarField.SetAllowedMIMETypes([]string{"image/jpeg", "image/png"})
 	if user.ID() != "" && user.Avatar() != nil {
 		avatarField.SetValue(*user.Avatar())
@@ -105,7 +107,7 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 
 	dateOfBirthField := validator.NewDateTimeField("dateOfBirth")
 	dateOfBirthField.SetOptional()
-	dateOfBirthField.SetMinYear(uint(time.Now().Year() - 110))
+	dateOfBirthField.SetMinYear(uint(time.Now().Year() - maxHumanAgeRange))
 	if user.ID() != "" && user.DateOfBirth() != nil {
 		dateOfBirthField.SetValue(user.DateOfBirth().Format(time.RFC3339[0:9]))
 	}

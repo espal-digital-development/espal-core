@@ -14,6 +14,8 @@ import (
 	"github.com/juju/errors"
 )
 
+const hashLength = 72
+
 // Route processor.
 type Route struct {
 	configService               config.Config
@@ -57,7 +59,7 @@ func (r *Route) Handle(context contexts.Context) {
 			return
 		}
 
-		hash := text.RandomString(72)
+		hash := text.RandomString(hashLength)
 		if err := r.userStore.SetPasswordResetHashForUser(user.ID(), hash); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return

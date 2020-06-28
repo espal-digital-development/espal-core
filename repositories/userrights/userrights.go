@@ -8,6 +8,11 @@ import (
 
 var _ Repository = &UserRights{}
 
+const (
+	accessAuth         = 30000
+	accessAdminSection = 30001
+)
+
 // Repository represents a UserRight repository.
 type Repository interface {
 	GetName(code uint16) (string, error)
@@ -62,12 +67,12 @@ func New() *UserRights {
 	// Everything over 3e4 is for manual addition
 	r := &UserRights{
 		entries: map[uint16]string{
-			30000: "AccessAuth",
-			30001: "AccessAdminSection",
+			accessAuth:         "AccessAuth",
+			accessAdminSection: "AccessAdminSection",
 		},
 		entriesByName: map[string]uint16{
-			"AccessAuth":         30000,
-			"AccessAdminSection": 30001,
+			"AccessAuth":         accessAuth,
+			"AccessAdminSection": accessAdminSection,
 		},
 		entriesSubjectsForCRUD: []string{
 			"ProductModel", "ProductVariant", "BundledProduct", "Subscription",

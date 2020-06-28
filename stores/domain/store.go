@@ -58,13 +58,10 @@ func (d *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
 	// TODO :: 77777 :: Move this caching to the general cache notifier
 	if d.mutex == nil {
 		d.mutex = &sync.RWMutex{}
+		d.domainsNormal = make(map[string]*Domain)
 	}
 	d.mutex.Lock()
 	defer d.mutex.Unlock()
-
-	if d.domainsNormal == nil {
-		d.domainsNormal = make(map[string]*Domain)
-	}
 
 	if _, ok := d.domainsNormal[host]; ok {
 		return d.domainsNormal[host], true, nil

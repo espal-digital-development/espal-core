@@ -37,6 +37,8 @@ linters:
     - interfacer
     - unconvert
     - goconst
+    - gofmt
+    - goimports
     # - gocognit # TODO :: Cleanup
     - asciicheck
     - depguard # This probably needs custom configuration
@@ -45,11 +47,11 @@ linters:
     - gochecknoinits
     # - whitespace # The exclude rules for .qtpl aren't working..
     - goprintffuncname
-    # - gomnd # TODO :: Cleanup
+    - gomnd
     # - goerr113 # TODO :: Cleanup
     - gomodguard # This probably needs custom configuration
     - testpackage
-    # - nestif # TODO :: Cleanup
+    - nestif
     - nolintlint
     - gocyclo
     - lll
@@ -64,8 +66,6 @@ linters:
     - rowserrcheck # It already checks the extra error
 
     # Unused (mutliple reasons):
-    # - gofmt # Collides with formatters
-    # - goimports # Collides with formatters
     # - dupl # We intentionally use duplicated code in places
     # - maligned # These changes are very small (might be fun for some tweaking later)
     # - godox # Maybe be handy to quickly find TODO's, but might as well just use search

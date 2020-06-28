@@ -13,6 +13,8 @@ import (
 //go:generate moq -pkg filtersmock -out displaycolumn.go .. DisplayColumn
 //go:generate moq -pkg filtersmock -out join.go .. Join
 
+const defaultLimit = 10
+
 // DefaultMocks returns a quick-to-use set of Mock instances.
 func DefaultMocks() (*FactoryMock, *FilterMock, *SelectFieldMock, *SearchFieldMock, *JoinMock, *SortFieldMock,
 	*DisplayColumnMock) {
@@ -59,7 +61,7 @@ func DefaultMocks() (*FactoryMock, *FilterMock, *SelectFieldMock, *SearchFieldMo
 			return false
 		},
 		LimitFunc: func() uint {
-			return 10
+			return defaultLimit
 		},
 		RowsFunc: func() database.Rows {
 			return nil

@@ -12,9 +12,7 @@ import (
 	"github.com/juju/errors"
 )
 
-const (
-	euroMemberCountries = "Euro Member Countries"
-)
+const euroMemberCountries = "Euro Member Countries"
 
 var (
 	availableLanguages = map[string]*languagesmock.DataMock{

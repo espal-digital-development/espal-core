@@ -42,13 +42,10 @@ func (s *SitesStore) GetOneOnlineByID(id string) (*Site, bool, error) {
 	// TODO :: 77777 :: Move this caching to the general cache notifier
 	if s.mutex == nil {
 		s.mutex = &sync.RWMutex{}
+		s.sitesNormal = make(map[string]*Site)
 	}
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
-
-	if s.sitesNormal == nil {
-		s.sitesNormal = make(map[string]*Site)
-	}
 
 	if _, ok := s.sitesNormal[id]; ok {
 		return s.sitesNormal[id], true, nil

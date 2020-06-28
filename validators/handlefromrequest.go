@@ -6,6 +6,8 @@ import (
 	"github.com/juju/errors"
 )
 
+const multiPartMaxMemory = 1024 * 1024 * 128
+
 type context interface {
 	contexts.RequestContext
 	contexts.FormContext
@@ -80,7 +82,7 @@ func (f *Form) submit(context contexts.FormContext) error {
 			if !f.isMultipart() {
 				return errors.Errorf("submitted field `%s` is a file, but the form is not multipart", k)
 			}
-			multiPart, err := context.MultipartForm(1024 * 1024 * 128)
+			multiPart, err := context.MultipartForm(multiPartMaxMemory)
 			if err != nil {
 				return errors.Trace(err)
 			}

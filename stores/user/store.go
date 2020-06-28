@@ -16,6 +16,7 @@ import (
 // stubUUID is used for the cyclical createdByID field, which can only
 // be added later when the User registers him-/herself.
 const stubUUID = "ffffffff-ffff-ffff-ffff-ffffffffffff"
+const hashLength = 72
 
 // UsersStore data store.
 type UsersStore struct {
@@ -238,7 +239,7 @@ func (u *UsersStore) ToggleActive(ids []string) error {
 // Register registers a new User with the given base information.
 func (u *UsersStore) Register(email string, password []byte, firstName *string, surname *string,
 	languageID uint16) (string, error) {
-	activationHash := text.RandomString(72)
+	activationHash := text.RandomString(hashLength)
 	var insertedID string
 	row := u.inserterDatabase.QueryRow(u.queries["Register"],
 		stubUUID, languageID, email, password, activationHash, firstName, surname)

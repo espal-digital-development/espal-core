@@ -8,9 +8,7 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
-const (
-	DefaultHTTPPort = 80
-)
+const defaultHTTPPort = 80
 
 var _ Config = &Configuration{}
 
@@ -95,7 +93,7 @@ func (c *Configuration) validate() error {
 	if ok := availableLanguages[c.general.DefaultLanguage]; !ok {
 		return errors.Trace(ErrorIncorrectDefaultLanguage)
 	}
-	if c.server.Port == DefaultHTTPPort {
+	if c.server.Port == defaultHTTPPort {
 		return errors.Trace(ErrorDontUsePort80ForTLS)
 	}
 	if []byte(c.urls.Admin)[0] != '/' {

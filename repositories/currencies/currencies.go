@@ -80,7 +80,7 @@ func (c *Currencies) loadTranslations() error {
 			}
 
 			parts := strings.Split(strings.Trim(t, "\n"), "\t")
-			if len(parts) != 2 {
+			if len(parts) != 2 { // nolint:gomnd
 				return errors.Errorf("currency read failure in file `%s` for line %d", files[k], count)
 			}
 			checkCurrency, err := c.ByCode(parts[0])

@@ -30,7 +30,7 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 	splitted := strings.Split(tokenHeader, " ")
-	if len(splitted) != 2 {
+	if len(splitted) != 2 { // nolint:gomnd
 		// "Invalid/Malformed auth token"
 		context.SetStatusCode(http.StatusForbidden)
 		return
