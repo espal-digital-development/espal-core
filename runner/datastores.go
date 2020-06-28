@@ -41,11 +41,12 @@ func (r *Runner) dataStores() error {
 		return errors.Trace(err)
 	}
 	if r.stores.domain, err = domain.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
-		r.services.databaseFilters); err != nil {
+		r.services.databaseQueryHelper, r.services.databaseFilters); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.site, err = site.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
-		r.services.databaseFilters, r.repositories.translations, r.services.logger); err != nil {
+		r.services.databaseQueryHelper, r.services.databaseFilters, r.repositories.translations,
+		r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.slug, err = slug.New(r.databases.selecter); err != nil {

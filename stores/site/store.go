@@ -2,11 +2,13 @@ package site
 
 import (
 	"database/sql"
+	"strconv"
 	"strings"
 	"sync"
 
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/juju/errors"
@@ -21,6 +23,7 @@ type SitesStore struct {
 	selecterDatabase       database.Database
 	updaterDatabase        database.Database
 	deletorDatabase        database.Database
+	databaseQueryHelper    queryhelper.Helper
 	databaseFiltersFactory filters.Factory
 	translationsRepository translations.Repository
 	loggerService          logger.Loggable
@@ -116,14 +119,21 @@ func (s *SitesStore) Delete(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "SiteTranslation" WHERE "siteID"
-		IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildDeleteWhereInIds("SiteTranslation", "siteID", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "Site" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err = s.databaseQueryHelper.BuildDeleteWhereInIds("Site", "id", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -138,8 +148,19 @@ func (s *SitesStore) ToggleOnline(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
+	idsLength := len(ids)
+	idsInterfaces := make([]interface{}, idsLength)
+	for k := range ids {
+		idsInterfaces[k] = ids[k]
+	}
+	whereInParams := &strings.Builder{}
+	whereInParams.Grow(idsLength*3 - 1)
+	for i := 1; i <= idsLength; i++ {
+		whereInParams.WriteString("$")
+		whereInParams.WriteString(strconv.Itoa(i))
+	}
 	if _, err := transaction.Query(`UPDATE "User" SET "online" = NOT "online" WHERE "id"
-		IN (` + strings.Join(ids, ",") + `)`); err != nil {
+		IN (`+whereInParams.String()+`)`, idsInterfaces); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

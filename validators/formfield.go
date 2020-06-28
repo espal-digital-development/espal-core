@@ -14,6 +14,9 @@ const (
 	SaveAndReturn = "1"
 	SaveAndCreate = "2"
 	SaveAndClone  = "3"
+
+	defaultFieldMinLength = 7
+	defaultFieldMaxLength = 255
 )
 
 // FormField is the basic definition of every *FormField.

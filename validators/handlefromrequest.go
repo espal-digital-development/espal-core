@@ -114,7 +114,7 @@ func (f *Form) submit(context contexts.FormContext) error {
 			}
 		} else {
 			if f.isMultipart() {
-				multiPart, err := context.MultipartForm(1024 * 1024 * 128)
+				multiPart, err := context.MultipartForm(multiPartMaxMemory)
 				if err != nil {
 					return errors.Trace(err)
 				}

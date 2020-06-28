@@ -9,6 +9,8 @@ import (
 	"github.com/espal-digital-development/espal-core/stores/user"
 )
 
+const tokenHeaderChunks = 2
+
 type JWTToken struct {
 	jwt.StandardClaims
 	UserID string
@@ -30,7 +32,7 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 	splitted := strings.Split(tokenHeader, " ")
-	if len(splitted) != 2 { // nolint:gomnd
+	if len(splitted) != tokenHeaderChunks {
 		// "Invalid/Malformed auth token"
 		context.SetStatusCode(http.StatusForbidden)
 		return

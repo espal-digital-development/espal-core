@@ -29,9 +29,10 @@ type Store interface {
 	UnsetAvatar(id string) error
 	Delete(ids []string) error
 	ToggleActive(ids []string) error
-	Register(email string, password []byte, firstName *string, surname *string, languageID uint16) (string, error)
+	Register(email string, password []byte, firstName *string, surname *string,
+		languageID uint16) (string, error)
 	RecoverWithNewPassword(id string, password []byte, resetCount uint8) error
-	HasUserRight(u UserEntity, userRightName string) (bool, error)
+	HasUserRight(userEntity UserEntity, userRightName string) (bool, error)
 	Name(user UserEntity, languageID uint16) string
 	NameWithEmail(user UserEntity, languageID uint16) string
 	Search(context filters.QueryReader) (result []*User, filter filters.Filter, err error)

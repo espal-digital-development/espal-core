@@ -6,6 +6,7 @@ import (
 
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/juju/errors"
 )
 
@@ -14,6 +15,7 @@ type DomainsStore struct {
 	selecterDatabase       database.Database
 	updaterDatabase        database.Database
 	deletorDatabase        database.Database
+	databaseQueryHelper    queryhelper.Helper
 	databaseFiltersFactory filters.Factory
 	domainsNormal          map[string]*Domain
 	mutex                  *sync.RWMutex
@@ -81,7 +83,11 @@ func (d *DomainsStore) Delete(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "Domain" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err := d.databaseQueryHelper.BuildDeleteWhereInIds("Domain", "id", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

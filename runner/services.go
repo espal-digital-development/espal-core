@@ -6,6 +6,7 @@ import (
 	"github.com/espal-digital-development/espal-core/config"
 	"github.com/espal-digital-development/espal-core/database/entitymutators"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/mailer"
 	"github.com/espal-digital-development/espal-core/routing/assethandler"
@@ -18,18 +19,19 @@ import (
 )
 
 type services struct {
-	config            config.Config
-	logger            logger.Loggable
-	mailer            mailer.Engine
-	tokenPool         tokenpool.Pool
-	cacheSynchronizer cachesynchronizer.Synchronizer
-	sessions          sessions.Factory
-	entityMutators    entitymutators.Factory
-	databaseFilters   filters.Factory
-	validators        validators.Factory
-	contexts          contexts.Factory
-	router            router.Router
-	assetHandler      assethandler.Handler
-	renderer          renderer.Renderer
-	adminMenu         adminmenu.Menu
+	config              config.Config
+	logger              logger.Loggable
+	mailer              mailer.Engine
+	tokenPool           tokenpool.Pool
+	cacheSynchronizer   cachesynchronizer.Synchronizer
+	sessions            sessions.Factory
+	entityMutators      entitymutators.Factory
+	databaseQueryHelper queryhelper.Helper
+	databaseFilters     filters.Factory
+	validators          validators.Factory
+	contexts            contexts.Factory
+	router              router.Router
+	assetHandler        assethandler.Handler
+	renderer            renderer.Renderer
+	adminMenu           adminmenu.Menu
 }

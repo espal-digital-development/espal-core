@@ -64,8 +64,8 @@ func (f *Forms) New(language language) (Form, error) {
 	}
 
 	firstNameField := validator.NewTextField("firstName")
-	firstNameField.SetMinLength(1)  // nolint:gomind
-	firstNameField.SetMaxLength(50) // nolint:gomind
+	firstNameField.SetMinLength(1)
+	firstNameField.SetMaxLength(50)
 	firstNameField.SetOptional()
 	firstNameField.SetHideLabel()
 	if err := validator.AddField(firstNameField); err != nil {
@@ -82,7 +82,7 @@ func (f *Forms) New(language language) (Form, error) {
 	}
 
 	dateOfBirthField := validator.NewDateTimeField("dateOfBirth")
-	dateOfBirthField.SetMinYear(1900) // nolint:gomind
+	dateOfBirthField.SetMinYear(1900)
 	dateOfBirthField.SetOptional()
 	dateOfBirthField.SetHideLabel()
 	if err := validator.AddField(dateOfBirthField); err != nil {

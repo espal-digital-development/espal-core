@@ -74,7 +74,7 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 
 	avatarField := validator.NewFileField("avatar", f.storage)
 	avatarField.SetOptional()
-	avatarField.SetMaxLength(75) // nolint:gomind
+	avatarField.SetMaxLength(75)
 	avatarField.SetAllowedMIMETypes([]string{"image/jpeg", "image/png"})
 	if user.ID() != "" && user.Avatar() != nil {
 		avatarField.SetValue(*user.Avatar())

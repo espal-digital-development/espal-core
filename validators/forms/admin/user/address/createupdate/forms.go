@@ -60,8 +60,8 @@ func (f *Forms) New(address address, language language) (Form, error) {
 
 	firstNameField := validator.NewTextField("firstName")
 	firstNameField.SetOptional()
-	firstNameField.SetMinLength(1)  // nolint:gomind
-	firstNameField.SetMaxLength(50) // nolint:gomind
+	firstNameField.SetMinLength(1)
+	firstNameField.SetMaxLength(50)
 	if address.ID() != "" && address.FirstName() != nil {
 		firstNameField.SetValue(*address.FirstName())
 	}
@@ -179,8 +179,8 @@ func (f *Forms) New(address address, language language) (Form, error) {
 	emailField := validator.NewEmailField("email")
 	emailField.SetOptional()
 	emailField.SetValidate()
-	emailField.SetMinLength(7)   // nolint:gomind
-	emailField.SetMaxLength(255) // nolint:gomind
+	emailField.SetMinLength(7)
+	emailField.SetMaxLength(255)
 	if address.ID() != "" && address.Email() != nil {
 		emailField.SetValue(*address.Email())
 	}

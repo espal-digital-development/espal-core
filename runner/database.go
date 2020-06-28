@@ -8,6 +8,7 @@ import (
 	"github.com/espal-digital-development/espal-core/database/filters"
 	"github.com/espal-digital-development/espal-core/database/fixtures"
 	"github.com/espal-digital-development/espal-core/database/migrations"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/juju/errors"
 )
 
@@ -109,6 +110,7 @@ func (r *Runner) database() error {
 	}
 
 	r.services.entityMutators = entitymutators.New(r.databases.inserter, r.databases.updater)
+	r.services.databaseQueryHelper = queryhelper.New()
 	r.services.databaseFilters = filters.New(r.databases.selecter)
 	migrationsService := migrations.New(migratorDatabase, r.services.logger)
 	migrationsToRun, err := migrationsService.MigrationsToRun()

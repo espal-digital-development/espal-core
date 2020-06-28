@@ -64,8 +64,8 @@ func (f *Forms) New(domain domain, language language) (Form, error) {
 	}
 
 	hostField := validator.NewTextField("host")
-	hostField.SetMinLength(1)   // nolint:gomind
-	hostField.SetMaxLength(255) // nolint:gomind
+	hostField.SetMinLength(1)
+	hostField.SetMaxLength(255)
 	if domain.ID() != "" {
 		hostField.SetValue(domain.Host())
 	}

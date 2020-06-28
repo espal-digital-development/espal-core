@@ -12,6 +12,8 @@ import (
 
 var _ Repository = &Countries{}
 
+const codeLength = 2
+
 // Repository represents a Country repository.
 type Repository interface {
 	All() map[uint16]Data
@@ -58,7 +60,7 @@ func (c *Countries) loadTranslations() error {
 			}
 
 			parts := strings.Split(strings.Trim(t, "\n"), "\t")
-			if len(parts) != 2 { // nolint:gomnd
+			if len(parts) != codeLength {
 				return errors.Errorf("country read failure in file `%s` for line %d", files[k], count)
 			}
 			checkCountry, err := c.ByCode(parts[0])

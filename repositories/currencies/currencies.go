@@ -12,6 +12,8 @@ import (
 
 var _ Repository = &Currencies{}
 
+const codeLength = 2
+
 // Repository represents a Currencies repository.
 type Repository interface {
 	All() map[uint]Data
@@ -80,7 +82,7 @@ func (c *Currencies) loadTranslations() error {
 			}
 
 			parts := strings.Split(strings.Trim(t, "\n"), "\t")
-			if len(parts) != 2 { // nolint:gomnd
+			if len(parts) != codeLength {
 				return errors.Errorf("currency read failure in file `%s` for line %d", files[k], count)
 			}
 			checkCurrency, err := c.ByCode(parts[0])

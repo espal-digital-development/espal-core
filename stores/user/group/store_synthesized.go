@@ -22,7 +22,8 @@ type Store interface {
 	SetUserRights(id string, userRightIDs []string) error
 	Name(userGroup *Group, languageID uint16) string
 	TranslationsForID(userGroupID string) (translations []*Translation, ok bool, err error)
-	Filter(context filters.QueryReader, language language) (result []*Group, filter filters.Filter, err error)
+	Filter(context filters.QueryReader, language language) (result []*Group,
+		filter filters.Filter, err error)
 }
 
 func (g *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {

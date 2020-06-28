@@ -8,6 +8,7 @@ import (
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/databasemock"
 	"github.com/espal-digital-development/espal-core/database/filters/filtersmock"
+	"github.com/espal-digital-development/espal-core/database/queryhelper/queryhelpermock"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts/contextsmock"
 	"github.com/espal-digital-development/espal-core/stores/domain"
 	"github.com/espal-digital-development/espal-core/testtools"
@@ -25,6 +26,7 @@ var (
 	selecterDatabase *databasemock.DatabaseMock
 	updaterDatabase  *databasemock.DatabaseMock
 	deletorDatabase  *databasemock.DatabaseMock
+	queryHelper      *queryhelpermock.HelperMock
 	filtersFactory   *filtersmock.FactoryMock
 	filter           *filtersmock.FilterMock
 	context          *contextsmock.ContextMock
@@ -61,12 +63,18 @@ func initMocks() {
 			return transaction, nil
 		},
 	}
+	queryHelper = &queryhelpermock.HelperMock{
+		BuildDeleteWhereInIdsFunc: func(tableName string, fieldName string,
+			ids []string) (string, []interface{}, error) {
+			return `DELETE FROM "` + tableName + `" WHERE "` + fieldName + `" IN ($1,$2)`, []interface{}{}, nil
+		},
+	}
 	filtersFactory, filter, _, _, _, _, _ = filtersmock.DefaultMocks() // nolint:dogsled
 }
 
 func TestNew(t *testing.T) {
 	initMocks()
-	if _, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory); err != nil {
+	if _, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -122,7 +130,7 @@ func TestGetAll(t *testing.T) {
 		nextCounter++
 		return nil
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -141,7 +149,7 @@ func TestGetAll(t *testing.T) {
 
 func TestGetAllWithNoResult(t *testing.T) {
 	initMocks()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -164,7 +172,7 @@ func TestGetAllWithError(t *testing.T) {
 	selecterDatabase.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
 		return nil, getAllError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -199,7 +207,7 @@ func TestGetOne(t *testing.T) {
 		nextCounter++
 		return nil
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -218,7 +226,7 @@ func TestGetOne(t *testing.T) {
 
 func TestGetOneWithNoResult(t *testing.T) {
 	initMocks()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -241,7 +249,7 @@ func TestGetOneWithError(t *testing.T) {
 	selecterDatabase.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
 		return nil, getOneError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -276,7 +284,7 @@ func TestGetOneByIDWithCreator(t *testing.T) {
 		nextCounter++
 		return nil
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -296,7 +304,7 @@ func TestGetOneByIDWithCreator(t *testing.T) {
 
 func TestGetOneByIDWithCreatorWithNoResult(t *testing.T) {
 	initMocks()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -319,7 +327,7 @@ func TestGetOneByIDWithCreatorWithError(t *testing.T) {
 	selecterDatabase.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
 		return nil, getOneByIDWithCreatorError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -354,7 +362,7 @@ func TestGetOneActiveByHost(t *testing.T) {
 		nextCounter++
 		return nil
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -373,7 +381,7 @@ func TestGetOneActiveByHost(t *testing.T) {
 
 func TestGetOneActiveByHostNoResult(t *testing.T) {
 	initMocks()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -396,7 +404,7 @@ func TestGetOneActiveByHostError(t *testing.T) {
 	selecterDatabase.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
 		return nil, getOneActiveByHostError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -416,7 +424,7 @@ func TestGetOneActiveByHostError(t *testing.T) {
 
 func TestDelete(t *testing.T) {
 	initMocks()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -432,7 +440,7 @@ func TestDeleteBeginError(t *testing.T) {
 	deletorDatabase.BeginFunc = func() (database.Transaction, error) {
 		return nil, beginError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -449,7 +457,7 @@ func TestDeleteTransactionExecError(t *testing.T) {
 	transaction.ExecFunc = func(query string, args ...interface{}) (database.Result, error) {
 		return nil, transactionExecError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -473,7 +481,7 @@ func TestDeleteTransactionExecRollbackError(t *testing.T) {
 	transaction.RollbackFunc = func() error {
 		return transactionRollbackError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -486,7 +494,7 @@ func TestDeleteTransactionExecRollbackError(t *testing.T) {
 
 func TestToggleActive(t *testing.T) {
 	initMocks()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -502,7 +510,7 @@ func TestToggleActiveBeginError(t *testing.T) {
 	updaterDatabase.BeginFunc = func() (database.Transaction, error) {
 		return nil, beginError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -519,7 +527,7 @@ func TestToggleActiveTransactionQueryError(t *testing.T) {
 	transaction.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
 		return nil, transactionQueryError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -543,7 +551,7 @@ func TestToggleActiveTransactionQueryRollbackError(t *testing.T) {
 	transaction.RollbackFunc = func() error {
 		return transactionRollbackError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -590,7 +598,7 @@ func setupFilter() {
 func TestFilter(t *testing.T) {
 	initMocks()
 	setupFilter()
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -614,7 +622,7 @@ func TestFilterProcessError(t *testing.T) {
 	filter.ProcessFunc = func() error {
 		return processError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -639,7 +647,7 @@ func TestFilterRowsErrError(t *testing.T) {
 	dbRows.ErrFunc = func() error {
 		return rowsErrError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -664,7 +672,7 @@ func TestFilterScanError(t *testing.T) {
 	dbRows.ScanFunc = func(dest ...interface{}) error {
 		return scanError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -689,7 +697,7 @@ func TestFilterCloseError(t *testing.T) {
 	dbRows.CloseFunc = func() error {
 		return closeError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -718,7 +726,7 @@ func TestFilterComboCloseError(t *testing.T) {
 	dbRows.CloseFunc = func() error {
 		return closeError
 	}
-	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, filtersFactory)
+	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/juju/errors"
 )
 
@@ -59,11 +60,12 @@ func (d *DomainsStore) fetch(query string, withCreators bool, params ...interfac
 }
 
 // New returns a new instance of DomainsStore.
-func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory) (*DomainsStore, error) {
+func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, databaseFiltersFactory filters.Factory) (*DomainsStore, error) {
 	d := &DomainsStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
+		databaseQueryHelper:    databaseQueryHelper,
 		databaseFiltersFactory: databaseFiltersFactory,
 	}
 	return d, nil

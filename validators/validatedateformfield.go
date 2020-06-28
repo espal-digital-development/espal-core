@@ -9,6 +9,13 @@ import (
 	"github.com/juju/errors"
 )
 
+const (
+	yearStringLength  = 4
+	monthStringLength = 2
+	dayStringLength   = 2
+	monthsInYear      = 12
+)
+
 // nolint:gocyclo
 // TODO :: Format can come in different formats on different browsers. Localize before continuing.
 func (f *Form) validateDateFormField(field *formField) error {
@@ -50,7 +57,7 @@ func (f *Form) validateDateFormField(field *formField) error {
 			var day uint64
 
 			if !field.ExcludeYear() {
-				if len(parts[0]) != 4 {
+				if len(parts[0]) != yearStringLength {
 					yearError = true
 				} else {
 					year, err = strconv.ParseUint(field.Value(), 10, 64)
@@ -67,11 +74,11 @@ func (f *Form) validateDateFormField(field *formField) error {
 					partKey = 0
 				}
 
-				if len(parts[partKey]) != 2 {
+				if len(parts[partKey]) != monthStringLength {
 					monthError = true
 				} else {
 					month, err = strconv.ParseUint(field.Value(), 10, 64)
-					if err != nil || month > 12 || (uint(month) <= field.MinMonth()) ||
+					if err != nil || month > monthsInYear || (uint(month) <= field.MinMonth()) ||
 						(field.MaxMonth() > 0 && uint(month) > field.MaxMonth()) {
 						monthError = true
 					}
@@ -86,7 +93,7 @@ func (f *Form) validateDateFormField(field *formField) error {
 					partKey = 1
 				}
 
-				if len(parts[partKey]) != 2 {
+				if len(parts[partKey]) != dayStringLength {
 					dayError = true
 				} else {
 					day, err = strconv.ParseUint(field.Value(), 10, 64)

@@ -15,6 +15,8 @@ issues:
   exclude-rules:
     - path: _test\.go
       linters:
+        - gosec
+        - goerr113
         - gochecknoglobals
     - path: data\.go
       linters:
@@ -25,15 +27,21 @@ issues:
     - linters:
       - godot
       source: "@synthesize"
-    # - linters:
-    #   - whitespace
-    #   source: "stripspace"
+    - linters:
+      - nolintlint
+      text: ":gomnd"
+    - linters:
+      - goerr113
+      text: "use errors\\.Is\\(\\) instead" # This recommends native errors, but we use juju
+    - linters:
+      - gomnd
+      source: "Field.SetM(in|ax)(Length|Year)"
 linters:
   enable:
     - bodyclose
     - golint
     - stylecheck
-    # - gosec # TODO :: The concat queries really need to be fixed, and also quoted
+    - gosec
     - interfacer
     - unconvert
     - goconst
@@ -45,13 +53,12 @@ linters:
     - misspell
     - unparam
     - gochecknoinits
-    # - whitespace # The exclude rules for .qtpl aren't working..
     - goprintffuncname
     - gomnd
-    # - goerr113 # TODO :: Cleanup
+    - goerr113
     - gomodguard # This probably needs custom configuration
     - testpackage
-    - nestif
+    # - nestif # TODO :: Cleanup
     - nolintlint
     - gocyclo
     - lll
@@ -63,9 +70,10 @@ linters:
     - funlen
     - godot
     - gochecknoglobals
-    - rowserrcheck # It already checks the extra error
+    - rowserrcheck
 
     # Unused (mutliple reasons):
+    # - whitespace # The exclude rules for .qtpl aren't working..
     # - dupl # We intentionally use duplicated code in places
     # - maligned # These changes are very small (might be fun for some tweaking later)
     # - godox # Maybe be handy to quickly find TODO's, but might as well just use search

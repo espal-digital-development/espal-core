@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/juju/errors"
@@ -22,8 +23,10 @@ type Store interface {
 	GetTranslatedName(site *Site, languageID uint16) string
 	Delete(ids []string) error
 	ToggleOnline(ids []string) error
-	Search(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error)
-	Filter(context filters.QueryReader, language language) (sites []*Site, filter filters.Filter, err error)
+	Search(context filters.QueryReader, language language) (sites []*Site,
+		filter filters.Filter, err error)
+	Filter(context filters.QueryReader, language language) (sites []*Site,
+		filter filters.Filter, err error)
 }
 
 func (s *SitesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Site, ok bool, err error) {
@@ -64,11 +67,12 @@ func (s *SitesStore) fetch(query string, withCreators bool, params ...interface{
 }
 
 // New returns a new instance of SitesStore.
-func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, loggerService logger.Loggable) (*SitesStore, error) {
+func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, loggerService logger.Loggable) (*SitesStore, error) {
 	s := &SitesStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
+		databaseQueryHelper:    databaseQueryHelper,
 		databaseFiltersFactory: databaseFiltersFactory,
 		translationsRepository: translationsRepository,
 		loggerService:          loggerService,

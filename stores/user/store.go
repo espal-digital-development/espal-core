@@ -13,10 +13,14 @@ import (
 	"github.com/juju/errors"
 )
 
-// stubUUID is used for the cyclical createdByID field, which can only
-// be added later when the User registers him-/herself.
-const stubUUID = "ffffffff-ffff-ffff-ffff-ffffffffffff"
-const hashLength = 72
+const (
+	// stubUUID is used for the cyclical createdByID field, which can only
+	// be added later when the User registers him-/herself.
+	stubUUID   = "ffffffff-ffff-ffff-ffff-ffffffffffff"
+	hashLength = 72
+)
+
+var errBuildQueriesMultipleTimes = errors.New("cannot run buildQueries multiple times")
 
 // UsersStore data store.
 type UsersStore struct {
@@ -33,7 +37,7 @@ type UsersStore struct {
 
 func (u *UsersStore) buildQueries() error {
 	if u.queries != nil {
-		return errors.New("cannot run buildQueries multiple times")
+		return errors.Trace(errBuildQueriesMultipleTimes)
 	}
 	name := (&User{}).TableName()
 	alias := (&User{}).TableAlias()
