@@ -9,7 +9,8 @@ var _ Session = &UserSession{}
 
 // SessionKeys are the keys that can be used for Session index keys.
 const (
-	SessionKeyUserID uint8 = iota + 1
+	SessionKeyFormToken uint8 = iota + 1
+	SessionKeyUserID
 	SessionKeyRefererURL
 	SessionKeyFlashMessageType
 	SessionKeyFlashMessageMessage

@@ -17,6 +17,7 @@ type translator interface {
 
 type routeCtx interface {
 	contexts.FormContext
+	contexts.AuthenticationContext
 	contexts.RequestContext
 	translator
 }

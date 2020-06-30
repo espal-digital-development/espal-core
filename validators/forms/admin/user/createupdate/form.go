@@ -11,6 +11,7 @@ var _ Form = &CreateUpdate{}
 
 type context interface {
 	contexts.RequestContext
+	contexts.AuthenticationContext
 	contexts.FormContext
 }
 

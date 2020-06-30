@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"net/http"
 	"runtime"
 	"strconv"
 
@@ -24,7 +25,7 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 	var bodyReader *bufio.Reader
-	if context.Method() == "POST" {
+	if context.Method() == http.MethodPost {
 		bodyReader = bufio.NewReader(context.RequestBody())
 	} else {
 		bodyReader = bufio.NewReader(bytes.NewReader([]byte(context.QueryString())))

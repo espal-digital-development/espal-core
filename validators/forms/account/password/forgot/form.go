@@ -11,6 +11,7 @@ var _ Form = &Forgot{}
 
 type context interface {
 	contexts.RequestContext
+	contexts.AuthenticationContext
 	contexts.FormContext
 }
 

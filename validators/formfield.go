@@ -29,6 +29,7 @@ type FormField interface {
 	SetValues(values []string) error
 
 	PointerValue() *string
+	ValueAsBytes() []byte
 	ValueAsBool() bool
 	ValueAsUint() uint
 	ValueAsUint16() uint16
@@ -418,6 +419,11 @@ func (f *formField) Errors() []string {
 // RemoveAllErrors purges all errors from the field.
 func (f *formField) RemoveAllErrors() {
 	f.errors = make([]string, 0)
+}
+
+// ValueAsBytes converts the string-value and returns it as a bytes slice.
+func (f *formField) ValueAsBytes() []byte {
+	return []byte(f.value)
 }
 
 // ValueAsBool converts the string-value and returns it as bool.

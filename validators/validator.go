@@ -7,6 +7,7 @@ import (
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/regularexpressions"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
+	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/espal-digital-development/espal-core/tokenpool"
 	"github.com/juju/errors"
@@ -76,6 +77,7 @@ type Form struct {
 	isFormValidator bool
 	submitErrors    []string
 	fields          map[string]*formField
+	context         context
 	language        language
 
 	// Callback Flow:
@@ -230,6 +232,9 @@ func (f *Form) refreshToken() error {
 		return errors.Trace(err)
 	}
 	field.SetValue(strconv.Itoa(token))
+	if err := f.context.SetSessionValue(sessions.SessionKeyFormToken, field.ValueAsBytes()); err != nil {
+		return errors.Trace(err)
+	}
 	return nil
 }
 

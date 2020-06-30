@@ -1,8 +1,11 @@
 package validators
 
 import (
+	"net/http"
+
 	"github.com/asaskevich/govalidator"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
+	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/juju/errors"
 )
 
@@ -10,11 +13,13 @@ const multiPartMaxMemory = 1024 * 1024 * 128
 
 type context interface {
 	contexts.RequestContext
+	contexts.AuthenticationContext
 	contexts.FormContext
 }
 
 // HandleFromRequest processes the core Request when a form was posted.
 func (f *Form) HandleFromRequest(context context) error {
+	f.context = context
 	for k := range f.fields {
 		if f.fields[k].MaxLength() < f.fields[k].MinLength() {
 			f.fields[k].AddError("maxLength cannot be smaller than minLength")
@@ -39,7 +44,7 @@ func (f *Form) HandleFromRequest(context context) error {
 		}
 	}
 
-	if f.isFormValidator && context.Method() == "POST" {
+	if f.isFormValidator && context.Method() == http.MethodPost {
 		if f.preSubmitCallback != nil {
 			f.preSubmitCallback(f)
 		}
@@ -50,9 +55,16 @@ func (f *Form) HandleFromRequest(context context) error {
 			f.postSubmitCallback(f)
 		}
 	}
-	if f.isFormValidator && context.Method() != "POST" {
+	if f.isFormValidator && context.Method() != http.MethodPost {
 		if f.postloadCallback != nil {
 			f.postloadCallback(f)
+		}
+	}
+
+	if !f.IsSubmitted() {
+		field := f.Field("_t")
+		if err := context.SetSessionValue(sessions.SessionKeyFormToken, field.ValueAsBytes()); err != nil {
+			return errors.Trace(err)
 		}
 	}
 	return nil
