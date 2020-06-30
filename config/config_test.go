@@ -207,7 +207,7 @@ func TestConfigCallers(t *testing.T) {
 
 	testtools.EqString(t, "database.host", config.DatabaseHost(), "localhost")
 	testtools.EqString(t, "database.name", config.DatabaseName(), "espal")
-	testtools.EqInt(t, "database.port", config.DatabasePort(), 26257)
+	testtools.EqInt(t, "database.port", config.DatabasePort(), 36257)
 	testtools.EqString(t, "database.creator.username", config.DatabaseCreator(), "espal_creator")
 	testtools.EqString(t, "database.deletor.username", config.DatabaseDeletor(), "espal_deletor")
 	testtools.EqString(t, "database.inserter.username", config.DatabaseInserter(), "espal_inserter")

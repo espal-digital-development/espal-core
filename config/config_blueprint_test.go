@@ -13,7 +13,7 @@ server:
   httpRedirectPort: 8080
 database:
   host: localhost
-  port: 26257
+  port: 36257
   name: espal
   users:
     selecter: espal_selecter
