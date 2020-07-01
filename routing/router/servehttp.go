@@ -91,7 +91,7 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		}
 
 		context.SetHeader("Referrer-Policy", "same-origin")
-		context.SetHeader("Content-Security-Policy", "default-src 'self'")
+		context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
 		context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 		context.SetHeader("Access-Control-Allow-Credentials", "true")
 		route.Handle(context)
@@ -115,7 +115,7 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 				return
 			}
 			context.SetHeader("Referrer-Policy", "same-origin")
-			context.SetHeader("Content-Security-Policy", "default-src 'self'")
+			context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
 			context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 			context.SetHeader("Access-Control-Allow-Credentials", "true")
 			route.Handle(context)
