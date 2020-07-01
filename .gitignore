@@ -19,5 +19,3 @@ cmd/espal-store-synthesizer/espal-store-synthesizer
 espal-core
 panic.txt
 Thumbs.db
-vendor/**/examples
-vendor/github.com/tdewolff/minify/benchmarks/*
