@@ -27,6 +27,7 @@ var (
 	lockContextMockGetFlashMessage           sync.RWMutex
 	lockContextMockGetHeader                 sync.RWMutex
 	lockContextMockGetLanguage               sync.RWMutex
+	lockContextMockGetRequestMethod          sync.RWMutex
 	lockContextMockGetSessionValue           sync.RWMutex
 	lockContextMockGetSite                   sync.RWMutex
 	lockContextMockGetSlugMappedURL          sync.RWMutex
@@ -124,6 +125,9 @@ var _ contexts.Context = &ContextMock{}
 //             },
 //             GetLanguageFunc: func() (contexts.Language, error) {
 // 	               panic("mock out the GetLanguage method")
+//             },
+//             GetRequestMethodFunc: func() string {
+// 	               panic("mock out the GetRequestMethod method")
 //             },
 //             GetSessionValueFunc: func(key uint8) ([]byte, bool, error) {
 // 	               panic("mock out the GetSessionValue method")
@@ -311,6 +315,9 @@ type ContextMock struct {
 
 	// GetLanguageFunc mocks the GetLanguage method.
 	GetLanguageFunc func() (contexts.Language, error)
+
+	// GetRequestMethodFunc mocks the GetRequestMethod method.
+	GetRequestMethodFunc func() string
 
 	// GetSessionValueFunc mocks the GetSessionValue method.
 	GetSessionValueFunc func(key uint8) ([]byte, bool, error)
@@ -511,6 +518,9 @@ type ContextMock struct {
 		}
 		// GetLanguage holds details about calls to the GetLanguage method.
 		GetLanguage []struct {
+		}
+		// GetRequestMethod holds details about calls to the GetRequestMethod method.
+		GetRequestMethod []struct {
 		}
 		// GetSessionValue holds details about calls to the GetSessionValue method.
 		GetSessionValue []struct {
@@ -1095,6 +1105,32 @@ func (mock *ContextMock) GetLanguageCalls() []struct {
 	lockContextMockGetLanguage.RLock()
 	calls = mock.calls.GetLanguage
 	lockContextMockGetLanguage.RUnlock()
+	return calls
+}
+
+// GetRequestMethod calls GetRequestMethodFunc.
+func (mock *ContextMock) GetRequestMethod() string {
+	if mock.GetRequestMethodFunc == nil {
+		panic("ContextMock.GetRequestMethodFunc: method is nil but Context.GetRequestMethod was just called")
+	}
+	callInfo := struct {
+	}{}
+	lockContextMockGetRequestMethod.Lock()
+	mock.calls.GetRequestMethod = append(mock.calls.GetRequestMethod, callInfo)
+	lockContextMockGetRequestMethod.Unlock()
+	return mock.GetRequestMethodFunc()
+}
+
+// GetRequestMethodCalls gets all the calls that were made to GetRequestMethod.
+// Check the length with:
+//     len(mockedContext.GetRequestMethodCalls())
+func (mock *ContextMock) GetRequestMethodCalls() []struct {
+} {
+	var calls []struct {
+	}
+	lockContextMockGetRequestMethod.RLock()
+	calls = mock.calls.GetRequestMethod
+	lockContextMockGetRequestMethod.RUnlock()
 	return calls
 }
 
