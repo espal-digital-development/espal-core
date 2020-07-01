@@ -79,6 +79,9 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 
 	// TODO :: Make a config option that can disguise admin routes and make them appear as they don't exist (404)
 
+	// TODO :: 77777 :: The 2 Access-Control-Allow-Origin/Credentials, Content-Security-Policy should be a
+	// field on the Site/Domain db object? Origin: null should cause a fault and be illegal.
+
 	route, routeFound := r.getRoute(context.Path())
 	if routeFound {
 		// TODO :: 7 Assets for the Auth/Login page should also be allowed to be served
@@ -87,6 +90,10 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 			return
 		}
 
+		context.SetHeader("Referrer-Policy", "same-origin")
+		context.SetHeader("Content-Security-Policy", "default-src 'self'")
+		context.SetHeader("Access-Control-Allow-Origin", domain.Host())
+		context.SetHeader("Access-Control-Allow-Credentials", "true")
 		route.Handle(context)
 	} else {
 		slug, ok, err := r.slugStore.GetOneByDomainIDAndPath(domain.ID(), context.Host())
@@ -107,6 +114,10 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 				context.Redirect("/Auth", http.StatusTemporaryRedirect)
 				return
 			}
+			context.SetHeader("Referrer-Policy", "same-origin")
+			context.SetHeader("Content-Security-Policy", "default-src 'self'")
+			context.SetHeader("Access-Control-Allow-Origin", domain.Host())
+			context.SetHeader("Access-Control-Allow-Credentials", "true")
 			route.Handle(context)
 		} else {
 			context.RenderNotFound()

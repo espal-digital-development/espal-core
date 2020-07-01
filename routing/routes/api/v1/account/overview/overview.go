@@ -29,11 +29,7 @@ func (r *Route) Handle(context contexts.Context) {
 	context.SetHeader("Access-Control-Allow-Origin", "*")
 
 	if context.GetRequestMethod() == http.MethodOptions {
-		context.SetHeader("Access-Control-Allow-Credentials", "true")
-		context.SetHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-		context.SetHeader("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, "+
-			"Accept-Encoding, X-CSRF-Token, Authorization")
-		context.SetStatusCode(200)
+		context.SetStatusCode(http.StatusOK)
 		return
 	}
 
