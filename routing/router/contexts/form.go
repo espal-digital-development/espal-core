@@ -6,6 +6,8 @@ import (
 	"github.com/juju/errors"
 )
 
+const multiPartMaxMemory = 1024 * 1024 * 128
+
 // FormContext for form handling.
 type FormContext interface {
 	MultipartForm(maxMemory int64) (*multipart.Form, error)
@@ -32,7 +34,7 @@ func (c *HTTPContext) FormFile(key string) (multipart.File, *multipart.FileHeade
 // FormValue returns a submitted form value.
 func (c *HTTPContext) FormValue(key string) (string, error) {
 	if !c.formIsParsed {
-		if err := c.request.ParseForm(); err != nil {
+		if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
 			return "", errors.Trace(err)
 		}
 	}
@@ -43,7 +45,7 @@ func (c *HTTPContext) FormValue(key string) (string, error) {
 // FormValues returns all given values for the given field.
 func (c *HTTPContext) FormValues(key string) ([]string, error) {
 	if !c.formIsParsed {
-		if err := c.request.ParseForm(); err != nil {
+		if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
 			return nil, errors.Trace(err)
 		}
 	}

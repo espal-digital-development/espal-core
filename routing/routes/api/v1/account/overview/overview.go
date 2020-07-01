@@ -26,6 +26,16 @@ const tokenPassword = "42e1d1a0b8a66670a2a748a327dfffa5"
 
 // Handle route handler.
 func (r *Route) Handle(context contexts.Context) {
+	context.SetHeader("Access-Control-Allow-Origin", "*")
+
+	if context.GetRequestMethod() == http.MethodOptions {
+		context.SetHeader("Access-Control-Allow-Credentials", "true")
+		context.SetHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+		context.SetHeader("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+		context.SetStatusCode(200)
+		return
+	}
+
 	tokenHeader := context.GetHeader("Authorization")
 	if tokenHeader == "" {
 		context.SetStatusCode(http.StatusForbidden)
@@ -51,6 +61,8 @@ func (r *Route) Handle(context contexts.Context) {
 		context.SetStatusCode(http.StatusForbidden)
 		return
 	}
+
+	context.SetContentType("text/plain")
 
 	if _, err := context.WriteString("Your token is valid!"); err != nil {
 		context.SetStatusCode(http.StatusBadRequest)

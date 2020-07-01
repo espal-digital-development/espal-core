@@ -24,6 +24,8 @@ const tokenPassword = "42e1d1a0b8a66670a2a748a327dfffa5"
 
 // Handle route handler.
 func (r *Route) Handle(context contexts.Context) {
+	context.SetHeader("Access-Control-Allow-Origin", "*")
+
 	email, err := context.FormValue("email")
 	if err != nil {
 		context.RenderInternalServerError(err)
@@ -51,6 +53,14 @@ func (r *Route) Handle(context contexts.Context) {
 	}
 
 	fmt.Println(tokenString)
+
+	context.SetContentType("text/plain")
+
+	if _, err := context.WriteString(tokenString); err != nil {
+		context.SetStatusCode(http.StatusBadRequest)
+		return
+	}
+
 }
 
 // New returns a new instance of Route.

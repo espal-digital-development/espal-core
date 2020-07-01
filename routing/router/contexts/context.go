@@ -70,6 +70,7 @@ type Context interface {
 	TranslatePlural(string) string
 	GetSlugMappedURL() string
 	SetSlugMappedURL(slugMappedURL string)
+	GetRequestMethod() string
 }
 
 // HTTPContext holds all unique request information.
@@ -180,4 +181,9 @@ func (c *HTTPContext) GetSlugMappedURL() string {
 // is called from will return "/Inloggen" to know the slug.
 func (c *HTTPContext) SetSlugMappedURL(slugMappedURL string) {
 	c.slugMappedURL = slugMappedURL
+}
+
+// GetRequestMethod get's the request method
+func (c *HTTPContext) GetRequestMethod() string {
+	return c.request.Method
 }
