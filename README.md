@@ -73,7 +73,25 @@ TODO :: ~~ run scripts
 TODO :: ~~ run scripts
 
 ### Windows
-TODO :: ~~ run scripts
+- Install
+    - Visual Studio Core from https://code.visualstudio.com/Download
+    - Go from https://golang.org/dl/
+    - Git from https://git-scm.com/
+    - (optional) Install GitHub Desktop from https://desktop.github.com/
+- Preparation
+    - Open cmd as Administrator and execute: set PATH=%PATH%;C:\Program Files\Git\usr\bin\
+    - Also if needed, add: C:\Users\%user%\go\bin && C:\Go\bin
+- Open Visual Studio Code
+    - In the File menu click Open Workspace...
+        - Navigate to the espal-core repository and open espal-core.code-workspace
+        - Don't hide the popups in the corner and accept the recommended extensions to be installed
+    - Press Ctrl + Shift + P
+        - Search "Go: Install/Update Tools"
+        - Check the top (all) checkbox
+        - Click OK
+    - Press Ctrl + Shift + P
+        - Search "Go: Lint Workspace"
+        - Hit Enter (Virus scanners might make the first run a bit slower)
 
 ## Usage
 
