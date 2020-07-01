@@ -1,7 +1,7 @@
 run:
-  concurrency: 4
-  timeout: 60s
-  issues-exit-code: 25
+  concurrency: 2
+  timeout: 30s
+  issues-exit-code: 3
 linters-settings:
   nakedret:
     max-func-lines: 40
@@ -41,22 +41,18 @@ linters:
     - bodyclose
     - golint
     - stylecheck
-    - gosec
+    # - gosec # TODO :: Cleanup
     - interfacer
     - unconvert
     - goconst
-    - gofmt
-    - goimports
     # - gocognit # TODO :: Cleanup
     - asciicheck
-    - depguard # This probably needs custom configuration
     - misspell
     - unparam
     - gochecknoinits
     - goprintffuncname
     - gomnd
     - goerr113
-    - gomodguard # This probably needs custom configuration
     - testpackage
     # - nestif # TODO :: Cleanup
     - nolintlint
@@ -73,6 +69,10 @@ linters:
     - rowserrcheck
 
     # Unused (mutliple reasons):
+    # - gofmt # Not used as formatter
+    # - goimports # Not used as formatter
+    # - depguard # This probably needs custom configuration
+    # - gomodguard # This probably needs custom configuration
     # - whitespace # The exclude rules for .qtpl aren't working..
     # - dupl # We intentionally use duplicated code in places
     # - maligned # These changes are very small (might be fun for some tweaking later)

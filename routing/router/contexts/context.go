@@ -183,7 +183,7 @@ func (c *HTTPContext) SetSlugMappedURL(slugMappedURL string) {
 	c.slugMappedURL = slugMappedURL
 }
 
-// GetRequestMethod get's the request method
+// GetRequestMethod get's the request method.
 func (c *HTTPContext) GetRequestMethod() string {
 	return c.request.Method
 }
