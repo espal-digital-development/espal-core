@@ -12,12 +12,15 @@ var _ Application = &Runner{}
 
 // Application represents an object that runs app instances.
 type Application interface {
-	Run(path string) error
+	SetPath(path string)
+	Run() error
+	RunNonBlocking() error
 }
 
 // Runner is an application core that houses and manages all
 // the application's services and their interactions.
 type Runner struct {
+	path            string
 	serverStartTime time.Time
 
 	services       services
@@ -28,9 +31,27 @@ type Runner struct {
 	formValidators forms
 }
 
-// Run executes all tasks that are needed to startup the application.
-func (r *Runner) Run(path string) error {
-	if err := r.core(path); err != nil {
+// SetPath sets the app run path.
+func (r *Runner) SetPath(path string) {
+	r.path = path
+}
+
+// Run executes all tasks that are needed to startup the application
+// and blocks code progression.
+func (r *Runner) Run() error {
+	if err := r.RunNonBlocking(); err != nil {
+		return errors.Trace(err)
+	}
+	select {}
+}
+
+// RunNonBlocking executes all tasks that are needed to startup the application.
+func (r *Runner) RunNonBlocking() error {
+	if r.path == "" {
+		r.path = "./app"
+	}
+
+	if err := r.core(r.path); err != nil {
 		return errors.Trace(err)
 	}
 	if err := r.database(); err != nil {

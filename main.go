@@ -11,12 +11,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// TODO :: 7777 Make some more tooling adjustable:
-// - The HTTP engine
-// - Email engines
-// - The storages
-// - The database (engine?)
-
 func main() {
 	path := flag.String("config-dir", "", "Destination directory where the config.yml can be found")
 	flag.Parse()
@@ -32,10 +26,6 @@ func main() {
 // Start executes the full application runner.
 func Start(path string) error {
 	app := runner.New()
-	// TODO :: 7777 Implement and test this:
-	// - Themes, routes, pages
-	// - Inject ful new services, storages, databases, forms, etc.
-	// app.RegisterTheme()
-	// app.RegisterRoute()
-	return app.Run(path)
+	app.SetPath(path)
+	return app.RunNonBlocking()
 }
