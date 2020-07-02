@@ -1,7 +1,10 @@
 package translations
 
 import (
+	"strings"
+
 	"github.com/espal-digital-development/espal-core/logger"
+	"github.com/espal-digital-development/espal-core/repositories/translations/translationsdata"
 	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/juju/errors"
 	yaml "gopkg.in/yaml.v2"
@@ -107,6 +110,18 @@ func New(loggerService logger.Loggable, storage storage.Storage,
 	}
 
 	for languageID, language := range availableLanguages {
+		coreFile, err := translationsdata.Asset("_data/" + language + ".yml")
+		if err != nil && !strings.HasSuffix(err.Error(), " not found") {
+			return nil, errors.Trace(err)
+		}
+		if err == nil || !strings.HasSuffix(err.Error(), " not found") {
+			t.entries[languageID] = map[string]translation{}
+			err = yaml.Unmarshal(coreFile, t.entries[languageID])
+			if err != nil {
+				return nil, errors.Trace(err)
+			}
+		}
+
 		file, ok, err := storage.Get(language + ".yml")
 		if err != nil {
 			return nil, errors.Trace(err)
@@ -114,10 +129,28 @@ func New(loggerService logger.Loggable, storage storage.Storage,
 		if !ok {
 			continue
 		}
-		t.entries[languageID] = map[string]translation{}
-		err = yaml.Unmarshal(file, t.entries[languageID])
+		if _, ok := t.entries[languageID]; !ok {
+			t.entries[languageID] = map[string]translation{}
+		}
+		data := map[string]translation{}
+		err = yaml.Unmarshal(file, data)
 		if err != nil {
 			return nil, errors.Trace(err)
+		}
+
+		for key, translation := range data {
+			if translation.Plural != nil && *translation.Plural != "" {
+				*t.entries[languageID][key].Plural = *translation.Plural
+			}
+			if translation.PluralFormatted != nil && *translation.PluralFormatted != "" {
+				*t.entries[languageID][key].PluralFormatted = *translation.PluralFormatted
+			}
+			if translation.Singular != nil && *translation.Singular != "" {
+				*t.entries[languageID][key].Singular = *translation.Singular
+			}
+			if translation.SingularFormatted != nil && *translation.SingularFormatted != "" {
+				*t.entries[languageID][key].SingularFormatted = *translation.SingularFormatted
+			}
 		}
 	}
 
