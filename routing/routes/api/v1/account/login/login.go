@@ -1,7 +1,6 @@
 package login
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
@@ -52,9 +51,8 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	fmt.Println(tokenString)
-
-	context.SetContentType("text/plain")
+	// context.SetContentType("text/plain")
+	context.SetContentType("espal-x")
 
 	if _, err := context.WriteString(tokenString); err != nil {
 		context.SetStatusCode(http.StatusBadRequest)
