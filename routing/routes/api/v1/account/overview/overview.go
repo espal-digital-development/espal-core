@@ -26,12 +26,6 @@ const tokenPassword = "42e1d1a0b8a66670a2a748a327dfffa5"
 
 // Handle route handler.
 func (r *Route) Handle(context contexts.Context) {
-	// TODO :: 77777 :: Move this pre-flight call to be available globally
-	if context.GetRequestMethod() == http.MethodOptions {
-		context.SetStatusCode(http.StatusOK)
-		return
-	}
-
 	tokenHeader := context.GetHeader("Authorization")
 	if tokenHeader == "" {
 		context.SetStatusCode(http.StatusForbidden)
@@ -58,7 +52,8 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	context.SetContentType("text/plain")
+	// context.SetContentType("text/plain")
+	context.SetContentType("espal-x")
 
 	if _, err := context.WriteString("Your token is valid!"); err != nil {
 		context.SetStatusCode(http.StatusBadRequest)
