@@ -5,13 +5,15 @@ html, body {
 body {
     font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
-    background: #05121b;
-    color: #dce6fb;
+    background: #1c1c1c;
+    color: #eeeeee;
 }
 
 header {
-    margin: 15px;
-    border: 1px solid #3d4658;
+    padding: 15px;
+    border: transparent;
+    background: #161616;
+    box-shadow: 0 1px 0 #282828;
 }
 
 header a {
