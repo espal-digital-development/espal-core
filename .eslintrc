@@ -9,5 +9,8 @@
         "indent": "off",
         "semi": "off",
         "space-before-function-paren": "off"
+    },
+    "env": {
+        "browser": true
     }
 }

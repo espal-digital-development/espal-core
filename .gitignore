@@ -3,9 +3,15 @@
 *.dll
 *.so
 *.dylib
-.DS_store
-.idea
-app
+
+# Folders
+node_modules
 espal-core
+app/*
+!app/assets
+
+# Specific files
 panic.txt
 Thumbs.db
+.DS_store
+.idea

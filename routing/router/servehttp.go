@@ -80,17 +80,10 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 	// TODO :: Make a config option that can disguise admin routes and make them appear as they don't exist (404)
 
 	if request.Method == http.MethodOptions {
-		// TODO :: keep-alive doesn't seem to work
-		// context.SetHeader("Keep-Alive", "timeout=2, max=100")
-		// context.SetHeader("Connection", "Keep-Alive")
-		// context.SetHeader("Access-Control-Max-Age", "86400")
-
-		// TODO :: Acces-Control-Allow-Methods does nothing
-		// context.SetHeader("Access-Control-Allow-Methods", "DELETE")
-
-		context.SetHeader("Access-Control-Allow-Origin", "*")
+		context.SetHeader("Access-Control-Allow-Origin", "*") // temp
+		// context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 		context.SetHeader("Access-Control-Allow-Headers", "Authorization")
-		context.SetStatusCode(http.StatusNoContent)
+		context.SetStatusCode(http.StatusOK)
 		return
 	}
 
@@ -109,8 +102,6 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
 		context.SetHeader("Access-Control-Allow-Origin", "*") // temp
 		// context.SetHeader("Access-Control-Allow-Origin", domain.Host())
-		// TODO :: still sending Authorization header
-		context.SetHeader("Access-Control-Allow-Credentials", "false")
 
 		route.Handle(context)
 	} else {
