@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --env.prod",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
+    "development": "webpack --env.NODE_ENV=development --progress --hide-modules",
     "watch": "npm run development -- --watch"
   },
   "dependencies": {
