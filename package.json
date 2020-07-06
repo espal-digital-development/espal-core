@@ -2,7 +2,9 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack --env.prod"
+    "build": "webpack --env.prod",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
+    "watch": "npm run development -- --watch"
   },
   "dependencies": {
     "vue": "^3.0.0-beta.2"

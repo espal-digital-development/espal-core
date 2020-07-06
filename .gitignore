@@ -9,6 +9,7 @@ node_modules
 espal-core
 app/*
 !app/assets
+dist
 
 # Specific files
 panic.txt
