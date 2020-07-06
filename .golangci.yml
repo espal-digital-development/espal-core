@@ -28,9 +28,6 @@ issues:
       - godot
       source: "@synthesize"
     - linters:
-      - nolintlint
-      text: ":gomnd"
-    - linters:
       - goerr113
       text: "use errors\\.Is\\(\\) instead" # This recommends native errors, but we use juju
     - linters:
