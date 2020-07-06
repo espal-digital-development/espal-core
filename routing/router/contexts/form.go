@@ -34,7 +34,7 @@ func (c *HTTPContext) FormFile(key string) (multipart.File, *multipart.FileHeade
 // FormValue returns a submitted form value.
 func (c *HTTPContext) FormValue(key string) (string, error) {
 	if !c.formIsParsed {
-		if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
+		if err := c.request.ParseForm(); err != nil {
 			return "", errors.Trace(err)
 		}
 	}
@@ -45,7 +45,7 @@ func (c *HTTPContext) FormValue(key string) (string, error) {
 // FormValues returns all given values for the given field.
 func (c *HTTPContext) FormValues(key string) ([]string, error) {
 	if !c.formIsParsed {
-		if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
+		if err := c.request.ParseForm(); err != nil {
 			return nil, errors.Trace(err)
 		}
 	}
