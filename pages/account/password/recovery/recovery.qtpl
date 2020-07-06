@@ -1,6 +1,6 @@
-{% func (p *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+{% func (p *Page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc %}
 
-{% func (p *Page) Title() %}{%s p.Translate("passwordRecovery") %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.Translate("passwordRecovery") %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <div class="simpleBox">
@@ -15,6 +15,6 @@
         <input type="submit">
     </form>
 </div>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
-{% func (p *Page) Javascripts() %}<script src="/j/form.js"></script>{% endfunc%}
+{% func (p *Page) Javascripts() %}<script src="/j/form.js"></script>{% endfunc %}

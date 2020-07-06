@@ -1,6 +1,6 @@
 {% import "fmt" %}
 
-{% func (p *Page) Title() %}{%s p.displayTitle %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.displayTitle %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
@@ -18,17 +18,17 @@
         {%s= p.form.CreateUpdateActions("action", fmt.Sprintf("Domain/View?id=%s", p.domain.ID())) %}
     </form>
 </main>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Stylesheets() %}{% stripspace %}
 {% if p.form.ContainsSelectSearch() %}
 <link rel="stylesheet" href="/c/a/selectSearch.css"></link>
 {% endif %}
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Javascripts() %}{% stripspace %}
 <script src="/j/a/cu.js"></script>
 {% if p.form.ContainsSelectSearch() %}
 <script src="/j/a/selectSearch.js"></script>
 {% endif %}
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

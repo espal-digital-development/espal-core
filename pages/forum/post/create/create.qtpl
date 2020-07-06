@@ -1,4 +1,4 @@
-{% func (p *Page) Title() %}{%s p.forum.Name() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.forum.Name() %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <div class="content">
@@ -6,4 +6,4 @@
     CREATE
 </div>
 
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

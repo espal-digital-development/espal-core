@@ -1,4 +1,4 @@
-{% func (p *Page) Title() %}{%s p.forum.Name() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.forum.Name() %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <div class="content">
@@ -67,4 +67,4 @@
         <p>{%s p.TranslatePlural("thereIsNoPostOrForumToDisplay") %}</p>
     {% endif %}
 </div>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

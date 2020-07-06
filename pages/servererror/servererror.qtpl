@@ -1,10 +1,10 @@
-{% func (p *page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc%}
+{% func (p *page) Stylesheets() %}<link rel="stylesheet" href="/c/simpleBox.css">{% endfunc %}
 
-{% func (p *page) Title() %}{%s p.title %}{% endfunc%}
+{% func (p *page) Title() %}{%s p.title %}{% endfunc %}
 
 {% func (p *page) Content() %}{% stripspace %}
 <div class="simpleBox" style="width: 90%;">
     <h1>{%s p.title %}</h1>
     <pre style="text-align: left;">{%s p.message %}</pre>
 </div>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

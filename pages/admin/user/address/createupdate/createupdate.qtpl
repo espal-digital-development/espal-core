@@ -1,6 +1,6 @@
 {% import "fmt" %}
 
-{% func (p *Page) Title() %}{%s p.displayTitle %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.displayTitle %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
@@ -25,13 +25,13 @@
         {%s= p.form.CreateUpdateActions("action", fmt.Sprintf("User/View?id=%s", p.user.ID())) %}
     </form>
 </main>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Stylesheets() %}{% stripspace %}
 <link rel="stylesheet" href="/c/a/selectSearch.css"></link>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Javascripts() %}{% stripspace %}
 <script src="/j/a/cu.js"></script>
 <script src="/j/a/selectSearch.js"></script>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

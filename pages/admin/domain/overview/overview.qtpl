@@ -1,6 +1,6 @@
 {% import "time" %}
 
-{% func (p *Page) Title() %}{%s p.TranslatePlural("domain") %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.TranslatePlural("domain") %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
@@ -50,9 +50,9 @@
                                     {% endif %}
                                 {% case 5 %}
                                     {% if p.domains[k].UpdatedAt() != nil %}{%s p.domains[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}
-                                {% case 6%}
+                                {% case 6 %}
                                     {%s p.domains[k].Host() %} 
-                                {% case 7%}
+                                {% case 7 %}
                                     {% if p.domains[k].Language() != nil %}
                                         {%s p.rendererService.LanguageName(*p.domains[k].Language(), p.language.ID()) %}
                                     {% endif %}
@@ -69,13 +69,13 @@
         {%s p.Translate("noResultsFound") %}
     {% endif %}
 </main>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Stylesheets() %}{% stripspace %}
 {% if p.filter.ShouldShowSearch() %}
     <link rel="stylesheet" href="/c/a/f.css">
 {% endif %}
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Javascripts() %}{% stripspace %}
 {% if p.filter.ShouldShowSearch() %}
@@ -85,4 +85,4 @@
     <script src="/j/a/o.js"></script>
     {%s= p.rendererService.DefaultOverviewTranslations(p.GetCoreContext()) %}
 {% endif %}
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

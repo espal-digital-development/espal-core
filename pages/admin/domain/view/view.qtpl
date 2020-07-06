@@ -1,4 +1,4 @@
-{% func (p *Page) Title() %}{%s p.TranslatePlural("domain") %} > {%s p.domain.Host() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.TranslatePlural("domain") %} > {%s p.domain.Host() %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
@@ -11,4 +11,4 @@
     <p>{%s p.Translate("active") %}:{% space %}{% if p.domain.Active() %}{%s p.Translate("yes_") %}{% else %}{%s p.Translate("no_") %}{% endif %}</p>
     <p>{%s p.Translate("language") %}:{% space %}{% if p.domainLanguage != nil %}{%s p.domainLanguage.Translate(p.language.ID()) %}{% endif %}</p>
 </main>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

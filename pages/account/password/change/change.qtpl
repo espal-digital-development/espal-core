@@ -1,4 +1,4 @@
-{% func (p *Page) Title() %}{%s p.Translate("account") %}{% space %}{%s p.Translate("changePassword") %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.Translate("account") %}{% space %}{%s p.Translate("changePassword") %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
     <div class="account">
@@ -27,8 +27,8 @@
             </form>
         </div>
     </div>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Stylesheets() %}{% stripspace %}
 <link rel="stylesheet" href="/c/account.css">
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}

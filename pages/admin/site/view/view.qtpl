@@ -1,4 +1,4 @@
-{% func (p *Page) Title() %}{%s p.TranslatePlural("site") %} > {%s p.translatedName %}{% endfunc%}
+{% func (p *Page) Title() %}{%s p.TranslatePlural("site") %} > {%s p.translatedName %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <main class="content">
@@ -20,4 +20,4 @@
         </ul>
     </p>
 </main>
-{% endstripspace %}{% endfunc%}
+{% endstripspace %}{% endfunc %}
