@@ -54,22 +54,22 @@
                 <td>{% if p.addresses[k].Active() %}{%s p.Translate("yes_") %}{% else %}{%s p.Translate("no_") %}{% endif %}</td>
                 <td><a href="{%s p.AdminURL() %}/User/View?id={%s p.addresses[k].CreatedByID() %}">{%s p.rendererService.CreatedBy(p.addresses[k], p.language.ID()) %}</a></td>
                 <td>{%s p.addresses[k].CreatedAt().Format(time.RFC3339[0:9]) %}</td>
-                <td>{% if p.addresses[k].IsUpdated() %}<a href="{%s p.AdminURL() %}/User/View?id={%s *page.addresses[k].UpdatedByID() %}">{%s p.rendererService.UpdatedBy(p.addresses[k], p.language.ID()) %}</a>{% endif %}</td>
+                <td>{% if p.addresses[k].IsUpdated() %}<a href="{%s p.AdminURL() %}/User/View?id={%s *p.addresses[k].UpdatedByID() %}">{%s p.rendererService.UpdatedBy(p.addresses[k], p.language.ID()) %}</a>{% endif %}</td>
                 <td>{% if p.addresses[k].UpdatedAt() != nil %}{%s p.addresses[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}</td>
-                <td>{% if p.addresses[k].FirstName() != nil %}{%s *page.addresses[k].FirstName() %}{% endif %}</td>
-                <td>{% if p.addresses[k].Surname() != nil %}{%s *page.addresses[k].Surname() %}{% endif %}</td>
+                <td>{% if p.addresses[k].FirstName() != nil %}{%s *p.addresses[k].FirstName() %}{% endif %}</td>
+                <td>{% if p.addresses[k].Surname() != nil %}{%s *p.addresses[k].Surname() %}{% endif %}</td>
                 <td>{%s p.addresses[k].Street() %}</td>
-                <td>{% if p.addresses[k].StreetLine2() != nil %}{%s *page.addresses[k].StreetLine2() %}{% endif %}</td>
+                <td>{% if p.addresses[k].StreetLine2() != nil %}{%s *p.addresses[k].StreetLine2() %}{% endif %}</td>
                 <td>{%s p.addresses[k].Number() %}</td>
-                <td>{% if p.addresses[k].NumberAddition() != nil %}{%s *page.addresses[k].NumberAddition() %}{% endif %}</td>
+                <td>{% if p.addresses[k].NumberAddition() != nil %}{%s *p.addresses[k].NumberAddition() %}{% endif %}</td>
                 <td>{%s p.addresses[k].ZipCode() %}</td>
                 <td>{%s p.addresses[k].City() %}</td>
-                <td>{% if p.addresses[k].State() != nil %}{%s *page.addresses[k].State() %}{% endif %}</td>
+                <td>{% if p.addresses[k].State() != nil %}{%s *p.addresses[k].State() %}{% endif %}</td>
                 <td>
-                    {% if p.addresses[k].Country() != nil %}{%s p.rendererService.CountryName(*page.addresses[k].Country(), p.language.ID()) %}{% endif %}
+                    {% if p.addresses[k].Country() != nil %}{%s p.rendererService.CountryName(*p.addresses[k].Country(), p.language.ID()) %}{% endif %}
                 </td>
-                <td>{% if p.addresses[k].PhoneNumber() != nil %}{%s *page.addresses[k].PhoneNumber() %}{% endif %}</td>
-                <td>{% if p.addresses[k].Email() != nil %}{%s *page.addresses[k].Email() %}{% endif %}</td>
+                <td>{% if p.addresses[k].PhoneNumber() != nil %}{%s *p.addresses[k].PhoneNumber() %}{% endif %}</td>
+                <td>{% if p.addresses[k].Email() != nil %}{%s *p.addresses[k].Email() %}{% endif %}</td>
             </tr>
         {% endfor %}
     </table>
@@ -105,12 +105,12 @@
                 <td>{%s p.contacts[k].ID() %}</td>
                 <td><a href="{%s p.AdminURL() %}/User/View?id={%s p.contacts[k].CreatedByID() %}">{%s p.rendererService.CreatedBy(p.contacts[k], p.language.ID()) %}</a></td>
                 <td>{%s p.contacts[k].CreatedAt().Format(time.RFC3339[0:9]) %}</td>
-                <td>{% if p.contacts[k].IsUpdated() %}<a href="{%s p.AdminURL() %}/User/View/{%s *page.contacts[k].UpdatedByID() %}">{%s p.rendererService.UpdatedBy(p.contacts[k], p.language.ID()) %}</a>{% endif %}</td>
+                <td>{% if p.contacts[k].IsUpdated() %}<a href="{%s p.AdminURL() %}/User/View/{%s *p.contacts[k].UpdatedByID() %}">{%s p.rendererService.UpdatedBy(p.contacts[k], p.language.ID()) %}</a>{% endif %}</td>
                 <td>{% if p.contacts[k].IsUpdated() %}{%s p.contacts[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}</td>
                 <td>
                     <a href="{%s p.AdminURL() %}/User/View?id={%s p.contacts[k].ContactID() %}">{%s p.userContactStore.Name(p.contacts[k], p.language.ID()) %}</a>
                 </td>
-                <td>{% if p.contacts[k].Comments() != nil %}{%s *page.contacts[k].Comments() %}{% endif %}</td>
+                <td>{% if p.contacts[k].Comments() != nil %}{%s *p.contacts[k].Comments() %}{% endif %}</td>
             </tr>
         {% endfor %}
     </table>

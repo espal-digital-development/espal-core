@@ -44,7 +44,7 @@
                                     {%s p.domains[k].CreatedAt().Format(time.RFC3339[0:9]) %}
                                 {% case 4 %}
                                     {% if p.domains[k].IsUpdated() %}
-                                        <a href="{%s p.AdminURL() %}/User/View?id={%s *page.domains[k].UpdatedByID() %}">
+                                        <a href="{%s p.AdminURL() %}/User/View?id={%s *p.domains[k].UpdatedByID() %}">
                                             {%s p.rendererService.UpdatedBy(p.domains[k], p.language.ID()) %}
                                         </a>
                                     {% endif %}
@@ -54,7 +54,7 @@
                                     {%s p.domains[k].Host() %} 
                                 {% case 7%}
                                     {% if p.domains[k].Language() != nil %}
-                                        {%s p.rendererService.LanguageName(*page.domains[k].Language(), p.language.ID()) %}
+                                        {%s p.rendererService.LanguageName(*p.domains[k].Language(), p.language.ID()) %}
                                     {% endif %}
                                 {% case 8 %}
                                     {%v p.domains[k].CurrenciesCount() %}

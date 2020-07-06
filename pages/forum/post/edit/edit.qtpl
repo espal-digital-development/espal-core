@@ -1,4 +1,4 @@
-{% func (p *Page) Title() %}{%s *page.post.Title() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s *p.post.Title() %}{% endfunc%}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <div class="content">

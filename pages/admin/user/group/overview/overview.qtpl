@@ -46,14 +46,14 @@
                                 {%s p.userGroups[k].CreatedAt().Format(time.RFC3339[0:9]) %}
                             {% case 4 %}
                                 {% if p.userGroups[k].IsUpdated() %}
-                                    <a href="{%s p.AdminURL() %}/User/View?id={%s *page.userGroups[k].UpdatedByID() %}">
+                                    <a href="{%s p.AdminURL() %}/User/View?id={%s *p.userGroups[k].UpdatedByID() %}">
                                         {%s p.rendererService.UpdatedBy(p.userGroups[k], p.language.ID()) %}
                                     </a>
                                 {% endif %}
                             {% case 5 %}
                                 {% if p.userGroups[k].UpdatedAt() != nil %}{%s p.userGroups[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}
                             {% case 6%}
-                                {% if p.userGroups[k].LocalizedName() != nil %}{%s *page.userGroups[k].LocalizedName() %}{% endif %} 
+                                {% if p.userGroups[k].LocalizedName() != nil %}{%s *p.userGroups[k].LocalizedName() %}{% endif %} 
                             {% case 7 %}
                                 {%v p.userGroups[k].UserRightsCount() %}
                             {% case 8 %}

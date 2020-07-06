@@ -44,21 +44,21 @@
                                     {%s p.sites[k].CreatedAt().Format(time.RFC3339[0:9]) %}
                                 {% case 4 %}
                                     {% if p.sites[k].IsUpdated() %}
-                                        <a href="{%s p.AdminURL() %}/User/View?id={%s *page.sites[k].UpdatedByID() %}">
+                                        <a href="{%s p.AdminURL() %}/User/View?id={%s *p.sites[k].UpdatedByID() %}">
                                             {%s p.rendererService.UpdatedBy(p.sites[k], p.language.ID()) %}
                                         </a>
                                     {% endif %}
                                 {% case 5 %}
                                     {% if p.sites[k].UpdatedAt() != nil %}{%s p.sites[k].UpdatedAt().Format(time.RFC3339[0:9]) %}{% endif %}
                                 {% case 6%}
-                                    {% if p.sites[k].LocalizedName() != nil %}{%s *page.sites[k].LocalizedName() %}{% endif %}  
+                                    {% if p.sites[k].LocalizedName() != nil %}{%s *p.sites[k].LocalizedName() %}{% endif %}  
                                 {% case 7%}
                                     {% if p.sites[k].Language() != nil %}
-                                        {%s p.rendererService.LanguageName(*page.sites[k].Language(), p.language.ID()) %}
+                                        {%s p.rendererService.LanguageName(*p.sites[k].Language(), p.language.ID()) %}
                                     {% endif %}
                                 {% case 8 %}
                                     {% if p.sites[k].Country() != nil %}
-                                        {%s p.rendererService.CountryName(*page.sites[k].Country(), p.language.ID()) %}
+                                        {%s p.rendererService.CountryName(*p.sites[k].Country(), p.language.ID()) %}
                                     {% endif %}
                                 {% case 9 %}
                                     {%v p.sites[k].CurrenciesCount() %}

@@ -1,9 +1,9 @@
-{% func (p *Page) Title() %}{%s *page.post.Title() %}{% endfunc%}
+{% func (p *Page) Title() %}{%s *p.post.Title() %}{% endfunc%}
 
 {% func (p *Page) Content() %}{% stripspace %}
 <div class="content">
     <div>
-        <h1>{%s *page.post.Title() %}</h1>
+        <h1>{%s *p.post.Title() %}</h1>
         <p>{%s p.rendererService.CreatedBy(p.post, p.language.ID()) %}</p>
         {% if p.IsLoggedIn() && p.user.ID() == p.post.CreatedByID() %}
         <p>
@@ -22,7 +22,7 @@
             <div>
                 <p>
                     {% if p.replies[k].Title() != nil %}
-                        {%s *page.replies[k].Title() %}
+                        {%s *p.replies[k].Title() %}
                     {% endif %}
                 </p>
                 <p>{%s p.rendererService.CreatedBy(p.replies[k], p.language.ID()) %}</p>

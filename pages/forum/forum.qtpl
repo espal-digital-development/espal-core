@@ -15,7 +15,7 @@
                                     <td>
                                         <a href="/ForumPost?id={%s p.posts[k].ID() %}">
                                             {% if p.posts[k].Title() != nil %}
-                                                {%s *page.posts[k].Title() %}
+                                                {%s *p.posts[k].Title() %}
                                             {% endif %}
                                         </a>
                                     </td>
