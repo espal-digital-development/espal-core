@@ -1,5 +1,8 @@
 package main
 
+//go:generate go get -u github.com/valyala/quicktemplate/qtc
+//go:generate qtc -dir=./pages
+
 import (
 	"flag"
 	_ "net/http/pprof" // nolint:gosec // The registration is safely forced to a randomly generated path
