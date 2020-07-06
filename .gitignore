@@ -15,6 +15,7 @@ dist
 tmp
 
 # Specific files
+*.qtpl.go.tmp
 panic.txt
 Thumbs.db
 .DS_store
