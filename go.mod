@@ -10,7 +10,8 @@ require (
 	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df
 	github.com/json-iterator/go v1.1.10
 	github.com/juju/errors v0.0.0-20200330140219-3fe23663418f
-	github.com/juju/testing v0.0.0-20200608005635-e4eedbc6f7aa // indirect
+	github.com/juju/loggo v0.0.0-20200526014432-9ce3a2e09b5e // indirect
+	github.com/juju/testing v0.0.0-20200706033705-4c23f9c453cd // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/lib/pq v1.7.0
 	github.com/mattn/go-zglob v0.0.2
@@ -24,5 +25,6 @@ require (
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df // indirect
+	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22 // indirect
 	gopkg.in/yaml.v2 v2.3.0
 )
