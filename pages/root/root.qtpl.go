@@ -53,7 +53,7 @@ func (p *Page) Title() string {
 //line pages/root/root.qtpl:3
 func (p *Page) StreamContent(qw422016 *qt422016.Writer) {
 //line pages/root/root.qtpl:3
-	qw422016.N().S(`<p>Welcome home 2</p>`)
+	qw422016.N().S(`<p>Welcome home</p>`)
 //line pages/root/root.qtpl:5
 }
 
