@@ -8,8 +8,11 @@
 node_modules
 espal-core
 app/*
+app/assets/files/private/*
+app/assets/files/public/*
 !app/assets
 dist
+tmp
 
 # Specific files
 panic.txt
