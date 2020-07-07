@@ -52,6 +52,8 @@ BasePage {
 {% if p.HasFlashMessage() %}
 <script src="/j/flashMessage.js"></script>
 {% endif %}
+{% comment %} TODO :: 77777 :: Make dev marking getter to load or not {% endcomment %}
+<script src="/j/devBar.js"></script>
 {% endstripspace %}{% endfunc %}
 
 {% func (p *Page) Content() %}{% endfunc %}

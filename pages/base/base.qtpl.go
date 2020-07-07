@@ -264,123 +264,125 @@ func (p *Page) streammainJavascripts(qw422016 *qt422016.Writer) {
 //line pages/base/base.qtpl:54
 	}
 //line pages/base/base.qtpl:55
+	qw422016.N().S(`<script src="/j/devBar.js"></script>`)
+//line pages/base/base.qtpl:57
 }
 
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 func (p *Page) writemainJavascripts(qq422016 qtio422016.Writer) {
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	p.streammainJavascripts(qw422016)
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	qt422016.ReleaseWriter(qw422016)
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 }
 
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 func (p *Page) mainJavascripts() string {
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	p.writemainJavascripts(qb422016)
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	qs422016 := string(qb422016.B)
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 	return qs422016
-//line pages/base/base.qtpl:55
+//line pages/base/base.qtpl:57
 }
 
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 func (p *Page) StreamContent(qw422016 *qt422016.Writer) {
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 }
 
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 func (p *Page) WriteContent(qq422016 qtio422016.Writer) {
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	p.StreamContent(qw422016)
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	qt422016.ReleaseWriter(qw422016)
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 }
 
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 func (p *Page) Content() string {
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	p.WriteContent(qb422016)
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	qs422016 := string(qb422016.B)
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 	return qs422016
-//line pages/base/base.qtpl:57
+//line pages/base/base.qtpl:59
 }
 
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 func (p *Page) StreamStylesheets(qw422016 *qt422016.Writer) {
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 }
 
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 func (p *Page) WriteStylesheets(qq422016 qtio422016.Writer) {
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	p.StreamStylesheets(qw422016)
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	qt422016.ReleaseWriter(qw422016)
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 }
 
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 func (p *Page) Stylesheets() string {
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	p.WriteStylesheets(qb422016)
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	qs422016 := string(qb422016.B)
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 	return qs422016
-//line pages/base/base.qtpl:59
+//line pages/base/base.qtpl:61
 }
 
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 func (p *Page) StreamJavascripts(qw422016 *qt422016.Writer) {
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 }
 
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 func (p *Page) WriteJavascripts(qq422016 qtio422016.Writer) {
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	p.StreamJavascripts(qw422016)
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	qt422016.ReleaseWriter(qw422016)
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 }
 
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 func (p *Page) Javascripts() string {
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	p.WriteJavascripts(qb422016)
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	qs422016 := string(qb422016.B)
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 	return qs422016
-//line pages/base/base.qtpl:61
+//line pages/base/base.qtpl:63
 }
