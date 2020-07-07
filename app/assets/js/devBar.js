@@ -14,24 +14,23 @@ window.onload = () => {
 
     let liveRefresh = document.createElement('input');
     liveRefresh.type = 'checkbox';
+    liveRefresh.checked = localStorage.getItem('liveRefresh') == 'true';
     liveRefresh.style.marginLeft = '25px';
     liveRefresh.addEventListener('change', (e) => {
-        localStorage.setItem("liveRefresh", e.target.checked);
+        localStorage.setItem('liveRefresh', e.target.checked);
     });
 
     toolbar.appendChild(liveRefresh);
     document.body.appendChild(toolbar);
 
-    liveRefresh.checked = localStorage.getItem('liveRefresh') == 'true';
-
     setInterval(() => {
         if (!liveRefresh.checked) {
             return;
         }
-        if (offlineSince && (new Date()).getTime() - offlineSince > 2500) {
+        if (offlineSince && new Date().getTime() - offlineSince > 2500) {
             console.log('Stopped the liveRefresh watcher. Server seems offline');
             liveRefresh.checked = false;
-            localStorage.setItem("liveRefresh", false);
+            localStorage.setItem('liveRefresh', false);
             return;
         }
         fetch(location.origin + '/health', { method: 'head' })
@@ -48,7 +47,7 @@ window.onload = () => {
             .catch(() => {
                 wentOffline = true;
                 if (!offlineSince) {
-                    offlineSince = (new Date()).getTime();
+                    offlineSince = new Date().getTime();
                 }
             });
     }, 500);
