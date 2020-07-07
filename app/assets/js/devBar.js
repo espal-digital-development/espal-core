@@ -30,6 +30,8 @@ window.onload = () => {
         if (offlineSince && new Date().getTime() - offlineSince > 2500) {
             console.log('Stopped the liveRefresh watcher. Server seems offline');
             liveRefresh.checked = false;
+            wentOffline = false;
+            offlineSince = null;
             localStorage.setItem('liveRefresh', false);
             return;
         }
