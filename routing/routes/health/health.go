@@ -10,7 +10,6 @@ type Route struct {
 
 // Handle route handler.
 func (r *Route) Handle(context contexts.Context) {
-
 }
 
 // New returns a new instance of Route.

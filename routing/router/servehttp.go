@@ -144,6 +144,7 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 	}
 
 	if r.configService.Logging() {
+		// Ignore logging the health call
 		if r.configService.Development() && strings.HasPrefix(context.Path(), "/health") {
 			return
 		}
