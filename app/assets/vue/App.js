@@ -1,5 +1,7 @@
 import { h, ref } from 'vue';
+
 import { authService } from './services';
+import TheLogo from './components/TheLogo';
 
 export default {
     setup() {
@@ -8,7 +10,7 @@ export default {
         const horizontalRule = h('hr');
 
         return () => [
-            h('img', { src: require('../images/logo.png').default }),
+            TheLogo,
             h('h1', ['Hello!']),
             horizontalRule,
             h('p', [authService.jwt]),

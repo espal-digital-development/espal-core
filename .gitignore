@@ -10,6 +10,7 @@ espal-core
 app/*
 app/assets/files/private/*
 app/assets/files/public/*
+app/assets/js/spa
 !app/assets
 dist
 tmp

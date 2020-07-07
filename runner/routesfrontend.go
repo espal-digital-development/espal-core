@@ -17,5 +17,8 @@ func (r *Runner) routesFrontend() error {
 	if err := r.routesForum(); err != nil {
 		return errors.Trace(err)
 	}
+	if err := r.routesSPA(); err != nil {
+		return errors.Trace(err)
+	}
 	return nil
 }
