@@ -1,0 +1,1 @@
+ignoredDirectories: ['tmp', 'app/assets/vue/**/*', 'app/database/**/*', 'node_modules', '*/**/_data']

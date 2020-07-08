@@ -15,7 +15,9 @@ func (r *Runner) routes() error {
 		return errors.Trace(err)
 	}
 
-	r.services.router.RegisterRoute("/health", health.New())
+	if err := r.services.router.RegisterRoute("/health", health.New()); err != nil {
+		return errors.Trace(err)
+	}
 
 	if r.services.config.Pprof() {
 		if err := r.routesPprof(); err != nil {
