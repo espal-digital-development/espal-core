@@ -1,1 +1,2 @@
 ignoredDirectories: ['tmp', 'app/assets/vue/**/*', 'app/database/**/*', 'node_modules', '*/**/_data']
+exclusiveDirectories: ['app', 'app/assets/**/*'] # This will ignore other inclusion and exclusion rules
