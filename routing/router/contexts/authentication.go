@@ -23,6 +23,7 @@ type AuthenticationContext interface {
 	HasUserRight(string) bool
 	HasUserRightOrForbid(userRightName string) bool
 
+	IsDevelopment() bool
 	HasAdminAccess() bool
 	HasPprofEnabled() bool
 	AdminURL() string
@@ -211,6 +212,11 @@ func (c *HTTPContext) HasUserRightOrForbid(userRightName string) bool {
 // HasAdminAccess determines if the logged-in User has access to the admin section of the system.
 func (c *HTTPContext) HasAdminAccess() bool {
 	return c.HasUserRight("AccessAdminSection")
+}
+
+// IsDevelopment returns an indicator if the project is in development mode.
+func (c *HTTPContext) IsDevelopment() bool {
+	return c.configService.Development()
 }
 
 // HasPprofEnabled determines if the logged-in User has access to the pprof section of the system.

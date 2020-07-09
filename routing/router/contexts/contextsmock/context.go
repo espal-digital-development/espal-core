@@ -38,6 +38,7 @@ var (
 	lockContextMockHasUserRight              sync.RWMutex
 	lockContextMockHasUserRightOrForbid      sync.RWMutex
 	lockContextMockHost                      sync.RWMutex
+	lockContextMockIsDevelopment             sync.RWMutex
 	lockContextMockIsLoggedIn                sync.RWMutex
 	lockContextMockLanguageName              sync.RWMutex
 	lockContextMockLogin                     sync.RWMutex
@@ -158,6 +159,9 @@ var _ contexts.Context = &ContextMock{}
 //             },
 //             HostFunc: func() string {
 // 	               panic("mock out the Host method")
+//             },
+//             IsDevelopmentFunc: func() bool {
+// 	               panic("mock out the IsDevelopment method")
 //             },
 //             IsLoggedInFunc: func() bool {
 // 	               panic("mock out the IsLoggedIn method")
@@ -348,6 +352,9 @@ type ContextMock struct {
 
 	// HostFunc mocks the Host method.
 	HostFunc func() string
+
+	// IsDevelopmentFunc mocks the IsDevelopment method.
+	IsDevelopmentFunc func() bool
 
 	// IsLoggedInFunc mocks the IsLoggedIn method.
 	IsLoggedInFunc func() bool
@@ -557,6 +564,9 @@ type ContextMock struct {
 		}
 		// Host holds details about calls to the Host method.
 		Host []struct {
+		}
+		// IsDevelopment holds details about calls to the IsDevelopment method.
+		IsDevelopment []struct {
 		}
 		// IsLoggedIn holds details about calls to the IsLoggedIn method.
 		IsLoggedIn []struct {
@@ -1406,6 +1416,32 @@ func (mock *ContextMock) HostCalls() []struct {
 	lockContextMockHost.RLock()
 	calls = mock.calls.Host
 	lockContextMockHost.RUnlock()
+	return calls
+}
+
+// IsDevelopment calls IsDevelopmentFunc.
+func (mock *ContextMock) IsDevelopment() bool {
+	if mock.IsDevelopmentFunc == nil {
+		panic("ContextMock.IsDevelopmentFunc: method is nil but Context.IsDevelopment was just called")
+	}
+	callInfo := struct {
+	}{}
+	lockContextMockIsDevelopment.Lock()
+	mock.calls.IsDevelopment = append(mock.calls.IsDevelopment, callInfo)
+	lockContextMockIsDevelopment.Unlock()
+	return mock.IsDevelopmentFunc()
+}
+
+// IsDevelopmentCalls gets all the calls that were made to IsDevelopment.
+// Check the length with:
+//     len(mockedContext.IsDevelopmentCalls())
+func (mock *ContextMock) IsDevelopmentCalls() []struct {
+} {
+	var calls []struct {
+	}
+	lockContextMockIsDevelopment.RLock()
+	calls = mock.calls.IsDevelopment
+	lockContextMockIsDevelopment.RUnlock()
 	return calls
 }
 

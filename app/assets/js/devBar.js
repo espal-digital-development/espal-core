@@ -3,19 +3,12 @@ const timeout = (promise, ms) => Promise.race([new Promise((_, reject) => setTim
 
 window.addEventListener('load', () => {
     const toolbar = document.createElement('div');
-    toolbar.style.position = 'absolute';
-    toolbar.style.right = '0px';
-    toolbar.style.bottom = '0px';
-    toolbar.style.width = '150px';
-    toolbar.style.height = '40px';
-    toolbar.style.backgroundColor = '#333';
-    toolbar.style.color = '#fff';
-    toolbar.style.boxShadow = '-1px -1px 0.5 #282828';
+    toolbar.classList.add('dtb');
 
     const liveRefresh = document.createElement('input');
     liveRefresh.type = 'checkbox';
     liveRefresh.checked = localStorage.getItem('liveRefresh') == 'true';
-    liveRefresh.style.marginLeft = '25px';
+    liveRefresh.classList.add('dtbliveRefresh');
     liveRefresh.addEventListener('change', (e) => localStorage.setItem('liveRefresh', e.target.checked));
 
     toolbar.appendChild(liveRefresh);

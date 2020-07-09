@@ -6,6 +6,7 @@ BasePage {
     Content()
     Footer()
     Stylesheets()
+    mainStylesheets()
     Javascripts()
     mainJavascripts()
 }
@@ -17,8 +18,7 @@ BasePage {
     <head>
         <meta charset="utf-8">
         <title>{%= p.Title() %}</title>
-        <link rel="stylesheet" href="/c/a/m.css">
-        <link rel="stylesheet" href="/c/a/sb.css">
+        {%= p.mainStylesheets() %}
         {%= p.Stylesheets() %}
     </head>
     <body>{% stripspace %}
@@ -35,9 +35,20 @@ BasePage {
 </html>
 {% endstripspace %}{% endfunc %}
 
+{% func (p *Page) mainStylesheets() %}{% stripspace %}
+<link rel="stylesheet" href="/c/a/m.css">
+<link rel="stylesheet" href="/c/a/sb.css">
+{% if p.IsDevelopment() %}
+<link rel="stylesheet" href="/c/devBar.css">
+{% endif %}
+{% endstripspace %}{% endfunc %}
+
 {% func (p *Page) mainJavascripts() %}{% stripspace %}
 {% if p.HasFlashMessage() %}
 <script src="/j/flashMessage.js"></script>
+{% endif %}
+{% if p.IsDevelopment() %}
+<script src="/j/devBar.js"></script>
 {% endif %}
 {% endstripspace %}{% endfunc %}
 

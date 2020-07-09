@@ -10,6 +10,7 @@ import (
 // Context core context.
 type Context interface {
 	io.Writer
+	IsDevelopment() bool
 	IsLoggedIn() bool
 	AdminURL() string
 	Translate(string) string
@@ -42,6 +43,11 @@ func (p *Page) SetCoreContext(context Context) {
 // GetCoreContext returns the internal core context.
 func (p *Page) GetCoreContext() Context {
 	return p.coreContext
+}
+
+// IsDevelopment returns an indicator if the project is in development mode.
+func (p *Page) IsDevelopment() bool {
+	return p.coreContext.IsDevelopment()
 }
 
 // IsLoggedIn returns an indicator if the user is logged in or not.

@@ -56,6 +56,12 @@ type BasePage interface {
 //line pages/admin/base/base.qtpl:2
 	WriteStylesheets(qq422016 qtio422016.Writer)
 //line pages/admin/base/base.qtpl:2
+	mainStylesheets() string
+//line pages/admin/base/base.qtpl:2
+	streammainStylesheets(qw422016 *qt422016.Writer)
+//line pages/admin/base/base.qtpl:2
+	writemainStylesheets(qq422016 qtio422016.Writer)
+//line pages/admin/base/base.qtpl:2
 	Javascripts() string
 //line pages/admin/base/base.qtpl:2
 	StreamJavascripts(qw422016 *qt422016.Writer)
@@ -70,14 +76,16 @@ type BasePage interface {
 //line pages/admin/base/base.qtpl:2
 }
 
-//line pages/admin/base/base.qtpl:14
+//line pages/admin/base/base.qtpl:15
 func StreamPageTemplate(qw422016 *qt422016.Writer, p BasePage) {
-//line pages/admin/base/base.qtpl:14
+//line pages/admin/base/base.qtpl:15
 	qw422016.N().S(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>`)
-//line pages/admin/base/base.qtpl:19
+//line pages/admin/base/base.qtpl:20
 	p.StreamTitle(qw422016)
-//line pages/admin/base/base.qtpl:19
-	qw422016.N().S(`</title><link rel="stylesheet" href="/c/a/m.css"><link rel="stylesheet" href="/c/a/sb.css">`)
+//line pages/admin/base/base.qtpl:20
+	qw422016.N().S(`</title>`)
+//line pages/admin/base/base.qtpl:21
+	p.streammainStylesheets(qw422016)
 //line pages/admin/base/base.qtpl:22
 	p.StreamStylesheets(qw422016)
 //line pages/admin/base/base.qtpl:22
@@ -132,64 +140,35 @@ func PageTemplate(p BasePage) string {
 }
 
 //line pages/admin/base/base.qtpl:38
-func (p *Page) streammainJavascripts(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:39
-	if p.HasFlashMessage() {
-//line pages/admin/base/base.qtpl:39
-		qw422016.N().S(`<script src="/j/flashMessage.js"></script>`)
+func (p *Page) streammainStylesheets(qw422016 *qt422016.Writer) {
+//line pages/admin/base/base.qtpl:38
+	qw422016.N().S(`<link rel="stylesheet" href="/c/a/m.css"><link rel="stylesheet" href="/c/a/sb.css">`)
 //line pages/admin/base/base.qtpl:41
+	if p.IsDevelopment() {
+//line pages/admin/base/base.qtpl:41
+		qw422016.N().S(`<link rel="stylesheet" href="/c/devBar.css">`)
+//line pages/admin/base/base.qtpl:43
 	}
-//line pages/admin/base/base.qtpl:42
-}
-
-//line pages/admin/base/base.qtpl:42
-func (p *Page) writemainJavascripts(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:42
-	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:42
-	p.streammainJavascripts(qw422016)
-//line pages/admin/base/base.qtpl:42
-	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:42
-}
-
-//line pages/admin/base/base.qtpl:42
-func (p *Page) mainJavascripts() string {
-//line pages/admin/base/base.qtpl:42
-	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:42
-	p.writemainJavascripts(qb422016)
-//line pages/admin/base/base.qtpl:42
-	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:42
-	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:42
-	return qs422016
-//line pages/admin/base/base.qtpl:42
-}
-
-//line pages/admin/base/base.qtpl:44
-func (p *Page) StreamTitle(qw422016 *qt422016.Writer) {
 //line pages/admin/base/base.qtpl:44
 }
 
 //line pages/admin/base/base.qtpl:44
-func (p *Page) WriteTitle(qq422016 qtio422016.Writer) {
+func (p *Page) writemainStylesheets(qq422016 qtio422016.Writer) {
 //line pages/admin/base/base.qtpl:44
 	qw422016 := qt422016.AcquireWriter(qq422016)
 //line pages/admin/base/base.qtpl:44
-	p.StreamTitle(qw422016)
+	p.streammainStylesheets(qw422016)
 //line pages/admin/base/base.qtpl:44
 	qt422016.ReleaseWriter(qw422016)
 //line pages/admin/base/base.qtpl:44
 }
 
 //line pages/admin/base/base.qtpl:44
-func (p *Page) Title() string {
+func (p *Page) mainStylesheets() string {
 //line pages/admin/base/base.qtpl:44
 	qb422016 := qt422016.AcquireByteBuffer()
 //line pages/admin/base/base.qtpl:44
-	p.WriteTitle(qb422016)
+	p.writemainStylesheets(qb422016)
 //line pages/admin/base/base.qtpl:44
 	qs422016 := string(qb422016.B)
 //line pages/admin/base/base.qtpl:44
@@ -200,255 +179,329 @@ func (p *Page) Title() string {
 }
 
 //line pages/admin/base/base.qtpl:46
-func (p *Page) StreamSideBar(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:46
-	qw422016.N().S(`<aside class="sidebar"><div class="sideBarHead">ESPAL</div><nav><ul class="menu"><li><p><a href="/">`)
-//line pages/admin/base/base.qtpl:51
-	qw422016.E().S(p.Translate("gotoTheFrontend"))
-//line pages/admin/base/base.qtpl:51
-	qw422016.N().S(`</a></p></li><li><p><a href="`)
-//line pages/admin/base/base.qtpl:52
-	qw422016.E().S(p.AdminURL())
-//line pages/admin/base/base.qtpl:52
-	qw422016.N().S(`">`)
-//line pages/admin/base/base.qtpl:52
-	qw422016.E().S(p.Translate("dashboard"))
-//line pages/admin/base/base.qtpl:52
-	qw422016.N().S(`</a></p></li>`)
-//line pages/admin/base/base.qtpl:53
-	for _, menuBlock := range p.AdminMainMenu() {
-//line pages/admin/base/base.qtpl:53
-		qw422016.N().S(`<li><p>`)
-//line pages/admin/base/base.qtpl:55
-		qw422016.E().S(menuBlock.Title())
-//line pages/admin/base/base.qtpl:55
-		qw422016.N().S(`</p><ul>`)
-//line pages/admin/base/base.qtpl:57
-		for _, item := range menuBlock.Items() {
-//line pages/admin/base/base.qtpl:57
-			qw422016.N().S(`<li><a href="`)
-//line pages/admin/base/base.qtpl:58
-			qw422016.E().S(item.URL())
-//line pages/admin/base/base.qtpl:58
-			qw422016.N().S(`">`)
-//line pages/admin/base/base.qtpl:58
-			qw422016.E().S(item.Title())
-//line pages/admin/base/base.qtpl:58
-			qw422016.N().S(`</a></li>`)
-//line pages/admin/base/base.qtpl:59
-		}
-//line pages/admin/base/base.qtpl:59
-		qw422016.N().S(`</ul></li>`)
-//line pages/admin/base/base.qtpl:62
-	}
-//line pages/admin/base/base.qtpl:62
-	qw422016.N().S(`</ul></nav></aside>`)
-//line pages/admin/base/base.qtpl:66
-}
-
-//line pages/admin/base/base.qtpl:66
-func (p *Page) WriteSideBar(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:66
-	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:66
-	p.StreamSideBar(qw422016)
-//line pages/admin/base/base.qtpl:66
-	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:66
-}
-
-//line pages/admin/base/base.qtpl:66
-func (p *Page) SideBar() string {
-//line pages/admin/base/base.qtpl:66
-	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:66
-	p.WriteSideBar(qb422016)
-//line pages/admin/base/base.qtpl:66
-	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:66
-	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:66
-	return qs422016
-//line pages/admin/base/base.qtpl:66
-}
-
-//line pages/admin/base/base.qtpl:68
-func (p *Page) StreamHeader(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:68
-	qw422016.N().S(`<header class="header"><input type="search" placeholder="🔍&nbsp;`)
-//line pages/admin/base/base.qtpl:70
-	qw422016.E().S(p.Translate("search"))
-//line pages/admin/base/base.qtpl:70
-	qw422016.N().S(`">`)
-//line pages/admin/base/base.qtpl:71
+func (p *Page) streammainJavascripts(qw422016 *qt422016.Writer) {
+//line pages/admin/base/base.qtpl:47
 	if p.HasFlashMessage() {
-//line pages/admin/base/base.qtpl:71
-		qw422016.N().S(`<p class="`)
-//line pages/admin/base/base.qtpl:72
-		qw422016.E().S(p.GetFlashMessage().ClassName())
-//line pages/admin/base/base.qtpl:72
-		qw422016.N().S(`"><span>×</span>`)
-//line pages/admin/base/base.qtpl:74
-		qw422016.E().S(p.GetFlashMessage().Icon())
-//line pages/admin/base/base.qtpl:74
-		qw422016.E().S(p.GetFlashMessage().Message())
-//line pages/admin/base/base.qtpl:74
-		qw422016.N().S(`</p>`)
-//line pages/admin/base/base.qtpl:76
+//line pages/admin/base/base.qtpl:47
+		qw422016.N().S(`<script src="/j/flashMessage.js"></script>`)
+//line pages/admin/base/base.qtpl:49
 	}
-//line pages/admin/base/base.qtpl:76
+//line pages/admin/base/base.qtpl:50
+	if p.IsDevelopment() {
+//line pages/admin/base/base.qtpl:50
+		qw422016.N().S(`<script src="/j/devBar.js"></script>`)
+//line pages/admin/base/base.qtpl:52
+	}
+//line pages/admin/base/base.qtpl:53
+}
+
+//line pages/admin/base/base.qtpl:53
+func (p *Page) writemainJavascripts(qq422016 qtio422016.Writer) {
+//line pages/admin/base/base.qtpl:53
+	qw422016 := qt422016.AcquireWriter(qq422016)
+//line pages/admin/base/base.qtpl:53
+	p.streammainJavascripts(qw422016)
+//line pages/admin/base/base.qtpl:53
+	qt422016.ReleaseWriter(qw422016)
+//line pages/admin/base/base.qtpl:53
+}
+
+//line pages/admin/base/base.qtpl:53
+func (p *Page) mainJavascripts() string {
+//line pages/admin/base/base.qtpl:53
+	qb422016 := qt422016.AcquireByteBuffer()
+//line pages/admin/base/base.qtpl:53
+	p.writemainJavascripts(qb422016)
+//line pages/admin/base/base.qtpl:53
+	qs422016 := string(qb422016.B)
+//line pages/admin/base/base.qtpl:53
+	qt422016.ReleaseByteBuffer(qb422016)
+//line pages/admin/base/base.qtpl:53
+	return qs422016
+//line pages/admin/base/base.qtpl:53
+}
+
+//line pages/admin/base/base.qtpl:55
+func (p *Page) StreamTitle(qw422016 *qt422016.Writer) {
+//line pages/admin/base/base.qtpl:55
+}
+
+//line pages/admin/base/base.qtpl:55
+func (p *Page) WriteTitle(qq422016 qtio422016.Writer) {
+//line pages/admin/base/base.qtpl:55
+	qw422016 := qt422016.AcquireWriter(qq422016)
+//line pages/admin/base/base.qtpl:55
+	p.StreamTitle(qw422016)
+//line pages/admin/base/base.qtpl:55
+	qt422016.ReleaseWriter(qw422016)
+//line pages/admin/base/base.qtpl:55
+}
+
+//line pages/admin/base/base.qtpl:55
+func (p *Page) Title() string {
+//line pages/admin/base/base.qtpl:55
+	qb422016 := qt422016.AcquireByteBuffer()
+//line pages/admin/base/base.qtpl:55
+	p.WriteTitle(qb422016)
+//line pages/admin/base/base.qtpl:55
+	qs422016 := string(qb422016.B)
+//line pages/admin/base/base.qtpl:55
+	qt422016.ReleaseByteBuffer(qb422016)
+//line pages/admin/base/base.qtpl:55
+	return qs422016
+//line pages/admin/base/base.qtpl:55
+}
+
+//line pages/admin/base/base.qtpl:57
+func (p *Page) StreamSideBar(qw422016 *qt422016.Writer) {
+//line pages/admin/base/base.qtpl:57
+	qw422016.N().S(`<aside class="sidebar"><div class="sideBarHead">ESPAL</div><nav><ul class="menu"><li><p><a href="/">`)
+//line pages/admin/base/base.qtpl:62
+	qw422016.E().S(p.Translate("gotoTheFrontend"))
+//line pages/admin/base/base.qtpl:62
+	qw422016.N().S(`</a></p></li><li><p><a href="`)
+//line pages/admin/base/base.qtpl:63
+	qw422016.E().S(p.AdminURL())
+//line pages/admin/base/base.qtpl:63
+	qw422016.N().S(`">`)
+//line pages/admin/base/base.qtpl:63
+	qw422016.E().S(p.Translate("dashboard"))
+//line pages/admin/base/base.qtpl:63
+	qw422016.N().S(`</a></p></li>`)
+//line pages/admin/base/base.qtpl:64
+	for _, menuBlock := range p.AdminMainMenu() {
+//line pages/admin/base/base.qtpl:64
+		qw422016.N().S(`<li><p>`)
+//line pages/admin/base/base.qtpl:66
+		qw422016.E().S(menuBlock.Title())
+//line pages/admin/base/base.qtpl:66
+		qw422016.N().S(`</p><ul>`)
+//line pages/admin/base/base.qtpl:68
+		for _, item := range menuBlock.Items() {
+//line pages/admin/base/base.qtpl:68
+			qw422016.N().S(`<li><a href="`)
+//line pages/admin/base/base.qtpl:69
+			qw422016.E().S(item.URL())
+//line pages/admin/base/base.qtpl:69
+			qw422016.N().S(`">`)
+//line pages/admin/base/base.qtpl:69
+			qw422016.E().S(item.Title())
+//line pages/admin/base/base.qtpl:69
+			qw422016.N().S(`</a></li>`)
+//line pages/admin/base/base.qtpl:70
+		}
+//line pages/admin/base/base.qtpl:70
+		qw422016.N().S(`</ul></li>`)
+//line pages/admin/base/base.qtpl:73
+	}
+//line pages/admin/base/base.qtpl:73
+	qw422016.N().S(`</ul></nav></aside>`)
+//line pages/admin/base/base.qtpl:77
+}
+
+//line pages/admin/base/base.qtpl:77
+func (p *Page) WriteSideBar(qq422016 qtio422016.Writer) {
+//line pages/admin/base/base.qtpl:77
+	qw422016 := qt422016.AcquireWriter(qq422016)
+//line pages/admin/base/base.qtpl:77
+	p.StreamSideBar(qw422016)
+//line pages/admin/base/base.qtpl:77
+	qt422016.ReleaseWriter(qw422016)
+//line pages/admin/base/base.qtpl:77
+}
+
+//line pages/admin/base/base.qtpl:77
+func (p *Page) SideBar() string {
+//line pages/admin/base/base.qtpl:77
+	qb422016 := qt422016.AcquireByteBuffer()
+//line pages/admin/base/base.qtpl:77
+	p.WriteSideBar(qb422016)
+//line pages/admin/base/base.qtpl:77
+	qs422016 := string(qb422016.B)
+//line pages/admin/base/base.qtpl:77
+	qt422016.ReleaseByteBuffer(qb422016)
+//line pages/admin/base/base.qtpl:77
+	return qs422016
+//line pages/admin/base/base.qtpl:77
+}
+
+//line pages/admin/base/base.qtpl:79
+func (p *Page) StreamHeader(qw422016 *qt422016.Writer) {
+//line pages/admin/base/base.qtpl:79
+	qw422016.N().S(`<header class="header"><input type="search" placeholder="🔍&nbsp;`)
+//line pages/admin/base/base.qtpl:81
+	qw422016.E().S(p.Translate("search"))
+//line pages/admin/base/base.qtpl:81
+	qw422016.N().S(`">`)
+//line pages/admin/base/base.qtpl:82
+	if p.HasFlashMessage() {
+//line pages/admin/base/base.qtpl:82
+		qw422016.N().S(`<p class="`)
+//line pages/admin/base/base.qtpl:83
+		qw422016.E().S(p.GetFlashMessage().ClassName())
+//line pages/admin/base/base.qtpl:83
+		qw422016.N().S(`"><span>×</span>`)
+//line pages/admin/base/base.qtpl:85
+		qw422016.E().S(p.GetFlashMessage().Icon())
+//line pages/admin/base/base.qtpl:85
+		qw422016.E().S(p.GetFlashMessage().Message())
+//line pages/admin/base/base.qtpl:85
+		qw422016.N().S(`</p>`)
+//line pages/admin/base/base.qtpl:87
+	}
+//line pages/admin/base/base.qtpl:87
 	qw422016.N().S(`</header>`)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 }
 
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 func (p *Page) WriteHeader(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	p.StreamHeader(qw422016)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 }
 
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 func (p *Page) Header() string {
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	p.WriteHeader(qb422016)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 	return qs422016
-//line pages/admin/base/base.qtpl:78
+//line pages/admin/base/base.qtpl:89
 }
 
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 func (p *Page) StreamContent(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 }
 
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 func (p *Page) WriteContent(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	p.StreamContent(qw422016)
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 }
 
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 func (p *Page) Content() string {
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	p.WriteContent(qb422016)
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 	return qs422016
-//line pages/admin/base/base.qtpl:80
+//line pages/admin/base/base.qtpl:91
 }
 
-//line pages/admin/base/base.qtpl:82
+//line pages/admin/base/base.qtpl:93
 func (p *Page) StreamFooter(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:82
+//line pages/admin/base/base.qtpl:93
 	qw422016.N().S(`<footer class="footer"></footer>`)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 }
 
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 func (p *Page) WriteFooter(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	p.StreamFooter(qw422016)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 }
 
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 func (p *Page) Footer() string {
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	p.WriteFooter(qb422016)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 	return qs422016
-//line pages/admin/base/base.qtpl:84
+//line pages/admin/base/base.qtpl:95
 }
 
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 func (p *Page) StreamStylesheets(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 }
 
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 func (p *Page) WriteStylesheets(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	p.StreamStylesheets(qw422016)
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 }
 
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 func (p *Page) Stylesheets() string {
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	p.WriteStylesheets(qb422016)
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 	return qs422016
-//line pages/admin/base/base.qtpl:86
+//line pages/admin/base/base.qtpl:97
 }
 
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 func (p *Page) StreamJavascripts(qw422016 *qt422016.Writer) {
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 }
 
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 func (p *Page) WriteJavascripts(qq422016 qtio422016.Writer) {
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	qw422016 := qt422016.AcquireWriter(qq422016)
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	p.StreamJavascripts(qw422016)
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	qt422016.ReleaseWriter(qw422016)
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 }
 
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 func (p *Page) Javascripts() string {
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	qb422016 := qt422016.AcquireByteBuffer()
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	p.WriteJavascripts(qb422016)
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	qs422016 := string(qb422016.B)
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	qt422016.ReleaseByteBuffer(qb422016)
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 	return qs422016
-//line pages/admin/base/base.qtpl:88
+//line pages/admin/base/base.qtpl:99
 }
