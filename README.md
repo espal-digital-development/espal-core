@@ -17,7 +17,7 @@ We will also provide you with detailed deployment guides and tips to ensure both
 TODO :: Actually go a bit in depth here about the features of the business logic of the CMS, CRM, B2C etc.
 
 ## Internals
-TODO :: 77777 :: Update the repo's info and links
+TODO :: 777777 :: Update the repo's info and links
 Not everything starts from absolute scratch. Even tho the aim for Espal is to be as dependency-less as possible we can't pass on the ones that already make certain tasks very easy and robust. Espal uses the following amazing libraries:
 
 - [Aliaksandr Valialkin](https://github.com/valyala)'s [quicktemplate](https://github.com/valyala/quicktemplate) instead of native html templating for amazing base speeds

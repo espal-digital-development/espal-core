@@ -20,7 +20,7 @@ package cachesynchronizer_test
 // 	}
 // 	cacheNotifyStore = &cachenotifymock.StoreMock{
 // 		GetLatestFunc: func(interval time.Duration) ([]*cachenotify.CacheNotify, bool, error) {
-// 			// TODO :: 7777777 This needs a good global solution; returning a literal struct as a mock
+// 			// TODO :: 77777 This needs a good global solution; returning a literal struct as a mock
 // 			stub := []*cachenotify.CacheNotify{
 // 				{},
 // 			}
