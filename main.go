@@ -5,10 +5,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	_ "net/http/pprof" // nolint:gosec // The registration is safely forced to a randomly generated path
 	"os"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/espal-digital-development/espal-core/runner"
 	"github.com/juju/errors"
 	_ "github.com/lib/pq"
@@ -18,7 +18,7 @@ func main() {
 	path := flag.String("config-dir", "", "Destination directory where the config.yml can be found")
 	flag.Parse()
 	if err := Start(*path); err != nil {
-		if _, err := spew.Println(errors.ErrorStack(err)); err != nil {
+		if _, err := fmt.Println(errors.ErrorStack(err)); err != nil {
 			panic(err)
 		}
 		os.Exit(1)
