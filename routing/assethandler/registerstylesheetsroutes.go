@@ -9,18 +9,18 @@ func (h *AssetHandler) registerStylesheetsRoutes() error {
 	var loopErr error
 	h.stylesheetsStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
-			loopErr = err
+			loopErr = errors.Trace(err)
 			return false
 		}
 		data, err = h.minifier.Bytes("text/css", data)
 		if err != nil {
-			loopErr = err
+			loopErr = errors.Trace(err)
 			return false
 		}
 		if h.configService.AssetsGZip() {
 			gzipData, err = h.convertToGzip(data)
 			if err != nil {
-				loopErr = err
+				loopErr = errors.Trace(err)
 				return false
 			}
 		}
@@ -32,7 +32,7 @@ func (h *AssetHandler) registerStylesheetsRoutes() error {
 			allowGzip:   h.configService.AssetsGZip(),
 		})
 		if err != nil {
-			loopErr = err
+			loopErr = errors.Trace(err)
 			return false
 		}
 
