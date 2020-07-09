@@ -10,6 +10,8 @@ import (
 
 var _ Application = &Runner{}
 
+const cacheSynchronizerIntervalInSeconds = 20
+
 // Application represents an object that runs app instances.
 type Application interface {
 	SetPath(path string)
@@ -61,8 +63,8 @@ func (r *Runner) RunNonBlocking() error {
 		return errors.Trace(err)
 	}
 
-	// TODO :: 777 Make interval a config value
-	r.services.cacheSynchronizer = cachesynchronizer.New(r.services.logger, r.stores.cacheNotify, time.Minute)
+	r.services.cacheSynchronizer = cachesynchronizer.New(r.services.logger, r.stores.cacheNotify,
+		time.Second*cacheSynchronizerIntervalInSeconds)
 
 	r.services.sessions = sessions.New(r.services.config, r.stores.session)
 

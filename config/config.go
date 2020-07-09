@@ -8,8 +8,6 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
-const defaultHTTPPort = 80
-
 var _ Config = &Configuration{}
 
 var (
@@ -120,7 +118,7 @@ func New(coreStorage storage.Storage) (*Configuration, error) {
 			"no config.yml file found. Please create one. The espal-run command can help automate this process")
 	}
 
-	var values configYaml
+	values := c.getDefaultYaml()
 	if err := yaml.Unmarshal(configBytes, &values); err != nil {
 		return nil, errors.Trace(err)
 	}
