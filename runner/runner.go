@@ -1,9 +1,12 @@
 package runner
 
 import (
+	"regexp"
 	"time"
 
 	"github.com/espal-digital-development/espal-core/cachesynchronizer"
+	"github.com/espal-digital-development/espal-core/logger"
+	"github.com/espal-digital-development/espal-core/modules"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/juju/errors"
 )
@@ -24,6 +27,9 @@ type Application interface {
 type Runner struct {
 	path            string
 	serverStartTime time.Time
+
+	modulesRegistry []modules.Modular
+	reValidSemver   *regexp.Regexp
 
 	services       services
 	storages       storages
@@ -83,6 +89,16 @@ func (r *Runner) RunNonBlocking() error {
 }
 
 // New returns a new instance of Runner.
-func New() *Runner {
-	return &Runner{}
+func New() (*Runner, error) {
+	r := &Runner{
+		modulesRegistry: []modules.Modular{},
+	}
+	r.services.logger = logger.New()
+	var err error
+	r.reValidSemver, err = regexp.Compile(`^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-]` +
+		`[0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$`)
+	if err != nil {
+		return nil, errors.Trace(err)
+	}
+	return r, nil
 }

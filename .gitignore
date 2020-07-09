@@ -1,23 +1,22 @@
-*.test
-*.exe
 *.dll
-*.so
 *.dylib
+*.exe
+*.so
+*.test
 
 # Folders
-node_modules
-espal-core
+.idea
 app/*
 app/assets/files/private/*
 app/assets/files/public/*
-app/assets/js/spa
-!app/assets
+!app/modules
 dist
+node_modules
 tmp
 
 # Specific files
 *.qtpl.go.tmp
+.DS_store
+espal-core
 panic.txt
 Thumbs.db
-.DS_store
-.idea

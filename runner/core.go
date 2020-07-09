@@ -4,7 +4,6 @@ import (
 	"path/filepath"
 
 	"github.com/espal-digital-development/espal-core/config"
-	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/mailer"
 	"github.com/espal-digital-development/espal-core/repositories/countries"
 	"github.com/espal-digital-development/espal-core/repositories/currencies"
@@ -18,7 +17,6 @@ import (
 	"github.com/juju/errors"
 )
 
-// nolint:funlen
 func (r *Runner) core(path string) error {
 	if path == "" {
 		path = filepath.FromSlash("./app")
@@ -39,28 +37,8 @@ func (r *Runner) core(path string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	r.storages.assetsPrivateFiles, err = filesystem.New(r.services.config.PrivateFilesAssetsPath())
-	if err != nil {
-		return errors.Trace(err)
-	}
-	r.storages.assetsPublicFiles, err = filesystem.New(r.services.config.PublicFilesAssetsPath())
-	if err != nil {
-		return errors.Trace(err)
-	}
-	r.storages.assetsPublicRootFiles, err = filesystem.New(r.services.config.PublicRootFilesAssetsPath())
-	if err != nil {
-		return errors.Trace(err)
-	}
-	r.storages.assetsImages, err = filesystem.New(r.services.config.ImagesAssetsPath())
-	if err != nil {
-		return errors.Trace(err)
-	}
-	r.storages.assetsStylesheets, err = filesystem.New(r.services.config.StylesheetsAssetsPath())
-	if err != nil {
-		return errors.Trace(err)
-	}
-	r.storages.assetsJavaScript, err = filesystem.New(r.services.config.JavaScriptAssetsPath())
-	if err != nil {
+
+	if err := r.assets(); err != nil {
 		return errors.Trace(err)
 	}
 
@@ -68,7 +46,6 @@ func (r *Runner) core(path string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	r.services.logger = logger.New()
 
 	availableLanguages := map[uint16]string{}
 	for _, languageCode := range r.services.config.AvailableLanguages() {
