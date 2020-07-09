@@ -61,6 +61,7 @@ func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (ke
 // New returns a new instance of Storage that lives in memory.
 func New() *Storage {
 	return &Storage{
-		mutex: &sync.RWMutex{},
+		entries: map[string][]byte{},
+		mutex:   &sync.RWMutex{},
 	}
 }
