@@ -1,2 +1,3 @@
+verbosity: quiet
 ignoredDirectories: ['tmp', 'app/assets/vue/**/*', 'app/database/**/*', 'node_modules', '*/**/_data']
 # exclusiveDirectories: ['app/assets/**/*'] # This will ignore other inclusion rules
