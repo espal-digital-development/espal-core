@@ -64,6 +64,9 @@ func (a *Assets) SetJavaScript(storage storage) error {
 func (a *Assets) loadAllFiles(subjectPath string, extensions []string, storage storage) error {
 	subjectPathSlash := filepath.FromSlash(subjectPath + "/")
 	return filepath.Walk(subjectPath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return errors.Trace(err)
+		}
 		if info.IsDir() {
 			return nil
 		}

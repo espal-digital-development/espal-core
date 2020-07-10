@@ -13,6 +13,8 @@ import (
 
 var _ storage.Storage = &FileSystem{}
 
+var errNotSupported = errors.New("this feature is not supported for filesystems")
+
 // TODO :: 7777 Any Windows path issues can now be funneled as all FS interaction should only happen here
 
 // FileSystem storage engine to interact with a local filesystem.
@@ -78,6 +80,12 @@ func (s *FileSystem) Iterate(iterator func(key string, value []byte, err error) 
 			break
 		}
 	}
+}
+
+// LoadAllFromPath walks all the files in the given path and it's subdirectories
+// and loads it into the storage.
+func (s *FileSystem) LoadAllFromPath(subjectPath string) error {
+	return errors.Trace(errNotSupported)
 }
 
 // New returns a new instance of FileSystem that interacts with the filesystem.

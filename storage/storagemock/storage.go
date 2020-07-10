@@ -9,11 +9,12 @@ import (
 )
 
 var (
-	lockStorageMockDelete  sync.RWMutex
-	lockStorageMockExists  sync.RWMutex
-	lockStorageMockGet     sync.RWMutex
-	lockStorageMockIterate sync.RWMutex
-	lockStorageMockSet     sync.RWMutex
+	lockStorageMockDelete          sync.RWMutex
+	lockStorageMockExists          sync.RWMutex
+	lockStorageMockGet             sync.RWMutex
+	lockStorageMockIterate         sync.RWMutex
+	lockStorageMockLoadAllFromPath sync.RWMutex
+	lockStorageMockSet             sync.RWMutex
 )
 
 // Ensure, that StorageMock does implement storage.Storage.
@@ -38,6 +39,9 @@ var _ storage.Storage = &StorageMock{}
 //             IterateFunc: func(iterator func(key string, value []byte, err error) (keepCycling bool))  {
 // 	               panic("mock out the Iterate method")
 //             },
+//             LoadAllFromPathFunc: func(subjectPath string) error {
+// 	               panic("mock out the LoadAllFromPath method")
+//             },
 //             SetFunc: func(key string, value []byte) error {
 // 	               panic("mock out the Set method")
 //             },
@@ -59,6 +63,9 @@ type StorageMock struct {
 
 	// IterateFunc mocks the Iterate method.
 	IterateFunc func(iterator func(key string, value []byte, err error) (keepCycling bool))
+
+	// LoadAllFromPathFunc mocks the LoadAllFromPath method.
+	LoadAllFromPathFunc func(subjectPath string) error
 
 	// SetFunc mocks the Set method.
 	SetFunc func(key string, value []byte) error
@@ -84,6 +91,11 @@ type StorageMock struct {
 		Iterate []struct {
 			// Iterator is the iterator argument value.
 			Iterator func(key string, value []byte, err error) (keepCycling bool)
+		}
+		// LoadAllFromPath holds details about calls to the LoadAllFromPath method.
+		LoadAllFromPath []struct {
+			// SubjectPath is the subjectPath argument value.
+			SubjectPath string
 		}
 		// Set holds details about calls to the Set method.
 		Set []struct {
@@ -216,6 +228,37 @@ func (mock *StorageMock) IterateCalls() []struct {
 	lockStorageMockIterate.RLock()
 	calls = mock.calls.Iterate
 	lockStorageMockIterate.RUnlock()
+	return calls
+}
+
+// LoadAllFromPath calls LoadAllFromPathFunc.
+func (mock *StorageMock) LoadAllFromPath(subjectPath string) error {
+	if mock.LoadAllFromPathFunc == nil {
+		panic("StorageMock.LoadAllFromPathFunc: method is nil but Storage.LoadAllFromPath was just called")
+	}
+	callInfo := struct {
+		SubjectPath string
+	}{
+		SubjectPath: subjectPath,
+	}
+	lockStorageMockLoadAllFromPath.Lock()
+	mock.calls.LoadAllFromPath = append(mock.calls.LoadAllFromPath, callInfo)
+	lockStorageMockLoadAllFromPath.Unlock()
+	return mock.LoadAllFromPathFunc(subjectPath)
+}
+
+// LoadAllFromPathCalls gets all the calls that were made to LoadAllFromPath.
+// Check the length with:
+//     len(mockedStorage.LoadAllFromPathCalls())
+func (mock *StorageMock) LoadAllFromPathCalls() []struct {
+	SubjectPath string
+} {
+	var calls []struct {
+		SubjectPath string
+	}
+	lockStorageMockLoadAllFromPath.RLock()
+	calls = mock.calls.LoadAllFromPath
+	lockStorageMockLoadAllFromPath.RUnlock()
 	return calls
 }
 

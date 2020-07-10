@@ -1,9 +1,14 @@
 package memory
 
 import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/espal-digital-development/espal-core/storage"
+	"github.com/juju/errors"
 )
 
 var _ storage.Storage = &Storage{}
@@ -56,6 +61,36 @@ func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (ke
 			break
 		}
 	}
+}
+
+// LoadAllFromPath walks all the files in the given path and it's subdirectories
+// and loads it into the storage.
+func (s *Storage) LoadAllFromPath(subjectPath string) error {
+	if subjectPath == "" {
+		return nil
+	}
+	subjectPath, err := filepath.Abs(subjectPath)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	return errors.Trace(filepath.Walk(subjectPath, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return errors.Trace(err)
+		}
+		if info.IsDir() {
+			return nil
+		}
+		fileBytes, fileErr := ioutil.ReadFile(path)
+		if fileErr != nil {
+			return errors.Trace(fileErr)
+		}
+		setErr := s.Set(strings.TrimPrefix(path, subjectPath+"/"),
+			fileBytes)
+		if setErr != nil {
+			return errors.Trace(setErr)
+		}
+		return nil
+	}))
 }
 
 // New returns a new instance of Storage that lives in memory.

@@ -59,6 +59,14 @@ func (r *Runner) core(path string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
+	// TODO :: 777777 :: Load translations from the module here
+	for k := range r.modulesRegistry {
+		translations := r.modulesRegistry[k].GetTranslations()
+		if translations == nil {
+			continue
+		}
+	}
+
 	r.repositories.countries, err = countries.New(r.repositories.languages, true)
 	if err != nil {
 		return errors.Trace(err)

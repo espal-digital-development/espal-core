@@ -1,6 +1,7 @@
 package runner
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -14,6 +15,7 @@ func (r *Runner) listenToSystemSignals() {
 		signal.Notify(sigc, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 		sig := <-sigc
 		if sig == os.Interrupt {
+			fmt.Println("")
 			appRunner.services.logger.Infof("Received signal `%s`", sig.String())
 			appRunner.services.logger.Infof("The Server ran for %v", time.Since(appRunner.serverStartTime))
 		}

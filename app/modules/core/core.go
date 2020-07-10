@@ -36,7 +36,6 @@ func New() (*modules.Module, error) {
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
-	// TODO :: 777777 :: Try assets and translations first (move global translations from the frontend in here)
 	assets, err := assets.New(&assets.Config{
 		PublicRootFilesPath: filepath.FromSlash(cwd + "/app/assets/files/root"),
 		ImagesPath:          filepath.FromSlash(cwd + "/app/assets/images"),
@@ -46,7 +45,9 @@ func New() (*modules.Module, error) {
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
-	translations, err := translations.New()
+	translations, err := translations.New(&translations.Config{
+		Path: filepath.FromSlash(cwd + "/app/translations"),
+	})
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
