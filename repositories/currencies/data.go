@@ -193,7 +193,7 @@ var data = map[string]Currency{
 	// What is this?
 	"SIL": {id: 300, code: "SIL", numeral: "TODO", symbol: "TODO", englishName: "TODO"},
 
-	// TODO :: 777:
+	// TODO :: 777
 	// - Re-sort all entries by name
 	// - Add all numeral codes
 	// - Add and mark historical/expired codes (show them in the dropdown with parentheses as expired)
