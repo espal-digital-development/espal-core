@@ -15,7 +15,6 @@ import (
 var errResolveModulePath = errors.New("failed to resolve module path")
 
 // TODO :: 777777
-// - Some kind of of registry system for smart binding
 // - How to hook into existing functionality like Slugs and other Database/Repository functionality
 //   - How to get functionality báck into the modules? Some kind of reverse registration injection with interface{}'s?
 // - CompatibilityDefintion should describe what versions of the core app works with and

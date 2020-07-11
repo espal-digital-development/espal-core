@@ -53,7 +53,6 @@ func (r *Runner) languagesAndTranslations() error {
 			}
 		}
 	}
-	// TODO :: 777777 :: Load app's entries here now
 	translationsPath := r.services.config.TranslationsPath()
 	if translationsPath != "" {
 		files, err := ioutil.ReadDir(translationsPath)
