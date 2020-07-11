@@ -13,6 +13,7 @@ const userQuery = `INSERT INTO "User"("createdByID","active","language","firstNa
 
 func (f *Fixtures) users() error {
 	// TODO :: 77777 Generate and print new passwords/emails on-the-fly for security
+	// TODO :: 77777 The choice of making stub data should be a config option? Or a module to prevent dependencies?
 	password, err := bcrypt.GenerateFromPassword([]byte("abc123"), 12)
 	if err != nil {
 		return errors.Trace(err)

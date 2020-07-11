@@ -25,7 +25,7 @@ type Route struct {
 // Handle route handler.
 // nolint:funlen
 func (r *Route) Handle(context contexts.Context) {
-	// TODO :: 77777 :: This doesn't fetch (id issue?)
+	// TODO :: 77777 This doesn't fetch (id issue?)
 	user, ok, err := r.userStore.GetOne(context.QueryValue("id"))
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))

@@ -57,7 +57,7 @@ func (d *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
 
 // GetOneActiveByHost fetches by Host and must be Active.
 func (d *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
-	// TODO :: 77777 :: Move this caching to the general cache notifier
+	// TODO :: 77777 Move this caching to the general cache notifier
 	if d.mutex == nil {
 		d.mutex = &sync.RWMutex{}
 		d.domainsNormal = make(map[string]*Domain)

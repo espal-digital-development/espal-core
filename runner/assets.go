@@ -7,7 +7,7 @@ import (
 )
 
 func (r *Runner) assets() error {
-	// TODO :: 77777 :: These 2 storages should be compatible with external service in the future (like S3 and so)
+	// TODO :: 77777 These 2 storages should be compatible with external service in the future (like S3 and so)
 	var err error
 	r.storages.assetsPrivateFiles, err = filesystem.New(r.services.config.PrivateFilesAssetsPath())
 	if err != nil {

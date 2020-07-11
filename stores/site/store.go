@@ -42,7 +42,7 @@ func (s *SitesStore) GetOne(id string) (*Site, bool, error) {
 
 // GetOneOnlineByID fetches by ID and must be online.
 func (s *SitesStore) GetOneOnlineByID(id string) (*Site, bool, error) {
-	// TODO :: 77777 :: Move this caching to the general cache notifier
+	// TODO :: 77777 Move this caching to the general cache notifier
 	if s.mutex == nil {
 		s.mutex = &sync.RWMutex{}
 		s.sitesNormal = make(map[string]*Site)

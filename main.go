@@ -36,7 +36,7 @@ func Start(path string) error {
 	}
 	app.SetPath(path)
 
-	// TODO :: 777777 :: This registration goes into the actual app style
+	// TODO :: 777777 This registration goes into the actual app style
 	coreModule, err := core.New()
 	if err != nil {
 		log.Fatal(err)

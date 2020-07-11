@@ -25,6 +25,8 @@ func (r *Runner) RegisterModule(module modules.Modular) error {
 	if !r.reValidSemver.MatchString(meta.Version()) {
 		return errors.Errorf("module `%s` version is not valid semVer", meta.UniqueIdentifier())
 	}
+	// TODO :: 777777 Test the module's version compatibility range with that of the core itself
+	// and return an error if it violates. fix-deploys like v1.0.5-hotfix should be allowed.
 	for k := range r.modulesRegistry {
 		if r.modulesRegistry[k].GetMeta().UniqueIdentifier() == meta.UniqueIdentifier() {
 			return errors.Errorf("module `%s` is already registered",

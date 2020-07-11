@@ -115,7 +115,7 @@ func (f *filter) Process() error {
 	// TODO :: If there is no WHERE and all joins are LEFT, all joins could be removed. Yet there is only one
 	// exception; if a JOIN results in an expansion of results it could result in unexpected results.
 
-	// TODO :: 7 :: COUNT() on is not very efficient. Need a better way (UPDATE: Better way in Cockroach?)
+	// TODO :: 7 COUNT() on is not very efficient. Need a better way (UPDATE: Better way in Cockroach?)
 	if err := f.selecterDatabase.QueryRow(f.countQuery.String(), f.params...).Scan(&f.totalResults); err != nil {
 		return errors.Trace(err)
 	}

@@ -71,7 +71,7 @@ func (r *Route) Handle(context contexts.Context) {
 		} else {
 			name = user.Email()
 		}
-		// TODO :: 77777 :: Mail Templates from file and/or database with qtpl and ftpl
+		// TODO :: 77777 Mail Templates from file and/or database with qtpl and ftpl
 		body := strings.Join([]string{
 			"<p>Hello ", name,
 			",</p><p>Password Forget Explanation</p>",

@@ -21,7 +21,7 @@ type Route struct {
 	usersStore user.Store
 }
 
-// TODO :: 777777 :: Make this a configService setting.
+// TODO :: 777777 Make this a configService setting.
 const tokenPassword = "42e1d1a0b8a66670a2a748a327dfffa5"
 
 // Handle route handler.
