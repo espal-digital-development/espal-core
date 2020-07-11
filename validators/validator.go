@@ -55,7 +55,7 @@ type Validator interface {
 	NewCheckboxField(name string) FormField
 	NewRadioField(name string) FormField
 	NewChoiceField(name string) FormField
-	NewFileField(name string, storage storage.Storage) FormField
+	NewFileField(name string, storage storage.Modifyable) FormField
 
 	RenderErrors() string
 	RenderOpen() string

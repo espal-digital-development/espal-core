@@ -9,12 +9,9 @@ import (
 )
 
 var (
-	lockStorageMockDelete          sync.RWMutex
-	lockStorageMockExists          sync.RWMutex
-	lockStorageMockGet             sync.RWMutex
-	lockStorageMockIterate         sync.RWMutex
-	lockStorageMockLoadAllFromPath sync.RWMutex
-	lockStorageMockSet             sync.RWMutex
+	lockStorageMockExists  sync.RWMutex
+	lockStorageMockGet     sync.RWMutex
+	lockStorageMockIterate sync.RWMutex
 )
 
 // Ensure, that StorageMock does implement storage.Storage.
@@ -27,9 +24,6 @@ var _ storage.Storage = &StorageMock{}
 //
 //         // make and configure a mocked storage.Storage
 //         mockedStorage := &StorageMock{
-//             DeleteFunc: func(key string) error {
-// 	               panic("mock out the Delete method")
-//             },
 //             ExistsFunc: func(key string) bool {
 // 	               panic("mock out the Exists method")
 //             },
@@ -39,12 +33,6 @@ var _ storage.Storage = &StorageMock{}
 //             IterateFunc: func(iterator func(key string, value []byte, err error) (keepCycling bool))  {
 // 	               panic("mock out the Iterate method")
 //             },
-//             LoadAllFromPathFunc: func(subjectPath string) error {
-// 	               panic("mock out the LoadAllFromPath method")
-//             },
-//             SetFunc: func(key string, value []byte) error {
-// 	               panic("mock out the Set method")
-//             },
 //         }
 //
 //         // use mockedStorage in code that requires storage.Storage
@@ -52,9 +40,6 @@ var _ storage.Storage = &StorageMock{}
 //
 //     }
 type StorageMock struct {
-	// DeleteFunc mocks the Delete method.
-	DeleteFunc func(key string) error
-
 	// ExistsFunc mocks the Exists method.
 	ExistsFunc func(key string) bool
 
@@ -64,19 +49,8 @@ type StorageMock struct {
 	// IterateFunc mocks the Iterate method.
 	IterateFunc func(iterator func(key string, value []byte, err error) (keepCycling bool))
 
-	// LoadAllFromPathFunc mocks the LoadAllFromPath method.
-	LoadAllFromPathFunc func(subjectPath string) error
-
-	// SetFunc mocks the Set method.
-	SetFunc func(key string, value []byte) error
-
 	// calls tracks calls to the methods.
 	calls struct {
-		// Delete holds details about calls to the Delete method.
-		Delete []struct {
-			// Key is the key argument value.
-			Key string
-		}
 		// Exists holds details about calls to the Exists method.
 		Exists []struct {
 			// Key is the key argument value.
@@ -92,50 +66,7 @@ type StorageMock struct {
 			// Iterator is the iterator argument value.
 			Iterator func(key string, value []byte, err error) (keepCycling bool)
 		}
-		// LoadAllFromPath holds details about calls to the LoadAllFromPath method.
-		LoadAllFromPath []struct {
-			// SubjectPath is the subjectPath argument value.
-			SubjectPath string
-		}
-		// Set holds details about calls to the Set method.
-		Set []struct {
-			// Key is the key argument value.
-			Key string
-			// Value is the value argument value.
-			Value []byte
-		}
 	}
-}
-
-// Delete calls DeleteFunc.
-func (mock *StorageMock) Delete(key string) error {
-	if mock.DeleteFunc == nil {
-		panic("StorageMock.DeleteFunc: method is nil but Storage.Delete was just called")
-	}
-	callInfo := struct {
-		Key string
-	}{
-		Key: key,
-	}
-	lockStorageMockDelete.Lock()
-	mock.calls.Delete = append(mock.calls.Delete, callInfo)
-	lockStorageMockDelete.Unlock()
-	return mock.DeleteFunc(key)
-}
-
-// DeleteCalls gets all the calls that were made to Delete.
-// Check the length with:
-//     len(mockedStorage.DeleteCalls())
-func (mock *StorageMock) DeleteCalls() []struct {
-	Key string
-} {
-	var calls []struct {
-		Key string
-	}
-	lockStorageMockDelete.RLock()
-	calls = mock.calls.Delete
-	lockStorageMockDelete.RUnlock()
-	return calls
 }
 
 // Exists calls ExistsFunc.
@@ -228,71 +159,5 @@ func (mock *StorageMock) IterateCalls() []struct {
 	lockStorageMockIterate.RLock()
 	calls = mock.calls.Iterate
 	lockStorageMockIterate.RUnlock()
-	return calls
-}
-
-// LoadAllFromPath calls LoadAllFromPathFunc.
-func (mock *StorageMock) LoadAllFromPath(subjectPath string) error {
-	if mock.LoadAllFromPathFunc == nil {
-		panic("StorageMock.LoadAllFromPathFunc: method is nil but Storage.LoadAllFromPath was just called")
-	}
-	callInfo := struct {
-		SubjectPath string
-	}{
-		SubjectPath: subjectPath,
-	}
-	lockStorageMockLoadAllFromPath.Lock()
-	mock.calls.LoadAllFromPath = append(mock.calls.LoadAllFromPath, callInfo)
-	lockStorageMockLoadAllFromPath.Unlock()
-	return mock.LoadAllFromPathFunc(subjectPath)
-}
-
-// LoadAllFromPathCalls gets all the calls that were made to LoadAllFromPath.
-// Check the length with:
-//     len(mockedStorage.LoadAllFromPathCalls())
-func (mock *StorageMock) LoadAllFromPathCalls() []struct {
-	SubjectPath string
-} {
-	var calls []struct {
-		SubjectPath string
-	}
-	lockStorageMockLoadAllFromPath.RLock()
-	calls = mock.calls.LoadAllFromPath
-	lockStorageMockLoadAllFromPath.RUnlock()
-	return calls
-}
-
-// Set calls SetFunc.
-func (mock *StorageMock) Set(key string, value []byte) error {
-	if mock.SetFunc == nil {
-		panic("StorageMock.SetFunc: method is nil but Storage.Set was just called")
-	}
-	callInfo := struct {
-		Key   string
-		Value []byte
-	}{
-		Key:   key,
-		Value: value,
-	}
-	lockStorageMockSet.Lock()
-	mock.calls.Set = append(mock.calls.Set, callInfo)
-	lockStorageMockSet.Unlock()
-	return mock.SetFunc(key, value)
-}
-
-// SetCalls gets all the calls that were made to Set.
-// Check the length with:
-//     len(mockedStorage.SetCalls())
-func (mock *StorageMock) SetCalls() []struct {
-	Key   string
-	Value []byte
-} {
-	var calls []struct {
-		Key   string
-		Value []byte
-	}
-	lockStorageMockSet.RLock()
-	calls = mock.calls.Set
-	lockStorageMockSet.RUnlock()
 	return calls
 }

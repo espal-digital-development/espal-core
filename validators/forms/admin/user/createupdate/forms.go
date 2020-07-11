@@ -33,7 +33,7 @@ type Factory interface {
 type Forms struct {
 	validatorsFactory      validators.Factory
 	translationsRepository translations.Repository
-	storage                storage.Storage
+	storage                storage.Modifyable
 	userAddressStore       useraddressstore.Store
 	userContactStore       usercontactstore.Store
 }
@@ -247,7 +247,7 @@ func (f *Forms) New(user user.UserEntity, language language) (Form, error) {
 
 // New returns a new instance of LoginForm.
 func New(validatorsFactory validators.Factory, translationsRepository translations.Repository,
-	storage storage.Storage, userAddressStore useraddressstore.Store,
+	storage storage.Modifyable, userAddressStore useraddressstore.Store,
 	userContactStore usercontactstore.Store) *Forms {
 	return &Forms{
 		validatorsFactory:      validatorsFactory,

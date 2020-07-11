@@ -12,7 +12,7 @@ import (
 
 const testKey = "testdata"
 
-func newStorage(t *testing.T) storage.Storage {
+func newStorage(t *testing.T) storage.Modifyable {
 	tmpDir := testtools.RequestNewTempDir(t)
 	if err := os.MkdirAll(tmpDir, 0700); err != nil {
 		t.Fatal(err)

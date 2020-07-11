@@ -15,7 +15,7 @@ import (
 const fileExtraHashLength = 4
 
 // NewFileField returns a new instance of FormField with the type File.
-func (f *Form) NewFileField(name string, storage storage.Storage) FormField {
+func (f *Form) NewFileField(name string, storage storage.Modifyable) FormField {
 	return f.defaultChecks(&formField{
 		name:              name,
 		_type:             FileFormField,
@@ -241,7 +241,7 @@ func (f *formField) SaveFiles() error {
 }
 
 // SetStorage sets the storage where uploaded files get saved to.
-func (f *formField) SetStorage(storage storage.Storage) error {
+func (f *formField) SetStorage(storage storage.Modifyable) error {
 	if FileFormField != f._type {
 		return errors.Errorf("cannot run SetStorage on a non-FileFormField")
 	}

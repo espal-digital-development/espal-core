@@ -168,7 +168,7 @@ type FormField interface {
 	SetMaxValue(maxValue float64)
 	MaxValue() float64
 
-	SetStorage(storage storage.Storage) error
+	SetStorage(storage storage.Modifyable) error
 }
 
 type formField struct {
@@ -239,7 +239,7 @@ type formField struct {
 	excludeSecond     bool
 	gzipFilesOnSave   bool
 	brotliFilesOnSave bool
-	storage           storage.Storage
+	storage           storage.Modifyable
 }
 
 // Type returns the form type.

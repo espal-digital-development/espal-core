@@ -13,7 +13,7 @@ import (
 // Route processor.
 type Route struct {
 	configService            config.Config
-	assetsPublicFilesStorage storage.Storage
+	assetsPublicFilesStorage storage.Modifyable
 	userStore                user.Store
 }
 
@@ -78,7 +78,7 @@ func (r *Route) Handle(context contexts.Context) {
 }
 
 // New returns a new instance of Route.
-func New(configService config.Config, assetsPublicFilesStorage storage.Storage, userStore user.Store) *Route {
+func New(configService config.Config, assetsPublicFilesStorage storage.Modifyable, userStore user.Store) *Route {
 	return &Route{
 		configService:            configService,
 		assetsPublicFilesStorage: assetsPublicFilesStorage,

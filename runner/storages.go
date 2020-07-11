@@ -9,8 +9,8 @@ type storages struct {
 	// the whole core system independent on the engine
 	core                  storage.Storage
 	translations          storage.Storage
-	assetsPrivateFiles    storage.Storage
-	assetsPublicFiles     storage.Storage
+	assetsPrivateFiles    storage.Modifyable
+	assetsPublicFiles     storage.Modifyable
 	assetsPublicRootFiles storage.Storage
 	assetsImages          storage.Storage
 	assetsStylesheets     storage.Storage
