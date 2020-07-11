@@ -8,6 +8,7 @@ import (
 	"github.com/espal-digital-development/espal-core/modules"
 	"github.com/espal-digital-development/espal-core/modules/assets"
 	"github.com/espal-digital-development/espal-core/modules/meta"
+	"github.com/espal-digital-development/espal-core/modules/routes"
 	"github.com/espal-digital-development/espal-core/modules/translations"
 	"github.com/juju/errors"
 )
@@ -40,6 +41,7 @@ func New() (*modules.Module, error) {
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
+
 	assets, err := assets.New(&assets.Config{
 		PublicRootFilesPath: filepath.FromSlash(modulePath + "/app/assets/files/root"),
 		ImagesPath:          filepath.FromSlash(modulePath + "/app/assets/images"),
@@ -49,19 +51,23 @@ func New() (*modules.Module, error) {
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
+
 	translations, err := translations.New(&translations.Config{
 		Path: filepath.FromSlash(modulePath + "/app/translations"),
 	})
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
-	m, err := modules.New(&modules.Config{
-		MetaDefinition:       meta,
-		AssetsProvider:       assets,
-		TranslationsProvider: translations,
-	})
+
+	routes, err := routes.New()
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
-	return m, nil
+
+	return modules.New(&modules.Config{
+		MetaDefinition:       meta,
+		AssetsProvider:       assets,
+		TranslationsProvider: translations,
+		RoutesProvider:       routes,
+	})
 }
