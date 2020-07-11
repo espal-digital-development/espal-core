@@ -22,16 +22,15 @@ Not everything starts from absolute scratch. Even tho the aim for Espal is to be
 
 - [Aliaksandr Valialkin](https://github.com/valyala)'s [quicktemplate](https://github.com/valyala/quicktemplate) instead of native html templating for amazing base speeds
 - [Aliaksandr Valialkin](https://github.com/valyala)'s [fasttemplate](https://github.com/valyala/fasttemplate) for e-mail and other dynamic live rendering
-- [Dave Collins](https://github.com/davecgh)' amazing and super-easy to use [go-spew](https://github.com/davecgh/go-spew) dump tool
 - The easy implementable and respectively lightweight [Go PostgreSQL Driver](github.com/lib/pq)
 - The handy [YAML](https://github.com/go-yaml/yaml)-to-struct library for the configuration files
 - [Brian Voelker](https://github.com/brianvoe)'s [gofakeit](https://github.com/brianvoe/gofakeit) for fast data fills and variations to test certain parts of the system
-- [mattn](https://github.com/mattn)'s neat little [go-zglob](https://github.com/mattn/go-zglob) reader
 - [Nathan Button](https://github.com/nbutton23)'s [zxcvbn-go](https://github.com/nbutton23/zxcvbn-go) Go port of Dropbox' zxcvbn password strength checking library
 - [Taco de Wolff](https://github.com/tdewolff)'s easy-to-use [minify](https://github.com/tdewolff/minify) Swiss army knife for web formats
 - [Gomail](github.com/go-gomail/gomail) dailer for sending mails without any hassle
 
 [go-bindata](https://github.com/go-bindata/go-bindata) was used. It isn't vendored in the project, but is used for the embedding of package data into native code
+- [Dave Collins](https://github.com/davecgh)' amazing and super-easy to use [go-spew](https://github.com/davecgh/go-spew) dump tool. Used a lot in development
 
 Special thanks to Google's hard work on the [Golang](https://github.com/golang/go) itself and the [crypto](golang.org/x/crypto) library.
 

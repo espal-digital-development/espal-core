@@ -12,6 +12,8 @@ import (
 	"github.com/juju/errors"
 )
 
+var errResolveModulePath = errors.New("failed to resolve module path")
+
 // TODO :: 777777
 // - Some kind of of registry system for smart binding
 // - How to hook into existing functionality like Slugs and other Database/Repository functionality
@@ -21,8 +23,11 @@ import (
 
 // New returns a new instance of Module.
 func New() (*modules.Module, error) {
-	_, filename, _, _ := runtime.Caller(0) // nolint:dogsled
-	cwd := path.Dir(filename)
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+		return nil, errors.Trace(errResolveModulePath)
+	}
+	modulePath := path.Dir(filename)
 
 	meta, err := meta.New(&meta.Config{
 		UniqueIdentifier:             "com.espal.core",
@@ -37,16 +42,16 @@ func New() (*modules.Module, error) {
 		return nil, errors.Trace(err)
 	}
 	assets, err := assets.New(&assets.Config{
-		PublicRootFilesPath: filepath.FromSlash(cwd + "/app/assets/files/root"),
-		ImagesPath:          filepath.FromSlash(cwd + "/app/assets/images"),
-		StylesheetsPath:     filepath.FromSlash(cwd + "/app/assets/css"),
-		JavaScriptPath:      filepath.FromSlash(cwd + "/app/assets/js"),
+		PublicRootFilesPath: filepath.FromSlash(modulePath + "/app/assets/files/root"),
+		ImagesPath:          filepath.FromSlash(modulePath + "/app/assets/images"),
+		StylesheetsPath:     filepath.FromSlash(modulePath + "/app/assets/css"),
+		JavaScriptPath:      filepath.FromSlash(modulePath + "/app/assets/js"),
 	})
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
 	translations, err := translations.New(&translations.Config{
-		Path: filepath.FromSlash(cwd + "/app/translations"),
+		Path: filepath.FromSlash(modulePath + "/app/translations"),
 	})
 	if err != nil {
 		return nil, errors.Trace(err)

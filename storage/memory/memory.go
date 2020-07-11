@@ -53,7 +53,7 @@ func (s *Storage) Delete(key string) error {
 
 // Iterate gives the possiblity to iterate over all entries.
 // For the memory engine this can cause longer locks so don't use on heavy actions.
-func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
+func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) error {
 	s.mutex.RLock()
 	defer s.mutex.RUnlock()
 	for key, value := range s.entries {
@@ -61,6 +61,7 @@ func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (ke
 			break
 		}
 	}
+	return nil
 }
 
 // LoadAllFromPath walks all the files in the given path and it's subdirectories

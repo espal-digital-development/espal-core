@@ -30,7 +30,7 @@ var _ storage.Storage = &StorageMock{}
 //             GetFunc: func(key string) ([]byte, bool, error) {
 // 	               panic("mock out the Get method")
 //             },
-//             IterateFunc: func(iterator func(key string, value []byte, err error) (keepCycling bool))  {
+//             IterateFunc: func(iterator func(key string, value []byte, err error) (keepCycling bool)) error {
 // 	               panic("mock out the Iterate method")
 //             },
 //         }
@@ -47,7 +47,7 @@ type StorageMock struct {
 	GetFunc func(key string) ([]byte, bool, error)
 
 	// IterateFunc mocks the Iterate method.
-	IterateFunc func(iterator func(key string, value []byte, err error) (keepCycling bool))
+	IterateFunc func(iterator func(key string, value []byte, err error) (keepCycling bool)) error
 
 	// calls tracks calls to the methods.
 	calls struct {
@@ -132,7 +132,7 @@ func (mock *StorageMock) GetCalls() []struct {
 }
 
 // Iterate calls IterateFunc.
-func (mock *StorageMock) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
+func (mock *StorageMock) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) error {
 	if mock.IterateFunc == nil {
 		panic("StorageMock.IterateFunc: method is nil but Storage.Iterate was just called")
 	}
@@ -144,7 +144,7 @@ func (mock *StorageMock) Iterate(iterator func(key string, value []byte, err err
 	lockStorageMockIterate.Lock()
 	mock.calls.Iterate = append(mock.calls.Iterate, callInfo)
 	lockStorageMockIterate.Unlock()
-	mock.IterateFunc(iterator)
+	return mock.IterateFunc(iterator)
 }
 
 // IterateCalls gets all the calls that were made to Iterate.

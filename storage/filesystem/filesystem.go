@@ -1,19 +1,21 @@
 package filesystem
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/juju/errors"
-	zglob "github.com/mattn/go-zglob"
 )
 
 var _ storage.Storage = &FileSystem{}
 
-var errNotSupported = errors.New("this feature is not supported for filesystems")
+var (
+	errNotSupported = errors.New("this feature is not supported for filesystems")
+	errStopCycling  = errors.New("stopped cycling")
+)
 
 // TODO :: 7777 Any Windows path issues can now be funneled as all FS interaction should only happen here
 
@@ -55,31 +57,28 @@ func (s *FileSystem) Delete(key string) error {
 }
 
 // Iterate gives the possiblity to iterate over all entries.
-func (s *FileSystem) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) {
+func (s *FileSystem) Iterate(iterator func(key string, value []byte, err error) (keepCycling bool)) error {
 	if s.path == "" {
-		return
+		return nil
 	}
-	files, err := zglob.Glob(fmt.Sprintf("%s/**/*", s.path))
-	if err != nil {
-		iterator("", nil, errors.Trace(err))
-		return
-	}
-	for k := range files {
-		stat, err := os.Stat(files[k])
+	err := filepath.Walk(s.path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			if !iterator("", nil, errors.Trace(err)) {
-				break
-			}
+			return errors.Trace(err)
 		}
 		// No features for directories. If ever need one; it can hook in here
-		if stat.IsDir() {
-			continue
+		if info.IsDir() {
+			return nil
 		}
-		fileBytes, err := ioutil.ReadFile(files[k])
-		if !iterator(strings.Replace(files[k], s.pathWithoutRelativePrefix, "", 1), fileBytes, errors.Trace(err)) {
-			break
+		fileBytes, err := ioutil.ReadFile(path)
+		if !iterator(strings.Replace(path, s.pathWithoutRelativePrefix, "", 1), fileBytes, errors.Trace(err)) {
+			return errors.Trace(errStopCycling)
 		}
+		return nil
+	})
+	if err != nil && err != errStopCycling {
+		return errors.Trace(err)
 	}
+	return nil
 }
 
 // LoadAllFromPath walks all the files in the given path and it's subdirectories

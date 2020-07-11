@@ -1,6 +1,7 @@
 package translations
 
 import (
+	"io/ioutil"
 	"strings"
 
 	"github.com/espal-digital-development/espal-core/logger"
@@ -88,6 +89,22 @@ func (t *Translations) FormattedPlural(languageID uint16, key string) string {
 	return *t.entries[languageID][key].PluralFormatted
 }
 
+// LoadForLanguageFromYaml loads in the given yaml translation data from the given path
+// for the given language.
+func (t *Translations) LoadForLanguageFromYaml(languageID uint16, path string) error {
+	file, err := ioutil.ReadFile(path)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	data := map[string]translation{}
+	err = yaml.Unmarshal(file, data)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	t.loadFromData(languageID, data)
+	return nil
+}
+
 func (t *Translations) checkExistence(languageID uint16, key string) bool {
 	if _, ok := t.entries[languageID]; !ok {
 		t.loggerService.Warningf(errorNoTranslationWithForCode, languageID)
@@ -98,6 +115,28 @@ func (t *Translations) checkExistence(languageID uint16, key string) bool {
 		return false
 	}
 	return true
+}
+
+func (t *Translations) loadFromData(languageID uint16, data map[string]translation) {
+	for key, translation := range data {
+		if _, ok := t.entries[languageID][key]; !ok {
+			t.entries[languageID][key] = translation
+			continue
+		}
+
+		if translation.Plural != nil && *translation.Plural != "" {
+			*t.entries[languageID][key].Plural = *translation.Plural
+		}
+		if translation.PluralFormatted != nil && *translation.PluralFormatted != "" {
+			*t.entries[languageID][key].PluralFormatted = *translation.PluralFormatted
+		}
+		if translation.Singular != nil && *translation.Singular != "" {
+			*t.entries[languageID][key].Singular = *translation.Singular
+		}
+		if translation.SingularFormatted != nil && *translation.SingularFormatted != "" {
+			*t.entries[languageID][key].SingularFormatted = *translation.SingularFormatted
+		}
+	}
 }
 
 // New returns new a Languages repository instance.
@@ -119,37 +158,6 @@ func New(loggerService logger.Loggable, storage storage.Storage,
 			err = yaml.Unmarshal(coreFile, t.entries[languageID])
 			if err != nil {
 				return nil, errors.Trace(err)
-			}
-		}
-
-		file, ok, err := storage.Get(language + ".yml")
-		if err != nil {
-			return nil, errors.Trace(err)
-		}
-		if !ok {
-			continue
-		}
-		if _, ok := t.entries[languageID]; !ok {
-			t.entries[languageID] = map[string]translation{}
-		}
-		data := map[string]translation{}
-		err = yaml.Unmarshal(file, data)
-		if err != nil {
-			return nil, errors.Trace(err)
-		}
-
-		for key, translation := range data {
-			if translation.Plural != nil && *translation.Plural != "" {
-				*t.entries[languageID][key].Plural = *translation.Plural
-			}
-			if translation.PluralFormatted != nil && *translation.PluralFormatted != "" {
-				*t.entries[languageID][key].PluralFormatted = *translation.PluralFormatted
-			}
-			if translation.Singular != nil && *translation.Singular != "" {
-				*t.entries[languageID][key].Singular = *translation.Singular
-			}
-			if translation.SingularFormatted != nil && *translation.SingularFormatted != "" {
-				*t.entries[languageID][key].SingularFormatted = *translation.SingularFormatted
 			}
 		}
 	}

@@ -9,7 +9,6 @@ import (
 	"github.com/espal-digital-development/espal-core/repositories/currencies"
 	"github.com/espal-digital-development/espal-core/repositories/languages"
 	"github.com/espal-digital-development/espal-core/repositories/regularexpressions"
-	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/repositories/userrights"
 	"github.com/espal-digital-development/espal-core/storage/filesystem"
 	"github.com/espal-digital-development/espal-core/tokenpool"
@@ -47,24 +46,8 @@ func (r *Runner) core(path string) error {
 		return errors.Trace(err)
 	}
 
-	availableLanguages := map[uint16]string{}
-	for _, languageCode := range r.services.config.AvailableLanguages() {
-		language, err := r.repositories.languages.ByCode(languageCode)
-		if err != nil {
-			return errors.Trace(err)
-		}
-		availableLanguages[language.ID()] = language.Code()
-	}
-	r.repositories.translations, err = translations.New(r.services.logger, r.storages.translations, availableLanguages)
-	if err != nil {
+	if err := r.languagesAndTranslations(); err != nil {
 		return errors.Trace(err)
-	}
-	// TODO :: 777777 :: Load translations from the module here
-	for k := range r.modulesRegistry {
-		translations := r.modulesRegistry[k].GetTranslations()
-		if translations == nil {
-			continue
-		}
 	}
 
 	r.repositories.countries, err = countries.New(r.repositories.languages, true)
