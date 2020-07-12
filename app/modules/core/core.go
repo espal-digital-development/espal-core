@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"runtime"
 
+	spaPage "github.com/espal-digital-development/espal-core/app/modules/core/app/pages/spa"
+	"github.com/espal-digital-development/espal-core/app/modules/core/app/routes/spa"
 	"github.com/espal-digital-development/espal-core/modules"
 	"github.com/espal-digital-development/espal-core/modules/assets"
 	"github.com/espal-digital-development/espal-core/modules/meta"
@@ -59,7 +61,11 @@ func New() (*modules.Module, error) {
 		return nil, errors.Trace(err)
 	}
 
-	routes, err := routes.New()
+	routes, err := routes.New(&routes.Config{
+		Entries: map[string]routes.Handler{
+			"/Spa": spa.New(spaPage.New()),
+		},
+	})
 	if err != nil {
 		return nil, errors.Trace(err)
 	}

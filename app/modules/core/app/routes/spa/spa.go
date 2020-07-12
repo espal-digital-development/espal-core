@@ -1,7 +1,7 @@
 package spa
 
 import (
-	page "github.com/espal-digital-development/espal-core-model/pages/spa"
+	page "github.com/espal-digital-development/espal-core/app/modules/core/app/pages/spa"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
 )
 

@@ -1,6 +1,7 @@
 package runner
 
 import (
+	"github.com/espal-digital-development/espal-core/modules/routes"
 	"github.com/espal-digital-development/espal-core/routing/assethandler"
 	"github.com/espal-digital-development/espal-core/routing/routes/health"
 	"github.com/juju/errors"
@@ -33,5 +34,19 @@ func (r *Runner) routes() error {
 	if err := r.routesAdmin(); err != nil {
 		return errors.Trace(err)
 	}
+
+	for k := range r.modulesRegistry {
+		moduleRoutes := r.modulesRegistry[k].GetRoutes()
+		if moduleRoutes == nil {
+			continue
+		}
+		err := moduleRoutes.Iterate(func(path string, h routes.Handler) error {
+			return errors.Trace(r.services.router.RegisterRoute(path, h))
+		})
+		if err != nil {
+			return errors.Trace(err)
+		}
+	}
+
 	return nil
 }
