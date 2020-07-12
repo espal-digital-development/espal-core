@@ -10,7 +10,6 @@ import (
 	_ "net/http/pprof" // nolint:gosec // The registration is safely forced to a randomly generated path
 	"os"
 
-	"github.com/espal-digital-development/espal-core/app/modules/core"
 	"github.com/espal-digital-development/espal-core/runner"
 	"github.com/juju/errors"
 	_ "github.com/lib/pq"
@@ -35,15 +34,5 @@ func Start(path string) error {
 		log.Fatal(err)
 	}
 	app.SetPath(path)
-
-	// TODO :: 777777 This registration goes into the actual app style
-	coreModule, err := core.New()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := app.RegisterModule(coreModule); err != nil {
-		log.Fatal(err)
-	}
-
 	return app.RunNonBlocking()
 }

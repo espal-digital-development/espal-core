@@ -7,7 +7,7 @@ import (
 func (h *AssetHandler) registerStylesheetsRoutes() error {
 	var gzipData []byte
 	var loopErr error
-	h.stylesheetsStorage.Iterate(func(path string, data []byte, err error) bool {
+	err := h.stylesheetsStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
 			loopErr = errors.Trace(err)
 			return false
@@ -38,5 +38,8 @@ func (h *AssetHandler) registerStylesheetsRoutes() error {
 
 		return true
 	})
+	if err != nil {
+		return errors.Trace(err)
+	}
 	return errors.Trace(loopErr)
 }

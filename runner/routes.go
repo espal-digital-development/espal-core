@@ -2,8 +2,11 @@ package runner
 
 import (
 	"github.com/espal-digital-development/espal-core/modules/routes"
+	authpage "github.com/espal-digital-development/espal-core/pages/auth"
 	"github.com/espal-digital-development/espal-core/routing/assethandler"
+	"github.com/espal-digital-development/espal-core/routing/routes/auth"
 	"github.com/espal-digital-development/espal-core/routing/routes/health"
+	authform "github.com/espal-digital-development/espal-core/validators/forms/auth"
 	"github.com/juju/errors"
 	"github.com/tdewolff/minify"
 )
@@ -19,20 +22,14 @@ func (r *Runner) routes() error {
 	if err := r.services.router.RegisterRoute("/health", health.New()); err != nil {
 		return errors.Trace(err)
 	}
-
+	if err := r.services.router.RegisterRoute("/Auth", auth.New(authform.New(r.services.validators, r.stores.user),
+		authpage.New())); err != nil {
+		return errors.Trace(err)
+	}
 	if r.services.config.Pprof() {
 		if err := r.routesPprof(); err != nil {
 			return errors.Trace(err)
 		}
-	}
-	if err := r.routesAPI(); err != nil {
-		return errors.Trace(err)
-	}
-	if err := r.routesFrontend(); err != nil {
-		return errors.Trace(err)
-	}
-	if err := r.routesAdmin(); err != nil {
-		return errors.Trace(err)
 	}
 
 	for k := range r.modulesRegistry {

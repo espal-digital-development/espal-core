@@ -9,7 +9,7 @@ import (
 
 func (h *AssetHandler) registerFilesRoutes() error {
 	var loopErr error
-	h.publicRootFilesStorage.Iterate(func(path string, data []byte, err error) bool {
+	err := h.publicRootFilesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") {
 			return true
 		}
@@ -19,11 +19,14 @@ func (h *AssetHandler) registerFilesRoutes() error {
 		}
 		return true
 	})
+	if err != nil {
+		return errors.Trace(err)
+	}
 	if loopErr != nil {
 		return errors.Trace(loopErr)
 	}
 
-	h.publicFilesStorage.Iterate(func(path string, data []byte, err error) bool {
+	err = h.publicFilesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") {
 			return true
 		}
@@ -33,6 +36,9 @@ func (h *AssetHandler) registerFilesRoutes() error {
 		}
 		return true
 	})
+	if err != nil {
+		return errors.Trace(err)
+	}
 	return errors.Trace(loopErr)
 }
 

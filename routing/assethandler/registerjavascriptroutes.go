@@ -9,7 +9,7 @@ import (
 func (h *AssetHandler) registerJavaScriptsRoutes() error {
 	var gzipData []byte
 	var loopErr error
-	h.javaScriptStorage.Iterate(func(path string, data []byte, err error) bool {
+	err := h.javaScriptStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
 			loopErr = err
 			return false
@@ -42,5 +42,8 @@ func (h *AssetHandler) registerJavaScriptsRoutes() error {
 		}
 		return true
 	})
+	if err != nil {
+		return errors.Trace(err)
+	}
 	return errors.Trace(loopErr)
 }

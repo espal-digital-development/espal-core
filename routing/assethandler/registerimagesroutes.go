@@ -17,7 +17,7 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		"svg":  true,
 	}
 	var loopErr error
-	h.imagesStorage.Iterate(func(path string, data []byte, err error) bool {
+	err := h.imagesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
 			loopErr = err
 			return false
@@ -72,5 +72,8 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		}
 		return true
 	})
+	if err != nil {
+		return errors.Trace(err)
+	}
 	return errors.Trace(loopErr)
 }
