@@ -50,7 +50,7 @@ func (a *Assets) SetStylesheets(storage storage) error {
 	if a.stylesheetsPath == "" {
 		return nil
 	}
-	return a.loadAllFiles(a.stylesheetsPath, []string{".css"}, storage)
+	return a.loadAllFiles(a.stylesheetsPath, []string{".css", ".map"}, storage)
 }
 
 // SetJavaScript loads in all JavaSript data into the given storage.
@@ -58,7 +58,7 @@ func (a *Assets) SetJavaScript(storage storage) error {
 	if a.javaScriptPath == "" {
 		return nil
 	}
-	return a.loadAllFiles(a.javaScriptPath, []string{".js"}, storage)
+	return a.loadAllFiles(a.javaScriptPath, []string{".js", ".map"}, storage)
 }
 
 func (a *Assets) loadAllFiles(subjectPath string, extensions []string, storage storage) error {
