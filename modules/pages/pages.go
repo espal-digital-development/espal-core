@@ -1,7 +1,6 @@
 package pages
 
-type Pages struct {
-}
+type Pages struct{}
 
 // New returns a new instance of Pages.
 func New() (*Pages, error) {

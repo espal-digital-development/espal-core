@@ -1,7 +1,6 @@
 package databasemigrations
 
-type DatabaseMigrations struct {
-}
+type DatabaseMigrations struct{}
 
 // New returns a new instance of DatabaseMigrations.
 func New() (*DatabaseMigrations, error) {

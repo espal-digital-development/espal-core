@@ -5,8 +5,7 @@ import (
 )
 
 // Route processor.
-type Route struct {
-}
+type Route struct{}
 
 // Handle route handler.
 func (r *Route) Handle(context contexts.Context) {

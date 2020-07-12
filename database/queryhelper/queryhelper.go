@@ -17,8 +17,7 @@ type Helper interface {
 }
 
 // QueryHelper is an assistant service to help build and mutate queries.
-type QueryHelper struct {
-}
+type QueryHelper struct{}
 
 // BuildDeleteWhereInIds takes a table name and field name to match the given
 // ids against to build a DELETE WHERE IN query.

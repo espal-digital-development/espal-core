@@ -32,8 +32,7 @@ func (r *Runner) routesAPI() error {
 	return nil
 }
 
-type apiEndPointNotImplemented struct {
-}
+type apiEndPointNotImplemented struct{}
 
 func (a *apiEndPointNotImplemented) Handle(context contexts.Context) {
 	if _, err := context.WriteString("This endpoint is not implemented yet."); err != nil {
