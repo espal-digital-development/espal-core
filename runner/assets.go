@@ -19,21 +19,9 @@ func (r *Runner) assets() error {
 	}
 
 	assetsPublicRootFiles := memory.New()
-	if err := assetsPublicRootFiles.LoadAllFromPath(r.services.config.PublicRootFilesAssetsPath()); err != nil {
-		return errors.Trace(err)
-	}
 	assetsImages := memory.New()
-	if err := assetsImages.LoadAllFromPath(r.services.config.ImagesAssetsPath()); err != nil {
-		return errors.Trace(err)
-	}
 	assetsStylesheets := memory.New()
-	if err := assetsStylesheets.LoadAllFromPath(r.services.config.StylesheetsAssetsPath()); err != nil {
-		return errors.Trace(err)
-	}
 	assetsJavaScript := memory.New()
-	if err := assetsJavaScript.LoadAllFromPath(r.services.config.JavaScriptAssetsPath()); err != nil {
-		return errors.Trace(err)
-	}
 
 	for k := range r.modulesRegistry {
 		assets := r.modulesRegistry[k].GetAssets()
@@ -52,6 +40,19 @@ func (r *Runner) assets() error {
 		if err := assets.SetJavaScript(assetsJavaScript); err != nil {
 			return errors.Trace(err)
 		}
+	}
+
+	if err := assetsPublicRootFiles.LoadAllFromPath(r.services.config.PublicRootFilesAssetsPath()); err != nil {
+		return errors.Trace(err)
+	}
+	if err := assetsImages.LoadAllFromPath(r.services.config.ImagesAssetsPath()); err != nil {
+		return errors.Trace(err)
+	}
+	if err := assetsStylesheets.LoadAllFromPath(r.services.config.StylesheetsAssetsPath()); err != nil {
+		return errors.Trace(err)
+	}
+	if err := assetsJavaScript.LoadAllFromPath(r.services.config.JavaScriptAssetsPath()); err != nil {
+		return errors.Trace(err)
 	}
 
 	r.storages.assetsPublicRootFiles = assetsPublicRootFiles
