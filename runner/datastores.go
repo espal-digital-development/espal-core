@@ -9,9 +9,9 @@ import (
 	"github.com/espal-digital-development/espal-core/stores/site"
 	"github.com/espal-digital-development/espal-core/stores/slug"
 	"github.com/espal-digital-development/espal-core/stores/user"
-	"github.com/espal-digital-development/espal-core/stores/user/address"
-	"github.com/espal-digital-development/espal-core/stores/user/contact"
-	"github.com/espal-digital-development/espal-core/stores/user/group"
+	useraddress "github.com/espal-digital-development/espal-core/stores/user/address"
+	usercontact "github.com/espal-digital-development/espal-core/stores/user/contact"
+	usergroup "github.com/espal-digital-development/espal-core/stores/user/group"
 	"github.com/juju/errors"
 )
 
@@ -22,11 +22,66 @@ type stores struct {
 	domain      domain.Store
 	site        site.Store
 	slug        slug.Store
-	userGroup   group.Store
+	userGroup   usergroup.Store
 	user        user.Store
-	userAddress address.Store
-	userContact contact.Store
+	userAddress useraddress.Store
+	userContact usercontact.Store
 	forum       forum.Store
+}
+
+// Setting returns the Setting Store.
+func (s *stores) Setting() setting.Store {
+	return s.setting
+}
+
+// CacheNotify returns the CacheNotify Store.
+func (s *stores) CacheNotify() cachenotify.Store {
+	return s.cacheNotify
+}
+
+// Session returns the Session Store.
+func (s *stores) Session() session.Store {
+	return s.session
+}
+
+// Domain returns the Domain Store.
+func (s *stores) Domain() domain.Store {
+	return s.domain
+}
+
+// Site returns the Site Store.
+func (s *stores) Site() site.Store {
+	return s.site
+}
+
+// Slug returns the Slug Store.
+func (s *stores) Slug() slug.Store {
+	return s.slug
+}
+
+// UserGroup returns the UserGroup Store.
+func (s *stores) UserGroup() usergroup.Store {
+	return s.userGroup
+}
+
+// User returns the User Store.
+func (s *stores) User() user.Store {
+	return s.user
+}
+
+// UserAddress returns the UserAddress Store.
+func (s *stores) UserAddress() useraddress.Store {
+	return s.userAddress
+}
+
+// UserContact returns the UserContact Store.
+func (s *stores) UserContact() usercontact.Store {
+	return s.userContact
+}
+
+// Forum returns the Forum Store.
+func (s *stores) Forum() forum.Store {
+	return s.forum
 }
 
 func (r *Runner) dataStores() error {
@@ -52,7 +107,7 @@ func (r *Runner) dataStores() error {
 	if r.stores.slug, err = slug.New(r.databases.selecter); err != nil {
 		return errors.Trace(err)
 	}
-	if r.stores.userGroup, err = group.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
+	if r.stores.userGroup, err = usergroup.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
 		r.services.databaseFilters, r.repositories.translations, r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
@@ -61,16 +116,21 @@ func (r *Runner) dataStores() error {
 		r.repositories.userRights); err != nil {
 		return errors.Trace(err)
 	}
-	if r.stores.userAddress, err = address.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
+	if r.stores.userAddress, err = useraddress.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
 		r.repositories.translations, r.repositories.countries, r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
-	if r.stores.userContact, err = contact.New(r.databases.selecter, r.databases.deletor,
+	if r.stores.userContact, err = usercontact.New(r.databases.selecter, r.databases.deletor,
 		r.repositories.translations); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.forum, err = forum.New(r.databases.selecter, r.databases.deletor); err != nil {
 		return errors.Trace(err)
 	}
+
+	for k := range r.modulesRegistry {
+		r.modulesRegistry[k].RegisterCoreStores(r.stores)
+	}
+
 	return nil
 }

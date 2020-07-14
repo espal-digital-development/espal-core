@@ -31,11 +31,11 @@ type Runner struct {
 	modulesRegistry []modules.Modular
 	reValidSemver   *regexp.Regexp
 
-	services     services
-	storages     storages
-	databases    databases
-	repositories repositories
-	stores       stores
+	services     *services
+	storages     *storages
+	databases    *databases
+	repositories *repositories
+	stores       *stores
 }
 
 // SetPath sets the app run path.
@@ -90,6 +90,11 @@ func (r *Runner) RunNonBlocking() error {
 func New() (*Runner, error) {
 	r := &Runner{
 		modulesRegistry: []modules.Modular{},
+		services:        &services{},
+		storages:        &storages{},
+		databases:       &databases{},
+		repositories:    &repositories{},
+		stores:          &stores{},
 	}
 	r.services.logger = logger.New()
 	var err error

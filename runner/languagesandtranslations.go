@@ -27,7 +27,10 @@ func (r *Runner) languagesAndTranslations() error {
 		return errors.Trace(err)
 	}
 	for k := range r.modulesRegistry {
-		moduleTranslations := r.modulesRegistry[k].GetTranslations()
+		moduleTranslations, err := r.modulesRegistry[k].GetTranslations()
+		if err != nil {
+			return errors.Trace(err)
+		}
 		if moduleTranslations == nil {
 			continue
 		}

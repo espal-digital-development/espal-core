@@ -24,7 +24,10 @@ func (r *Runner) assets() error {
 	assetsJavaScript := memory.New()
 
 	for k := range r.modulesRegistry {
-		assets := r.modulesRegistry[k].GetAssets()
+		assets, err := r.modulesRegistry[k].GetAssets()
+		if err != nil {
+			return errors.Trace(err)
+		}
 		if assets == nil {
 			continue
 		}

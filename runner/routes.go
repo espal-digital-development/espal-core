@@ -33,11 +33,14 @@ func (r *Runner) routes() error {
 	}
 
 	for k := range r.modulesRegistry {
-		moduleRoutes := r.modulesRegistry[k].GetRoutes()
+		moduleRoutes, err := r.modulesRegistry[k].GetRoutes()
+		if err != nil {
+			return errors.Trace(err)
+		}
 		if moduleRoutes == nil {
 			continue
 		}
-		err := moduleRoutes.Iterate(func(path string, h routes.Handler) error {
+		err = moduleRoutes.Iterate(func(path string, h routes.Handler) error {
 			return errors.Trace(r.services.router.RegisterRoute(path, h))
 		})
 		if err != nil {
