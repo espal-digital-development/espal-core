@@ -5,6 +5,7 @@ import (
 )
 
 func (h *AssetHandler) registerStylesheetsRoutes() error {
+	var brotliData []byte
 	var gzipData []byte
 	var loopErr error
 	err := h.stylesheetsStorage.Iterate(func(path string, data []byte, err error) bool {
@@ -17,6 +18,13 @@ func (h *AssetHandler) registerStylesheetsRoutes() error {
 			loopErr = errors.Trace(err)
 			return false
 		}
+		if h.configService.AssetsBrotli() {
+			brotliData, err = h.convertToBrotli(data)
+			if err != nil {
+				loopErr = errors.Trace(err)
+				return false
+			}
+		}
 		if h.configService.AssetsGZip() {
 			gzipData, err = h.convertToGzip(data)
 			if err != nil {
@@ -26,9 +34,11 @@ func (h *AssetHandler) registerStylesheetsRoutes() error {
 		}
 		err = h.routerService.RegisterRoute("/c/"+path, &route{
 			data:        data,
+			brotliData:  brotliData,
 			gzipData:    gzipData,
 			contentType: "text/css",
 			cacheMaxAge: h.configService.AssetsCacheMaxAge(),
+			allowBrotli: h.configService.AssetsBrotli(),
 			allowGzip:   h.configService.AssetsGZip(),
 		})
 		if err != nil {

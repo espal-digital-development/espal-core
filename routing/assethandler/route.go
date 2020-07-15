@@ -7,9 +7,11 @@ import (
 
 type route struct {
 	data        []byte
+	brotliData  []byte
 	gzipData    []byte
 	contentType string
 	cacheMaxAge string
+	allowBrotli bool
 	allowGzip   bool
 }
 
@@ -18,6 +20,13 @@ func (r *route) Handle(context contexts.Context) {
 	context.SetContentType(r.contentType)
 	if r.cacheMaxAge != "" {
 		context.SetHeader("Cache-Control", "max-age=3600")
+	}
+	if r.allowBrotli && context.AcceptsEncoding("br") {
+		context.SetHeader("Content-Encoding", "br")
+		if _, err := context.Write(r.brotliData); err != nil {
+			context.RenderInternalServerError(errors.Trace(err))
+		}
+		return
 	}
 	if r.allowGzip && context.AcceptsEncoding("gzip") {
 		context.SetHeader("Content-Encoding", "gzip")

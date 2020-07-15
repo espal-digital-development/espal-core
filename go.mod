@@ -3,6 +3,7 @@ module github.com/espal-digital-development/espal-core
 go 1.14
 
 require (
+	github.com/andybalholm/brotli v1.0.0
 	github.com/asaskevich/govalidator v0.0.0-20200428143746-21a406dcc535
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
 	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df

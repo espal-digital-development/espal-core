@@ -2,19 +2,26 @@ package config
 
 // Assets config section.
 type Assets interface {
-	AssetsGZip() bool
 	AssetsBrotli() bool
-	AssetsGZipFiles() bool
+	AssetsGZip() bool
 	AssetsBrotliFiles() bool
+	AssetsGZipFiles() bool
 	AssetsCacheMaxAge() string
 }
 
 type assets struct {
-	Gzip        bool
 	Brotli      bool
-	GzipFiles   bool   `yaml:"gzipFiles"`
+	Gzip        bool
 	BrotliFiles bool   `yaml:"brotliFiles"`
+	GzipFiles   bool   `yaml:"gzipFiles"`
 	CacheMaxAge string `yaml:"cacheMaxAge"` // String to not have to convert on runtime every time
+}
+
+// AssetsBrotli returns an indicator if assets calls like CSS, JS
+// and images should be served as Brotli compressed.
+// This function has the same behavior as GzipAssets.
+func (c *Configuration) AssetsBrotli() bool {
+	return c.assets.Brotli
 }
 
 // AssetsGZip returns an indicator if assets calls like CSS, JS
@@ -28,11 +35,11 @@ func (c *Configuration) AssetsGZip() bool {
 	return c.assets.Gzip
 }
 
-// AssetsBrotli returns an indicator if assets calls like CSS, JS
-// and images should be served as Brotli compressed.
+// AssetsBrotliFiles returns an indicator if files calls should be served
+// as Brotli compressed.
 // This function has the same behavior as GzipAssets.
-func (c *Configuration) AssetsBrotli() bool {
-	return c.assets.Brotli
+func (c *Configuration) AssetsBrotliFiles() bool {
+	return c.assets.BrotliFiles
 }
 
 // AssetsGZipFiles returns an indicator if files calls should be served
@@ -40,13 +47,6 @@ func (c *Configuration) AssetsBrotli() bool {
 // This function has the same behavior as GzipAssets.
 func (c *Configuration) AssetsGZipFiles() bool {
 	return c.assets.GzipFiles
-}
-
-// AssetsBrotliFiles returns an indicator if files calls should be served
-// as Brotli compressed.
-// This function has the same behavior as GzipAssets.
-func (c *Configuration) AssetsBrotliFiles() bool {
-	return c.assets.BrotliFiles
 }
 
 // AssetsCacheMaxAge returns a string variation for HTTP MaxCache.

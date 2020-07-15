@@ -5,8 +5,10 @@ import (
 	"compress/gzip"
 	"io/ioutil"
 	"os"
+	"runtime"
 	"strings"
 
+	"github.com/andybalholm/brotli"
 	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/espal-digital-development/espal-core/text"
 	"github.com/juju/errors"
@@ -20,8 +22,8 @@ func (f *Form) NewFileField(name string, storage storage.Modifyable) FormField {
 		name:              name,
 		_type:             FileFormField,
 		storage:           storage,
-		gzipFilesOnSave:   f.configService.AssetsGZipFiles(),
 		brotliFilesOnSave: f.configService.AssetsBrotliFiles(),
+		gzipFilesOnSave:   f.configService.AssetsGZipFiles(),
 	})
 }
 
@@ -37,16 +39,6 @@ func (f *formField) OptimizeImages() bool {
 	return f.optimizeImages
 }
 
-// SetGzipFilesOnSave marks the files to also be gzip compressed on save.
-func (f *formField) SetGzipFilesOnSave() {
-	f.gzipFilesOnSave = true
-}
-
-// GzipFilesOnSave returns if the files should be gzip compressed on save.
-func (f *formField) GzipFilesOnSave() bool {
-	return f.gzipFilesOnSave
-}
-
 // SetGzipFilesOnSave marks the files to also be brotli compressed on save.
 func (f *formField) SetBrotliFilesOnSave() {
 	f.brotliFilesOnSave = true
@@ -55,6 +47,16 @@ func (f *formField) SetBrotliFilesOnSave() {
 // BrotliFilesOnSave returns if the files should be brotli compressed on save.
 func (f *formField) BrotliFilesOnSave() bool {
 	return f.brotliFilesOnSave
+}
+
+// SetGzipFilesOnSave marks the files to also be gzip compressed on save.
+func (f *formField) SetGzipFilesOnSave() {
+	f.gzipFilesOnSave = true
+}
+
+// GzipFilesOnSave returns if the files should be gzip compressed on save.
+func (f *formField) GzipFilesOnSave() bool {
+	return f.gzipFilesOnSave
 }
 
 // SetAllowedMIMETypes sets the allowed MIME types that can be uploaded through the form.
@@ -192,6 +194,27 @@ func (f *formField) SaveFiles() error {
 		}
 		savedFiles = append(savedFiles, fullPath)
 
+		// TODO :: 7 Move the runtime.GOOS check to a dedicated file portion
+		if !f.HasErrors() && f.brotliFilesOnSave && runtime.GOOS != "windows" {
+			var b bytes.Buffer
+			gw := brotli.NewWriterLevel(&b, gzip.BestCompression)
+			_, err = gw.Write(fileBytes)
+			if err != nil {
+				loopErr = errors.Trace(err)
+				break
+			}
+			if err := gw.Close(); err != nil {
+				loopErr = errors.Trace(err)
+				break
+			}
+			if !f.HasErrors() {
+				if err := f.storage.Set(fullPath+".br", b.Bytes()); err != nil {
+					loopErr = errors.Trace(err)
+					break
+				}
+				savedFiles = append(savedFiles, fullPath+".br")
+			}
+		}
 		if !f.HasErrors() && f.gzipFilesOnSave {
 			var b bytes.Buffer
 			gw, err := gzip.NewWriterLevel(&b, gzip.BestCompression)
@@ -216,9 +239,6 @@ func (f *formField) SaveFiles() error {
 				savedFiles = append(savedFiles, fullPath+".gz")
 			}
 		}
-		// if f.configService.BrotliFiles() {
-		// 	// TODO :: Implement if Brotli would ever work on Windows
-		// }
 
 		f.uploadedFiles[k].SetSavedPath(fullPath)
 	}

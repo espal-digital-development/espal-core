@@ -10,7 +10,7 @@ import (
 func (h *AssetHandler) registerFilesRoutes() error {
 	var loopErr error
 	err := h.publicRootFilesStorage.Iterate(func(path string, data []byte, err error) bool {
-		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") {
+		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") || strings.HasSuffix(path, ".br") {
 			return true
 		}
 		if err := h.RegisterFileRoute(path, "", data); err != nil {
@@ -27,7 +27,7 @@ func (h *AssetHandler) registerFilesRoutes() error {
 	}
 
 	err = h.publicFilesStorage.Iterate(func(path string, data []byte, err error) bool {
-		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") {
+		if strings.HasPrefix(path, ".") || strings.HasSuffix(path, ".gz") || strings.HasSuffix(path, ".br") {
 			return true
 		}
 		if err := h.RegisterFileRoute(path, "f/", data); err != nil {
@@ -49,9 +49,10 @@ func (h *AssetHandler) RegisterPublicFileRoute(path string, data []byte) error {
 
 // RegisterFileRoute registers a dynamically created route for the given file path.
 func (h *AssetHandler) RegisterFileRoute(path string, prefix string, data []byte) error {
-	var gzipData []byte
 	var err error
-	var allowGzip bool
+	var brotliData []byte
+	var gzipData []byte
+
 	// TODO :: 77777 This is a harder problem. On one side you want to have the access to be quick as possible
 	// and serve the raw bytes. On the other side you want dynamic interaction with an underlying storage. Yet,
 	// this gives overhead. Just giving this route the data and gzipData is not good enough. Also generating
@@ -59,28 +60,37 @@ func (h *AssetHandler) RegisterFileRoute(path string, prefix string, data []byte
 	// It needs a new Storage hybrid that can also give compressed variants and has a hybrid of filesystem access
 	// but also options to keep certains files up until certain sizes or a total treshhold in memory. This engine
 	// would also need to hold metadata of the files in memory, as determining it on each load will be too taxing.
-	// if _, err := os.Stat(path + ".gz"); !os.IsNotExist(err) {
-	gzipData, err = h.convertToGzip(data)
-	if err != nil {
-		return errors.Trace(err)
+	if h.configService.AssetsBrotliFiles() {
+		brotliData, err = h.convertToBrotli(data)
+		if err != nil {
+			return errors.Trace(err)
+		}
 	}
-	allowGzip = true
-	// }
+
+	if h.configService.AssetsGZipFiles() {
+		gzipData, err = h.convertToGzip(data)
+		if err != nil {
+			return errors.Trace(err)
+		}
+	}
+
 	prefix = strings.Trim(prefix, "/")
 	if len(prefix) == 0 {
 		prefix = "/"
 	} else {
 		prefix = "/" + prefix + "/"
 	}
-	// TODO :: 7 For very big systems having all the data and gzipData in-memory might be
+	// TODO :: 7 For very big systems having all the data, brotliData and gzipData in-memory might be
 	//           an issue. Need some smart logic that detects which files are accessed
 	//           most and to priotize keeping those in memory.
 	return h.routerService.RegisterRoute(prefix+path, &route{
 		data:        data,
+		brotliData:  brotliData,
 		gzipData:    gzipData,
 		contentType: mime.TypeByExtension(path),
 		cacheMaxAge: "",
-		allowGzip:   allowGzip,
+		allowBrotli: h.configService.AssetsBrotliFiles(),
+		allowGzip:   h.configService.AssetsGZipFiles(),
 	})
 }
 

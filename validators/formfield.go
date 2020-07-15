@@ -147,10 +147,10 @@ type FormField interface {
 	SetOptimizeImages()
 	OptimizeImages() bool
 
-	SetGzipFilesOnSave()
-	GzipFilesOnSave() bool
 	SetBrotliFilesOnSave()
 	BrotliFilesOnSave() bool
+	SetGzipFilesOnSave()
+	GzipFilesOnSave() bool
 
 	SetAllowedMIMETypes(allowedMIMETypes []string)
 
@@ -237,8 +237,8 @@ type formField struct {
 	excludeHour       bool
 	excludeMinute     bool
 	excludeSecond     bool
-	gzipFilesOnSave   bool
 	brotliFilesOnSave bool
+	gzipFilesOnSave   bool
 	storage           storage.Modifyable
 }
 

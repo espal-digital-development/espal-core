@@ -34,7 +34,7 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		mimeType := mime.TypeByExtension("." + extension)
 
 		// if image.MimeType == "image/png" {
-		// 	// TODO :: 7 Enable again when it works on Windows
+		// 	// TODO :: 777777 Enable again when it works on Windows
 		// 	// shrunkenSizeInBytes, err := pngquant.Crush(files[k2], pngquant.SPEED_SLOWEST)
 		// 	// if err != nil {
 		// 	// 	return errors.Trace(err)
@@ -50,6 +50,15 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		// 	// TODO :: svgo (wrapper or cmd)
 		// }
 
+		var brotliData []byte
+		if h.configService.AssetsBrotli() {
+			brotliData, err = h.convertToBrotli(data)
+			if err != nil {
+				loopErr = errors.Trace(err)
+				return false
+			}
+		}
+
 		var gzipData []byte
 		if h.configService.AssetsGZip() {
 			gzipData, err = h.convertToGzip(data)
@@ -61,9 +70,11 @@ func (h *AssetHandler) registerImagesRoutes() error {
 
 		err = h.routerService.RegisterRoute("/i/"+path, &route{
 			data:        data,
+			brotliData:  brotliData,
 			gzipData:    gzipData,
 			contentType: mimeType,
 			cacheMaxAge: h.configService.AssetsCacheMaxAge(),
+			allowBrotli: h.configService.AssetsBrotli(),
 			allowGzip:   h.configService.AssetsGZip(),
 		})
 		if err != nil {

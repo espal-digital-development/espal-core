@@ -41,10 +41,10 @@ urls:
   admin: _adminPath
   pprof: _pprofPath
 assets:
-  gzip: true
   brotli: true
-  gzipFiles: true
+  gzip: true
   brotliFiles: true
+  gzipFiles: true
   cacheMaxAge: 60
 paths:
   server:
