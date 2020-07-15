@@ -42,7 +42,7 @@ func (a *Assets) SetImages(storage storage) error {
 	if a.imagesPath == "" {
 		return nil
 	}
-	return a.loadAllFiles(a.imagesPath, []string{".gif", ".jpg", ".jpeg", ".png", ".webp"}, storage)
+	return a.loadAllFiles(a.imagesPath, []string{".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"}, storage)
 }
 
 // SetStylesheets loads in all stylesheet data into the given storage.
