@@ -12,7 +12,7 @@ func (h *AssetHandler) registerJavaScriptsRoutes() error {
 	var loopErr error
 	err := h.javaScriptStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
-			loopErr = err
+			loopErr = errors.Trace(err)
 			return false
 		}
 		data, err = h.minifier.Bytes("application/javascript", data)

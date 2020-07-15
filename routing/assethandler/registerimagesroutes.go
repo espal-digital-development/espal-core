@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/juju/errors"
+	pngquant "github.com/yusukebe/go-pngquant"
 )
 
 func (h *AssetHandler) registerImagesRoutes() error {
@@ -19,7 +20,7 @@ func (h *AssetHandler) registerImagesRoutes() error {
 	var loopErr error
 	err := h.imagesStorage.Iterate(func(path string, data []byte, err error) bool {
 		if err != nil {
-			loopErr = err
+			loopErr = errors.Trace(err)
 			return false
 		}
 		fileNameParts := strings.Split(path, ".")
@@ -33,22 +34,23 @@ func (h *AssetHandler) registerImagesRoutes() error {
 
 		mimeType := mime.TypeByExtension("." + extension)
 
-		// if image.MimeType == "image/png" {
-		// 	// TODO :: 777777 Enable again when it works on Windows
-		// 	// shrunkenSizeInBytes, err := pngquant.Crush(files[k2], pngquant.SPEED_SLOWEST)
-		// 	// if err != nil {
-		// 	// 	return errors.Trace(err)
-		// 	// }
-		// 	// if len(shrunkenSizeInBytes) < len(image.Data) {
-		// 	// 	image.Data = shrunkenSizeInBytes
-		// 	// }
-		// } else if image.MimeType == "image/jpeg" {
-		// 	// TODO :: jpegoptim (wrapper or cmd)
-		// } else if image.MimeType == "image/gif" {
-		// 	// TODO :: gifsicle (wrapper or cmd)
-		// } else if image.MimeType == "image/svg+xml" {
-		// 	// TODO :: svgo (wrapper or cmd)
-		// }
+		switch mimeType {
+		case "image/png":
+			shrunkenSizeInBytes, err := pngquant.CompressBytes(data, "1")
+			if err != nil {
+				loopErr = errors.Trace(err)
+				return false
+			}
+			if len(shrunkenSizeInBytes) < len(data) {
+				data = shrunkenSizeInBytes
+			}
+			// case "image/jpeg":
+			// 	// TODO :: 777777 jpegoptim (wrapper or cmd)
+			// case "image/gif":
+			// 	// TODO :: 777777 gifsicle (wrapper or cmd)
+			// case "image/svg+xml":
+			// 	// TODO :: 777777 svgo (wrapper or cmd)
+		}
 
 		var brotliData []byte
 		if h.configService.AssetsBrotli() {
