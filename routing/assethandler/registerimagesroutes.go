@@ -1,11 +1,18 @@
 package assethandler
 
 import (
+	"bytes"
 	"mime"
+	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/juju/errors"
-	pngquant "github.com/yusukebe/go-pngquant"
+)
+
+const (
+	pngQuantMinSpeed = 1
+	pngQuantMaxSpeed = 10
 )
 
 func (h *AssetHandler) registerImagesRoutes() error {
@@ -36,7 +43,7 @@ func (h *AssetHandler) registerImagesRoutes() error {
 
 		switch mimeType {
 		case "image/png":
-			shrunkenSizeInBytes, err := pngquant.CompressBytes(data, "1")
+			shrunkenSizeInBytes, err := h.pngQuant(data, "1")
 			if err != nil {
 				loopErr = errors.Trace(err)
 				return false
@@ -89,4 +96,24 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		return errors.Trace(err)
 	}
 	return errors.Trace(loopErr)
+}
+
+// TODO :: 777777 Move this to it's own image service (along with other optimizers)
+
+func (h *AssetHandler) pngQuant(input []byte, speed string) (output []byte, err error) {
+	speedInt, err := strconv.Atoi(speed)
+	if err != nil {
+		return nil, errors.Trace(err)
+	}
+	if speedInt < pngQuantMinSpeed || speedInt > pngQuantMaxSpeed {
+		return nil, errors.Errorf("speed has to be between %d and %d", pngQuantMinSpeed, pngQuantMaxSpeed)
+	}
+	cmd := exec.Command("pngquant", "-", "--speed", speed)
+	cmd.Stdin = strings.NewReader(string(input))
+	var o bytes.Buffer
+	cmd.Stdout = &o
+	if err := cmd.Run(); err != nil {
+		return nil, errors.Trace(err)
+	}
+	return o.Bytes(), nil
 }
