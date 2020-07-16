@@ -2,6 +2,7 @@ package runner
 
 import (
 	"strings"
+	"time"
 
 	"github.com/espal-digital-development/espal-core/modules"
 	"github.com/juju/errors"
@@ -9,6 +10,7 @@ import (
 
 // RegisterModule register the given module into the runner app.
 func (r *Runner) RegisterModule(module modules.Modular) error {
+	start := time.Now()
 	meta := module.GetMeta()
 	if meta == nil {
 		return errors.Errorf("module meta definition is not set")
@@ -33,7 +35,8 @@ func (r *Runner) RegisterModule(module modules.Modular) error {
 				meta.UniqueIdentifier())
 		}
 	}
-	r.services.logger.Infof("Registered module `%s` v%s", meta.Name(), strings.TrimPrefix(meta.Version(), "v"))
+	r.services.logger.Infof("Registered module `%s` v%s in %v",
+		meta.Name(), strings.TrimPrefix(meta.Version(), "v"), time.Since(start))
 	r.modulesRegistry = append(r.modulesRegistry, module)
 	return nil
 }

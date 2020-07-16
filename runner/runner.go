@@ -81,6 +81,10 @@ func (r *Runner) RunNonBlocking() error {
 	r.serverStartTime = time.Now()
 	r.startRedirectNonTLSServer()
 	r.startTLSServer()
+
+	r.services.logger.Infof("Server running TLS on `%s` port %d and redirecting non-TLS from port %d",
+		r.services.config.ServerHost(), r.services.config.ServerPort(), r.services.config.ServerHTTPRedirectPort())
+
 	r.listenToSystemSignals()
 
 	return nil

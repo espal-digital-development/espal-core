@@ -62,7 +62,4 @@ func (r *Runner) startTLSServer() {
 			appRunner.services.logger.Errorf("error in server.ListenAndServeTLS: %s", err)
 		}
 	}(r)
-
-	r.services.logger.Infof("Server running TLS on `%s` port %d and redirecting non-TLS from port %d.",
-		r.services.config.ServerHost(), r.services.config.ServerPort(), r.services.config.ServerHTTPRedirectPort())
 }
