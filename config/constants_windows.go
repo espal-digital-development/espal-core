@@ -3,6 +3,6 @@
 package config
 
 const (
-	defaultAssetsBrotli      = true
-	defaultAssetsBrotliFiles = true
+	defaultAssetsBrotli      = false
+	defaultAssetsBrotliFiles = false
 )

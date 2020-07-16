@@ -1,5 +1,3 @@
-// +build !windows
-
 package config
 
 import "time"
@@ -24,9 +22,7 @@ const (
 	defaultSessionCookieName                       = "s"
 	defaultSessionExpiration                       = time.Minute * 45
 	defaultSessionRememberMeExpiration             = time.Hour * 720
-	defaultAssetsBrotli                            = true
 	defaultAssetsGzip                              = true
-	defaultAssetsBrotliFiles                       = true
 	defaultAssetsGzipFiles                         = true
 	defaultAssetsCacheMaxAge                       = "60"
 	defaultPathsServerSSLCertificateFile           = "./app/server/localhost.crt"
