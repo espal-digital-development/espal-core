@@ -7,6 +7,9 @@ import (
 	"github.com/juju/errors"
 )
 
+const non200Style = `body{font-family:open sans,helvetica neue,Helvetica,Arial,sans-serif;font-size:13px;` +
+	`background:#1c1c1c;color:#eee;}`
+
 // RenderStatusContext for status rendering.
 type RenderStatusContext interface {
 	RenderBadRequest()
@@ -53,6 +56,15 @@ func (c *HTTPContext) RenderNon200() {
 }
 
 // RenderNon200Custom gives the possibility to render a non-200 page with a custom message.
+// nolint:errcheck
 func (c *HTTPContext) RenderNon200Custom(title string, message string) {
-	c.serverError.RenderPage(c, title, message)
+	c.WriteString(`<html><head><title>`)
+	c.WriteString(title)
+	c.WriteString(`</title><style>`)
+	c.WriteString(non200Style)
+	c.WriteString(`</style></head><body><h1>`)
+	c.WriteString(title)
+	c.WriteString(`</h1><p>`)
+	c.WriteString(message)
+	c.WriteString(`</p></body></html>`)
 }

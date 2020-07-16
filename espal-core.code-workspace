@@ -34,9 +34,6 @@
 		"search.useIgnoreFiles": true,
 		"editor.wordWrap": "bounded",
 		"editor.wordWrapColumn": 1000,
-		"emmet.includeLanguages": {
-			"quicktemplate": "html"
-		},
 		"prettier.printWidth": 1000,
 		"prettier.singleQuote": true,
 		"prettier.tabWidth": 4,

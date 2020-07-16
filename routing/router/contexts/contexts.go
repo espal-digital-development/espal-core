@@ -15,11 +15,6 @@ import (
 
 var _ Factory = &Contexts{}
 
-// ServerError represents a spawner model.
-type ServerError interface {
-	RenderPage(context Context, title string, message string)
-}
-
 // Factory represents an object that facilitates the spawning of new Context objects.
 type Factory interface {
 	NewContext(request *http.Request, responseWriter http.ResponseWriter, domain Domain, site Site) Context
@@ -35,7 +30,6 @@ type Contexts struct {
 	adminMenuService       adminmenu.Menu
 	rendererService        renderer.Renderer
 	userStore              user.Store
-	serverError            ServerError
 }
 
 // NewContext returns a new instance of Context based on the given request- and router- information.
@@ -50,7 +44,6 @@ func (c *Contexts) NewContext(request *http.Request, responseWriter http.Respons
 		adminMenuService:       c.adminMenuService,
 		rendererService:        c.rendererService,
 		userStore:              c.userStore,
-		serverError:            c.serverError,
 
 		request:        request,
 		responseWriter: responseWriter,
@@ -64,8 +57,7 @@ func (c *Contexts) NewContext(request *http.Request, responseWriter http.Respons
 // New returns a new instance of Contexts.
 func New(configService config.Config, loggerService logger.Loggable, languagesRepository languages.Repository,
 	translationsRepository translations.Repository, sessionsFactory sessions.Factory,
-	adminMenuService adminmenu.Menu, rendererService renderer.Renderer, userStore user.Store,
-	serverError ServerError) *Contexts {
+	adminMenuService adminmenu.Menu, rendererService renderer.Renderer, userStore user.Store) *Contexts {
 	return &Contexts{
 		configService:          configService,
 		loggerService:          loggerService,
@@ -75,6 +67,5 @@ func New(configService config.Config, loggerService logger.Loggable, languagesRe
 		adminMenuService:       adminMenuService,
 		rendererService:        rendererService,
 		userStore:              userStore,
-		serverError:            serverError,
 	}
 }

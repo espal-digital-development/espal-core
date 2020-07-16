@@ -19,8 +19,6 @@ TODO :: Actually go a bit in depth here about the features of the business logic
 ## Internals
 Not everything starts from absolute scratch. Even tho the aim for Espal is to be as dependency-less as possible we can't pass on the ones that already make certain tasks very easy and robust. Espal uses the following amazing libraries:
 
-- [Aliaksandr Valialkin](https://github.com/valyala)'s [quicktemplate](https://github.com/valyala/quicktemplate) instead of native html templating for amazing base speeds
-- [Aliaksandr Valialkin](https://github.com/valyala)'s [fasttemplate](https://github.com/valyala/fasttemplate) for e-mail and other dynamic live rendering
 - The easy implementable and respectively lightweight [Go PostgreSQL Driver](github.com/lib/pq)
 - The handy [YAML](https://github.com/go-yaml/yaml)-to-struct library for the configuration files
 - [Brian Voelker](https://github.com/brianvoe)'s [gofakeit](https://github.com/brianvoe/gofakeit) for fast data fills and variations to test certain parts of the system

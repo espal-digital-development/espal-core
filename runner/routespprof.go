@@ -1,7 +1,6 @@
 package runner
 
 import (
-	overviewpage "github.com/espal-digital-development/espal-core/pages/pprof/overview"
 	"github.com/espal-digital-development/espal-core/routing/routes/pprof/cmdline"
 	"github.com/espal-digital-development/espal-core/routing/routes/pprof/overview"
 	"github.com/espal-digital-development/espal-core/routing/routes/pprof/posts"
@@ -17,7 +16,7 @@ import (
 func (r *Runner) routesPprof() error {
 	pprofPrefix := r.services.config.PprofURL() + "/"
 
-	if err := r.services.router.RegisterRoute(r.services.config.PprofURL(), overview.New(overviewpage.New())); err != nil {
+	if err := r.services.router.RegisterRoute(r.services.config.PprofURL(), overview.New()); err != nil {
 		return errors.Trace(err)
 	}
 	if err := r.services.router.RegisterRoute(pprofPrefix+"cmdline", cmdline.New()); err != nil {

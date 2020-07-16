@@ -3,7 +3,6 @@ package auth
 import (
 	"net/http"
 
-	page "github.com/espal-digital-development/espal-core/pages/auth"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
 	"github.com/espal-digital-development/espal-core/validators/forms/auth"
 	"github.com/juju/errors"
@@ -12,7 +11,6 @@ import (
 // Route processor.
 type Route struct {
 	authFormValidator auth.Factory
-	authPageFactory   page.Factory
 }
 
 // Handle route handler.
@@ -50,13 +48,24 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	r.authPageFactory.NewPage(context, form.View()).Render()
+	// TODO :: 777777 Implement nice native rendered output
+	// 	<div class="simpleBox">
+	//     {%s= p.form.Errors() %}
+	//     <h1>{%s p.Translate("authentication") %}</h1>
+	//     {%s= p.form.Open() %}
+	//         {%s= p.form.Field("_uname") %}
+	//         {%s= p.form.Field("_t") %}
+	//         {%s= p.form.Field("email") %}<br>
+	//         {%s= p.form.Field("password") %}<br>
+	//         {%s= p.form.Field("rememberMe") %}<br>
+	//         <input type="submit" value="{%s p.Translate("login") %}">
+	//     </form>
+	// </div>
 }
 
 // New returns a new instance of Route.
-func New(authFormValidator auth.Factory, authPageFactory page.Factory) *Route {
+func New(authFormValidator auth.Factory) *Route {
 	return &Route{
 		authFormValidator: authFormValidator,
-		authPageFactory:   authPageFactory,
 	}
 }

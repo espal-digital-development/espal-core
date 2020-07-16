@@ -83,7 +83,6 @@ type HTTPContext struct {
 	adminMenuService       adminmenu.Menu
 	rendererService        renderer.Renderer
 	userStore              user.Store
-	serverError            ServerError
 
 	request        *http.Request
 	responseWriter http.ResponseWriter
