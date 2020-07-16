@@ -44,12 +44,12 @@ func (h *AssetHandler) registerImagesRoutes() error {
 			if len(shrunkenSizeInBytes) < len(data) {
 				data = shrunkenSizeInBytes
 			}
-			// case "image/jpeg":
-			// 	// TODO :: 777777 jpegoptim (wrapper or cmd)
-			// case "image/gif":
-			// 	// TODO :: 777777 gifsicle (wrapper or cmd)
-			// case "image/svg+xml":
-			// 	// TODO :: 777777 svgo (wrapper or cmd)
+		case "image/jpeg":
+			// TODO :: 777777 jpegoptim (wrapper or cmd)
+		case "image/gif":
+			// TODO :: 777777 gifsicle (wrapper or cmd)
+		case "image/svg+xml":
+			// TODO :: 777777 svgo (wrapper or cmd)
 		}
 
 		var brotliData []byte

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/gzip"
 
+	"github.com/andybalholm/brotli"
 	"github.com/espal-digital-development/espal-core/config"
 	"github.com/espal-digital-development/espal-core/routing/router"
 	"github.com/espal-digital-development/espal-core/storage"
@@ -59,6 +60,19 @@ func (h *AssetHandler) RegisterAll() error {
 	}
 
 	return nil
+}
+
+func (h *AssetHandler) convertToBrotli(bts []byte) ([]byte, error) {
+	var b bytes.Buffer
+	w := brotli.NewWriterLevel(&b, brotli.BestCompression)
+	_, err := w.Write(bts)
+	if err != nil {
+		return make([]byte, 0), errors.Trace(err)
+	}
+	if err := w.Close(); err != nil {
+		return make([]byte, 0), errors.Trace(err)
+	}
+	return b.Bytes(), nil
 }
 
 func (h *AssetHandler) convertToGzip(bts []byte) ([]byte, error) {
