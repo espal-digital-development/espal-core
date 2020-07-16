@@ -1,18 +1,10 @@
 package assethandler
 
 import (
-	"bytes"
 	"mime"
-	"os/exec"
-	"strconv"
 	"strings"
 
 	"github.com/juju/errors"
-)
-
-const (
-	pngQuantMinSpeed = 1
-	pngQuantMaxSpeed = 10
 )
 
 func (h *AssetHandler) registerImagesRoutes() error {
@@ -38,25 +30,15 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		if _, ok := allowedExtensions[extension]; !ok {
 			return true
 		}
-
 		mimeType := mime.TypeByExtension("." + extension)
 
-		switch mimeType {
-		case "image/png":
-			shrunkenSizeInBytes, err := h.pngQuant(data, "1")
-			if err != nil {
-				loopErr = errors.Trace(err)
-				return false
-			}
-			if len(shrunkenSizeInBytes) < len(data) {
-				data = shrunkenSizeInBytes
-			}
-		case "image/jpeg":
-			// TODO :: 777777 jpegoptim (wrapper or cmd)
-		case "image/gif":
-			// TODO :: 777777 gifsicle (wrapper or cmd)
-		case "image/svg+xml":
-			// TODO :: 777777 svgo (wrapper or cmd)
+		newData, changed, err := h.imageOptimizer.ForMIMEType(data, mimeType)
+		if err != nil {
+			loopErr = errors.Trace(err)
+			return false
+		}
+		if changed {
+			data = newData
 		}
 
 		var brotliData []byte
@@ -96,24 +78,4 @@ func (h *AssetHandler) registerImagesRoutes() error {
 		return errors.Trace(err)
 	}
 	return errors.Trace(loopErr)
-}
-
-// TODO :: 777777 Move this to it's own image optimizer service (along with other optimizers)
-
-func (h *AssetHandler) pngQuant(input []byte, speed string) (output []byte, err error) {
-	speedInt, err := strconv.Atoi(speed)
-	if err != nil {
-		return nil, errors.Trace(err)
-	}
-	if speedInt < pngQuantMinSpeed || speedInt > pngQuantMaxSpeed {
-		return nil, errors.Errorf("speed has to be between %d and %d", pngQuantMinSpeed, pngQuantMaxSpeed)
-	}
-	cmd := exec.Command("pngquant", "-", "--speed", speed)
-	cmd.Stdin = strings.NewReader(string(input))
-	var o bytes.Buffer
-	cmd.Stdout = &o
-	if err := cmd.Run(); err != nil {
-		return nil, errors.Trace(err)
-	}
-	return o.Bytes(), nil
 }

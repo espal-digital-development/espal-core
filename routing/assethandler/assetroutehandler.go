@@ -6,6 +6,7 @@ import (
 
 	"github.com/andybalholm/brotli"
 	"github.com/espal-digital-development/espal-core/config"
+	"github.com/espal-digital-development/espal-core/image/optimizer"
 	"github.com/espal-digital-development/espal-core/routing/router"
 	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/juju/errors"
@@ -29,6 +30,7 @@ type AssetHandler struct {
 	configService          config.Config
 	routerService          router.Router
 	minifier               *minify.M
+	imageOptimizer         optimizer.Optimizable
 	stylesheetsStorage     storage.Storage
 	javaScriptStorage      storage.Storage
 	imagesStorage          storage.Storage
@@ -93,12 +95,14 @@ func (h *AssetHandler) convertToGzip(bts []byte) ([]byte, error) {
 
 // New returns a new instance of Handler.
 func New(configService config.Config, routerService router.Router, minifier *minify.M,
-	stylesheetsStorage storage.Storage, javaScriptStorage storage.Storage, imagesStorage storage.Storage,
-	publicFilesStorage storage.Storage, publicRootFilesStorage storage.Storage) *AssetHandler {
+	imageOptimizer optimizer.Optimizable, stylesheetsStorage storage.Storage, javaScriptStorage storage.Storage,
+	imagesStorage storage.Storage, publicFilesStorage storage.Storage,
+	publicRootFilesStorage storage.Storage) *AssetHandler {
 	return &AssetHandler{
 		configService:          configService,
 		routerService:          routerService,
 		minifier:               minifier,
+		imageOptimizer:         imageOptimizer,
 		stylesheetsStorage:     stylesheetsStorage,
 		javaScriptStorage:      javaScriptStorage,
 		imagesStorage:          imagesStorage,

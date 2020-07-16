@@ -4,6 +4,7 @@ import (
 	"path/filepath"
 
 	"github.com/espal-digital-development/espal-core/config"
+	"github.com/espal-digital-development/espal-core/image/optimizer"
 	"github.com/espal-digital-development/espal-core/mailer"
 	"github.com/espal-digital-development/espal-core/repositories/countries"
 	"github.com/espal-digital-development/espal-core/repositories/currencies"
@@ -61,6 +62,10 @@ func (r *Runner) core(path string) error {
 
 	r.repositories.userRights = userrights.New()
 	r.repositories.regularExpressions, err = regularexpressions.New()
+	if err != nil {
+		return errors.Trace(err)
+	}
+	r.services.imageOptimizer, err = optimizer.New()
 	if err != nil {
 		return errors.Trace(err)
 	}

@@ -6,15 +6,23 @@ type Assets interface {
 	AssetsGZip() bool
 	AssetsBrotliFiles() bool
 	AssetsGZipFiles() bool
+	OptimizePngs() bool
+	OptimizeJpegs() bool
+	OptimizeGifs() bool
+	OptimizeSvgs() bool
 	AssetsCacheMaxAge() string
 }
 
 type assets struct {
-	Brotli      bool
-	Gzip        bool
-	BrotliFiles bool   `yaml:"brotliFiles"`
-	GzipFiles   bool   `yaml:"gzipFiles"`
-	CacheMaxAge string `yaml:"cacheMaxAge"` // String to not have to convert on runtime every time
+	Brotli        bool
+	Gzip          bool
+	BrotliFiles   bool   `yaml:"brotliFiles"`
+	GzipFiles     bool   `yaml:"gzipFiles"`
+	OptimizePngs  bool   `yaml:"optimizePngs"`
+	OptimizeJpegs bool   `yaml:"optimizeJpegs"`
+	OptimizeGifs  bool   `yaml:"optimizeGifs"`
+	OptimizeSvgs  bool   `yaml:"optimizeSvgs"`
+	CacheMaxAge   string `yaml:"cacheMaxAge"` // String to not have to convert on runtime every time
 }
 
 // AssetsBrotli returns an indicator if assets calls like CSS, JS
@@ -47,6 +55,30 @@ func (c *Configuration) AssetsBrotliFiles() bool {
 // This function has the same behavior as GzipAssets.
 func (c *Configuration) AssetsGZipFiles() bool {
 	return c.assets.GzipFiles
+}
+
+// OptimizePngs returns an indicator if the system should attempt to optimize
+// PNG assets that get loaded.
+func (c *Configuration) OptimizePngs() bool {
+	return c.assets.OptimizePngs
+}
+
+// OptimizeJpegs returns an indicator if the system should attempt to optimize
+// JPEG assets that get loaded.
+func (c *Configuration) OptimizeJpegs() bool {
+	return c.assets.OptimizeJpegs
+}
+
+// OptimizeGifs returns an indicator if the system should attempt to optimize
+// GIF assets that get loaded.
+func (c *Configuration) OptimizeGifs() bool {
+	return c.assets.OptimizeGifs
+}
+
+// OptimizeSvgs returns an indicator if the system should attempt to optimize
+// SVG assets that get loaded.
+func (c *Configuration) OptimizeSvgs() bool {
+	return c.assets.OptimizeSvgs
 }
 
 // AssetsCacheMaxAge returns a string variation for HTTP MaxCache.

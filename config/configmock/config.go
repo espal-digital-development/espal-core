@@ -51,6 +51,10 @@ var (
 	lockConfigMockLanguageIsAvailable                sync.RWMutex
 	lockConfigMockLanguages                          sync.RWMutex
 	lockConfigMockLogging                            sync.RWMutex
+	lockConfigMockOptimizeGifs                       sync.RWMutex
+	lockConfigMockOptimizeJpegs                      sync.RWMutex
+	lockConfigMockOptimizePngs                       sync.RWMutex
+	lockConfigMockOptimizeSvgs                       sync.RWMutex
 	lockConfigMockPprof                              sync.RWMutex
 	lockConfigMockPprofURL                           sync.RWMutex
 	lockConfigMockPrivateFilesAssetsPath             sync.RWMutex
@@ -204,6 +208,18 @@ var _ config.Config = &ConfigMock{}
 //             },
 //             LoggingFunc: func() bool {
 // 	               panic("mock out the Logging method")
+//             },
+//             OptimizeGifsFunc: func() bool {
+// 	               panic("mock out the OptimizeGifs method")
+//             },
+//             OptimizeJpegsFunc: func() bool {
+// 	               panic("mock out the OptimizeJpegs method")
+//             },
+//             OptimizePngsFunc: func() bool {
+// 	               panic("mock out the OptimizePngs method")
+//             },
+//             OptimizeSvgsFunc: func() bool {
+// 	               panic("mock out the OptimizeSvgs method")
 //             },
 //             PprofFunc: func() bool {
 // 	               panic("mock out the Pprof method")
@@ -392,6 +408,18 @@ type ConfigMock struct {
 	// LoggingFunc mocks the Logging method.
 	LoggingFunc func() bool
 
+	// OptimizeGifsFunc mocks the OptimizeGifs method.
+	OptimizeGifsFunc func() bool
+
+	// OptimizeJpegsFunc mocks the OptimizeJpegs method.
+	OptimizeJpegsFunc func() bool
+
+	// OptimizePngsFunc mocks the OptimizePngs method.
+	OptimizePngsFunc func() bool
+
+	// OptimizeSvgsFunc mocks the OptimizeSvgs method.
+	OptimizeSvgsFunc func() bool
+
 	// PprofFunc mocks the Pprof method.
 	PprofFunc func() bool
 
@@ -575,6 +603,18 @@ type ConfigMock struct {
 		}
 		// Logging holds details about calls to the Logging method.
 		Logging []struct {
+		}
+		// OptimizeGifs holds details about calls to the OptimizeGifs method.
+		OptimizeGifs []struct {
+		}
+		// OptimizeJpegs holds details about calls to the OptimizeJpegs method.
+		OptimizeJpegs []struct {
+		}
+		// OptimizePngs holds details about calls to the OptimizePngs method.
+		OptimizePngs []struct {
+		}
+		// OptimizeSvgs holds details about calls to the OptimizeSvgs method.
+		OptimizeSvgs []struct {
 		}
 		// Pprof holds details about calls to the Pprof method.
 		Pprof []struct {
@@ -1704,6 +1744,110 @@ func (mock *ConfigMock) LoggingCalls() []struct {
 	lockConfigMockLogging.RLock()
 	calls = mock.calls.Logging
 	lockConfigMockLogging.RUnlock()
+	return calls
+}
+
+// OptimizeGifs calls OptimizeGifsFunc.
+func (mock *ConfigMock) OptimizeGifs() bool {
+	if mock.OptimizeGifsFunc == nil {
+		panic("ConfigMock.OptimizeGifsFunc: method is nil but Config.OptimizeGifs was just called")
+	}
+	callInfo := struct {
+	}{}
+	lockConfigMockOptimizeGifs.Lock()
+	mock.calls.OptimizeGifs = append(mock.calls.OptimizeGifs, callInfo)
+	lockConfigMockOptimizeGifs.Unlock()
+	return mock.OptimizeGifsFunc()
+}
+
+// OptimizeGifsCalls gets all the calls that were made to OptimizeGifs.
+// Check the length with:
+//     len(mockedConfig.OptimizeGifsCalls())
+func (mock *ConfigMock) OptimizeGifsCalls() []struct {
+} {
+	var calls []struct {
+	}
+	lockConfigMockOptimizeGifs.RLock()
+	calls = mock.calls.OptimizeGifs
+	lockConfigMockOptimizeGifs.RUnlock()
+	return calls
+}
+
+// OptimizeJpegs calls OptimizeJpegsFunc.
+func (mock *ConfigMock) OptimizeJpegs() bool {
+	if mock.OptimizeJpegsFunc == nil {
+		panic("ConfigMock.OptimizeJpegsFunc: method is nil but Config.OptimizeJpegs was just called")
+	}
+	callInfo := struct {
+	}{}
+	lockConfigMockOptimizeJpegs.Lock()
+	mock.calls.OptimizeJpegs = append(mock.calls.OptimizeJpegs, callInfo)
+	lockConfigMockOptimizeJpegs.Unlock()
+	return mock.OptimizeJpegsFunc()
+}
+
+// OptimizeJpegsCalls gets all the calls that were made to OptimizeJpegs.
+// Check the length with:
+//     len(mockedConfig.OptimizeJpegsCalls())
+func (mock *ConfigMock) OptimizeJpegsCalls() []struct {
+} {
+	var calls []struct {
+	}
+	lockConfigMockOptimizeJpegs.RLock()
+	calls = mock.calls.OptimizeJpegs
+	lockConfigMockOptimizeJpegs.RUnlock()
+	return calls
+}
+
+// OptimizePngs calls OptimizePngsFunc.
+func (mock *ConfigMock) OptimizePngs() bool {
+	if mock.OptimizePngsFunc == nil {
+		panic("ConfigMock.OptimizePngsFunc: method is nil but Config.OptimizePngs was just called")
+	}
+	callInfo := struct {
+	}{}
+	lockConfigMockOptimizePngs.Lock()
+	mock.calls.OptimizePngs = append(mock.calls.OptimizePngs, callInfo)
+	lockConfigMockOptimizePngs.Unlock()
+	return mock.OptimizePngsFunc()
+}
+
+// OptimizePngsCalls gets all the calls that were made to OptimizePngs.
+// Check the length with:
+//     len(mockedConfig.OptimizePngsCalls())
+func (mock *ConfigMock) OptimizePngsCalls() []struct {
+} {
+	var calls []struct {
+	}
+	lockConfigMockOptimizePngs.RLock()
+	calls = mock.calls.OptimizePngs
+	lockConfigMockOptimizePngs.RUnlock()
+	return calls
+}
+
+// OptimizeSvgs calls OptimizeSvgsFunc.
+func (mock *ConfigMock) OptimizeSvgs() bool {
+	if mock.OptimizeSvgsFunc == nil {
+		panic("ConfigMock.OptimizeSvgsFunc: method is nil but Config.OptimizeSvgs was just called")
+	}
+	callInfo := struct {
+	}{}
+	lockConfigMockOptimizeSvgs.Lock()
+	mock.calls.OptimizeSvgs = append(mock.calls.OptimizeSvgs, callInfo)
+	lockConfigMockOptimizeSvgs.Unlock()
+	return mock.OptimizeSvgsFunc()
+}
+
+// OptimizeSvgsCalls gets all the calls that were made to OptimizeSvgs.
+// Check the length with:
+//     len(mockedConfig.OptimizeSvgsCalls())
+func (mock *ConfigMock) OptimizeSvgsCalls() []struct {
+} {
+	var calls []struct {
+	}
+	lockConfigMockOptimizeSvgs.RLock()
+	calls = mock.calls.OptimizeSvgs
+	lockConfigMockOptimizeSvgs.RUnlock()
 	return calls
 }
 

@@ -7,6 +7,7 @@ import (
 	"github.com/espal-digital-development/espal-core/database/entitymutators"
 	"github.com/espal-digital-development/espal-core/database/filters"
 	"github.com/espal-digital-development/espal-core/database/queryhelper"
+	"github.com/espal-digital-development/espal-core/image/optimizer"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/mailer"
 	"github.com/espal-digital-development/espal-core/routing/assethandler"
@@ -21,6 +22,7 @@ import (
 type services struct {
 	config              config.Config
 	logger              logger.Loggable
+	imageOptimizer      optimizer.Optimizable
 	mailer              mailer.Engine
 	tokenPool           tokenpool.Pool
 	cacheSynchronizer   cachesynchronizer.Synchronizer

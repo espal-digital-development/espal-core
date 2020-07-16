@@ -26,6 +26,10 @@ const (
 	defaultAssetsGzip                              = true
 	defaultAssetsBrotliFiles                       = true
 	defaultAssetsGzipFiles                         = true
+	defaultAssetsOptimizePngs                      = true
+	defaultAssetsOptimizeJpegs                     = true
+	defaultAssetsOptimizeGifs                      = true
+	defaultAssetsOptimizeSvgs                      = true
 	defaultAssetsCacheMaxAge                       = "60"
 	defaultPathsServerSSLCertificateFile           = "./app/server/localhost.crt"
 	defaultPathsServerSSLKeyFile                   = "./app/server/localhost.key"

@@ -45,11 +45,15 @@ func (c *Configuration) getDefaultYaml() configYaml {
 			RememberMeExpiration: defaultSessionRememberMeExpiration,
 		},
 		Assets: assets{
-			Brotli:      defaultAssetsBrotli,
-			Gzip:        defaultAssetsGzip,
-			BrotliFiles: defaultAssetsBrotliFiles,
-			GzipFiles:   defaultAssetsGzipFiles,
-			CacheMaxAge: defaultAssetsCacheMaxAge,
+			Brotli:        defaultAssetsBrotli,
+			Gzip:          defaultAssetsGzip,
+			BrotliFiles:   defaultAssetsBrotliFiles,
+			OptimizePngs:  defaultAssetsOptimizePngs,
+			OptimizeJpegs: defaultAssetsOptimizeJpegs,
+			OptimizeGifs:  defaultAssetsOptimizeGifs,
+			OptimizeSvgs:  defaultAssetsOptimizeSvgs,
+			GzipFiles:     defaultAssetsGzipFiles,
+			CacheMaxAge:   defaultAssetsCacheMaxAge,
 		},
 		Paths: paths{
 			Server: struct {
