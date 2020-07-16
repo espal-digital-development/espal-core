@@ -98,7 +98,7 @@ func (h *AssetHandler) registerImagesRoutes() error {
 	return errors.Trace(loopErr)
 }
 
-// TODO :: 777777 Move this to it's own image service (along with other optimizers)
+// TODO :: 777777 Move this to it's own image optimizer service (along with other optimizers)
 
 func (h *AssetHandler) pngQuant(input []byte, speed string) (output []byte, err error) {
 	speedInt, err := strconv.Atoi(speed)
