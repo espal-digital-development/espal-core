@@ -182,7 +182,7 @@ func (r *HTTPRouter) log(start time.Time, context contexts.RequestContext) {
 		queryString = append(queryString, context.QueryString()...)
 	}
 
-	r.loggerService.Customf("\033[0;%dm%d\033[m %6s %12v \033[0;%dm%s\033[m\033[0;%dm%s\033[m", func(s string) string {
+	r.loggerService.Customf("\033[0;%dm%d\033[m %6s %13.3f \033[0;%dm%s\033[m\033[0;%dm%s\033[m", func(s string) string {
 		return s
 	}, statusColor, statusCode, context.Method(), float64(time.Since(start).Nanoseconds())/1e3, pathColor, // nolint:gomnd
 		context.Path(), queryStringColor, queryString)
