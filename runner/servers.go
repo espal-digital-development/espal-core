@@ -61,25 +61,25 @@ func (r *Runner) startTLSServer() {
 			TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler)),
 		}
 
-		sw := &bytes.Buffer{}
-		l := log.New(sw, "", log.LstdFlags)
-		server.ErrorLog = l
+		if r.services.config.Development() && runtime.GOOS == "windows" {
+			sw := &bytes.Buffer{}
+			l := log.New(sw, "", log.LstdFlags)
+			server.ErrorLog = l
 
-		go func() {
-			for {
-				time.Sleep(time.Millisecond)
-				if sw.Len() == 0 {
-					continue
-				}
-				if r.services.config.Development() && runtime.GOOS == "windows" {
+			go func() {
+				for {
+					time.Sleep(time.Millisecond)
+					if sw.Len() == 0 {
+						continue
+					}
 					if bytes.Contains(sw.Bytes(), []byte("remote error: tls: unknown certificate")) {
 						continue
 					}
+					fmt.Println("L", sw.String())
+					sw.Reset()
 				}
-				fmt.Println("L", sw.String())
-				sw.Reset()
-			}
-		}()
+			}()
+		}
 
 		if err := server.ListenAndServeTLS(appRunner.services.config.ServerSSLCertificateFilePath(),
 			appRunner.services.config.ServerSSLKeyFilePath()); err != nil {
