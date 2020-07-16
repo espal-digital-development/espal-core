@@ -1,9 +1,7 @@
 {
 	"recommendations": [
-		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
 		"golang.go",
-		"vsatomi.vscode-quicktemplate",
 		"zhuangtongfa.material-theme"
 	]
 }
