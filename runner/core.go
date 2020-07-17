@@ -65,7 +65,7 @@ func (r *Runner) core(path string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	r.services.imageOptimizer, err = optimizer.New()
+	r.services.imageOptimizer, err = optimizer.New(r.services.config)
 	if err != nil {
 		return errors.Trace(err)
 	}
