@@ -29,7 +29,7 @@ issues:
       source: "@synthesize"
     - linters:
       - errcheck
-      source: "c(?:ontext)?\\.Write(?:String)?\\("
+      source: "\\w+\\.Write(?:String)?\\("
     - linters:
       - goerr113
       text: "use errors\\.Is\\(\\) instead" # This recommends native errors, but we use juju
