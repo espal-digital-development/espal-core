@@ -194,7 +194,7 @@ func (f *formField) SaveFiles() error {
 		// TODO :: 7 Move the runtime.GOOS check to a dedicated file portion
 		if !f.HasErrors() && f.brotliFilesOnSave && runtime.GOOS != "windows" {
 			var b bytes.Buffer
-			gw := brotli.NewWriterLevel(&b, gzip.BestCompression)
+			gw := brotli.NewWriterLevel(&b, brotli.BestCompression)
 			_, err = gw.Write(fileBytes)
 			if err != nil {
 				loopErr = errors.Trace(err)
