@@ -27,7 +27,6 @@ const (
 	defaultAssetsBrotliFiles                       = true
 	defaultAssetsGzipFiles                         = true
 	defaultAssetsOptimizePngs                      = true
-	defaultAssetsOptimizeJpegs                     = true
 	defaultAssetsOptimizeGifs                      = true
 	defaultAssetsOptimizeSvgs                      = true
 	defaultAssetsCacheMaxAge                       = "60"

@@ -1,6 +1,41 @@
 package config
 
+import (
+	"bytes"
+	"log"
+	"os/exec"
+)
+
+const notInstalledDisableErrBlueprint = "%s is enabled, but `%s` wasn't found. Disabling.."
+
+func (c *Configuration) isInstalled(name string) bool {
+	out, _ := exec.Command("which", name).CombinedOutput()
+	return bytes.Contains(out, []byte("/"+name))
+}
+
+// TODO :: Use Logger here for the log.Printf's.
 func (c *Configuration) getDefaultYaml() configYaml {
+	assetsOptimizePngs := defaultAssetsOptimizePngs
+	assetsOptimizeJpegs := defaultAssetsOptimizeJpegs
+	assetsOptimizeGifs := defaultAssetsOptimizeGifs
+	assetsOptimizeSvgs := defaultAssetsOptimizeSvgs
+	if assetsOptimizePngs && !c.isInstalled("pngquant") {
+		log.Printf(notInstalledDisableErrBlueprint, "assets.optimizePngs", "pngquant")
+		assetsOptimizePngs = false
+	}
+	if assetsOptimizeJpegs && !c.isInstalled("jpegoptim") {
+		log.Printf(notInstalledDisableErrBlueprint, "assets.optimizeJpegs", "jpegoptim")
+		assetsOptimizeJpegs = false
+	}
+	if assetsOptimizeGifs && !c.isInstalled("gifsicle") {
+		log.Printf(notInstalledDisableErrBlueprint, "assets.optimizeGifs", "gifsicle")
+		assetsOptimizeGifs = false
+	}
+	if assetsOptimizeSvgs && !c.isInstalled("svgo") {
+		log.Printf(notInstalledDisableErrBlueprint, "assets.optimizeSvgs", "svgo")
+		assetsOptimizeSvgs = false
+	}
+
 	return configYaml{
 		General: general{
 			Development:     false,
@@ -48,10 +83,10 @@ func (c *Configuration) getDefaultYaml() configYaml {
 			Brotli:        defaultAssetsBrotli,
 			Gzip:          defaultAssetsGzip,
 			BrotliFiles:   defaultAssetsBrotliFiles,
-			OptimizePngs:  defaultAssetsOptimizePngs,
-			OptimizeJpegs: defaultAssetsOptimizeJpegs,
-			OptimizeGifs:  defaultAssetsOptimizeGifs,
-			OptimizeSvgs:  defaultAssetsOptimizeSvgs,
+			OptimizePngs:  assetsOptimizePngs,
+			OptimizeJpegs: assetsOptimizeJpegs,
+			OptimizeGifs:  assetsOptimizeGifs,
+			OptimizeSvgs:  assetsOptimizeSvgs,
 			GzipFiles:     defaultAssetsGzipFiles,
 			CacheMaxAge:   defaultAssetsCacheMaxAge,
 		},
