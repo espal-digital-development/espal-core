@@ -64,8 +64,8 @@ func (f *formField) SetAllowedMIMETypes(allowedMIMETypes []string) {
 	f.allowedMIMETypes = allowedMIMETypes
 }
 
-// RemoveUploadedFiles removes any files that were uploaded on the targeted field. This is useful when a form fails after
-// the upload and it should be cleaned up.
+// RemoveUploadedFiles removes any files that were uploaded on the targeted field. This is useful when a form fails
+// after the upload and it should be cleaned up.
 // It won't delete images already linked on the loaded data.
 func (f *formField) RemoveUploadedFiles() error {
 	for k := range f.uploadedFiles {
