@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// TODO :: Reviews need to be approved/reviewed by a "user_group(s)"? (same for News publishing too)
+// TODO :: Reviews need to be approved/reviewed by a "user_group(s)"? (same for News publishing too).
 
 // ModelReview database object.
 // @synthesize

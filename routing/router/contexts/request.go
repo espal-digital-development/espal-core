@@ -78,8 +78,7 @@ func (c *HTTPContext) SetContentType(contentType string) {
 	c.responseWriter.Header().Set("Content-Type", contentType)
 }
 
-// AcceptsEncoding returns an indicator if the requesting client accepts the
-// given encoding.
+// AcceptsEncoding returns an indicator if the requesting client accepts the given encoding.
 func (c *HTTPContext) AcceptsEncoding(encoding string) bool {
 	return strings.Contains(c.request.Header.Get("Accept-Encoding"), encoding)
 }

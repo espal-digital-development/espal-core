@@ -9,20 +9,18 @@ func (a *PageActions) AddToggle() {
 	a.AddToggleWithFieldAndPath("", "")
 }
 
-// AddToggleWithField adds a Toggle PageAction with a custom field if the
-// UserRight requirements are met.
+// AddToggleWithField adds a Toggle PageAction with a custom field if the UserRight requirements are met.
 func (a *PageActions) AddToggleWithField(field string) {
 	a.AddToggleWithFieldAndPath(field, "")
 }
 
-// AddToggleWithPath adds a Toggle PageAction with a custom path if the
-// UserRight requirements are met.
+// AddToggleWithPath adds a Toggle PageAction with a custom path if the UserRight requirements are met.
 func (a *PageActions) AddToggleWithPath(path string) {
 	a.AddToggleWithFieldAndPath("", path)
 }
 
-// AddToggleWithFieldAndPath adds a Toggle PageAction with a custom field and path if the
-// UserRight requirements are met.
+// AddToggleWithFieldAndPath adds a Toggle PageAction with a custom field and path if the UserRight requirements are
+// met.
 func (a *PageActions) AddToggleWithFieldAndPath(field string, path string) {
 	if !a.ctx.HasUserRight("Update" + a.subject) {
 		return

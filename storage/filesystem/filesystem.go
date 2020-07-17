@@ -81,8 +81,7 @@ func (s *FileSystem) Iterate(iterator func(key string, value []byte, err error) 
 	return nil
 }
 
-// LoadAllFromPath walks all the files in the given path and it's subdirectories
-// and loads it into the storage.
+// LoadAllFromPath walks all the files in the given path and it's subdirectories and loads it into the storage.
 func (s *FileSystem) LoadAllFromPath(subjectPath string) error {
 	return errors.Trace(errNotSupported)
 }

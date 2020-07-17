@@ -35,7 +35,7 @@ func (b *Block) Items() []*Item {
 	return b.items
 }
 
-// // AccessRight returns the block accessRight.
+// AccessRight returns the block accessRight.
 // func (b *block) AccessRight() uint16 {
 // 	return b.accessRight
 // }
@@ -75,8 +75,8 @@ type itemToGenerate struct {
 	items       []string
 }
 
-// GenerateAdminMenuStructure generates and returns a rendered admin menu
-// for the given user (based on it's userrights) and locale.
+// GenerateAdminMenuStructure generates and returns a rendered admin menu for the given user (based on it's userrights)
+// and locale.
 func (m *AdminMenu) GenerateAdminMenuStructure(userID string, localeID uint16) ([]*Block, error) {
 	rows, err := m.selecterDatabase.Query(`SELECT ug."userRights" FROM "UserGroup" ug
 		JOIN "UserGroupUser" uu ON uu."userGroupID" = ug."id" AND uu."userID" = $1

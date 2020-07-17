@@ -126,8 +126,8 @@ func (c *HTTPContext) IsLoggedIn() bool {
 	return ok
 }
 
-// Login will register the User's ID to the session and assign it to the
-// existing cookie. If no cookie is present, a new one will be made.
+// Login will register the User's ID to the session and assign it to the existing cookie. If no cookie is present, a
+// new one will be made.
 func (c *HTTPContext) Login(userID string, rememberMe bool) error {
 	session, ok, err := c.getSession()
 	if err != nil {
@@ -150,8 +150,7 @@ func (c *HTTPContext) Login(userID string, rememberMe bool) error {
 	return nil
 }
 
-// Logout will remove the User's ID from the session and wipe
-// the cookie if it's the last value.
+// Logout will remove the User's ID from the session and wipe the cookie if it's the last value.
 func (c *HTTPContext) Logout() error {
 	if !c.IsLoggedIn() {
 		return nil

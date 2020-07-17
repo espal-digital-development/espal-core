@@ -40,8 +40,7 @@ func (g *Group) TableAlias() string {
 	return "ug"
 }
 
-// UserRightsCount returns the amount of userRights that are
-// defined in the string field.
+// UserRightsCount returns the amount of userRights that are defined in the string field.
 func (g *Group) UserRightsCount() uint {
 	if g.userRights != "" {
 		return uint(strings.Count(g.userRights, ",") + 1)
@@ -49,8 +48,7 @@ func (g *Group) UserRightsCount() uint {
 	return 0
 }
 
-// CurrenciesCount returns the amount of currencies that are
-// defined in the string field.
+// CurrenciesCount returns the amount of currencies that are defined in the string field.
 func (g *Group) CurrenciesCount() uint {
 	if g.currencies != "" {
 		return uint(strings.Count(g.currencies, ",") + 1)

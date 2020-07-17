@@ -81,8 +81,7 @@ func (m *Migrations) Run() error {
 	return nil
 }
 
-// MigrationsToRun returns the amount of migrations that will be run
-// if Run() would be triggered.
+// MigrationsToRun returns the amount of migrations that will be run if Run() would be triggered.
 func (m *Migrations) MigrationsToRun() (uint, error) {
 	migrationsToRun, err := m.migrationsToRun()
 	return uint(len(migrationsToRun)), errors.Trace(err)

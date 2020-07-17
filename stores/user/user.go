@@ -51,8 +51,7 @@ type User struct {
 	// PersonalMessages []PersonalMessage
 }
 
-// CurrenciesCount returns the amount of currencies that are
-// defined in the string field.
+// CurrenciesCount returns the amount of currencies that are defined in the string field.
 func (u *User) CurrenciesCount() uint {
 	if u.currencies != "" {
 		return uint(strings.Count(u.currencies, ",") + 1)

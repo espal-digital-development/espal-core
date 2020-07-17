@@ -30,8 +30,7 @@ func (c *HTTPContext) AdminMainMenu() []*adminmenu.Block {
 	return adminMenu
 }
 
-// GetAdminCreateUpdateTitle returns the title for the create/update
-// page for the id and subject given.
+// GetAdminCreateUpdateTitle returns the title for the create/update page for the id and subject given.
 func (c *HTTPContext) GetAdminCreateUpdateTitle(id string, subject string) string {
 	var displayTitle string
 	if id == "" {

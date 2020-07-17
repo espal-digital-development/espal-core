@@ -27,9 +27,9 @@ func (f *Form) NewFileField(name string, storage storage.Modifyable) FormField {
 	})
 }
 
-// SetOptimizeImages marks that uploaded images should be optimized as best
-// as possible for file size. This may vary per platform's available optimizers
-// and aren't quality compressors, but only encoder efficiency and meta optimizations.
+// SetOptimizeImages marks that uploaded images should be optimized as best  as possible for file size. This may vary
+// per platform's available optimizers and aren't quality compressors, but only encoder efficiency and meta
+// optimizations.
 func (f *formField) SetOptimizeImages() {
 	f.optimizeImages = true
 }
@@ -64,8 +64,7 @@ func (f *formField) SetAllowedMIMETypes(allowedMIMETypes []string) {
 	f.allowedMIMETypes = allowedMIMETypes
 }
 
-// RemoveUploadedFiles removes any files that were uploaded on
-// the targeted field. This is useful when a form fails after
+// RemoveUploadedFiles removes any files that were uploaded on the targeted field. This is useful when a form fails after
 // the upload and it should be cleaned up.
 // It won't delete images already linked on the loaded data.
 func (f *formField) RemoveUploadedFiles() error {
@@ -98,21 +97,19 @@ func (f *formField) UploadedFiles() []UploadedFile {
 	return f.uploadedFiles
 }
 
-// SetFileSaveFolder sets the specific folder (different than default)
-// where to save the file(s) too.
+// SetFileSaveFolder sets the specific folder (different than default) where to save the file(s) too.
 func (f *formField) SetFileSaveFolder(fileSaveFolder string) {
 	f.fileSaveFolder = fileSaveFolder
 }
 
-// FileSaveFolder gets the specific folder (different than default)
-// where to save the file(s) too.
+// FileSaveFolder gets the specific folder (different than default) where to save the file(s) too.
 func (f *formField) FileSaveFolder() string {
 	return f.fileSaveFolder
 }
 
-// SaveFiles saves the file(s) that were uploaded to the private
-// or public folder based on the field.PublicFile setting.
-// nolint:funlen
+// SaveFiles saves the file(s) that were uploaded to the private or public folder based on the field.PublicFile
+// setting.
+// nolint:funlen,gocyclo
 func (f *formField) SaveFiles() error {
 	if FileFormField != f._type {
 		return errors.Errorf("cannot run SaveFiles on a non-FileFormField")

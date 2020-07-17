@@ -13,8 +13,7 @@ import (
 
 var _ Modular = &Module{}
 
-// Modular represents an object that provides informational objects
-// that define the details and behavior of a module.
+// Modular represents an object that provides informational objects that define the details and behavior of a module.
 type Modular interface {
 	GetMeta() *meta.Meta
 
@@ -150,8 +149,7 @@ func (m *Module) GetRepositories() (*repositories.Repositories, error) {
 	return m.repositoriesProvider, nil
 }
 
-// RegisterCoreStores registers all stores that are provided
-// by the core to this module.
+// RegisterCoreStores registers all stores that are provided by the core to this module.
 func (m *Module) RegisterCoreStores(stores Stores) {
 	m.stores = stores
 }

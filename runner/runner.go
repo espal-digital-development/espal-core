@@ -22,8 +22,7 @@ type Application interface {
 	RunNonBlocking() error
 }
 
-// Runner is an application core that houses and manages all
-// the application's services and their interactions.
+// Runner is an application core that houses and manages all the application's services and their interactions.
 type Runner struct {
 	path            string
 	serverStartTime time.Time
@@ -43,8 +42,7 @@ func (r *Runner) SetPath(path string) {
 	r.path = path
 }
 
-// Run executes all tasks that are needed to startup the application
-// and blocks code progression.
+// Run executes all tasks that are needed to startup the application and blocks code progression.
 func (r *Runner) Run() error {
 	if err := r.RunNonBlocking(); err != nil {
 		return errors.Trace(err)

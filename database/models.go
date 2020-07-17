@@ -4,8 +4,7 @@ import (
 	"time"
 )
 
-// modelBase represents the default requirements
-// for any database model's fields.
+// modelBase represents the default requirements for any database model's fields.
 type modelBase interface {
 	ID() string
 	UpdatedByID() *string
@@ -28,49 +27,42 @@ type modelBase interface {
 	IsUpdated() bool
 }
 
-// tableMeta represents an object that
-// needs to provide meta data about the
-// database table.
+// tableMeta represents an object that needs to provide meta data about the database table.
 type tableMeta interface {
 	TableName() string
 	TableAlias() string
 }
 
-// modelBaseRequireCreator represents the
-// creator field to be required.
+// modelBaseRequireCreator represents the creator field to be required.
 type modelBaseRequireCreator interface {
 	CreatedByID() string
 	SetCreatedByID(createdByID string)
 }
 
-// modelBaseRequireCreator represents the
-// creator field to be optional.
+// modelBaseRequireCreator represents the creator field to be optional.
 type modelBaseOptionalCreator interface {
 	CreatedByID() *string
 	SetCreatedByID(createdByID *string)
 }
 
-// Model represents the default requirements
-// for any database model's fields where the
-// creator field is required (not nullable).
+// Model represents the default requirements for any database model's fields where the creator field is required
+// (not nullable).
 type Model interface {
 	tableMeta
 	modelBase
 	modelBaseRequireCreator
 }
 
-// ModelWithOptionalCreator represents the default
-// requirements for any database model's fields
-// where the creator field is not required (nullable).
+// ModelWithOptionalCreator represents the default requirements for any database model's fields where the creator field
+// is not required (nullable).
 type ModelWithOptionalCreator interface {
 	tableMeta
 	modelBase
 	modelBaseOptionalCreator
 }
 
-// TranslationModel represents the default requirements
-// for any database translation model's fields where the
-// creator field is required (not nullable).
+// TranslationModel represents the default requirements for any database translation model's fields where the creator
+// field is required (not nullable).
 type TranslationModel interface {
 	Model
 	Language() uint16

@@ -150,8 +150,7 @@ func (c *Configuration) ImagesAssetsPath() string {
 }
 
 // PublicRootFilesAssetsPath returns the public root-files path.
-// The difference from the normal public files is that
-// these will be forced on the root path of the serve.
+// The difference from the normal public files is that these will be forced on the root path of the serve.
 func (c *Configuration) PublicRootFilesAssetsPath() string {
 	return c.paths.Assets.PublicRootFiles
 }

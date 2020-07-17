@@ -34,8 +34,8 @@ func (m *Message) GetHeaders() map[string][]string {
 	return m.headers
 }
 
-// SetBody sets the body of the message. It replaces any content previously set
-// by SetBody, AddAlternative or AddAlternativeWriter.
+// SetBody sets the body of the message. It replaces any content previously set by SetBody, AddAlternative or
+// AddAlternativeWriter.
 func (m *Message) SetBody(contentType, body string) {
 	m.contentType = contentType
 	m.body = body

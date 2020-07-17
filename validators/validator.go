@@ -17,8 +17,7 @@ var _ Validator = &Form{}
 
 // TODO :: 7777 Maybe can split the Validator interface methods up into smaller ones for more flexibility.
 
-// Validator represents an object that can validate data before
-// it gets processed.
+// Validator represents an object that can validate data before it gets processed.
 type Validator interface {
 	LoadViewData() Validator
 	SetPostloadCallback(callback func(Validator))
@@ -124,8 +123,7 @@ func (f *Form) SetPreViewCallback(callback func(Validator)) {
 	f.preViewCallback = callback
 }
 
-// ContainsSelectSearch determines if at least one ChoiceType field is
-// present with Searchable active.
+// ContainsSelectSearch determines if at least one ChoiceType field is present with Searchable active.
 func (f *Form) ContainsSelectSearch() bool {
 	for _, field := range f.fields {
 		if ChoiceFormField == field.Type() && field.Searchable() {

@@ -7,14 +7,12 @@ import (
 	"github.com/juju/errors"
 )
 
-// TODO :: 7777 These need more types. Can just add on-the-fly when tests need them,
-// or maybe just add them all at once to prevent the hassle of understanding this
-// over and over again.
+// TODO :: 7777 These need more types. Can just add on-the-fly when tests need them, or maybe just add them all at once
+// to prevent the hassle of understanding this over and over again.
 
 var errNilPtr = errors.New("destination pointer is nil")
 
-// ScanInterfaceValues is a test helper to resolve scanning anonymous
-// values into each other.
+// ScanInterfaceValues is a test helper to resolve scanning anonymous values into each other.
 func ScanInterfaceValues(src []interface{}, dest []interface{}) error {
 	for k, value := range src {
 		switch v := value.(type) {

@@ -19,16 +19,14 @@ type security struct {
 	FormTokenCleanupInterval time.Duration `yaml:"formTokenCleanupInterval"`
 }
 
-// SecurityGlobalAuthentication returns if the global authentication is
-// enabled. This will cause a global login barrier over the whole
-// environment, like BasicAuth, but managed by the normal requests.
+// SecurityGlobalAuthentication returns if the global authentication is enabled. This will cause a global login barrier
+// over the whole environment, like BasicAuth, but managed by the normal requests.
 func (c *Configuration) SecurityGlobalAuthentication() bool {
 	return c.security.GlobalAuthentication
 }
 
 // SecurityBcryptRounds returns the bcrypt encryption rounds.
-// The value lies between 1 and 30 and relies on gradual improvment
-// of hardware.
+// The value lies between 1 and 30 and relies on gradual improvment of hardware.
 func (c *Configuration) SecurityBcryptRounds() int {
 	return c.security.BcryptRounds
 }

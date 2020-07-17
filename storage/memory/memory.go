@@ -64,8 +64,7 @@ func (s *Storage) Iterate(iterator func(key string, value []byte, err error) (ke
 	return nil
 }
 
-// LoadAllFromPath walks all the files in the given path and it's subdirectories
-// and loads it into the storage.
+// LoadAllFromPath walks all the files in the given path and it's subdirectories and loads it into the storage.
 func (s *Storage) LoadAllFromPath(subjectPath string) error {
 	if subjectPath == "" {
 		return nil

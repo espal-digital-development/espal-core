@@ -4,8 +4,7 @@ import (
 	"strings"
 )
 
-// RenderCreateUpdateActions will render all admin create/update
-// actions of an admin module overview page.
+// RenderCreateUpdateActions will render all admin create/update actions of an admin module overview page.
 func (f *Form) RenderCreateUpdateActions(fieldName string, url string) string {
 	out := strings.Builder{}
 

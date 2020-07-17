@@ -27,8 +27,7 @@ type entity interface {
 	UpdatedBySurname() *string
 }
 
-// Renderer represents an object that offers interactions used in
-// the rendering of visual presentation layers.
+// Renderer represents an object that offers interactions used in the rendering of visual presentation layers.
 type Renderer interface {
 	CreatedBy(entity entity, languageID uint16) string
 	UpdatedBy(entity entity, languageID uint16) string
@@ -39,8 +38,7 @@ type Renderer interface {
 	AccountMenu(ctx context) string
 }
 
-// TemplateRenderer templating facility service object for rendering simple
-// parts of printable output.
+// TemplateRenderer templating facility service object for rendering simple parts of printable output.
 type TemplateRenderer struct {
 	languagesRepository    languages.Repository
 	countriesRepository    countries.Repository

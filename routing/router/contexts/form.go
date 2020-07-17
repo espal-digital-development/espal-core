@@ -18,8 +18,7 @@ type FormContext interface {
 }
 
 // MultipartForm returns the submitted multipart form.
-// maxMemory is not the upload size limit, but purely what stays in memory and
-// the remainder being written to the disk.
+// maxMemory is not the upload size limit, but purely what stays in memory and the remainder being written to the disk.
 func (c *HTTPContext) MultipartForm(maxMemory int64) (*multipart.Form, error) {
 	if err := c.request.ParseMultipartForm(maxMemory); err != nil {
 		return nil, errors.Trace(err)

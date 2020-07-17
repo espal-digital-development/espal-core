@@ -15,8 +15,7 @@ type FlashMessageContext interface {
 	SetFlashErrorMessage(string) error
 }
 
-// HasFlashMessage returns an indicator if a consumable flash message
-// is present in the session.
+// HasFlashMessage returns an indicator if a consumable flash message is present in the session.
 func (c *HTTPContext) HasFlashMessage() bool {
 	session, ok, err := c.getSession()
 	if err != nil {

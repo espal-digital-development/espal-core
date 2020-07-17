@@ -40,14 +40,12 @@ func (v *FormView) Field(name string) string {
 	return v.validator.RenderField(name)
 }
 
-// CreateUpdateActions will render all admin create/update
-// actions of an admin module overview page.
+// CreateUpdateActions will render all admin create/update actions of an admin module overview page.
 func (v *FormView) CreateUpdateActions(fieldName string, url string) string {
 	return v.validator.RenderCreateUpdateActions(fieldName, url)
 }
 
-// ContainsSelectSearch determines if at least one ChoiceType field is
-// present with Searchable active.
+// ContainsSelectSearch determines if at least one ChoiceType field is present with Searchable active.
 func (v *FormView) ContainsSelectSearch() bool {
 	return v.validator.ContainsSelectSearch()
 }

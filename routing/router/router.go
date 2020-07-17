@@ -19,8 +19,7 @@ type handler interface {
 	Handle(contexts.Context)
 }
 
-// Router represents an object that controls routes registration and
-// serving them on an endpoint.
+// Router represents an object that controls routes registration and serving them on an endpoint.
 type Router interface {
 	RegisterRoute(path string, h handler) error
 	UnregisterRoute(path string) error

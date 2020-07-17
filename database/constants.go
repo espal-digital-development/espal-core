@@ -1,7 +1,6 @@
 package database
 
-// Translation field to identify fields as subjects
-// in other tables like translations.
+// Translation field to identify fields as subjects in other tables like translations.
 const (
 	DBTranslationFieldName        = 1
 	DBTranslationFieldDescription = 2

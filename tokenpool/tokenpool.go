@@ -8,8 +8,7 @@ import (
 
 var _ Pool = &TokenPool{}
 
-// Pool represents an object that manages
-// token-style instances.
+// Pool represents an object that manages token-style instances.
 type Pool interface {
 	Validate(key int) bool
 	Expire(key int)
@@ -32,8 +31,7 @@ func (p *TokenPool) set(key int) {
 	p.entries[key] = time.Now()
 }
 
-// Validate check the given token key and returns whether it is valid
-// and will consume it if so, expiring it instantly.
+// Validate check the given token key and returns whether it is valid and will consume it if so, expiring it instantly.
 func (p *TokenPool) Validate(key int) bool {
 	p.mutex.RLock()
 	createdAt, ok := p.entries[key]

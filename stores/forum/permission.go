@@ -4,8 +4,7 @@ import (
 	"time"
 )
 
-// Permissions are used to identify actions Users can
-// perform on Forum instances.
+// Permissions are used to identify actions Users can perform on Forum instances.
 const (
 	PermissionPost uint8 = iota + 1
 	PermissionReply

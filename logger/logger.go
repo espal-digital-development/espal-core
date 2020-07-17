@@ -24,9 +24,8 @@ type logMessage struct {
 	customCallback func(string) string
 }
 
-// Loggable represents and object that can consume messages of different types
-// representing different levels of urgency, which then get processed to be
-// written or streamed to an internally defined destination.
+// Loggable represents and object that can consume messages of different types representing different levels of
+// urgency, which then get processed to be written or streamed to an internally defined destination.
 type Loggable interface {
 	Disable()
 	Enable()

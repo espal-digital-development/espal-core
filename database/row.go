@@ -13,11 +13,10 @@ type row struct {
 	row *sql.Row
 }
 
-// Scan copies the columns from the matched row into the values
-// pointed at by dest. See the documentation on Rows.Scan for details.
-// If more than one row matches the query,
-// Scan uses the first row and discards the rest. If no row matches
-// the query, Scan returns ErrNoRows.
+// Scan copies the columns from the matched row into the values pointed at by dest. See the documentation on Rows.Scan
+// for details.
+// If more than one row matches the query, Scan uses the first row and discards the rest. If no row matches the query,
+// Scan returns ErrNoRows.
 func (r *row) Scan(dest ...interface{}) error {
 	return r.row.Scan(dest...)
 }

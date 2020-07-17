@@ -89,8 +89,7 @@ func (t *Translations) FormattedPlural(languageID uint16, key string) string {
 	return *t.entries[languageID][key].PluralFormatted
 }
 
-// LoadForLanguageFromYaml loads in the given yaml translation data from the given path
-// for the given language.
+// LoadForLanguageFromYaml loads in the given yaml translation data from the given path for the given language.
 func (t *Translations) LoadForLanguageFromYaml(languageID uint16, path string) error {
 	file, err := ioutil.ReadFile(path)
 	if err != nil {

@@ -5,8 +5,7 @@ func (a *PageActions) AddDelete() {
 	a.AddDeleteWithPath("")
 }
 
-// AddDeleteWithPath adds a Delete PageAction with a custom path if the
-// UserRight requirements are met.
+// AddDeleteWithPath adds a Delete PageAction with a custom path if the UserRight requirements are met.
 func (a *PageActions) AddDeleteWithPath(path string) {
 	if !a.ctx.HasUserRight("Delete" + a.subject) {
 		return

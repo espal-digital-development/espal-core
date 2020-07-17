@@ -10,9 +10,9 @@ import (
 	"github.com/juju/errors"
 )
 
-// TODO :: When online; some way to protect these routes? Accidentally having
-// these on might expose a system. Just relying on the user deploying with the
-// right settings is not enough. Need to make sure that the system can never be exploited.
+// TODO :: When online; some way to protect these routes? Accidentally having these on might expose a system. Just
+// relying on the user deploying with the  right settings is not enough. Need to make sure that the system can never be
+// exploited.
 func (r *Runner) routesPprof() error {
 	pprofPrefix := r.services.config.PprofURL() + "/"
 

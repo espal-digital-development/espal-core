@@ -5,14 +5,13 @@ import (
 	"github.com/juju/errors"
 )
 
-// Optimizable represents an object that can optimize
-// data based on it's type.
+// Optimizable represents an object that can optimize data based on it's type.
 type Optimizable interface {
 	ForMIMEType(data []byte, mimeType string) (newData []byte, changed bool, err error)
 }
 
-// Optimizer provides convertors that can optimize the meta-data and
-// compression and clears unneeded data from given data.
+// Optimizer provides convertors that can optimize the meta-data and compression and clears unneeded data from given
+// data.
 type Optimizer struct {
 	configService config.Config
 }

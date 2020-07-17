@@ -34,8 +34,7 @@ type Domain struct {
 	localizedName *string // @synthesize-no-db-field
 }
 
-// CurrenciesCount returns the amount of currencies that are
-// defined in the string field.
+// CurrenciesCount returns the amount of currencies that are defined in the string field.
 func (d *Domain) CurrenciesCount() uint {
 	if d.currencies != "" {
 		return uint(strings.Count(d.currencies, ",") + 1)

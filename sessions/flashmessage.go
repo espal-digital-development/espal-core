@@ -11,8 +11,7 @@ const (
 	FlashMessageTypeError
 )
 
-// Message represents an envelope that can be passed through
-// the session to display messages over different pages.
+// Message represents an envelope that can be passed through the session to display messages over different pages.
 type Message interface {
 	Type() FlashMessageType
 	SetType(_type FlashMessageType)
@@ -26,8 +25,7 @@ type Message interface {
 	Icon() string
 }
 
-// FlashMessage are messages that are meant to be consumed
-// after being read and thus deleted.
+// FlashMessage are messages that are meant to be consumed after being read and thus deleted.
 type FlashMessage struct {
 	_type   FlashMessageType
 	message string

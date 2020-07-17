@@ -20,8 +20,7 @@ type Routes struct {
 	entries map[string]Handler
 }
 
-// Iterate iterates overall route entries and returns the path and handler
-// per callback cycle.
+// Iterate iterates overall route entries and returns the path and handler per callback cycle.
 func (r *Routes) Iterate(f func(path string, h Handler) error) error {
 	if r.entries == nil {
 		return nil

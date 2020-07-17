@@ -175,9 +175,8 @@ func (c *HTTPContext) GetSlugMappedURL() string {
 // TODO :: 77 Maybe it's better to give it the Slug entity itself?
 
 // SetSlugMappedURL sets the slug URL when the route came in as a slug.
-// What this means is when a slug route was called (e.g. "/Inloggen")
-// and it internally forwards to "/Login" the current route this function
-// is called from will return "/Inloggen" to know the slug.
+// What this means is when a slug route was called (e.g. "/Inloggen") and it internally forwards to "/Login" the
+// current route this function is called from will return "/Inloggen" to know the slug.
 func (c *HTTPContext) SetSlugMappedURL(slugMappedURL string) {
 	c.slugMappedURL = slugMappedURL
 }

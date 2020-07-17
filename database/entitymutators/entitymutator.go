@@ -57,8 +57,7 @@ type EntityMutator struct {
 	parameterCount uint16
 }
 
-// Execute is a shortcut to quickly run insert/update actions
-// for Admin Create/Update routes.
+// Execute is a shortcut to quickly run insert/update actions for Admin Create/Update routes.
 func (m *EntityMutator) Execute(context contexts.Context) error {
 	var err error
 	fieldsLength := len(m.fields)

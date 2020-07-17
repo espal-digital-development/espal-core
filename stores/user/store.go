@@ -122,8 +122,8 @@ func (u *UsersStore) GetOneActiveByEmail(email string) (*User, bool, error) {
 	return nil, ok, errors.Trace(err)
 }
 
-// GetOneIDAndPasswordForActiveByEmail only fetches the ID and Password parts into the User result
-// based on the requested Email. The User must be marked Active in the database.
+// GetOneIDAndPasswordForActiveByEmail only fetches the ID and Password parts into the User result based on the
+// requested Email. The User must be marked Active in the database.
 func (u *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, bool, error) {
 	user := newUser()
 	err := u.selecterDatabase.QueryRow(u.queries["GetOneIDAndPasswordForActiveByEmail"], email).
@@ -137,8 +137,7 @@ func (u *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, b
 	return user, true, nil
 }
 
-// GetOneIDForActivationHash only fetches the ID parts into the User result
-// basde on the requetsed hash.
+// GetOneIDForActivationHash only fetches the ID parts into the User result based on the requetsed hash.
 func (u *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error) {
 	var id string
 	err := u.selecterDatabase.QueryRow(u.queries["GetOneIDForActivationHash"], hash).Scan(&id)
@@ -151,8 +150,7 @@ func (u *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error
 	return id, true, nil
 }
 
-// ExistsByEmail will check and determine if the requested User with the given
-// email address exists.
+// ExistsByEmail will check and determine if the requested User with the given email address exists.
 func (u *UsersStore) ExistsByEmail(email string) (bool, error) {
 	var exists bool
 	err := u.selecterDatabase.QueryRow(u.queries["ExistsByEmail"], email).Scan(&exists)

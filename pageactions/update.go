@@ -9,20 +9,18 @@ func (a *PageActions) AddUpdate() {
 	a.AddUpdateWithFieldAndPath("", "")
 }
 
-// AddUpdateWithField adds a Update PageAction with a custom field if the
-// UserRight requirements are met.
+// AddUpdateWithField adds a Update PageAction with a custom field if the UserRight requirements are met.
 func (a *PageActions) AddUpdateWithField(field string) {
 	a.AddUpdateWithFieldAndPath(field, "")
 }
 
-// AddUpdateWithPath adds a Update PageAction with a custom path if the
-// UserRight requirements are met.
+// AddUpdateWithPath adds a Update PageAction with a custom path if the UserRight requirements are met.
 func (a *PageActions) AddUpdateWithPath(path string) {
 	a.AddUpdateWithFieldAndPath("", path)
 }
 
-// AddUpdateWithFieldAndPath adds a Update PageAction with a custom field and path if the
-// UserRight requirements are met.
+// AddUpdateWithFieldAndPath adds a Update PageAction with a custom field and path if the UserRight requirements are
+// met.
 func (a *PageActions) AddUpdateWithFieldAndPath(field string, path string) {
 	if !a.ctx.HasUserRight("Update" + a.subject) {
 		return

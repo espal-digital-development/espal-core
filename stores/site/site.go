@@ -30,8 +30,7 @@ type Site struct {
 	localizedName *string // @synthesize-no-db-field
 }
 
-// CurrenciesCount returns the amount of currencies that are
-// defined in the string field.
+// CurrenciesCount returns the amount of currencies that are defined in the string field.
 func (s *Site) CurrenciesCount() uint {
 	if s.currencies != "" {
 		return uint(strings.Count(s.currencies, ",") + 1)

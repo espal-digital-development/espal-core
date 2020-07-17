@@ -19,8 +19,8 @@ type Helper interface {
 // QueryHelper is an assistant service to help build and mutate queries.
 type QueryHelper struct{}
 
-// BuildDeleteWhereInIds takes a table name and field name to match the given
-// ids against to build a DELETE WHERE IN query.
+// BuildDeleteWhereInIds takes a table name and field name to match the given ids against to build a DELETE WHERE IN
+// query.
 func (h *QueryHelper) BuildDeleteWhereInIds(tableName string, fieldName string,
 	ids []string) (string, []interface{}, error) {
 	idsLength := len(ids)

@@ -54,8 +54,7 @@ func (c *Currency) SetTranslation(languageID uint16, value string) {
 	c.translations[languageID] = value
 }
 
-// HasTranslation returns an indicator if the given currency
-// has a translation for the given locale.
+// HasTranslation returns an indicator if the given currency has a translation for the given locale.
 func (c *Currency) HasTranslation(localeID uint16) (string, bool) {
 	value, ok := c.translations[localeID]
 	return value, ok

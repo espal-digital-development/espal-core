@@ -38,8 +38,8 @@ func (f *formField) DetermineNoSelectText(localeID uint16) {
 	// }
 }
 
-// SetCheckValuesInChoices will check if the choices that are submitted are actually
-// present in the options list of the form, not allowing dynamic new values.
+// SetCheckValuesInChoices will check if the choices that are submitted are actually present in the options list of the
+// form, not allowing dynamic new values.
 func (f *formField) SetCheckValuesInChoices() {
 	f.checkValuesInChoices = true
 }

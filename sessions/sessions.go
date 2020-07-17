@@ -14,8 +14,7 @@ import (
 
 var _ Factory = &Sessions{}
 
-// Factory represents an object that can manage session
-// data and logic.
+// Factory represents an object that can manage session data and logic.
 type Factory interface {
 	SetRememberMe(session Session) *http.Cookie
 	New() (Session, *http.Cookie, error)
@@ -41,8 +40,7 @@ func (s *Sessions) generateCookie(session Session, expiration time.Time) *http.C
 	return cookie
 }
 
-// SetRememberMe will modify the cookie expiration time to work according
-// to the remember me setting.
+// SetRememberMe will modify the cookie expiration time to work according to the remember me setting.
 func (s *Sessions) SetRememberMe(session Session) *http.Cookie {
 	session.SetTimeout(s.configService.SessionRememberMeExpiration())
 	return s.generateCookie(session, time.Now().Add(s.configService.SessionRememberMeExpiration()))

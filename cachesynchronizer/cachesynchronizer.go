@@ -13,13 +13,10 @@ var _ Synchronizer = &CacheSynchronizer{}
 
 // TODO :: 777 Can cleanup older entries every X-period
 
-// Synchronizer represents an object that is responsible
-// for registering cache updates so other cluster instances
-// can be notified of changes being done in different
-// geo-located clusters.
-// The most obvious use-cases will be simple cache-
-// invalidations, but more complex instructions
-// could be passed through the key-information too.
+// Synchronizer represents an object that is responsible for registering cache updates so other cluster instances can
+// be notified of changes being done in different geo-located clusters.
+// The most obvious use-cases will be simple cache-invalidations, but more complex instructions could be passed through
+// the key-information too.
 type Synchronizer interface {
 	Notify(target uint, key string) error
 	Subscribe(target uint) (Subscription, error)
@@ -38,8 +35,7 @@ type CacheSynchronizer struct {
 	idCounter        uint
 }
 
-// Subscription represents listening binding to
-// a synchronizer.
+// Subscription represents listening binding to a synchronizer.
 type Subscription interface {
 	ID() uint
 	Target() uint

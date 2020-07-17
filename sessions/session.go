@@ -16,8 +16,7 @@ const (
 	SessionKeyFlashMessageMessage
 )
 
-// Session represents an object holding session for
-// a specific object.
+// Session represents an object holding session for a specific object.
 type Session interface {
 	ID() string
 	CreatedAt() time.Time
@@ -61,8 +60,7 @@ func (s *UserSession) AccessedAt() time.Time {
 	return s.accessedAt
 }
 
-// Timeout returns the duration of the session before it will time out
-// since it's last access time.
+// Timeout returns the duration of the session before it will time out since it's last access time.
 func (s *UserSession) Timeout() time.Duration {
 	return s.timeout
 }
@@ -111,8 +109,7 @@ func (s *UserSession) Unset(k uint8) {
 	delete(s.values, k)
 }
 
-// HasFlashMessage returns an indicator if a consumable flash message
-// is present in the session.
+// HasFlashMessage returns an indicator if a consumable flash message is present in the session.
 func (s *UserSession) HasFlashMessage() bool {
 	_, ok := s.Get(SessionKeyFlashMessageType)
 	return ok

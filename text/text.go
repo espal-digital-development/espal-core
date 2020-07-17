@@ -36,8 +36,7 @@ func RandomString(n int) string {
 	return string(buffer)
 }
 
-// LowerFirst is the reverse version of strings.Title() and makes
-// the first letter lower case.
+// LowerFirst is the reverse version of strings.Title() and makes the first letter lower case.
 func LowerFirst(s string) string {
 	if s == "" {
 		return ""
