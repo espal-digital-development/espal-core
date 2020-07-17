@@ -101,12 +101,6 @@ func (r *TemplateRenderer) LanguageName(languageID uint16, targetLanguageID uint
 	return language.Translate(targetLanguageID)
 }
 
-func (r *TemplateRenderer) perror(i int, err error) {
-	if err != nil {
-		r.loggerService.Error(errors.ErrorStack(err))
-	}
-}
-
 // New returns a new instance of Renderer.
 func New(languagesRepository languages.Repository, countriesRepository countries.Repository,
 	translationsRepository translations.Repository, loggerService logger.Loggable) *TemplateRenderer {

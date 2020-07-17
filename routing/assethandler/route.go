@@ -2,7 +2,6 @@ package assethandler
 
 import (
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
-	"github.com/juju/errors"
 )
 
 type route struct {
@@ -23,19 +22,13 @@ func (r *route) Handle(context contexts.Context) {
 	}
 	if r.allowBrotli && context.AcceptsEncoding("br") {
 		context.SetHeader("Content-Encoding", "br")
-		if _, err := context.Write(r.brotliData); err != nil {
-			context.RenderInternalServerError(errors.Trace(err))
-		}
+		context.Write(r.brotliData)
 		return
 	}
 	if r.allowGzip && context.AcceptsEncoding("gzip") {
 		context.SetHeader("Content-Encoding", "gzip")
-		if _, err := context.Write(r.gzipData); err != nil {
-			context.RenderInternalServerError(errors.Trace(err))
-		}
+		context.Write(r.gzipData)
 		return
 	}
-	if _, err := context.Write(r.data); err != nil {
-		context.RenderInternalServerError(errors.Trace(err))
-	}
+	context.Write(r.data)
 }

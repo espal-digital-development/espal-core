@@ -246,9 +246,3 @@ func (f *Form) defaultChecks(formField *formField) *formField {
 
 	return formField
 }
-
-func (f *Form) perror(i int, err error) {
-	if err != nil {
-		f.loggerService.Error(errors.ErrorStack(err))
-	}
-}

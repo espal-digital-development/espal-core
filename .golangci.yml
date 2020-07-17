@@ -28,6 +28,9 @@ issues:
       - godot
       source: "@synthesize"
     - linters:
+      - errcheck
+      source: "c(?:ontext)?\\.Write(?:String)?\\("
+    - linters:
       - goerr113
       text: "use errors\\.Is\\(\\) instead" # This recommends native errors, but we use juju
     - linters:

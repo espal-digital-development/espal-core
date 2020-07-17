@@ -15,8 +15,7 @@ import (
 // r = Results Per Page (Limit)
 // o = Ordering (Order By)
 // c = Columns (Select ~)
-// s = Search (LIKE %Word%)
-// nolint:gocyclo,funlen
+// s = Search (LIKE %Word%).
 func (f *filter) Process() error {
 	// TODO :: Handle posted data when send (still to do; `o`, `c` & `s`)
 	resultsPerPage, err := strconv.ParseUint(f.queryReader.QueryValue("r"), 10, 64)
@@ -41,74 +40,38 @@ func (f *filter) Process() error {
 	f.query = bytes.NewBufferString("SELECT ")
 	f.countQuery = bytes.NewBufferString("SELECT COUNT(*)")
 
-	if err := f.handleSelectFields(); err != nil {
-		return errors.Trace(err)
-	}
+	f.handleSelectFields()
 
-	if _, err := f.query.WriteString(` FROM "`); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := f.query.WriteString(f.table); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := f.query.WriteString(`"`); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := f.countQuery.WriteString(` FROM "`); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := f.countQuery.WriteString(f.table); err != nil {
-		return errors.Trace(err)
-	}
-	if _, err := f.countQuery.WriteString(`"`); err != nil {
-		return errors.Trace(err)
-	}
+	f.query.WriteString(` FROM "`)
+	f.query.WriteString(f.table)
+	f.query.WriteString(`"`)
+	f.countQuery.WriteString(` FROM "`)
+	f.countQuery.WriteString(f.table)
+	f.countQuery.WriteString(`"`)
 	if f.tableAlias != "" {
-		if _, err := f.query.WriteString(" "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(f.tableAlias); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(" "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(f.tableAlias); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" ")
+		f.query.WriteString(f.tableAlias)
+		f.countQuery.WriteString(" ")
+		f.countQuery.WriteString(f.tableAlias)
 	}
 
-	if err := f.handleJoinStatements(); err != nil {
-		return errors.Trace(err)
-	}
+	f.handleJoinStatements()
 
 	if len(f.fields) > 0 || f.search != "" {
-		if _, err := f.query.WriteString(" WHERE"); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(" WHERE"); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" WHERE")
+		f.countQuery.WriteString(" WHERE")
 
 		for k := range f.fields {
-			if err := f.handleWhereStatementForField(k); err != nil {
-				return errors.Trace(err)
-			}
+			f.handleWhereStatementForField(k)
 		}
 
 		if f.search != "" {
-			if err := f.addSearchToQuery(); err != nil {
-				return errors.Trace(err)
-			}
+			f.addSearchToQuery()
 		}
 	}
 
-	if err := f.sort(); err != nil {
-		return errors.Trace(err)
-	}
-	if err := f.pagination(); err != nil {
-		return errors.Trace(err)
-	}
+	f.sort()
+	f.pagination()
 
 	f.handleParams()
 
@@ -149,47 +112,30 @@ func (f *filter) makeSearchChunks() {
 	}
 }
 
-func (f *filter) handleSelectFields() error {
+func (f *filter) handleSelectFields() {
 	var firstHad bool
 	for k := range f.selectFields {
 		if firstHad {
-			if _, err := f.query.WriteString(","); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(",")
 		} else {
 			firstHad = true
 		}
 
 		if f.selectFields[k].Alias() == "" {
-			if _, err := f.query.WriteString(f.tableAlias); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString("."); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(f.tableAlias)
+			f.query.WriteString(".")
 		} else if f.selectFields[k].Alias() != "" {
-			if _, err := f.query.WriteString(f.selectFields[k].Alias()); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString("."); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(f.selectFields[k].Alias())
+			f.query.WriteString(".")
 		}
 
-		if _, err := f.query.WriteString(`"`); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(f.selectFields[k].Name()); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(`"`); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(`"`)
+		f.query.WriteString(f.selectFields[k].Name())
+		f.query.WriteString(`"`)
 	}
-	return nil
 }
 
-func (f *filter) handleJoinStatements() error {
+func (f *filter) handleJoinStatements() {
 	// TODO :: 77 Maybe JOIN can be done too in a way with sub-WHERE structs to fully build it instead of
 	// concatenating a custom written piece of SQL.
 	for k := range f.joinStatements {
@@ -203,20 +149,11 @@ func (f *filter) handleJoinStatements() error {
 		if !found {
 			continue
 		}
-		if _, err := f.query.WriteString(" "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(f.joinStatements[k].Statement()); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(" "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(f.joinStatements[k].Statement()); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" ")
+		f.query.WriteString(f.joinStatements[k].Statement())
+		f.countQuery.WriteString(" ")
+		f.countQuery.WriteString(f.joinStatements[k].Statement())
 	}
-	return nil
 }
 
 func (f *filter) handleParams() {

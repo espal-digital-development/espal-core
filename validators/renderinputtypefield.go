@@ -11,73 +11,73 @@ import (
 func (f *Form) renderInputTypeField(field *formField) string {
 	out := strings.Builder{}
 	f.addLabel(field, &out)
-	f.perror(out.WriteString(`<input`))
+	out.WriteString(`<input`)
 	if TextFormField != field.Type() {
-		f.perror(out.WriteString(` type="`))
+		out.WriteString(` type="`)
 		// TODO :: 77 Do this through read-only mapping?
 		switch field.Type() {
 		case HiddenFormField, TokenFormField, HoneypotFormField:
-			f.perror(out.WriteString(`hidden`))
+			out.WriteString(`hidden`)
 		case NumberFormField:
-			f.perror(out.WriteString(`number`))
+			out.WriteString(`number`)
 		case DateTimeFormField:
-			f.perror(out.WriteString(`date`))
+			out.WriteString(`date`)
 		case EmailFormField:
-			f.perror(out.WriteString(`email`))
+			out.WriteString(`email`)
 		case SearchFormField:
-			f.perror(out.WriteString(`search`))
+			out.WriteString(`search`)
 		case PasswordFormField:
-			f.perror(out.WriteString(`password`))
+			out.WriteString(`password`)
 		case FileFormField:
-			f.perror(out.WriteString(`file`))
+			out.WriteString(`file`)
 		default:
 			err := errors.Errorf("unknown type `%v` to render input for", field.Type())
 			f.loggerService.Error(err.Error())
 			panic(err)
 		}
-		f.perror(out.WriteString(`"`))
+		out.WriteString(`"`)
 	}
-	f.perror(out.WriteString(` name="`))
-	f.perror(out.WriteString(field.Name()))
+	out.WriteString(` name="`)
+	out.WriteString(field.Name())
 	if FileFormField == field.Type() && field.Multiple() {
 		// TODO :: 777 Need to expand this to count an extra entry every time
 		//         a new File field is rendered.
-		f.perror(out.WriteString(`[0]`))
+		out.WriteString(`[0]`)
 	}
-	f.perror(out.WriteString(`"`))
+	out.WriteString(`"`)
 	if field.Placeholder() != "" {
-		f.perror(out.WriteString(` placeholder="`))
-		f.perror(out.WriteString(field.Placeholder()))
+		out.WriteString(` placeholder="`)
+		out.WriteString(field.Placeholder())
 		if DateTimeFormField == field.Type() {
-			f.perror(out.WriteString(` (`))
+			out.WriteString(` (`)
 			if !field.ExcludeYear() {
-				f.perror(out.WriteString(`YYYY`))
+				out.WriteString(`YYYY`)
 			}
 			if !field.ExcludeYear() && !field.ExcludeMonth() {
-				f.perror(out.WriteString(`-`))
+				out.WriteString(`-`)
 			}
 			if field.ExcludeMonth() {
-				f.perror(out.WriteString(`MM`))
+				out.WriteString(`MM`)
 			}
 			if !field.ExcludeYear() && !field.ExcludeMonth() && !field.ExcludeDay() {
-				f.perror(out.WriteString(`-`))
+				out.WriteString(`-`)
 			}
 			if field.ExcludeDay() {
-				f.perror(out.WriteString(`DD`))
+				out.WriteString(`DD`)
 			}
-			f.perror(out.WriteString(`)`))
+			out.WriteString(`)`)
 		}
-		f.perror(out.WriteString(`"`))
+		out.WriteString(`"`)
 	}
 	if field.Value() != "" {
-		f.perror(out.WriteString(` value="`))
-		f.perror(out.WriteString(field.Value()))
-		f.perror(out.WriteString(`"`))
+		out.WriteString(` value="`)
+		out.WriteString(field.Value())
+		out.WriteString(`"`)
 	}
 	if !field.Optional() && HiddenFormField != field.Type() && HoneypotFormField != field.Type() &&
 		TokenFormField != field.Type() {
-		f.perror(out.WriteString(` required`))
+		out.WriteString(` required`)
 	}
-	f.perror(out.WriteString(`>`))
+	out.WriteString(`>`)
 	return out.String()
 }

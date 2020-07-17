@@ -1,9 +1,5 @@
 package pageactions
 
-import (
-	"github.com/juju/errors"
-)
-
 var _ Actions = &PageActions{}
 
 type context interface {
@@ -51,13 +47,6 @@ type pageAction struct {
 // IsFilled returns if there are any actions present.
 func (a *PageActions) IsFilled() bool {
 	return len(a.actions) > 0
-}
-
-func (a *PageActions) perror(i int, err error) {
-	if err != nil {
-		// TODO :: 777 Can't log easily here because it's instanced. Need some solution
-		panic(errors.ErrorStack(err))
-	}
 }
 
 // New returns an instantiated PageActions.

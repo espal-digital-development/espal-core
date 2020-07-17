@@ -49,13 +49,9 @@ func (f *Fixtures) users() error {
 	var c uint
 	for _, userRight := range f.userRightsRepository.AllByName() {
 		if c > 0 {
-			if _, err := f.userRightsBuffer.WriteString(","); err != nil {
-				return errors.Trace(err)
-			}
+			f.userRightsBuffer.WriteString(",")
 		}
-		if _, err := f.userRightsBuffer.WriteString(strconv.FormatUint(uint64(userRight), 10)); err != nil {
-			return errors.Trace(err)
-		}
+		f.userRightsBuffer.WriteString(strconv.FormatUint(uint64(userRight), 10))
 		c++
 	}
 

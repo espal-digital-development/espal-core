@@ -83,13 +83,9 @@ func (m *EntityMutator) Execute(context contexts.Context) error {
 
 	m.query = new(bytes.Buffer)
 	if m.entity.ID() == "" {
-		if err := m.buildInsertQuery(); err != nil {
-			return errors.Trace(err)
-		}
+		m.buildInsertQuery()
 	} else {
-		if err := m.buildUpdateQuery(); err != nil {
-			return errors.Trace(err)
-		}
+		m.buildUpdateQuery()
 	}
 
 	var row database.Row

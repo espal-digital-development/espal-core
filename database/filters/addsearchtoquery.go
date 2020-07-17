@@ -2,26 +2,15 @@ package filters
 
 import (
 	"strconv"
-
-	"github.com/juju/errors"
 )
 
-// nolint:gocyclo,funlen
-func (f *filter) addSearchToQuery() error {
+func (f *filter) addSearchToQuery() {
 	if f.firstWhereStatementHad {
-		if _, err := f.query.WriteString(" AND ("); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(" AND ("); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" AND (")
+		f.countQuery.WriteString(" AND (")
 	} else {
-		if _, err := f.query.WriteString(" "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(" "); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" ")
+		f.countQuery.WriteString(" ")
 	}
 
 	// TODO :: Longest words should come earliest?
@@ -29,101 +18,51 @@ func (f *filter) addSearchToQuery() error {
 	var firstSearchBlockHad bool
 	for i := 0; i < len(f.searchChunks); i++ {
 		if firstSearchBlockHad {
-			if _, err := f.query.WriteString(" AND "); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.countQuery.WriteString(" AND "); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(" AND ")
+			f.countQuery.WriteString(" AND ")
 		} else {
 			firstSearchBlockHad = true
 		}
 
-		if _, err := f.query.WriteString("("); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString("("); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString("(")
+		f.countQuery.WriteString("(")
 
 		var firstSearchEntryHad bool
 		for k := range f.searchFields {
 			if firstSearchEntryHad {
-				if _, err := f.query.WriteString(" OR "); err != nil {
-					return errors.Trace(err)
-				}
-				if _, err := f.countQuery.WriteString(" OR "); err != nil {
-					return errors.Trace(err)
-				}
+				f.query.WriteString(" OR ")
+				f.countQuery.WriteString(" OR ")
 			} else {
 				firstSearchEntryHad = true
 			}
 
 			if f.searchFields[k].TableAlias() != "" {
-				if _, err := f.query.WriteString(f.searchFields[k].TableAlias()); err != nil {
-					return errors.Trace(err)
-				}
-				if _, err := f.query.WriteString("."); err != nil {
-					return errors.Trace(err)
-				}
+				f.query.WriteString(f.searchFields[k].TableAlias())
+				f.query.WriteString(".")
 			}
-			if _, err := f.query.WriteString(`"`); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString(f.searchFields[k].Name()); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString(`"`); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString(" LIKE $"); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString(strconv.Itoa(int(f.incrementParameterCount()))); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(`"`)
+			f.query.WriteString(f.searchFields[k].Name())
+			f.query.WriteString(`"`)
+			f.query.WriteString(" LIKE $")
+			f.query.WriteString(strconv.Itoa(int(f.incrementParameterCount())))
 
 			if f.searchFields[k].TableAlias() != "" {
-				if _, err := f.countQuery.WriteString(f.searchFields[k].TableAlias()); err != nil {
-					return errors.Trace(err)
-				}
-				if _, err := f.countQuery.WriteString("."); err != nil {
-					return errors.Trace(err)
-				}
+				f.countQuery.WriteString(f.searchFields[k].TableAlias())
+				f.countQuery.WriteString(".")
 			}
-			if _, err := f.countQuery.WriteString(`"`); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.countQuery.WriteString(f.searchFields[k].Name()); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.countQuery.WriteString(`"`); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.countQuery.WriteString(" LIKE $"); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.countQuery.WriteString(strconv.Itoa(int(f.parameterCount))); err != nil {
-				return errors.Trace(err)
-			}
+			f.countQuery.WriteString(`"`)
+			f.countQuery.WriteString(f.searchFields[k].Name())
+			f.countQuery.WriteString(`"`)
+			f.countQuery.WriteString(" LIKE $")
+			f.countQuery.WriteString(strconv.Itoa(int(f.parameterCount)))
 		}
 
-		if _, err := f.query.WriteString(")"); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(")"); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(")")
+		f.countQuery.WriteString(")")
 	}
 
 	if f.firstWhereStatementHad {
-		if _, err := f.query.WriteString(")"); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.countQuery.WriteString(")"); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(")")
+		f.countQuery.WriteString(")")
 	}
-
-	return nil
 }

@@ -11,7 +11,6 @@ import (
 type Route struct{}
 
 // Handle route handler.
-// nolint:errcheck
 func (r *Route) Handle(context contexts.Context) {
 	context.WriteString(`<html><head><title>Pprof</title></head><body><h1>Pprof</h1><ul>`)
 	for _, profile := range pprof.Profiles() {

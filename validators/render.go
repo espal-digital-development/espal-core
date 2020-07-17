@@ -14,22 +14,22 @@ func (f *Form) RenderErrors() string {
 		return ""
 	}
 	errorList := strings.Builder{}
-	f.perror(errorList.WriteString(`<ul class="errors">`))
+	errorList.WriteString(`<ul class="errors">`)
 	for k := range f.submitErrors {
-		f.perror(errorList.WriteString("<li>"))
-		f.perror(errorList.WriteString(f.submitErrors[k]))
-		f.perror(errorList.WriteString("</li>"))
+		errorList.WriteString("<li>")
+		errorList.WriteString(f.submitErrors[k])
+		errorList.WriteString("</li>")
 	}
 	for k := range f.fields {
 		if f.fields[k].HasErrors() {
 			for _, errorMessage := range f.fields[k].Errors() {
-				f.perror(errorList.WriteString("<li>"))
-				f.perror(errorList.WriteString(errorMessage))
-				f.perror(errorList.WriteString("</li>"))
+				errorList.WriteString("<li>")
+				errorList.WriteString(errorMessage)
+				errorList.WriteString("</li>")
 			}
 		}
 	}
-	f.perror(errorList.WriteString("</ul>"))
+	errorList.WriteString("</ul>")
 	return errorList.String()
 }
 
@@ -65,9 +65,9 @@ func (f *Form) addLabel(field FormField, stringBuilder io.StringWriter) {
 	if field.HideLabel() {
 		return
 	}
-	f.perror(stringBuilder.WriteString(`<label for="`))
-	f.perror(stringBuilder.WriteString(field.Name()))
-	f.perror(stringBuilder.WriteString(`">`))
-	f.perror(stringBuilder.WriteString(field.Placeholder()))
-	f.perror(stringBuilder.WriteString(`</label>`))
+	stringBuilder.WriteString(`<label for="`)
+	stringBuilder.WriteString(field.Name())
+	stringBuilder.WriteString(`">`)
+	stringBuilder.WriteString(field.Placeholder())
+	stringBuilder.WriteString(`</label>`)
 }

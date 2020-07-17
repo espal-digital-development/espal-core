@@ -56,7 +56,6 @@ func (c *HTTPContext) RenderNon200() {
 }
 
 // RenderNon200Custom gives the possibility to render a non-200 page with a custom message.
-// nolint:errcheck
 func (c *HTTPContext) RenderNon200Custom(title string, message string) {
 	c.WriteString(`<html><head><title>`)
 	c.WriteString(title)

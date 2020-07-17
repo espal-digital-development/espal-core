@@ -6,7 +6,6 @@ import (
 	"strconv"
 
 	"github.com/espal-digital-development/espal-core/database"
-	"github.com/juju/errors"
 )
 
 const (
@@ -191,80 +190,48 @@ func (f *filter) incrementParameterCount() uint16 {
 	return f.parameterCount
 }
 
-func (f *filter) sort() error {
+func (f *filter) sort() {
 	if len(f.sortFields) == 0 {
-		return nil
+		return
 	}
-	if _, err := f.query.WriteString(" ORDER BY"); err != nil {
-		return errors.Trace(err)
-	}
+	f.query.WriteString(" ORDER BY")
 	var firstHad bool
 	for k := range f.sortFields {
 		if firstHad {
-			if _, err := f.query.WriteString(", "); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(", ")
 		} else {
-			if _, err := f.query.WriteString(" "); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(" ")
 			firstHad = true
 		}
 
 		if f.sortFields[k].TableAlias() != "" {
-			if _, err := f.query.WriteString(f.sortFields[k].TableAlias()); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString(`.`); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(f.sortFields[k].TableAlias())
+			f.query.WriteString(`.`)
 		}
 
-		if _, err := f.query.WriteString(`"`); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(f.sortFields[k].Name()); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(`"`); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(`"`)
+		f.query.WriteString(f.sortFields[k].Name())
+		f.query.WriteString(`"`)
 
 		if f.sortFields[k].Descending() {
-			if _, err := f.query.WriteString(" DESC"); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(" DESC")
 		}
 	}
-	return nil
 }
 
-func (f *filter) pagination() error {
+func (f *filter) pagination() {
 	if f.limit > 0 {
-		if _, err := f.query.WriteString(" LIMIT "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(strconv.FormatUint(uint64(f.limit), 10)); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" LIMIT ")
+		f.query.WriteString(strconv.FormatUint(uint64(f.limit), 10))
 		if f.offset > 0 {
-			if _, err := f.query.WriteString(" OFFSET "); err != nil {
-				return errors.Trace(err)
-			}
-			if _, err := f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10)); err != nil {
-				return errors.Trace(err)
-			}
+			f.query.WriteString(" OFFSET ")
+			f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10))
 		}
 	}
 	if f.limit == 0 && f.offset > 0 {
-		if _, err := f.query.WriteString(" OFFSET "); err != nil {
-			return errors.Trace(err)
-		}
-		if _, err := f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10)); err != nil {
-			return errors.Trace(err)
-		}
+		f.query.WriteString(" OFFSET ")
+		f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10))
 	}
-	return nil
 }
 
 // TableAlias returns the alias for this filter's model.
@@ -312,11 +279,4 @@ func (f *filter) ColumnsInOrder() []DisplayColumn {
 		return columns
 	}
 	return f.columns
-}
-
-func (f *filter) perror(i int, err error) {
-	if err != nil {
-		// TODO :: 777 Can't log easily here because it's instanced. Need some solution
-		panic(errors.ErrorStack(err))
-	}
 }

@@ -12,33 +12,33 @@ func (a *PageActions) RenderOverviewActions() string {
 
 	out := strings.Builder{}
 
-	a.perror(out.WriteString(`<div class="actions">`))
+	out.WriteString(`<div class="actions">`)
 
 	for k := range a.actions {
-		a.perror(out.WriteString(`<a href="`))
-		a.perror(out.WriteString(a.ctx.AdminURL()))
-		a.perror(out.WriteString(`/`))
-		a.perror(out.WriteString(a.actions[k].targetPath))
-		a.perror(out.WriteString(`"`))
+		out.WriteString(`<a href="`)
+		out.WriteString(a.ctx.AdminURL())
+		out.WriteString(`/`)
+		out.WriteString(a.actions[k].targetPath)
+		out.WriteString(`"`)
 
 		if a.actions[k].listAction || a.actions[k].class != "" {
-			a.perror(out.WriteString(` class="`))
+			out.WriteString(` class="`)
 			if a.actions[k].listAction {
-				a.perror(out.WriteString(`listAction`))
+				out.WriteString(`listAction`)
 			}
 			if a.actions[k].class != "" {
-				a.perror(out.WriteString(` `))
-				a.perror(out.WriteString(a.actions[k].class))
+				out.WriteString(` `)
+				out.WriteString(a.actions[k].class)
 			}
-			a.perror(out.WriteString(`"`))
+			out.WriteString(`"`)
 		}
 
-		a.perror(out.WriteString(`>`))
-		a.perror(out.WriteString(a.actions[k].name))
-		a.perror(out.WriteString(`</a>`))
+		out.WriteString(`>`)
+		out.WriteString(a.actions[k].name)
+		out.WriteString(`</a>`)
 	}
 
-	a.perror(out.WriteString(`</div>`))
+	out.WriteString(`</div>`)
 
 	return out.String()
 }

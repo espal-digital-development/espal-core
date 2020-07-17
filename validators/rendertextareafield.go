@@ -7,21 +7,21 @@ import (
 func (f *Form) renderTextAreaField(field FormField) string {
 	out := strings.Builder{}
 	f.addLabel(field, &out)
-	f.perror(out.WriteString(`<textarea name="`))
-	f.perror(out.WriteString(field.Name()))
-	f.perror(out.WriteString(`"`))
+	out.WriteString(`<textarea name="`)
+	out.WriteString(field.Name())
+	out.WriteString(`"`)
 	if field.Placeholder() != "" {
-		f.perror(out.WriteString(` placeholder="`))
-		f.perror(out.WriteString(field.Placeholder()))
-		f.perror(out.WriteString(`"`))
+		out.WriteString(` placeholder="`)
+		out.WriteString(field.Placeholder())
+		out.WriteString(`"`)
 	}
 	if !field.Optional() {
-		f.perror(out.WriteString(` required`))
+		out.WriteString(` required`)
 	}
-	f.perror(out.WriteString(`>`))
+	out.WriteString(`>`)
 	if field.Value() != "" {
-		f.perror(out.WriteString(field.Value()))
+		out.WriteString(field.Value())
 	}
-	f.perror(out.WriteString(`</textarea>`))
+	out.WriteString(`</textarea>`)
 	return out.String()
 }
