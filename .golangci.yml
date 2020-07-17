@@ -45,7 +45,7 @@ linters:
     - interfacer
     - unconvert
     - goconst
-    # - gocognit # TODO :: Cleanup
+    - gocognit
     - asciicheck
     - misspell
     - unparam
@@ -54,7 +54,7 @@ linters:
     - gomnd
     - goerr113
     - testpackage
-    # - nestif # TODO :: Cleanup
+    - nestif
     - nolintlint
     - gocyclo
     - lll

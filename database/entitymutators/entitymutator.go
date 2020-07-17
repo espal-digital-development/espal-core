@@ -100,16 +100,7 @@ func (m *EntityMutator) Execute(context contexts.Context) error {
 	}
 
 	if err != nil {
-		if m.entity.ID() == "" {
-			if err := context.SetFlashErrorMessage(context.Translate("creationHasFailed") + ": " + err.Error()); err != nil {
-				return errors.Trace(err)
-			}
-		} else {
-			if err := context.SetFlashErrorMessage(context.Translate("updateHasFailed") + ": " + err.Error()); err != nil {
-				return errors.Trace(err)
-			}
-		}
-		return errors.Trace(err)
+		return errors.Trace(m.flashForError(context, err))
 	}
 
 	if m.entity.ID() == "" && lastInsertedID == "" {
@@ -129,6 +120,19 @@ func (m *EntityMutator) Execute(context contexts.Context) error {
 	}
 
 	return nil
+}
+
+func (m *EntityMutator) flashForError(context contexts.Context, err error) error {
+	if m.entity.ID() == "" {
+		if err := context.SetFlashErrorMessage(context.Translate("creationHasFailed") + ": " + err.Error()); err != nil {
+			return errors.Trace(err)
+		}
+	} else {
+		if err := context.SetFlashErrorMessage(context.Translate("updateHasFailed") + ": " + err.Error()); err != nil {
+			return errors.Trace(err)
+		}
+	}
+	return errors.Trace(err)
 }
 
 // incrementParameterCount increments the parameter count and then returns the new value.

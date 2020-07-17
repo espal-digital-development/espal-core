@@ -33,15 +33,16 @@ func (c *HTTPContext) FormFile(key string) (multipart.File, *multipart.FileHeade
 
 // FormValue returns a submitted form value.
 func (c *HTTPContext) FormValue(key string) (string, error) {
-	if !c.formIsParsed {
-		if strings.HasPrefix(c.request.Header.Get("Content-Type"), "multipart/form-data") {
-			if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
-				return "", errors.Trace(err)
-			}
-		} else {
-			if err := c.request.ParseForm(); err != nil {
-				return "", errors.Trace(err)
-			}
+	if c.formIsParsed {
+		return c.request.Form.Get(key), nil
+	}
+	if strings.HasPrefix(c.request.Header.Get("Content-Type"), "multipart/form-data") {
+		if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
+			return "", errors.Trace(err)
+		}
+	} else {
+		if err := c.request.ParseForm(); err != nil {
+			return "", errors.Trace(err)
 		}
 	}
 	c.formIsParsed = true
@@ -50,15 +51,17 @@ func (c *HTTPContext) FormValue(key string) (string, error) {
 
 // FormValues returns all given values for the given field.
 func (c *HTTPContext) FormValues(key string) ([]string, error) {
-	if !c.formIsParsed {
-		if strings.HasPrefix(c.request.Header.Get("Content-Type"), "multipart/form-data") {
-			if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
-				return nil, errors.Trace(err)
-			}
-		} else {
-			if err := c.request.ParseForm(); err != nil {
-				return nil, errors.Trace(err)
-			}
+	if c.formIsParsed {
+		return c.request.Form[key], nil
+
+	}
+	if strings.HasPrefix(c.request.Header.Get("Content-Type"), "multipart/form-data") {
+		if _, err := c.MultipartForm(multiPartMaxMemory); err != nil {
+			return nil, errors.Trace(err)
+		}
+	} else {
+		if err := c.request.ParseForm(); err != nil {
+			return nil, errors.Trace(err)
 		}
 	}
 	c.formIsParsed = true

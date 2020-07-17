@@ -96,7 +96,9 @@ func (m *EntityMutator) SetNullableTime(field string, value *string, originalVal
 		}
 		m.fields = append(m.fields, field)
 		m.values = append(m.values, value)
-	} else if m.entity.ID() != "" {
+		return nil
+	}
+	if m.entity.ID() != "" {
 		if *value != "" && originalValue == nil {
 			_, err := time.Parse(time.RFC3339[0:9],
 				*value)
