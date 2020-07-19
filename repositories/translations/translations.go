@@ -1,12 +1,10 @@
 package translations
 
 import (
-	"io/ioutil"
 	"strings"
 
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/translations/translationsdata"
-	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/juju/errors"
 	yaml "gopkg.in/yaml.v2"
 )
@@ -17,6 +15,7 @@ const (
 	errorNoTranslationWithForCode = "no translation language found for given code `%d`"
 	errorNoTranslationKeyForName  = "no translation key found for given name `%s`"
 	missingTranslationFormat      = "MISSING TRANSLATION (%s): %s\n"
+	errAlreadySetForLanguageID    = "%s translation already set for key `%s`"
 )
 
 // Repository represents a Translations repository.
@@ -29,7 +28,6 @@ type Repository interface {
 
 // Translations contains a full Translation repository.
 type Translations struct {
-	storage       storage.Storage
 	loggerService logger.Loggable
 	entries       map[uint16]map[string]translation
 }
@@ -39,6 +37,23 @@ type translation struct {
 	Plural            *string `yaml:"p"`
 	SingularFormatted *string `yaml:"sf"`
 	PluralFormatted   *string `yaml:"pf"`
+}
+
+// SetSingular sets the singular value based on languageCode and key.
+func (t *Translations) SetSingular(languageID uint16, key string, value string) error {
+	if t.checkExistence(languageID, key) {
+		return errors.Errorf(errAlreadySetForLanguageID, "singular", key)
+	}
+	if _, ok := t.entries[languageID]; !ok {
+		t.entries[languageID] = map[string]translation{}
+	}
+	if _, ok := t.entries[languageID][key]; !ok {
+		t.entries[languageID][key] = translation{
+			Singular: &value,
+		}
+	}
+	*t.entries[languageID][key].Singular = value
+	return nil
 }
 
 // Singular value based on languageCode.
@@ -53,6 +68,23 @@ func (t *Translations) Singular(languageID uint16, key string) string {
 	return *t.entries[languageID][key].Singular
 }
 
+// SetPlural sets the plural value based on languageCode and key.
+func (t *Translations) SetPlural(languageID uint16, key string, value string) error {
+	if t.checkExistence(languageID, key) {
+		return errors.Errorf(errAlreadySetForLanguageID, "plural", key)
+	}
+	if _, ok := t.entries[languageID]; !ok {
+		t.entries[languageID] = map[string]translation{}
+	}
+	if _, ok := t.entries[languageID][key]; !ok {
+		t.entries[languageID][key] = translation{
+			Plural: &value,
+		}
+	}
+	*t.entries[languageID][key].Plural = value
+	return nil
+}
+
 // Plural value based on languageID.
 func (t *Translations) Plural(languageID uint16, key string) string {
 	if !t.checkExistence(languageID, key) {
@@ -63,6 +95,23 @@ func (t *Translations) Plural(languageID uint16, key string) string {
 		return key
 	}
 	return *t.entries[languageID][key].Plural
+}
+
+// SetFormatted sets the formatted value based on languageCode and key.
+func (t *Translations) SetFormatted(languageID uint16, key string, value string) error {
+	if t.checkExistence(languageID, key) {
+		return errors.Errorf(errAlreadySetForLanguageID, "formatted", key)
+	}
+	if _, ok := t.entries[languageID]; !ok {
+		t.entries[languageID] = map[string]translation{}
+	}
+	if _, ok := t.entries[languageID][key]; !ok {
+		t.entries[languageID][key] = translation{
+			SingularFormatted: &value,
+		}
+	}
+	*t.entries[languageID][key].SingularFormatted = value
+	return nil
 }
 
 // Formatted value based on languageID.
@@ -77,6 +126,23 @@ func (t *Translations) Formatted(languageID uint16, key string) string {
 	return *t.entries[languageID][key].SingularFormatted
 }
 
+// SetFormattedPlural sets the plural formatted value based on languageCode and key.
+func (t *Translations) SetFormattedPlural(languageID uint16, key string, value string) error {
+	if t.checkExistence(languageID, key) {
+		return errors.Errorf(errAlreadySetForLanguageID, "pluralFormatted", key)
+	}
+	if _, ok := t.entries[languageID]; !ok {
+		t.entries[languageID] = map[string]translation{}
+	}
+	if _, ok := t.entries[languageID][key]; !ok {
+		t.entries[languageID][key] = translation{
+			PluralFormatted: &value,
+		}
+	}
+	*t.entries[languageID][key].PluralFormatted = value
+	return nil
+}
+
 // FormattedPlural value based on languageID.
 func (t *Translations) FormattedPlural(languageID uint16, key string) string {
 	if !t.checkExistence(languageID, key) {
@@ -89,15 +155,10 @@ func (t *Translations) FormattedPlural(languageID uint16, key string) string {
 	return *t.entries[languageID][key].PluralFormatted
 }
 
-// LoadForLanguageFromYaml loads in the given yaml translation data from the given path for the given language.
-func (t *Translations) LoadForLanguageFromYaml(languageID uint16, path string) error {
-	file, err := ioutil.ReadFile(path)
-	if err != nil {
-		return errors.Trace(err)
-	}
+// LoadForLanguageFromYamlData loads in the given yaml translation data from the given path for the given language.
+func (t *Translations) LoadForLanguageFromYamlData(languageID uint16, yamlData []byte) error {
 	data := map[string]translation{}
-	err = yaml.Unmarshal(file, data)
-	if err != nil {
+	if err := yaml.Unmarshal(yamlData, data); err != nil {
 		return errors.Trace(err)
 	}
 	t.loadFromData(languageID, data)
@@ -117,41 +178,40 @@ func (t *Translations) checkExistence(languageID uint16, key string) bool {
 }
 
 func (t *Translations) loadFromData(languageID uint16, data map[string]translation) {
-	for key, translation := range data {
+	for key, trans := range data {
+		if _, ok := t.entries[languageID]; !ok {
+			t.entries[languageID] = map[string]translation{}
+		}
 		if _, ok := t.entries[languageID][key]; !ok {
-			t.entries[languageID][key] = translation
+			t.entries[languageID][key] = trans
 			continue
 		}
 
-		if translation.Plural != nil && *translation.Plural != "" {
-			*t.entries[languageID][key].Plural = *translation.Plural
+		entry := t.entries[languageID][key]
+		if trans.Plural != nil && *trans.Plural != "" {
+			entry.Plural = trans.Plural
 		}
-		if translation.PluralFormatted != nil && *translation.PluralFormatted != "" {
-			*t.entries[languageID][key].PluralFormatted = *translation.PluralFormatted
+		if trans.PluralFormatted != nil && *trans.PluralFormatted != "" {
+			entry.PluralFormatted = trans.PluralFormatted
 		}
-		if translation.Singular != nil && *translation.Singular != "" {
-			*t.entries[languageID][key].Singular = *translation.Singular
+		if trans.Singular != nil && *trans.Singular != "" {
+			entry.Singular = trans.Singular
 		}
-		if translation.SingularFormatted != nil && *translation.SingularFormatted != "" {
-			*t.entries[languageID][key].SingularFormatted = *translation.SingularFormatted
+		if trans.SingularFormatted != nil && *trans.SingularFormatted != "" {
+			entry.SingularFormatted = trans.SingularFormatted
 		}
 	}
 }
 
 // New returns new a Languages repository instance.
-func New(loggerService logger.Loggable, storage storage.Storage,
-	availableLanguages map[uint16]string) (*Translations, error) {
+func New(loggerService logger.Loggable, availableLanguages map[uint16]string) (*Translations, error) {
 	t := &Translations{
 		loggerService: loggerService,
-		storage:       storage,
 		entries:       map[uint16]map[string]translation{},
 	}
 
 	for languageID, language := range availableLanguages {
 		coreFile, err := translationsdata.Asset("_data/" + language + ".yml")
-		if err != nil && !strings.HasSuffix(err.Error(), " not found") {
-			return nil, errors.Trace(err)
-		}
 		if err == nil || !strings.HasSuffix(err.Error(), " not found") {
 			t.entries[languageID] = map[string]translation{}
 			err = yaml.Unmarshal(coreFile, t.entries[languageID])

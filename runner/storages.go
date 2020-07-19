@@ -7,8 +7,6 @@ import (
 type storages struct {
 	// core only functions as a facility to store base data and make
 	// the whole core system independent on the engine
-	core                  storage.Storage
-	translations          storage.Storage
 	assetsPrivateFiles    storage.Modifyable
 	assetsPublicFiles     storage.Modifyable
 	assetsPublicRootFiles storage.Storage

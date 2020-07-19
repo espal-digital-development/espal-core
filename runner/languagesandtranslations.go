@@ -22,7 +22,7 @@ func (r *Runner) languagesAndTranslations() error {
 		availableLanguages[language.ID()] = language.Code()
 	}
 
-	translations, err := translations.New(r.services.logger, r.storages.translations, availableLanguages)
+	translations, err := translations.New(r.services.logger, availableLanguages)
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -51,7 +51,11 @@ func (r *Runner) languagesAndTranslations() error {
 					r.modulesRegistry[k].GetMeta().Name(), language,
 				)
 			}
-			if err := translations.LoadForLanguageFromYaml(languageID, filePath); err != nil {
+			yamlData, err := ioutil.ReadFile(filePath)
+			if err != nil {
+				return errors.Trace(err)
+			}
+			if err := translations.LoadForLanguageFromYamlData(languageID, yamlData); err != nil {
 				return errors.Trace(err)
 			}
 		}
@@ -83,8 +87,11 @@ func (r *Runner) languagesAndTranslations() error {
 					r.modulesRegistry[k].GetMeta().Name(), language,
 				)
 			}
-			if err := translations.LoadForLanguageFromYaml(languageID,
-				filepath.FromSlash(translationsPath+"/"+files[k].Name())); err != nil {
+			yamlData, err := ioutil.ReadFile(filepath.FromSlash(translationsPath + "/" + files[k].Name()))
+			if err != nil {
+				return errors.Trace(err)
+			}
+			if err := translations.LoadForLanguageFromYamlData(languageID, yamlData); err != nil {
 				return errors.Trace(err)
 			}
 		}

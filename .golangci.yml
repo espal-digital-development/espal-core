@@ -41,7 +41,7 @@ linters:
     - bodyclose
     - golint
     - stylecheck
-    # - gosec # TODO :: Cleanup
+    - gosec
     - interfacer
     - unconvert
     - goconst

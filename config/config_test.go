@@ -7,28 +7,19 @@ import (
 	"time"
 
 	"github.com/espal-digital-development/espal-core/config"
-	"github.com/espal-digital-development/espal-core/storage/storagemock"
 	"github.com/espal-digital-development/espal-core/testtools"
 	"github.com/juju/errors"
 )
 
-var (
-	configYml   []byte
-	coreStorage *storagemock.StorageMock
-)
-
-func initMocks() {
-	configYml = configYmlBlueprint
-	coreStorage = &storagemock.StorageMock{
-		GetFunc: func(key string) ([]byte, bool, error) {
-			return configYml, true, nil
-		},
+func getDefault(configYamlBytes []byte) (*config.Configuration, error) {
+	if configYamlBytes == nil {
+		configYamlBytes = configYmlBlueprint
 	}
+	return config.New(configYamlBytes)
 }
 
 func TestNew(t *testing.T) {
-	initMocks()
-	config, err := config.New(coreStorage)
+	config, err := getDefault(nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -37,46 +28,9 @@ func TestNew(t *testing.T) {
 	}
 }
 
-func TestYamlFileError(t *testing.T) {
-	initMocks()
-	yamlFileError := errors.New("yamlFileError")
-	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
-		return nil, false, yamlFileError
-	}
-	config, err := config.New(coreStorage)
-	if err == nil {
-		t.Fatal("Should give an error")
-	}
-	testtools.EqError(t, "yamlFileError", err, yamlFileError)
-	if config != nil {
-		t.Fatal("config should be nil when an error is thrown")
-	}
-}
-
-func TestYamlFileNotExist(t *testing.T) {
-	initMocks()
-	yamlFileNotExistError := errors.New(
-		"no config.yml file found. Please create one. The espal-run command can help automate this process")
-	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
-		return nil, false, nil
-	}
-	config, err := config.New(coreStorage)
-	if err == nil {
-		t.Fatal("Should give an error")
-	}
-	testtools.EqError(t, "yamlFileNotExistError", err, yamlFileNotExistError)
-	if config != nil {
-		t.Fatal("config should be nil when an error is thrown")
-	}
-}
-
 func TestYamlUnmarshalError(t *testing.T) {
-	initMocks()
 	brokenYaml := bytes.Replace(configYmlBlueprint, []byte(":"), []byte("%"), 1)
-	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
-		return brokenYaml, true, nil
-	}
-	config, err := config.New(coreStorage)
+	config, err := getDefault(brokenYaml)
 	if err == nil {
 		t.Fatal("Should give an error")
 	}
@@ -88,12 +42,8 @@ func TestYamlUnmarshalError(t *testing.T) {
 }
 
 func TestValidateCacheMaxAgeFailure(t *testing.T) {
-	initMocks()
 	incorrectYaml := bytes.Replace(configYmlBlueprint, []byte("cacheMaxAge: 60"), []byte("cacheMaxAge: 0"), 1)
-	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
-		return incorrectYaml, true, nil
-	}
-	conf, err := config.New(coreStorage)
+	conf, err := getDefault(incorrectYaml)
 	if err == nil {
 		t.Fatal("Should give an error")
 	}
@@ -104,12 +54,8 @@ func TestValidateCacheMaxAgeFailure(t *testing.T) {
 }
 
 func TestValidateDontUsePort80ForTLSFailure(t *testing.T) {
-	initMocks()
 	incorrectYaml := bytes.Replace(configYmlBlueprint, []byte("  port: 8443"), []byte("  port: 80"), 1)
-	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
-		return incorrectYaml, true, nil
-	}
-	conf, err := config.New(coreStorage)
+	conf, err := getDefault(incorrectYaml)
 	if err == nil {
 		t.Fatal("Should give an error")
 	}
@@ -120,12 +66,8 @@ func TestValidateDontUsePort80ForTLSFailure(t *testing.T) {
 }
 
 func TestValidateIncorrectDefaultLanguageFailure(t *testing.T) {
-	initMocks()
 	incorrectYaml := bytes.Replace(configYmlBlueprint, []byte("  defaultLanguage: en"), []byte("  defaultLanguage: xx"), 1)
-	coreStorage.GetFunc = func(key string) ([]byte, bool, error) {
-		return incorrectYaml, true, nil
-	}
-	conf, err := config.New(coreStorage)
+	conf, err := getDefault(incorrectYaml)
 	if err == nil {
 		t.Fatal("Should give an error")
 	}
@@ -136,8 +78,7 @@ func TestValidateIncorrectDefaultLanguageFailure(t *testing.T) {
 }
 
 func TestAvailableLanguages(t *testing.T) {
-	initMocks()
-	config, err := config.New(coreStorage)
+	config, err := getDefault(nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -155,8 +96,7 @@ func TestAvailableLanguages(t *testing.T) {
 }
 
 func TestLanguageIsAvailable(t *testing.T) {
-	initMocks()
-	config, err := config.New(coreStorage)
+	config, err := getDefault(nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -170,8 +110,7 @@ func TestLanguageIsAvailable(t *testing.T) {
 }
 
 func TestLanguageIsNotAvailable(t *testing.T) {
-	initMocks()
-	config, err := config.New(coreStorage)
+	config, err := getDefault(nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -183,8 +122,7 @@ func TestLanguageIsNotAvailable(t *testing.T) {
 
 // nolint:funlen
 func TestConfigCallers(t *testing.T) {
-	initMocks()
-	config, err := config.New(coreStorage)
+	config, err := getDefault(nil)
 	if err != nil {
 		t.Fatal(err)
 	}

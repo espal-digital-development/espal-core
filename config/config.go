@@ -3,7 +3,6 @@ package config
 import (
 	"strconv"
 
-	"github.com/espal-digital-development/espal-core/storage"
 	"github.com/juju/errors"
 	yaml "gopkg.in/yaml.v2"
 )
@@ -48,16 +47,15 @@ type configYaml struct {
 
 // Configuration service object.
 type Configuration struct {
-	general     general
-	server      server
-	database    database
-	email       email
-	security    security
-	session     session
-	urls        urls
-	assets      assets
-	paths       paths
-	coreStorage storage.Storage
+	general  general
+	server   server
+	database database
+	email    email
+	security security
+	session  session
+	urls     urls
+	assets   assets
+	paths    paths
 }
 
 // AvailableLanguages returns all languages that are available in the current build based on the c.
@@ -104,22 +102,11 @@ func (c *Configuration) validate() error {
 }
 
 // New returns a new instance of Configuration loaded from the target file.
-func New(coreStorage storage.Storage) (*Configuration, error) {
-	c := &Configuration{
-		coreStorage: coreStorage,
-	}
-
-	configBytes, ok, err := coreStorage.Get("config.yml")
-	if err != nil {
-		return nil, errors.Trace(err)
-	}
-	if !ok {
-		return nil, errors.Errorf(
-			"no config.yml file found. Please create one. The espal-run command can help automate this process")
-	}
+func New(configYamlData []byte) (*Configuration, error) {
+	c := &Configuration{}
 
 	values := c.getDefaultYaml()
-	if err := yaml.Unmarshal(configBytes, &values); err != nil {
+	if err := yaml.Unmarshal(configYamlData, &values); err != nil {
 		return nil, errors.Trace(err)
 	}
 

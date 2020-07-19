@@ -1,6 +1,7 @@
 package runner
 
 import (
+	"io/ioutil"
 	"path/filepath"
 
 	"github.com/espal-digital-development/espal-core/config"
@@ -11,7 +12,6 @@ import (
 	"github.com/espal-digital-development/espal-core/repositories/languages"
 	"github.com/espal-digital-development/espal-core/repositories/regularexpressions"
 	"github.com/espal-digital-development/espal-core/repositories/userrights"
-	"github.com/espal-digital-development/espal-core/storage/filesystem"
 	"github.com/espal-digital-development/espal-core/tokenpool"
 	"github.com/espal-digital-development/espal-core/validators"
 	"github.com/juju/errors"
@@ -22,18 +22,11 @@ func (r *Runner) core(path string) error {
 		path = filepath.FromSlash("./app")
 	}
 
-	var err error
-	r.storages.core, err = filesystem.New(path)
+	configYamlData, err := ioutil.ReadFile(filepath.FromSlash(path + "/config.yml"))
 	if err != nil {
 		return errors.Trace(err)
 	}
-
-	r.services.config, err = config.New(r.storages.core)
-	if err != nil {
-		return errors.Trace(err)
-	}
-
-	r.storages.translations, err = filesystem.New(r.services.config.TranslationsPath())
+	r.services.config, err = config.New(configYamlData)
 	if err != nil {
 		return errors.Trace(err)
 	}
