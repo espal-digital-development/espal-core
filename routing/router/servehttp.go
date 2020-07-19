@@ -10,6 +10,8 @@ import (
 	"github.com/juju/errors"
 )
 
+const dataIntegrityViolated = "The data integrity has been violated"
+
 // ServeHTTP functions as a callback for server routing binding.
 // nolint:funlen,gocognit
 func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http.Request) {
@@ -34,8 +36,8 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context := r.contextsFactory.NewContext(request, responseWriter, nil, nil)
 		context.RenderInternalServerError(errors.Trace(err))
 
-		r.loggerService.Errorf("domain `%s` fetch threw an error `%s`. The data integrity has been violated",
-			request.Host, err.Error())
+		r.loggerService.Errorf("domain `%s` fetch threw an error `%s`. %s", request.Host, err.Error(),
+			dataIntegrityViolated)
 		return
 	}
 	if !ok {
@@ -43,7 +45,7 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context.SetStatusCode(http.StatusInternalServerError)
 		context.RenderInternalServerError(errors.Trace(err))
 
-		r.loggerService.Errorf("domain `%s` must exist. The data integrity has been violated", request.Host)
+		r.loggerService.Errorf("domain `%s` must exist. %s", request.Host, dataIntegrityViolated)
 		return
 	}
 	if !domain.Active() {
@@ -57,15 +59,15 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context := r.contextsFactory.NewContext(request, responseWriter, nil, nil)
 		context.RenderInternalServerError(errors.Trace(err))
 
-		r.loggerService.Errorf("site `%s` fetch threw an error `%s`. The data integrity has been violated",
-			request.Host, err.Error())
+		r.loggerService.Errorf("site `%s` fetch threw an error `%s`. %s", request.Host, err.Error(),
+			dataIntegrityViolated)
 		return
 	}
 	if !ok {
 		context := r.contextsFactory.NewContext(request, responseWriter, nil, nil)
 		context.RenderInternalServerError(errors.Trace(err))
 
-		r.loggerService.Errorf("domain `%s` must have a site. The data integrity has been violated", request.Host)
+		r.loggerService.Errorf("domain `%s` must have a site. %s", request.Host, dataIntegrityViolated)
 		return
 	}
 	if !site.Online() {
@@ -89,8 +91,11 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		return
 	}
 
-	// TODO :: 777777 The 2 Access-Control-Allow-Origin/Credentials, Content-Security-Policy should be a
-	// field on the Site/Domain db object? Origin: null should cause a fault and be illegal.
+	// TODO :: 777777 The Access-Control-Allow-Origin/Credentials, Content-Security-Policy should be a field on the
+	// Site/Domain db object? Origin: null should cause a fault and be illegal.
+	context.SetHeader("Referrer-Policy", "same-origin")
+	context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
+	context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 
 	route, routeFound := r.getRoute(context.Path())
 	if routeFound { // nolint:nestif
@@ -99,11 +104,6 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 			context.Redirect("/Auth", http.StatusTemporaryRedirect)
 			return
 		}
-
-		context.SetHeader("Referrer-Policy", "same-origin")
-		context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
-		context.SetHeader("Access-Control-Allow-Origin", domain.Host())
-
 		route.Handle(context)
 	} else {
 		slug, ok, err := r.slugStore.GetOneByDomainIDAndPath(domain.ID(), context.Host())
@@ -124,9 +124,6 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 				context.Redirect("/Auth", http.StatusTemporaryRedirect)
 				return
 			}
-			context.SetHeader("Referrer-Policy", "same-origin")
-			context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
-			context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 			route.Handle(context)
 		} else {
 			context.RenderNotFound()
@@ -135,8 +132,9 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		// not suddenly go back from /Inloggen to /Login again).
 	}
 
-	if context.StatusCode() == 0 || context.StatusCode() < 300 {
-		// TODO :: 7777 Maybe don't wait here and fire a routine to handle the save?
+	if context.StatusCode() < http.StatusMultipleChoices {
+		// TODO :: 7777 Maybe don't wait here and fire a routine to handle the save? But might cause not being saved
+		// yet on next page load.
 		if err := context.SaveSessionIfNeeded(); err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			return
@@ -144,7 +142,6 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 	}
 
 	if r.configService.Logging() {
-		// Ignore logging the health call
 		if r.configService.Development() && strings.HasPrefix(context.Path(), "/health") {
 			return
 		}

@@ -25,8 +25,6 @@ func (r *Route) Handle(context contexts.Context) {
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	// TODO :: 7 This is ok for now, but the Auth should be blocking the site to such an extent
-	// that it shouldn't even show the design or expose the assets.
 	form, err := r.authFormValidator.New(language)
 	if err != nil {
 		context.RenderInternalServerError(errors.Trace(err))
@@ -48,19 +46,22 @@ func (r *Route) Handle(context contexts.Context) {
 		return
 	}
 
-	// TODO :: 777777 Implement nice native rendered output
-	// 	<div class="simpleBox">
-	//     {%s= p.form.Errors() %}
-	//     <h1>{%s p.Translate("authentication") %}</h1>
-	//     {%s= p.form.Open() %}
-	//         {%s= p.form.Field("_uname") %}
-	//         {%s= p.form.Field("_t") %}
-	//         {%s= p.form.Field("email") %}<br>
-	//         {%s= p.form.Field("password") %}<br>
-	//         {%s= p.form.Field("rememberMe") %}<br>
-	//         <input type="submit" value="{%s p.Translate("login") %}">
-	//     </form>
-	// </div>
+	context.WriteString(`<div class="simpleBox">`)
+	context.WriteString(form.View().Errors())
+	context.WriteString(`<h1>`)
+	context.WriteString(context.Translate("authentication"))
+	context.WriteString(`</h1>`)
+	context.WriteString(form.View().Open())
+	context.WriteString(form.View().Field("_uname"))
+	context.WriteString(form.View().Field("_t"))
+	context.WriteString(form.View().Field("email"))
+	context.WriteString(`<br>`)
+	context.WriteString(form.View().Field("password"))
+	context.WriteString(`<br>`)
+	context.WriteString(form.View().Field("rememberMe"))
+	context.WriteString(`<br><input type="submit" value="`)
+	context.WriteString(context.Translate("login"))
+	context.WriteString(`"></form></div>`)
 }
 
 // New returns a new instance of Route.
