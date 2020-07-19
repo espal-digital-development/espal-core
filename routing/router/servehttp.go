@@ -11,7 +11,7 @@ import (
 )
 
 // ServeHTTP functions as a callback for server routing binding.
-// nolint:funlen
+// nolint:funlen,gocognit
 func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http.Request) {
 	var start time.Time
 	if r.configService.Logging() {
@@ -80,10 +80,12 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 	// TODO :: Make a config option that can disguise admin routes and make them appear as they don't exist (404)
 
 	if request.Method == http.MethodOptions {
-		context.SetHeader("Access-Control-Allow-Origin", "*") // temp
-		// context.SetHeader("Access-Control-Allow-Origin", domain.Host())
+		context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 		context.SetHeader("Access-Control-Allow-Headers", "Authorization")
 		context.SetStatusCode(http.StatusOK)
+		if r.configService.Logging() {
+			r.log(start, context)
+		}
 		return
 	}
 
@@ -91,7 +93,7 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 	// field on the Site/Domain db object? Origin: null should cause a fault and be illegal.
 
 	route, routeFound := r.getRoute(context.Path())
-	if routeFound {
+	if routeFound { // nolint:nestif
 		// TODO :: 7 Assets for the Auth/Login page should also be allowed to be served
 		if r.configService.SecurityGlobalAuthentication() && request.URL.Path != "/Auth" && !context.IsLoggedIn() {
 			context.Redirect("/Auth", http.StatusTemporaryRedirect)
@@ -100,8 +102,7 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 
 		context.SetHeader("Referrer-Policy", "same-origin")
 		context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
-		context.SetHeader("Access-Control-Allow-Origin", "*") // temp
-		// context.SetHeader("Access-Control-Allow-Origin", domain.Host())
+		context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 
 		route.Handle(context)
 	} else {
@@ -126,7 +127,6 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 			context.SetHeader("Referrer-Policy", "same-origin")
 			context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
 			context.SetHeader("Access-Control-Allow-Origin", domain.Host())
-			context.SetHeader("Access-Control-Allow-Credentials", "true")
 			route.Handle(context)
 		} else {
 			context.RenderNotFound()
