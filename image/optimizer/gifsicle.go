@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 
 	"github.com/juju/errors"
 )
@@ -19,7 +20,7 @@ func (o *Optimizer) gifsicle(data []byte, optimizationLevel int, lossy int) ([]b
 	if lossy < gifsicleMinLossy || lossy > gifsicleMaxLossy {
 		return nil, errors.Errorf("lossy has to be between %d and %d", gifsicleMinLossy, gifsicleMaxLossy)
 	}
-	tmpFile := os.TempDir() + "gifsicle.tmp.gif"
+	tmpFile := strings.TrimSuffix(os.TempDir(), "/") + "/gifsicle.tmp.gif"
 	if err := ioutil.WriteFile(tmpFile, data, 0600); err != nil {
 		return nil, errors.Trace(err)
 	}

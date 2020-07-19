@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -56,7 +57,7 @@ func TestEmptySetters(t *testing.T) {
 
 func TestLoaders(t *testing.T) {
 	random := rand.NewSource(time.Now().UnixNano())
-	tmpDir := os.TempDir()
+	tmpDir := strings.TrimSuffix(os.TempDir(), "/")
 	hashDirPrefix := fmt.Sprintf("%s%d_", tmpDir, random.Int63())
 	config := &assets.Config{
 		PublicRootFilesPath: filepath.FromSlash(hashDirPrefix + "root"),
