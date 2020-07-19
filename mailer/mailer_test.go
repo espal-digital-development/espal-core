@@ -5,6 +5,6 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	// mailer := mailer()
-	// TODO :: Need a fake endpoint to test again
+	// mailer := mailer.New("host", 2525, "user", "pass")
+	// TODO :: Need to mock the gomail library to fake the Message/Sender
 }
