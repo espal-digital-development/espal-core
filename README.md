@@ -129,14 +129,11 @@ TODO :: PayPal donation link. (also make the intro link to here)
 
 ## Questions and Answers
 
-TODO :: ~
+- Q: Are domain suffixes supported?
+    - A: No and the reason is that having to check the existence of the suffix chunk would cause a massive performance impact. It's a better solution to use a wildcard SSL with subdomains than trying to cramp a performance impacting path chunk.
+
+TODO :: More general info
 
 ## License
 
 This package is made available under an MIT-style license. See LICENSE.txt.
-
-## Questions & Answers
-
-- Q: Are domain suffixes supported?
-    - A: No and the reason is that having to check the existence of the suffix chunk would cause a massive performance impact. It's a better solution to use a wildcard SSL with subdomains than trying to cramp a performance impacting path chunk.
-
