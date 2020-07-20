@@ -1,7 +1,7 @@
 ```diff
 - ALPHA NOTICE : This project is in it's early alpha phase
-- Please do not attempt to use in production. Contribution and
-- feedback would be much appreciated!
+- Please do not attempt to use in production.
+- Contribution and feedback would be much appreciated!
 ```
 
 # Espal: The world's fastest all-round web-based CMS, CRM, B2C, B2B, PIM, PLM, ERP in one
