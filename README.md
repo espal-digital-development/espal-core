@@ -1,3 +1,5 @@
+<span style="color:red; font-size: 16pt;">**ALPHA NOTICE : This project is in it's early alpha phase. Please do not attempt to use in production. Contribution and feedback would be much appreciated!**</span>
+
 # Espal: The world's fastest all-round web-based CMS, CRM, B2C, B2B, PIM, PLM, ERP in one
 
 Espal aims to deliver a fresh next-generation all-in-one experience on CMS, CRM, B2C, B2B, PIM, PLM and ERP. The main focus of the project is performance while maintaining usability and style. Espal can easily outperform any modern-day script-based system by a hundred-fold. This means you can run an enterprise-grade system on a very small and light server. We have plans to even integrate load-balancing for big hosting-solutions like DigitalOcean in the near future so you can easily just install one Espal instance and all the balancing and resource-distribution will be taken care of.
