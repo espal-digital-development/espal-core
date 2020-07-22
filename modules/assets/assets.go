@@ -62,8 +62,11 @@ func (a *Assets) SetJavaScript(storage storage) error {
 }
 
 func (a *Assets) loadAllFiles(subjectPath string, extensions []string, storage storage) error {
-	subjectPathSlash := filepath.FromSlash(subjectPath + "/")
+	subjectPathSlash := subjectPath + "/"
 	return filepath.Walk(subjectPath, func(path string, info os.FileInfo, err error) error {
+		// Walk uses backward slashes on Windows, so replace them with forward
+		// Need forward slashes, because assets are being served based on forward slashes
+		path = strings.ReplaceAll(path, "\\", "/")
 		if err != nil {
 			return errors.Trace(err)
 		}
