@@ -6,6 +6,7 @@
 
 # Folders
 .idea
+app
 
 # Specific files
 .DS_store
