@@ -16,7 +16,7 @@ Espal also doesn't suffer from the bloated effect that rendered coding language 
 
 We will also provide you with detailed deployment guides and tips to ensure both the Espal application and your server's safety will be at an enterprise grade at all times. Our philosophy is that the best should be available for everyone; not some highest bidder.
 
-**Espal will be free, forever**. Commercial acquisition offers aren't appreciated. Professional paid support can be requested (deployment, hosting and maintenance) for those who wish so, but new features will always need to be generalized and approved by the Advocate System (see below) and will never be made private for any reason. We believe that collectivity will work best for everyone. For more information please contact us at [info@espaldd.com](mailto:info@espaldd.com). Of course donations are always welcome too.
+**Espal will be free, forever**. Commercial acquisition offers aren't appreciated. Professional paid support can be requested (deployment, hosting and maintenance) for those who wish so, but new features will always need to be generalized and approved by the Advocate System (see below) and will never be made private for any reason. We believe that collectivity will work best for everyone. For more information please contact us at [espaldd@icloud.com](mailto:espaldd@icloud.com). Of course donations are always welcome too.
 
 ## Details
 
