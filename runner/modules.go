@@ -24,17 +24,43 @@ func (r *Runner) RegisterModule(module modules.Modular) error {
 	if meta.Version() == "" {
 		return errors.Errorf("module `%s` is missing it's version", meta.UniqueIdentifier())
 	}
-	if !r.reValidSemver.MatchString(meta.Version()) {
+	if !r.services.semver.Valid(meta.Version()) {
 		return errors.Errorf("module `%s` version is not valid semVer", meta.UniqueIdentifier())
 	}
-	// TODO :: 777777 Test the module's version compatibility range with that of the core itself
-	// and return an error if it violates. fix-deploys like v1.0.5-hotfix should be allowed.
 	for k := range r.modulesRegistry {
 		if r.modulesRegistry[k].GetMeta().UniqueIdentifier() == meta.UniqueIdentifier() {
 			return errors.Errorf("module `%s` is already registered",
 				meta.UniqueIdentifier())
 		}
 	}
+
+	var err error
+	var compatible bool
+
+	switch {
+	case meta.MinimumCompatibleCoreVersion() != "" && meta.MaximumCompatibleCoreVersion() != "":
+		compatible, err = r.services.semver.InRange(r.version, meta.MinimumCompatibleCoreVersion(),
+			meta.MaximumCompatibleCoreVersion())
+		if err != nil {
+			return errors.Trace(err)
+		}
+	case meta.MinimumCompatibleCoreVersion() != "":
+		compatible, err = r.services.semver.GreaterThanOrEqual(r.version, meta.MinimumCompatibleCoreVersion())
+		if err != nil {
+			return errors.Trace(err)
+		}
+	case meta.MaximumCompatibleCoreVersion() != "":
+		compatible, err = r.services.semver.SmallerThanOrEqual(r.version, meta.MinimumCompatibleCoreVersion())
+		if err != nil {
+			return errors.Trace(err)
+		}
+	}
+	if !compatible {
+		return errors.Errorf("module `%s` is not version-compatible with core version `%s`. Has to be between `%s` and `%s`",
+			meta.UniqueIdentifier(), r.version, meta.MinimumCompatibleCoreVersion(),
+			meta.MaximumCompatibleCoreVersion())
+	}
+
 	r.services.logger.Infof("Registered module `%s` v%s in %v",
 		meta.Name(), strings.TrimPrefix(meta.Version(), "v"), time.Since(start))
 	r.modulesRegistry = append(r.modulesRegistry, module)

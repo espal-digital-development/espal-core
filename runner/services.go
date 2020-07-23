@@ -13,6 +13,7 @@ import (
 	"github.com/espal-digital-development/espal-core/routing/assethandler"
 	"github.com/espal-digital-development/espal-core/routing/router"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
+	"github.com/espal-digital-development/espal-core/semver"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/espal-digital-development/espal-core/template/renderer"
 	"github.com/espal-digital-development/espal-core/tokenpool"
@@ -20,6 +21,7 @@ import (
 )
 
 type services struct {
+	semver              semver.Versioning
 	config              config.Config
 	logger              logger.Loggable
 	imageOptimizer      optimizer.Optimizable

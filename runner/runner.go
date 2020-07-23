@@ -1,12 +1,12 @@
 package runner
 
 import (
-	"regexp"
 	"time"
 
 	"github.com/espal-digital-development/espal-core/cachesynchronizer"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/modules"
+	"github.com/espal-digital-development/espal-core/semver"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/juju/errors"
 )
@@ -24,11 +24,11 @@ type Application interface {
 
 // Runner is an application core that houses and manages all the application's services and their interactions.
 type Runner struct {
+	version         string
 	path            string
 	serverStartTime time.Time
 
 	modulesRegistry []modules.Modular
-	reValidSemver   *regexp.Regexp
 
 	services     *services
 	storages     *storages
@@ -71,6 +71,10 @@ func (r *Runner) RunNonBlocking() error {
 
 	r.services.sessions = sessions.New(r.services.config, r.stores.session)
 
+	if err := r.themes(); err != nil {
+		return errors.Trace(err)
+	}
+
 	r.router()
 	if err := r.routes(); err != nil {
 		return errors.Trace(err)
@@ -91,6 +95,7 @@ func (r *Runner) RunNonBlocking() error {
 // New returns a new instance of Runner.
 func New() (*Runner, error) {
 	r := &Runner{
+		version:         "0.0.1",
 		modulesRegistry: []modules.Modular{},
 		services:        &services{},
 		storages:        &storages{},
@@ -100,8 +105,7 @@ func New() (*Runner, error) {
 	}
 	r.services.logger = logger.New()
 	var err error
-	r.reValidSemver, err = regexp.Compile(`^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-]` +
-		`[0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$`)
+	r.services.semver, err = semver.New()
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
