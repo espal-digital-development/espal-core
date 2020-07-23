@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"os"
-	"path/filepath"
 	"strings"
 	"testing"
 	"time"
@@ -60,10 +59,10 @@ func TestLoaders(t *testing.T) {
 	tmpDir := strings.TrimSuffix(os.TempDir(), "/")
 	hashDirPrefix := fmt.Sprintf("%s%d_", tmpDir, random.Int63())
 	config := &assets.Config{
-		PublicRootFilesPath: filepath.FromSlash(hashDirPrefix + "root"),
-		ImagesPath:          filepath.FromSlash(hashDirPrefix + "images"),
-		StylesheetsPath:     filepath.FromSlash(hashDirPrefix + "css"),
-		JavaScriptPath:      filepath.FromSlash(hashDirPrefix + "js"),
+		PublicRootFilesPath: hashDirPrefix + "root",
+		ImagesPath:          hashDirPrefix + "images",
+		StylesheetsPath:     hashDirPrefix + "css",
+		JavaScriptPath:      hashDirPrefix + "js",
 	}
 	assets, err := assets.New(config)
 	if err != nil {
@@ -81,10 +80,10 @@ func TestLoaders(t *testing.T) {
 	if err := os.Mkdir(config.JavaScriptPath, 0700); err != nil {
 		t.Fatal(err)
 	}
-	if err := ioutil.WriteFile(filepath.FromSlash(config.StylesheetsPath+"/test.css"), []byte(""), 0644); err != nil {
+	if err := ioutil.WriteFile(config.StylesheetsPath+"/test.css", []byte(""), 0644); err != nil {
 		t.Fatal(err)
 	}
-	if err := ioutil.WriteFile(filepath.FromSlash(config.StylesheetsPath+"/no_css.txt"), []byte(""), 0644); err != nil {
+	if err := ioutil.WriteFile(config.StylesheetsPath+"/no_css.txt", []byte(""), 0644); err != nil {
 		t.Fatal(err)
 	}
 	storageMock := &storageMock{}
@@ -110,7 +109,7 @@ func TestStorageSetterFailure(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if err := ioutil.WriteFile(filepath.FromSlash(tmpDir+"test.css"), []byte(""), 0644); err != nil {
+	if err := ioutil.WriteFile(tmpDir+"test.css", []byte(""), 0644); err != nil {
 		t.Fatal(err)
 	}
 	storageMock := &storageMock{

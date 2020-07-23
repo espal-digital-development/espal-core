@@ -87,7 +87,7 @@ func (r *Runner) languagesAndTranslations() error {
 					r.modulesRegistry[k].GetMeta().Name(), language,
 				)
 			}
-			yamlData, err := ioutil.ReadFile(filepath.FromSlash(translationsPath + "/" + files[k].Name()))
+			yamlData, err := ioutil.ReadFile(translationsPath + "/" + files[k].Name())
 			if err != nil {
 				return errors.Trace(err)
 			}

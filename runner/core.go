@@ -2,7 +2,6 @@ package runner
 
 import (
 	"io/ioutil"
-	"path/filepath"
 
 	"github.com/espal-digital-development/espal-core/config"
 	"github.com/espal-digital-development/espal-core/image/optimizer"
@@ -20,10 +19,10 @@ import (
 
 func (r *Runner) core(path string) error {
 	if path == "" {
-		path = filepath.FromSlash("./app")
+		path = "./app"
 	}
 
-	configYamlData, err := ioutil.ReadFile(filepath.FromSlash(path + "/config.yml"))
+	configYamlData, err := ioutil.ReadFile(path + "/config.yml")
 	if err != nil {
 		return errors.Trace(err)
 	}

@@ -38,7 +38,7 @@ func (t *Translations) GetAll() (map[string]string, error) {
 			continue
 		}
 		language := strings.TrimSuffix(files[k].Name(), ext)
-		translations[language] = filepath.FromSlash(t.path + "/" + files[k].Name())
+		translations[language] = t.path + "/" + files[k].Name()
 	}
 
 	return translations, nil
