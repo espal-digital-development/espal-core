@@ -7,6 +7,7 @@ import (
 	"github.com/espal-digital-development/espal-core/config"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/languages"
+	"github.com/espal-digital-development/espal-core/repositories/themes"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/espal-digital-development/espal-core/stores/user"
@@ -80,8 +81,9 @@ type HTTPContext struct {
 	languagesRepository    languages.Repository
 	translationsRepository translations.Repository
 	sessionsFactory        sessions.Factory
-	adminMenuService       adminmenu.Menu
+	themesRepository       themes.Repository
 	rendererService        renderer.Renderer
+	adminMenuService       adminmenu.Menu
 	userStore              user.Store
 
 	request        *http.Request

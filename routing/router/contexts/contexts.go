@@ -7,6 +7,7 @@ import (
 	"github.com/espal-digital-development/espal-core/config"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/languages"
+	"github.com/espal-digital-development/espal-core/repositories/themes"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/espal-digital-development/espal-core/stores/user"
@@ -27,8 +28,9 @@ type Contexts struct {
 	languagesRepository    languages.Repository
 	translationsRepository translations.Repository
 	sessionsFactory        sessions.Factory
-	adminMenuService       adminmenu.Menu
+	themesRepository       themes.Repository
 	rendererService        renderer.Renderer
+	adminMenuService       adminmenu.Menu
 	userStore              user.Store
 }
 
@@ -41,8 +43,9 @@ func (c *Contexts) NewContext(request *http.Request, responseWriter http.Respons
 		languagesRepository:    c.languagesRepository,
 		translationsRepository: c.translationsRepository,
 		sessionsFactory:        c.sessionsFactory,
-		adminMenuService:       c.adminMenuService,
+		themesRepository:       c.themesRepository,
 		rendererService:        c.rendererService,
+		adminMenuService:       c.adminMenuService,
 		userStore:              c.userStore,
 
 		request:        request,
@@ -57,15 +60,17 @@ func (c *Contexts) NewContext(request *http.Request, responseWriter http.Respons
 // New returns a new instance of Contexts.
 func New(configService config.Config, loggerService logger.Loggable, languagesRepository languages.Repository,
 	translationsRepository translations.Repository, sessionsFactory sessions.Factory,
-	adminMenuService adminmenu.Menu, rendererService renderer.Renderer, userStore user.Store) *Contexts {
+	themesRepository themes.Repository, rendererService renderer.Renderer, adminMenuService adminmenu.Menu,
+	userStore user.Store) *Contexts {
 	return &Contexts{
 		configService:          configService,
 		loggerService:          loggerService,
 		languagesRepository:    languagesRepository,
 		translationsRepository: translationsRepository,
 		sessionsFactory:        sessionsFactory,
-		adminMenuService:       adminMenuService,
+		themesRepository:       themesRepository,
 		rendererService:        rendererService,
+		adminMenuService:       adminMenuService,
 		userStore:              userStore,
 	}
 }

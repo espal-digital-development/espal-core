@@ -8,6 +8,7 @@ import (
 	"github.com/espal-digital-development/espal-core/modules/repositories"
 	"github.com/espal-digital-development/espal-core/modules/routes"
 	"github.com/espal-digital-development/espal-core/modules/translations"
+	"github.com/espal-digital-development/espal-core/validators"
 	"github.com/juju/errors"
 )
 
@@ -30,6 +31,8 @@ type Modular interface {
 	SetRepositories(repositories *repositories.Repositories)
 	GetRepositories() (*repositories.Repositories, error)
 
+	RegisterValidatorsFactory(validatorsFactory validators.Factory)
+	GetValidatorsFactory() validators.Factory
 	RegisterCoreStores(stores Stores)
 	GetStores() Stores
 }
@@ -51,7 +54,8 @@ type Module struct {
 	preGetTranslationsCallback       func(m Modular) error
 	preGetRepositoriesCallback       func(m Modular) error
 
-	stores Stores
+	validatorsFactory validators.Factory
+	stores            Stores
 }
 
 // Config Module configuration object.
@@ -147,6 +151,16 @@ func (m *Module) GetRepositories() (*repositories.Repositories, error) {
 		return nil, errors.Trace(err)
 	}
 	return m.repositoriesProvider, nil
+}
+
+// RegisterValidator registers the that is provided by the core to this module.
+func (m *Module) RegisterValidatorsFactory(validatorsFactory validators.Factory) {
+	m.validatorsFactory = validatorsFactory
+}
+
+// GetValidatorsFactory fetches the internally registered validators factory.
+func (m *Module) GetValidatorsFactory() validators.Factory {
+	return m.validatorsFactory
 }
 
 // RegisterCoreStores registers all stores that are provided by the core to this module.

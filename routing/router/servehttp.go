@@ -77,6 +77,9 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		return
 	}
 
+	// TODO :: 777777 Get (and cache) settings here to check the Theme for this request's Site/Domain combination
+	// settings := r.settingsStore.GetAllForSiteDomain(site.ID(), domain.ID())
+
 	context := r.contextsFactory.NewContext(request, responseWriter, domain, site)
 
 	// TODO :: Make a config option that can disguise admin routes and make them appear as they don't exist (404)
