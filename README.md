@@ -22,6 +22,173 @@ We will also provide you with detailed deployment guides and tips to ensure both
 
 TODO :: Actually go a bit in depth here about the features of the business logic of the CMS, CRM, B2C etc.
 
+## Requirements
+
+- Go 1.14+
+- CockroachDB 20.1+
+
+## Installation
+
+```
+go get -u github.com/espal-digital-development/espal-run
+```
+```
+espal-run -create-project <your-project-name>
+```
+
+## Development
+
+The given installation instructions below will specifcally indicate which OS version or variation have been used. Older and/or newer versions or variations might work, but is not guaranteed.
+
+GoLand isn't supported as it's a paid app and we don't want to enforce cost upon the developers. We recommend Visual Studio Code.
+
+TODO :: Explain about using mod replace to run app/module/core together in development mode
+
+### Mac
+
+<details>
+<summary>macOS Catalina 10.15.6</summary>
+
+- Install Homebrew from https://brew.sh
+- Open Terminal and run these commands:
+    ```
+    brew install go cockroach pngquant jpegoptim gifsicle svgo
+    mkdir -p ~/gopath/bin
+
+    # This might depend on whether you use Bash, Zsh or something similar
+    echo "export PATH=~/go/bin:\$PATH" >> ~/.bashrc
+    echo "export PATH=~/gopath/bin:\$PATH" >> ~/.bashrc
+    echo "export GOPATH=~/gopath" >> ~/.bashrc
+    source ~/.bashrc
+    
+    brew cask install visual-studio-code
+
+    mkir ~/Documents/GitHub
+    cd ~/Documents/GitHub
+    git clone https://github.com/espal-digital-development/espal-core # or your fork
+    code espal-core/espal-run.code-workspace
+    # Wait for the Extension recommendations popup and Install All
+    # Then wait for the Go Extensions popup and click Install All
+    ```
+</details>
+
+### Linux
+
+Tested on VirtualBox with a 20GB dynamically allocated disk and an Intel Core i7-8700K.
+
+<details>
+<summary>Ubuntu 20.04 Desktop</summary>
+
+This will likely also work for:
+- antiX
+- Debian
+- Deepin
+- Elementary OS
+- Linux Lite
+- Mint
+- MX
+- Peppermint
+- Pop!_OS
+- Raspberry Pi OS
+- Sparky
+- Zorin OS
+
+Instructions:
+- Setup with Minimal Installation option and automatic login
+- Installed basic recommended update
+- (Did not install Gues Additions on purpose, to keep it as minimal as possible)
+- Create `~/.gitconfig` if needed and add/update:
+    ```
+    [user]
+        name = <your-name>
+        email = <your-email>
+    ```
+- Open Terminal and run these commands:
+    ```
+    sudo dpkg --configure -a # Might be needed, just run in case
+    sudo apt install -y git
+
+    mkdir -p ~/gopath/bin
+    wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
+    tar xzf go1.14.6.linux-amd64.tar.gz
+    rm go1.14.6.linux-amd64.tar.gz
+
+    echo "export PATH=~/go/bin:\$PATH" >> ~/.bashrc
+    echo "export PATH=~/gopath/bin:\$PATH" >> ~/.bashrc
+    echo "export GOPATH=~/gopath" >> ~/.bashrc
+    source ~/.bashrc
+
+    go get -u github.com/espal-digital-development/espal-run
+    
+    snap install code --classic
+    mkir ~/Documents/GitHub
+    cd ~/Documents/GitHub
+    git clone https://github.com/espal-digital-development/espal-core # or your fork
+    code espal-run/espal-core.code-workspace
+    # Wait for the Extension recommendations popup and Install All
+    # Then wait for the Go Extensions popup and click Install All
+    ```
+- If you have or make a GitHub account and have not yet generated a SSH key yet:
+    ```
+    ssh-keygen -t ed25591 -C "your-computer-name"
+    cat ~/.ssh/id_ed25519.pub
+    # Select and copy the output of the cat command.
+    # Then go to github.com, login and click your Avatar
+    # Go to Settings > SSH & GPG Keys > New SSH Key and paste
+    # the key and save it with a name.
+    ```
+</details>
+
+### BSD
+
+TODO :: Test and describe (FreeBSD, NetBSD, OpenBSD, pkg/pkgn2g package manager?)
+
+### Solaris
+
+TODO :: Test and describe
+
+### Windows
+
+<details>
+<summary>Windows 10 Pro (Click to expand)</summary>
+
+- Install:
+    - Visual Studio Core from https://code.visualstudio.com/Download
+    - Go from https://golang.org/dl/
+    - Git from https://git-scm.com/
+    - (optional) Install GitHub Desktop from https://desktop.github.com/
+- Preparation
+    - Open `Command Prompt` as Administrator and execute: set `PATH=%PATH%;C:\Program Files\Git\usr\bin\`
+    - Also if needed, add: `C:\Users\%user%\go\bin` && `C:\Go\bin`
+- Open **Visual Studio Code**
+    - In the `File menu` click `Open Workspace...`
+        - Navigate to the espal-core repository and open `espal-core.code-workspace`
+        - Don't hide the popups in the corner and accept the recommended extensions to be installed
+    - Press `Ctrl + Shift + P`
+        - Search `Go: Install/Update Tools`
+        - Check the top (`all`) checkbox
+        - Click `OK`
+    - Press `Ctrl + Shift + P`
+        - Search `Go: Lint Workspace`
+        - Hit Enter (Virus scanners might make the first run a bit slower)
+</details>
+
+### Docker
+TODO :: Explain
+
+### espal-run
+TODO :: Explain
+
+### espal-store-synthesizer
+TODO :: Explain
+
+### Mocking with moq
+TODO :: Explain
+
+## Deployment
+
+TODO :: (Guides and Tips for effective and secure deployment)
+
 ## Internals
 Not everything starts from absolute scratch. Even tho the aim for Espal is to be as dependency-less as possible we can't pass on the ones that already make certain tasks very easy and robust. Espal uses the following amazing libraries:
 
@@ -48,70 +215,6 @@ The most important indicators will always be performance first, follow by if the
 If highly voted proposals still get counter voted by the developers, instead of butting heads try to think constructively together to see what other possibilities there are. There might still be ways to adjust the original request into a more viable solution. Often the 2nd or 3rd iteration of an idea turns out to be the best one.
 
 TODO :: Make the advocate system and link it here
-
-## Requirements
-
-- Go 1.14+
-- CockroachDB 20.1.1+
-
-## Install
-
-First do the following (any operating system):
-
-- If not yet; [install Go](https://golang.org/doc/install) and follow the instructions and make sure your environment settings are set
-- If not yet; [install CockroachDB](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) and follow the instructions for a secure installation with the certificates
-- TODO :: Start CockroachDB
-- TODO :: Create all the CockroachDB users and assign GRANTs: ~~
-- TODO :: go get -u github.com/espal/espal-core
-
-TODO :: more OS-agnostic installs?
-
-Now follow the instructions below based on your operating system:
-
-### Mac
-TODO :: ~~ run scripts
-
-### Linux
-TODO :: ~~ run scripts
-
-### Windows
-- Install
-    - Visual Studio Core from https://code.visualstudio.com/Download
-    - Go from https://golang.org/dl/
-    - Git from https://git-scm.com/
-    - (optional) Install GitHub Desktop from https://desktop.github.com/
-- Preparation
-    - Open cmd as Administrator and execute: set PATH=%PATH%;C:\Program Files\Git\usr\bin\
-    - Also if needed, add: C:\Users\%user%\go\bin && C:\Go\bin
-- Open Visual Studio Code
-    - In the File menu click Open Workspace...
-        - Navigate to the espal-core repository and open espal-core.code-workspace
-        - Don't hide the popups in the corner and accept the recommended extensions to be installed
-    - Press Ctrl + Shift + P
-        - Search "Go: Install/Update Tools"
-        - Check the top (all) checkbox
-        - Click OK
-    - Press Ctrl + Shift + P
-        - Search "Go: Lint Workspace"
-        - Hit Enter (Virus scanners might make the first run a bit slower)
-
-## Usage
-
-TODO :: ~~ (Guides and Tips for effective and secure deployment)
-
-## Development
-
-### Visual Studio Code Workspace
-TODO :: Explain (also GoLand isn't supported as it's a paid app and we don't want to enforce cost upon the developers)
-
-### espal-run
-TODO :: Explain
-
-### espal-store-synthesizer
-TODO :: Explain
-
-### Mocking with moq
-TODO :: Explain
 
 ## Performance
 
