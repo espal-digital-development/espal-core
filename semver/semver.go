@@ -46,9 +46,12 @@ func (s *Semver) InRange(version string, start string, end string) (bool, error)
 	if err != nil {
 		return false, errors.Trace(err)
 	}
-	smallerThanOrEqual, err := s.SmallerThanOrEqual(version, end)
-	if err != nil {
-		return false, errors.Trace(err)
+	smallerThanOrEqual := true
+	if end != "" {
+		smallerThanOrEqual, err = s.SmallerThanOrEqual(version, end)
+		if err != nil {
+			return false, errors.Trace(err)
+		}
 	}
 	return greaterThanOrEqual && smallerThanOrEqual, nil
 }
@@ -59,7 +62,7 @@ func (s *Semver) GreaterThanOrEqual(version string, compare string) (bool, error
 		return false, errors.Errorf("version `%s` is invalid", version)
 	}
 	if !s.Valid(compare) {
-		return false, errors.Errorf("version `%s` is invalid", compare)
+		return false, errors.Errorf("compare `%s` is invalid", compare)
 	}
 	semVersion, err := s.buildVersion(version)
 	if err != nil {
@@ -69,9 +72,19 @@ func (s *Semver) GreaterThanOrEqual(version string, compare string) (bool, error
 	if err != nil {
 		return false, errors.Trace(err)
 	}
-	return semVersion.major >= semCompare.major &&
-		semVersion.minor >= semCompare.minor &&
-		semVersion.revision >= semCompare.revision, nil
+	if semVersion.major < semCompare.major {
+		return false, nil
+	}
+	if semVersion.major > semCompare.major {
+		return true, nil
+	}
+	if semVersion.minor < semCompare.minor {
+		return false, nil
+	}
+	if semVersion.minor > semCompare.minor {
+		return true, nil
+	}
+	return semVersion.revision >= semCompare.revision, nil
 }
 
 // SmallerThanOrEqual checks if the given version is smaller than or equal to the compare version.
@@ -80,7 +93,7 @@ func (s *Semver) SmallerThanOrEqual(version string, compare string) (bool, error
 		return false, errors.Errorf("version `%s` is invalid", version)
 	}
 	if !s.Valid(compare) {
-		return false, errors.Errorf("version `%s` is invalid", compare)
+		return false, errors.Errorf("compare `%s` is invalid", compare)
 	}
 	semVersion, err := s.buildVersion(version)
 	if err != nil {
@@ -90,9 +103,19 @@ func (s *Semver) SmallerThanOrEqual(version string, compare string) (bool, error
 	if err != nil {
 		return false, errors.Trace(err)
 	}
-	return semVersion.major <= semCompare.major &&
-		semVersion.minor <= semCompare.minor &&
-		semVersion.revision <= semCompare.revision, nil
+	if semVersion.major > semCompare.major {
+		return false, nil
+	}
+	if semVersion.major < semCompare.major {
+		return true, nil
+	}
+	if semVersion.minor > semCompare.minor {
+		return false, nil
+	}
+	if semVersion.minor < semCompare.minor {
+		return true, nil
+	}
+	return semVersion.revision <= semCompare.revision, nil
 }
 
 func (s *Semver) buildVersion(version string) (*semVersion, error) {
