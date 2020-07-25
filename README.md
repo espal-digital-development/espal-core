@@ -197,7 +197,7 @@ Not everything starts from absolute scratch. Even tho the aim for Espal is to be
 - [Brian Voelker](https://github.com/brianvoe)'s [gofakeit](https://github.com/brianvoe/gofakeit) for fast data fills and variations to test certain parts of the system
 - [Nathan Button](https://github.com/nbutton23)'s [zxcvbn-go](https://github.com/nbutton23/zxcvbn-go) Go port of Dropbox' zxcvbn password strength checking library
 - [Taco de Wolff](https://github.com/tdewolff)'s easy-to-use [minify](https://github.com/tdewolff/minify) Swiss army knife for web formats
-- [Gomail](github.com/go-gomail/gomail) dailer for sending mails without any hassle
+- [Gomail](github.com/go-gomail/gomail) dialer for sending mails without any hassle
 
 [go-bindata](https://github.com/go-bindata/go-bindata) was used. It isn't vendored in the project, but is used for the embedding of package data into native code
 - [Dave Collins](https://github.com/davecgh)' amazing and super-easy to use [go-spew](https://github.com/davecgh/go-spew) dump tool. Used a lot in development

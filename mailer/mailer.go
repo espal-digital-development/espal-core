@@ -14,7 +14,7 @@ type Engine interface {
 
 // Mailer sending engine.
 type Mailer struct {
-	dailer *gomail.Dialer
+	dialer *gomail.Dialer
 }
 
 // NewMessage returns a new instance of Data.
@@ -30,12 +30,12 @@ func (m *Mailer) Send(message Data) error {
 	msg := gomail.NewMessage()
 	msg.SetBody(message.GetContentType(), message.GetBody())
 	msg.SetHeaders(message.GetHeaders())
-	return m.dailer.DialAndSend(msg)
+	return m.dialer.DialAndSend(msg)
 }
 
 // New returns a new instance of Mailer.
 func New(host string, port int, username, password string) *Mailer {
 	return &Mailer{
-		dailer: gomail.NewDialer(host, port, username, password),
+		dialer: gomail.NewDialer(host, port, username, password),
 	}
 }
