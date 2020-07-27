@@ -185,6 +185,22 @@ TODO :: Explain
 ### Mocking with moq
 TODO :: Explain
 
+### Connecting to database tools
+
+Sadly there aren't many tools that flawless integrate with CockroachDB. Most Postgres tools might work, but might give issues using the secure SSL certificate style, as use of passwords isn't the default practice for the app db users.
+
+When using a suitable app use settings similar like so:
+
+- Host: `localhost`
+- Port: `36257`
+- User: `root`
+- Password: `<No password option>` (some apps might work with just leaving the field empty)
+- Database (name): `app`
+- SSL Mode: `Require(d)`
+- SSL Key: `app/database/certs/node.key`
+- SSL Cert: `app/database/certs/node.crt`
+- CA Cert: `app/database/certs/ca.crt`
+
 ## Deployment
 
 TODO :: (Guides and Tips for effective and secure deployment)
