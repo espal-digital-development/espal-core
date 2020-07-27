@@ -14,18 +14,18 @@ server:
 database:
   host: localhost
   port: 36257
-  name: espal
+  name: app
   users:
-    selecter: espal_selecter
-    creator: espal_creator
-    inserter: espal_inserter
-    updater: espal_updater
-    deletor: espal_deletor
-    migrator: espal_migrator
+    selecter: selecter
+    creator: creator
+    inserter: inserter
+    updater: updater
+    deletor: deletor
+    migrator: migrator
 email:
   host: smtp.domain.dev
   port: 2525
-  username: espal
+  username: fakeUsername
   password: fakePassword
   noReplyAddress: noreply@domain.dev
 security:
@@ -57,23 +57,23 @@ paths:
   database:
     sslRootCertificateFile: ./app/database/ca.crt
     selecter:
-      sslCertificateFile: ./app/database/client.espal_selecter.crt
-      sslKeyFile: ./app/database/client.espal_selecter.key
+      sslCertificateFile: ./app/database/client.selecter.crt
+      sslKeyFile: ./app/database/client.selecter.key
     creator:
-      sslCertificateFile: ./app/database/client.espal_creator.crt
-      sslKeyFile: ./app/database/client.espal_creator.key
+      sslCertificateFile: ./app/database/client.creator.crt
+      sslKeyFile: ./app/database/client.creator.key
     inserter:
-      sslCertificateFile: ./app/database/client.espal_inserter.crt
-      sslKeyFile: ./app/database/client.espal_inserter.key
+      sslCertificateFile: ./app/database/client.inserter.crt
+      sslKeyFile: ./app/database/client.inserter.key
     updater:
-      sslCertificateFile: ./app/database/client.espal_updater.crt
-      sslKeyFile: ./app/database/client.espal_updater.key
+      sslCertificateFile: ./app/database/client.updater.crt
+      sslKeyFile: ./app/database/client.updater.key
     deletor:
-      sslCertificateFile: ./app/database/client.espal_deletor.crt
-      sslKeyFile: ./app/database/client.espal_deletor.key
+      sslCertificateFile: ./app/database/client.deletor.crt
+      sslKeyFile: ./app/database/client.deletor.key
     migrator:
-      sslCertificateFile: ./app/database/client.espal_migrator.crt
-      sslKeyFile: ./app/database/client.espal_migrator.key
+      sslCertificateFile: ./app/database/client.migrator.crt
+      sslKeyFile: ./app/database/client.migrator.key
   assets:
     stylesheets: ./app/assets/css
     javascript: ./app/assets/js

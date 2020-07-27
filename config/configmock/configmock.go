@@ -6,22 +6,22 @@ package configmock
 func DefaultConfigMock() *ConfigMock {
 	return &ConfigMock{
 		// DatabaseCreatorFunc: func() string {
-		// 	return "espal_creator"
+		// 	return "creator"
 		// },
 		// DatabaseDeletorFunc: func() string {
-		// 	return "espal_deletor"
+		// 	return "deletor"
 		// },
 		// DatabaseInserterFunc: func() string {
-		// 	return "espal_inserter"
+		// 	return "inserter"
 		// },
 		// DatabaseMigratorFunc: func() string {
-		// 	return "espal_migrator"
+		// 	return "migrator"
 		// },
 		// DatabaseSelecterFunc: func() string {
-		// 	return "espal_selecter"
+		// 	return "selecter"
 		// },
 		// DatabaseUpdaterFunc: func() string {
-		// 	return "espal_updater"
+		// 	return "updater"
 		// },
 
 		// DatabaseHostFunc: func() string {
@@ -31,7 +31,7 @@ func DefaultConfigMock() *ConfigMock {
 		// 	return 36257
 		// },
 		// DatabaseNameFunc: func() string {
-		// 	return "espal"
+		// 	return "app"
 		// },
 
 		// DatabaseSSLRootCertificateFileFunc: func() string {
@@ -39,40 +39,40 @@ func DefaultConfigMock() *ConfigMock {
 		// },
 
 		// DatabaseCreatorSSLCertificateFileFunc: func() string {
-		// 	return "client.espal_creator.crt"
+		// 	return "client.creator.crt"
 		// },
 		// DatabaseCreatorSSLKeyFileFunc: func() string {
-		// 	return "client.espal_creator.key"
+		// 	return "client.creator.key"
 		// },
 		// DatabaseDeletorSSLCertificateFileFunc: func() string {
-		// 	return "client.espal_deletor.crt"
+		// 	return "client.deletor.crt"
 		// },
 		// DatabaseDeletorSSLKeyFileFunc: func() string {
-		// 	return "client.espal_deletor.key"
+		// 	return "client.deletor.key"
 		// },
 		// DatabaseInserterSSLCertificateFileFunc: func() string {
-		// 	return "client.espal_inserter.crt"
+		// 	return "client.inserter.crt"
 		// },
 		// DatabaseInserterSSLKeyFileFunc: func() string {
-		// 	return "client.espal_inserter.key"
+		// 	return "client.inserter.key"
 		// },
 		// DatabaseMigratorSSLCertificateFileFunc: func() string {
-		// 	return "client.espal_migrator.crt"
+		// 	return "client.migrator.crt"
 		// },
 		// DatabaseMigratorSSLKeyFileFunc: func() string {
-		// 	return "client.espal_migrator.key"
+		// 	return "client.migrator.key"
 		// },
 		// DatabaseSelecterSSLCertificateFileFunc: func() string {
-		// 	return "client.espal_selecter.crt"
+		// 	return "client.selecter.crt"
 		// },
 		// DatabaseSelecterSSLKeyFileFunc: func() string {
-		// 	return "client.espal_selecter.key"
+		// 	return "client.selecter.key"
 		// },
 		// DatabaseUpdaterSSLCertificateFileFunc: func() string {
-		// 	return "client.espal_updater.crt"
+		// 	return "client.updater.crt"
 		// },
 		// DatabaseUpdaterSSLKeyFileFunc: func() string {
-		// 	return "client.espal_updater.key"
+		// 	return "client.updater.key"
 		// },
 	}
 }

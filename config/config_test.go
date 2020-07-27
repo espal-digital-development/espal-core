@@ -144,20 +144,20 @@ func TestConfigCallers(t *testing.T) {
 	testtools.EqString(t, "assets.cacheMaxAge", config.AssetsCacheMaxAge(), "60")
 
 	testtools.EqString(t, "database.host", config.DatabaseHost(), "localhost")
-	testtools.EqString(t, "database.name", config.DatabaseName(), "espal")
+	testtools.EqString(t, "database.name", config.DatabaseName(), "app")
 	testtools.EqInt(t, "database.port", config.DatabasePort(), 36257)
-	testtools.EqString(t, "database.creator.username", config.DatabaseCreator(), "espal_creator")
-	testtools.EqString(t, "database.deletor.username", config.DatabaseDeletor(), "espal_deletor")
-	testtools.EqString(t, "database.inserter.username", config.DatabaseInserter(), "espal_inserter")
-	testtools.EqString(t, "database.migrator.username", config.DatabaseMigrator(), "espal_migrator")
-	testtools.EqString(t, "database.selecter.username", config.DatabaseSelecter(), "espal_selecter")
-	testtools.EqString(t, "database.updater.username", config.DatabaseUpdater(), "espal_updater")
+	testtools.EqString(t, "database.creator.username", config.DatabaseCreator(), "creator")
+	testtools.EqString(t, "database.deletor.username", config.DatabaseDeletor(), "deletor")
+	testtools.EqString(t, "database.inserter.username", config.DatabaseInserter(), "inserter")
+	testtools.EqString(t, "database.migrator.username", config.DatabaseMigrator(), "migrator")
+	testtools.EqString(t, "database.selecter.username", config.DatabaseSelecter(), "selecter")
+	testtools.EqString(t, "database.updater.username", config.DatabaseUpdater(), "updater")
 
 	testtools.EqString(t, "email.host", config.EmailHost(), "smtp.domain.dev")
 	testtools.EqString(t, "email.noReplyAddress", config.EmailNoReplyAddress(), "noreply@domain.dev")
 	testtools.EqString(t, "email.password", config.EmailPassword(), "fakePassword")
 	testtools.EqInt(t, "email.port", config.EmailPort(), 2525)
-	testtools.EqString(t, "email.username", config.EmailUsername(), "espal")
+	testtools.EqString(t, "email.username", config.EmailUsername(), "fakeUsername")
 
 	testtools.EqString(t, "paths.assets.images", config.ImagesAssetsPath(), "./app/assets/images")
 	testtools.EqString(t, "paths.assets.javaScript", config.JavaScriptAssetsPath(), "./app/assets/js")
@@ -168,29 +168,29 @@ func TestConfigCallers(t *testing.T) {
 	testtools.EqString(t, "paths.database.sslRootCertificateFile", config.DatabaseSSLRootCertificateFile(),
 		"./app/database/ca.crt")
 	testtools.EqString(t, "paths.database.selecter.sslCertificateFile", config.DatabaseCreatorSSLCertificateFile(),
-		"./app/database/client.espal_creator.crt")
+		"./app/database/client.creator.crt")
 	testtools.EqString(t, "paths.database.selecter.sslKeyFile", config.DatabaseCreatorSSLKeyFile(),
-		"./app/database/client.espal_creator.key")
+		"./app/database/client.creator.key")
 	testtools.EqString(t, "paths.database.deletor.sslCertificateFile", config.DatabaseDeletorSSLCertificateFile(),
-		"./app/database/client.espal_deletor.crt")
+		"./app/database/client.deletor.crt")
 	testtools.EqString(t, "paths.database.deletor.sslKeyFile", config.DatabaseDeletorSSLKeyFile(),
-		"./app/database/client.espal_deletor.key")
+		"./app/database/client.deletor.key")
 	testtools.EqString(t, "paths.database.inserter.sslCertificateFile", config.DatabaseInserterSSLCertificateFile(),
-		"./app/database/client.espal_inserter.crt")
+		"./app/database/client.inserter.crt")
 	testtools.EqString(t, "paths.database.inserter.sslKeyFile", config.DatabaseInserterSSLKeyFile(),
-		"./app/database/client.espal_inserter.key")
+		"./app/database/client.inserter.key")
 	testtools.EqString(t, "paths.database.migrator.sslCertificateFile", config.DatabaseMigratorSSLCertificateFile(),
-		"./app/database/client.espal_migrator.crt")
+		"./app/database/client.migrator.crt")
 	testtools.EqString(t, "paths.database.migrator.sslKeyFile", config.DatabaseMigratorSSLKeyFile(),
-		"./app/database/client.espal_migrator.key")
+		"./app/database/client.migrator.key")
 	testtools.EqString(t, "paths.database.selecter.sslCertificateFile", config.DatabaseSelecterSSLCertificateFile(),
-		"./app/database/client.espal_selecter.crt")
+		"./app/database/client.selecter.crt")
 	testtools.EqString(t, "paths.database.selecter.sslKeyFile", config.DatabaseSelecterSSLKeyFile(),
-		"./app/database/client.espal_selecter.key")
+		"./app/database/client.selecter.key")
 	testtools.EqString(t, "paths.database.updater.sslCertificateFile", config.DatabaseUpdaterSSLCertificateFile(),
-		"./app/database/client.espal_updater.crt")
+		"./app/database/client.updater.crt")
 	testtools.EqString(t, "paths.database.updater.sslKeyFile", config.DatabaseUpdaterSSLKeyFile(),
-		"./app/database/client.espal_updater.key")
+		"./app/database/client.updater.key")
 	testtools.EqString(t, "paths.server.sslCertificateFile", config.ServerSSLCertificateFilePath(), "./app/localhost.crt")
 	testtools.EqString(t, "paths.server.sslKeyFile", config.ServerSSLKeyFilePath(), "./app/localhost.key")
 	testtools.EqString(t, "paths.translations", config.TranslationsPath(), "./app/translations")
