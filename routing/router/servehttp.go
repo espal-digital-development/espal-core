@@ -116,17 +116,18 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		}
 		route.Handle(context)
 	} else {
-		slug, ok, err := r.slugStore.GetOneByDomainIDAndPath(domain.ID(), context.Host())
+		slug, ok, err := r.slugStore.GetOneByDomainIDAndPath(domain.ID(), context.Path())
 		if err != nil {
 			context.RenderInternalServerError(errors.Trace(err))
 			r.loggerService.Errorf("slug `%s` fetch threw an error `%s`. The data integrity has been violated",
-				context.Host(), err.Error())
+				context.Path(), err.Error())
 			return
 		}
+
 		var routeFound bool
 		var route handler
 		if ok {
-			route, routeFound = r.getRoute(slug.Path())
+			route, routeFound = r.getRoute("/" + slug.RerouteTo())
 		}
 		if routeFound {
 			// TODO :: 7 Test if it works with POSTing (non-GET requests) like /Login

@@ -50,6 +50,15 @@ func TestSlugUpdatedByID(t *testing.T) {
 	}
 }
 
+func TestSlugDomainID(t *testing.T) {
+	s := slug.NewSlugEntity()
+	testValue := "testValue"
+	s.SetDomainID(testValue)
+	if testValue != s.DomainID() {
+		t.Fatal("Getter did not return the Set value")
+	}
+}
+
 func TestSlugCreatedAt(t *testing.T) {
 	s := slug.NewSlugEntity()
 	testValue := time.Now()
@@ -100,15 +109,6 @@ func TestSlugUpdatedBySurname(t *testing.T) {
 	testValue := "testValue"
 	s.SetUpdatedBySurname(&testValue)
 	if &testValue != s.UpdatedBySurname() {
-		t.Fatal("Getter did not return the Set value")
-	}
-}
-
-func TestSlugDomainID(t *testing.T) {
-	s := slug.NewSlugEntity()
-	testValue := "testValue"
-	s.SetDomainID(testValue)
-	if testValue != s.DomainID() {
 		t.Fatal("Getter did not return the Set value")
 	}
 }

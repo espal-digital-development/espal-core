@@ -59,6 +59,16 @@ func (s *Slug) SetUpdatedByID(updatedByID *string) {
 	s.updatedByID = updatedByID
 }
 
+// DomainID returns domainID.
+func (s *Slug) DomainID() string {
+	return s.domainID
+}
+
+// SetDomainID sets the domainID.
+func (s *Slug) SetDomainID(domainID string) {
+	s.domainID = domainID
+}
+
 // CreatedAt returns createdAt.
 func (s *Slug) CreatedAt() time.Time {
 	return s.createdAt
@@ -122,16 +132,6 @@ func (s *Slug) SetUpdatedBySurname(updatedBySurname *string) {
 // IsUpdated returns true if UpdatedByID is set.
 func (s *Slug) IsUpdated() bool {
 	return s.updatedByID != nil
-}
-
-// DomainID returns domainID.
-func (s *Slug) DomainID() string {
-	return s.domainID
-}
-
-// SetDomainID sets the domainID.
-func (s *Slug) SetDomainID(domainID string) {
-	s.domainID = domainID
 }
 
 // Language returns language.

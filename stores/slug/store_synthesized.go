@@ -38,7 +38,7 @@ func (s *SlugsStore) fetch(query string, withCreators bool, params ...interface{
 			return nil, false, errors.Trace(err)
 		}
 		s := newSlug()
-		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.createdAt, &s.updatedAt, &s.domainID, &s.language, &s.path, &s.rerouteTo, &s.invalidWithStatus, &s.invalidMessage, &s.redirectToRawPath, &s.redirectStatusCode}
+		fields := []interface{}{&s.id, &s.createdByID, &s.updatedByID, &s.domainID, &s.createdAt, &s.updatedAt, &s.language, &s.path, &s.rerouteTo, &s.invalidWithStatus, &s.invalidMessage, &s.redirectToRawPath, &s.redirectStatusCode}
 		if withCreators {
 			fields = append(fields, &s.createdByFirstName, &s.createdBySurname, &s.updatedByFirstName, &s.updatedBySurname)
 		}
