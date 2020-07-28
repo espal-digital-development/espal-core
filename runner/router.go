@@ -16,5 +16,5 @@ func (r *Runner) router() {
 		r.repositories.translations, r.services.sessions, r.repositories.themes, r.services.renderer,
 		r.services.adminMenu, r.stores.user)
 	r.services.router = router.New(r.services.config, r.services.logger, r.services.contexts, r.stores.domain,
-		r.stores.site, r.stores.slug)
+		r.stores.site, r.stores.setting, r.stores.slug)
 }

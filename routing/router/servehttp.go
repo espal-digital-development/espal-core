@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
+	"github.com/espal-digital-development/espal-core/stores/setting"
 	"github.com/juju/errors"
 )
 
@@ -77,10 +78,16 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		return
 	}
 
-	// TODO :: 777777 Get (and cache) settings here to check the Theme for this request's Site/Domain combination
-	// settings := r.settingsStore.GetAllForSiteDomain(site.ID(), domain.ID())
-
 	context := r.contextsFactory.NewContext(request, responseWriter, domain, site)
+
+	theme, err := r.settingStore.GetOneForSite(setting.SettingTheme, "", domain.ID(), site.ID())
+	if err != nil {
+		context.RenderInternalServerError(errors.Trace(err))
+		return
+	}
+	if theme != "" {
+		context.SetTheme(theme)
+	}
 
 	// TODO :: Make a config option that can disguise admin routes and make them appear as they don't exist (404)
 

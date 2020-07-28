@@ -8,6 +8,7 @@ import (
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
 	"github.com/espal-digital-development/espal-core/stores/domain"
+	"github.com/espal-digital-development/espal-core/stores/setting"
 	"github.com/espal-digital-development/espal-core/stores/site"
 	"github.com/espal-digital-development/espal-core/stores/slug"
 	"github.com/juju/errors"
@@ -33,6 +34,7 @@ type HTTPRouter struct {
 	contextsFactory contexts.Factory
 	domainStore     domain.Store
 	siteStore       site.Store
+	settingStore    setting.Store
 	slugStore       slug.Store
 
 	routes      map[string]handler
@@ -69,14 +71,15 @@ func (r *HTTPRouter) getRoute(path string) (handler, bool) {
 }
 
 // New returns a new instance of a Router.
-func New(configService config.Config, loggerService logger.Loggable, contextsFactory contexts.Factory, domainStore domain.Store,
-	siteStore site.Store, slugStore slug.Store) *HTTPRouter {
+func New(configService config.Config, loggerService logger.Loggable, contextsFactory contexts.Factory,
+	domainStore domain.Store, siteStore site.Store, settingStore setting.Store, slugStore slug.Store) *HTTPRouter {
 	return &HTTPRouter{
 		configService:   configService,
 		loggerService:   loggerService,
 		contextsFactory: contextsFactory,
 		domainStore:     domainStore,
 		siteStore:       siteStore,
+		settingStore:    settingStore,
 		slugStore:       slugStore,
 
 		routes:      map[string]handler{},

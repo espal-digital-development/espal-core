@@ -66,6 +66,7 @@ type Context interface {
 
 	GetDomain() Domain
 	GetSite() Site
+	SetTheme(theme string)
 	GetLanguage() (Language, error)
 	Translate(string) string
 	TranslatePlural(string) string
@@ -91,6 +92,7 @@ type HTTPContext struct {
 
 	domain Domain
 	site   Site
+	theme  string
 
 	httpStatusCode int
 	formIsParsed   bool
@@ -111,6 +113,11 @@ func (c *HTTPContext) GetDomain() Domain {
 // GetSite returns the Site for the current route.
 func (c *HTTPContext) GetSite() Site {
 	return c.site
+}
+
+// SetTheme sets the desired theme for the current route.
+func (c *HTTPContext) SetTheme(theme string) {
+	c.theme = theme
 }
 
 // GetLanguage returns the relevant Language for this request.

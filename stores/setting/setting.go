@@ -7,11 +7,17 @@ import (
 // Setting constants are used for Setting Keys.
 // Access order is: User < Domain < Site.
 // Should not set DomainID/SiteID/UserID all to NULL.
+// Keep this list in order as the iota counter is crucial for the reserving of the unique keys.
 const (
 	// Levels: Domain, Site
-	SettingUserSiteAccess       uint16 = 1
+	SettingUserSiteAccess uint16 = iota + 1
+	SettingTheme
+)
+
+const (
 	SettingUserSiteAccessGlobal string = "1"
 	SettingUserSiteAccessStrict string = "2"
+	SettingThemeDefault         string = "default"
 )
 
 // Setting database object.
