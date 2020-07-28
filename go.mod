@@ -10,7 +10,7 @@ require (
 	github.com/json-iterator/go v1.1.10
 	github.com/juju/errors v0.0.0-20200330140219-3fe23663418f
 	github.com/juju/testing v0.0.0-20200706033705-4c23f9c453cd // indirect
-	github.com/lib/pq v1.7.1
+	github.com/lib/pq v1.8.0
 	github.com/nbutton23/zxcvbn-go v0.0.0-20180912185939-ae427f1e4c1d
 	github.com/tdewolff/minify v2.3.6+incompatible
 	github.com/tdewolff/parse v2.3.4+incompatible // indirect
