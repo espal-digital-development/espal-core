@@ -69,6 +69,7 @@ var (
 	lockContextMockSetSessionValue           sync.RWMutex
 	lockContextMockSetSlugMappedURL          sync.RWMutex
 	lockContextMockSetStatusCode             sync.RWMutex
+	lockContextMockSetTheme                  sync.RWMutex
 	lockContextMockStatusCode                sync.RWMutex
 	lockContextMockTranslate                 sync.RWMutex
 	lockContextMockTranslatePlural           sync.RWMutex
@@ -252,6 +253,9 @@ var _ contexts.Context = &ContextMock{}
 //             },
 //             SetStatusCodeFunc: func(in1 int)  {
 // 	               panic("mock out the SetStatusCode method")
+//             },
+//             SetThemeFunc: func(theme string)  {
+// 	               panic("mock out the SetTheme method")
 //             },
 //             StatusCodeFunc: func() int {
 // 	               panic("mock out the StatusCode method")
@@ -445,6 +449,9 @@ type ContextMock struct {
 
 	// SetStatusCodeFunc mocks the SetStatusCode method.
 	SetStatusCodeFunc func(in1 int)
+
+	// SetThemeFunc mocks the SetTheme method.
+	SetThemeFunc func(theme string)
 
 	// StatusCodeFunc mocks the StatusCode method.
 	StatusCodeFunc func() int
@@ -699,6 +706,11 @@ type ContextMock struct {
 		SetStatusCode []struct {
 			// In1 is the in1 argument value.
 			In1 int
+		}
+		// SetTheme holds details about calls to the SetTheme method.
+		SetTheme []struct {
+			// Theme is the theme argument value.
+			Theme string
 		}
 		// StatusCode holds details about calls to the StatusCode method.
 		StatusCode []struct {
@@ -2322,6 +2334,37 @@ func (mock *ContextMock) SetStatusCodeCalls() []struct {
 	lockContextMockSetStatusCode.RLock()
 	calls = mock.calls.SetStatusCode
 	lockContextMockSetStatusCode.RUnlock()
+	return calls
+}
+
+// SetTheme calls SetThemeFunc.
+func (mock *ContextMock) SetTheme(theme string) {
+	if mock.SetThemeFunc == nil {
+		panic("ContextMock.SetThemeFunc: method is nil but Context.SetTheme was just called")
+	}
+	callInfo := struct {
+		Theme string
+	}{
+		Theme: theme,
+	}
+	lockContextMockSetTheme.Lock()
+	mock.calls.SetTheme = append(mock.calls.SetTheme, callInfo)
+	lockContextMockSetTheme.Unlock()
+	mock.SetThemeFunc(theme)
+}
+
+// SetThemeCalls gets all the calls that were made to SetTheme.
+// Check the length with:
+//     len(mockedContext.SetThemeCalls())
+func (mock *ContextMock) SetThemeCalls() []struct {
+	Theme string
+} {
+	var calls []struct {
+		Theme string
+	}
+	lockContextMockSetTheme.RLock()
+	calls = mock.calls.SetTheme
+	lockContextMockSetTheme.RUnlock()
 	return calls
 }
 
