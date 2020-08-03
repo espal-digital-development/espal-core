@@ -66,7 +66,8 @@ type Context interface {
 
 	GetDomain() Domain
 	GetSite() Site
-	SetTheme(theme string)
+	SetTheme(code string) error
+	RenderTheme(code string, data themes.DataStore) error
 	GetLanguage() (Language, error)
 	Translate(string) string
 	TranslatePlural(string) string
@@ -92,7 +93,7 @@ type HTTPContext struct {
 
 	domain Domain
 	site   Site
-	theme  string
+	theme  themes.Themeable
 
 	httpStatusCode int
 	formIsParsed   bool
@@ -116,8 +117,29 @@ func (c *HTTPContext) GetSite() Site {
 }
 
 // SetTheme sets the desired theme for the current route.
-func (c *HTTPContext) SetTheme(theme string) {
+func (c *HTTPContext) SetTheme(code string) error {
+	// TODO :: "base" is reserved for now as the default, but maybe do this different later
+	if code == "" {
+		code = "base"
+	}
+	theme, err := c.themesRepository.GetTheme(code)
+	if err != nil {
+		return errors.Trace(err)
+	}
 	c.theme = theme
+	return nil
+}
+
+// RenderTheme will render the associated View within the active Theme for the current Route.
+func (c *HTTPContext) RenderTheme(code string, data themes.DataStore) error {
+	view, err := c.theme.GetView(code)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if err := view.Render(c.responseWriter, data); err != nil {
+		return errors.Trace(err)
+	}
+	return nil
 }
 
 // GetLanguage returns the relevant Language for this request.

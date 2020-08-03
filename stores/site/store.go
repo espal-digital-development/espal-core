@@ -27,8 +27,9 @@ type SitesStore struct {
 	databaseFiltersFactory filters.Factory
 	translationsRepository translations.Repository
 	loggerService          logger.Loggable
-	sitesNormal            map[string]*Site
-	mutex                  *sync.RWMutex
+
+	cacheNormal map[string]*Site
+	mutex       *sync.RWMutex
 }
 
 // GetOne fetches by ID.
@@ -45,18 +46,21 @@ func (s *SitesStore) GetOneOnlineByID(id string) (*Site, bool, error) {
 	// TODO :: 77777 Move this caching to the general cache notifier
 	if s.mutex == nil {
 		s.mutex = &sync.RWMutex{}
-		s.sitesNormal = make(map[string]*Site)
+		s.cacheNormal = make(map[string]*Site)
 	}
-	s.mutex.Lock()
-	defer s.mutex.Unlock()
+	s.mutex.RLock()
 
-	if _, ok := s.sitesNormal[id]; ok {
-		return s.sitesNormal[id], true, nil
+	if v, ok := s.cacheNormal[id]; ok {
+		s.mutex.RUnlock()
+		return v, true, nil
 	}
+	s.mutex.RUnlock()
 
 	result, ok, err := s.fetch(`SELECT * FROM "Site" WHERE "id" = $1 AND "online" = true LIMIT 1`, false, id)
 	if len(result) == 1 {
-		s.sitesNormal[id] = result[0]
+		s.mutex.Lock()
+		s.cacheNormal[id] = result[0]
+		s.mutex.Unlock()
 		return result[0], ok, errors.Trace(err)
 	}
 	return nil, ok, errors.Trace(err)

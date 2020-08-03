@@ -17,8 +17,9 @@ type DomainsStore struct {
 	deletorDatabase        database.Database
 	databaseQueryHelper    queryhelper.Helper
 	databaseFiltersFactory filters.Factory
-	domainsNormal          map[string]*Domain
-	mutex                  *sync.RWMutex
+
+	cacheNormal map[string]*Domain
+	mutex       *sync.RWMutex
 }
 
 // GetOne fetches by ID.
@@ -60,18 +61,21 @@ func (d *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
 	// TODO :: 77777 Move this caching to the general cache notifier
 	if d.mutex == nil {
 		d.mutex = &sync.RWMutex{}
-		d.domainsNormal = make(map[string]*Domain)
+		d.cacheNormal = make(map[string]*Domain)
 	}
-	d.mutex.Lock()
-	defer d.mutex.Unlock()
+	d.mutex.RLock()
 
-	if _, ok := d.domainsNormal[host]; ok {
-		return d.domainsNormal[host], true, nil
+	if v, ok := d.cacheNormal[host]; ok {
+		d.mutex.RUnlock()
+		return v, true, nil
 	}
+	d.mutex.RUnlock()
 
 	result, ok, err := d.fetch(`SELECT * FROM "Domain" WHERE "host" = $1 AND "active" = true LIMIT 1`, false, host)
 	if len(result) == 1 {
-		d.domainsNormal[host] = result[0]
+		d.mutex.Lock()
+		d.cacheNormal[host] = result[0]
+		d.mutex.Unlock()
 		return result[0], ok, errors.Trace(err)
 	}
 	return nil, ok, errors.Trace(err)

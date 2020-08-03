@@ -85,8 +85,9 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 		context.RenderInternalServerError(errors.Trace(err))
 		return
 	}
-	if theme != "" {
-		context.SetTheme(theme)
+	if err := context.SetTheme(theme); err != nil {
+		context.RenderInternalServerError(errors.Trace(err))
+		return
 	}
 
 	// TODO :: Make a config option that can disguise admin routes and make them appear as they don't exist (404)

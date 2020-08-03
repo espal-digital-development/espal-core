@@ -12,58 +12,56 @@ var _ Repository = &Themes{}
 type Repository interface {
 	NewTheme(code string) *Theme
 	Register(theme Themeable) error
-	ThemeForID(id int) Themeable
+	GetTheme(code string) (Themeable, error)
 }
 
 // Themes manages the repository of visual themes.
 type Themes struct {
-	idTicker int
-	entries  map[int]Themeable
-	mutex    *sync.RWMutex
+	entries map[string]Themeable
+	mutex   *sync.RWMutex
 }
 
 // Register registers the given Theme in the repository.
 func (t *Themes) Register(theme Themeable) error {
-	if theme.ID() <= 0 {
-		return errors.Errorf("theme has no valid ID")
-	}
 	if theme.Code() == "" {
 		return errors.Errorf("theme code cannot be empty")
 	}
 	t.mutex.Lock()
 	defer t.mutex.Unlock()
-	var parentFound bool
-	for k := range t.entries {
-		if theme.ParentID() > 0 && theme.ParentID() == t.entries[k].ID() {
-			parentFound = true
+	if theme.ParentCode() != "" {
+		var parentFound bool
+		for k := range t.entries {
+			if theme.ParentCode() == t.entries[k].Code() {
+				parentFound = true
+			}
+			if t.entries[k].Code() == theme.Code() {
+				return errors.Errorf("theme `%s` is already registered", theme.Code())
+			}
 		}
-		if t.entries[k].ID() == theme.ID() || t.entries[k].Code() == theme.Code() {
-			return errors.Errorf("theme (ID: `%d`, Code: `%s`) already registered", theme.ID(), theme.Code())
+		if !parentFound {
+			return errors.Errorf("parent theme `%s` does not exist", theme.ParentCode())
 		}
 	}
-	if theme.ParentID() > 0 && !parentFound {
-		return errors.Errorf("theme parent ID `%d` does not exist", theme.ParentID())
-	}
-	t.entries[theme.ID()] = theme
+	t.entries[theme.Code()] = theme
 	return nil
 }
 
-// ThemeForID returns the theme for the given registered id.
-func (t *Themes) ThemeForID(id int) Themeable {
+// GetTheme returns the theme for the given registered code.
+func (t *Themes) GetTheme(code string) (Themeable, error) {
 	t.mutex.RLock()
 	defer t.mutex.RUnlock()
-	return t.entries[id]
+	if _, ok := t.entries[code]; !ok {
+		return nil, errors.Errorf("no theme found with code `%s`", code)
+	}
+	return t.entries[code], nil
 }
 
 // NewTheme returns a new instance of Theme.
 func (t *Themes) NewTheme(code string) *Theme {
-	t.idTicker++
 	theme := &Theme{
-		id:          t.idTicker,
-		code:        code,
-		views:       map[int]Viewable{},
-		viewsByCode: map[string]Viewable{},
-		mutex:       &sync.RWMutex{},
+		code:  code,
+		views: map[string]Viewable{},
+		mutex: &sync.RWMutex{},
 	}
 	return theme
 }
@@ -71,7 +69,7 @@ func (t *Themes) NewTheme(code string) *Theme {
 // New returns a new instance of Themes.
 func New() (*Themes, error) {
 	t := &Themes{
-		entries: map[int]Themeable{},
+		entries: map[string]Themeable{},
 		mutex:   &sync.RWMutex{},
 	}
 	return t, nil

@@ -13,8 +13,8 @@ type SettingsStore struct {
 	selecterDatabase database.Database
 
 	// map[siteID][siteID][domainID]themeName
-	themesNormal map[string]map[string]map[string]string
-	mutex        *sync.RWMutex
+	cacheNormal map[string]map[string]map[string]string
+	mutex       *sync.RWMutex
 }
 
 // GetOneForSite returns the Value for the Site level.
@@ -22,14 +22,15 @@ func (s *SettingsStore) GetOneForSite(key uint16, userID string, domainID string
 	// TODO :: 77777 Move this caching to the general cache notifier
 	if s.mutex == nil {
 		s.mutex = &sync.RWMutex{}
-		s.themesNormal = make(map[string]map[string]map[string]string)
+		s.cacheNormal = make(map[string]map[string]map[string]string)
 	}
-	s.mutex.Lock()
-	defer s.mutex.Unlock()
+	s.mutex.RLock()
 
-	if v, ok := s.themesNormal[userID][domainID][siteID]; ok {
+	if v, ok := s.cacheNormal[userID][domainID][siteID]; ok {
+		s.mutex.RUnlock()
 		return v, nil
 	}
+	s.mutex.RUnlock()
 
 	var err error
 	var value string
@@ -47,14 +48,16 @@ func (s *SettingsStore) GetOneForSite(key uint16, userID string, domainID string
 		}
 	}
 
-	if _, ok := s.themesNormal[userID]; !ok {
-		s.themesNormal[userID] = map[string]map[string]string{}
+	s.mutex.Lock()
+	if _, ok := s.cacheNormal[userID]; !ok {
+		s.cacheNormal[userID] = map[string]map[string]string{}
 	}
-	if _, ok := s.themesNormal[userID][domainID]; !ok {
-		s.themesNormal[userID][domainID] = map[string]string{}
+	if _, ok := s.cacheNormal[userID][domainID]; !ok {
+		s.cacheNormal[userID][domainID] = map[string]string{}
 	}
+	s.cacheNormal[userID][domainID][siteID] = value
+	s.mutex.Unlock()
 
-	s.themesNormal[userID][domainID][siteID] = value
 	return value, nil
 }
 

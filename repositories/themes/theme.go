@@ -10,27 +10,18 @@ var _ Themeable = &Theme{}
 
 // Themeable represents an object that provides visual view processing.
 type Themeable interface {
-	ID() int
 	Code() string
-	ParentID() int
-	AddView(view Viewable) error
-	ViewForID(id int) Viewable
-	ViewForCode(code string) Viewable
+	ParentCode() string
+	SetView(view Viewable) error
+	GetView(code string) (Viewable, error)
 }
 
 // Themes manages visual views.
 type Theme struct {
-	id          int
-	code        string
-	parentID    int
-	views       map[int]Viewable
-	viewsByCode map[string]Viewable
-	mutex       *sync.RWMutex
-}
-
-// ID returns the unique Theme identifier.
-func (t *Theme) ID() int {
-	return t.id
+	code       string
+	parentCode string
+	views      map[string]Viewable
+	mutex      *sync.RWMutex
 }
 
 // Code returns the unique Theme code.
@@ -39,34 +30,32 @@ func (t *Theme) Code() string {
 }
 
 // ParentID returns the parent Theme unique identifier.
-func (t *Theme) ParentID() int {
-	return t.parentID
+func (t *Theme) ParentCode() string {
+	return t.parentCode
 }
 
-// AddView adds the given view into the internal Theme view-stack.
-func (t *Theme) AddView(view Viewable) error {
+// SetView sets the given view into the internal Theme view-stack.
+func (t *Theme) SetView(view Viewable) error {
 	t.mutex.Lock()
 	defer t.mutex.Unlock()
 	for k := range t.views {
-		if t.views[k].ID() == view.ID() || t.views[k].Code() == view.Code() {
-			return errors.Errorf("view (ID: `%d`, Code: `%s`) already registered", view.ID(), view.Code())
+		if t.views[k].Code() == view.Code() {
+			return errors.Errorf("view `%s` is already registered", view.Code())
 		}
 	}
-	t.views[view.ID()] = view
-	t.viewsByCode[view.Code()] = view
+	t.views[view.Code()] = view
 	return nil
 }
 
-// ViewForID returns the view for the given registered id.
-func (t *Theme) ViewForID(id int) Viewable {
-	t.mutex.RLock()
-	defer t.mutex.RUnlock()
-	return t.views[id]
-}
+// TODO :: 777777 These 2 getters should try to look up the parent hierarchy to see if there's a parent View for the
+// ID/Code.
 
-// ViewForCode returns the view for the given registered code.
-func (t *Theme) ViewForCode(code string) Viewable {
+// GetView returns the view for the given registered code.
+func (t *Theme) GetView(code string) (Viewable, error) {
 	t.mutex.RLock()
 	defer t.mutex.RUnlock()
-	return t.viewsByCode[code]
+	if _, ok := t.views[code]; !ok {
+		return nil, errors.Errorf("no view found with code `%s`", code)
+	}
+	return t.views[code], nil
 }

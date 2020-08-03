@@ -7,6 +7,7 @@ import (
 	"github.com/espal-digital-development/espal-core/modules/meta"
 	"github.com/espal-digital-development/espal-core/modules/repositories"
 	"github.com/espal-digital-development/espal-core/modules/routes"
+	"github.com/espal-digital-development/espal-core/modules/themes"
 	"github.com/espal-digital-development/espal-core/modules/translations"
 	"github.com/espal-digital-development/espal-core/validators"
 	"github.com/juju/errors"
@@ -24,6 +25,8 @@ type Modular interface {
 	GetDatabaseMigrations() (*databasemigrations.DatabaseMigrations, error)
 	SetAssets(assets *assets.Assets)
 	GetAssets() (*assets.Assets, error)
+	SetThemes(themes *themes.Themes)
+	GetThemes() (*themes.Themes, error)
 	SetRoutes(routes *routes.Routes)
 	GetRoutes() (*routes.Routes, error)
 	SetTranslations(translations *translations.Translations)
@@ -37,22 +40,26 @@ type Modular interface {
 	GetStores() Stores
 }
 
+type preCallback func(m Modular) error
+
 // Module object.
 type Module struct {
 	metaDefinition             *meta.Meta
 	configProvider             *config.Config
 	databaseMigrationsProvider *databasemigrations.DatabaseMigrations
 	assetsProvider             *assets.Assets
+	themesProvider             *themes.Themes
 	routesProvider             *routes.Routes
 	translationsProvider       *translations.Translations
 	repositoriesProvider       *repositories.Repositories
 
-	preGetConfigCallback             func(m Modular) error
-	preGetDatabaseMigrationsCallback func(m Modular) error
-	preGetAssetsCallback             func(m Modular) error
-	preGetRoutesCallback             func(m Modular) error
-	preGetTranslationsCallback       func(m Modular) error
-	preGetRepositoriesCallback       func(m Modular) error
+	preGetConfigCallback             preCallback
+	preGetDatabaseMigrationsCallback preCallback
+	preGetAssetsCallback             preCallback
+	preGetThemesCallback             preCallback
+	preGetRoutesCallback             preCallback
+	preGetTranslationsCallback       preCallback
+	preGetRepositoriesCallback       preCallback
 
 	validatorsFactory validators.Factory
 	stores            Stores
@@ -62,12 +69,13 @@ type Module struct {
 type Config struct {
 	MetaDefinition *meta.Meta
 
-	PreGetConfigCallback             func(m Modular) error
-	PreGetDatabaseMigrationsCallback func(m Modular) error
-	PreGetAssetsCallback             func(m Modular) error
-	PreGetRoutesCallback             func(m Modular) error
-	PreGetTranslationsCallback       func(m Modular) error
-	PreGetRepositoriesCallback       func(m Modular) error
+	PreGetConfigCallback             preCallback
+	PreGetDatabaseMigrationsCallback preCallback
+	PreGetAssetsCallback             preCallback
+	PreGetThemesCallback             preCallback
+	PreGetRoutesCallback             preCallback
+	PreGetTranslationsCallback       preCallback
+	PreGetRepositoriesCallback       preCallback
 }
 
 // GetMeta gets the meta definition.
@@ -112,6 +120,19 @@ func (m *Module) GetAssets() (*assets.Assets, error) {
 		return nil, errors.Trace(err)
 	}
 	return m.assetsProvider, nil
+}
+
+// SetThemes sets the themes provider.
+func (m *Module) SetThemes(themes *themes.Themes) {
+	m.themesProvider = themes
+}
+
+// GetThemes gets the themes provider.
+func (m *Module) GetThemes() (*themes.Themes, error) {
+	if err := m.preGetThemesCallback(m); err != nil {
+		return nil, errors.Trace(err)
+	}
+	return m.themesProvider, nil
 }
 
 // SetRoutes sets the routes provider.
@@ -180,6 +201,7 @@ func New(config *Config) (*Module, error) {
 		preGetConfigCallback:             config.PreGetConfigCallback,
 		preGetDatabaseMigrationsCallback: config.PreGetDatabaseMigrationsCallback,
 		preGetAssetsCallback:             config.PreGetAssetsCallback,
+		preGetThemesCallback:             config.PreGetThemesCallback,
 		preGetRoutesCallback:             config.PreGetRoutesCallback,
 		preGetTranslationsCallback:       config.PreGetTranslationsCallback,
 		preGetRepositoriesCallback:       config.PreGetRepositoriesCallback,

@@ -1,5 +1,6 @@
 package databasemigrations
 
+// DatabaseMigrations provider object.
 type DatabaseMigrations struct{}
 
 // New returns a new instance of DatabaseMigrations.

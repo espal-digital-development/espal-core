@@ -5,6 +5,7 @@ package contextsmock
 
 import (
 	"github.com/espal-digital-development/espal-core/adminmenu"
+	"github.com/espal-digital-development/espal-core/repositories/themes"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/espal-digital-development/espal-core/stores/user"
@@ -56,6 +57,7 @@ var (
 	lockContextMockRenderNon200              sync.RWMutex
 	lockContextMockRenderNon200Custom        sync.RWMutex
 	lockContextMockRenderNotFound            sync.RWMutex
+	lockContextMockRenderTheme               sync.RWMutex
 	lockContextMockRenderUnauthorized        sync.RWMutex
 	lockContextMockRequestBody               sync.RWMutex
 	lockContextMockRequestURI                sync.RWMutex
@@ -215,6 +217,9 @@ var _ contexts.Context = &ContextMock{}
 //             RenderNotFoundFunc: func()  {
 // 	               panic("mock out the RenderNotFound method")
 //             },
+//             RenderThemeFunc: func(code string, data themes.DataStore) error {
+// 	               panic("mock out the RenderTheme method")
+//             },
 //             RenderUnauthorizedFunc: func()  {
 // 	               panic("mock out the RenderUnauthorized method")
 //             },
@@ -254,7 +259,7 @@ var _ contexts.Context = &ContextMock{}
 //             SetStatusCodeFunc: func(in1 int)  {
 // 	               panic("mock out the SetStatusCode method")
 //             },
-//             SetThemeFunc: func(theme string)  {
+//             SetThemeFunc: func(code string) error {
 // 	               panic("mock out the SetTheme method")
 //             },
 //             StatusCodeFunc: func() int {
@@ -411,6 +416,9 @@ type ContextMock struct {
 	// RenderNotFoundFunc mocks the RenderNotFound method.
 	RenderNotFoundFunc func()
 
+	// RenderThemeFunc mocks the RenderTheme method.
+	RenderThemeFunc func(code string, data themes.DataStore) error
+
 	// RenderUnauthorizedFunc mocks the RenderUnauthorized method.
 	RenderUnauthorizedFunc func()
 
@@ -451,7 +459,7 @@ type ContextMock struct {
 	SetStatusCodeFunc func(in1 int)
 
 	// SetThemeFunc mocks the SetTheme method.
-	SetThemeFunc func(theme string)
+	SetThemeFunc func(code string) error
 
 	// StatusCodeFunc mocks the StatusCode method.
 	StatusCodeFunc func() int
@@ -646,6 +654,13 @@ type ContextMock struct {
 		// RenderNotFound holds details about calls to the RenderNotFound method.
 		RenderNotFound []struct {
 		}
+		// RenderTheme holds details about calls to the RenderTheme method.
+		RenderTheme []struct {
+			// Code is the code argument value.
+			Code string
+			// Data is the data argument value.
+			Data themes.DataStore
+		}
 		// RenderUnauthorized holds details about calls to the RenderUnauthorized method.
 		RenderUnauthorized []struct {
 		}
@@ -709,8 +724,8 @@ type ContextMock struct {
 		}
 		// SetTheme holds details about calls to the SetTheme method.
 		SetTheme []struct {
-			// Theme is the theme argument value.
-			Theme string
+			// Code is the code argument value.
+			Code string
 		}
 		// StatusCode holds details about calls to the StatusCode method.
 		StatusCode []struct {
@@ -1946,6 +1961,41 @@ func (mock *ContextMock) RenderNotFoundCalls() []struct {
 	return calls
 }
 
+// RenderTheme calls RenderThemeFunc.
+func (mock *ContextMock) RenderTheme(code string, data themes.DataStore) error {
+	if mock.RenderThemeFunc == nil {
+		panic("ContextMock.RenderThemeFunc: method is nil but Context.RenderTheme was just called")
+	}
+	callInfo := struct {
+		Code string
+		Data themes.DataStore
+	}{
+		Code: code,
+		Data: data,
+	}
+	lockContextMockRenderTheme.Lock()
+	mock.calls.RenderTheme = append(mock.calls.RenderTheme, callInfo)
+	lockContextMockRenderTheme.Unlock()
+	return mock.RenderThemeFunc(code, data)
+}
+
+// RenderThemeCalls gets all the calls that were made to RenderTheme.
+// Check the length with:
+//     len(mockedContext.RenderThemeCalls())
+func (mock *ContextMock) RenderThemeCalls() []struct {
+	Code string
+	Data themes.DataStore
+} {
+	var calls []struct {
+		Code string
+		Data themes.DataStore
+	}
+	lockContextMockRenderTheme.RLock()
+	calls = mock.calls.RenderTheme
+	lockContextMockRenderTheme.RUnlock()
+	return calls
+}
+
 // RenderUnauthorized calls RenderUnauthorizedFunc.
 func (mock *ContextMock) RenderUnauthorized() {
 	if mock.RenderUnauthorizedFunc == nil {
@@ -2338,29 +2388,29 @@ func (mock *ContextMock) SetStatusCodeCalls() []struct {
 }
 
 // SetTheme calls SetThemeFunc.
-func (mock *ContextMock) SetTheme(theme string) {
+func (mock *ContextMock) SetTheme(code string) error {
 	if mock.SetThemeFunc == nil {
 		panic("ContextMock.SetThemeFunc: method is nil but Context.SetTheme was just called")
 	}
 	callInfo := struct {
-		Theme string
+		Code string
 	}{
-		Theme: theme,
+		Code: code,
 	}
 	lockContextMockSetTheme.Lock()
 	mock.calls.SetTheme = append(mock.calls.SetTheme, callInfo)
 	lockContextMockSetTheme.Unlock()
-	mock.SetThemeFunc(theme)
+	return mock.SetThemeFunc(code)
 }
 
 // SetThemeCalls gets all the calls that were made to SetTheme.
 // Check the length with:
 //     len(mockedContext.SetThemeCalls())
 func (mock *ContextMock) SetThemeCalls() []struct {
-	Theme string
+	Code string
 } {
 	var calls []struct {
-		Theme string
+		Code string
 	}
 	lockContextMockSetTheme.RLock()
 	calls = mock.calls.SetTheme
