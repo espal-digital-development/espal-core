@@ -13,8 +13,8 @@ var _ Store = &MediasStore{}
 type Store interface {
 }
 
-func (m *MediasStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Media, ok bool, err error) {
-	rows, err := m.selecterDatabase.Query(query, params...)
+func (s *MediasStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Media, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (m *MediasStore) fetch(query string, withCreators bool, params ...interface
 
 // New returns a new instance of MediasStore.
 func New(selecterDatabase database.Database) (*MediasStore, error) {
-	m := &MediasStore{
+	s := &MediasStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return m, nil
+	return s, nil
 }

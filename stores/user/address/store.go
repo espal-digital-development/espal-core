@@ -2,9 +2,9 @@ package address
 
 import (
 	"database/sql"
-	"strings"
 
 	"github.com/espal-digital-development/espal-core/database"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/countries"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
@@ -16,6 +16,7 @@ type AddressesStore struct {
 	selecterDatabase       database.Database
 	updaterDatabase        database.Database
 	deletorDatabase        database.Database
+	databaseQueryHelper    queryhelper.Helper
 	translationsRepository translations.Repository
 	countriesRepository    countries.Repository
 	loggerService          logger.Loggable
@@ -23,8 +24,8 @@ type AddressesStore struct {
 
 // ForUser fetches Addresses for userID.
 // nolint:nakedret
-func (a *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err error) {
-	rows, err := a.selecterDatabase.Query(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (s *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserAddress" u
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = u."updatedByID"
@@ -69,7 +70,7 @@ func (a *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err
 }
 
 // DisplayValue returns a readable display representation.
-func (a *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) string {
+func (s *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) string {
 	var display string
 	if address.FirstName() != nil {
 		display += *address.FirstName()
@@ -81,7 +82,7 @@ func (a *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) st
 		display += *address.Surname()
 	}
 	if display == "" {
-		display = a.translationsRepository.Singular(localeID, "address") + " " + address.ID()
+		display = s.translationsRepository.Singular(localeID, "address") + " " + address.ID()
 	}
 	display += " : " + address.Street()
 	if address.StreetLine2() != nil {
@@ -93,9 +94,9 @@ func (a *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) st
 	}
 	display += " " + address.City()
 	if address.Country() != nil {
-		country, err := a.countriesRepository.ByID(*address.Country())
+		country, err := s.countriesRepository.ByID(*address.Country())
 		if err != nil {
-			a.loggerService.Error(errors.ErrorStack(err))
+			s.loggerService.Error(errors.ErrorStack(err))
 			return ""
 		}
 		display += " " + country.Translate(localeID)
@@ -105,8 +106,8 @@ func (a *AddressesStore) DisplayValue(address AddressEntity, localeID uint16) st
 }
 
 // GetOneByID fetches by ID.
-func (a *AddressesStore) GetOneByID(id string) (*Address, bool, error) {
-	result, ok, err := a.fetch(`SELECT * FROM "UserAddress" WHERE "id" = $1 LIMIT 1`, false, id)
+func (s *AddressesStore) GetOneByID(id string) (*Address, bool, error) {
+	result, ok, err := s.fetch(`SELECT * FROM "UserAddress" WHERE "id" = $1 LIMIT 1`, false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -114,8 +115,8 @@ func (a *AddressesStore) GetOneByID(id string) (*Address, bool, error) {
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (a *AddressesStore) GetOneByIDWithCreator(id string) (*Address, bool, error) {
-	result, ok, err := a.fetch(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (s *AddressesStore) GetOneByIDWithCreator(id string) (*Address, bool, error) {
+	result, ok, err := s.fetch(`SELECT u.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserAddress" u
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = u."updatedByID"
@@ -127,12 +128,16 @@ func (a *AddressesStore) GetOneByIDWithCreator(id string) (*Address, bool, error
 }
 
 // Delete deletes the given ID(s).
-func (a *AddressesStore) Delete(ids []string) error {
-	transaction, err := a.deletorDatabase.Begin()
+func (s *AddressesStore) Delete(ids []string) error {
+	transaction, err := s.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "UserAddress" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildDeleteWhereInIds("UserAddress", "id", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -142,13 +147,17 @@ func (a *AddressesStore) Delete(ids []string) error {
 }
 
 // ToggleActive toggles the active state of the given ID(s).
-func (a *AddressesStore) ToggleActive(ids []string) error {
-	transaction, err := a.updaterDatabase.Begin()
+func (s *AddressesStore) ToggleActive(ids []string) error {
+	transaction, err := s.updaterDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(`UPDATE "UserAddress" SET "active" = NOT "active" WHERE "id"
-		IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildUpdateWhereInIds("UserAddress",
+		`SET "active" = NOT "active"`, "id", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

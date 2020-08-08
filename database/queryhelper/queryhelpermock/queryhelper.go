@@ -10,6 +10,7 @@ import (
 
 var (
 	lockHelperMockBuildDeleteWhereInIds sync.RWMutex
+	lockHelperMockBuildUpdateWhereInIds sync.RWMutex
 )
 
 // Ensure, that HelperMock does implement queryhelper.Helper.
@@ -25,6 +26,9 @@ var _ queryhelper.Helper = &HelperMock{}
 //             BuildDeleteWhereInIdsFunc: func(tableName string, fieldName string, values []string) (string, []interface{}, error) {
 // 	               panic("mock out the BuildDeleteWhereInIds method")
 //             },
+//             BuildUpdateWhereInIdsFunc: func(tableName string, operation string, fieldName string, values []string) (string, []interface{}, error) {
+// 	               panic("mock out the BuildUpdateWhereInIds method")
+//             },
 //         }
 //
 //         // use mockedHelper in code that requires queryhelper.Helper
@@ -35,12 +39,26 @@ type HelperMock struct {
 	// BuildDeleteWhereInIdsFunc mocks the BuildDeleteWhereInIds method.
 	BuildDeleteWhereInIdsFunc func(tableName string, fieldName string, values []string) (string, []interface{}, error)
 
+	// BuildUpdateWhereInIdsFunc mocks the BuildUpdateWhereInIds method.
+	BuildUpdateWhereInIdsFunc func(tableName string, operation string, fieldName string, values []string) (string, []interface{}, error)
+
 	// calls tracks calls to the methods.
 	calls struct {
 		// BuildDeleteWhereInIds holds details about calls to the BuildDeleteWhereInIds method.
 		BuildDeleteWhereInIds []struct {
 			// TableName is the tableName argument value.
 			TableName string
+			// FieldName is the fieldName argument value.
+			FieldName string
+			// Values is the values argument value.
+			Values []string
+		}
+		// BuildUpdateWhereInIds holds details about calls to the BuildUpdateWhereInIds method.
+		BuildUpdateWhereInIds []struct {
+			// TableName is the tableName argument value.
+			TableName string
+			// Operation is the operation argument value.
+			Operation string
 			// FieldName is the fieldName argument value.
 			FieldName string
 			// Values is the values argument value.
@@ -85,5 +103,48 @@ func (mock *HelperMock) BuildDeleteWhereInIdsCalls() []struct {
 	lockHelperMockBuildDeleteWhereInIds.RLock()
 	calls = mock.calls.BuildDeleteWhereInIds
 	lockHelperMockBuildDeleteWhereInIds.RUnlock()
+	return calls
+}
+
+// BuildUpdateWhereInIds calls BuildUpdateWhereInIdsFunc.
+func (mock *HelperMock) BuildUpdateWhereInIds(tableName string, operation string, fieldName string, values []string) (string, []interface{}, error) {
+	if mock.BuildUpdateWhereInIdsFunc == nil {
+		panic("HelperMock.BuildUpdateWhereInIdsFunc: method is nil but Helper.BuildUpdateWhereInIds was just called")
+	}
+	callInfo := struct {
+		TableName string
+		Operation string
+		FieldName string
+		Values    []string
+	}{
+		TableName: tableName,
+		Operation: operation,
+		FieldName: fieldName,
+		Values:    values,
+	}
+	lockHelperMockBuildUpdateWhereInIds.Lock()
+	mock.calls.BuildUpdateWhereInIds = append(mock.calls.BuildUpdateWhereInIds, callInfo)
+	lockHelperMockBuildUpdateWhereInIds.Unlock()
+	return mock.BuildUpdateWhereInIdsFunc(tableName, operation, fieldName, values)
+}
+
+// BuildUpdateWhereInIdsCalls gets all the calls that were made to BuildUpdateWhereInIds.
+// Check the length with:
+//     len(mockedHelper.BuildUpdateWhereInIdsCalls())
+func (mock *HelperMock) BuildUpdateWhereInIdsCalls() []struct {
+	TableName string
+	Operation string
+	FieldName string
+	Values    []string
+} {
+	var calls []struct {
+		TableName string
+		Operation string
+		FieldName string
+		Values    []string
+	}
+	lockHelperMockBuildUpdateWhereInIds.RLock()
+	calls = mock.calls.BuildUpdateWhereInIds
+	lockHelperMockBuildUpdateWhereInIds.RUnlock()
 	return calls
 }

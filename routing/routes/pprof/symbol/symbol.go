@@ -20,10 +20,7 @@ type Route struct{}
 func (r *Route) Handle(context contexts.Context) {
 	context.SetContentType("text/plain")
 	responseBuffer := bytes.NewBuffer(nil)
-	if _, err := responseBuffer.WriteString("num_symbols: 1\n"); err != nil {
-		context.RenderInternalServerError(errors.Trace(err))
-		return
-	}
+	responseBuffer.WriteString("num_symbols: 1\n")
 	var bodyReader *bufio.Reader
 	if context.Method() == http.MethodPost {
 		bodyReader = bufio.NewReader(context.RequestBody())

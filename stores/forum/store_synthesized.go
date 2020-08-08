@@ -21,8 +21,8 @@ type Store interface {
 	DeleteOneForumPostByID(id string) error
 }
 
-func (f *ForumsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Forum, ok bool, err error) {
-	rows, err := f.selecterDatabase.Query(query, params...)
+func (s *ForumsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Forum, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -60,9 +60,9 @@ func (f *ForumsStore) fetch(query string, withCreators bool, params ...interface
 
 // New returns a new instance of ForumsStore.
 func New(selecterDatabase database.Database, deletorDatabase database.Database) (*ForumsStore, error) {
-	f := &ForumsStore{
+	s := &ForumsStore{
 		selecterDatabase: selecterDatabase,
 		deletorDatabase:  deletorDatabase,
 	}
-	return f, nil
+	return s, nil
 }

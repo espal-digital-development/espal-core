@@ -8,9 +8,9 @@ import (
 
 // Search searches results based on the given context through the filter mechanics.
 // nolint:nakedret
-func (u *UsersStore) Search(context filters.QueryReader) (result []*User, filter filters.Filter, err error) {
+func (s *UsersStore) Search(context filters.QueryReader) (result []*User, filter filters.Filter, err error) {
 	alias := (&User{}).TableAlias()
-	filter = u.databaseFiltersFactory.NewFilter(context, newUser())
+	filter = s.databaseFiltersFactory.NewFilter(context, newUser())
 	filter.AddSelectField(filter.NewSelectField("id")).
 		AddSelectField(filter.NewSelectField("firstName")).
 		AddSelectField(filter.NewSelectField("surname")).

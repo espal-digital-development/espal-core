@@ -4,6 +4,7 @@ package contact
 import (
 	"database/sql"
 	"github.com/espal-digital-development/espal-core/database"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/juju/errors"
 )
@@ -18,8 +19,8 @@ type Store interface {
 	ForUser(userID string) (result []*Contact, ok bool, err error)
 }
 
-func (c *ContactsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Contact, ok bool, err error) {
-	rows, err := c.selecterDatabase.Query(query, params...)
+func (s *ContactsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Contact, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -56,11 +57,12 @@ func (c *ContactsStore) fetch(query string, withCreators bool, params ...interfa
 }
 
 // New returns a new instance of ContactsStore.
-func New(selecterDatabase database.Database, deletorDatabase database.Database, translationsRepository translations.Repository) (*ContactsStore, error) {
-	c := &ContactsStore{
+func New(selecterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, translationsRepository translations.Repository) (*ContactsStore, error) {
+	s := &ContactsStore{
 		selecterDatabase:       selecterDatabase,
 		deletorDatabase:        deletorDatabase,
+		databaseQueryHelper:    databaseQueryHelper,
 		translationsRepository: translationsRepository,
 	}
-	return c, nil
+	return s, nil
 }

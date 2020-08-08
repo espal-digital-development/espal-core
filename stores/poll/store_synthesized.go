@@ -13,8 +13,8 @@ var _ Store = &PollsStore{}
 type Store interface {
 }
 
-func (p *PollsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Poll, ok bool, err error) {
-	rows, err := p.selecterDatabase.Query(query, params...)
+func (s *PollsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Poll, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (p *PollsStore) fetch(query string, withCreators bool, params ...interface{
 
 // New returns a new instance of PollsStore.
 func New(selecterDatabase database.Database) (*PollsStore, error) {
-	p := &PollsStore{
+	s := &PollsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return p, nil
+	return s, nil
 }

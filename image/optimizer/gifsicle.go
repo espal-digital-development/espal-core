@@ -24,8 +24,8 @@ func (o *Optimizer) gifsicle(data []byte, optimizationLevel int, lossy int) ([]b
 	if err := ioutil.WriteFile(tmpFile, data, 0600); err != nil {
 		return nil, errors.Trace(err)
 	}
-	cmd := exec.Command("gifsicle", "-O"+strconv.Itoa(optimizationLevel), "--lossy="+strconv.Itoa(lossy),
-		"--use-col=web", tmpFile)
+	oParam := "-O" + strconv.Itoa(optimizationLevel)
+	cmd := exec.Command("gifsicle", oParam, "--lossy="+strconv.Itoa(lossy), "--use-col=web", tmpFile)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	if err := cmd.Run(); err != nil {

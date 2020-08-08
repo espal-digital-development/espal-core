@@ -13,8 +13,8 @@ var _ Store = &CreditsStore{}
 type Store interface {
 }
 
-func (c *CreditsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Credit, ok bool, err error) {
-	rows, err := c.selecterDatabase.Query(query, params...)
+func (s *CreditsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Credit, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (c *CreditsStore) fetch(query string, withCreators bool, params ...interfac
 
 // New returns a new instance of CreditsStore.
 func New(selecterDatabase database.Database) (*CreditsStore, error) {
-	c := &CreditsStore{
+	s := &CreditsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return c, nil
+	return s, nil
 }

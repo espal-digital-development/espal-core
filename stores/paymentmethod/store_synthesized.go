@@ -13,8 +13,8 @@ var _ Store = &PaymentMethodsStore{}
 type Store interface {
 }
 
-func (p *PaymentMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PaymentMethod, ok bool, err error) {
-	rows, err := p.selecterDatabase.Query(query, params...)
+func (s *PaymentMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PaymentMethod, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (p *PaymentMethodsStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of PaymentMethodsStore.
 func New(selecterDatabase database.Database) (*PaymentMethodsStore, error) {
-	p := &PaymentMethodsStore{
+	s := &PaymentMethodsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return p, nil
+	return s, nil
 }

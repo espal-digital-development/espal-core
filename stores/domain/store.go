@@ -1,7 +1,6 @@
 package domain
 
 import (
-	"strings"
 	"sync"
 
 	"github.com/espal-digital-development/espal-core/database"
@@ -23,8 +22,8 @@ type DomainsStore struct {
 }
 
 // GetOne fetches by ID.
-func (d *DomainsStore) GetOne(id string) (*Domain, bool, error) {
-	result, ok, err := d.fetch(`SELECT * FROM "Domain" WHERE "id" = $1 LIMIT 1`, false, id)
+func (s *DomainsStore) GetOne(id string) (*Domain, bool, error) {
+	result, ok, err := s.fetch(`SELECT * FROM "Domain" WHERE "id" = $1 LIMIT 1`, false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -32,8 +31,8 @@ func (d *DomainsStore) GetOne(id string) (*Domain, bool, error) {
 }
 
 // All returns all Domains.
-func (d *DomainsStore) All() ([]*Domain, bool, error) {
-	result, ok, err := d.fetch(`SELECT * FROM "Domain"`, false)
+func (s *DomainsStore) All() ([]*Domain, bool, error) {
+	result, ok, err := s.fetch(`SELECT * FROM "Domain"`, false)
 	if err != nil {
 		return nil, ok, errors.Trace(err)
 	}
@@ -44,8 +43,8 @@ func (d *DomainsStore) All() ([]*Domain, bool, error) {
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (d *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
-	result, ok, err := d.fetch(`SELECT d.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
+func (s *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
+	result, ok, err := s.fetch(`SELECT d.*, cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "Domain" d
 		LEFT JOIN "User" cu ON cu."id" = d."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = d."updatedByID"
@@ -57,37 +56,37 @@ func (d *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
 }
 
 // GetOneActiveByHost fetches by Host and must be Active.
-func (d *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
+func (s *DomainsStore) GetOneActiveByHost(host string) (*Domain, bool, error) {
 	// TODO :: 77777 Move this caching to the general cache notifier
-	if d.mutex == nil {
-		d.mutex = &sync.RWMutex{}
-		d.cacheNormal = make(map[string]*Domain)
+	if s.mutex == nil {
+		s.mutex = &sync.RWMutex{}
+		s.cacheNormal = make(map[string]*Domain)
 	}
-	d.mutex.RLock()
+	s.mutex.RLock()
 
-	if v, ok := d.cacheNormal[host]; ok {
-		d.mutex.RUnlock()
+	if v, ok := s.cacheNormal[host]; ok {
+		s.mutex.RUnlock()
 		return v, true, nil
 	}
-	d.mutex.RUnlock()
+	s.mutex.RUnlock()
 
-	result, ok, err := d.fetch(`SELECT * FROM "Domain" WHERE "host" = $1 AND "active" = true LIMIT 1`, false, host)
+	result, ok, err := s.fetch(`SELECT * FROM "Domain" WHERE "host" = $1 AND "active" = true LIMIT 1`, false, host)
 	if len(result) == 1 {
-		d.mutex.Lock()
-		d.cacheNormal[host] = result[0]
-		d.mutex.Unlock()
+		s.mutex.Lock()
+		s.cacheNormal[host] = result[0]
+		s.mutex.Unlock()
 		return result[0], ok, errors.Trace(err)
 	}
 	return nil, ok, errors.Trace(err)
 }
 
 // Delete deletes the given ID(s).
-func (d *DomainsStore) Delete(ids []string) error {
-	transaction, err := d.deletorDatabase.Begin()
+func (s *DomainsStore) Delete(ids []string) error {
+	transaction, err := s.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	query, idsInterfaces, err := d.databaseQueryHelper.BuildDeleteWhereInIds("Domain", "id", ids)
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildDeleteWhereInIds("Domain", "id", ids)
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -101,13 +100,17 @@ func (d *DomainsStore) Delete(ids []string) error {
 }
 
 // ToggleActive toggles the active state of the given ID(s).
-func (d *DomainsStore) ToggleActive(ids []string) error {
-	transaction, err := d.updaterDatabase.Begin()
+func (s *DomainsStore) ToggleActive(ids []string) error {
+	transaction, err := s.updaterDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(`UPDATE "Domain" SET "active" = NOT "active" WHERE "id" IN (` +
-		strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildUpdateWhereInIds("Domain",
+		`SET "active" = NOT "active"`, "id", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

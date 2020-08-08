@@ -17,7 +17,8 @@ func (o *Optimizer) jpegOptim(data []byte, quality int) ([]byte, error) {
 	if quality < jpegOptimMinQuality || quality > jpegOptimMaxQuality {
 		return nil, errors.Errorf("quality has to be between %d and %d", jpegOptimMinQuality, jpegOptimMaxQuality)
 	}
-	cmd := exec.Command("jpegoptim", "-s", "-m"+strconv.Itoa(quality), "--stdin", "--stdout")
+	mParam := "-m" + strconv.Itoa(quality)
+	cmd := exec.Command("jpegoptim", "-s", mParam, "--stdin", "--stdout")
 	cmd.Stdin = bytes.NewReader(data)
 	var out bytes.Buffer
 	cmd.Stdout = &out

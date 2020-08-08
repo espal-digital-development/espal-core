@@ -13,8 +13,8 @@ var _ Store = &PointsOfSaleStore{}
 type Store interface {
 }
 
-func (p *PointsOfSaleStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PointOfSale, ok bool, err error) {
-	rows, err := p.selecterDatabase.Query(query, params...)
+func (s *PointsOfSaleStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PointOfSale, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (p *PointsOfSaleStore) fetch(query string, withCreators bool, params ...int
 
 // New returns a new instance of PointsOfSaleStore.
 func New(selecterDatabase database.Database) (*PointsOfSaleStore, error) {
-	p := &PointsOfSaleStore{
+	s := &PointsOfSaleStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return p, nil
+	return s, nil
 }

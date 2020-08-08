@@ -16,8 +16,8 @@ type Store interface {
 	Save(target uint, key string) error
 }
 
-func (c *CacheNotifiesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CacheNotify, ok bool, err error) {
-	rows, err := c.selecterDatabase.Query(query, params...)
+func (s *CacheNotifiesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CacheNotify, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -55,9 +55,9 @@ func (c *CacheNotifiesStore) fetch(query string, withCreators bool, params ...in
 
 // New returns a new instance of CacheNotifiesStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database) (*CacheNotifiesStore, error) {
-	c := &CacheNotifiesStore{
+	s := &CacheNotifiesStore{
 		selecterDatabase: selecterDatabase,
 		updaterDatabase:  updaterDatabase,
 	}
-	return c, nil
+	return s, nil
 }

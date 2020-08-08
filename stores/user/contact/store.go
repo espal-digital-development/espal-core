@@ -2,9 +2,9 @@ package contact
 
 import (
 	"database/sql"
-	"strings"
 
 	"github.com/espal-digital-development/espal-core/database"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/juju/errors"
 )
@@ -13,12 +13,13 @@ import (
 type ContactsStore struct {
 	selecterDatabase       database.Database
 	deletorDatabase        database.Database
+	databaseQueryHelper    queryhelper.Helper
 	translationsRepository translations.Repository
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (c *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, bool, error) {
-	result, ok, err := c.fetch(`SELECT
+func (s *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, bool, error) {
+	result, ok, err := s.fetch(`SELECT
 			u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserContact" u
 		LEFT JOIN "User" c ON c."id" = u."contactID"
@@ -32,12 +33,16 @@ func (c *ContactsStore) GetOneByIDWithCreator(id string) (*Contact, bool, error)
 }
 
 // Delete deletes the given ID(s).
-func (c *ContactsStore) Delete(ids []string) error {
-	transaction, err := c.deletorDatabase.Begin()
+func (s *ContactsStore) Delete(ids []string) error {
+	transaction, err := s.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(`DELETE FROM "UserContact" WHERE "id" IN (` + strings.Join(ids, ",") + `)`); err != nil {
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildDeleteWhereInIds("UserContact", "id", ids)
+	if err != nil {
+		return errors.Trace(err)
+	}
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -47,7 +52,7 @@ func (c *ContactsStore) Delete(ids []string) error {
 }
 
 // Name returns the presentable name for the User's Contact.
-func (c *ContactsStore) Name(contact *Contact, languageID uint16) string {
+func (s *ContactsStore) Name(contact *Contact, languageID uint16) string {
 	var name string
 	if contact.ContactFirstName() != nil {
 		name = *contact.ContactFirstName()
@@ -56,15 +61,15 @@ func (c *ContactsStore) Name(contact *Contact, languageID uint16) string {
 		name += " " + *contact.ContactSurname()
 	}
 	if name == "" {
-		name = c.translationsRepository.Singular(languageID, "user") + " " + contact.ID()
+		name = s.translationsRepository.Singular(languageID, "user") + " " + contact.ID()
 	}
 	return name
 }
 
 // ForUser fetches UserContacts for userID.
 // nolint:nakedret
-func (c *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err error) {
-	rows, err := c.selecterDatabase.Query(`SELECT
+func (s *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(`SELECT
 			u.*, c."firstName", c."surname", cu."firstName", cu."surname", uu."firstName", uu."surname"
 		FROM "UserContact" u
 		LEFT JOIN "User" c ON c."id" = u."contactID"

@@ -13,8 +13,8 @@ var _ Store = &TasksStore{}
 type Store interface {
 }
 
-func (t *TasksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Task, ok bool, err error) {
-	rows, err := t.selecterDatabase.Query(query, params...)
+func (s *TasksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Task, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (t *TasksStore) fetch(query string, withCreators bool, params ...interface{
 
 // New returns a new instance of TasksStore.
 func New(selecterDatabase database.Database) (*TasksStore, error) {
-	t := &TasksStore{
+	s := &TasksStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return t, nil
+	return s, nil
 }

@@ -9,7 +9,7 @@ import (
 // RequestContext for request handling.
 type RequestContext interface {
 	io.Writer
-	WriteString(p string) (n int, err error)
+	WriteString(p string)
 	RequestBody() io.ReadCloser
 	Method() string
 	Redirect(path string, statusCode int)
@@ -33,8 +33,8 @@ func (c *HTTPContext) Write(p []byte) (int, error) {
 }
 
 // WriteString writes the given string directly to the response writer.
-func (c *HTTPContext) WriteString(p string) (int, error) {
-	return c.Write([]byte(p))
+func (c *HTTPContext) WriteString(p string) {
+	c.Write([]byte(p))
 }
 
 // RequestBody returns the internal body ReadCloser.

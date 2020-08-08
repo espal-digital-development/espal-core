@@ -17,7 +17,8 @@ func (o *Optimizer) pngQuant(data []byte, speed int) ([]byte, error) {
 	if speed < pngQuantMinSpeed || speed > pngQuantMaxSpeed {
 		return nil, errors.Errorf("speed has to be between %d and %d", pngQuantMinSpeed, pngQuantMaxSpeed)
 	}
-	cmd := exec.Command("pngquant", "-", "--speed", strconv.Itoa(speed))
+	speedParam := strconv.Itoa(speed)
+	cmd := exec.Command("pngquant", "-", "--speed", speedParam)
 	cmd.Stdin = bytes.NewReader(data)
 	var out bytes.Buffer
 	cmd.Stdout = &out

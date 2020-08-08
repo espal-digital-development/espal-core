@@ -13,8 +13,8 @@ var _ Store = &GroupsStore{}
 type Store interface {
 }
 
-func (g *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {
-	rows, err := g.selecterDatabase.Query(query, params...)
+func (s *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (g *GroupsStore) fetch(query string, withCreators bool, params ...interface
 
 // New returns a new instance of GroupsStore.
 func New(selecterDatabase database.Database) (*GroupsStore, error) {
-	g := &GroupsStore{
+	s := &GroupsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return g, nil
+	return s, nil
 }

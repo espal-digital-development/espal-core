@@ -2,8 +2,6 @@ package site
 
 import (
 	"database/sql"
-	"strconv"
-	"strings"
 	"sync"
 
 	"github.com/espal-digital-development/espal-core/database"
@@ -152,19 +150,12 @@ func (s *SitesStore) ToggleOnline(ids []string) error {
 	if err != nil {
 		return errors.Trace(err)
 	}
-	idsLength := len(ids)
-	idsInterfaces := make([]interface{}, idsLength)
-	for k := range ids {
-		idsInterfaces[k] = ids[k]
+	query, idsInterfaces, err := s.databaseQueryHelper.BuildUpdateWhereInIds("SiteTranslation",
+		`SET "online" = NOT "online"`, "siteID", ids)
+	if err != nil {
+		return errors.Trace(err)
 	}
-	whereInParams := &strings.Builder{}
-	whereInParams.Grow(idsLength*3 - 1)
-	for i := 1; i <= idsLength; i++ {
-		whereInParams.WriteString("$")
-		whereInParams.WriteString(strconv.Itoa(i))
-	}
-	if _, err := transaction.Query(`UPDATE "User" SET "online" = NOT "online" WHERE "id"
-		IN (`+whereInParams.String()+`)`, idsInterfaces); err != nil {
+	if _, err := transaction.Exec(query, idsInterfaces...); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}

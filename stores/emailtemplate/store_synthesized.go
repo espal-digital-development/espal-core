@@ -13,8 +13,8 @@ var _ Store = &EmailTemplatesStore{}
 type Store interface {
 }
 
-func (e *EmailTemplatesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*EmailTemplate, ok bool, err error) {
-	rows, err := e.selecterDatabase.Query(query, params...)
+func (s *EmailTemplatesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*EmailTemplate, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (e *EmailTemplatesStore) fetch(query string, withCreators bool, params ...i
 
 // New returns a new instance of EmailTemplatesStore.
 func New(selecterDatabase database.Database) (*EmailTemplatesStore, error) {
-	e := &EmailTemplatesStore{
+	s := &EmailTemplatesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return e, nil
+	return s, nil
 }

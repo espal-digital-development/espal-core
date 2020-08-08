@@ -8,9 +8,9 @@ import (
 
 // Filter filters results based on the given context.
 // nolint:nakedret
-func (d *DomainsStore) Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error) {
+func (s *DomainsStore) Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error) {
 	alias := (&Domain{}).TableAlias()
-	filter = d.databaseFiltersFactory.NewFilter(context, newDomain())
+	filter = s.databaseFiltersFactory.NewFilter(context, newDomain())
 	filter.AddSelectField(filter.NewSelectField("id")).
 		AddSelectField(filter.NewSelectField("createdByID")).
 		AddSelectField(filter.NewSelectField("updatedByID")).

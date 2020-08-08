@@ -13,8 +13,8 @@ var _ Store = &BlocksStore{}
 type Store interface {
 }
 
-func (b *BlocksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Block, ok bool, err error) {
-	rows, err := b.selecterDatabase.Query(query, params...)
+func (s *BlocksStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Block, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (b *BlocksStore) fetch(query string, withCreators bool, params ...interface
 
 // New returns a new instance of BlocksStore.
 func New(selecterDatabase database.Database) (*BlocksStore, error) {
-	b := &BlocksStore{
+	s := &BlocksStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return b, nil
+	return s, nil
 }

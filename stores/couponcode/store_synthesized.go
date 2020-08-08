@@ -13,8 +13,8 @@ var _ Store = &CouponCodesStore{}
 type Store interface {
 }
 
-func (c *CouponCodesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CouponCode, ok bool, err error) {
-	rows, err := c.selecterDatabase.Query(query, params...)
+func (s *CouponCodesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*CouponCode, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (c *CouponCodesStore) fetch(query string, withCreators bool, params ...inte
 
 // New returns a new instance of CouponCodesStore.
 func New(selecterDatabase database.Database) (*CouponCodesStore, error) {
-	c := &CouponCodesStore{
+	s := &CouponCodesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return c, nil
+	return s, nil
 }

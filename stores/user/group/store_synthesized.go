@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/juju/errors"
@@ -26,8 +27,8 @@ type Store interface {
 		filter filters.Filter, err error)
 }
 
-func (g *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {
-	rows, err := g.selecterDatabase.Query(query, params...)
+func (s *GroupsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Group, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -64,14 +65,15 @@ func (g *GroupsStore) fetch(query string, withCreators bool, params ...interface
 }
 
 // New returns a new instance of GroupsStore.
-func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, loggerService logger.Loggable) (*GroupsStore, error) {
-	g := &GroupsStore{
+func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, loggerService logger.Loggable) (*GroupsStore, error) {
+	s := &GroupsStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
+		databaseQueryHelper:    databaseQueryHelper,
 		databaseFiltersFactory: databaseFiltersFactory,
 		translationsRepository: translationsRepository,
 		loggerService:          loggerService,
 	}
-	return g, nil
+	return s, nil
 }

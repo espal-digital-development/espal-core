@@ -13,8 +13,8 @@ var _ Store = &PersonalMessagesStore{}
 type Store interface {
 }
 
-func (p *PersonalMessagesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PersonalMessage, ok bool, err error) {
-	rows, err := p.selecterDatabase.Query(query, params...)
+func (s *PersonalMessagesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PersonalMessage, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (p *PersonalMessagesStore) fetch(query string, withCreators bool, params ..
 
 // New returns a new instance of PersonalMessagesStore.
 func New(selecterDatabase database.Database) (*PersonalMessagesStore, error) {
-	p := &PersonalMessagesStore{
+	s := &PersonalMessagesStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return p, nil
+	return s, nil
 }

@@ -13,8 +13,8 @@ var _ Store = &MenusStore{}
 type Store interface {
 }
 
-func (m *MenusStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Menu, ok bool, err error) {
-	rows, err := m.selecterDatabase.Query(query, params...)
+func (s *MenusStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Menu, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (m *MenusStore) fetch(query string, withCreators bool, params ...interface{
 
 // New returns a new instance of MenusStore.
 func New(selecterDatabase database.Database) (*MenusStore, error) {
-	m := &MenusStore{
+	s := &MenusStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return m, nil
+	return s, nil
 }

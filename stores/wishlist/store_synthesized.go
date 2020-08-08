@@ -13,8 +13,8 @@ var _ Store = &WishlistsStore{}
 type Store interface {
 }
 
-func (w *WishlistsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Wishlist, ok bool, err error) {
-	rows, err := w.selecterDatabase.Query(query, params...)
+func (s *WishlistsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Wishlist, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (w *WishlistsStore) fetch(query string, withCreators bool, params ...interf
 
 // New returns a new instance of WishlistsStore.
 func New(selecterDatabase database.Database) (*WishlistsStore, error) {
-	w := &WishlistsStore{
+	s := &WishlistsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return w, nil
+	return s, nil
 }

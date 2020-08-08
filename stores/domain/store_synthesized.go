@@ -22,8 +22,8 @@ type Store interface {
 	Filter(context filters.QueryReader) (result []*Domain, filter filters.Filter, err error)
 }
 
-func (d *DomainsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Domain, ok bool, err error) {
-	rows, err := d.selecterDatabase.Query(query, params...)
+func (s *DomainsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Domain, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -61,12 +61,12 @@ func (d *DomainsStore) fetch(query string, withCreators bool, params ...interfac
 
 // New returns a new instance of DomainsStore.
 func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, databaseFiltersFactory filters.Factory) (*DomainsStore, error) {
-	d := &DomainsStore{
+	s := &DomainsStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
 		databaseQueryHelper:    databaseQueryHelper,
 		databaseFiltersFactory: databaseFiltersFactory,
 	}
-	return d, nil
+	return s, nil
 }

@@ -13,8 +13,8 @@ var _ Store = &NewslettersStore{}
 type Store interface {
 }
 
-func (n *NewslettersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Newsletter, ok bool, err error) {
-	rows, err := n.selecterDatabase.Query(query, params...)
+func (s *NewslettersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Newsletter, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (n *NewslettersStore) fetch(query string, withCreators bool, params ...inte
 
 // New returns a new instance of NewslettersStore.
 func New(selecterDatabase database.Database) (*NewslettersStore, error) {
-	n := &NewslettersStore{
+	s := &NewslettersStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return n, nil
+	return s, nil
 }

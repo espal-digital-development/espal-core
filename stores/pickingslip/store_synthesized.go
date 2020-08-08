@@ -13,8 +13,8 @@ var _ Store = &PickingSlipsStore{}
 type Store interface {
 }
 
-func (p *PickingSlipsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PickingSlip, ok bool, err error) {
-	rows, err := p.selecterDatabase.Query(query, params...)
+func (s *PickingSlipsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*PickingSlip, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (p *PickingSlipsStore) fetch(query string, withCreators bool, params ...int
 
 // New returns a new instance of PickingSlipsStore.
 func New(selecterDatabase database.Database) (*PickingSlipsStore, error) {
-	p := &PickingSlipsStore{
+	s := &PickingSlipsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return p, nil
+	return s, nil
 }

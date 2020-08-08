@@ -13,8 +13,8 @@ var _ Store = &FrequentlyAskedQuestionsStore{}
 type Store interface {
 }
 
-func (f *FrequentlyAskedQuestionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*FrequentlyAskedQuestion, ok bool, err error) {
-	rows, err := f.selecterDatabase.Query(query, params...)
+func (s *FrequentlyAskedQuestionsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*FrequentlyAskedQuestion, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (f *FrequentlyAskedQuestionsStore) fetch(query string, withCreators bool, p
 
 // New returns a new instance of FrequentlyAskedQuestionsStore.
 func New(selecterDatabase database.Database) (*FrequentlyAskedQuestionsStore, error) {
-	f := &FrequentlyAskedQuestionsStore{
+	s := &FrequentlyAskedQuestionsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return f, nil
+	return s, nil
 }

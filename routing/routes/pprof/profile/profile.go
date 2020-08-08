@@ -28,10 +28,7 @@ func (r *Route) Handle(context contexts.Context) {
 	if err := pprof.StartCPUProfile(context); err != nil {
 		context.SetContentType("text/plain; charset=utf-8")
 		context.SetStatusCode(http.StatusInternalServerError)
-		if _, err := context.WriteString("Failed to enable CPU profiling:" + err.Error() + "\n"); err != nil {
-			context.RenderInternalServerError(errors.Trace(err))
-			return
-		}
+		context.WriteString("Failed to enable CPU profiling:" + err.Error() + "\n")
 		return
 	}
 	time.Sleep(time.Duration(seconds) * time.Second)

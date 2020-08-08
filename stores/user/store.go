@@ -7,6 +7,7 @@ import (
 
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/repositories/userrights"
 	"github.com/espal-digital-development/espal-core/text"
@@ -28,6 +29,7 @@ type UsersStore struct {
 	inserterDatabase       database.Database
 	updaterDatabase        database.Database
 	deletorDatabase        database.Database
+	databaseQueryHelper    queryhelper.Helper
 	databaseFiltersFactory filters.Factory
 	translationsRepository translations.Repository
 	userRightsRepository   userrights.Repository
@@ -35,13 +37,14 @@ type UsersStore struct {
 	queries map[string]string
 }
 
-func (u *UsersStore) buildQueries() error {
-	if u.queries != nil {
+// nolint:gosec
+func (s *UsersStore) buildQueries() error {
+	if s.queries != nil {
 		return errors.Trace(errBuildQueriesMultipleTimes)
 	}
 	name := (&User{}).TableName()
 	alias := (&User{}).TableAlias()
-	u.queries = map[string]string{
+	s.queries = map[string]string{
 		"GetOne": fmt.Sprintf(`SELECT * FROM "%s" WHERE "id" = $1 LIMIT 1`, name),
 		"GetOneActive": fmt.Sprintf(`SELECT * FROM "%s" WHERE "id" = $1 `+
 			`AND "active" = true LIMIT 1`, name),
@@ -78,8 +81,8 @@ func (u *UsersStore) buildQueries() error {
 }
 
 // GetOne fetches by ID.
-func (u *UsersStore) GetOne(id string) (*User, bool, error) {
-	result, ok, err := u.fetch(u.queries["GetOne"], false, id)
+func (s *UsersStore) GetOne(id string) (*User, bool, error) {
+	result, ok, err := s.fetch(s.queries["GetOne"], false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -87,8 +90,8 @@ func (u *UsersStore) GetOne(id string) (*User, bool, error) {
 }
 
 // GetOneActive fetches by ID and must be active.
-func (u *UsersStore) GetOneActive(id string) (*User, bool, error) {
-	result, ok, err := u.fetch(u.queries["GetOneActive"], false, id)
+func (s *UsersStore) GetOneActive(id string) (*User, bool, error) {
+	result, ok, err := s.fetch(s.queries["GetOneActive"], false, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -96,8 +99,8 @@ func (u *UsersStore) GetOneActive(id string) (*User, bool, error) {
 }
 
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
-func (u *UsersStore) GetOneByIDWithCreator(id string) (*User, bool, error) {
-	result, ok, err := u.fetch(u.queries["GetOneByIDWithCreator"], true, id)
+func (s *UsersStore) GetOneByIDWithCreator(id string) (*User, bool, error) {
+	result, ok, err := s.fetch(s.queries["GetOneByIDWithCreator"], true, id)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -105,8 +108,8 @@ func (u *UsersStore) GetOneByIDWithCreator(id string) (*User, bool, error) {
 }
 
 // GetOneByEmail fetches by Email.
-func (u *UsersStore) GetOneByEmail(email string) (*User, bool, error) {
-	result, ok, err := u.fetch(u.queries["GetOneByEmail"], false, email)
+func (s *UsersStore) GetOneByEmail(email string) (*User, bool, error) {
+	result, ok, err := s.fetch(s.queries["GetOneByEmail"], false, email)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -114,8 +117,8 @@ func (u *UsersStore) GetOneByEmail(email string) (*User, bool, error) {
 }
 
 // GetOneActiveByEmail fetches by Email and must be Active.
-func (u *UsersStore) GetOneActiveByEmail(email string) (*User, bool, error) {
-	result, ok, err := u.fetch(u.queries["GetOneActiveByEmail"], false, email)
+func (s *UsersStore) GetOneActiveByEmail(email string) (*User, bool, error) {
+	result, ok, err := s.fetch(s.queries["GetOneActiveByEmail"], false, email)
 	if len(result) == 1 {
 		return result[0], ok, errors.Trace(err)
 	}
@@ -124,9 +127,9 @@ func (u *UsersStore) GetOneActiveByEmail(email string) (*User, bool, error) {
 
 // GetOneIDAndPasswordForActiveByEmail only fetches the ID and Password parts into the User result based on the
 // requested Email. The User must be marked Active in the database.
-func (u *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, bool, error) {
+func (s *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, bool, error) {
 	user := newUser()
-	err := u.selecterDatabase.QueryRow(u.queries["GetOneIDAndPasswordForActiveByEmail"], email).
+	err := s.selecterDatabase.QueryRow(s.queries["GetOneIDAndPasswordForActiveByEmail"], email).
 		Scan(&user.id, &user.password)
 	if err == sql.ErrNoRows {
 		return nil, false, nil
@@ -138,9 +141,9 @@ func (u *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, b
 }
 
 // GetOneIDForActivationHash only fetches the ID parts into the User result based on the requetsed hash.
-func (u *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error) {
+func (s *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error) {
 	var id string
-	err := u.selecterDatabase.QueryRow(u.queries["GetOneIDForActivationHash"], hash).Scan(&id)
+	err := s.selecterDatabase.QueryRow(s.queries["GetOneIDForActivationHash"], hash).Scan(&id)
 	if err == sql.ErrNoRows {
 		return "", false, nil
 	}
@@ -151,9 +154,9 @@ func (u *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error
 }
 
 // ExistsByEmail will check and determine if the requested User with the given email address exists.
-func (u *UsersStore) ExistsByEmail(email string) (bool, error) {
+func (s *UsersStore) ExistsByEmail(email string) (bool, error) {
 	var exists bool
-	err := u.selecterDatabase.QueryRow(u.queries["ExistsByEmail"], email).Scan(&exists)
+	err := s.selecterDatabase.QueryRow(s.queries["ExistsByEmail"], email).Scan(&exists)
 	if err != nil && err != sql.ErrNoRows {
 		return false, errors.Trace(err)
 	}
@@ -164,29 +167,29 @@ func (u *UsersStore) ExistsByEmail(email string) (bool, error) {
 }
 
 // SetPasswordResetHashForUser saves the PasswordResetHash for the given User ID.
-func (u *UsersStore) SetPasswordResetHashForUser(id string, hash string) error {
-	if _, err := u.updaterDatabase.Exec(u.queries["SetPasswordResetHashForUser"], hash, id); err != nil {
+func (s *UsersStore) SetPasswordResetHashForUser(id string, hash string) error {
+	if _, err := s.updaterDatabase.Exec(s.queries["SetPasswordResetHashForUser"], hash, id); err != nil {
 		return errors.Trace(err)
 	}
 	return nil
 }
 
 // SetPasswordForUser sets the password for the given User ID.
-func (u *UsersStore) SetPasswordForUser(id string, password []byte) error {
-	_, err := u.updaterDatabase.Query(u.queries["SetPasswordForUser"], password, id)
+func (s *UsersStore) SetPasswordForUser(id string, password []byte) error {
+	_, err := s.updaterDatabase.Query(s.queries["SetPasswordForUser"], password, id)
 	return errors.Trace(err)
 }
 
 // Activate will activate the given User id and clear the activation hash.
-func (u *UsersStore) Activate(id string) error {
-	_, err := u.updaterDatabase.Exec(u.queries["Activate"], id)
+func (s *UsersStore) Activate(id string) error {
+	_, err := s.updaterDatabase.Exec(s.queries["Activate"], id)
 	return errors.Trace(err)
 }
 
 // GetAvatar returns the avatar for the given User ID.
-func (u *UsersStore) GetAvatar(id string) (*string, bool, error) {
+func (s *UsersStore) GetAvatar(id string) (*string, bool, error) {
 	var avatar *string
-	err := u.selecterDatabase.QueryRow(u.queries["GetAvatar"], id).Scan(&avatar)
+	err := s.selecterDatabase.QueryRow(s.queries["GetAvatar"], id).Scan(&avatar)
 	if err != nil && err != sql.ErrNoRows {
 		return nil, false, errors.Trace(err)
 	}
@@ -197,24 +200,24 @@ func (u *UsersStore) GetAvatar(id string) (*string, bool, error) {
 }
 
 // UnsetAvatar will unset the User's avatar.
-func (u *UsersStore) UnsetAvatar(id string) error {
-	_, err := u.updaterDatabase.Exec(u.queries["UnsetAvatar"], id)
+func (s *UsersStore) UnsetAvatar(id string) error {
+	_, err := s.updaterDatabase.Exec(s.queries["UnsetAvatar"], id)
 	return errors.Trace(err)
 }
 
 // Delete deletes the given ID(s).
-func (u *UsersStore) Delete(ids []string) error {
-	transaction, err := u.deletorDatabase.Begin()
+func (s *UsersStore) Delete(ids []string) error {
+	transaction, err := s.deletorDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(fmt.Sprintf(u.queries["DeleteUserGroupUser"], strings.Join(ids, "','"))); err != nil {
+	if _, err := transaction.Exec(fmt.Sprintf(s.queries["DeleteUserGroupUser"], strings.Join(ids, "','"))); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Exec(fmt.Sprintf(u.queries["Delete"], strings.Join(ids, "','"))); err != nil {
+	if _, err := transaction.Exec(fmt.Sprintf(s.queries["Delete"], strings.Join(ids, "','"))); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -224,12 +227,12 @@ func (u *UsersStore) Delete(ids []string) error {
 }
 
 // ToggleActive toggles the active state of the given ID(s).
-func (u *UsersStore) ToggleActive(ids []string) error {
-	transaction, err := u.updaterDatabase.Begin()
+func (s *UsersStore) ToggleActive(ids []string) error {
+	transaction, err := s.updaterDatabase.Begin()
 	if err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := transaction.Query(fmt.Sprintf(u.queries["ToggleActive"], strings.Join(ids, "','"))); err != nil {
+	if _, err := transaction.Query(fmt.Sprintf(s.queries["ToggleActive"], strings.Join(ids, "','"))); err != nil {
 		if err := transaction.Rollback(); err != nil {
 			return errors.Trace(err)
 		}
@@ -239,34 +242,34 @@ func (u *UsersStore) ToggleActive(ids []string) error {
 }
 
 // Register registers a new User with the given base information.
-func (u *UsersStore) Register(email string, password []byte, firstName *string, surname *string,
+func (s *UsersStore) Register(email string, password []byte, firstName *string, surname *string,
 	languageID uint16) (string, error) {
 	activationHash := text.RandomString(hashLength)
 	var insertedID string
-	row := u.inserterDatabase.QueryRow(u.queries["Register"],
+	row := s.inserterDatabase.QueryRow(s.queries["Register"],
 		stubUUID, languageID, email, password, activationHash, firstName, surname)
 	if err := row.Scan(&insertedID); err != nil {
 		return "", errors.Trace(err)
 	}
-	_, err := u.updaterDatabase.Exec(u.queries["RegisterUpdate"], insertedID, insertedID)
+	_, err := s.updaterDatabase.Exec(s.queries["RegisterUpdate"], insertedID, insertedID)
 	return activationHash, errors.Trace(err)
 }
 
 // RecoverWithNewPassword will set the password as recovered and increments the resetCount.
-func (u *UsersStore) RecoverWithNewPassword(id string, password []byte, resetCount uint8) error {
-	_, err := u.updaterDatabase.Exec(u.queries["RecoverWithNewPassword"], password, resetCount, id)
+func (s *UsersStore) RecoverWithNewPassword(id string, password []byte, resetCount uint8) error {
+	_, err := s.updaterDatabase.Exec(s.queries["RecoverWithNewPassword"], password, resetCount, id)
 	return errors.Trace(err)
 }
 
 // HasUserRight checks if the userright is present for this User.
-func (u *UsersStore) HasUserRight(userEntity UserEntity, userRightName string) (bool, error) {
-	userRight, err := u.userRightsRepository.GetCode(userRightName)
+func (s *UsersStore) HasUserRight(userEntity UserEntity, userRightName string) (bool, error) {
+	userRight, err := s.userRightsRepository.GetCode(userRightName)
 	if err != nil {
 		return false, errors.Trace(err)
 	}
 
 	var hasUserRight uint8
-	err = u.selecterDatabase.QueryRow(u.queries["HasUserRight"], userRight, userEntity.ID()).Scan(&hasUserRight)
+	err = s.selecterDatabase.QueryRow(s.queries["HasUserRight"], userRight, userEntity.ID()).Scan(&hasUserRight)
 	if err != nil && err != sql.ErrNoRows {
 		return false, errors.Trace(err)
 	}
@@ -275,7 +278,7 @@ func (u *UsersStore) HasUserRight(userEntity UserEntity, userRightName string) (
 }
 
 // Name returns the presentable name.
-func (u *UsersStore) Name(user UserEntity, languageID uint16) string {
+func (s *UsersStore) Name(user UserEntity, languageID uint16) string {
 	var name string
 	if user.FirstName() != nil {
 		name = *user.FirstName()
@@ -284,12 +287,12 @@ func (u *UsersStore) Name(user UserEntity, languageID uint16) string {
 		name += " " + *user.Surname()
 	}
 	if name == "" {
-		name = u.translationsRepository.Singular(languageID, "user") + " " + user.ID()
+		name = s.translationsRepository.Singular(languageID, "user") + " " + user.ID()
 	}
 	return name
 }
 
 // NameWithEmail returns the presentable name with e-mail.
-func (u *UsersStore) NameWithEmail(user UserEntity, languageID uint16) string {
-	return u.Name(user, languageID) + " (" + user.Email() + ")"
+func (s *UsersStore) NameWithEmail(user UserEntity, languageID uint16) string {
+	return s.Name(user, languageID) + " (" + user.Email() + ")"
 }

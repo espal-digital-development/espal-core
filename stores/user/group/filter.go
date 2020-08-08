@@ -10,10 +10,10 @@ import (
 
 // Filter filters results based on the given context.
 // nolint:nakedret
-func (g *GroupsStore) Filter(context filters.QueryReader, language language) (result []*Group,
+func (s *GroupsStore) Filter(context filters.QueryReader, language language) (result []*Group,
 	filter filters.Filter, err error) {
 	alias := (&Group{}).TableAlias()
-	filter = g.databaseFiltersFactory.NewFilter(context, newGroup())
+	filter = s.databaseFiltersFactory.NewFilter(context, newGroup())
 	filter.AddSelectField(filter.NewSelectField("id")).
 		AddSelectField(filter.NewSelectField("createdByID")).
 		AddSelectField(filter.NewSelectField("updatedByID")).

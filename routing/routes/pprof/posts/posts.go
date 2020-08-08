@@ -33,10 +33,7 @@ func (r *Route) Handle(context contexts.Context) {
 	profiler := pprof.Lookup(name)
 	if profiler == nil {
 		context.SetStatusCode(http.StatusNotFound)
-		if _, err := context.WriteString("Unknown profile: " + name + "\n"); err != nil {
-			context.RenderInternalServerError(errors.Trace(err))
-			return
-		}
+		context.WriteString("Unknown profile: " + name + "\n")
 		return
 	}
 	var gc int

@@ -4,6 +4,7 @@ package address
 import (
 	"database/sql"
 	"github.com/espal-digital-development/espal-core/database"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/repositories/countries"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
@@ -22,8 +23,8 @@ type Store interface {
 	ToggleActive(ids []string) error
 }
 
-func (a *AddressesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Address, ok bool, err error) {
-	rows, err := a.selecterDatabase.Query(query, params...)
+func (s *AddressesStore) fetch(query string, withCreators bool, params ...interface{}) (result []*Address, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -60,14 +61,15 @@ func (a *AddressesStore) fetch(query string, withCreators bool, params ...interf
 }
 
 // New returns a new instance of AddressesStore.
-func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, translationsRepository translations.Repository, countriesRepository countries.Repository, loggerService logger.Loggable) (*AddressesStore, error) {
-	a := &AddressesStore{
+func New(selecterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, translationsRepository translations.Repository, countriesRepository countries.Repository, loggerService logger.Loggable) (*AddressesStore, error) {
+	s := &AddressesStore{
 		selecterDatabase:       selecterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
+		databaseQueryHelper:    databaseQueryHelper,
 		translationsRepository: translationsRepository,
 		countriesRepository:    countriesRepository,
 		loggerService:          loggerService,
 	}
-	return a, nil
+	return s, nil
 }

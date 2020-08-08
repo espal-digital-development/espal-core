@@ -42,10 +42,10 @@ type ForumsStore struct {
 }
 
 // GetOneByID fetches by ID.
-func (f *ForumsStore) GetOneByID(forumID string, language Language) (*Forum, bool, error) {
+func (s *ForumsStore) GetOneByID(forumID string, language Language) (*Forum, bool, error) {
 	forum := newForum()
 	var nameTranslation *string
-	err := f.selecterDatabase.QueryRow(`
+	err := s.selecterDatabase.QueryRow(`
 		SELECT
 			f."id", f."createdByID", u."updatedByID", u."firstName",
 			u."surname", uu."firstName" AS fn, uu."surname" AS sn,
@@ -78,9 +78,9 @@ func (f *ForumsStore) GetOneByID(forumID string, language Language) (*Forum, boo
 }
 
 // GetOnePostByID fetches by ID.
-func (f *ForumsStore) GetOnePostByID(postID string) (*Post, bool, error) {
+func (s *ForumsStore) GetOnePostByID(postID string) (*Post, bool, error) {
 	post := newPost()
-	err := f.selecterDatabase.QueryRow(`
+	err := s.selecterDatabase.QueryRow(`
 		SELECT
 			f."id", f."createdByID", f."updatedByID",
 			u."firstName", u."surname",
@@ -102,22 +102,22 @@ func (f *ForumsStore) GetOnePostByID(postID string) (*Post, bool, error) {
 }
 
 // GetTopLevel returns all top-level Forum entries.
-func (f *ForumsStore) GetTopLevel(language Language) ([]*Forum, bool, error) {
-	return f.GetForParent("", language)
+func (s *ForumsStore) GetTopLevel(language Language) ([]*Forum, bool, error) {
+	return s.GetForParent("", language)
 }
 
 // GetForParent returns all Forum entries for the given parent.
 // nolint:nakedret
-func (f *ForumsStore) GetForParent(parentID string, language Language) (result []*Forum, ok bool, err error) {
+func (s *ForumsStore) GetForParent(parentID string, language Language) (result []*Forum, ok bool, err error) {
 	var rows database.Rows
 	if parentID == "" {
-		rows, err = f.selecterDatabase.Query(getForParentTopLevelQuery, language.ID(), database.DBTranslationFieldName)
+		rows, err = s.selecterDatabase.Query(getForParentTopLevelQuery, language.ID(), database.DBTranslationFieldName)
 	} else {
 		var parentIDPointer *string
 		if parentID != "" {
 			parentIDPointer = &parentID
 		}
-		rows, err = f.selecterDatabase.Query(getForParentQuery, language.ID(), database.DBTranslationFieldName,
+		rows, err = s.selecterDatabase.Query(getForParentQuery, language.ID(), database.DBTranslationFieldName,
 			parentIDPointer)
 	}
 	if err == sql.ErrNoRows {
@@ -144,7 +144,7 @@ func (f *ForumsStore) GetForParent(parentID string, language Language) (result [
 			return
 		}
 		forum := newForum()
-		nameTranslation, err = f.scanDefaultFieldsIntoForum(rows, forum)
+		nameTranslation, err = s.scanDefaultFieldsIntoForum(rows, forum)
 		if err != nil {
 			err = errors.Trace(err)
 			return
@@ -160,8 +160,8 @@ func (f *ForumsStore) GetForParent(parentID string, language Language) (result [
 
 // GetPosts returns the posts for the given Forum ID.
 // nolint:nakedret
-func (f *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err error) {
-	rows, err := f.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName", u."surname",
+func (s *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName", u."surname",
 			uu."firstName" AS fn, uu."surname" AS sn, f."sticky", f."title", f."message"
 		FROM "ForumPost" f
 		LEFT JOIN "User" u ON u."id" = f."createdByID"
@@ -207,8 +207,8 @@ func (f *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err erro
 
 // GetPostReplies returns the posted replies for the given Post ID.
 // nolint:nakedret
-func (f *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, err error) {
-	rows, err := f.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName",
+func (s *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName",
 			u."surname", uu."firstName" AS fn, uu."surname" AS sn, f."sticky", f."title", f."message"
 		FROM "ForumPost" f
 		LEFT JOIN "User" u ON u."id" = f."createdByID"
@@ -237,7 +237,7 @@ func (f *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, e
 			return
 		}
 		reply := newPost()
-		if err = f.scanDefaultFieldsIntoPost(rows, reply); err != nil {
+		if err = s.scanDefaultFieldsIntoPost(rows, reply); err != nil {
 			err = errors.Trace(err)
 			return
 		}
@@ -248,9 +248,9 @@ func (f *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, e
 }
 
 // GetForumIDForPostID returns the ForumID that belongs to the given ForumPost ID.
-func (f *ForumsStore) GetForumIDForPostID(postID string) (string, bool, error) {
+func (s *ForumsStore) GetForumIDForPostID(postID string) (string, bool, error) {
 	var id string
-	err := f.selecterDatabase.QueryRow(`SELECT "forumID" FROM "ForumPost" WHERE "id" = $1 LIMIT 1`, postID).Scan(&id)
+	err := s.selecterDatabase.QueryRow(`SELECT "forumID" FROM "ForumPost" WHERE "id" = $1 LIMIT 1`, postID).Scan(&id)
 	if err != nil && err != sql.ErrNoRows {
 		return id, false, errors.Trace(err)
 	}
@@ -258,8 +258,8 @@ func (f *ForumsStore) GetForumIDForPostID(postID string) (string, bool, error) {
 }
 
 // DeleteOneForumPostByID deletes one ForumPost entry based on the given id.
-func (f *ForumsStore) DeleteOneForumPostByID(id string) error {
-	r, err := f.deletorDatabase.Exec(`DELETE FROM "ForumPost" WHERE "id" = $1`, id)
+func (s *ForumsStore) DeleteOneForumPostByID(id string) error {
+	r, err := s.deletorDatabase.Exec(`DELETE FROM "ForumPost" WHERE "id" = $1`, id)
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -273,7 +273,7 @@ func (f *ForumsStore) DeleteOneForumPostByID(id string) error {
 	return nil
 }
 
-func (f *ForumsStore) scanDefaultFieldsIntoForum(row database.Row, forum *Forum) (*string, error) {
+func (s *ForumsStore) scanDefaultFieldsIntoForum(row database.Row, forum *Forum) (*string, error) {
 	var nameTranslation *string
 	err := row.Scan(&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdByFirstName,
 		&forum.createdBySurname, &forum.updatedByFirstName, &forum.updatedBySurname, &nameTranslation,
@@ -284,7 +284,7 @@ func (f *ForumsStore) scanDefaultFieldsIntoForum(row database.Row, forum *Forum)
 	return nameTranslation, nil
 }
 
-func (f *ForumsStore) scanDefaultFieldsIntoPost(row database.Row, post *Post) error {
+func (s *ForumsStore) scanDefaultFieldsIntoPost(row database.Row, post *Post) error {
 	err := row.Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname,
 		&post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
 	if err != nil {

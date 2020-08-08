@@ -108,20 +108,22 @@ func (r *Runner) dataStores() error {
 		return errors.Trace(err)
 	}
 	if r.stores.userGroup, err = usergroup.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
-		r.services.databaseFilters, r.repositories.translations, r.services.logger); err != nil {
+		r.services.databaseQueryHelper, r.services.databaseFilters, r.repositories.translations,
+		r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.user, err = user.New(r.databases.selecter, r.databases.inserter, r.databases.updater,
-		r.databases.deletor, r.services.databaseFilters, r.repositories.translations,
+		r.databases.deletor, r.services.databaseQueryHelper, r.services.databaseFilters, r.repositories.translations,
 		r.repositories.userRights); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.userAddress, err = useraddress.New(r.databases.selecter, r.databases.updater, r.databases.deletor,
-		r.repositories.translations, r.repositories.countries, r.services.logger); err != nil {
+		r.services.databaseQueryHelper, r.repositories.translations, r.repositories.countries,
+		r.services.logger); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.userContact, err = usercontact.New(r.databases.selecter, r.databases.deletor,
-		r.repositories.translations); err != nil {
+		r.services.databaseQueryHelper, r.repositories.translations); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.forum, err = forum.New(r.databases.selecter, r.databases.deletor); err != nil {

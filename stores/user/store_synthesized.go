@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/filters"
+	"github.com/espal-digital-development/espal-core/database/queryhelper"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/repositories/userrights"
 	"github.com/juju/errors"
@@ -39,8 +40,8 @@ type Store interface {
 	Filter(context filters.QueryReader) (result []*User, filter filters.Filter, err error)
 }
 
-func (u *UsersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*User, ok bool, err error) {
-	rows, err := u.selecterDatabase.Query(query, params...)
+func (s *UsersStore) fetch(query string, withCreators bool, params ...interface{}) (result []*User, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -77,18 +78,19 @@ func (u *UsersStore) fetch(query string, withCreators bool, params ...interface{
 }
 
 // New returns a new instance of UsersStore.
-func New(selecterDatabase database.Database, inserterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, userRightsRepository userrights.Repository) (*UsersStore, error) {
-	u := &UsersStore{
+func New(selecterDatabase database.Database, inserterDatabase database.Database, updaterDatabase database.Database, deletorDatabase database.Database, databaseQueryHelper queryhelper.Helper, databaseFiltersFactory filters.Factory, translationsRepository translations.Repository, userRightsRepository userrights.Repository) (*UsersStore, error) {
+	s := &UsersStore{
 		selecterDatabase:       selecterDatabase,
 		inserterDatabase:       inserterDatabase,
 		updaterDatabase:        updaterDatabase,
 		deletorDatabase:        deletorDatabase,
+		databaseQueryHelper:    databaseQueryHelper,
 		databaseFiltersFactory: databaseFiltersFactory,
 		translationsRepository: translationsRepository,
 		userRightsRepository:   userRightsRepository,
 	}
-	if err := u.buildQueries(); err != nil {
+	if err := s.buildQueries(); err != nil {
 		return nil, errors.Trace(err)
 	}
-	return u, nil
+	return s, nil
 }

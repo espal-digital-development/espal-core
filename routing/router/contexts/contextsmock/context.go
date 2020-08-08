@@ -280,7 +280,7 @@ var _ contexts.Context = &ContextMock{}
 //             WriteFunc: func(p []byte) (int, error) {
 // 	               panic("mock out the Write method")
 //             },
-//             WriteStringFunc: func(p string) (int, error) {
+//             WriteStringFunc: func(p string)  {
 // 	               panic("mock out the WriteString method")
 //             },
 //         }
@@ -480,7 +480,7 @@ type ContextMock struct {
 	WriteFunc func(p []byte) (int, error)
 
 	// WriteStringFunc mocks the WriteString method.
-	WriteStringFunc func(p string) (int, error)
+	WriteStringFunc func(p string)
 
 	// calls tracks calls to the methods.
 	calls struct {
@@ -2600,7 +2600,7 @@ func (mock *ContextMock) WriteCalls() []struct {
 }
 
 // WriteString calls WriteStringFunc.
-func (mock *ContextMock) WriteString(p string) (int, error) {
+func (mock *ContextMock) WriteString(p string) {
 	if mock.WriteStringFunc == nil {
 		panic("ContextMock.WriteStringFunc: method is nil but Context.WriteString was just called")
 	}
@@ -2612,7 +2612,7 @@ func (mock *ContextMock) WriteString(p string) (int, error) {
 	lockContextMockWriteString.Lock()
 	mock.calls.WriteString = append(mock.calls.WriteString, callInfo)
 	lockContextMockWriteString.Unlock()
-	return mock.WriteStringFunc(p)
+	mock.WriteStringFunc(p)
 }
 
 // WriteStringCalls gets all the calls that were made to WriteString.

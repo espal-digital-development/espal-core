@@ -13,8 +13,8 @@ var _ Store = &DeliveryMethodsStore{}
 type Store interface {
 }
 
-func (d *DeliveryMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*DeliveryMethod, ok bool, err error) {
-	rows, err := d.selecterDatabase.Query(query, params...)
+func (s *DeliveryMethodsStore) fetch(query string, withCreators bool, params ...interface{}) (result []*DeliveryMethod, ok bool, err error) {
+	rows, err := s.selecterDatabase.Query(query, params...)
 	if err == sql.ErrNoRows {
 		err = nil
 		return
@@ -52,8 +52,8 @@ func (d *DeliveryMethodsStore) fetch(query string, withCreators bool, params ...
 
 // New returns a new instance of DeliveryMethodsStore.
 func New(selecterDatabase database.Database) (*DeliveryMethodsStore, error) {
-	d := &DeliveryMethodsStore{
+	s := &DeliveryMethodsStore{
 		selecterDatabase: selecterDatabase,
 	}
-	return d, nil
+	return s, nil
 }
