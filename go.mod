@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/andybalholm/brotli v1.0.0
-	github.com/asaskevich/govalidator v0.0.0-20200428143746-21a406dcc535
+	github.com/asaskevich/govalidator v0.0.0-20200819183940-29e1ff8eb0bb
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
 	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df
 	github.com/json-iterator/go v1.1.10
