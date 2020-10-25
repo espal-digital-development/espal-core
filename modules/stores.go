@@ -1,9 +1,9 @@
 package modules
 
 import (
-	"github.com/espal-digital-development/espal-core/stores/cachenotify"
 	"github.com/espal-digital-development/espal-core/stores/domain"
 	"github.com/espal-digital-development/espal-core/stores/forum"
+	"github.com/espal-digital-development/espal-core/stores/notification"
 	"github.com/espal-digital-development/espal-core/stores/session"
 	"github.com/espal-digital-development/espal-core/stores/setting"
 	"github.com/espal-digital-development/espal-core/stores/site"
@@ -17,7 +17,7 @@ import (
 // Stores represents an object that provides any known core stores of the system.
 type Stores interface {
 	Setting() setting.Store
-	CacheNotify() cachenotify.Store
+	Notification() notification.Store
 	Session() session.Store
 	Domain() domain.Store
 	Site() site.Store

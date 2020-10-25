@@ -2,7 +2,6 @@ package runner
 
 import (
 	"github.com/espal-digital-development/espal-core/adminmenu"
-	"github.com/espal-digital-development/espal-core/cachesynchronizer"
 	"github.com/espal-digital-development/espal-core/config"
 	"github.com/espal-digital-development/espal-core/database/entitymutators"
 	"github.com/espal-digital-development/espal-core/database/filters"
@@ -10,6 +9,7 @@ import (
 	"github.com/espal-digital-development/espal-core/image/optimizer"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/mailer"
+	"github.com/espal-digital-development/espal-core/notifier"
 	"github.com/espal-digital-development/espal-core/routing/assethandler"
 	"github.com/espal-digital-development/espal-core/routing/router"
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
@@ -27,7 +27,7 @@ type services struct {
 	imageOptimizer      optimizer.Optimizable
 	mailer              mailer.Engine
 	tokenPool           tokenpool.Pool
-	cacheSynchronizer   cachesynchronizer.Synchronizer
+	notifier            notifier.Hub
 	sessions            sessions.Factory
 	entityMutators      entitymutators.Factory
 	databaseQueryHelper queryhelper.Helper

@@ -1,19 +1,19 @@
-package cachenotify
+package notification
 
 import (
 	"time"
 )
 
 const (
-	CacheNotifyKeyDomain uint = iota + 1
-	CacheNotifyKeySite
+	TargetDomain = "1"
+	TargetSite   = "2"
+	TargetUser   = "3"
+	TargetSlug   = "4"
 )
 
-// TODO :: 77777 ObjectEntity interface name, check all used instances and rebuild Mocks that need to.
-
-// CacheNotify database object.
+// Notification database object.
 // @synthesize
-type CacheNotify struct {
+type Notification struct {
 	id                 string
 	createdByID        *string
 	updatedByID        *string
@@ -23,6 +23,7 @@ type CacheNotify struct {
 	createdBySurname   *string
 	updatedByFirstName *string
 	updatedBySurname   *string
-	target             uint
+	target             string
 	key                string
+	value              string
 }

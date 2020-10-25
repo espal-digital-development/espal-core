@@ -1,9 +1,9 @@
 package runner
 
 import (
-	"github.com/espal-digital-development/espal-core/stores/cachenotify"
 	"github.com/espal-digital-development/espal-core/stores/domain"
 	"github.com/espal-digital-development/espal-core/stores/forum"
+	"github.com/espal-digital-development/espal-core/stores/notification"
 	"github.com/espal-digital-development/espal-core/stores/session"
 	"github.com/espal-digital-development/espal-core/stores/setting"
 	"github.com/espal-digital-development/espal-core/stores/site"
@@ -16,17 +16,17 @@ import (
 )
 
 type stores struct {
-	setting     setting.Store
-	cacheNotify cachenotify.Store
-	session     session.Store
-	domain      domain.Store
-	site        site.Store
-	slug        slug.Store
-	userGroup   usergroup.Store
-	user        user.Store
-	userAddress useraddress.Store
-	userContact usercontact.Store
-	forum       forum.Store
+	setting      setting.Store
+	notification notification.Store
+	session      session.Store
+	domain       domain.Store
+	site         site.Store
+	slug         slug.Store
+	userGroup    usergroup.Store
+	user         user.Store
+	userAddress  useraddress.Store
+	userContact  usercontact.Store
+	forum        forum.Store
 }
 
 // Setting returns the Setting Store.
@@ -34,9 +34,9 @@ func (s *stores) Setting() setting.Store {
 	return s.setting
 }
 
-// CacheNotify returns the CacheNotify Store.
-func (s *stores) CacheNotify() cachenotify.Store {
-	return s.cacheNotify
+// Notification returns the Notification Store.
+func (s *stores) Notification() notification.Store {
+	return s.notification
 }
 
 // Session returns the Session Store.
@@ -89,7 +89,8 @@ func (r *Runner) dataStores() error {
 	if r.stores.setting, err = setting.New(r.databases.selecter); err != nil {
 		return errors.Trace(err)
 	}
-	if r.stores.cacheNotify, err = cachenotify.New(r.databases.selecter, r.databases.updater); err != nil {
+	if r.stores.notification, err = notification.New(r.databases.selecter, r.databases.inserter,
+		r.databases.deletor); err != nil {
 		return errors.Trace(err)
 	}
 	if r.stores.session, err = session.New(r.databases.selecter, r.databases.inserter, r.databases.updater); err != nil {

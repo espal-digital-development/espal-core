@@ -1,19 +1,19 @@
 package runner
 
 import (
+	"fmt"
 	"time"
 
-	"github.com/espal-digital-development/espal-core/cachesynchronizer"
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/modules"
+	"github.com/espal-digital-development/espal-core/notifier"
 	"github.com/espal-digital-development/espal-core/semver"
 	"github.com/espal-digital-development/espal-core/sessions"
+	"github.com/espal-digital-development/espal-core/stores/notification"
 	"github.com/juju/errors"
 )
 
 var _ Application = &Runner{}
-
-const cacheSynchronizerIntervalInSeconds = 20
 
 // Application represents an object that runs app instances.
 type Application interface {
@@ -66,8 +66,10 @@ func (r *Runner) RunNonBlocking() error {
 		return errors.Trace(err)
 	}
 
-	r.services.cacheSynchronizer = cachesynchronizer.New(r.services.logger, r.stores.cacheNotify,
-		time.Second*cacheSynchronizerIntervalInSeconds)
+	r.services.notifier = notifier.New(r.services.logger, r.stores.notification)
+
+	// TODO :: 777777 Remove after dev
+	fmt.Println(r.services.notifier.NotifyWithValue(notification.TargetDomain, "blaa", "blup"))
 
 	r.services.sessions = sessions.New(r.services.config, r.stores.session)
 
