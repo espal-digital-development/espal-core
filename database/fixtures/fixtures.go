@@ -94,13 +94,13 @@ func (f *Fixtures) Run() error {
 		VALUES($1,$2,$3,$4,$5,$6) RETURNING "id"`
 	var domain1ID string
 	row = f.inserterDatabase.QueryRow(domainQuery, f.mainUserID, site1ID, true, f.englishLanguage.ID(),
-		"localhost:8443", "")
+		"espal.loc", "")
 	if err := row.Scan(&domain1ID); err != nil {
 		return errors.Trace(err)
 	}
 	var domain2ID string
 	row = f.inserterDatabase.QueryRow(domainQuery, f.mainUserID, site1ID, true, f.englishLanguage.ID(),
-		"domain.test:8443", "")
+		"espal.loc:8443", "")
 	if err := row.Scan(&domain2ID); err != nil {
 		return errors.Trace(err)
 	}
