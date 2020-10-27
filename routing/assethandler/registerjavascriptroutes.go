@@ -21,7 +21,7 @@ func (h *AssetHandler) registerJavaScriptsRoutes() error {
 			return false
 		}
 		if !h.configService.Development() {
-			data = []byte(strings.Replace(string(data), "'use strict';", "", -1))
+			data = []byte(strings.ReplaceAll(string(data), "'use strict';", ""))
 		}
 		if h.configService.AssetsBrotli() {
 			brotliData, err = h.convertToBrotli(data)

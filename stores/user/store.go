@@ -37,7 +37,6 @@ type UsersStore struct {
 	queries map[string]string
 }
 
-// nolint:gosec
 func (s *UsersStore) buildQueries() error {
 	if s.queries != nil {
 		return errors.Trace(errBuildQueriesMultipleTimes)

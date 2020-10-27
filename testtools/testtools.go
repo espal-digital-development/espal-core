@@ -29,7 +29,7 @@ func filePathAbs(path string) (string, error) {
 	if err != nil {
 		return "", errors.Trace(err)
 	}
-	return strings.Replace(path, "\\", "/", -1), nil
+	return strings.ReplaceAll(path, "\\", "/"), nil
 }
 
 // EqString checks if the given strings are equal.
