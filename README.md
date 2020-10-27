@@ -47,7 +47,7 @@ TODO :: Explain about using mod replace to run app/module/core together in devel
 ### Mac
 
 <details>
-<summary>macOS Catalina 10.15.6</summary>
+<summary>macOS Big Sur 11.0 and macOS Catalina 10.15.6</summary>
 
 - Install Homebrew from https://brew.sh
 - Open Terminal and run these commands:
