@@ -92,27 +92,31 @@ func (f *Fixtures) Run() error {
 	// Domain
 	domainQuery := `INSERT INTO "Domain"("createdByID","siteID","active","language","host","currencies")
 		VALUES($1,$2,$3,$4,$5,$6) RETURNING "id"`
-	var domain1ID string
-	row = f.inserterDatabase.QueryRow(domainQuery, f.mainUserID, site1ID, true, f.englishLanguage.ID(),
-		"espal.loc", "")
-	if err := row.Scan(&domain1ID); err != nil {
-		return errors.Trace(err)
+	domains := map[string]string{
+		"espal.loc":          "",
+		"www.espal.loc":      "",
+		"espal.loc:8443":     "",
+		"www.espal.loc:8443": "",
+		"localhost:8443":     "",
 	}
-	var domain2ID string
-	row = f.inserterDatabase.QueryRow(domainQuery, f.mainUserID, site1ID, true, f.englishLanguage.ID(),
-		"espal.loc:8443", "")
-	if err := row.Scan(&domain2ID); err != nil {
-		return errors.Trace(err)
+	for domainName := range domains {
+		row = f.inserterDatabase.QueryRow(domainQuery, f.mainUserID, site1ID, true, f.englishLanguage.ID(),
+			domainName, "")
+		var domainID string
+		if err := row.Scan(&domainID); err != nil {
+			return errors.Trace(err)
+		}
+		domains[domainName] = domainID
 	}
 
 	// Slug
 	slugQuery := `INSERT INTO "Slug"("createdByID","domainID","language","path","rerouteTo") VALUES($1,$2,$3,$4,$5)`
-	if _, err := f.inserterDatabase.Exec(slugQuery, f.mainUserID, domain1ID, f.englishLanguage.ID(), "fake-slug",
-		"Login"); err != nil {
+	if _, err := f.inserterDatabase.Exec(slugQuery, f.mainUserID, domains["espal.loc"], f.englishLanguage.ID(),
+		"fake-slug", "Login"); err != nil {
 		return errors.Trace(err)
 	}
-	if _, err := f.inserterDatabase.Exec(slugQuery, f.mainUserID, domain2ID, f.dutchLanguage.ID(), "inloggen",
-		"Login"); err != nil {
+	if _, err := f.inserterDatabase.Exec(slugQuery, f.mainUserID, domains["www.espal.loc"], f.dutchLanguage.ID(),
+		"inloggen", "Login"); err != nil {
 		return errors.Trace(err)
 	}
 
