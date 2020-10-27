@@ -16,8 +16,8 @@ const codeLength = 2
 
 // Repository represents a Currencies repository.
 type Repository interface {
-	All() map[uint]Data
-	ByID(id uint) (Data, error)
+	All() map[uint16]Data
+	ByID(id uint16) (Data, error)
 	ByCode(code string) (Data, error)
 }
 
@@ -26,17 +26,17 @@ type Repository interface {
 type Currencies struct {
 	languagesRepository languages.Repository
 	entries             map[string]*Currency
-	byID                map[uint]*Currency
-	all                 map[uint]Data
+	byID                map[uint16]*Currency
+	all                 map[uint16]Data
 }
 
 // All gets all embedded c.
-func (c *Currencies) All() map[uint]Data {
+func (c *Currencies) All() map[uint16]Data {
 	return c.all
 }
 
 // ByID looks for and returns the associated Currency for the given id.
-func (c *Currencies) ByID(id uint) (Data, error) {
+func (c *Currencies) ByID(id uint16) (Data, error) {
 	if _, ok := c.byID[id]; !ok {
 		return &Currency{}, errors.Errorf("no currency found with given id `%d`", id)
 	}
@@ -106,8 +106,8 @@ func (c *Currencies) loadTranslations() error {
 func New(languagesRepository languages.Repository) (*Currencies, error) {
 	c := &Currencies{
 		languagesRepository: languagesRepository,
-		byID:                make(map[uint]*Currency, len(data)),
-		all:                 make(map[uint]Data, len(data)),
+		byID:                make(map[uint16]*Currency, len(data)),
+		all:                 make(map[uint16]Data, len(data)),
 		entries:             make(map[string]*Currency, len(data)),
 	}
 
