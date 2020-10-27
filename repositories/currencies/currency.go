@@ -4,7 +4,7 @@ var _ Data = &Currency{}
 
 // Data represents an object that gives currency data.
 type Data interface {
-	ID() uint
+	ID() uint16
 	Code() string
 	Symbol() string
 	EnglishName() string
@@ -15,7 +15,7 @@ type Data interface {
 
 // Currency struct containing the Currency's data.
 type Currency struct {
-	id              uint
+	id              uint16
 	code            string
 	numeral         string
 	symbol          string
@@ -25,7 +25,7 @@ type Currency struct {
 }
 
 // ID returns the internal Currency id.
-func (c *Currency) ID() uint {
+func (c *Currency) ID() uint16 {
 	return c.id
 }
 
