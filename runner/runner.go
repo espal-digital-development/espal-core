@@ -5,8 +5,8 @@ import (
 
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/modules"
-	"github.com/espal-digital-development/espal-core/semver"
 	"github.com/espal-digital-development/espal-core/sessions"
+	"github.com/espal-digital-development/semver"
 	"github.com/juju/errors"
 )
 
@@ -63,7 +63,7 @@ func (r *Runner) RunNonBlocking() error {
 		return errors.Trace(err)
 	}
 
-	// TODO :: 777777 Implement when the branch is merged again
+	// TODO :: 777777 Implement
 	// r.services.notifier = notifier.New(r.services.logger, r.stores.notification)
 
 	// TODO :: 777777 Remove after dev
