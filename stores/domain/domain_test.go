@@ -64,6 +64,10 @@ func initMocks() {
 		},
 	}
 	queryHelper = &queryhelpermock.HelperMock{
+		BuildUpdateWhereInIdsFunc: func(tableName string, operation string, fieldName string, values []string) (string,
+			[]interface{}, error) {
+			return `UPDATE SET ` + operation + ` "` + tableName + `" WHERE "` + fieldName + `" IN ($1,$2)`, []interface{}{}, nil
+		},
 		BuildDeleteWhereInIdsFunc: func(tableName string, fieldName string,
 			ids []string) (string, []interface{}, error) {
 			return `DELETE FROM "` + tableName + `" WHERE "` + fieldName + `" IN ($1,$2)`, []interface{}{}, nil
@@ -523,9 +527,9 @@ func TestToggleActiveBeginError(t *testing.T) {
 
 func TestToggleActiveTransactionQueryError(t *testing.T) {
 	initMocks()
-	transactionQueryError := errors.New("transactionQueryError")
-	transaction.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
-		return nil, transactionQueryError
+	transactionExecError := errors.New("transactionExecError")
+	transaction.ExecFunc = func(query string, args ...interface{}) (database.Result, error) {
+		return nil, transactionExecError
 	}
 	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
@@ -535,7 +539,7 @@ func TestToggleActiveTransactionQueryError(t *testing.T) {
 	if err == nil {
 		t.Fatal("An error should've been thrown")
 	}
-	testtools.EqError(t, "transactionQueryError", err, transactionQueryError)
+	testtools.EqError(t, "transactionExecError", err, transactionExecError)
 	if len(transaction.RollbackCalls()) != 1 {
 		t.Fatal("Rollback wasn't called after Exec failure")
 	}
@@ -548,8 +552,11 @@ func TestToggleActiveTransactionQueryRollbackError(t *testing.T) {
 	transaction.QueryFunc = func(query string, args ...interface{}) (database.Rows, error) {
 		return nil, transactionQueryError
 	}
-	transaction.RollbackFunc = func() error {
-		return transactionRollbackError
+	queryHelper = &queryhelpermock.HelperMock{
+		BuildUpdateWhereInIdsFunc: func(tableName string, operation string, fieldName string, values []string) (string,
+			[]interface{}, error) {
+			return "", nil, transactionRollbackError
+		},
 	}
 	store, err := domain.New(selecterDatabase, updaterDatabase, deletorDatabase, queryHelper, filtersFactory)
 	if err != nil {
@@ -560,8 +567,8 @@ func TestToggleActiveTransactionQueryRollbackError(t *testing.T) {
 		t.Fatal("An error should've been thrown")
 	}
 	testtools.EqError(t, "transactionRollbackError", err, transactionRollbackError)
-	if len(transaction.RollbackCalls()) != 1 {
-		t.Fatal("Rollback wasn't called after Exec failure")
+	if len(transaction.RollbackCalls()) != 0 {
+		t.Fatal("Rollback was called after Exec failure")
 	}
 }
 
