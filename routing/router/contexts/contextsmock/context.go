@@ -14,73 +14,6 @@ import (
 	"sync"
 )
 
-var (
-	lockContextMockAcceptsEncoding           sync.RWMutex
-	lockContextMockAdminMainMenu             sync.RWMutex
-	lockContextMockAdminURL                  sync.RWMutex
-	lockContextMockCountryName               sync.RWMutex
-	lockContextMockCreatedBy                 sync.RWMutex
-	lockContextMockFormFile                  sync.RWMutex
-	lockContextMockFormValue                 sync.RWMutex
-	lockContextMockFormValues                sync.RWMutex
-	lockContextMockGetAdminCreateUpdateTitle sync.RWMutex
-	lockContextMockGetDomain                 sync.RWMutex
-	lockContextMockGetFlashMessage           sync.RWMutex
-	lockContextMockGetHeader                 sync.RWMutex
-	lockContextMockGetLanguage               sync.RWMutex
-	lockContextMockGetRequestMethod          sync.RWMutex
-	lockContextMockGetSessionValue           sync.RWMutex
-	lockContextMockGetSite                   sync.RWMutex
-	lockContextMockGetSlugMappedURL          sync.RWMutex
-	lockContextMockGetUser                   sync.RWMutex
-	lockContextMockHasAdminAccess            sync.RWMutex
-	lockContextMockHasFlashMessage           sync.RWMutex
-	lockContextMockHasPprofEnabled           sync.RWMutex
-	lockContextMockHasUserRight              sync.RWMutex
-	lockContextMockHasUserRightOrForbid      sync.RWMutex
-	lockContextMockHost                      sync.RWMutex
-	lockContextMockIsDevelopment             sync.RWMutex
-	lockContextMockIsLoggedIn                sync.RWMutex
-	lockContextMockLanguageName              sync.RWMutex
-	lockContextMockLogin                     sync.RWMutex
-	lockContextMockLogout                    sync.RWMutex
-	lockContextMockMethod                    sync.RWMutex
-	lockContextMockMultipartForm             sync.RWMutex
-	lockContextMockPath                      sync.RWMutex
-	lockContextMockPprofURL                  sync.RWMutex
-	lockContextMockQueryString               sync.RWMutex
-	lockContextMockQueryValue                sync.RWMutex
-	lockContextMockRedirect                  sync.RWMutex
-	lockContextMockReferer                   sync.RWMutex
-	lockContextMockRenderBadRequest          sync.RWMutex
-	lockContextMockRenderInternalServerError sync.RWMutex
-	lockContextMockRenderNon200              sync.RWMutex
-	lockContextMockRenderNon200Custom        sync.RWMutex
-	lockContextMockRenderNotFound            sync.RWMutex
-	lockContextMockRenderTheme               sync.RWMutex
-	lockContextMockRenderUnauthorized        sync.RWMutex
-	lockContextMockRequestBody               sync.RWMutex
-	lockContextMockRequestURI                sync.RWMutex
-	lockContextMockSaveSessionIfNeeded       sync.RWMutex
-	lockContextMockSetContentType            sync.RWMutex
-	lockContextMockSetFlashErrorMessage      sync.RWMutex
-	lockContextMockSetFlashInfoMessage       sync.RWMutex
-	lockContextMockSetFlashSuccessMessage    sync.RWMutex
-	lockContextMockSetFlashWarningMessage    sync.RWMutex
-	lockContextMockSetHeader                 sync.RWMutex
-	lockContextMockSetSessionValue           sync.RWMutex
-	lockContextMockSetSlugMappedURL          sync.RWMutex
-	lockContextMockSetStatusCode             sync.RWMutex
-	lockContextMockSetTheme                  sync.RWMutex
-	lockContextMockStatusCode                sync.RWMutex
-	lockContextMockTranslate                 sync.RWMutex
-	lockContextMockTranslatePlural           sync.RWMutex
-	lockContextMockUnsetSessionValue         sync.RWMutex
-	lockContextMockUpdatedBy                 sync.RWMutex
-	lockContextMockWrite                     sync.RWMutex
-	lockContextMockWriteString               sync.RWMutex
-)
-
 // Ensure, that ContextMock does implement contexts.Context.
 // If this is not the case, regenerate this file with moq.
 var _ contexts.Context = &ContextMock{}
@@ -99,6 +32,9 @@ var _ contexts.Context = &ContextMock{}
 //             },
 //             AdminURLFunc: func() string {
 // 	               panic("mock out the AdminURL method")
+//             },
+//             AuthorizeUserForJWTFunc: func(username string, password string) (string, error) {
+// 	               panic("mock out the AuthorizeUserForJWT method")
 //             },
 //             CountryNameFunc: func(countryID uint16) string {
 // 	               panic("mock out the CountryName method")
@@ -165,6 +101,9 @@ var _ contexts.Context = &ContextMock{}
 //             },
 //             IsDevelopmentFunc: func() bool {
 // 	               panic("mock out the IsDevelopment method")
+//             },
+//             IsJWTAuthorizedFunc: func() bool {
+// 	               panic("mock out the IsJWTAuthorized method")
 //             },
 //             IsLoggedInFunc: func() bool {
 // 	               panic("mock out the IsLoggedIn method")
@@ -299,6 +238,9 @@ type ContextMock struct {
 	// AdminURLFunc mocks the AdminURL method.
 	AdminURLFunc func() string
 
+	// AuthorizeUserForJWTFunc mocks the AuthorizeUserForJWT method.
+	AuthorizeUserForJWTFunc func(username string, password string) (string, error)
+
 	// CountryNameFunc mocks the CountryName method.
 	CountryNameFunc func(countryID uint16) string
 
@@ -364,6 +306,9 @@ type ContextMock struct {
 
 	// IsDevelopmentFunc mocks the IsDevelopment method.
 	IsDevelopmentFunc func() bool
+
+	// IsJWTAuthorizedFunc mocks the IsJWTAuthorized method.
+	IsJWTAuthorizedFunc func() bool
 
 	// IsLoggedInFunc mocks the IsLoggedIn method.
 	IsLoggedInFunc func() bool
@@ -495,6 +440,13 @@ type ContextMock struct {
 		// AdminURL holds details about calls to the AdminURL method.
 		AdminURL []struct {
 		}
+		// AuthorizeUserForJWT holds details about calls to the AuthorizeUserForJWT method.
+		AuthorizeUserForJWT []struct {
+			// Username is the username argument value.
+			Username string
+			// Password is the password argument value.
+			Password string
+		}
 		// CountryName holds details about calls to the CountryName method.
 		CountryName []struct {
 			// CountryID is the countryID argument value.
@@ -582,6 +534,9 @@ type ContextMock struct {
 		}
 		// IsDevelopment holds details about calls to the IsDevelopment method.
 		IsDevelopment []struct {
+		}
+		// IsJWTAuthorized holds details about calls to the IsJWTAuthorized method.
+		IsJWTAuthorized []struct {
 		}
 		// IsLoggedIn holds details about calls to the IsLoggedIn method.
 		IsLoggedIn []struct {
@@ -761,6 +716,72 @@ type ContextMock struct {
 			P string
 		}
 	}
+	lockAcceptsEncoding           sync.RWMutex
+	lockAdminMainMenu             sync.RWMutex
+	lockAdminURL                  sync.RWMutex
+	lockAuthorizeUserForJWT       sync.RWMutex
+	lockCountryName               sync.RWMutex
+	lockCreatedBy                 sync.RWMutex
+	lockFormFile                  sync.RWMutex
+	lockFormValue                 sync.RWMutex
+	lockFormValues                sync.RWMutex
+	lockGetAdminCreateUpdateTitle sync.RWMutex
+	lockGetDomain                 sync.RWMutex
+	lockGetFlashMessage           sync.RWMutex
+	lockGetHeader                 sync.RWMutex
+	lockGetLanguage               sync.RWMutex
+	lockGetRequestMethod          sync.RWMutex
+	lockGetSessionValue           sync.RWMutex
+	lockGetSite                   sync.RWMutex
+	lockGetSlugMappedURL          sync.RWMutex
+	lockGetUser                   sync.RWMutex
+	lockHasAdminAccess            sync.RWMutex
+	lockHasFlashMessage           sync.RWMutex
+	lockHasPprofEnabled           sync.RWMutex
+	lockHasUserRight              sync.RWMutex
+	lockHasUserRightOrForbid      sync.RWMutex
+	lockHost                      sync.RWMutex
+	lockIsDevelopment             sync.RWMutex
+	lockIsJWTAuthorized           sync.RWMutex
+	lockIsLoggedIn                sync.RWMutex
+	lockLanguageName              sync.RWMutex
+	lockLogin                     sync.RWMutex
+	lockLogout                    sync.RWMutex
+	lockMethod                    sync.RWMutex
+	lockMultipartForm             sync.RWMutex
+	lockPath                      sync.RWMutex
+	lockPprofURL                  sync.RWMutex
+	lockQueryString               sync.RWMutex
+	lockQueryValue                sync.RWMutex
+	lockRedirect                  sync.RWMutex
+	lockReferer                   sync.RWMutex
+	lockRenderBadRequest          sync.RWMutex
+	lockRenderInternalServerError sync.RWMutex
+	lockRenderNon200              sync.RWMutex
+	lockRenderNon200Custom        sync.RWMutex
+	lockRenderNotFound            sync.RWMutex
+	lockRenderTheme               sync.RWMutex
+	lockRenderUnauthorized        sync.RWMutex
+	lockRequestBody               sync.RWMutex
+	lockRequestURI                sync.RWMutex
+	lockSaveSessionIfNeeded       sync.RWMutex
+	lockSetContentType            sync.RWMutex
+	lockSetFlashErrorMessage      sync.RWMutex
+	lockSetFlashInfoMessage       sync.RWMutex
+	lockSetFlashSuccessMessage    sync.RWMutex
+	lockSetFlashWarningMessage    sync.RWMutex
+	lockSetHeader                 sync.RWMutex
+	lockSetSessionValue           sync.RWMutex
+	lockSetSlugMappedURL          sync.RWMutex
+	lockSetStatusCode             sync.RWMutex
+	lockSetTheme                  sync.RWMutex
+	lockStatusCode                sync.RWMutex
+	lockTranslate                 sync.RWMutex
+	lockTranslatePlural           sync.RWMutex
+	lockUnsetSessionValue         sync.RWMutex
+	lockUpdatedBy                 sync.RWMutex
+	lockWrite                     sync.RWMutex
+	lockWriteString               sync.RWMutex
 }
 
 // AcceptsEncoding calls AcceptsEncodingFunc.
@@ -773,9 +794,9 @@ func (mock *ContextMock) AcceptsEncoding(encoding string) bool {
 	}{
 		Encoding: encoding,
 	}
-	lockContextMockAcceptsEncoding.Lock()
+	mock.lockAcceptsEncoding.Lock()
 	mock.calls.AcceptsEncoding = append(mock.calls.AcceptsEncoding, callInfo)
-	lockContextMockAcceptsEncoding.Unlock()
+	mock.lockAcceptsEncoding.Unlock()
 	return mock.AcceptsEncodingFunc(encoding)
 }
 
@@ -788,9 +809,9 @@ func (mock *ContextMock) AcceptsEncodingCalls() []struct {
 	var calls []struct {
 		Encoding string
 	}
-	lockContextMockAcceptsEncoding.RLock()
+	mock.lockAcceptsEncoding.RLock()
 	calls = mock.calls.AcceptsEncoding
-	lockContextMockAcceptsEncoding.RUnlock()
+	mock.lockAcceptsEncoding.RUnlock()
 	return calls
 }
 
@@ -801,9 +822,9 @@ func (mock *ContextMock) AdminMainMenu() []*adminmenu.Block {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockAdminMainMenu.Lock()
+	mock.lockAdminMainMenu.Lock()
 	mock.calls.AdminMainMenu = append(mock.calls.AdminMainMenu, callInfo)
-	lockContextMockAdminMainMenu.Unlock()
+	mock.lockAdminMainMenu.Unlock()
 	return mock.AdminMainMenuFunc()
 }
 
@@ -814,9 +835,9 @@ func (mock *ContextMock) AdminMainMenuCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockAdminMainMenu.RLock()
+	mock.lockAdminMainMenu.RLock()
 	calls = mock.calls.AdminMainMenu
-	lockContextMockAdminMainMenu.RUnlock()
+	mock.lockAdminMainMenu.RUnlock()
 	return calls
 }
 
@@ -827,9 +848,9 @@ func (mock *ContextMock) AdminURL() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockAdminURL.Lock()
+	mock.lockAdminURL.Lock()
 	mock.calls.AdminURL = append(mock.calls.AdminURL, callInfo)
-	lockContextMockAdminURL.Unlock()
+	mock.lockAdminURL.Unlock()
 	return mock.AdminURLFunc()
 }
 
@@ -840,9 +861,44 @@ func (mock *ContextMock) AdminURLCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockAdminURL.RLock()
+	mock.lockAdminURL.RLock()
 	calls = mock.calls.AdminURL
-	lockContextMockAdminURL.RUnlock()
+	mock.lockAdminURL.RUnlock()
+	return calls
+}
+
+// AuthorizeUserForJWT calls AuthorizeUserForJWTFunc.
+func (mock *ContextMock) AuthorizeUserForJWT(username string, password string) (string, error) {
+	if mock.AuthorizeUserForJWTFunc == nil {
+		panic("ContextMock.AuthorizeUserForJWTFunc: method is nil but Context.AuthorizeUserForJWT was just called")
+	}
+	callInfo := struct {
+		Username string
+		Password string
+	}{
+		Username: username,
+		Password: password,
+	}
+	mock.lockAuthorizeUserForJWT.Lock()
+	mock.calls.AuthorizeUserForJWT = append(mock.calls.AuthorizeUserForJWT, callInfo)
+	mock.lockAuthorizeUserForJWT.Unlock()
+	return mock.AuthorizeUserForJWTFunc(username, password)
+}
+
+// AuthorizeUserForJWTCalls gets all the calls that were made to AuthorizeUserForJWT.
+// Check the length with:
+//     len(mockedContext.AuthorizeUserForJWTCalls())
+func (mock *ContextMock) AuthorizeUserForJWTCalls() []struct {
+	Username string
+	Password string
+} {
+	var calls []struct {
+		Username string
+		Password string
+	}
+	mock.lockAuthorizeUserForJWT.RLock()
+	calls = mock.calls.AuthorizeUserForJWT
+	mock.lockAuthorizeUserForJWT.RUnlock()
 	return calls
 }
 
@@ -856,9 +912,9 @@ func (mock *ContextMock) CountryName(countryID uint16) string {
 	}{
 		CountryID: countryID,
 	}
-	lockContextMockCountryName.Lock()
+	mock.lockCountryName.Lock()
 	mock.calls.CountryName = append(mock.calls.CountryName, callInfo)
-	lockContextMockCountryName.Unlock()
+	mock.lockCountryName.Unlock()
 	return mock.CountryNameFunc(countryID)
 }
 
@@ -871,9 +927,9 @@ func (mock *ContextMock) CountryNameCalls() []struct {
 	var calls []struct {
 		CountryID uint16
 	}
-	lockContextMockCountryName.RLock()
+	mock.lockCountryName.RLock()
 	calls = mock.calls.CountryName
-	lockContextMockCountryName.RUnlock()
+	mock.lockCountryName.RUnlock()
 	return calls
 }
 
@@ -887,9 +943,9 @@ func (mock *ContextMock) CreatedBy(entity contexts.Entity) string {
 	}{
 		Entity: entity,
 	}
-	lockContextMockCreatedBy.Lock()
+	mock.lockCreatedBy.Lock()
 	mock.calls.CreatedBy = append(mock.calls.CreatedBy, callInfo)
-	lockContextMockCreatedBy.Unlock()
+	mock.lockCreatedBy.Unlock()
 	return mock.CreatedByFunc(entity)
 }
 
@@ -902,9 +958,9 @@ func (mock *ContextMock) CreatedByCalls() []struct {
 	var calls []struct {
 		Entity contexts.Entity
 	}
-	lockContextMockCreatedBy.RLock()
+	mock.lockCreatedBy.RLock()
 	calls = mock.calls.CreatedBy
-	lockContextMockCreatedBy.RUnlock()
+	mock.lockCreatedBy.RUnlock()
 	return calls
 }
 
@@ -918,9 +974,9 @@ func (mock *ContextMock) FormFile(in1 string) (multipart.File, *multipart.FileHe
 	}{
 		In1: in1,
 	}
-	lockContextMockFormFile.Lock()
+	mock.lockFormFile.Lock()
 	mock.calls.FormFile = append(mock.calls.FormFile, callInfo)
-	lockContextMockFormFile.Unlock()
+	mock.lockFormFile.Unlock()
 	return mock.FormFileFunc(in1)
 }
 
@@ -933,9 +989,9 @@ func (mock *ContextMock) FormFileCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockFormFile.RLock()
+	mock.lockFormFile.RLock()
 	calls = mock.calls.FormFile
-	lockContextMockFormFile.RUnlock()
+	mock.lockFormFile.RUnlock()
 	return calls
 }
 
@@ -949,9 +1005,9 @@ func (mock *ContextMock) FormValue(key string) (string, error) {
 	}{
 		Key: key,
 	}
-	lockContextMockFormValue.Lock()
+	mock.lockFormValue.Lock()
 	mock.calls.FormValue = append(mock.calls.FormValue, callInfo)
-	lockContextMockFormValue.Unlock()
+	mock.lockFormValue.Unlock()
 	return mock.FormValueFunc(key)
 }
 
@@ -964,9 +1020,9 @@ func (mock *ContextMock) FormValueCalls() []struct {
 	var calls []struct {
 		Key string
 	}
-	lockContextMockFormValue.RLock()
+	mock.lockFormValue.RLock()
 	calls = mock.calls.FormValue
-	lockContextMockFormValue.RUnlock()
+	mock.lockFormValue.RUnlock()
 	return calls
 }
 
@@ -980,9 +1036,9 @@ func (mock *ContextMock) FormValues(name string) ([]string, error) {
 	}{
 		Name: name,
 	}
-	lockContextMockFormValues.Lock()
+	mock.lockFormValues.Lock()
 	mock.calls.FormValues = append(mock.calls.FormValues, callInfo)
-	lockContextMockFormValues.Unlock()
+	mock.lockFormValues.Unlock()
 	return mock.FormValuesFunc(name)
 }
 
@@ -995,9 +1051,9 @@ func (mock *ContextMock) FormValuesCalls() []struct {
 	var calls []struct {
 		Name string
 	}
-	lockContextMockFormValues.RLock()
+	mock.lockFormValues.RLock()
 	calls = mock.calls.FormValues
-	lockContextMockFormValues.RUnlock()
+	mock.lockFormValues.RUnlock()
 	return calls
 }
 
@@ -1013,9 +1069,9 @@ func (mock *ContextMock) GetAdminCreateUpdateTitle(in1 string, in2 string) strin
 		In1: in1,
 		In2: in2,
 	}
-	lockContextMockGetAdminCreateUpdateTitle.Lock()
+	mock.lockGetAdminCreateUpdateTitle.Lock()
 	mock.calls.GetAdminCreateUpdateTitle = append(mock.calls.GetAdminCreateUpdateTitle, callInfo)
-	lockContextMockGetAdminCreateUpdateTitle.Unlock()
+	mock.lockGetAdminCreateUpdateTitle.Unlock()
 	return mock.GetAdminCreateUpdateTitleFunc(in1, in2)
 }
 
@@ -1030,9 +1086,9 @@ func (mock *ContextMock) GetAdminCreateUpdateTitleCalls() []struct {
 		In1 string
 		In2 string
 	}
-	lockContextMockGetAdminCreateUpdateTitle.RLock()
+	mock.lockGetAdminCreateUpdateTitle.RLock()
 	calls = mock.calls.GetAdminCreateUpdateTitle
-	lockContextMockGetAdminCreateUpdateTitle.RUnlock()
+	mock.lockGetAdminCreateUpdateTitle.RUnlock()
 	return calls
 }
 
@@ -1043,9 +1099,9 @@ func (mock *ContextMock) GetDomain() contexts.Domain {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetDomain.Lock()
+	mock.lockGetDomain.Lock()
 	mock.calls.GetDomain = append(mock.calls.GetDomain, callInfo)
-	lockContextMockGetDomain.Unlock()
+	mock.lockGetDomain.Unlock()
 	return mock.GetDomainFunc()
 }
 
@@ -1056,9 +1112,9 @@ func (mock *ContextMock) GetDomainCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetDomain.RLock()
+	mock.lockGetDomain.RLock()
 	calls = mock.calls.GetDomain
-	lockContextMockGetDomain.RUnlock()
+	mock.lockGetDomain.RUnlock()
 	return calls
 }
 
@@ -1069,9 +1125,9 @@ func (mock *ContextMock) GetFlashMessage() sessions.Message {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetFlashMessage.Lock()
+	mock.lockGetFlashMessage.Lock()
 	mock.calls.GetFlashMessage = append(mock.calls.GetFlashMessage, callInfo)
-	lockContextMockGetFlashMessage.Unlock()
+	mock.lockGetFlashMessage.Unlock()
 	return mock.GetFlashMessageFunc()
 }
 
@@ -1082,9 +1138,9 @@ func (mock *ContextMock) GetFlashMessageCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetFlashMessage.RLock()
+	mock.lockGetFlashMessage.RLock()
 	calls = mock.calls.GetFlashMessage
-	lockContextMockGetFlashMessage.RUnlock()
+	mock.lockGetFlashMessage.RUnlock()
 	return calls
 }
 
@@ -1098,9 +1154,9 @@ func (mock *ContextMock) GetHeader(key string) string {
 	}{
 		Key: key,
 	}
-	lockContextMockGetHeader.Lock()
+	mock.lockGetHeader.Lock()
 	mock.calls.GetHeader = append(mock.calls.GetHeader, callInfo)
-	lockContextMockGetHeader.Unlock()
+	mock.lockGetHeader.Unlock()
 	return mock.GetHeaderFunc(key)
 }
 
@@ -1113,9 +1169,9 @@ func (mock *ContextMock) GetHeaderCalls() []struct {
 	var calls []struct {
 		Key string
 	}
-	lockContextMockGetHeader.RLock()
+	mock.lockGetHeader.RLock()
 	calls = mock.calls.GetHeader
-	lockContextMockGetHeader.RUnlock()
+	mock.lockGetHeader.RUnlock()
 	return calls
 }
 
@@ -1126,9 +1182,9 @@ func (mock *ContextMock) GetLanguage() (contexts.Language, error) {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetLanguage.Lock()
+	mock.lockGetLanguage.Lock()
 	mock.calls.GetLanguage = append(mock.calls.GetLanguage, callInfo)
-	lockContextMockGetLanguage.Unlock()
+	mock.lockGetLanguage.Unlock()
 	return mock.GetLanguageFunc()
 }
 
@@ -1139,9 +1195,9 @@ func (mock *ContextMock) GetLanguageCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetLanguage.RLock()
+	mock.lockGetLanguage.RLock()
 	calls = mock.calls.GetLanguage
-	lockContextMockGetLanguage.RUnlock()
+	mock.lockGetLanguage.RUnlock()
 	return calls
 }
 
@@ -1152,9 +1208,9 @@ func (mock *ContextMock) GetRequestMethod() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetRequestMethod.Lock()
+	mock.lockGetRequestMethod.Lock()
 	mock.calls.GetRequestMethod = append(mock.calls.GetRequestMethod, callInfo)
-	lockContextMockGetRequestMethod.Unlock()
+	mock.lockGetRequestMethod.Unlock()
 	return mock.GetRequestMethodFunc()
 }
 
@@ -1165,9 +1221,9 @@ func (mock *ContextMock) GetRequestMethodCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetRequestMethod.RLock()
+	mock.lockGetRequestMethod.RLock()
 	calls = mock.calls.GetRequestMethod
-	lockContextMockGetRequestMethod.RUnlock()
+	mock.lockGetRequestMethod.RUnlock()
 	return calls
 }
 
@@ -1181,9 +1237,9 @@ func (mock *ContextMock) GetSessionValue(key uint8) ([]byte, bool, error) {
 	}{
 		Key: key,
 	}
-	lockContextMockGetSessionValue.Lock()
+	mock.lockGetSessionValue.Lock()
 	mock.calls.GetSessionValue = append(mock.calls.GetSessionValue, callInfo)
-	lockContextMockGetSessionValue.Unlock()
+	mock.lockGetSessionValue.Unlock()
 	return mock.GetSessionValueFunc(key)
 }
 
@@ -1196,9 +1252,9 @@ func (mock *ContextMock) GetSessionValueCalls() []struct {
 	var calls []struct {
 		Key uint8
 	}
-	lockContextMockGetSessionValue.RLock()
+	mock.lockGetSessionValue.RLock()
 	calls = mock.calls.GetSessionValue
-	lockContextMockGetSessionValue.RUnlock()
+	mock.lockGetSessionValue.RUnlock()
 	return calls
 }
 
@@ -1209,9 +1265,9 @@ func (mock *ContextMock) GetSite() contexts.Site {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetSite.Lock()
+	mock.lockGetSite.Lock()
 	mock.calls.GetSite = append(mock.calls.GetSite, callInfo)
-	lockContextMockGetSite.Unlock()
+	mock.lockGetSite.Unlock()
 	return mock.GetSiteFunc()
 }
 
@@ -1222,9 +1278,9 @@ func (mock *ContextMock) GetSiteCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetSite.RLock()
+	mock.lockGetSite.RLock()
 	calls = mock.calls.GetSite
-	lockContextMockGetSite.RUnlock()
+	mock.lockGetSite.RUnlock()
 	return calls
 }
 
@@ -1235,9 +1291,9 @@ func (mock *ContextMock) GetSlugMappedURL() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetSlugMappedURL.Lock()
+	mock.lockGetSlugMappedURL.Lock()
 	mock.calls.GetSlugMappedURL = append(mock.calls.GetSlugMappedURL, callInfo)
-	lockContextMockGetSlugMappedURL.Unlock()
+	mock.lockGetSlugMappedURL.Unlock()
 	return mock.GetSlugMappedURLFunc()
 }
 
@@ -1248,9 +1304,9 @@ func (mock *ContextMock) GetSlugMappedURLCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetSlugMappedURL.RLock()
+	mock.lockGetSlugMappedURL.RLock()
 	calls = mock.calls.GetSlugMappedURL
-	lockContextMockGetSlugMappedURL.RUnlock()
+	mock.lockGetSlugMappedURL.RUnlock()
 	return calls
 }
 
@@ -1261,9 +1317,9 @@ func (mock *ContextMock) GetUser() (*user.User, bool, error) {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockGetUser.Lock()
+	mock.lockGetUser.Lock()
 	mock.calls.GetUser = append(mock.calls.GetUser, callInfo)
-	lockContextMockGetUser.Unlock()
+	mock.lockGetUser.Unlock()
 	return mock.GetUserFunc()
 }
 
@@ -1274,9 +1330,9 @@ func (mock *ContextMock) GetUserCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockGetUser.RLock()
+	mock.lockGetUser.RLock()
 	calls = mock.calls.GetUser
-	lockContextMockGetUser.RUnlock()
+	mock.lockGetUser.RUnlock()
 	return calls
 }
 
@@ -1287,9 +1343,9 @@ func (mock *ContextMock) HasAdminAccess() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockHasAdminAccess.Lock()
+	mock.lockHasAdminAccess.Lock()
 	mock.calls.HasAdminAccess = append(mock.calls.HasAdminAccess, callInfo)
-	lockContextMockHasAdminAccess.Unlock()
+	mock.lockHasAdminAccess.Unlock()
 	return mock.HasAdminAccessFunc()
 }
 
@@ -1300,9 +1356,9 @@ func (mock *ContextMock) HasAdminAccessCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockHasAdminAccess.RLock()
+	mock.lockHasAdminAccess.RLock()
 	calls = mock.calls.HasAdminAccess
-	lockContextMockHasAdminAccess.RUnlock()
+	mock.lockHasAdminAccess.RUnlock()
 	return calls
 }
 
@@ -1313,9 +1369,9 @@ func (mock *ContextMock) HasFlashMessage() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockHasFlashMessage.Lock()
+	mock.lockHasFlashMessage.Lock()
 	mock.calls.HasFlashMessage = append(mock.calls.HasFlashMessage, callInfo)
-	lockContextMockHasFlashMessage.Unlock()
+	mock.lockHasFlashMessage.Unlock()
 	return mock.HasFlashMessageFunc()
 }
 
@@ -1326,9 +1382,9 @@ func (mock *ContextMock) HasFlashMessageCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockHasFlashMessage.RLock()
+	mock.lockHasFlashMessage.RLock()
 	calls = mock.calls.HasFlashMessage
-	lockContextMockHasFlashMessage.RUnlock()
+	mock.lockHasFlashMessage.RUnlock()
 	return calls
 }
 
@@ -1339,9 +1395,9 @@ func (mock *ContextMock) HasPprofEnabled() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockHasPprofEnabled.Lock()
+	mock.lockHasPprofEnabled.Lock()
 	mock.calls.HasPprofEnabled = append(mock.calls.HasPprofEnabled, callInfo)
-	lockContextMockHasPprofEnabled.Unlock()
+	mock.lockHasPprofEnabled.Unlock()
 	return mock.HasPprofEnabledFunc()
 }
 
@@ -1352,9 +1408,9 @@ func (mock *ContextMock) HasPprofEnabledCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockHasPprofEnabled.RLock()
+	mock.lockHasPprofEnabled.RLock()
 	calls = mock.calls.HasPprofEnabled
-	lockContextMockHasPprofEnabled.RUnlock()
+	mock.lockHasPprofEnabled.RUnlock()
 	return calls
 }
 
@@ -1368,9 +1424,9 @@ func (mock *ContextMock) HasUserRight(in1 string) bool {
 	}{
 		In1: in1,
 	}
-	lockContextMockHasUserRight.Lock()
+	mock.lockHasUserRight.Lock()
 	mock.calls.HasUserRight = append(mock.calls.HasUserRight, callInfo)
-	lockContextMockHasUserRight.Unlock()
+	mock.lockHasUserRight.Unlock()
 	return mock.HasUserRightFunc(in1)
 }
 
@@ -1383,9 +1439,9 @@ func (mock *ContextMock) HasUserRightCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockHasUserRight.RLock()
+	mock.lockHasUserRight.RLock()
 	calls = mock.calls.HasUserRight
-	lockContextMockHasUserRight.RUnlock()
+	mock.lockHasUserRight.RUnlock()
 	return calls
 }
 
@@ -1399,9 +1455,9 @@ func (mock *ContextMock) HasUserRightOrForbid(userRightName string) bool {
 	}{
 		UserRightName: userRightName,
 	}
-	lockContextMockHasUserRightOrForbid.Lock()
+	mock.lockHasUserRightOrForbid.Lock()
 	mock.calls.HasUserRightOrForbid = append(mock.calls.HasUserRightOrForbid, callInfo)
-	lockContextMockHasUserRightOrForbid.Unlock()
+	mock.lockHasUserRightOrForbid.Unlock()
 	return mock.HasUserRightOrForbidFunc(userRightName)
 }
 
@@ -1414,9 +1470,9 @@ func (mock *ContextMock) HasUserRightOrForbidCalls() []struct {
 	var calls []struct {
 		UserRightName string
 	}
-	lockContextMockHasUserRightOrForbid.RLock()
+	mock.lockHasUserRightOrForbid.RLock()
 	calls = mock.calls.HasUserRightOrForbid
-	lockContextMockHasUserRightOrForbid.RUnlock()
+	mock.lockHasUserRightOrForbid.RUnlock()
 	return calls
 }
 
@@ -1427,9 +1483,9 @@ func (mock *ContextMock) Host() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockHost.Lock()
+	mock.lockHost.Lock()
 	mock.calls.Host = append(mock.calls.Host, callInfo)
-	lockContextMockHost.Unlock()
+	mock.lockHost.Unlock()
 	return mock.HostFunc()
 }
 
@@ -1440,9 +1496,9 @@ func (mock *ContextMock) HostCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockHost.RLock()
+	mock.lockHost.RLock()
 	calls = mock.calls.Host
-	lockContextMockHost.RUnlock()
+	mock.lockHost.RUnlock()
 	return calls
 }
 
@@ -1453,9 +1509,9 @@ func (mock *ContextMock) IsDevelopment() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockIsDevelopment.Lock()
+	mock.lockIsDevelopment.Lock()
 	mock.calls.IsDevelopment = append(mock.calls.IsDevelopment, callInfo)
-	lockContextMockIsDevelopment.Unlock()
+	mock.lockIsDevelopment.Unlock()
 	return mock.IsDevelopmentFunc()
 }
 
@@ -1466,9 +1522,35 @@ func (mock *ContextMock) IsDevelopmentCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockIsDevelopment.RLock()
+	mock.lockIsDevelopment.RLock()
 	calls = mock.calls.IsDevelopment
-	lockContextMockIsDevelopment.RUnlock()
+	mock.lockIsDevelopment.RUnlock()
+	return calls
+}
+
+// IsJWTAuthorized calls IsJWTAuthorizedFunc.
+func (mock *ContextMock) IsJWTAuthorized() bool {
+	if mock.IsJWTAuthorizedFunc == nil {
+		panic("ContextMock.IsJWTAuthorizedFunc: method is nil but Context.IsJWTAuthorized was just called")
+	}
+	callInfo := struct {
+	}{}
+	mock.lockIsJWTAuthorized.Lock()
+	mock.calls.IsJWTAuthorized = append(mock.calls.IsJWTAuthorized, callInfo)
+	mock.lockIsJWTAuthorized.Unlock()
+	return mock.IsJWTAuthorizedFunc()
+}
+
+// IsJWTAuthorizedCalls gets all the calls that were made to IsJWTAuthorized.
+// Check the length with:
+//     len(mockedContext.IsJWTAuthorizedCalls())
+func (mock *ContextMock) IsJWTAuthorizedCalls() []struct {
+} {
+	var calls []struct {
+	}
+	mock.lockIsJWTAuthorized.RLock()
+	calls = mock.calls.IsJWTAuthorized
+	mock.lockIsJWTAuthorized.RUnlock()
 	return calls
 }
 
@@ -1479,9 +1561,9 @@ func (mock *ContextMock) IsLoggedIn() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockIsLoggedIn.Lock()
+	mock.lockIsLoggedIn.Lock()
 	mock.calls.IsLoggedIn = append(mock.calls.IsLoggedIn, callInfo)
-	lockContextMockIsLoggedIn.Unlock()
+	mock.lockIsLoggedIn.Unlock()
 	return mock.IsLoggedInFunc()
 }
 
@@ -1492,9 +1574,9 @@ func (mock *ContextMock) IsLoggedInCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockIsLoggedIn.RLock()
+	mock.lockIsLoggedIn.RLock()
 	calls = mock.calls.IsLoggedIn
-	lockContextMockIsLoggedIn.RUnlock()
+	mock.lockIsLoggedIn.RUnlock()
 	return calls
 }
 
@@ -1508,9 +1590,9 @@ func (mock *ContextMock) LanguageName(languageID uint16) string {
 	}{
 		LanguageID: languageID,
 	}
-	lockContextMockLanguageName.Lock()
+	mock.lockLanguageName.Lock()
 	mock.calls.LanguageName = append(mock.calls.LanguageName, callInfo)
-	lockContextMockLanguageName.Unlock()
+	mock.lockLanguageName.Unlock()
 	return mock.LanguageNameFunc(languageID)
 }
 
@@ -1523,9 +1605,9 @@ func (mock *ContextMock) LanguageNameCalls() []struct {
 	var calls []struct {
 		LanguageID uint16
 	}
-	lockContextMockLanguageName.RLock()
+	mock.lockLanguageName.RLock()
 	calls = mock.calls.LanguageName
-	lockContextMockLanguageName.RUnlock()
+	mock.lockLanguageName.RUnlock()
 	return calls
 }
 
@@ -1541,9 +1623,9 @@ func (mock *ContextMock) Login(userID string, rememberMe bool) error {
 		UserID:     userID,
 		RememberMe: rememberMe,
 	}
-	lockContextMockLogin.Lock()
+	mock.lockLogin.Lock()
 	mock.calls.Login = append(mock.calls.Login, callInfo)
-	lockContextMockLogin.Unlock()
+	mock.lockLogin.Unlock()
 	return mock.LoginFunc(userID, rememberMe)
 }
 
@@ -1558,9 +1640,9 @@ func (mock *ContextMock) LoginCalls() []struct {
 		UserID     string
 		RememberMe bool
 	}
-	lockContextMockLogin.RLock()
+	mock.lockLogin.RLock()
 	calls = mock.calls.Login
-	lockContextMockLogin.RUnlock()
+	mock.lockLogin.RUnlock()
 	return calls
 }
 
@@ -1571,9 +1653,9 @@ func (mock *ContextMock) Logout() error {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockLogout.Lock()
+	mock.lockLogout.Lock()
 	mock.calls.Logout = append(mock.calls.Logout, callInfo)
-	lockContextMockLogout.Unlock()
+	mock.lockLogout.Unlock()
 	return mock.LogoutFunc()
 }
 
@@ -1584,9 +1666,9 @@ func (mock *ContextMock) LogoutCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockLogout.RLock()
+	mock.lockLogout.RLock()
 	calls = mock.calls.Logout
-	lockContextMockLogout.RUnlock()
+	mock.lockLogout.RUnlock()
 	return calls
 }
 
@@ -1597,9 +1679,9 @@ func (mock *ContextMock) Method() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockMethod.Lock()
+	mock.lockMethod.Lock()
 	mock.calls.Method = append(mock.calls.Method, callInfo)
-	lockContextMockMethod.Unlock()
+	mock.lockMethod.Unlock()
 	return mock.MethodFunc()
 }
 
@@ -1610,9 +1692,9 @@ func (mock *ContextMock) MethodCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockMethod.RLock()
+	mock.lockMethod.RLock()
 	calls = mock.calls.Method
-	lockContextMockMethod.RUnlock()
+	mock.lockMethod.RUnlock()
 	return calls
 }
 
@@ -1626,9 +1708,9 @@ func (mock *ContextMock) MultipartForm(maxMemory int64) (*multipart.Form, error)
 	}{
 		MaxMemory: maxMemory,
 	}
-	lockContextMockMultipartForm.Lock()
+	mock.lockMultipartForm.Lock()
 	mock.calls.MultipartForm = append(mock.calls.MultipartForm, callInfo)
-	lockContextMockMultipartForm.Unlock()
+	mock.lockMultipartForm.Unlock()
 	return mock.MultipartFormFunc(maxMemory)
 }
 
@@ -1641,9 +1723,9 @@ func (mock *ContextMock) MultipartFormCalls() []struct {
 	var calls []struct {
 		MaxMemory int64
 	}
-	lockContextMockMultipartForm.RLock()
+	mock.lockMultipartForm.RLock()
 	calls = mock.calls.MultipartForm
-	lockContextMockMultipartForm.RUnlock()
+	mock.lockMultipartForm.RUnlock()
 	return calls
 }
 
@@ -1654,9 +1736,9 @@ func (mock *ContextMock) Path() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockPath.Lock()
+	mock.lockPath.Lock()
 	mock.calls.Path = append(mock.calls.Path, callInfo)
-	lockContextMockPath.Unlock()
+	mock.lockPath.Unlock()
 	return mock.PathFunc()
 }
 
@@ -1667,9 +1749,9 @@ func (mock *ContextMock) PathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockPath.RLock()
+	mock.lockPath.RLock()
 	calls = mock.calls.Path
-	lockContextMockPath.RUnlock()
+	mock.lockPath.RUnlock()
 	return calls
 }
 
@@ -1680,9 +1762,9 @@ func (mock *ContextMock) PprofURL() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockPprofURL.Lock()
+	mock.lockPprofURL.Lock()
 	mock.calls.PprofURL = append(mock.calls.PprofURL, callInfo)
-	lockContextMockPprofURL.Unlock()
+	mock.lockPprofURL.Unlock()
 	return mock.PprofURLFunc()
 }
 
@@ -1693,9 +1775,9 @@ func (mock *ContextMock) PprofURLCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockPprofURL.RLock()
+	mock.lockPprofURL.RLock()
 	calls = mock.calls.PprofURL
-	lockContextMockPprofURL.RUnlock()
+	mock.lockPprofURL.RUnlock()
 	return calls
 }
 
@@ -1706,9 +1788,9 @@ func (mock *ContextMock) QueryString() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockQueryString.Lock()
+	mock.lockQueryString.Lock()
 	mock.calls.QueryString = append(mock.calls.QueryString, callInfo)
-	lockContextMockQueryString.Unlock()
+	mock.lockQueryString.Unlock()
 	return mock.QueryStringFunc()
 }
 
@@ -1719,9 +1801,9 @@ func (mock *ContextMock) QueryStringCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockQueryString.RLock()
+	mock.lockQueryString.RLock()
 	calls = mock.calls.QueryString
-	lockContextMockQueryString.RUnlock()
+	mock.lockQueryString.RUnlock()
 	return calls
 }
 
@@ -1735,9 +1817,9 @@ func (mock *ContextMock) QueryValue(in1 string) string {
 	}{
 		In1: in1,
 	}
-	lockContextMockQueryValue.Lock()
+	mock.lockQueryValue.Lock()
 	mock.calls.QueryValue = append(mock.calls.QueryValue, callInfo)
-	lockContextMockQueryValue.Unlock()
+	mock.lockQueryValue.Unlock()
 	return mock.QueryValueFunc(in1)
 }
 
@@ -1750,9 +1832,9 @@ func (mock *ContextMock) QueryValueCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockQueryValue.RLock()
+	mock.lockQueryValue.RLock()
 	calls = mock.calls.QueryValue
-	lockContextMockQueryValue.RUnlock()
+	mock.lockQueryValue.RUnlock()
 	return calls
 }
 
@@ -1768,9 +1850,9 @@ func (mock *ContextMock) Redirect(path string, statusCode int) {
 		Path:       path,
 		StatusCode: statusCode,
 	}
-	lockContextMockRedirect.Lock()
+	mock.lockRedirect.Lock()
 	mock.calls.Redirect = append(mock.calls.Redirect, callInfo)
-	lockContextMockRedirect.Unlock()
+	mock.lockRedirect.Unlock()
 	mock.RedirectFunc(path, statusCode)
 }
 
@@ -1785,9 +1867,9 @@ func (mock *ContextMock) RedirectCalls() []struct {
 		Path       string
 		StatusCode int
 	}
-	lockContextMockRedirect.RLock()
+	mock.lockRedirect.RLock()
 	calls = mock.calls.Redirect
-	lockContextMockRedirect.RUnlock()
+	mock.lockRedirect.RUnlock()
 	return calls
 }
 
@@ -1798,9 +1880,9 @@ func (mock *ContextMock) Referer() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockReferer.Lock()
+	mock.lockReferer.Lock()
 	mock.calls.Referer = append(mock.calls.Referer, callInfo)
-	lockContextMockReferer.Unlock()
+	mock.lockReferer.Unlock()
 	return mock.RefererFunc()
 }
 
@@ -1811,9 +1893,9 @@ func (mock *ContextMock) RefererCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockReferer.RLock()
+	mock.lockReferer.RLock()
 	calls = mock.calls.Referer
-	lockContextMockReferer.RUnlock()
+	mock.lockReferer.RUnlock()
 	return calls
 }
 
@@ -1824,9 +1906,9 @@ func (mock *ContextMock) RenderBadRequest() {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockRenderBadRequest.Lock()
+	mock.lockRenderBadRequest.Lock()
 	mock.calls.RenderBadRequest = append(mock.calls.RenderBadRequest, callInfo)
-	lockContextMockRenderBadRequest.Unlock()
+	mock.lockRenderBadRequest.Unlock()
 	mock.RenderBadRequestFunc()
 }
 
@@ -1837,9 +1919,9 @@ func (mock *ContextMock) RenderBadRequestCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockRenderBadRequest.RLock()
+	mock.lockRenderBadRequest.RLock()
 	calls = mock.calls.RenderBadRequest
-	lockContextMockRenderBadRequest.RUnlock()
+	mock.lockRenderBadRequest.RUnlock()
 	return calls
 }
 
@@ -1853,9 +1935,9 @@ func (mock *ContextMock) RenderInternalServerError(in1 error) {
 	}{
 		In1: in1,
 	}
-	lockContextMockRenderInternalServerError.Lock()
+	mock.lockRenderInternalServerError.Lock()
 	mock.calls.RenderInternalServerError = append(mock.calls.RenderInternalServerError, callInfo)
-	lockContextMockRenderInternalServerError.Unlock()
+	mock.lockRenderInternalServerError.Unlock()
 	mock.RenderInternalServerErrorFunc(in1)
 }
 
@@ -1868,9 +1950,9 @@ func (mock *ContextMock) RenderInternalServerErrorCalls() []struct {
 	var calls []struct {
 		In1 error
 	}
-	lockContextMockRenderInternalServerError.RLock()
+	mock.lockRenderInternalServerError.RLock()
 	calls = mock.calls.RenderInternalServerError
-	lockContextMockRenderInternalServerError.RUnlock()
+	mock.lockRenderInternalServerError.RUnlock()
 	return calls
 }
 
@@ -1881,9 +1963,9 @@ func (mock *ContextMock) RenderNon200() {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockRenderNon200.Lock()
+	mock.lockRenderNon200.Lock()
 	mock.calls.RenderNon200 = append(mock.calls.RenderNon200, callInfo)
-	lockContextMockRenderNon200.Unlock()
+	mock.lockRenderNon200.Unlock()
 	mock.RenderNon200Func()
 }
 
@@ -1894,9 +1976,9 @@ func (mock *ContextMock) RenderNon200Calls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockRenderNon200.RLock()
+	mock.lockRenderNon200.RLock()
 	calls = mock.calls.RenderNon200
-	lockContextMockRenderNon200.RUnlock()
+	mock.lockRenderNon200.RUnlock()
 	return calls
 }
 
@@ -1912,9 +1994,9 @@ func (mock *ContextMock) RenderNon200Custom(title string, message string) {
 		Title:   title,
 		Message: message,
 	}
-	lockContextMockRenderNon200Custom.Lock()
+	mock.lockRenderNon200Custom.Lock()
 	mock.calls.RenderNon200Custom = append(mock.calls.RenderNon200Custom, callInfo)
-	lockContextMockRenderNon200Custom.Unlock()
+	mock.lockRenderNon200Custom.Unlock()
 	mock.RenderNon200CustomFunc(title, message)
 }
 
@@ -1929,9 +2011,9 @@ func (mock *ContextMock) RenderNon200CustomCalls() []struct {
 		Title   string
 		Message string
 	}
-	lockContextMockRenderNon200Custom.RLock()
+	mock.lockRenderNon200Custom.RLock()
 	calls = mock.calls.RenderNon200Custom
-	lockContextMockRenderNon200Custom.RUnlock()
+	mock.lockRenderNon200Custom.RUnlock()
 	return calls
 }
 
@@ -1942,9 +2024,9 @@ func (mock *ContextMock) RenderNotFound() {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockRenderNotFound.Lock()
+	mock.lockRenderNotFound.Lock()
 	mock.calls.RenderNotFound = append(mock.calls.RenderNotFound, callInfo)
-	lockContextMockRenderNotFound.Unlock()
+	mock.lockRenderNotFound.Unlock()
 	mock.RenderNotFoundFunc()
 }
 
@@ -1955,9 +2037,9 @@ func (mock *ContextMock) RenderNotFoundCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockRenderNotFound.RLock()
+	mock.lockRenderNotFound.RLock()
 	calls = mock.calls.RenderNotFound
-	lockContextMockRenderNotFound.RUnlock()
+	mock.lockRenderNotFound.RUnlock()
 	return calls
 }
 
@@ -1973,9 +2055,9 @@ func (mock *ContextMock) RenderTheme(code string, data themes.DataStore) error {
 		Code: code,
 		Data: data,
 	}
-	lockContextMockRenderTheme.Lock()
+	mock.lockRenderTheme.Lock()
 	mock.calls.RenderTheme = append(mock.calls.RenderTheme, callInfo)
-	lockContextMockRenderTheme.Unlock()
+	mock.lockRenderTheme.Unlock()
 	return mock.RenderThemeFunc(code, data)
 }
 
@@ -1990,9 +2072,9 @@ func (mock *ContextMock) RenderThemeCalls() []struct {
 		Code string
 		Data themes.DataStore
 	}
-	lockContextMockRenderTheme.RLock()
+	mock.lockRenderTheme.RLock()
 	calls = mock.calls.RenderTheme
-	lockContextMockRenderTheme.RUnlock()
+	mock.lockRenderTheme.RUnlock()
 	return calls
 }
 
@@ -2003,9 +2085,9 @@ func (mock *ContextMock) RenderUnauthorized() {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockRenderUnauthorized.Lock()
+	mock.lockRenderUnauthorized.Lock()
 	mock.calls.RenderUnauthorized = append(mock.calls.RenderUnauthorized, callInfo)
-	lockContextMockRenderUnauthorized.Unlock()
+	mock.lockRenderUnauthorized.Unlock()
 	mock.RenderUnauthorizedFunc()
 }
 
@@ -2016,9 +2098,9 @@ func (mock *ContextMock) RenderUnauthorizedCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockRenderUnauthorized.RLock()
+	mock.lockRenderUnauthorized.RLock()
 	calls = mock.calls.RenderUnauthorized
-	lockContextMockRenderUnauthorized.RUnlock()
+	mock.lockRenderUnauthorized.RUnlock()
 	return calls
 }
 
@@ -2029,9 +2111,9 @@ func (mock *ContextMock) RequestBody() io.ReadCloser {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockRequestBody.Lock()
+	mock.lockRequestBody.Lock()
 	mock.calls.RequestBody = append(mock.calls.RequestBody, callInfo)
-	lockContextMockRequestBody.Unlock()
+	mock.lockRequestBody.Unlock()
 	return mock.RequestBodyFunc()
 }
 
@@ -2042,9 +2124,9 @@ func (mock *ContextMock) RequestBodyCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockRequestBody.RLock()
+	mock.lockRequestBody.RLock()
 	calls = mock.calls.RequestBody
-	lockContextMockRequestBody.RUnlock()
+	mock.lockRequestBody.RUnlock()
 	return calls
 }
 
@@ -2055,9 +2137,9 @@ func (mock *ContextMock) RequestURI() string {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockRequestURI.Lock()
+	mock.lockRequestURI.Lock()
 	mock.calls.RequestURI = append(mock.calls.RequestURI, callInfo)
-	lockContextMockRequestURI.Unlock()
+	mock.lockRequestURI.Unlock()
 	return mock.RequestURIFunc()
 }
 
@@ -2068,9 +2150,9 @@ func (mock *ContextMock) RequestURICalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockRequestURI.RLock()
+	mock.lockRequestURI.RLock()
 	calls = mock.calls.RequestURI
-	lockContextMockRequestURI.RUnlock()
+	mock.lockRequestURI.RUnlock()
 	return calls
 }
 
@@ -2081,9 +2163,9 @@ func (mock *ContextMock) SaveSessionIfNeeded() error {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockSaveSessionIfNeeded.Lock()
+	mock.lockSaveSessionIfNeeded.Lock()
 	mock.calls.SaveSessionIfNeeded = append(mock.calls.SaveSessionIfNeeded, callInfo)
-	lockContextMockSaveSessionIfNeeded.Unlock()
+	mock.lockSaveSessionIfNeeded.Unlock()
 	return mock.SaveSessionIfNeededFunc()
 }
 
@@ -2094,9 +2176,9 @@ func (mock *ContextMock) SaveSessionIfNeededCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockSaveSessionIfNeeded.RLock()
+	mock.lockSaveSessionIfNeeded.RLock()
 	calls = mock.calls.SaveSessionIfNeeded
-	lockContextMockSaveSessionIfNeeded.RUnlock()
+	mock.lockSaveSessionIfNeeded.RUnlock()
 	return calls
 }
 
@@ -2110,9 +2192,9 @@ func (mock *ContextMock) SetContentType(in1 string) {
 	}{
 		In1: in1,
 	}
-	lockContextMockSetContentType.Lock()
+	mock.lockSetContentType.Lock()
 	mock.calls.SetContentType = append(mock.calls.SetContentType, callInfo)
-	lockContextMockSetContentType.Unlock()
+	mock.lockSetContentType.Unlock()
 	mock.SetContentTypeFunc(in1)
 }
 
@@ -2125,9 +2207,9 @@ func (mock *ContextMock) SetContentTypeCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockSetContentType.RLock()
+	mock.lockSetContentType.RLock()
 	calls = mock.calls.SetContentType
-	lockContextMockSetContentType.RUnlock()
+	mock.lockSetContentType.RUnlock()
 	return calls
 }
 
@@ -2141,9 +2223,9 @@ func (mock *ContextMock) SetFlashErrorMessage(in1 string) error {
 	}{
 		In1: in1,
 	}
-	lockContextMockSetFlashErrorMessage.Lock()
+	mock.lockSetFlashErrorMessage.Lock()
 	mock.calls.SetFlashErrorMessage = append(mock.calls.SetFlashErrorMessage, callInfo)
-	lockContextMockSetFlashErrorMessage.Unlock()
+	mock.lockSetFlashErrorMessage.Unlock()
 	return mock.SetFlashErrorMessageFunc(in1)
 }
 
@@ -2156,9 +2238,9 @@ func (mock *ContextMock) SetFlashErrorMessageCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockSetFlashErrorMessage.RLock()
+	mock.lockSetFlashErrorMessage.RLock()
 	calls = mock.calls.SetFlashErrorMessage
-	lockContextMockSetFlashErrorMessage.RUnlock()
+	mock.lockSetFlashErrorMessage.RUnlock()
 	return calls
 }
 
@@ -2172,9 +2254,9 @@ func (mock *ContextMock) SetFlashInfoMessage(in1 string) error {
 	}{
 		In1: in1,
 	}
-	lockContextMockSetFlashInfoMessage.Lock()
+	mock.lockSetFlashInfoMessage.Lock()
 	mock.calls.SetFlashInfoMessage = append(mock.calls.SetFlashInfoMessage, callInfo)
-	lockContextMockSetFlashInfoMessage.Unlock()
+	mock.lockSetFlashInfoMessage.Unlock()
 	return mock.SetFlashInfoMessageFunc(in1)
 }
 
@@ -2187,9 +2269,9 @@ func (mock *ContextMock) SetFlashInfoMessageCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockSetFlashInfoMessage.RLock()
+	mock.lockSetFlashInfoMessage.RLock()
 	calls = mock.calls.SetFlashInfoMessage
-	lockContextMockSetFlashInfoMessage.RUnlock()
+	mock.lockSetFlashInfoMessage.RUnlock()
 	return calls
 }
 
@@ -2203,9 +2285,9 @@ func (mock *ContextMock) SetFlashSuccessMessage(in1 string) error {
 	}{
 		In1: in1,
 	}
-	lockContextMockSetFlashSuccessMessage.Lock()
+	mock.lockSetFlashSuccessMessage.Lock()
 	mock.calls.SetFlashSuccessMessage = append(mock.calls.SetFlashSuccessMessage, callInfo)
-	lockContextMockSetFlashSuccessMessage.Unlock()
+	mock.lockSetFlashSuccessMessage.Unlock()
 	return mock.SetFlashSuccessMessageFunc(in1)
 }
 
@@ -2218,9 +2300,9 @@ func (mock *ContextMock) SetFlashSuccessMessageCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockSetFlashSuccessMessage.RLock()
+	mock.lockSetFlashSuccessMessage.RLock()
 	calls = mock.calls.SetFlashSuccessMessage
-	lockContextMockSetFlashSuccessMessage.RUnlock()
+	mock.lockSetFlashSuccessMessage.RUnlock()
 	return calls
 }
 
@@ -2234,9 +2316,9 @@ func (mock *ContextMock) SetFlashWarningMessage(in1 string) error {
 	}{
 		In1: in1,
 	}
-	lockContextMockSetFlashWarningMessage.Lock()
+	mock.lockSetFlashWarningMessage.Lock()
 	mock.calls.SetFlashWarningMessage = append(mock.calls.SetFlashWarningMessage, callInfo)
-	lockContextMockSetFlashWarningMessage.Unlock()
+	mock.lockSetFlashWarningMessage.Unlock()
 	return mock.SetFlashWarningMessageFunc(in1)
 }
 
@@ -2249,9 +2331,9 @@ func (mock *ContextMock) SetFlashWarningMessageCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockSetFlashWarningMessage.RLock()
+	mock.lockSetFlashWarningMessage.RLock()
 	calls = mock.calls.SetFlashWarningMessage
-	lockContextMockSetFlashWarningMessage.RUnlock()
+	mock.lockSetFlashWarningMessage.RUnlock()
 	return calls
 }
 
@@ -2267,9 +2349,9 @@ func (mock *ContextMock) SetHeader(key string, value string) {
 		Key:   key,
 		Value: value,
 	}
-	lockContextMockSetHeader.Lock()
+	mock.lockSetHeader.Lock()
 	mock.calls.SetHeader = append(mock.calls.SetHeader, callInfo)
-	lockContextMockSetHeader.Unlock()
+	mock.lockSetHeader.Unlock()
 	mock.SetHeaderFunc(key, value)
 }
 
@@ -2284,9 +2366,9 @@ func (mock *ContextMock) SetHeaderCalls() []struct {
 		Key   string
 		Value string
 	}
-	lockContextMockSetHeader.RLock()
+	mock.lockSetHeader.RLock()
 	calls = mock.calls.SetHeader
-	lockContextMockSetHeader.RUnlock()
+	mock.lockSetHeader.RUnlock()
 	return calls
 }
 
@@ -2302,9 +2384,9 @@ func (mock *ContextMock) SetSessionValue(key uint8, value []byte) error {
 		Key:   key,
 		Value: value,
 	}
-	lockContextMockSetSessionValue.Lock()
+	mock.lockSetSessionValue.Lock()
 	mock.calls.SetSessionValue = append(mock.calls.SetSessionValue, callInfo)
-	lockContextMockSetSessionValue.Unlock()
+	mock.lockSetSessionValue.Unlock()
 	return mock.SetSessionValueFunc(key, value)
 }
 
@@ -2319,9 +2401,9 @@ func (mock *ContextMock) SetSessionValueCalls() []struct {
 		Key   uint8
 		Value []byte
 	}
-	lockContextMockSetSessionValue.RLock()
+	mock.lockSetSessionValue.RLock()
 	calls = mock.calls.SetSessionValue
-	lockContextMockSetSessionValue.RUnlock()
+	mock.lockSetSessionValue.RUnlock()
 	return calls
 }
 
@@ -2335,9 +2417,9 @@ func (mock *ContextMock) SetSlugMappedURL(slugMappedURL string) {
 	}{
 		SlugMappedURL: slugMappedURL,
 	}
-	lockContextMockSetSlugMappedURL.Lock()
+	mock.lockSetSlugMappedURL.Lock()
 	mock.calls.SetSlugMappedURL = append(mock.calls.SetSlugMappedURL, callInfo)
-	lockContextMockSetSlugMappedURL.Unlock()
+	mock.lockSetSlugMappedURL.Unlock()
 	mock.SetSlugMappedURLFunc(slugMappedURL)
 }
 
@@ -2350,9 +2432,9 @@ func (mock *ContextMock) SetSlugMappedURLCalls() []struct {
 	var calls []struct {
 		SlugMappedURL string
 	}
-	lockContextMockSetSlugMappedURL.RLock()
+	mock.lockSetSlugMappedURL.RLock()
 	calls = mock.calls.SetSlugMappedURL
-	lockContextMockSetSlugMappedURL.RUnlock()
+	mock.lockSetSlugMappedURL.RUnlock()
 	return calls
 }
 
@@ -2366,9 +2448,9 @@ func (mock *ContextMock) SetStatusCode(in1 int) {
 	}{
 		In1: in1,
 	}
-	lockContextMockSetStatusCode.Lock()
+	mock.lockSetStatusCode.Lock()
 	mock.calls.SetStatusCode = append(mock.calls.SetStatusCode, callInfo)
-	lockContextMockSetStatusCode.Unlock()
+	mock.lockSetStatusCode.Unlock()
 	mock.SetStatusCodeFunc(in1)
 }
 
@@ -2381,9 +2463,9 @@ func (mock *ContextMock) SetStatusCodeCalls() []struct {
 	var calls []struct {
 		In1 int
 	}
-	lockContextMockSetStatusCode.RLock()
+	mock.lockSetStatusCode.RLock()
 	calls = mock.calls.SetStatusCode
-	lockContextMockSetStatusCode.RUnlock()
+	mock.lockSetStatusCode.RUnlock()
 	return calls
 }
 
@@ -2397,9 +2479,9 @@ func (mock *ContextMock) SetTheme(code string) error {
 	}{
 		Code: code,
 	}
-	lockContextMockSetTheme.Lock()
+	mock.lockSetTheme.Lock()
 	mock.calls.SetTheme = append(mock.calls.SetTheme, callInfo)
-	lockContextMockSetTheme.Unlock()
+	mock.lockSetTheme.Unlock()
 	return mock.SetThemeFunc(code)
 }
 
@@ -2412,9 +2494,9 @@ func (mock *ContextMock) SetThemeCalls() []struct {
 	var calls []struct {
 		Code string
 	}
-	lockContextMockSetTheme.RLock()
+	mock.lockSetTheme.RLock()
 	calls = mock.calls.SetTheme
-	lockContextMockSetTheme.RUnlock()
+	mock.lockSetTheme.RUnlock()
 	return calls
 }
 
@@ -2425,9 +2507,9 @@ func (mock *ContextMock) StatusCode() int {
 	}
 	callInfo := struct {
 	}{}
-	lockContextMockStatusCode.Lock()
+	mock.lockStatusCode.Lock()
 	mock.calls.StatusCode = append(mock.calls.StatusCode, callInfo)
-	lockContextMockStatusCode.Unlock()
+	mock.lockStatusCode.Unlock()
 	return mock.StatusCodeFunc()
 }
 
@@ -2438,9 +2520,9 @@ func (mock *ContextMock) StatusCodeCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockContextMockStatusCode.RLock()
+	mock.lockStatusCode.RLock()
 	calls = mock.calls.StatusCode
-	lockContextMockStatusCode.RUnlock()
+	mock.lockStatusCode.RUnlock()
 	return calls
 }
 
@@ -2454,9 +2536,9 @@ func (mock *ContextMock) Translate(in1 string) string {
 	}{
 		In1: in1,
 	}
-	lockContextMockTranslate.Lock()
+	mock.lockTranslate.Lock()
 	mock.calls.Translate = append(mock.calls.Translate, callInfo)
-	lockContextMockTranslate.Unlock()
+	mock.lockTranslate.Unlock()
 	return mock.TranslateFunc(in1)
 }
 
@@ -2469,9 +2551,9 @@ func (mock *ContextMock) TranslateCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockTranslate.RLock()
+	mock.lockTranslate.RLock()
 	calls = mock.calls.Translate
-	lockContextMockTranslate.RUnlock()
+	mock.lockTranslate.RUnlock()
 	return calls
 }
 
@@ -2485,9 +2567,9 @@ func (mock *ContextMock) TranslatePlural(in1 string) string {
 	}{
 		In1: in1,
 	}
-	lockContextMockTranslatePlural.Lock()
+	mock.lockTranslatePlural.Lock()
 	mock.calls.TranslatePlural = append(mock.calls.TranslatePlural, callInfo)
-	lockContextMockTranslatePlural.Unlock()
+	mock.lockTranslatePlural.Unlock()
 	return mock.TranslatePluralFunc(in1)
 }
 
@@ -2500,9 +2582,9 @@ func (mock *ContextMock) TranslatePluralCalls() []struct {
 	var calls []struct {
 		In1 string
 	}
-	lockContextMockTranslatePlural.RLock()
+	mock.lockTranslatePlural.RLock()
 	calls = mock.calls.TranslatePlural
-	lockContextMockTranslatePlural.RUnlock()
+	mock.lockTranslatePlural.RUnlock()
 	return calls
 }
 
@@ -2516,9 +2598,9 @@ func (mock *ContextMock) UnsetSessionValue(key uint8) error {
 	}{
 		Key: key,
 	}
-	lockContextMockUnsetSessionValue.Lock()
+	mock.lockUnsetSessionValue.Lock()
 	mock.calls.UnsetSessionValue = append(mock.calls.UnsetSessionValue, callInfo)
-	lockContextMockUnsetSessionValue.Unlock()
+	mock.lockUnsetSessionValue.Unlock()
 	return mock.UnsetSessionValueFunc(key)
 }
 
@@ -2531,9 +2613,9 @@ func (mock *ContextMock) UnsetSessionValueCalls() []struct {
 	var calls []struct {
 		Key uint8
 	}
-	lockContextMockUnsetSessionValue.RLock()
+	mock.lockUnsetSessionValue.RLock()
 	calls = mock.calls.UnsetSessionValue
-	lockContextMockUnsetSessionValue.RUnlock()
+	mock.lockUnsetSessionValue.RUnlock()
 	return calls
 }
 
@@ -2547,9 +2629,9 @@ func (mock *ContextMock) UpdatedBy(entity contexts.Entity) string {
 	}{
 		Entity: entity,
 	}
-	lockContextMockUpdatedBy.Lock()
+	mock.lockUpdatedBy.Lock()
 	mock.calls.UpdatedBy = append(mock.calls.UpdatedBy, callInfo)
-	lockContextMockUpdatedBy.Unlock()
+	mock.lockUpdatedBy.Unlock()
 	return mock.UpdatedByFunc(entity)
 }
 
@@ -2562,9 +2644,9 @@ func (mock *ContextMock) UpdatedByCalls() []struct {
 	var calls []struct {
 		Entity contexts.Entity
 	}
-	lockContextMockUpdatedBy.RLock()
+	mock.lockUpdatedBy.RLock()
 	calls = mock.calls.UpdatedBy
-	lockContextMockUpdatedBy.RUnlock()
+	mock.lockUpdatedBy.RUnlock()
 	return calls
 }
 
@@ -2578,9 +2660,9 @@ func (mock *ContextMock) Write(p []byte) (int, error) {
 	}{
 		P: p,
 	}
-	lockContextMockWrite.Lock()
+	mock.lockWrite.Lock()
 	mock.calls.Write = append(mock.calls.Write, callInfo)
-	lockContextMockWrite.Unlock()
+	mock.lockWrite.Unlock()
 	return mock.WriteFunc(p)
 }
 
@@ -2593,9 +2675,9 @@ func (mock *ContextMock) WriteCalls() []struct {
 	var calls []struct {
 		P []byte
 	}
-	lockContextMockWrite.RLock()
+	mock.lockWrite.RLock()
 	calls = mock.calls.Write
-	lockContextMockWrite.RUnlock()
+	mock.lockWrite.RUnlock()
 	return calls
 }
 
@@ -2609,9 +2691,9 @@ func (mock *ContextMock) WriteString(p string) {
 	}{
 		P: p,
 	}
-	lockContextMockWriteString.Lock()
+	mock.lockWriteString.Lock()
 	mock.calls.WriteString = append(mock.calls.WriteString, callInfo)
-	lockContextMockWriteString.Unlock()
+	mock.lockWriteString.Unlock()
 	mock.WriteStringFunc(p)
 }
 
@@ -2624,8 +2706,8 @@ func (mock *ContextMock) WriteStringCalls() []struct {
 	var calls []struct {
 		P string
 	}
-	lockContextMockWriteString.RLock()
+	mock.lockWriteString.RLock()
 	calls = mock.calls.WriteString
-	lockContextMockWriteString.RUnlock()
+	mock.lockWriteString.RUnlock()
 	return calls
 }

@@ -9,9 +9,12 @@ import (
 // Should not set DomainID/SiteID/UserID all to NULL.
 // Keep this list in order as the iota counter is crucial for the reserving of the unique keys.
 const (
-	// Levels: Domain, Site.
 	SettingUserSiteAccess uint16 = iota + 1
 	SettingTheme
+	SettingJWTSigningMethod
+	SettingJWTPassword
+	SettingHTTPReferrerPolicy
+	SettingHTTPContentSecurityPolicy
 )
 
 const (

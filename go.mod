@@ -6,6 +6,7 @@ require (
 	github.com/andybalholm/brotli v1.0.1
 	github.com/asaskevich/govalidator v0.0.0-20200907205600-7a23bdc65eef
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/espal-digital-development/semver v0.0.0-20201205114412-89534eeac2db
 	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df
 	github.com/json-iterator/go v1.1.10

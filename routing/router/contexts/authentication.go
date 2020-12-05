@@ -2,11 +2,16 @@ package contexts
 
 import (
 	"net/http"
+	"strings"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/espal-digital-development/espal-core/sessions"
 	"github.com/espal-digital-development/espal-core/stores/user"
 	"github.com/juju/errors"
+	"golang.org/x/crypto/bcrypt"
 )
+
+const jwtTokenHeaderChunks = 2
 
 // AuthenticationContext for authentication handling and provisioning.
 type AuthenticationContext interface {
@@ -28,6 +33,14 @@ type AuthenticationContext interface {
 	HasPprofEnabled() bool
 	AdminURL() string
 	PprofURL() string
+
+	AuthorizeUserForJWT(username string, password string) (string, error)
+	IsJWTAuthorized() bool
+}
+
+type jwtToken struct {
+	jwt.StandardClaims
+	UserID string
 }
 
 func (c *HTTPContext) newSession() (sessions.Session, error) {
@@ -231,4 +244,59 @@ func (c *HTTPContext) AdminURL() string {
 // PprofURL returns the configurated Pprof section's URL prefix.
 func (c *HTTPContext) PprofURL() string {
 	return c.configService.PprofURL()
+}
+
+func (c *HTTPContext) AuthorizeUserForJWT(username string, password string) (string, error) {
+	user, ok, err := c.userStore.GetOneActiveByEmail(username)
+	if err != nil {
+		return "", errors.Trace(err)
+	}
+	if !ok {
+		c.SetStatusCode(http.StatusUnauthorized)
+		return "", nil
+	}
+
+	if err = bcrypt.CompareHashAndPassword([]byte(user.Password()), []byte(password)); err != nil {
+		c.SetStatusCode(http.StatusUnauthorized)
+		return "", nil
+	}
+
+	tk := &jwtToken{UserID: user.ID()}
+	token := jwt.NewWithClaims(jwt.GetSigningMethod(c.configService.SecurityJWTSigningMethod()), tk)
+	tokenString, err := token.SignedString([]byte(c.configService.SecurityJWTPassword()))
+	if err != nil {
+		return "", errors.Trace(err)
+	}
+	return tokenString, nil
+}
+
+// IsJWTAuthorized checks if the current request has a valid JWT token.
+func (c *HTTPContext) IsJWTAuthorized() bool {
+	tokenHeader := c.GetHeader("Authorization")
+	if tokenHeader == "" {
+		c.SetStatusCode(http.StatusForbidden)
+		return false
+	}
+	splitted := strings.Split(tokenHeader, " ")
+	if len(splitted) != jwtTokenHeaderChunks {
+		// "Invalid/Malformed auth token"
+		c.SetStatusCode(http.StatusForbidden)
+		return false
+	}
+	tokenPart := splitted[1]
+	tk := &jwtToken{}
+	token, err := jwt.ParseWithClaims(tokenPart, tk, func(token *jwt.Token) (interface{}, error) {
+		return []byte(c.configService.SecurityJWTPassword()), nil
+	})
+	if err != nil {
+		// TODO :: Not going to 500 here, but might be worth logging in case there's a bug?
+		// "Malformed authentication token"
+		c.SetStatusCode(http.StatusForbidden)
+		return false
+	}
+	if !token.Valid {
+		c.SetStatusCode(http.StatusForbidden)
+		return false
+	}
+	return true
 }

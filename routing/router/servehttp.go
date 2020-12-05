@@ -103,9 +103,9 @@ func (r *HTTPRouter) ServeHTTP(responseWriter http.ResponseWriter, request *http
 	}
 
 	// TODO :: 777777 The Access-Control-Allow-Origin/Credentials, Content-Security-Policy should be a field on the
-	// Site/Domain db object? Origin: null should cause a fault and be illegal.
-	context.SetHeader("Referrer-Policy", "same-origin")
-	context.SetHeader("Content-Security-Policy", "default-src 'self'; frame-ancestors 'self'")
+	// Config db object.
+	context.SetHeader("Referrer-Policy", r.configService.SecurityHTTPReferrerPolicy())
+	context.SetHeader("Content-Security-Policy", r.configService.SecurityHTTPContentSecurityPolicy())
 	context.SetHeader("Access-Control-Allow-Origin", domain.Host())
 
 	route, routeFound := r.getRoute(context.Path())

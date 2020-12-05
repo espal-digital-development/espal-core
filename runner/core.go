@@ -31,6 +31,14 @@ func (r *Runner) core(path string) error {
 		return errors.Trace(err)
 	}
 
+	for k := range r.modulesRegistry {
+		moduleConfig, err := r.modulesRegistry[k].GetConfig()
+		if err != nil {
+			return errors.Trace(err)
+		}
+		moduleConfig.SetService(r.services.config)
+	}
+
 	if err := r.assets(); err != nil {
 		return errors.Trace(err)
 	}

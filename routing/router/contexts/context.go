@@ -10,6 +10,7 @@ import (
 	"github.com/espal-digital-development/espal-core/repositories/themes"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/sessions"
+	"github.com/espal-digital-development/espal-core/stores/setting"
 	"github.com/espal-digital-development/espal-core/stores/user"
 	"github.com/espal-digital-development/espal-core/template/renderer"
 	"github.com/juju/errors"
@@ -86,6 +87,7 @@ type HTTPContext struct {
 	themesRepository       themes.Repository
 	rendererService        renderer.Renderer
 	adminMenuService       adminmenu.Menu
+	settingStore           setting.Store
 	userStore              user.Store
 
 	request        *http.Request

@@ -10,15 +10,21 @@ type Security interface {
 	SecurityBcryptRounds() int
 	SecurityFormTokenLifespan() time.Duration
 	SecurityFormTokenCleanupInterval() time.Duration
+	SecurityJWTSigningMethod() string
 	SecurityJWTPassword() string
+	SecurityHTTPReferrerPolicy() string
+	SecurityHTTPContentSecurityPolicy() string
 }
 
 type security struct {
-	GlobalAuthentication     bool          `yaml:"globalAuthentication"`
-	BcryptRounds             int           `yaml:"bcryptRounds"`
-	FormTokenLifespan        time.Duration `yaml:"formTokenLifespan"`
-	FormTokenCleanupInterval time.Duration `yaml:"formTokenCleanupInterval"`
-	JWTPassword              string        `yaml:"jwtPassword"`
+	GlobalAuthentication      bool          `yaml:"globalAuthentication"`
+	BcryptRounds              int           `yaml:"bcryptRounds"`
+	FormTokenLifespan         time.Duration `yaml:"formTokenLifespan"`
+	FormTokenCleanupInterval  time.Duration `yaml:"formTokenCleanupInterval"`
+	JWTSigningMethod          string        `yaml:"jwtSigningMethod"`
+	JWTPassword               string        `yaml:"jwtPassword"`
+	HTTPReferrerPolicy        string        `yaml:"httpReferrerPolicy"`
+	HTTPContentSecurityPolicy string        `yaml:"httpContentSecurityPolicy"`
 }
 
 // SecurityGlobalAuthentication returns if the global authentication is enabled. This will cause a global login barrier
@@ -43,7 +49,22 @@ func (c *Configuration) SecurityFormTokenCleanupInterval() time.Duration {
 	return c.security.FormTokenCleanupInterval
 }
 
+// SecurityJWTSigningMethod returns the JWT Signing Method.
+func (c *Configuration) SecurityJWTSigningMethod() string {
+	return c.security.JWTSigningMethod
+}
+
 // SecurityJWTPassword returns the JWT Password.
 func (c *Configuration) SecurityJWTPassword() string {
 	return c.security.JWTPassword
+}
+
+// SecurityHTTPReferrerPolicy returns the HTTP ReferrerPolicy.
+func (c *Configuration) SecurityHTTPReferrerPolicy() string {
+	return c.security.HTTPReferrerPolicy
+}
+
+// SecurityHTTPContentSecurityPolicy returns the HTTP ContentSecurityPolicy.
+func (c *Configuration) SecurityHTTPContentSecurityPolicy() string {
+	return c.security.HTTPContentSecurityPolicy
 }

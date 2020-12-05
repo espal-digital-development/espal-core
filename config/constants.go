@@ -19,7 +19,10 @@ const (
 	defaultSecurityBcryptRounds                    = 12
 	defaultSecurityFormTokenLifespan               = time.Minute * 8
 	defaultSecurityFormTokenCleanupInterval        = time.Second * 10
+	defaultJWTSigningMethod                        = "HS512"
 	defaultJWTPassword                             = ""
+	defaultHTTPReferrerPolicy                      = "same-origin"
+	defaultHTTPContentSecurityPolicy               = "default-src 'self'; frame-ancestors 'self'"
 	defaultSessionCookieName                       = "s"
 	defaultSessionExpiration                       = time.Minute * 45
 	defaultSessionRememberMeExpiration             = time.Hour * 720

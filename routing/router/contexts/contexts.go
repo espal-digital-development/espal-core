@@ -10,6 +10,7 @@ import (
 	"github.com/espal-digital-development/espal-core/repositories/themes"
 	"github.com/espal-digital-development/espal-core/repositories/translations"
 	"github.com/espal-digital-development/espal-core/sessions"
+	"github.com/espal-digital-development/espal-core/stores/setting"
 	"github.com/espal-digital-development/espal-core/stores/user"
 	"github.com/espal-digital-development/espal-core/template/renderer"
 )
@@ -31,6 +32,7 @@ type Contexts struct {
 	themesRepository       themes.Repository
 	rendererService        renderer.Renderer
 	adminMenuService       adminmenu.Menu
+	settingStore           setting.Store
 	userStore              user.Store
 }
 
@@ -46,6 +48,7 @@ func (c *Contexts) NewContext(request *http.Request, responseWriter http.Respons
 		themesRepository:       c.themesRepository,
 		rendererService:        c.rendererService,
 		adminMenuService:       c.adminMenuService,
+		settingStore:           c.settingStore,
 		userStore:              c.userStore,
 
 		request:        request,

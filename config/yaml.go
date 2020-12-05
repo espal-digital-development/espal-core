@@ -71,10 +71,13 @@ func (c *Configuration) getDefaultYaml() configYaml {
 			},
 		},
 		Security: security{
-			BcryptRounds:             defaultSecurityBcryptRounds,
-			FormTokenLifespan:        defaultSecurityFormTokenLifespan,
-			FormTokenCleanupInterval: defaultSecurityFormTokenCleanupInterval,
-			JWTPassword:              defaultJWTPassword,
+			BcryptRounds:              defaultSecurityBcryptRounds,
+			FormTokenLifespan:         defaultSecurityFormTokenLifespan,
+			FormTokenCleanupInterval:  defaultSecurityFormTokenCleanupInterval,
+			JWTSigningMethod:          defaultJWTSigningMethod,
+			JWTPassword:               defaultJWTPassword,
+			HTTPReferrerPolicy:        defaultHTTPReferrerPolicy,
+			HTTPContentSecurityPolicy: defaultHTTPContentSecurityPolicy,
 		},
 		Session: session{
 			CookieName:           defaultSessionCookieName,

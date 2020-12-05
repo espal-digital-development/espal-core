@@ -181,8 +181,17 @@ var _ config.Config = &ConfigMock{}
 //             SecurityGlobalAuthenticationFunc: func() bool {
 // 	               panic("mock out the SecurityGlobalAuthentication method")
 //             },
+//             SecurityHTTPContentSecurityPolicyFunc: func() string {
+// 	               panic("mock out the SecurityHTTPContentSecurityPolicy method")
+//             },
+//             SecurityHTTPReferrerPolicyFunc: func() string {
+// 	               panic("mock out the SecurityHTTPReferrerPolicy method")
+//             },
 //             SecurityJWTPasswordFunc: func() string {
 // 	               panic("mock out the SecurityJWTPassword method")
+//             },
+//             SecurityJWTSigningMethodFunc: func() string {
+// 	               panic("mock out the SecurityJWTSigningMethod method")
 //             },
 //             ServerHTTPRedirectPortFunc: func() int {
 // 	               panic("mock out the ServerHTTPRedirectPort method")
@@ -383,8 +392,17 @@ type ConfigMock struct {
 	// SecurityGlobalAuthenticationFunc mocks the SecurityGlobalAuthentication method.
 	SecurityGlobalAuthenticationFunc func() bool
 
+	// SecurityHTTPContentSecurityPolicyFunc mocks the SecurityHTTPContentSecurityPolicy method.
+	SecurityHTTPContentSecurityPolicyFunc func() string
+
+	// SecurityHTTPReferrerPolicyFunc mocks the SecurityHTTPReferrerPolicy method.
+	SecurityHTTPReferrerPolicyFunc func() string
+
 	// SecurityJWTPasswordFunc mocks the SecurityJWTPassword method.
 	SecurityJWTPasswordFunc func() string
+
+	// SecurityJWTSigningMethodFunc mocks the SecurityJWTSigningMethod method.
+	SecurityJWTSigningMethodFunc func() string
 
 	// ServerHTTPRedirectPortFunc mocks the ServerHTTPRedirectPort method.
 	ServerHTTPRedirectPortFunc func() int
@@ -582,8 +600,17 @@ type ConfigMock struct {
 		// SecurityGlobalAuthentication holds details about calls to the SecurityGlobalAuthentication method.
 		SecurityGlobalAuthentication []struct {
 		}
+		// SecurityHTTPContentSecurityPolicy holds details about calls to the SecurityHTTPContentSecurityPolicy method.
+		SecurityHTTPContentSecurityPolicy []struct {
+		}
+		// SecurityHTTPReferrerPolicy holds details about calls to the SecurityHTTPReferrerPolicy method.
+		SecurityHTTPReferrerPolicy []struct {
+		}
 		// SecurityJWTPassword holds details about calls to the SecurityJWTPassword method.
 		SecurityJWTPassword []struct {
+		}
+		// SecurityJWTSigningMethod holds details about calls to the SecurityJWTSigningMethod method.
+		SecurityJWTSigningMethod []struct {
 		}
 		// ServerHTTPRedirectPort holds details about calls to the ServerHTTPRedirectPort method.
 		ServerHTTPRedirectPort []struct {
@@ -670,7 +697,10 @@ type ConfigMock struct {
 	lockSecurityFormTokenCleanupInterval   sync.RWMutex
 	lockSecurityFormTokenLifespan          sync.RWMutex
 	lockSecurityGlobalAuthentication       sync.RWMutex
+	lockSecurityHTTPContentSecurityPolicy  sync.RWMutex
+	lockSecurityHTTPReferrerPolicy         sync.RWMutex
 	lockSecurityJWTPassword                sync.RWMutex
+	lockSecurityJWTSigningMethod           sync.RWMutex
 	lockServerHTTPRedirectPort             sync.RWMutex
 	lockServerHost                         sync.RWMutex
 	lockServerPort                         sync.RWMutex
@@ -2092,6 +2122,58 @@ func (mock *ConfigMock) SecurityGlobalAuthenticationCalls() []struct {
 	return calls
 }
 
+// SecurityHTTPContentSecurityPolicy calls SecurityHTTPContentSecurityPolicyFunc.
+func (mock *ConfigMock) SecurityHTTPContentSecurityPolicy() string {
+	if mock.SecurityHTTPContentSecurityPolicyFunc == nil {
+		panic("ConfigMock.SecurityHTTPContentSecurityPolicyFunc: method is nil but Config.SecurityHTTPContentSecurityPolicy was just called")
+	}
+	callInfo := struct {
+	}{}
+	mock.lockSecurityHTTPContentSecurityPolicy.Lock()
+	mock.calls.SecurityHTTPContentSecurityPolicy = append(mock.calls.SecurityHTTPContentSecurityPolicy, callInfo)
+	mock.lockSecurityHTTPContentSecurityPolicy.Unlock()
+	return mock.SecurityHTTPContentSecurityPolicyFunc()
+}
+
+// SecurityHTTPContentSecurityPolicyCalls gets all the calls that were made to SecurityHTTPContentSecurityPolicy.
+// Check the length with:
+//     len(mockedConfig.SecurityHTTPContentSecurityPolicyCalls())
+func (mock *ConfigMock) SecurityHTTPContentSecurityPolicyCalls() []struct {
+} {
+	var calls []struct {
+	}
+	mock.lockSecurityHTTPContentSecurityPolicy.RLock()
+	calls = mock.calls.SecurityHTTPContentSecurityPolicy
+	mock.lockSecurityHTTPContentSecurityPolicy.RUnlock()
+	return calls
+}
+
+// SecurityHTTPReferrerPolicy calls SecurityHTTPReferrerPolicyFunc.
+func (mock *ConfigMock) SecurityHTTPReferrerPolicy() string {
+	if mock.SecurityHTTPReferrerPolicyFunc == nil {
+		panic("ConfigMock.SecurityHTTPReferrerPolicyFunc: method is nil but Config.SecurityHTTPReferrerPolicy was just called")
+	}
+	callInfo := struct {
+	}{}
+	mock.lockSecurityHTTPReferrerPolicy.Lock()
+	mock.calls.SecurityHTTPReferrerPolicy = append(mock.calls.SecurityHTTPReferrerPolicy, callInfo)
+	mock.lockSecurityHTTPReferrerPolicy.Unlock()
+	return mock.SecurityHTTPReferrerPolicyFunc()
+}
+
+// SecurityHTTPReferrerPolicyCalls gets all the calls that were made to SecurityHTTPReferrerPolicy.
+// Check the length with:
+//     len(mockedConfig.SecurityHTTPReferrerPolicyCalls())
+func (mock *ConfigMock) SecurityHTTPReferrerPolicyCalls() []struct {
+} {
+	var calls []struct {
+	}
+	mock.lockSecurityHTTPReferrerPolicy.RLock()
+	calls = mock.calls.SecurityHTTPReferrerPolicy
+	mock.lockSecurityHTTPReferrerPolicy.RUnlock()
+	return calls
+}
+
 // SecurityJWTPassword calls SecurityJWTPasswordFunc.
 func (mock *ConfigMock) SecurityJWTPassword() string {
 	if mock.SecurityJWTPasswordFunc == nil {
@@ -2115,6 +2197,32 @@ func (mock *ConfigMock) SecurityJWTPasswordCalls() []struct {
 	mock.lockSecurityJWTPassword.RLock()
 	calls = mock.calls.SecurityJWTPassword
 	mock.lockSecurityJWTPassword.RUnlock()
+	return calls
+}
+
+// SecurityJWTSigningMethod calls SecurityJWTSigningMethodFunc.
+func (mock *ConfigMock) SecurityJWTSigningMethod() string {
+	if mock.SecurityJWTSigningMethodFunc == nil {
+		panic("ConfigMock.SecurityJWTSigningMethodFunc: method is nil but Config.SecurityJWTSigningMethod was just called")
+	}
+	callInfo := struct {
+	}{}
+	mock.lockSecurityJWTSigningMethod.Lock()
+	mock.calls.SecurityJWTSigningMethod = append(mock.calls.SecurityJWTSigningMethod, callInfo)
+	mock.lockSecurityJWTSigningMethod.Unlock()
+	return mock.SecurityJWTSigningMethodFunc()
+}
+
+// SecurityJWTSigningMethodCalls gets all the calls that were made to SecurityJWTSigningMethod.
+// Check the length with:
+//     len(mockedConfig.SecurityJWTSigningMethodCalls())
+func (mock *ConfigMock) SecurityJWTSigningMethodCalls() []struct {
+} {
+	var calls []struct {
+	}
+	mock.lockSecurityJWTSigningMethod.RLock()
+	calls = mock.calls.SecurityJWTSigningMethod
+	mock.lockSecurityJWTSigningMethod.RUnlock()
 	return calls
 }
 

@@ -33,7 +33,10 @@ security:
   bcryptRounds: 12
   formTokenLifespan: 8m
   formTokenCleanupInterval: 10s
+  jwtSigningMethod: HS512
   jwtPassword: e86074797a09ccb62688c0fdf149ab18
+  httpReferrerPolicy: same-origin
+  httpContentSecurityPolicy: default-src 'self'; frame-ancestors 'self'
 session:
   cookieName: s
   expiration: 45m

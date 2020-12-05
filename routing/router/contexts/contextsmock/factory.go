@@ -9,10 +9,6 @@ import (
 	"sync"
 )
 
-var (
-	lockFactoryMockNewContext sync.RWMutex
-)
-
 // Ensure, that FactoryMock does implement contexts.Factory.
 // If this is not the case, regenerate this file with moq.
 var _ contexts.Factory = &FactoryMock{}
@@ -50,6 +46,7 @@ type FactoryMock struct {
 			Site contexts.Site
 		}
 	}
+	lockNewContext sync.RWMutex
 }
 
 // NewContext calls NewContextFunc.
@@ -68,9 +65,9 @@ func (mock *FactoryMock) NewContext(request *http.Request, responseWriter http.R
 		Domain:         domain,
 		Site:           site,
 	}
-	lockFactoryMockNewContext.Lock()
+	mock.lockNewContext.Lock()
 	mock.calls.NewContext = append(mock.calls.NewContext, callInfo)
-	lockFactoryMockNewContext.Unlock()
+	mock.lockNewContext.Unlock()
 	return mock.NewContextFunc(request, responseWriter, domain, site)
 }
 
@@ -89,8 +86,8 @@ func (mock *FactoryMock) NewContextCalls() []struct {
 		Domain         contexts.Domain
 		Site           contexts.Site
 	}
-	lockFactoryMockNewContext.RLock()
+	mock.lockNewContext.RLock()
 	calls = mock.calls.NewContext
-	lockFactoryMockNewContext.RUnlock()
+	mock.lockNewContext.RUnlock()
 	return calls
 }
