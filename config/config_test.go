@@ -202,6 +202,7 @@ func TestConfigCallers(t *testing.T) {
 	testtools.EqDuration(t, "security.formTokenCleanupInterval", config.SecurityFormTokenCleanupInterval(), time.Second*10)
 	testtools.EqDuration(t, "security.formTokenLifespan", config.SecurityFormTokenLifespan(), time.Minute*8)
 	testtools.EqBool(t, "security.globalAuthentication", config.SecurityGlobalAuthentication(), true)
+	testtools.EqString(t, "security.jwtToken", config.SecurityJWTPassword(), "e86074797a09ccb62688c0fdf149ab18")
 
 	testtools.EqString(t, "session.cookieName", config.SessionCookieName(), "s")
 	testtools.EqDuration(t, "session.expiration", config.SessionExpiration(), time.Minute*45)

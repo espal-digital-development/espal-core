@@ -9,73 +9,6 @@ import (
 	"time"
 )
 
-var (
-	lockConfigMockAdminURL                           sync.RWMutex
-	lockConfigMockAssetsBrotli                       sync.RWMutex
-	lockConfigMockAssetsBrotliFiles                  sync.RWMutex
-	lockConfigMockAssetsCacheMaxAge                  sync.RWMutex
-	lockConfigMockAssetsGZip                         sync.RWMutex
-	lockConfigMockAssetsGZipFiles                    sync.RWMutex
-	lockConfigMockAvailableLanguages                 sync.RWMutex
-	lockConfigMockDatabaseCreator                    sync.RWMutex
-	lockConfigMockDatabaseCreatorSSLCertificateFile  sync.RWMutex
-	lockConfigMockDatabaseCreatorSSLKeyFile          sync.RWMutex
-	lockConfigMockDatabaseDeletor                    sync.RWMutex
-	lockConfigMockDatabaseDeletorSSLCertificateFile  sync.RWMutex
-	lockConfigMockDatabaseDeletorSSLKeyFile          sync.RWMutex
-	lockConfigMockDatabaseHost                       sync.RWMutex
-	lockConfigMockDatabaseInserter                   sync.RWMutex
-	lockConfigMockDatabaseInserterSSLCertificateFile sync.RWMutex
-	lockConfigMockDatabaseInserterSSLKeyFile         sync.RWMutex
-	lockConfigMockDatabaseMigrator                   sync.RWMutex
-	lockConfigMockDatabaseMigratorSSLCertificateFile sync.RWMutex
-	lockConfigMockDatabaseMigratorSSLKeyFile         sync.RWMutex
-	lockConfigMockDatabaseName                       sync.RWMutex
-	lockConfigMockDatabasePort                       sync.RWMutex
-	lockConfigMockDatabaseSSLRootCertificateFile     sync.RWMutex
-	lockConfigMockDatabaseSelecter                   sync.RWMutex
-	lockConfigMockDatabaseSelecterSSLCertificateFile sync.RWMutex
-	lockConfigMockDatabaseSelecterSSLKeyFile         sync.RWMutex
-	lockConfigMockDatabaseUpdater                    sync.RWMutex
-	lockConfigMockDatabaseUpdaterSSLCertificateFile  sync.RWMutex
-	lockConfigMockDatabaseUpdaterSSLKeyFile          sync.RWMutex
-	lockConfigMockDefaultLanguage                    sync.RWMutex
-	lockConfigMockDevelopment                        sync.RWMutex
-	lockConfigMockEmailHost                          sync.RWMutex
-	lockConfigMockEmailNoReplyAddress                sync.RWMutex
-	lockConfigMockEmailPassword                      sync.RWMutex
-	lockConfigMockEmailPort                          sync.RWMutex
-	lockConfigMockEmailUsername                      sync.RWMutex
-	lockConfigMockImagesAssetsPath                   sync.RWMutex
-	lockConfigMockJavaScriptAssetsPath               sync.RWMutex
-	lockConfigMockLanguageIsAvailable                sync.RWMutex
-	lockConfigMockLanguages                          sync.RWMutex
-	lockConfigMockLogging                            sync.RWMutex
-	lockConfigMockOptimizeGifs                       sync.RWMutex
-	lockConfigMockOptimizeJpegs                      sync.RWMutex
-	lockConfigMockOptimizePngs                       sync.RWMutex
-	lockConfigMockOptimizeSvgs                       sync.RWMutex
-	lockConfigMockPprof                              sync.RWMutex
-	lockConfigMockPprofURL                           sync.RWMutex
-	lockConfigMockPrivateFilesAssetsPath             sync.RWMutex
-	lockConfigMockPublicFilesAssetsPath              sync.RWMutex
-	lockConfigMockPublicRootFilesAssetsPath          sync.RWMutex
-	lockConfigMockSecurityBcryptRounds               sync.RWMutex
-	lockConfigMockSecurityFormTokenCleanupInterval   sync.RWMutex
-	lockConfigMockSecurityFormTokenLifespan          sync.RWMutex
-	lockConfigMockSecurityGlobalAuthentication       sync.RWMutex
-	lockConfigMockServerHTTPRedirectPort             sync.RWMutex
-	lockConfigMockServerHost                         sync.RWMutex
-	lockConfigMockServerPort                         sync.RWMutex
-	lockConfigMockServerSSLCertificateFilePath       sync.RWMutex
-	lockConfigMockServerSSLKeyFilePath               sync.RWMutex
-	lockConfigMockSessionCookieName                  sync.RWMutex
-	lockConfigMockSessionExpiration                  sync.RWMutex
-	lockConfigMockSessionRememberMeExpiration        sync.RWMutex
-	lockConfigMockStylesheetsAssetsPath              sync.RWMutex
-	lockConfigMockTranslationsPath                   sync.RWMutex
-)
-
 // Ensure, that ConfigMock does implement config.Config.
 // If this is not the case, regenerate this file with moq.
 var _ config.Config = &ConfigMock{}
@@ -247,6 +180,9 @@ var _ config.Config = &ConfigMock{}
 //             },
 //             SecurityGlobalAuthenticationFunc: func() bool {
 // 	               panic("mock out the SecurityGlobalAuthentication method")
+//             },
+//             SecurityJWTPasswordFunc: func() string {
+// 	               panic("mock out the SecurityJWTPassword method")
 //             },
 //             ServerHTTPRedirectPortFunc: func() int {
 // 	               panic("mock out the ServerHTTPRedirectPort method")
@@ -447,6 +383,9 @@ type ConfigMock struct {
 	// SecurityGlobalAuthenticationFunc mocks the SecurityGlobalAuthentication method.
 	SecurityGlobalAuthenticationFunc func() bool
 
+	// SecurityJWTPasswordFunc mocks the SecurityJWTPassword method.
+	SecurityJWTPasswordFunc func() string
+
 	// ServerHTTPRedirectPortFunc mocks the ServerHTTPRedirectPort method.
 	ServerHTTPRedirectPortFunc func() int
 
@@ -643,6 +582,9 @@ type ConfigMock struct {
 		// SecurityGlobalAuthentication holds details about calls to the SecurityGlobalAuthentication method.
 		SecurityGlobalAuthentication []struct {
 		}
+		// SecurityJWTPassword holds details about calls to the SecurityJWTPassword method.
+		SecurityJWTPassword []struct {
+		}
 		// ServerHTTPRedirectPort holds details about calls to the ServerHTTPRedirectPort method.
 		ServerHTTPRedirectPort []struct {
 		}
@@ -674,6 +616,71 @@ type ConfigMock struct {
 		TranslationsPath []struct {
 		}
 	}
+	lockAdminURL                           sync.RWMutex
+	lockAssetsBrotli                       sync.RWMutex
+	lockAssetsBrotliFiles                  sync.RWMutex
+	lockAssetsCacheMaxAge                  sync.RWMutex
+	lockAssetsGZip                         sync.RWMutex
+	lockAssetsGZipFiles                    sync.RWMutex
+	lockAvailableLanguages                 sync.RWMutex
+	lockDatabaseCreator                    sync.RWMutex
+	lockDatabaseCreatorSSLCertificateFile  sync.RWMutex
+	lockDatabaseCreatorSSLKeyFile          sync.RWMutex
+	lockDatabaseDeletor                    sync.RWMutex
+	lockDatabaseDeletorSSLCertificateFile  sync.RWMutex
+	lockDatabaseDeletorSSLKeyFile          sync.RWMutex
+	lockDatabaseHost                       sync.RWMutex
+	lockDatabaseInserter                   sync.RWMutex
+	lockDatabaseInserterSSLCertificateFile sync.RWMutex
+	lockDatabaseInserterSSLKeyFile         sync.RWMutex
+	lockDatabaseMigrator                   sync.RWMutex
+	lockDatabaseMigratorSSLCertificateFile sync.RWMutex
+	lockDatabaseMigratorSSLKeyFile         sync.RWMutex
+	lockDatabaseName                       sync.RWMutex
+	lockDatabasePort                       sync.RWMutex
+	lockDatabaseSSLRootCertificateFile     sync.RWMutex
+	lockDatabaseSelecter                   sync.RWMutex
+	lockDatabaseSelecterSSLCertificateFile sync.RWMutex
+	lockDatabaseSelecterSSLKeyFile         sync.RWMutex
+	lockDatabaseUpdater                    sync.RWMutex
+	lockDatabaseUpdaterSSLCertificateFile  sync.RWMutex
+	lockDatabaseUpdaterSSLKeyFile          sync.RWMutex
+	lockDefaultLanguage                    sync.RWMutex
+	lockDevelopment                        sync.RWMutex
+	lockEmailHost                          sync.RWMutex
+	lockEmailNoReplyAddress                sync.RWMutex
+	lockEmailPassword                      sync.RWMutex
+	lockEmailPort                          sync.RWMutex
+	lockEmailUsername                      sync.RWMutex
+	lockImagesAssetsPath                   sync.RWMutex
+	lockJavaScriptAssetsPath               sync.RWMutex
+	lockLanguageIsAvailable                sync.RWMutex
+	lockLanguages                          sync.RWMutex
+	lockLogging                            sync.RWMutex
+	lockOptimizeGifs                       sync.RWMutex
+	lockOptimizeJpegs                      sync.RWMutex
+	lockOptimizePngs                       sync.RWMutex
+	lockOptimizeSvgs                       sync.RWMutex
+	lockPprof                              sync.RWMutex
+	lockPprofURL                           sync.RWMutex
+	lockPrivateFilesAssetsPath             sync.RWMutex
+	lockPublicFilesAssetsPath              sync.RWMutex
+	lockPublicRootFilesAssetsPath          sync.RWMutex
+	lockSecurityBcryptRounds               sync.RWMutex
+	lockSecurityFormTokenCleanupInterval   sync.RWMutex
+	lockSecurityFormTokenLifespan          sync.RWMutex
+	lockSecurityGlobalAuthentication       sync.RWMutex
+	lockSecurityJWTPassword                sync.RWMutex
+	lockServerHTTPRedirectPort             sync.RWMutex
+	lockServerHost                         sync.RWMutex
+	lockServerPort                         sync.RWMutex
+	lockServerSSLCertificateFilePath       sync.RWMutex
+	lockServerSSLKeyFilePath               sync.RWMutex
+	lockSessionCookieName                  sync.RWMutex
+	lockSessionExpiration                  sync.RWMutex
+	lockSessionRememberMeExpiration        sync.RWMutex
+	lockStylesheetsAssetsPath              sync.RWMutex
+	lockTranslationsPath                   sync.RWMutex
 }
 
 // AdminURL calls AdminURLFunc.
@@ -683,9 +690,9 @@ func (mock *ConfigMock) AdminURL() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAdminURL.Lock()
+	mock.lockAdminURL.Lock()
 	mock.calls.AdminURL = append(mock.calls.AdminURL, callInfo)
-	lockConfigMockAdminURL.Unlock()
+	mock.lockAdminURL.Unlock()
 	return mock.AdminURLFunc()
 }
 
@@ -696,9 +703,9 @@ func (mock *ConfigMock) AdminURLCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAdminURL.RLock()
+	mock.lockAdminURL.RLock()
 	calls = mock.calls.AdminURL
-	lockConfigMockAdminURL.RUnlock()
+	mock.lockAdminURL.RUnlock()
 	return calls
 }
 
@@ -709,9 +716,9 @@ func (mock *ConfigMock) AssetsBrotli() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAssetsBrotli.Lock()
+	mock.lockAssetsBrotli.Lock()
 	mock.calls.AssetsBrotli = append(mock.calls.AssetsBrotli, callInfo)
-	lockConfigMockAssetsBrotli.Unlock()
+	mock.lockAssetsBrotli.Unlock()
 	return mock.AssetsBrotliFunc()
 }
 
@@ -722,9 +729,9 @@ func (mock *ConfigMock) AssetsBrotliCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAssetsBrotli.RLock()
+	mock.lockAssetsBrotli.RLock()
 	calls = mock.calls.AssetsBrotli
-	lockConfigMockAssetsBrotli.RUnlock()
+	mock.lockAssetsBrotli.RUnlock()
 	return calls
 }
 
@@ -735,9 +742,9 @@ func (mock *ConfigMock) AssetsBrotliFiles() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAssetsBrotliFiles.Lock()
+	mock.lockAssetsBrotliFiles.Lock()
 	mock.calls.AssetsBrotliFiles = append(mock.calls.AssetsBrotliFiles, callInfo)
-	lockConfigMockAssetsBrotliFiles.Unlock()
+	mock.lockAssetsBrotliFiles.Unlock()
 	return mock.AssetsBrotliFilesFunc()
 }
 
@@ -748,9 +755,9 @@ func (mock *ConfigMock) AssetsBrotliFilesCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAssetsBrotliFiles.RLock()
+	mock.lockAssetsBrotliFiles.RLock()
 	calls = mock.calls.AssetsBrotliFiles
-	lockConfigMockAssetsBrotliFiles.RUnlock()
+	mock.lockAssetsBrotliFiles.RUnlock()
 	return calls
 }
 
@@ -761,9 +768,9 @@ func (mock *ConfigMock) AssetsCacheMaxAge() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAssetsCacheMaxAge.Lock()
+	mock.lockAssetsCacheMaxAge.Lock()
 	mock.calls.AssetsCacheMaxAge = append(mock.calls.AssetsCacheMaxAge, callInfo)
-	lockConfigMockAssetsCacheMaxAge.Unlock()
+	mock.lockAssetsCacheMaxAge.Unlock()
 	return mock.AssetsCacheMaxAgeFunc()
 }
 
@@ -774,9 +781,9 @@ func (mock *ConfigMock) AssetsCacheMaxAgeCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAssetsCacheMaxAge.RLock()
+	mock.lockAssetsCacheMaxAge.RLock()
 	calls = mock.calls.AssetsCacheMaxAge
-	lockConfigMockAssetsCacheMaxAge.RUnlock()
+	mock.lockAssetsCacheMaxAge.RUnlock()
 	return calls
 }
 
@@ -787,9 +794,9 @@ func (mock *ConfigMock) AssetsGZip() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAssetsGZip.Lock()
+	mock.lockAssetsGZip.Lock()
 	mock.calls.AssetsGZip = append(mock.calls.AssetsGZip, callInfo)
-	lockConfigMockAssetsGZip.Unlock()
+	mock.lockAssetsGZip.Unlock()
 	return mock.AssetsGZipFunc()
 }
 
@@ -800,9 +807,9 @@ func (mock *ConfigMock) AssetsGZipCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAssetsGZip.RLock()
+	mock.lockAssetsGZip.RLock()
 	calls = mock.calls.AssetsGZip
-	lockConfigMockAssetsGZip.RUnlock()
+	mock.lockAssetsGZip.RUnlock()
 	return calls
 }
 
@@ -813,9 +820,9 @@ func (mock *ConfigMock) AssetsGZipFiles() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAssetsGZipFiles.Lock()
+	mock.lockAssetsGZipFiles.Lock()
 	mock.calls.AssetsGZipFiles = append(mock.calls.AssetsGZipFiles, callInfo)
-	lockConfigMockAssetsGZipFiles.Unlock()
+	mock.lockAssetsGZipFiles.Unlock()
 	return mock.AssetsGZipFilesFunc()
 }
 
@@ -826,9 +833,9 @@ func (mock *ConfigMock) AssetsGZipFilesCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAssetsGZipFiles.RLock()
+	mock.lockAssetsGZipFiles.RLock()
 	calls = mock.calls.AssetsGZipFiles
-	lockConfigMockAssetsGZipFiles.RUnlock()
+	mock.lockAssetsGZipFiles.RUnlock()
 	return calls
 }
 
@@ -839,9 +846,9 @@ func (mock *ConfigMock) AvailableLanguages() []string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockAvailableLanguages.Lock()
+	mock.lockAvailableLanguages.Lock()
 	mock.calls.AvailableLanguages = append(mock.calls.AvailableLanguages, callInfo)
-	lockConfigMockAvailableLanguages.Unlock()
+	mock.lockAvailableLanguages.Unlock()
 	return mock.AvailableLanguagesFunc()
 }
 
@@ -852,9 +859,9 @@ func (mock *ConfigMock) AvailableLanguagesCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockAvailableLanguages.RLock()
+	mock.lockAvailableLanguages.RLock()
 	calls = mock.calls.AvailableLanguages
-	lockConfigMockAvailableLanguages.RUnlock()
+	mock.lockAvailableLanguages.RUnlock()
 	return calls
 }
 
@@ -865,9 +872,9 @@ func (mock *ConfigMock) DatabaseCreator() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseCreator.Lock()
+	mock.lockDatabaseCreator.Lock()
 	mock.calls.DatabaseCreator = append(mock.calls.DatabaseCreator, callInfo)
-	lockConfigMockDatabaseCreator.Unlock()
+	mock.lockDatabaseCreator.Unlock()
 	return mock.DatabaseCreatorFunc()
 }
 
@@ -878,9 +885,9 @@ func (mock *ConfigMock) DatabaseCreatorCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseCreator.RLock()
+	mock.lockDatabaseCreator.RLock()
 	calls = mock.calls.DatabaseCreator
-	lockConfigMockDatabaseCreator.RUnlock()
+	mock.lockDatabaseCreator.RUnlock()
 	return calls
 }
 
@@ -891,9 +898,9 @@ func (mock *ConfigMock) DatabaseCreatorSSLCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseCreatorSSLCertificateFile.Lock()
+	mock.lockDatabaseCreatorSSLCertificateFile.Lock()
 	mock.calls.DatabaseCreatorSSLCertificateFile = append(mock.calls.DatabaseCreatorSSLCertificateFile, callInfo)
-	lockConfigMockDatabaseCreatorSSLCertificateFile.Unlock()
+	mock.lockDatabaseCreatorSSLCertificateFile.Unlock()
 	return mock.DatabaseCreatorSSLCertificateFileFunc()
 }
 
@@ -904,9 +911,9 @@ func (mock *ConfigMock) DatabaseCreatorSSLCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseCreatorSSLCertificateFile.RLock()
+	mock.lockDatabaseCreatorSSLCertificateFile.RLock()
 	calls = mock.calls.DatabaseCreatorSSLCertificateFile
-	lockConfigMockDatabaseCreatorSSLCertificateFile.RUnlock()
+	mock.lockDatabaseCreatorSSLCertificateFile.RUnlock()
 	return calls
 }
 
@@ -917,9 +924,9 @@ func (mock *ConfigMock) DatabaseCreatorSSLKeyFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseCreatorSSLKeyFile.Lock()
+	mock.lockDatabaseCreatorSSLKeyFile.Lock()
 	mock.calls.DatabaseCreatorSSLKeyFile = append(mock.calls.DatabaseCreatorSSLKeyFile, callInfo)
-	lockConfigMockDatabaseCreatorSSLKeyFile.Unlock()
+	mock.lockDatabaseCreatorSSLKeyFile.Unlock()
 	return mock.DatabaseCreatorSSLKeyFileFunc()
 }
 
@@ -930,9 +937,9 @@ func (mock *ConfigMock) DatabaseCreatorSSLKeyFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseCreatorSSLKeyFile.RLock()
+	mock.lockDatabaseCreatorSSLKeyFile.RLock()
 	calls = mock.calls.DatabaseCreatorSSLKeyFile
-	lockConfigMockDatabaseCreatorSSLKeyFile.RUnlock()
+	mock.lockDatabaseCreatorSSLKeyFile.RUnlock()
 	return calls
 }
 
@@ -943,9 +950,9 @@ func (mock *ConfigMock) DatabaseDeletor() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseDeletor.Lock()
+	mock.lockDatabaseDeletor.Lock()
 	mock.calls.DatabaseDeletor = append(mock.calls.DatabaseDeletor, callInfo)
-	lockConfigMockDatabaseDeletor.Unlock()
+	mock.lockDatabaseDeletor.Unlock()
 	return mock.DatabaseDeletorFunc()
 }
 
@@ -956,9 +963,9 @@ func (mock *ConfigMock) DatabaseDeletorCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseDeletor.RLock()
+	mock.lockDatabaseDeletor.RLock()
 	calls = mock.calls.DatabaseDeletor
-	lockConfigMockDatabaseDeletor.RUnlock()
+	mock.lockDatabaseDeletor.RUnlock()
 	return calls
 }
 
@@ -969,9 +976,9 @@ func (mock *ConfigMock) DatabaseDeletorSSLCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseDeletorSSLCertificateFile.Lock()
+	mock.lockDatabaseDeletorSSLCertificateFile.Lock()
 	mock.calls.DatabaseDeletorSSLCertificateFile = append(mock.calls.DatabaseDeletorSSLCertificateFile, callInfo)
-	lockConfigMockDatabaseDeletorSSLCertificateFile.Unlock()
+	mock.lockDatabaseDeletorSSLCertificateFile.Unlock()
 	return mock.DatabaseDeletorSSLCertificateFileFunc()
 }
 
@@ -982,9 +989,9 @@ func (mock *ConfigMock) DatabaseDeletorSSLCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseDeletorSSLCertificateFile.RLock()
+	mock.lockDatabaseDeletorSSLCertificateFile.RLock()
 	calls = mock.calls.DatabaseDeletorSSLCertificateFile
-	lockConfigMockDatabaseDeletorSSLCertificateFile.RUnlock()
+	mock.lockDatabaseDeletorSSLCertificateFile.RUnlock()
 	return calls
 }
 
@@ -995,9 +1002,9 @@ func (mock *ConfigMock) DatabaseDeletorSSLKeyFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseDeletorSSLKeyFile.Lock()
+	mock.lockDatabaseDeletorSSLKeyFile.Lock()
 	mock.calls.DatabaseDeletorSSLKeyFile = append(mock.calls.DatabaseDeletorSSLKeyFile, callInfo)
-	lockConfigMockDatabaseDeletorSSLKeyFile.Unlock()
+	mock.lockDatabaseDeletorSSLKeyFile.Unlock()
 	return mock.DatabaseDeletorSSLKeyFileFunc()
 }
 
@@ -1008,9 +1015,9 @@ func (mock *ConfigMock) DatabaseDeletorSSLKeyFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseDeletorSSLKeyFile.RLock()
+	mock.lockDatabaseDeletorSSLKeyFile.RLock()
 	calls = mock.calls.DatabaseDeletorSSLKeyFile
-	lockConfigMockDatabaseDeletorSSLKeyFile.RUnlock()
+	mock.lockDatabaseDeletorSSLKeyFile.RUnlock()
 	return calls
 }
 
@@ -1021,9 +1028,9 @@ func (mock *ConfigMock) DatabaseHost() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseHost.Lock()
+	mock.lockDatabaseHost.Lock()
 	mock.calls.DatabaseHost = append(mock.calls.DatabaseHost, callInfo)
-	lockConfigMockDatabaseHost.Unlock()
+	mock.lockDatabaseHost.Unlock()
 	return mock.DatabaseHostFunc()
 }
 
@@ -1034,9 +1041,9 @@ func (mock *ConfigMock) DatabaseHostCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseHost.RLock()
+	mock.lockDatabaseHost.RLock()
 	calls = mock.calls.DatabaseHost
-	lockConfigMockDatabaseHost.RUnlock()
+	mock.lockDatabaseHost.RUnlock()
 	return calls
 }
 
@@ -1047,9 +1054,9 @@ func (mock *ConfigMock) DatabaseInserter() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseInserter.Lock()
+	mock.lockDatabaseInserter.Lock()
 	mock.calls.DatabaseInserter = append(mock.calls.DatabaseInserter, callInfo)
-	lockConfigMockDatabaseInserter.Unlock()
+	mock.lockDatabaseInserter.Unlock()
 	return mock.DatabaseInserterFunc()
 }
 
@@ -1060,9 +1067,9 @@ func (mock *ConfigMock) DatabaseInserterCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseInserter.RLock()
+	mock.lockDatabaseInserter.RLock()
 	calls = mock.calls.DatabaseInserter
-	lockConfigMockDatabaseInserter.RUnlock()
+	mock.lockDatabaseInserter.RUnlock()
 	return calls
 }
 
@@ -1073,9 +1080,9 @@ func (mock *ConfigMock) DatabaseInserterSSLCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseInserterSSLCertificateFile.Lock()
+	mock.lockDatabaseInserterSSLCertificateFile.Lock()
 	mock.calls.DatabaseInserterSSLCertificateFile = append(mock.calls.DatabaseInserterSSLCertificateFile, callInfo)
-	lockConfigMockDatabaseInserterSSLCertificateFile.Unlock()
+	mock.lockDatabaseInserterSSLCertificateFile.Unlock()
 	return mock.DatabaseInserterSSLCertificateFileFunc()
 }
 
@@ -1086,9 +1093,9 @@ func (mock *ConfigMock) DatabaseInserterSSLCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseInserterSSLCertificateFile.RLock()
+	mock.lockDatabaseInserterSSLCertificateFile.RLock()
 	calls = mock.calls.DatabaseInserterSSLCertificateFile
-	lockConfigMockDatabaseInserterSSLCertificateFile.RUnlock()
+	mock.lockDatabaseInserterSSLCertificateFile.RUnlock()
 	return calls
 }
 
@@ -1099,9 +1106,9 @@ func (mock *ConfigMock) DatabaseInserterSSLKeyFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseInserterSSLKeyFile.Lock()
+	mock.lockDatabaseInserterSSLKeyFile.Lock()
 	mock.calls.DatabaseInserterSSLKeyFile = append(mock.calls.DatabaseInserterSSLKeyFile, callInfo)
-	lockConfigMockDatabaseInserterSSLKeyFile.Unlock()
+	mock.lockDatabaseInserterSSLKeyFile.Unlock()
 	return mock.DatabaseInserterSSLKeyFileFunc()
 }
 
@@ -1112,9 +1119,9 @@ func (mock *ConfigMock) DatabaseInserterSSLKeyFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseInserterSSLKeyFile.RLock()
+	mock.lockDatabaseInserterSSLKeyFile.RLock()
 	calls = mock.calls.DatabaseInserterSSLKeyFile
-	lockConfigMockDatabaseInserterSSLKeyFile.RUnlock()
+	mock.lockDatabaseInserterSSLKeyFile.RUnlock()
 	return calls
 }
 
@@ -1125,9 +1132,9 @@ func (mock *ConfigMock) DatabaseMigrator() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseMigrator.Lock()
+	mock.lockDatabaseMigrator.Lock()
 	mock.calls.DatabaseMigrator = append(mock.calls.DatabaseMigrator, callInfo)
-	lockConfigMockDatabaseMigrator.Unlock()
+	mock.lockDatabaseMigrator.Unlock()
 	return mock.DatabaseMigratorFunc()
 }
 
@@ -1138,9 +1145,9 @@ func (mock *ConfigMock) DatabaseMigratorCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseMigrator.RLock()
+	mock.lockDatabaseMigrator.RLock()
 	calls = mock.calls.DatabaseMigrator
-	lockConfigMockDatabaseMigrator.RUnlock()
+	mock.lockDatabaseMigrator.RUnlock()
 	return calls
 }
 
@@ -1151,9 +1158,9 @@ func (mock *ConfigMock) DatabaseMigratorSSLCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseMigratorSSLCertificateFile.Lock()
+	mock.lockDatabaseMigratorSSLCertificateFile.Lock()
 	mock.calls.DatabaseMigratorSSLCertificateFile = append(mock.calls.DatabaseMigratorSSLCertificateFile, callInfo)
-	lockConfigMockDatabaseMigratorSSLCertificateFile.Unlock()
+	mock.lockDatabaseMigratorSSLCertificateFile.Unlock()
 	return mock.DatabaseMigratorSSLCertificateFileFunc()
 }
 
@@ -1164,9 +1171,9 @@ func (mock *ConfigMock) DatabaseMigratorSSLCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseMigratorSSLCertificateFile.RLock()
+	mock.lockDatabaseMigratorSSLCertificateFile.RLock()
 	calls = mock.calls.DatabaseMigratorSSLCertificateFile
-	lockConfigMockDatabaseMigratorSSLCertificateFile.RUnlock()
+	mock.lockDatabaseMigratorSSLCertificateFile.RUnlock()
 	return calls
 }
 
@@ -1177,9 +1184,9 @@ func (mock *ConfigMock) DatabaseMigratorSSLKeyFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseMigratorSSLKeyFile.Lock()
+	mock.lockDatabaseMigratorSSLKeyFile.Lock()
 	mock.calls.DatabaseMigratorSSLKeyFile = append(mock.calls.DatabaseMigratorSSLKeyFile, callInfo)
-	lockConfigMockDatabaseMigratorSSLKeyFile.Unlock()
+	mock.lockDatabaseMigratorSSLKeyFile.Unlock()
 	return mock.DatabaseMigratorSSLKeyFileFunc()
 }
 
@@ -1190,9 +1197,9 @@ func (mock *ConfigMock) DatabaseMigratorSSLKeyFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseMigratorSSLKeyFile.RLock()
+	mock.lockDatabaseMigratorSSLKeyFile.RLock()
 	calls = mock.calls.DatabaseMigratorSSLKeyFile
-	lockConfigMockDatabaseMigratorSSLKeyFile.RUnlock()
+	mock.lockDatabaseMigratorSSLKeyFile.RUnlock()
 	return calls
 }
 
@@ -1203,9 +1210,9 @@ func (mock *ConfigMock) DatabaseName() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseName.Lock()
+	mock.lockDatabaseName.Lock()
 	mock.calls.DatabaseName = append(mock.calls.DatabaseName, callInfo)
-	lockConfigMockDatabaseName.Unlock()
+	mock.lockDatabaseName.Unlock()
 	return mock.DatabaseNameFunc()
 }
 
@@ -1216,9 +1223,9 @@ func (mock *ConfigMock) DatabaseNameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseName.RLock()
+	mock.lockDatabaseName.RLock()
 	calls = mock.calls.DatabaseName
-	lockConfigMockDatabaseName.RUnlock()
+	mock.lockDatabaseName.RUnlock()
 	return calls
 }
 
@@ -1229,9 +1236,9 @@ func (mock *ConfigMock) DatabasePort() int {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabasePort.Lock()
+	mock.lockDatabasePort.Lock()
 	mock.calls.DatabasePort = append(mock.calls.DatabasePort, callInfo)
-	lockConfigMockDatabasePort.Unlock()
+	mock.lockDatabasePort.Unlock()
 	return mock.DatabasePortFunc()
 }
 
@@ -1242,9 +1249,9 @@ func (mock *ConfigMock) DatabasePortCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabasePort.RLock()
+	mock.lockDatabasePort.RLock()
 	calls = mock.calls.DatabasePort
-	lockConfigMockDatabasePort.RUnlock()
+	mock.lockDatabasePort.RUnlock()
 	return calls
 }
 
@@ -1255,9 +1262,9 @@ func (mock *ConfigMock) DatabaseSSLRootCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseSSLRootCertificateFile.Lock()
+	mock.lockDatabaseSSLRootCertificateFile.Lock()
 	mock.calls.DatabaseSSLRootCertificateFile = append(mock.calls.DatabaseSSLRootCertificateFile, callInfo)
-	lockConfigMockDatabaseSSLRootCertificateFile.Unlock()
+	mock.lockDatabaseSSLRootCertificateFile.Unlock()
 	return mock.DatabaseSSLRootCertificateFileFunc()
 }
 
@@ -1268,9 +1275,9 @@ func (mock *ConfigMock) DatabaseSSLRootCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseSSLRootCertificateFile.RLock()
+	mock.lockDatabaseSSLRootCertificateFile.RLock()
 	calls = mock.calls.DatabaseSSLRootCertificateFile
-	lockConfigMockDatabaseSSLRootCertificateFile.RUnlock()
+	mock.lockDatabaseSSLRootCertificateFile.RUnlock()
 	return calls
 }
 
@@ -1281,9 +1288,9 @@ func (mock *ConfigMock) DatabaseSelecter() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseSelecter.Lock()
+	mock.lockDatabaseSelecter.Lock()
 	mock.calls.DatabaseSelecter = append(mock.calls.DatabaseSelecter, callInfo)
-	lockConfigMockDatabaseSelecter.Unlock()
+	mock.lockDatabaseSelecter.Unlock()
 	return mock.DatabaseSelecterFunc()
 }
 
@@ -1294,9 +1301,9 @@ func (mock *ConfigMock) DatabaseSelecterCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseSelecter.RLock()
+	mock.lockDatabaseSelecter.RLock()
 	calls = mock.calls.DatabaseSelecter
-	lockConfigMockDatabaseSelecter.RUnlock()
+	mock.lockDatabaseSelecter.RUnlock()
 	return calls
 }
 
@@ -1307,9 +1314,9 @@ func (mock *ConfigMock) DatabaseSelecterSSLCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseSelecterSSLCertificateFile.Lock()
+	mock.lockDatabaseSelecterSSLCertificateFile.Lock()
 	mock.calls.DatabaseSelecterSSLCertificateFile = append(mock.calls.DatabaseSelecterSSLCertificateFile, callInfo)
-	lockConfigMockDatabaseSelecterSSLCertificateFile.Unlock()
+	mock.lockDatabaseSelecterSSLCertificateFile.Unlock()
 	return mock.DatabaseSelecterSSLCertificateFileFunc()
 }
 
@@ -1320,9 +1327,9 @@ func (mock *ConfigMock) DatabaseSelecterSSLCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseSelecterSSLCertificateFile.RLock()
+	mock.lockDatabaseSelecterSSLCertificateFile.RLock()
 	calls = mock.calls.DatabaseSelecterSSLCertificateFile
-	lockConfigMockDatabaseSelecterSSLCertificateFile.RUnlock()
+	mock.lockDatabaseSelecterSSLCertificateFile.RUnlock()
 	return calls
 }
 
@@ -1333,9 +1340,9 @@ func (mock *ConfigMock) DatabaseSelecterSSLKeyFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseSelecterSSLKeyFile.Lock()
+	mock.lockDatabaseSelecterSSLKeyFile.Lock()
 	mock.calls.DatabaseSelecterSSLKeyFile = append(mock.calls.DatabaseSelecterSSLKeyFile, callInfo)
-	lockConfigMockDatabaseSelecterSSLKeyFile.Unlock()
+	mock.lockDatabaseSelecterSSLKeyFile.Unlock()
 	return mock.DatabaseSelecterSSLKeyFileFunc()
 }
 
@@ -1346,9 +1353,9 @@ func (mock *ConfigMock) DatabaseSelecterSSLKeyFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseSelecterSSLKeyFile.RLock()
+	mock.lockDatabaseSelecterSSLKeyFile.RLock()
 	calls = mock.calls.DatabaseSelecterSSLKeyFile
-	lockConfigMockDatabaseSelecterSSLKeyFile.RUnlock()
+	mock.lockDatabaseSelecterSSLKeyFile.RUnlock()
 	return calls
 }
 
@@ -1359,9 +1366,9 @@ func (mock *ConfigMock) DatabaseUpdater() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseUpdater.Lock()
+	mock.lockDatabaseUpdater.Lock()
 	mock.calls.DatabaseUpdater = append(mock.calls.DatabaseUpdater, callInfo)
-	lockConfigMockDatabaseUpdater.Unlock()
+	mock.lockDatabaseUpdater.Unlock()
 	return mock.DatabaseUpdaterFunc()
 }
 
@@ -1372,9 +1379,9 @@ func (mock *ConfigMock) DatabaseUpdaterCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseUpdater.RLock()
+	mock.lockDatabaseUpdater.RLock()
 	calls = mock.calls.DatabaseUpdater
-	lockConfigMockDatabaseUpdater.RUnlock()
+	mock.lockDatabaseUpdater.RUnlock()
 	return calls
 }
 
@@ -1385,9 +1392,9 @@ func (mock *ConfigMock) DatabaseUpdaterSSLCertificateFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseUpdaterSSLCertificateFile.Lock()
+	mock.lockDatabaseUpdaterSSLCertificateFile.Lock()
 	mock.calls.DatabaseUpdaterSSLCertificateFile = append(mock.calls.DatabaseUpdaterSSLCertificateFile, callInfo)
-	lockConfigMockDatabaseUpdaterSSLCertificateFile.Unlock()
+	mock.lockDatabaseUpdaterSSLCertificateFile.Unlock()
 	return mock.DatabaseUpdaterSSLCertificateFileFunc()
 }
 
@@ -1398,9 +1405,9 @@ func (mock *ConfigMock) DatabaseUpdaterSSLCertificateFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseUpdaterSSLCertificateFile.RLock()
+	mock.lockDatabaseUpdaterSSLCertificateFile.RLock()
 	calls = mock.calls.DatabaseUpdaterSSLCertificateFile
-	lockConfigMockDatabaseUpdaterSSLCertificateFile.RUnlock()
+	mock.lockDatabaseUpdaterSSLCertificateFile.RUnlock()
 	return calls
 }
 
@@ -1411,9 +1418,9 @@ func (mock *ConfigMock) DatabaseUpdaterSSLKeyFile() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDatabaseUpdaterSSLKeyFile.Lock()
+	mock.lockDatabaseUpdaterSSLKeyFile.Lock()
 	mock.calls.DatabaseUpdaterSSLKeyFile = append(mock.calls.DatabaseUpdaterSSLKeyFile, callInfo)
-	lockConfigMockDatabaseUpdaterSSLKeyFile.Unlock()
+	mock.lockDatabaseUpdaterSSLKeyFile.Unlock()
 	return mock.DatabaseUpdaterSSLKeyFileFunc()
 }
 
@@ -1424,9 +1431,9 @@ func (mock *ConfigMock) DatabaseUpdaterSSLKeyFileCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDatabaseUpdaterSSLKeyFile.RLock()
+	mock.lockDatabaseUpdaterSSLKeyFile.RLock()
 	calls = mock.calls.DatabaseUpdaterSSLKeyFile
-	lockConfigMockDatabaseUpdaterSSLKeyFile.RUnlock()
+	mock.lockDatabaseUpdaterSSLKeyFile.RUnlock()
 	return calls
 }
 
@@ -1437,9 +1444,9 @@ func (mock *ConfigMock) DefaultLanguage() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDefaultLanguage.Lock()
+	mock.lockDefaultLanguage.Lock()
 	mock.calls.DefaultLanguage = append(mock.calls.DefaultLanguage, callInfo)
-	lockConfigMockDefaultLanguage.Unlock()
+	mock.lockDefaultLanguage.Unlock()
 	return mock.DefaultLanguageFunc()
 }
 
@@ -1450,9 +1457,9 @@ func (mock *ConfigMock) DefaultLanguageCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDefaultLanguage.RLock()
+	mock.lockDefaultLanguage.RLock()
 	calls = mock.calls.DefaultLanguage
-	lockConfigMockDefaultLanguage.RUnlock()
+	mock.lockDefaultLanguage.RUnlock()
 	return calls
 }
 
@@ -1463,9 +1470,9 @@ func (mock *ConfigMock) Development() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockDevelopment.Lock()
+	mock.lockDevelopment.Lock()
 	mock.calls.Development = append(mock.calls.Development, callInfo)
-	lockConfigMockDevelopment.Unlock()
+	mock.lockDevelopment.Unlock()
 	return mock.DevelopmentFunc()
 }
 
@@ -1476,9 +1483,9 @@ func (mock *ConfigMock) DevelopmentCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockDevelopment.RLock()
+	mock.lockDevelopment.RLock()
 	calls = mock.calls.Development
-	lockConfigMockDevelopment.RUnlock()
+	mock.lockDevelopment.RUnlock()
 	return calls
 }
 
@@ -1489,9 +1496,9 @@ func (mock *ConfigMock) EmailHost() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockEmailHost.Lock()
+	mock.lockEmailHost.Lock()
 	mock.calls.EmailHost = append(mock.calls.EmailHost, callInfo)
-	lockConfigMockEmailHost.Unlock()
+	mock.lockEmailHost.Unlock()
 	return mock.EmailHostFunc()
 }
 
@@ -1502,9 +1509,9 @@ func (mock *ConfigMock) EmailHostCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockEmailHost.RLock()
+	mock.lockEmailHost.RLock()
 	calls = mock.calls.EmailHost
-	lockConfigMockEmailHost.RUnlock()
+	mock.lockEmailHost.RUnlock()
 	return calls
 }
 
@@ -1515,9 +1522,9 @@ func (mock *ConfigMock) EmailNoReplyAddress() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockEmailNoReplyAddress.Lock()
+	mock.lockEmailNoReplyAddress.Lock()
 	mock.calls.EmailNoReplyAddress = append(mock.calls.EmailNoReplyAddress, callInfo)
-	lockConfigMockEmailNoReplyAddress.Unlock()
+	mock.lockEmailNoReplyAddress.Unlock()
 	return mock.EmailNoReplyAddressFunc()
 }
 
@@ -1528,9 +1535,9 @@ func (mock *ConfigMock) EmailNoReplyAddressCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockEmailNoReplyAddress.RLock()
+	mock.lockEmailNoReplyAddress.RLock()
 	calls = mock.calls.EmailNoReplyAddress
-	lockConfigMockEmailNoReplyAddress.RUnlock()
+	mock.lockEmailNoReplyAddress.RUnlock()
 	return calls
 }
 
@@ -1541,9 +1548,9 @@ func (mock *ConfigMock) EmailPassword() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockEmailPassword.Lock()
+	mock.lockEmailPassword.Lock()
 	mock.calls.EmailPassword = append(mock.calls.EmailPassword, callInfo)
-	lockConfigMockEmailPassword.Unlock()
+	mock.lockEmailPassword.Unlock()
 	return mock.EmailPasswordFunc()
 }
 
@@ -1554,9 +1561,9 @@ func (mock *ConfigMock) EmailPasswordCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockEmailPassword.RLock()
+	mock.lockEmailPassword.RLock()
 	calls = mock.calls.EmailPassword
-	lockConfigMockEmailPassword.RUnlock()
+	mock.lockEmailPassword.RUnlock()
 	return calls
 }
 
@@ -1567,9 +1574,9 @@ func (mock *ConfigMock) EmailPort() int {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockEmailPort.Lock()
+	mock.lockEmailPort.Lock()
 	mock.calls.EmailPort = append(mock.calls.EmailPort, callInfo)
-	lockConfigMockEmailPort.Unlock()
+	mock.lockEmailPort.Unlock()
 	return mock.EmailPortFunc()
 }
 
@@ -1580,9 +1587,9 @@ func (mock *ConfigMock) EmailPortCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockEmailPort.RLock()
+	mock.lockEmailPort.RLock()
 	calls = mock.calls.EmailPort
-	lockConfigMockEmailPort.RUnlock()
+	mock.lockEmailPort.RUnlock()
 	return calls
 }
 
@@ -1593,9 +1600,9 @@ func (mock *ConfigMock) EmailUsername() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockEmailUsername.Lock()
+	mock.lockEmailUsername.Lock()
 	mock.calls.EmailUsername = append(mock.calls.EmailUsername, callInfo)
-	lockConfigMockEmailUsername.Unlock()
+	mock.lockEmailUsername.Unlock()
 	return mock.EmailUsernameFunc()
 }
 
@@ -1606,9 +1613,9 @@ func (mock *ConfigMock) EmailUsernameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockEmailUsername.RLock()
+	mock.lockEmailUsername.RLock()
 	calls = mock.calls.EmailUsername
-	lockConfigMockEmailUsername.RUnlock()
+	mock.lockEmailUsername.RUnlock()
 	return calls
 }
 
@@ -1619,9 +1626,9 @@ func (mock *ConfigMock) ImagesAssetsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockImagesAssetsPath.Lock()
+	mock.lockImagesAssetsPath.Lock()
 	mock.calls.ImagesAssetsPath = append(mock.calls.ImagesAssetsPath, callInfo)
-	lockConfigMockImagesAssetsPath.Unlock()
+	mock.lockImagesAssetsPath.Unlock()
 	return mock.ImagesAssetsPathFunc()
 }
 
@@ -1632,9 +1639,9 @@ func (mock *ConfigMock) ImagesAssetsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockImagesAssetsPath.RLock()
+	mock.lockImagesAssetsPath.RLock()
 	calls = mock.calls.ImagesAssetsPath
-	lockConfigMockImagesAssetsPath.RUnlock()
+	mock.lockImagesAssetsPath.RUnlock()
 	return calls
 }
 
@@ -1645,9 +1652,9 @@ func (mock *ConfigMock) JavaScriptAssetsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockJavaScriptAssetsPath.Lock()
+	mock.lockJavaScriptAssetsPath.Lock()
 	mock.calls.JavaScriptAssetsPath = append(mock.calls.JavaScriptAssetsPath, callInfo)
-	lockConfigMockJavaScriptAssetsPath.Unlock()
+	mock.lockJavaScriptAssetsPath.Unlock()
 	return mock.JavaScriptAssetsPathFunc()
 }
 
@@ -1658,9 +1665,9 @@ func (mock *ConfigMock) JavaScriptAssetsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockJavaScriptAssetsPath.RLock()
+	mock.lockJavaScriptAssetsPath.RLock()
 	calls = mock.calls.JavaScriptAssetsPath
-	lockConfigMockJavaScriptAssetsPath.RUnlock()
+	mock.lockJavaScriptAssetsPath.RUnlock()
 	return calls
 }
 
@@ -1674,9 +1681,9 @@ func (mock *ConfigMock) LanguageIsAvailable(code string) bool {
 	}{
 		Code: code,
 	}
-	lockConfigMockLanguageIsAvailable.Lock()
+	mock.lockLanguageIsAvailable.Lock()
 	mock.calls.LanguageIsAvailable = append(mock.calls.LanguageIsAvailable, callInfo)
-	lockConfigMockLanguageIsAvailable.Unlock()
+	mock.lockLanguageIsAvailable.Unlock()
 	return mock.LanguageIsAvailableFunc(code)
 }
 
@@ -1689,9 +1696,9 @@ func (mock *ConfigMock) LanguageIsAvailableCalls() []struct {
 	var calls []struct {
 		Code string
 	}
-	lockConfigMockLanguageIsAvailable.RLock()
+	mock.lockLanguageIsAvailable.RLock()
 	calls = mock.calls.LanguageIsAvailable
-	lockConfigMockLanguageIsAvailable.RUnlock()
+	mock.lockLanguageIsAvailable.RUnlock()
 	return calls
 }
 
@@ -1702,9 +1709,9 @@ func (mock *ConfigMock) Languages() []string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockLanguages.Lock()
+	mock.lockLanguages.Lock()
 	mock.calls.Languages = append(mock.calls.Languages, callInfo)
-	lockConfigMockLanguages.Unlock()
+	mock.lockLanguages.Unlock()
 	return mock.LanguagesFunc()
 }
 
@@ -1715,9 +1722,9 @@ func (mock *ConfigMock) LanguagesCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockLanguages.RLock()
+	mock.lockLanguages.RLock()
 	calls = mock.calls.Languages
-	lockConfigMockLanguages.RUnlock()
+	mock.lockLanguages.RUnlock()
 	return calls
 }
 
@@ -1728,9 +1735,9 @@ func (mock *ConfigMock) Logging() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockLogging.Lock()
+	mock.lockLogging.Lock()
 	mock.calls.Logging = append(mock.calls.Logging, callInfo)
-	lockConfigMockLogging.Unlock()
+	mock.lockLogging.Unlock()
 	return mock.LoggingFunc()
 }
 
@@ -1741,9 +1748,9 @@ func (mock *ConfigMock) LoggingCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockLogging.RLock()
+	mock.lockLogging.RLock()
 	calls = mock.calls.Logging
-	lockConfigMockLogging.RUnlock()
+	mock.lockLogging.RUnlock()
 	return calls
 }
 
@@ -1754,9 +1761,9 @@ func (mock *ConfigMock) OptimizeGifs() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockOptimizeGifs.Lock()
+	mock.lockOptimizeGifs.Lock()
 	mock.calls.OptimizeGifs = append(mock.calls.OptimizeGifs, callInfo)
-	lockConfigMockOptimizeGifs.Unlock()
+	mock.lockOptimizeGifs.Unlock()
 	return mock.OptimizeGifsFunc()
 }
 
@@ -1767,9 +1774,9 @@ func (mock *ConfigMock) OptimizeGifsCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockOptimizeGifs.RLock()
+	mock.lockOptimizeGifs.RLock()
 	calls = mock.calls.OptimizeGifs
-	lockConfigMockOptimizeGifs.RUnlock()
+	mock.lockOptimizeGifs.RUnlock()
 	return calls
 }
 
@@ -1780,9 +1787,9 @@ func (mock *ConfigMock) OptimizeJpegs() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockOptimizeJpegs.Lock()
+	mock.lockOptimizeJpegs.Lock()
 	mock.calls.OptimizeJpegs = append(mock.calls.OptimizeJpegs, callInfo)
-	lockConfigMockOptimizeJpegs.Unlock()
+	mock.lockOptimizeJpegs.Unlock()
 	return mock.OptimizeJpegsFunc()
 }
 
@@ -1793,9 +1800,9 @@ func (mock *ConfigMock) OptimizeJpegsCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockOptimizeJpegs.RLock()
+	mock.lockOptimizeJpegs.RLock()
 	calls = mock.calls.OptimizeJpegs
-	lockConfigMockOptimizeJpegs.RUnlock()
+	mock.lockOptimizeJpegs.RUnlock()
 	return calls
 }
 
@@ -1806,9 +1813,9 @@ func (mock *ConfigMock) OptimizePngs() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockOptimizePngs.Lock()
+	mock.lockOptimizePngs.Lock()
 	mock.calls.OptimizePngs = append(mock.calls.OptimizePngs, callInfo)
-	lockConfigMockOptimizePngs.Unlock()
+	mock.lockOptimizePngs.Unlock()
 	return mock.OptimizePngsFunc()
 }
 
@@ -1819,9 +1826,9 @@ func (mock *ConfigMock) OptimizePngsCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockOptimizePngs.RLock()
+	mock.lockOptimizePngs.RLock()
 	calls = mock.calls.OptimizePngs
-	lockConfigMockOptimizePngs.RUnlock()
+	mock.lockOptimizePngs.RUnlock()
 	return calls
 }
 
@@ -1832,9 +1839,9 @@ func (mock *ConfigMock) OptimizeSvgs() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockOptimizeSvgs.Lock()
+	mock.lockOptimizeSvgs.Lock()
 	mock.calls.OptimizeSvgs = append(mock.calls.OptimizeSvgs, callInfo)
-	lockConfigMockOptimizeSvgs.Unlock()
+	mock.lockOptimizeSvgs.Unlock()
 	return mock.OptimizeSvgsFunc()
 }
 
@@ -1845,9 +1852,9 @@ func (mock *ConfigMock) OptimizeSvgsCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockOptimizeSvgs.RLock()
+	mock.lockOptimizeSvgs.RLock()
 	calls = mock.calls.OptimizeSvgs
-	lockConfigMockOptimizeSvgs.RUnlock()
+	mock.lockOptimizeSvgs.RUnlock()
 	return calls
 }
 
@@ -1858,9 +1865,9 @@ func (mock *ConfigMock) Pprof() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockPprof.Lock()
+	mock.lockPprof.Lock()
 	mock.calls.Pprof = append(mock.calls.Pprof, callInfo)
-	lockConfigMockPprof.Unlock()
+	mock.lockPprof.Unlock()
 	return mock.PprofFunc()
 }
 
@@ -1871,9 +1878,9 @@ func (mock *ConfigMock) PprofCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockPprof.RLock()
+	mock.lockPprof.RLock()
 	calls = mock.calls.Pprof
-	lockConfigMockPprof.RUnlock()
+	mock.lockPprof.RUnlock()
 	return calls
 }
 
@@ -1884,9 +1891,9 @@ func (mock *ConfigMock) PprofURL() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockPprofURL.Lock()
+	mock.lockPprofURL.Lock()
 	mock.calls.PprofURL = append(mock.calls.PprofURL, callInfo)
-	lockConfigMockPprofURL.Unlock()
+	mock.lockPprofURL.Unlock()
 	return mock.PprofURLFunc()
 }
 
@@ -1897,9 +1904,9 @@ func (mock *ConfigMock) PprofURLCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockPprofURL.RLock()
+	mock.lockPprofURL.RLock()
 	calls = mock.calls.PprofURL
-	lockConfigMockPprofURL.RUnlock()
+	mock.lockPprofURL.RUnlock()
 	return calls
 }
 
@@ -1910,9 +1917,9 @@ func (mock *ConfigMock) PrivateFilesAssetsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockPrivateFilesAssetsPath.Lock()
+	mock.lockPrivateFilesAssetsPath.Lock()
 	mock.calls.PrivateFilesAssetsPath = append(mock.calls.PrivateFilesAssetsPath, callInfo)
-	lockConfigMockPrivateFilesAssetsPath.Unlock()
+	mock.lockPrivateFilesAssetsPath.Unlock()
 	return mock.PrivateFilesAssetsPathFunc()
 }
 
@@ -1923,9 +1930,9 @@ func (mock *ConfigMock) PrivateFilesAssetsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockPrivateFilesAssetsPath.RLock()
+	mock.lockPrivateFilesAssetsPath.RLock()
 	calls = mock.calls.PrivateFilesAssetsPath
-	lockConfigMockPrivateFilesAssetsPath.RUnlock()
+	mock.lockPrivateFilesAssetsPath.RUnlock()
 	return calls
 }
 
@@ -1936,9 +1943,9 @@ func (mock *ConfigMock) PublicFilesAssetsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockPublicFilesAssetsPath.Lock()
+	mock.lockPublicFilesAssetsPath.Lock()
 	mock.calls.PublicFilesAssetsPath = append(mock.calls.PublicFilesAssetsPath, callInfo)
-	lockConfigMockPublicFilesAssetsPath.Unlock()
+	mock.lockPublicFilesAssetsPath.Unlock()
 	return mock.PublicFilesAssetsPathFunc()
 }
 
@@ -1949,9 +1956,9 @@ func (mock *ConfigMock) PublicFilesAssetsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockPublicFilesAssetsPath.RLock()
+	mock.lockPublicFilesAssetsPath.RLock()
 	calls = mock.calls.PublicFilesAssetsPath
-	lockConfigMockPublicFilesAssetsPath.RUnlock()
+	mock.lockPublicFilesAssetsPath.RUnlock()
 	return calls
 }
 
@@ -1962,9 +1969,9 @@ func (mock *ConfigMock) PublicRootFilesAssetsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockPublicRootFilesAssetsPath.Lock()
+	mock.lockPublicRootFilesAssetsPath.Lock()
 	mock.calls.PublicRootFilesAssetsPath = append(mock.calls.PublicRootFilesAssetsPath, callInfo)
-	lockConfigMockPublicRootFilesAssetsPath.Unlock()
+	mock.lockPublicRootFilesAssetsPath.Unlock()
 	return mock.PublicRootFilesAssetsPathFunc()
 }
 
@@ -1975,9 +1982,9 @@ func (mock *ConfigMock) PublicRootFilesAssetsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockPublicRootFilesAssetsPath.RLock()
+	mock.lockPublicRootFilesAssetsPath.RLock()
 	calls = mock.calls.PublicRootFilesAssetsPath
-	lockConfigMockPublicRootFilesAssetsPath.RUnlock()
+	mock.lockPublicRootFilesAssetsPath.RUnlock()
 	return calls
 }
 
@@ -1988,9 +1995,9 @@ func (mock *ConfigMock) SecurityBcryptRounds() int {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSecurityBcryptRounds.Lock()
+	mock.lockSecurityBcryptRounds.Lock()
 	mock.calls.SecurityBcryptRounds = append(mock.calls.SecurityBcryptRounds, callInfo)
-	lockConfigMockSecurityBcryptRounds.Unlock()
+	mock.lockSecurityBcryptRounds.Unlock()
 	return mock.SecurityBcryptRoundsFunc()
 }
 
@@ -2001,9 +2008,9 @@ func (mock *ConfigMock) SecurityBcryptRoundsCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSecurityBcryptRounds.RLock()
+	mock.lockSecurityBcryptRounds.RLock()
 	calls = mock.calls.SecurityBcryptRounds
-	lockConfigMockSecurityBcryptRounds.RUnlock()
+	mock.lockSecurityBcryptRounds.RUnlock()
 	return calls
 }
 
@@ -2014,9 +2021,9 @@ func (mock *ConfigMock) SecurityFormTokenCleanupInterval() time.Duration {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSecurityFormTokenCleanupInterval.Lock()
+	mock.lockSecurityFormTokenCleanupInterval.Lock()
 	mock.calls.SecurityFormTokenCleanupInterval = append(mock.calls.SecurityFormTokenCleanupInterval, callInfo)
-	lockConfigMockSecurityFormTokenCleanupInterval.Unlock()
+	mock.lockSecurityFormTokenCleanupInterval.Unlock()
 	return mock.SecurityFormTokenCleanupIntervalFunc()
 }
 
@@ -2027,9 +2034,9 @@ func (mock *ConfigMock) SecurityFormTokenCleanupIntervalCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSecurityFormTokenCleanupInterval.RLock()
+	mock.lockSecurityFormTokenCleanupInterval.RLock()
 	calls = mock.calls.SecurityFormTokenCleanupInterval
-	lockConfigMockSecurityFormTokenCleanupInterval.RUnlock()
+	mock.lockSecurityFormTokenCleanupInterval.RUnlock()
 	return calls
 }
 
@@ -2040,9 +2047,9 @@ func (mock *ConfigMock) SecurityFormTokenLifespan() time.Duration {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSecurityFormTokenLifespan.Lock()
+	mock.lockSecurityFormTokenLifespan.Lock()
 	mock.calls.SecurityFormTokenLifespan = append(mock.calls.SecurityFormTokenLifespan, callInfo)
-	lockConfigMockSecurityFormTokenLifespan.Unlock()
+	mock.lockSecurityFormTokenLifespan.Unlock()
 	return mock.SecurityFormTokenLifespanFunc()
 }
 
@@ -2053,9 +2060,9 @@ func (mock *ConfigMock) SecurityFormTokenLifespanCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSecurityFormTokenLifespan.RLock()
+	mock.lockSecurityFormTokenLifespan.RLock()
 	calls = mock.calls.SecurityFormTokenLifespan
-	lockConfigMockSecurityFormTokenLifespan.RUnlock()
+	mock.lockSecurityFormTokenLifespan.RUnlock()
 	return calls
 }
 
@@ -2066,9 +2073,9 @@ func (mock *ConfigMock) SecurityGlobalAuthentication() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSecurityGlobalAuthentication.Lock()
+	mock.lockSecurityGlobalAuthentication.Lock()
 	mock.calls.SecurityGlobalAuthentication = append(mock.calls.SecurityGlobalAuthentication, callInfo)
-	lockConfigMockSecurityGlobalAuthentication.Unlock()
+	mock.lockSecurityGlobalAuthentication.Unlock()
 	return mock.SecurityGlobalAuthenticationFunc()
 }
 
@@ -2079,9 +2086,35 @@ func (mock *ConfigMock) SecurityGlobalAuthenticationCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSecurityGlobalAuthentication.RLock()
+	mock.lockSecurityGlobalAuthentication.RLock()
 	calls = mock.calls.SecurityGlobalAuthentication
-	lockConfigMockSecurityGlobalAuthentication.RUnlock()
+	mock.lockSecurityGlobalAuthentication.RUnlock()
+	return calls
+}
+
+// SecurityJWTPassword calls SecurityJWTPasswordFunc.
+func (mock *ConfigMock) SecurityJWTPassword() string {
+	if mock.SecurityJWTPasswordFunc == nil {
+		panic("ConfigMock.SecurityJWTPasswordFunc: method is nil but Config.SecurityJWTPassword was just called")
+	}
+	callInfo := struct {
+	}{}
+	mock.lockSecurityJWTPassword.Lock()
+	mock.calls.SecurityJWTPassword = append(mock.calls.SecurityJWTPassword, callInfo)
+	mock.lockSecurityJWTPassword.Unlock()
+	return mock.SecurityJWTPasswordFunc()
+}
+
+// SecurityJWTPasswordCalls gets all the calls that were made to SecurityJWTPassword.
+// Check the length with:
+//     len(mockedConfig.SecurityJWTPasswordCalls())
+func (mock *ConfigMock) SecurityJWTPasswordCalls() []struct {
+} {
+	var calls []struct {
+	}
+	mock.lockSecurityJWTPassword.RLock()
+	calls = mock.calls.SecurityJWTPassword
+	mock.lockSecurityJWTPassword.RUnlock()
 	return calls
 }
 
@@ -2092,9 +2125,9 @@ func (mock *ConfigMock) ServerHTTPRedirectPort() int {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockServerHTTPRedirectPort.Lock()
+	mock.lockServerHTTPRedirectPort.Lock()
 	mock.calls.ServerHTTPRedirectPort = append(mock.calls.ServerHTTPRedirectPort, callInfo)
-	lockConfigMockServerHTTPRedirectPort.Unlock()
+	mock.lockServerHTTPRedirectPort.Unlock()
 	return mock.ServerHTTPRedirectPortFunc()
 }
 
@@ -2105,9 +2138,9 @@ func (mock *ConfigMock) ServerHTTPRedirectPortCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockServerHTTPRedirectPort.RLock()
+	mock.lockServerHTTPRedirectPort.RLock()
 	calls = mock.calls.ServerHTTPRedirectPort
-	lockConfigMockServerHTTPRedirectPort.RUnlock()
+	mock.lockServerHTTPRedirectPort.RUnlock()
 	return calls
 }
 
@@ -2118,9 +2151,9 @@ func (mock *ConfigMock) ServerHost() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockServerHost.Lock()
+	mock.lockServerHost.Lock()
 	mock.calls.ServerHost = append(mock.calls.ServerHost, callInfo)
-	lockConfigMockServerHost.Unlock()
+	mock.lockServerHost.Unlock()
 	return mock.ServerHostFunc()
 }
 
@@ -2131,9 +2164,9 @@ func (mock *ConfigMock) ServerHostCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockServerHost.RLock()
+	mock.lockServerHost.RLock()
 	calls = mock.calls.ServerHost
-	lockConfigMockServerHost.RUnlock()
+	mock.lockServerHost.RUnlock()
 	return calls
 }
 
@@ -2144,9 +2177,9 @@ func (mock *ConfigMock) ServerPort() int {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockServerPort.Lock()
+	mock.lockServerPort.Lock()
 	mock.calls.ServerPort = append(mock.calls.ServerPort, callInfo)
-	lockConfigMockServerPort.Unlock()
+	mock.lockServerPort.Unlock()
 	return mock.ServerPortFunc()
 }
 
@@ -2157,9 +2190,9 @@ func (mock *ConfigMock) ServerPortCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockServerPort.RLock()
+	mock.lockServerPort.RLock()
 	calls = mock.calls.ServerPort
-	lockConfigMockServerPort.RUnlock()
+	mock.lockServerPort.RUnlock()
 	return calls
 }
 
@@ -2170,9 +2203,9 @@ func (mock *ConfigMock) ServerSSLCertificateFilePath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockServerSSLCertificateFilePath.Lock()
+	mock.lockServerSSLCertificateFilePath.Lock()
 	mock.calls.ServerSSLCertificateFilePath = append(mock.calls.ServerSSLCertificateFilePath, callInfo)
-	lockConfigMockServerSSLCertificateFilePath.Unlock()
+	mock.lockServerSSLCertificateFilePath.Unlock()
 	return mock.ServerSSLCertificateFilePathFunc()
 }
 
@@ -2183,9 +2216,9 @@ func (mock *ConfigMock) ServerSSLCertificateFilePathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockServerSSLCertificateFilePath.RLock()
+	mock.lockServerSSLCertificateFilePath.RLock()
 	calls = mock.calls.ServerSSLCertificateFilePath
-	lockConfigMockServerSSLCertificateFilePath.RUnlock()
+	mock.lockServerSSLCertificateFilePath.RUnlock()
 	return calls
 }
 
@@ -2196,9 +2229,9 @@ func (mock *ConfigMock) ServerSSLKeyFilePath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockServerSSLKeyFilePath.Lock()
+	mock.lockServerSSLKeyFilePath.Lock()
 	mock.calls.ServerSSLKeyFilePath = append(mock.calls.ServerSSLKeyFilePath, callInfo)
-	lockConfigMockServerSSLKeyFilePath.Unlock()
+	mock.lockServerSSLKeyFilePath.Unlock()
 	return mock.ServerSSLKeyFilePathFunc()
 }
 
@@ -2209,9 +2242,9 @@ func (mock *ConfigMock) ServerSSLKeyFilePathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockServerSSLKeyFilePath.RLock()
+	mock.lockServerSSLKeyFilePath.RLock()
 	calls = mock.calls.ServerSSLKeyFilePath
-	lockConfigMockServerSSLKeyFilePath.RUnlock()
+	mock.lockServerSSLKeyFilePath.RUnlock()
 	return calls
 }
 
@@ -2222,9 +2255,9 @@ func (mock *ConfigMock) SessionCookieName() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSessionCookieName.Lock()
+	mock.lockSessionCookieName.Lock()
 	mock.calls.SessionCookieName = append(mock.calls.SessionCookieName, callInfo)
-	lockConfigMockSessionCookieName.Unlock()
+	mock.lockSessionCookieName.Unlock()
 	return mock.SessionCookieNameFunc()
 }
 
@@ -2235,9 +2268,9 @@ func (mock *ConfigMock) SessionCookieNameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSessionCookieName.RLock()
+	mock.lockSessionCookieName.RLock()
 	calls = mock.calls.SessionCookieName
-	lockConfigMockSessionCookieName.RUnlock()
+	mock.lockSessionCookieName.RUnlock()
 	return calls
 }
 
@@ -2248,9 +2281,9 @@ func (mock *ConfigMock) SessionExpiration() time.Duration {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSessionExpiration.Lock()
+	mock.lockSessionExpiration.Lock()
 	mock.calls.SessionExpiration = append(mock.calls.SessionExpiration, callInfo)
-	lockConfigMockSessionExpiration.Unlock()
+	mock.lockSessionExpiration.Unlock()
 	return mock.SessionExpirationFunc()
 }
 
@@ -2261,9 +2294,9 @@ func (mock *ConfigMock) SessionExpirationCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSessionExpiration.RLock()
+	mock.lockSessionExpiration.RLock()
 	calls = mock.calls.SessionExpiration
-	lockConfigMockSessionExpiration.RUnlock()
+	mock.lockSessionExpiration.RUnlock()
 	return calls
 }
 
@@ -2274,9 +2307,9 @@ func (mock *ConfigMock) SessionRememberMeExpiration() time.Duration {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockSessionRememberMeExpiration.Lock()
+	mock.lockSessionRememberMeExpiration.Lock()
 	mock.calls.SessionRememberMeExpiration = append(mock.calls.SessionRememberMeExpiration, callInfo)
-	lockConfigMockSessionRememberMeExpiration.Unlock()
+	mock.lockSessionRememberMeExpiration.Unlock()
 	return mock.SessionRememberMeExpirationFunc()
 }
 
@@ -2287,9 +2320,9 @@ func (mock *ConfigMock) SessionRememberMeExpirationCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockSessionRememberMeExpiration.RLock()
+	mock.lockSessionRememberMeExpiration.RLock()
 	calls = mock.calls.SessionRememberMeExpiration
-	lockConfigMockSessionRememberMeExpiration.RUnlock()
+	mock.lockSessionRememberMeExpiration.RUnlock()
 	return calls
 }
 
@@ -2300,9 +2333,9 @@ func (mock *ConfigMock) StylesheetsAssetsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockStylesheetsAssetsPath.Lock()
+	mock.lockStylesheetsAssetsPath.Lock()
 	mock.calls.StylesheetsAssetsPath = append(mock.calls.StylesheetsAssetsPath, callInfo)
-	lockConfigMockStylesheetsAssetsPath.Unlock()
+	mock.lockStylesheetsAssetsPath.Unlock()
 	return mock.StylesheetsAssetsPathFunc()
 }
 
@@ -2313,9 +2346,9 @@ func (mock *ConfigMock) StylesheetsAssetsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockStylesheetsAssetsPath.RLock()
+	mock.lockStylesheetsAssetsPath.RLock()
 	calls = mock.calls.StylesheetsAssetsPath
-	lockConfigMockStylesheetsAssetsPath.RUnlock()
+	mock.lockStylesheetsAssetsPath.RUnlock()
 	return calls
 }
 
@@ -2326,9 +2359,9 @@ func (mock *ConfigMock) TranslationsPath() string {
 	}
 	callInfo := struct {
 	}{}
-	lockConfigMockTranslationsPath.Lock()
+	mock.lockTranslationsPath.Lock()
 	mock.calls.TranslationsPath = append(mock.calls.TranslationsPath, callInfo)
-	lockConfigMockTranslationsPath.Unlock()
+	mock.lockTranslationsPath.Unlock()
 	return mock.TranslationsPathFunc()
 }
 
@@ -2339,8 +2372,8 @@ func (mock *ConfigMock) TranslationsPathCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockConfigMockTranslationsPath.RLock()
+	mock.lockTranslationsPath.RLock()
 	calls = mock.calls.TranslationsPath
-	lockConfigMockTranslationsPath.RUnlock()
+	mock.lockTranslationsPath.RUnlock()
 	return calls
 }

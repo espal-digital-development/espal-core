@@ -13,6 +13,7 @@ func (c *Configuration) isInstalled(name string) bool {
 	return bytes.Contains(out, []byte("/"+name))
 }
 
+// nolint:funlen
 // TODO :: Use Logger here for the fmt.Printf's.
 func (c *Configuration) getDefaultYaml() configYaml {
 	assetsOptimizePngs := defaultAssetsOptimizePngs
@@ -73,6 +74,7 @@ func (c *Configuration) getDefaultYaml() configYaml {
 			BcryptRounds:             defaultSecurityBcryptRounds,
 			FormTokenLifespan:        defaultSecurityFormTokenLifespan,
 			FormTokenCleanupInterval: defaultSecurityFormTokenCleanupInterval,
+			JWTPassword:              defaultJWTPassword,
 		},
 		Session: session{
 			CookieName:           defaultSessionCookieName,

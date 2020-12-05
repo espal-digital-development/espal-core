@@ -33,6 +33,7 @@ security:
   bcryptRounds: 12
   formTokenLifespan: 8m
   formTokenCleanupInterval: 10s
+  jwtPassword: e86074797a09ccb62688c0fdf149ab18
 session:
   cookieName: s
   expiration: 45m

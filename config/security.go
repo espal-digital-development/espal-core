@@ -10,6 +10,7 @@ type Security interface {
 	SecurityBcryptRounds() int
 	SecurityFormTokenLifespan() time.Duration
 	SecurityFormTokenCleanupInterval() time.Duration
+	SecurityJWTPassword() string
 }
 
 type security struct {
@@ -17,6 +18,7 @@ type security struct {
 	BcryptRounds             int           `yaml:"bcryptRounds"`
 	FormTokenLifespan        time.Duration `yaml:"formTokenLifespan"`
 	FormTokenCleanupInterval time.Duration `yaml:"formTokenCleanupInterval"`
+	JWTPassword              string        `yaml:"jwtPassword"`
 }
 
 // SecurityGlobalAuthentication returns if the global authentication is enabled. This will cause a global login barrier
@@ -39,4 +41,9 @@ func (c *Configuration) SecurityFormTokenLifespan() time.Duration {
 // SecurityFormTokenCleanupInterval returns the form token's cleanup interval.
 func (c *Configuration) SecurityFormTokenCleanupInterval() time.Duration {
 	return c.security.FormTokenCleanupInterval
+}
+
+// SecurityJWTPassword returns the JWT Password.
+func (c *Configuration) SecurityJWTPassword() string {
+	return c.security.JWTPassword
 }
