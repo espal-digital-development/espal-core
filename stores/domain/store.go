@@ -42,6 +42,18 @@ func (s *DomainsStore) All() ([]*Domain, bool, error) {
 	return result, ok, errors.Trace(err)
 }
 
+// All returns all Domains for the given siteID.
+func (s *DomainsStore) AllForSiteID(siteID string) ([]*Domain, bool, error) {
+	result, ok, err := s.fetch(`SELECT * FROM "Domain" WHERE "siteID" = $1`, false, siteID)
+	if err != nil {
+		return nil, ok, errors.Trace(err)
+	}
+	if !ok {
+		return nil, ok, nil
+	}
+	return result, ok, errors.Trace(err)
+}
+
 // GetOneByIDWithCreator fetches by ID, including the CreatedBy and UpdatedBy fields.
 func (s *DomainsStore) GetOneByIDWithCreator(id string) (*Domain, bool, error) {
 	result, ok, err := s.fetch(`SELECT d.*, cu."firstName", cu."surname", uu."firstName", uu."surname"

@@ -90,6 +90,9 @@ func (m *Module) SetConfig(config *config.Config) {
 
 // GetConfig gets the config provider.
 func (m *Module) GetConfig() (*config.Config, error) {
+	if m.configProvider != nil {
+		return m.configProvider, nil
+	}
 	if err := m.preGetConfigCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -103,6 +106,9 @@ func (m *Module) SetDatabaseMigrations(databasemigrations *databasemigrations.Da
 
 // GetDatabaseMigrations gets the database migration provider.
 func (m *Module) GetDatabaseMigrations() (*databasemigrations.DatabaseMigrations, error) {
+	if m.databaseMigrationsProvider != nil {
+		return m.databaseMigrationsProvider, nil
+	}
 	if err := m.preGetDatabaseMigrationsCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -116,6 +122,9 @@ func (m *Module) SetAssets(assets *assets.Assets) {
 
 // GetAssets gets the assets provider.
 func (m *Module) GetAssets() (*assets.Assets, error) {
+	if m.assetsProvider != nil {
+		return m.assetsProvider, nil
+	}
 	if err := m.preGetAssetsCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -129,6 +138,9 @@ func (m *Module) SetThemes(themes *themes.Themes) {
 
 // GetThemes gets the themes provider.
 func (m *Module) GetThemes() (*themes.Themes, error) {
+	if m.themesProvider != nil {
+		return m.themesProvider, nil
+	}
 	if err := m.preGetThemesCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -142,6 +154,9 @@ func (m *Module) SetRoutes(routes *routes.Routes) {
 
 // GetRoutes gets the routes provider.
 func (m *Module) GetRoutes() (*routes.Routes, error) {
+	if m.routesProvider != nil {
+		return m.routesProvider, nil
+	}
 	if err := m.preGetRoutesCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -155,6 +170,9 @@ func (m *Module) SetTranslations(translations *translations.Translations) {
 
 // GetTranslations gets the translations provider.
 func (m *Module) GetTranslations() (*translations.Translations, error) {
+	if m.translationsProvider != nil {
+		return m.translationsProvider, nil
+	}
 	if err := m.preGetTranslationsCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}
@@ -168,6 +186,9 @@ func (m *Module) SetRepositories(repositories *repositories.Repositories) {
 
 // GetRepositories gets the repositories provider.
 func (m *Module) GetRepositories() (*repositories.Repositories, error) {
+	if m.repositoriesProvider != nil {
+		return m.repositoriesProvider, nil
+	}
 	if err := m.preGetRepositoriesCallback(m); err != nil {
 		return nil, errors.Trace(err)
 	}

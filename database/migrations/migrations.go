@@ -66,7 +66,7 @@ func (m *Migrations) Run() error {
 				return errors.Trace(err)
 			}
 
-			m.loggerService.Infof("Running migration `%s` file `%s`", migration, files[k])
+			m.loggerService.Infof("Running migration `%s` file `%s`..", migration, files[k])
 
 			if _, err := m.migratorDatabase.Exec(string(migrationSQL)); err != nil {
 				return errors.Annotate(err, fmt.Sprintf("migration `%s` in file `%s`", migration, files[k]))

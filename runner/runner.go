@@ -1,15 +1,12 @@
 package runner
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/espal-digital-development/espal-core/logger"
 	"github.com/espal-digital-development/espal-core/modules"
-	"github.com/espal-digital-development/espal-core/notifier"
 	"github.com/espal-digital-development/espal-core/semver"
 	"github.com/espal-digital-development/espal-core/sessions"
-	"github.com/espal-digital-development/espal-core/stores/notification"
 	"github.com/juju/errors"
 )
 
@@ -66,14 +63,19 @@ func (r *Runner) RunNonBlocking() error {
 		return errors.Trace(err)
 	}
 
-	r.services.notifier = notifier.New(r.services.logger, r.stores.notification)
+	// TODO :: 777777 Implement when the branch is merged again
+	// r.services.notifier = notifier.New(r.services.logger, r.stores.notification)
 
 	// TODO :: 777777 Remove after dev
-	fmt.Println(r.services.notifier.NotifyWithValue(notification.TargetDomain, "blaa", "blup"))
+	// fmt.Println(r.services.notifier.NotifyWithValue(notification.TargetDomain, "blaa", "blup"))
 
 	r.services.sessions = sessions.New(r.services.config, r.stores.session)
 
 	if err := r.themes(); err != nil {
+		return errors.Trace(err)
+	}
+
+	if err := r.repos(); err != nil {
 		return errors.Trace(err)
 	}
 

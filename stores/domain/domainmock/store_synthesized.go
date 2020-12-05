@@ -9,16 +9,6 @@ import (
 	"sync"
 )
 
-var (
-	lockStoreMockAll                   sync.RWMutex
-	lockStoreMockDelete                sync.RWMutex
-	lockStoreMockFilter                sync.RWMutex
-	lockStoreMockGetOne                sync.RWMutex
-	lockStoreMockGetOneActiveByHost    sync.RWMutex
-	lockStoreMockGetOneByIDWithCreator sync.RWMutex
-	lockStoreMockToggleActive          sync.RWMutex
-)
-
 // Ensure, that StoreMock does implement domain.Store.
 // If this is not the case, regenerate this file with moq.
 var _ domain.Store = &StoreMock{}
@@ -31,6 +21,9 @@ var _ domain.Store = &StoreMock{}
 //         mockedStore := &StoreMock{
 //             AllFunc: func() ([]*domain.Domain, bool, error) {
 // 	               panic("mock out the All method")
+//             },
+//             AllForSiteIDFunc: func(siteID string) ([]*domain.Domain, bool, error) {
+// 	               panic("mock out the AllForSiteID method")
 //             },
 //             DeleteFunc: func(ids []string) error {
 // 	               panic("mock out the Delete method")
@@ -60,6 +53,9 @@ type StoreMock struct {
 	// AllFunc mocks the All method.
 	AllFunc func() ([]*domain.Domain, bool, error)
 
+	// AllForSiteIDFunc mocks the AllForSiteID method.
+	AllForSiteIDFunc func(siteID string) ([]*domain.Domain, bool, error)
+
 	// DeleteFunc mocks the Delete method.
 	DeleteFunc func(ids []string) error
 
@@ -82,6 +78,11 @@ type StoreMock struct {
 	calls struct {
 		// All holds details about calls to the All method.
 		All []struct {
+		}
+		// AllForSiteID holds details about calls to the AllForSiteID method.
+		AllForSiteID []struct {
+			// SiteID is the siteID argument value.
+			SiteID string
 		}
 		// Delete holds details about calls to the Delete method.
 		Delete []struct {
@@ -114,6 +115,14 @@ type StoreMock struct {
 			Ids []string
 		}
 	}
+	lockAll                   sync.RWMutex
+	lockAllForSiteID          sync.RWMutex
+	lockDelete                sync.RWMutex
+	lockFilter                sync.RWMutex
+	lockGetOne                sync.RWMutex
+	lockGetOneActiveByHost    sync.RWMutex
+	lockGetOneByIDWithCreator sync.RWMutex
+	lockToggleActive          sync.RWMutex
 }
 
 // All calls AllFunc.
@@ -123,9 +132,9 @@ func (mock *StoreMock) All() ([]*domain.Domain, bool, error) {
 	}
 	callInfo := struct {
 	}{}
-	lockStoreMockAll.Lock()
+	mock.lockAll.Lock()
 	mock.calls.All = append(mock.calls.All, callInfo)
-	lockStoreMockAll.Unlock()
+	mock.lockAll.Unlock()
 	return mock.AllFunc()
 }
 
@@ -136,9 +145,40 @@ func (mock *StoreMock) AllCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockStoreMockAll.RLock()
+	mock.lockAll.RLock()
 	calls = mock.calls.All
-	lockStoreMockAll.RUnlock()
+	mock.lockAll.RUnlock()
+	return calls
+}
+
+// AllForSiteID calls AllForSiteIDFunc.
+func (mock *StoreMock) AllForSiteID(siteID string) ([]*domain.Domain, bool, error) {
+	if mock.AllForSiteIDFunc == nil {
+		panic("StoreMock.AllForSiteIDFunc: method is nil but Store.AllForSiteID was just called")
+	}
+	callInfo := struct {
+		SiteID string
+	}{
+		SiteID: siteID,
+	}
+	mock.lockAllForSiteID.Lock()
+	mock.calls.AllForSiteID = append(mock.calls.AllForSiteID, callInfo)
+	mock.lockAllForSiteID.Unlock()
+	return mock.AllForSiteIDFunc(siteID)
+}
+
+// AllForSiteIDCalls gets all the calls that were made to AllForSiteID.
+// Check the length with:
+//     len(mockedStore.AllForSiteIDCalls())
+func (mock *StoreMock) AllForSiteIDCalls() []struct {
+	SiteID string
+} {
+	var calls []struct {
+		SiteID string
+	}
+	mock.lockAllForSiteID.RLock()
+	calls = mock.calls.AllForSiteID
+	mock.lockAllForSiteID.RUnlock()
 	return calls
 }
 
@@ -152,9 +192,9 @@ func (mock *StoreMock) Delete(ids []string) error {
 	}{
 		Ids: ids,
 	}
-	lockStoreMockDelete.Lock()
+	mock.lockDelete.Lock()
 	mock.calls.Delete = append(mock.calls.Delete, callInfo)
-	lockStoreMockDelete.Unlock()
+	mock.lockDelete.Unlock()
 	return mock.DeleteFunc(ids)
 }
 
@@ -167,9 +207,9 @@ func (mock *StoreMock) DeleteCalls() []struct {
 	var calls []struct {
 		Ids []string
 	}
-	lockStoreMockDelete.RLock()
+	mock.lockDelete.RLock()
 	calls = mock.calls.Delete
-	lockStoreMockDelete.RUnlock()
+	mock.lockDelete.RUnlock()
 	return calls
 }
 
@@ -183,9 +223,9 @@ func (mock *StoreMock) Filter(context filters.QueryReader) ([]*domain.Domain, fi
 	}{
 		Context: context,
 	}
-	lockStoreMockFilter.Lock()
+	mock.lockFilter.Lock()
 	mock.calls.Filter = append(mock.calls.Filter, callInfo)
-	lockStoreMockFilter.Unlock()
+	mock.lockFilter.Unlock()
 	return mock.FilterFunc(context)
 }
 
@@ -198,9 +238,9 @@ func (mock *StoreMock) FilterCalls() []struct {
 	var calls []struct {
 		Context filters.QueryReader
 	}
-	lockStoreMockFilter.RLock()
+	mock.lockFilter.RLock()
 	calls = mock.calls.Filter
-	lockStoreMockFilter.RUnlock()
+	mock.lockFilter.RUnlock()
 	return calls
 }
 
@@ -214,9 +254,9 @@ func (mock *StoreMock) GetOne(id string) (*domain.Domain, bool, error) {
 	}{
 		ID: id,
 	}
-	lockStoreMockGetOne.Lock()
+	mock.lockGetOne.Lock()
 	mock.calls.GetOne = append(mock.calls.GetOne, callInfo)
-	lockStoreMockGetOne.Unlock()
+	mock.lockGetOne.Unlock()
 	return mock.GetOneFunc(id)
 }
 
@@ -229,9 +269,9 @@ func (mock *StoreMock) GetOneCalls() []struct {
 	var calls []struct {
 		ID string
 	}
-	lockStoreMockGetOne.RLock()
+	mock.lockGetOne.RLock()
 	calls = mock.calls.GetOne
-	lockStoreMockGetOne.RUnlock()
+	mock.lockGetOne.RUnlock()
 	return calls
 }
 
@@ -245,9 +285,9 @@ func (mock *StoreMock) GetOneActiveByHost(host string) (*domain.Domain, bool, er
 	}{
 		Host: host,
 	}
-	lockStoreMockGetOneActiveByHost.Lock()
+	mock.lockGetOneActiveByHost.Lock()
 	mock.calls.GetOneActiveByHost = append(mock.calls.GetOneActiveByHost, callInfo)
-	lockStoreMockGetOneActiveByHost.Unlock()
+	mock.lockGetOneActiveByHost.Unlock()
 	return mock.GetOneActiveByHostFunc(host)
 }
 
@@ -260,9 +300,9 @@ func (mock *StoreMock) GetOneActiveByHostCalls() []struct {
 	var calls []struct {
 		Host string
 	}
-	lockStoreMockGetOneActiveByHost.RLock()
+	mock.lockGetOneActiveByHost.RLock()
 	calls = mock.calls.GetOneActiveByHost
-	lockStoreMockGetOneActiveByHost.RUnlock()
+	mock.lockGetOneActiveByHost.RUnlock()
 	return calls
 }
 
@@ -276,9 +316,9 @@ func (mock *StoreMock) GetOneByIDWithCreator(id string) (*domain.Domain, bool, e
 	}{
 		ID: id,
 	}
-	lockStoreMockGetOneByIDWithCreator.Lock()
+	mock.lockGetOneByIDWithCreator.Lock()
 	mock.calls.GetOneByIDWithCreator = append(mock.calls.GetOneByIDWithCreator, callInfo)
-	lockStoreMockGetOneByIDWithCreator.Unlock()
+	mock.lockGetOneByIDWithCreator.Unlock()
 	return mock.GetOneByIDWithCreatorFunc(id)
 }
 
@@ -291,9 +331,9 @@ func (mock *StoreMock) GetOneByIDWithCreatorCalls() []struct {
 	var calls []struct {
 		ID string
 	}
-	lockStoreMockGetOneByIDWithCreator.RLock()
+	mock.lockGetOneByIDWithCreator.RLock()
 	calls = mock.calls.GetOneByIDWithCreator
-	lockStoreMockGetOneByIDWithCreator.RUnlock()
+	mock.lockGetOneByIDWithCreator.RUnlock()
 	return calls
 }
 
@@ -307,9 +347,9 @@ func (mock *StoreMock) ToggleActive(ids []string) error {
 	}{
 		Ids: ids,
 	}
-	lockStoreMockToggleActive.Lock()
+	mock.lockToggleActive.Lock()
 	mock.calls.ToggleActive = append(mock.calls.ToggleActive, callInfo)
-	lockStoreMockToggleActive.Unlock()
+	mock.lockToggleActive.Unlock()
 	return mock.ToggleActiveFunc(ids)
 }
 
@@ -322,8 +362,8 @@ func (mock *StoreMock) ToggleActiveCalls() []struct {
 	var calls []struct {
 		Ids []string
 	}
-	lockStoreMockToggleActive.RLock()
+	mock.lockToggleActive.RLock()
 	calls = mock.calls.ToggleActive
-	lockStoreMockToggleActive.RUnlock()
+	mock.lockToggleActive.RUnlock()
 	return calls
 }

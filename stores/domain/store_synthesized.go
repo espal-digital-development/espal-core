@@ -15,6 +15,7 @@ var _ Store = &DomainsStore{}
 type Store interface {
 	GetOne(id string) (*Domain, bool, error)
 	All() ([]*Domain, bool, error)
+	AllForSiteID(siteID string) ([]*Domain, bool, error)
 	GetOneByIDWithCreator(id string) (*Domain, bool, error)
 	GetOneActiveByHost(host string) (*Domain, bool, error)
 	Delete(ids []string) error

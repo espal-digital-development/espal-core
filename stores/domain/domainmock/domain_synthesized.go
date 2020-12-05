@@ -9,44 +9,6 @@ import (
 	"time"
 )
 
-var (
-	lockDomainEntityMockActive                 sync.RWMutex
-	lockDomainEntityMockCreatedAt              sync.RWMutex
-	lockDomainEntityMockCreatedByFirstName     sync.RWMutex
-	lockDomainEntityMockCreatedByID            sync.RWMutex
-	lockDomainEntityMockCreatedBySurname       sync.RWMutex
-	lockDomainEntityMockCurrencies             sync.RWMutex
-	lockDomainEntityMockCurrenciesCount        sync.RWMutex
-	lockDomainEntityMockHost                   sync.RWMutex
-	lockDomainEntityMockHostWithProtocol       sync.RWMutex
-	lockDomainEntityMockHostWithProtocolAndWWW sync.RWMutex
-	lockDomainEntityMockID                     sync.RWMutex
-	lockDomainEntityMockIsUpdated              sync.RWMutex
-	lockDomainEntityMockLanguage               sync.RWMutex
-	lockDomainEntityMockLocalizedName          sync.RWMutex
-	lockDomainEntityMockSetActive              sync.RWMutex
-	lockDomainEntityMockSetCreatedAt           sync.RWMutex
-	lockDomainEntityMockSetCreatedByFirstName  sync.RWMutex
-	lockDomainEntityMockSetCreatedByID         sync.RWMutex
-	lockDomainEntityMockSetCreatedBySurname    sync.RWMutex
-	lockDomainEntityMockSetCurrencies          sync.RWMutex
-	lockDomainEntityMockSetHost                sync.RWMutex
-	lockDomainEntityMockSetLanguage            sync.RWMutex
-	lockDomainEntityMockSetLocalizedName       sync.RWMutex
-	lockDomainEntityMockSetSiteID              sync.RWMutex
-	lockDomainEntityMockSetUpdatedAt           sync.RWMutex
-	lockDomainEntityMockSetUpdatedByFirstName  sync.RWMutex
-	lockDomainEntityMockSetUpdatedByID         sync.RWMutex
-	lockDomainEntityMockSetUpdatedBySurname    sync.RWMutex
-	lockDomainEntityMockSiteID                 sync.RWMutex
-	lockDomainEntityMockTableAlias             sync.RWMutex
-	lockDomainEntityMockTableName              sync.RWMutex
-	lockDomainEntityMockUpdatedAt              sync.RWMutex
-	lockDomainEntityMockUpdatedByFirstName     sync.RWMutex
-	lockDomainEntityMockUpdatedByID            sync.RWMutex
-	lockDomainEntityMockUpdatedBySurname       sync.RWMutex
-)
-
 // Ensure, that DomainEntityMock does implement domain.DomainEntity.
 // If this is not the case, regenerate this file with moq.
 var _ domain.DomainEntity = &DomainEntityMock{}
@@ -410,6 +372,41 @@ type DomainEntityMock struct {
 		UpdatedBySurname []struct {
 		}
 	}
+	lockActive                 sync.RWMutex
+	lockCreatedAt              sync.RWMutex
+	lockCreatedByFirstName     sync.RWMutex
+	lockCreatedByID            sync.RWMutex
+	lockCreatedBySurname       sync.RWMutex
+	lockCurrencies             sync.RWMutex
+	lockCurrenciesCount        sync.RWMutex
+	lockHost                   sync.RWMutex
+	lockHostWithProtocol       sync.RWMutex
+	lockHostWithProtocolAndWWW sync.RWMutex
+	lockID                     sync.RWMutex
+	lockIsUpdated              sync.RWMutex
+	lockLanguage               sync.RWMutex
+	lockLocalizedName          sync.RWMutex
+	lockSetActive              sync.RWMutex
+	lockSetCreatedAt           sync.RWMutex
+	lockSetCreatedByFirstName  sync.RWMutex
+	lockSetCreatedByID         sync.RWMutex
+	lockSetCreatedBySurname    sync.RWMutex
+	lockSetCurrencies          sync.RWMutex
+	lockSetHost                sync.RWMutex
+	lockSetLanguage            sync.RWMutex
+	lockSetLocalizedName       sync.RWMutex
+	lockSetSiteID              sync.RWMutex
+	lockSetUpdatedAt           sync.RWMutex
+	lockSetUpdatedByFirstName  sync.RWMutex
+	lockSetUpdatedByID         sync.RWMutex
+	lockSetUpdatedBySurname    sync.RWMutex
+	lockSiteID                 sync.RWMutex
+	lockTableAlias             sync.RWMutex
+	lockTableName              sync.RWMutex
+	lockUpdatedAt              sync.RWMutex
+	lockUpdatedByFirstName     sync.RWMutex
+	lockUpdatedByID            sync.RWMutex
+	lockUpdatedBySurname       sync.RWMutex
 }
 
 // Active calls ActiveFunc.
@@ -419,9 +416,9 @@ func (mock *DomainEntityMock) Active() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockActive.Lock()
+	mock.lockActive.Lock()
 	mock.calls.Active = append(mock.calls.Active, callInfo)
-	lockDomainEntityMockActive.Unlock()
+	mock.lockActive.Unlock()
 	return mock.ActiveFunc()
 }
 
@@ -432,9 +429,9 @@ func (mock *DomainEntityMock) ActiveCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockActive.RLock()
+	mock.lockActive.RLock()
 	calls = mock.calls.Active
-	lockDomainEntityMockActive.RUnlock()
+	mock.lockActive.RUnlock()
 	return calls
 }
 
@@ -445,9 +442,9 @@ func (mock *DomainEntityMock) CreatedAt() time.Time {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockCreatedAt.Lock()
+	mock.lockCreatedAt.Lock()
 	mock.calls.CreatedAt = append(mock.calls.CreatedAt, callInfo)
-	lockDomainEntityMockCreatedAt.Unlock()
+	mock.lockCreatedAt.Unlock()
 	return mock.CreatedAtFunc()
 }
 
@@ -458,9 +455,9 @@ func (mock *DomainEntityMock) CreatedAtCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockCreatedAt.RLock()
+	mock.lockCreatedAt.RLock()
 	calls = mock.calls.CreatedAt
-	lockDomainEntityMockCreatedAt.RUnlock()
+	mock.lockCreatedAt.RUnlock()
 	return calls
 }
 
@@ -471,9 +468,9 @@ func (mock *DomainEntityMock) CreatedByFirstName() *string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockCreatedByFirstName.Lock()
+	mock.lockCreatedByFirstName.Lock()
 	mock.calls.CreatedByFirstName = append(mock.calls.CreatedByFirstName, callInfo)
-	lockDomainEntityMockCreatedByFirstName.Unlock()
+	mock.lockCreatedByFirstName.Unlock()
 	return mock.CreatedByFirstNameFunc()
 }
 
@@ -484,9 +481,9 @@ func (mock *DomainEntityMock) CreatedByFirstNameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockCreatedByFirstName.RLock()
+	mock.lockCreatedByFirstName.RLock()
 	calls = mock.calls.CreatedByFirstName
-	lockDomainEntityMockCreatedByFirstName.RUnlock()
+	mock.lockCreatedByFirstName.RUnlock()
 	return calls
 }
 
@@ -497,9 +494,9 @@ func (mock *DomainEntityMock) CreatedByID() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockCreatedByID.Lock()
+	mock.lockCreatedByID.Lock()
 	mock.calls.CreatedByID = append(mock.calls.CreatedByID, callInfo)
-	lockDomainEntityMockCreatedByID.Unlock()
+	mock.lockCreatedByID.Unlock()
 	return mock.CreatedByIDFunc()
 }
 
@@ -510,9 +507,9 @@ func (mock *DomainEntityMock) CreatedByIDCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockCreatedByID.RLock()
+	mock.lockCreatedByID.RLock()
 	calls = mock.calls.CreatedByID
-	lockDomainEntityMockCreatedByID.RUnlock()
+	mock.lockCreatedByID.RUnlock()
 	return calls
 }
 
@@ -523,9 +520,9 @@ func (mock *DomainEntityMock) CreatedBySurname() *string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockCreatedBySurname.Lock()
+	mock.lockCreatedBySurname.Lock()
 	mock.calls.CreatedBySurname = append(mock.calls.CreatedBySurname, callInfo)
-	lockDomainEntityMockCreatedBySurname.Unlock()
+	mock.lockCreatedBySurname.Unlock()
 	return mock.CreatedBySurnameFunc()
 }
 
@@ -536,9 +533,9 @@ func (mock *DomainEntityMock) CreatedBySurnameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockCreatedBySurname.RLock()
+	mock.lockCreatedBySurname.RLock()
 	calls = mock.calls.CreatedBySurname
-	lockDomainEntityMockCreatedBySurname.RUnlock()
+	mock.lockCreatedBySurname.RUnlock()
 	return calls
 }
 
@@ -549,9 +546,9 @@ func (mock *DomainEntityMock) Currencies() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockCurrencies.Lock()
+	mock.lockCurrencies.Lock()
 	mock.calls.Currencies = append(mock.calls.Currencies, callInfo)
-	lockDomainEntityMockCurrencies.Unlock()
+	mock.lockCurrencies.Unlock()
 	return mock.CurrenciesFunc()
 }
 
@@ -562,9 +559,9 @@ func (mock *DomainEntityMock) CurrenciesCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockCurrencies.RLock()
+	mock.lockCurrencies.RLock()
 	calls = mock.calls.Currencies
-	lockDomainEntityMockCurrencies.RUnlock()
+	mock.lockCurrencies.RUnlock()
 	return calls
 }
 
@@ -575,9 +572,9 @@ func (mock *DomainEntityMock) CurrenciesCount() uint {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockCurrenciesCount.Lock()
+	mock.lockCurrenciesCount.Lock()
 	mock.calls.CurrenciesCount = append(mock.calls.CurrenciesCount, callInfo)
-	lockDomainEntityMockCurrenciesCount.Unlock()
+	mock.lockCurrenciesCount.Unlock()
 	return mock.CurrenciesCountFunc()
 }
 
@@ -588,9 +585,9 @@ func (mock *DomainEntityMock) CurrenciesCountCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockCurrenciesCount.RLock()
+	mock.lockCurrenciesCount.RLock()
 	calls = mock.calls.CurrenciesCount
-	lockDomainEntityMockCurrenciesCount.RUnlock()
+	mock.lockCurrenciesCount.RUnlock()
 	return calls
 }
 
@@ -601,9 +598,9 @@ func (mock *DomainEntityMock) Host() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockHost.Lock()
+	mock.lockHost.Lock()
 	mock.calls.Host = append(mock.calls.Host, callInfo)
-	lockDomainEntityMockHost.Unlock()
+	mock.lockHost.Unlock()
 	return mock.HostFunc()
 }
 
@@ -614,9 +611,9 @@ func (mock *DomainEntityMock) HostCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockHost.RLock()
+	mock.lockHost.RLock()
 	calls = mock.calls.Host
-	lockDomainEntityMockHost.RUnlock()
+	mock.lockHost.RUnlock()
 	return calls
 }
 
@@ -627,9 +624,9 @@ func (mock *DomainEntityMock) HostWithProtocol() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockHostWithProtocol.Lock()
+	mock.lockHostWithProtocol.Lock()
 	mock.calls.HostWithProtocol = append(mock.calls.HostWithProtocol, callInfo)
-	lockDomainEntityMockHostWithProtocol.Unlock()
+	mock.lockHostWithProtocol.Unlock()
 	return mock.HostWithProtocolFunc()
 }
 
@@ -640,9 +637,9 @@ func (mock *DomainEntityMock) HostWithProtocolCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockHostWithProtocol.RLock()
+	mock.lockHostWithProtocol.RLock()
 	calls = mock.calls.HostWithProtocol
-	lockDomainEntityMockHostWithProtocol.RUnlock()
+	mock.lockHostWithProtocol.RUnlock()
 	return calls
 }
 
@@ -653,9 +650,9 @@ func (mock *DomainEntityMock) HostWithProtocolAndWWW() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockHostWithProtocolAndWWW.Lock()
+	mock.lockHostWithProtocolAndWWW.Lock()
 	mock.calls.HostWithProtocolAndWWW = append(mock.calls.HostWithProtocolAndWWW, callInfo)
-	lockDomainEntityMockHostWithProtocolAndWWW.Unlock()
+	mock.lockHostWithProtocolAndWWW.Unlock()
 	return mock.HostWithProtocolAndWWWFunc()
 }
 
@@ -666,9 +663,9 @@ func (mock *DomainEntityMock) HostWithProtocolAndWWWCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockHostWithProtocolAndWWW.RLock()
+	mock.lockHostWithProtocolAndWWW.RLock()
 	calls = mock.calls.HostWithProtocolAndWWW
-	lockDomainEntityMockHostWithProtocolAndWWW.RUnlock()
+	mock.lockHostWithProtocolAndWWW.RUnlock()
 	return calls
 }
 
@@ -679,9 +676,9 @@ func (mock *DomainEntityMock) ID() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockID.Lock()
+	mock.lockID.Lock()
 	mock.calls.ID = append(mock.calls.ID, callInfo)
-	lockDomainEntityMockID.Unlock()
+	mock.lockID.Unlock()
 	return mock.IDFunc()
 }
 
@@ -692,9 +689,9 @@ func (mock *DomainEntityMock) IDCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockID.RLock()
+	mock.lockID.RLock()
 	calls = mock.calls.ID
-	lockDomainEntityMockID.RUnlock()
+	mock.lockID.RUnlock()
 	return calls
 }
 
@@ -705,9 +702,9 @@ func (mock *DomainEntityMock) IsUpdated() bool {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockIsUpdated.Lock()
+	mock.lockIsUpdated.Lock()
 	mock.calls.IsUpdated = append(mock.calls.IsUpdated, callInfo)
-	lockDomainEntityMockIsUpdated.Unlock()
+	mock.lockIsUpdated.Unlock()
 	return mock.IsUpdatedFunc()
 }
 
@@ -718,9 +715,9 @@ func (mock *DomainEntityMock) IsUpdatedCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockIsUpdated.RLock()
+	mock.lockIsUpdated.RLock()
 	calls = mock.calls.IsUpdated
-	lockDomainEntityMockIsUpdated.RUnlock()
+	mock.lockIsUpdated.RUnlock()
 	return calls
 }
 
@@ -731,9 +728,9 @@ func (mock *DomainEntityMock) Language() *uint16 {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockLanguage.Lock()
+	mock.lockLanguage.Lock()
 	mock.calls.Language = append(mock.calls.Language, callInfo)
-	lockDomainEntityMockLanguage.Unlock()
+	mock.lockLanguage.Unlock()
 	return mock.LanguageFunc()
 }
 
@@ -744,9 +741,9 @@ func (mock *DomainEntityMock) LanguageCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockLanguage.RLock()
+	mock.lockLanguage.RLock()
 	calls = mock.calls.Language
-	lockDomainEntityMockLanguage.RUnlock()
+	mock.lockLanguage.RUnlock()
 	return calls
 }
 
@@ -757,9 +754,9 @@ func (mock *DomainEntityMock) LocalizedName() *string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockLocalizedName.Lock()
+	mock.lockLocalizedName.Lock()
 	mock.calls.LocalizedName = append(mock.calls.LocalizedName, callInfo)
-	lockDomainEntityMockLocalizedName.Unlock()
+	mock.lockLocalizedName.Unlock()
 	return mock.LocalizedNameFunc()
 }
 
@@ -770,9 +767,9 @@ func (mock *DomainEntityMock) LocalizedNameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockLocalizedName.RLock()
+	mock.lockLocalizedName.RLock()
 	calls = mock.calls.LocalizedName
-	lockDomainEntityMockLocalizedName.RUnlock()
+	mock.lockLocalizedName.RUnlock()
 	return calls
 }
 
@@ -786,9 +783,9 @@ func (mock *DomainEntityMock) SetActive(active bool) {
 	}{
 		Active: active,
 	}
-	lockDomainEntityMockSetActive.Lock()
+	mock.lockSetActive.Lock()
 	mock.calls.SetActive = append(mock.calls.SetActive, callInfo)
-	lockDomainEntityMockSetActive.Unlock()
+	mock.lockSetActive.Unlock()
 	mock.SetActiveFunc(active)
 }
 
@@ -801,9 +798,9 @@ func (mock *DomainEntityMock) SetActiveCalls() []struct {
 	var calls []struct {
 		Active bool
 	}
-	lockDomainEntityMockSetActive.RLock()
+	mock.lockSetActive.RLock()
 	calls = mock.calls.SetActive
-	lockDomainEntityMockSetActive.RUnlock()
+	mock.lockSetActive.RUnlock()
 	return calls
 }
 
@@ -817,9 +814,9 @@ func (mock *DomainEntityMock) SetCreatedAt(createdAt time.Time) {
 	}{
 		CreatedAt: createdAt,
 	}
-	lockDomainEntityMockSetCreatedAt.Lock()
+	mock.lockSetCreatedAt.Lock()
 	mock.calls.SetCreatedAt = append(mock.calls.SetCreatedAt, callInfo)
-	lockDomainEntityMockSetCreatedAt.Unlock()
+	mock.lockSetCreatedAt.Unlock()
 	mock.SetCreatedAtFunc(createdAt)
 }
 
@@ -832,9 +829,9 @@ func (mock *DomainEntityMock) SetCreatedAtCalls() []struct {
 	var calls []struct {
 		CreatedAt time.Time
 	}
-	lockDomainEntityMockSetCreatedAt.RLock()
+	mock.lockSetCreatedAt.RLock()
 	calls = mock.calls.SetCreatedAt
-	lockDomainEntityMockSetCreatedAt.RUnlock()
+	mock.lockSetCreatedAt.RUnlock()
 	return calls
 }
 
@@ -848,9 +845,9 @@ func (mock *DomainEntityMock) SetCreatedByFirstName(updatedByFirstName *string) 
 	}{
 		UpdatedByFirstName: updatedByFirstName,
 	}
-	lockDomainEntityMockSetCreatedByFirstName.Lock()
+	mock.lockSetCreatedByFirstName.Lock()
 	mock.calls.SetCreatedByFirstName = append(mock.calls.SetCreatedByFirstName, callInfo)
-	lockDomainEntityMockSetCreatedByFirstName.Unlock()
+	mock.lockSetCreatedByFirstName.Unlock()
 	mock.SetCreatedByFirstNameFunc(updatedByFirstName)
 }
 
@@ -863,9 +860,9 @@ func (mock *DomainEntityMock) SetCreatedByFirstNameCalls() []struct {
 	var calls []struct {
 		UpdatedByFirstName *string
 	}
-	lockDomainEntityMockSetCreatedByFirstName.RLock()
+	mock.lockSetCreatedByFirstName.RLock()
 	calls = mock.calls.SetCreatedByFirstName
-	lockDomainEntityMockSetCreatedByFirstName.RUnlock()
+	mock.lockSetCreatedByFirstName.RUnlock()
 	return calls
 }
 
@@ -879,9 +876,9 @@ func (mock *DomainEntityMock) SetCreatedByID(createdByID string) {
 	}{
 		CreatedByID: createdByID,
 	}
-	lockDomainEntityMockSetCreatedByID.Lock()
+	mock.lockSetCreatedByID.Lock()
 	mock.calls.SetCreatedByID = append(mock.calls.SetCreatedByID, callInfo)
-	lockDomainEntityMockSetCreatedByID.Unlock()
+	mock.lockSetCreatedByID.Unlock()
 	mock.SetCreatedByIDFunc(createdByID)
 }
 
@@ -894,9 +891,9 @@ func (mock *DomainEntityMock) SetCreatedByIDCalls() []struct {
 	var calls []struct {
 		CreatedByID string
 	}
-	lockDomainEntityMockSetCreatedByID.RLock()
+	mock.lockSetCreatedByID.RLock()
 	calls = mock.calls.SetCreatedByID
-	lockDomainEntityMockSetCreatedByID.RUnlock()
+	mock.lockSetCreatedByID.RUnlock()
 	return calls
 }
 
@@ -910,9 +907,9 @@ func (mock *DomainEntityMock) SetCreatedBySurname(createdBySurname *string) {
 	}{
 		CreatedBySurname: createdBySurname,
 	}
-	lockDomainEntityMockSetCreatedBySurname.Lock()
+	mock.lockSetCreatedBySurname.Lock()
 	mock.calls.SetCreatedBySurname = append(mock.calls.SetCreatedBySurname, callInfo)
-	lockDomainEntityMockSetCreatedBySurname.Unlock()
+	mock.lockSetCreatedBySurname.Unlock()
 	mock.SetCreatedBySurnameFunc(createdBySurname)
 }
 
@@ -925,9 +922,9 @@ func (mock *DomainEntityMock) SetCreatedBySurnameCalls() []struct {
 	var calls []struct {
 		CreatedBySurname *string
 	}
-	lockDomainEntityMockSetCreatedBySurname.RLock()
+	mock.lockSetCreatedBySurname.RLock()
 	calls = mock.calls.SetCreatedBySurname
-	lockDomainEntityMockSetCreatedBySurname.RUnlock()
+	mock.lockSetCreatedBySurname.RUnlock()
 	return calls
 }
 
@@ -941,9 +938,9 @@ func (mock *DomainEntityMock) SetCurrencies(currencies string) {
 	}{
 		Currencies: currencies,
 	}
-	lockDomainEntityMockSetCurrencies.Lock()
+	mock.lockSetCurrencies.Lock()
 	mock.calls.SetCurrencies = append(mock.calls.SetCurrencies, callInfo)
-	lockDomainEntityMockSetCurrencies.Unlock()
+	mock.lockSetCurrencies.Unlock()
 	mock.SetCurrenciesFunc(currencies)
 }
 
@@ -956,9 +953,9 @@ func (mock *DomainEntityMock) SetCurrenciesCalls() []struct {
 	var calls []struct {
 		Currencies string
 	}
-	lockDomainEntityMockSetCurrencies.RLock()
+	mock.lockSetCurrencies.RLock()
 	calls = mock.calls.SetCurrencies
-	lockDomainEntityMockSetCurrencies.RUnlock()
+	mock.lockSetCurrencies.RUnlock()
 	return calls
 }
 
@@ -972,9 +969,9 @@ func (mock *DomainEntityMock) SetHost(host string) {
 	}{
 		Host: host,
 	}
-	lockDomainEntityMockSetHost.Lock()
+	mock.lockSetHost.Lock()
 	mock.calls.SetHost = append(mock.calls.SetHost, callInfo)
-	lockDomainEntityMockSetHost.Unlock()
+	mock.lockSetHost.Unlock()
 	mock.SetHostFunc(host)
 }
 
@@ -987,9 +984,9 @@ func (mock *DomainEntityMock) SetHostCalls() []struct {
 	var calls []struct {
 		Host string
 	}
-	lockDomainEntityMockSetHost.RLock()
+	mock.lockSetHost.RLock()
 	calls = mock.calls.SetHost
-	lockDomainEntityMockSetHost.RUnlock()
+	mock.lockSetHost.RUnlock()
 	return calls
 }
 
@@ -1003,9 +1000,9 @@ func (mock *DomainEntityMock) SetLanguage(language *uint16) {
 	}{
 		Language: language,
 	}
-	lockDomainEntityMockSetLanguage.Lock()
+	mock.lockSetLanguage.Lock()
 	mock.calls.SetLanguage = append(mock.calls.SetLanguage, callInfo)
-	lockDomainEntityMockSetLanguage.Unlock()
+	mock.lockSetLanguage.Unlock()
 	mock.SetLanguageFunc(language)
 }
 
@@ -1018,9 +1015,9 @@ func (mock *DomainEntityMock) SetLanguageCalls() []struct {
 	var calls []struct {
 		Language *uint16
 	}
-	lockDomainEntityMockSetLanguage.RLock()
+	mock.lockSetLanguage.RLock()
 	calls = mock.calls.SetLanguage
-	lockDomainEntityMockSetLanguage.RUnlock()
+	mock.lockSetLanguage.RUnlock()
 	return calls
 }
 
@@ -1034,9 +1031,9 @@ func (mock *DomainEntityMock) SetLocalizedName(localizedName *string) {
 	}{
 		LocalizedName: localizedName,
 	}
-	lockDomainEntityMockSetLocalizedName.Lock()
+	mock.lockSetLocalizedName.Lock()
 	mock.calls.SetLocalizedName = append(mock.calls.SetLocalizedName, callInfo)
-	lockDomainEntityMockSetLocalizedName.Unlock()
+	mock.lockSetLocalizedName.Unlock()
 	mock.SetLocalizedNameFunc(localizedName)
 }
 
@@ -1049,9 +1046,9 @@ func (mock *DomainEntityMock) SetLocalizedNameCalls() []struct {
 	var calls []struct {
 		LocalizedName *string
 	}
-	lockDomainEntityMockSetLocalizedName.RLock()
+	mock.lockSetLocalizedName.RLock()
 	calls = mock.calls.SetLocalizedName
-	lockDomainEntityMockSetLocalizedName.RUnlock()
+	mock.lockSetLocalizedName.RUnlock()
 	return calls
 }
 
@@ -1065,9 +1062,9 @@ func (mock *DomainEntityMock) SetSiteID(siteID string) {
 	}{
 		SiteID: siteID,
 	}
-	lockDomainEntityMockSetSiteID.Lock()
+	mock.lockSetSiteID.Lock()
 	mock.calls.SetSiteID = append(mock.calls.SetSiteID, callInfo)
-	lockDomainEntityMockSetSiteID.Unlock()
+	mock.lockSetSiteID.Unlock()
 	mock.SetSiteIDFunc(siteID)
 }
 
@@ -1080,9 +1077,9 @@ func (mock *DomainEntityMock) SetSiteIDCalls() []struct {
 	var calls []struct {
 		SiteID string
 	}
-	lockDomainEntityMockSetSiteID.RLock()
+	mock.lockSetSiteID.RLock()
 	calls = mock.calls.SetSiteID
-	lockDomainEntityMockSetSiteID.RUnlock()
+	mock.lockSetSiteID.RUnlock()
 	return calls
 }
 
@@ -1096,9 +1093,9 @@ func (mock *DomainEntityMock) SetUpdatedAt(updatedAt *time.Time) {
 	}{
 		UpdatedAt: updatedAt,
 	}
-	lockDomainEntityMockSetUpdatedAt.Lock()
+	mock.lockSetUpdatedAt.Lock()
 	mock.calls.SetUpdatedAt = append(mock.calls.SetUpdatedAt, callInfo)
-	lockDomainEntityMockSetUpdatedAt.Unlock()
+	mock.lockSetUpdatedAt.Unlock()
 	mock.SetUpdatedAtFunc(updatedAt)
 }
 
@@ -1111,9 +1108,9 @@ func (mock *DomainEntityMock) SetUpdatedAtCalls() []struct {
 	var calls []struct {
 		UpdatedAt *time.Time
 	}
-	lockDomainEntityMockSetUpdatedAt.RLock()
+	mock.lockSetUpdatedAt.RLock()
 	calls = mock.calls.SetUpdatedAt
-	lockDomainEntityMockSetUpdatedAt.RUnlock()
+	mock.lockSetUpdatedAt.RUnlock()
 	return calls
 }
 
@@ -1127,9 +1124,9 @@ func (mock *DomainEntityMock) SetUpdatedByFirstName(updatedByFirstName *string) 
 	}{
 		UpdatedByFirstName: updatedByFirstName,
 	}
-	lockDomainEntityMockSetUpdatedByFirstName.Lock()
+	mock.lockSetUpdatedByFirstName.Lock()
 	mock.calls.SetUpdatedByFirstName = append(mock.calls.SetUpdatedByFirstName, callInfo)
-	lockDomainEntityMockSetUpdatedByFirstName.Unlock()
+	mock.lockSetUpdatedByFirstName.Unlock()
 	mock.SetUpdatedByFirstNameFunc(updatedByFirstName)
 }
 
@@ -1142,9 +1139,9 @@ func (mock *DomainEntityMock) SetUpdatedByFirstNameCalls() []struct {
 	var calls []struct {
 		UpdatedByFirstName *string
 	}
-	lockDomainEntityMockSetUpdatedByFirstName.RLock()
+	mock.lockSetUpdatedByFirstName.RLock()
 	calls = mock.calls.SetUpdatedByFirstName
-	lockDomainEntityMockSetUpdatedByFirstName.RUnlock()
+	mock.lockSetUpdatedByFirstName.RUnlock()
 	return calls
 }
 
@@ -1158,9 +1155,9 @@ func (mock *DomainEntityMock) SetUpdatedByID(updatedByID *string) {
 	}{
 		UpdatedByID: updatedByID,
 	}
-	lockDomainEntityMockSetUpdatedByID.Lock()
+	mock.lockSetUpdatedByID.Lock()
 	mock.calls.SetUpdatedByID = append(mock.calls.SetUpdatedByID, callInfo)
-	lockDomainEntityMockSetUpdatedByID.Unlock()
+	mock.lockSetUpdatedByID.Unlock()
 	mock.SetUpdatedByIDFunc(updatedByID)
 }
 
@@ -1173,9 +1170,9 @@ func (mock *DomainEntityMock) SetUpdatedByIDCalls() []struct {
 	var calls []struct {
 		UpdatedByID *string
 	}
-	lockDomainEntityMockSetUpdatedByID.RLock()
+	mock.lockSetUpdatedByID.RLock()
 	calls = mock.calls.SetUpdatedByID
-	lockDomainEntityMockSetUpdatedByID.RUnlock()
+	mock.lockSetUpdatedByID.RUnlock()
 	return calls
 }
 
@@ -1189,9 +1186,9 @@ func (mock *DomainEntityMock) SetUpdatedBySurname(updatedBySurname *string) {
 	}{
 		UpdatedBySurname: updatedBySurname,
 	}
-	lockDomainEntityMockSetUpdatedBySurname.Lock()
+	mock.lockSetUpdatedBySurname.Lock()
 	mock.calls.SetUpdatedBySurname = append(mock.calls.SetUpdatedBySurname, callInfo)
-	lockDomainEntityMockSetUpdatedBySurname.Unlock()
+	mock.lockSetUpdatedBySurname.Unlock()
 	mock.SetUpdatedBySurnameFunc(updatedBySurname)
 }
 
@@ -1204,9 +1201,9 @@ func (mock *DomainEntityMock) SetUpdatedBySurnameCalls() []struct {
 	var calls []struct {
 		UpdatedBySurname *string
 	}
-	lockDomainEntityMockSetUpdatedBySurname.RLock()
+	mock.lockSetUpdatedBySurname.RLock()
 	calls = mock.calls.SetUpdatedBySurname
-	lockDomainEntityMockSetUpdatedBySurname.RUnlock()
+	mock.lockSetUpdatedBySurname.RUnlock()
 	return calls
 }
 
@@ -1217,9 +1214,9 @@ func (mock *DomainEntityMock) SiteID() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockSiteID.Lock()
+	mock.lockSiteID.Lock()
 	mock.calls.SiteID = append(mock.calls.SiteID, callInfo)
-	lockDomainEntityMockSiteID.Unlock()
+	mock.lockSiteID.Unlock()
 	return mock.SiteIDFunc()
 }
 
@@ -1230,9 +1227,9 @@ func (mock *DomainEntityMock) SiteIDCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockSiteID.RLock()
+	mock.lockSiteID.RLock()
 	calls = mock.calls.SiteID
-	lockDomainEntityMockSiteID.RUnlock()
+	mock.lockSiteID.RUnlock()
 	return calls
 }
 
@@ -1243,9 +1240,9 @@ func (mock *DomainEntityMock) TableAlias() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockTableAlias.Lock()
+	mock.lockTableAlias.Lock()
 	mock.calls.TableAlias = append(mock.calls.TableAlias, callInfo)
-	lockDomainEntityMockTableAlias.Unlock()
+	mock.lockTableAlias.Unlock()
 	return mock.TableAliasFunc()
 }
 
@@ -1256,9 +1253,9 @@ func (mock *DomainEntityMock) TableAliasCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockTableAlias.RLock()
+	mock.lockTableAlias.RLock()
 	calls = mock.calls.TableAlias
-	lockDomainEntityMockTableAlias.RUnlock()
+	mock.lockTableAlias.RUnlock()
 	return calls
 }
 
@@ -1269,9 +1266,9 @@ func (mock *DomainEntityMock) TableName() string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockTableName.Lock()
+	mock.lockTableName.Lock()
 	mock.calls.TableName = append(mock.calls.TableName, callInfo)
-	lockDomainEntityMockTableName.Unlock()
+	mock.lockTableName.Unlock()
 	return mock.TableNameFunc()
 }
 
@@ -1282,9 +1279,9 @@ func (mock *DomainEntityMock) TableNameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockTableName.RLock()
+	mock.lockTableName.RLock()
 	calls = mock.calls.TableName
-	lockDomainEntityMockTableName.RUnlock()
+	mock.lockTableName.RUnlock()
 	return calls
 }
 
@@ -1295,9 +1292,9 @@ func (mock *DomainEntityMock) UpdatedAt() *time.Time {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockUpdatedAt.Lock()
+	mock.lockUpdatedAt.Lock()
 	mock.calls.UpdatedAt = append(mock.calls.UpdatedAt, callInfo)
-	lockDomainEntityMockUpdatedAt.Unlock()
+	mock.lockUpdatedAt.Unlock()
 	return mock.UpdatedAtFunc()
 }
 
@@ -1308,9 +1305,9 @@ func (mock *DomainEntityMock) UpdatedAtCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockUpdatedAt.RLock()
+	mock.lockUpdatedAt.RLock()
 	calls = mock.calls.UpdatedAt
-	lockDomainEntityMockUpdatedAt.RUnlock()
+	mock.lockUpdatedAt.RUnlock()
 	return calls
 }
 
@@ -1321,9 +1318,9 @@ func (mock *DomainEntityMock) UpdatedByFirstName() *string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockUpdatedByFirstName.Lock()
+	mock.lockUpdatedByFirstName.Lock()
 	mock.calls.UpdatedByFirstName = append(mock.calls.UpdatedByFirstName, callInfo)
-	lockDomainEntityMockUpdatedByFirstName.Unlock()
+	mock.lockUpdatedByFirstName.Unlock()
 	return mock.UpdatedByFirstNameFunc()
 }
 
@@ -1334,9 +1331,9 @@ func (mock *DomainEntityMock) UpdatedByFirstNameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockUpdatedByFirstName.RLock()
+	mock.lockUpdatedByFirstName.RLock()
 	calls = mock.calls.UpdatedByFirstName
-	lockDomainEntityMockUpdatedByFirstName.RUnlock()
+	mock.lockUpdatedByFirstName.RUnlock()
 	return calls
 }
 
@@ -1347,9 +1344,9 @@ func (mock *DomainEntityMock) UpdatedByID() *string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockUpdatedByID.Lock()
+	mock.lockUpdatedByID.Lock()
 	mock.calls.UpdatedByID = append(mock.calls.UpdatedByID, callInfo)
-	lockDomainEntityMockUpdatedByID.Unlock()
+	mock.lockUpdatedByID.Unlock()
 	return mock.UpdatedByIDFunc()
 }
 
@@ -1360,9 +1357,9 @@ func (mock *DomainEntityMock) UpdatedByIDCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockUpdatedByID.RLock()
+	mock.lockUpdatedByID.RLock()
 	calls = mock.calls.UpdatedByID
-	lockDomainEntityMockUpdatedByID.RUnlock()
+	mock.lockUpdatedByID.RUnlock()
 	return calls
 }
 
@@ -1373,9 +1370,9 @@ func (mock *DomainEntityMock) UpdatedBySurname() *string {
 	}
 	callInfo := struct {
 	}{}
-	lockDomainEntityMockUpdatedBySurname.Lock()
+	mock.lockUpdatedBySurname.Lock()
 	mock.calls.UpdatedBySurname = append(mock.calls.UpdatedBySurname, callInfo)
-	lockDomainEntityMockUpdatedBySurname.Unlock()
+	mock.lockUpdatedBySurname.Unlock()
 	return mock.UpdatedBySurnameFunc()
 }
 
@@ -1386,8 +1383,8 @@ func (mock *DomainEntityMock) UpdatedBySurnameCalls() []struct {
 } {
 	var calls []struct {
 	}
-	lockDomainEntityMockUpdatedBySurname.RLock()
+	mock.lockUpdatedBySurname.RLock()
 	calls = mock.calls.UpdatedBySurname
-	lockDomainEntityMockUpdatedBySurname.RUnlock()
+	mock.lockUpdatedBySurname.RUnlock()
 	return calls
 }
