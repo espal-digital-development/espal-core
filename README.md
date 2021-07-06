@@ -24,8 +24,8 @@ TODO :: Actually go a bit in depth here about the features of the business logic
 
 ## Requirements
 
-- Go 1.14+
-- CockroachDB 20.1+
+- Go 1.16+
+- CockroachDB 21.1.5+
 
 ## Installation
 
