@@ -3,6 +3,7 @@ package filters
 import (
 	"strconv"
 
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -34,7 +35,7 @@ func (f *field) UintValue() (uint, error) {
 	if f.value == "" {
 		return 0, nil
 	}
-	ui64, err := strconv.ParseUint(f.value, 10, 64)
+	ui64, err := strconv.ParseUint(f.value, units.Base10, units.BitWidth64Bit)
 	if err != nil {
 		return 0, errors.Trace(err)
 	}

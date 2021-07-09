@@ -7,7 +7,8 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/espal-digital-development/semver v0.0.0-20201205114412-89534eeac2db
+	github.com/espal-digital-development/semver v0.0.0-20210706103456-b3f0fce8a968
+	github.com/espal-digital-development/system v0.0.0-20210709095725-fc2ca8344570
 	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df
 	github.com/json-iterator/go v1.1.11
 	github.com/juju/errors v0.0.0-20200330140219-3fe23663418f

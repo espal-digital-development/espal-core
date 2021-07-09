@@ -1,12 +1,14 @@
 package filesystem
 
 import (
+	errorsNative "errors"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/espal-digital-development/espal-core/storage"
+	"github.com/espal-digital-development/system/permissions"
 	"github.com/juju/errors"
 )
 
@@ -36,7 +38,7 @@ func (s *FileSystem) Exists(key string) bool {
 // Set stores the value bytes at the given key.
 func (s *FileSystem) Set(key string, value []byte) error {
 	// TODO :: 777 Create all intermediate directories if needed
-	return errors.Trace(ioutil.WriteFile(s.path+key, value, 0600))
+	return errors.Trace(ioutil.WriteFile(s.path+key, value, permissions.UserReadWrite))
 }
 
 // Get fetches the stored bytes for the given key.
@@ -78,7 +80,7 @@ func (s *FileSystem) Iterate(iterator func(key string, value []byte, err error) 
 		}
 		return nil
 	})
-	if err != nil && err != errStopCycling {
+	if err != nil && !errorsNative.Is(err, errStopCycling) {
 		return errors.Trace(err)
 	}
 	return nil

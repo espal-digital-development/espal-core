@@ -2,6 +2,7 @@ package forum
 
 import (
 	"database/sql"
+	errorsNative "errors"
 
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/juju/errors"
@@ -65,7 +66,7 @@ func (s *ForumsStore) GetOneByID(forumID string, language Language) (*Forum, boo
 		Scan(&forum.id, &forum.createdByID, &forum.updatedByID, &forum.createdByFirstName, &forum.createdBySurname,
 			&forum.updatedByFirstName, &forum.updatedBySurname, &nameTranslation, &forum.topicsCount,
 			&forum.postsCount)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		return nil, false, nil
 	}
 	if err != nil {
@@ -95,7 +96,7 @@ func (s *ForumsStore) GetOnePostByID(postID string) (*Post, bool, error) {
 		LIMIT 10
 	`, postID).Scan(&post.id, &post.createdByID, &post.updatedByID, &post.createdByFirstName, &post.createdBySurname,
 		&post.updatedByFirstName, &post.updatedBySurname, &post.sticky, &post.title, &post.message)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return post, false, errors.Trace(err)
 	}
 	return post, true, errors.Trace(err)
@@ -120,7 +121,7 @@ func (s *ForumsStore) GetForParent(parentID string, language Language) (result [
 		rows, err = s.selecterDatabase.Query(getForParentQuery, language.ID(), database.DBTranslationFieldName,
 			parentIDPointer)
 	}
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		err = nil
 		return
 	}
@@ -169,7 +170,7 @@ func (s *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err erro
 		WHERE f."forumID" = $1 AND f."responseToID" IS NULL ORDER BY f."sticky" ASC, f."updatedAt" DESC,
 			f."createdAt" DESC LIMIT 10
 	`, forumID)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		err = nil
 		return
 	}
@@ -206,7 +207,6 @@ func (s *ForumsStore) GetPosts(forumID string) (posts []*Post, ok bool, err erro
 }
 
 // GetPostReplies returns the posted replies for the given Post ID.
-// nolint:nakedret
 func (s *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, err error) {
 	rows, err := s.selecterDatabase.Query(`SELECT f."id", f."createdByID", f."updatedByID", u."firstName",
 			u."surname", uu."firstName" AS fn, uu."surname" AS sn, f."sticky", f."title", f."message"
@@ -214,7 +214,7 @@ func (s *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, e
 		LEFT JOIN "User" u ON u."id" = f."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = f."updatedByID"
 		WHERE f."responseToID" = $1 ORDER BY f."sticky" ASC, f."updatedAt" DESC, f."createdAt" DESC LIMIT 10`, postID)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		err = nil
 		return
 	}
@@ -251,10 +251,10 @@ func (s *ForumsStore) GetPostReplies(postID string) (replies []*Post, ok bool, e
 func (s *ForumsStore) GetForumIDForPostID(postID string) (string, bool, error) {
 	var id string
 	err := s.selecterDatabase.QueryRow(`SELECT "forumID" FROM "ForumPost" WHERE "id" = $1 LIMIT 1`, postID).Scan(&id)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return id, false, errors.Trace(err)
 	}
-	return id, err != sql.ErrNoRows, nil
+	return id, !errorsNative.Is(err, sql.ErrNoRows), nil
 }
 
 // DeleteOneForumPostByID deletes one ForumPost entry based on the given id.

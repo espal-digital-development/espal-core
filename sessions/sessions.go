@@ -14,6 +14,8 @@ import (
 
 var _ Factory = &Sessions{}
 
+const randomSize = 32
+
 // Factory represents an object that can manage session data and logic.
 type Factory interface {
 	SetRememberMe(session Session) *http.Cookie
@@ -48,7 +50,7 @@ func (s *Sessions) SetRememberMe(session Session) *http.Cookie {
 
 // New generates a new internal session and returns it's instance.
 func (s *Sessions) New() (Session, *http.Cookie, error) {
-	random := make([]byte, 32)
+	random := make([]byte, randomSize)
 	if _, err := io.ReadFull(rand.Reader, random); err != nil {
 		return nil, nil, errors.Trace(err)
 	}

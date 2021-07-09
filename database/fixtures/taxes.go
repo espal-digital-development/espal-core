@@ -5,10 +5,13 @@ import (
 	"github.com/juju/errors"
 )
 
-const taxGroupQuery = `INSERT INTO "TaxGroup"("createdByID","active","code") VALUES($1,$2,$3) RETURNING "id"`
-const taxGroupTranslationQuery = `INSERT INTO "TaxGroupTranslation"("createdByID","taxGroupID","language","field",
+const (
+	taxGroupQuery            = `INSERT INTO "TaxGroup"("createdByID","active","code") VALUES($1,$2,$3) RETURNING "id"`
+	taxGroupTranslationQuery = `INSERT INTO "TaxGroupTranslation"("createdByID","taxGroupID","language","field",
 	"value") VALUES($1,$2,$3,$4,$5)`
-const taxQuery = `INSERT INTO "Tax"("createdByID","taxGroupID","country","rate") VALUES($1,$2,$3,$4) RETURNING "id"`
+	taxQuery  = `INSERT INTO "Tax"("createdByID","taxGroupID","country","rate") VALUES($1,$2,$3,$4) RETURNING "id"`
+	vatHighNL = .21
+)
 
 func (f *Fixtures) taxes() error {
 	// TaxGroup
@@ -27,7 +30,7 @@ func (f *Fixtures) taxes() error {
 
 	// Tax
 	if _, err := f.inserterDatabase.Exec(taxQuery, f.mainUserID, f.taxGroupID, f.unitedKingdomCountry.ID(),
-		21.); err != nil {
+		vatHighNL); err != nil {
 		return errors.Trace(err)
 	}
 

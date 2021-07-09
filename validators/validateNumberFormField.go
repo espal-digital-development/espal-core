@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -11,7 +12,7 @@ func (f *Form) validateNumberFormField(field *formField) error {
 	var err error
 	var value float64
 	if len(field.Value()) > 0 {
-		value, err = strconv.ParseFloat(field.Value(), 64)
+		value, err = strconv.ParseFloat(field.Value(), units.BitWidth64Bit)
 		if err != nil {
 			return errors.Trace(err)
 		}

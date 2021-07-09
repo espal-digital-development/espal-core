@@ -2,6 +2,7 @@ package site
 
 import (
 	"database/sql"
+	errorsNative "errors"
 	"sync"
 
 	"github.com/espal-digital-development/espal-core/database"
@@ -81,7 +82,7 @@ func (s *SitesStore) HasUser(siteID string, userID string) (bool, error) {
 	var id string
 	err := s.selecterDatabase.QueryRow(`SELECT "id" FROM "SiteUser" WHERE "siteID" = $1 AND "userID" = $2 LIMIT 1`,
 		siteID, userID).Scan(&id)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return false, errors.Trace(err)
 	}
 	return id != "", nil
@@ -105,11 +106,11 @@ func (s *SitesStore) GetTranslatedName(site *Site, languageID uint16) string {
 	var name string
 	err := s.selecterDatabase.QueryRow(`SELECT "value" FROM "SiteTranslation" WHERE "siteID" = $1 AND "field" = $2
 		AND "language" = $3`, site.ID(), database.DBTranslationFieldName, languageID).Scan(&name)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		s.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
-	if err == sql.ErrNoRows || name == "" {
+	if name == "" || !errorsNative.Is(err, sql.ErrNoRows) {
 		return s.translationsRepository.Singular(languageID, "site") + " " + site.ID()
 	}
 	return name

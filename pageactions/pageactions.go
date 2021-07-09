@@ -2,6 +2,10 @@ package pageactions
 
 var _ Actions = &PageActions{}
 
+const (
+	defaultPageSliceSize = 3
+)
+
 type context interface {
 	HasUserRight(string) bool
 	Translate(string) string
@@ -52,7 +56,7 @@ func (a *PageActions) IsFilled() bool {
 // New returns an instantiated PageActions.
 func New(ctx context, subject string, hasResults bool) *PageActions {
 	return &PageActions{
-		actions:    make([]*pageAction, 0, 3),
+		actions:    make([]*pageAction, 0, defaultPageSliceSize),
 		ctx:        ctx,
 		hasResults: hasResults,
 		subject:    subject,

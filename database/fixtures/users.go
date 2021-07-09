@@ -4,17 +4,22 @@ import (
 	"strconv"
 
 	"github.com/brianvoe/gofakeit"
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 
-const userQuery = `INSERT INTO "User"("createdByID","active","language","firstName","surname","email","password",
+const (
+	userQuery = `INSERT INTO "User"("createdByID","active","language","firstName","surname","email","password",
 	"currencies") VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING "id"`
+	bcryptAverageCost = 12
+	passwordLength    = 32
+)
 
 func (f *Fixtures) users() error {
 	// TODO :: 77777 Generate and print new passwords/emails on-the-fly for security
 	// TODO :: 77777 The choice of making stub data should be a config option? Or a module to prevent dependencies?
-	password, err := bcrypt.GenerateFromPassword([]byte("abc123"), 12)
+	password, err := bcrypt.GenerateFromPassword([]byte("abc123"), bcryptAverageCost)
 	if err != nil {
 		return errors.Trace(err)
 	}
@@ -37,7 +42,7 @@ func (f *Fixtures) users() error {
 	}
 	for i := 1; i <= 1e3; i++ {
 		if _, err := tx.Exec(userQuery, f.mainUserID, true, f.englishLanguage.ID(), gofakeit.FirstName(),
-			gofakeit.LastName(), gofakeit.Email(), gofakeit.Password(true, true, true, true, true, 32),
+			gofakeit.LastName(), gofakeit.Email(), gofakeit.Password(true, true, true, true, true, passwordLength),
 			""); err != nil {
 			return errors.Trace(err)
 		}
@@ -51,7 +56,7 @@ func (f *Fixtures) users() error {
 		if c > 0 {
 			f.userRightsBuffer.WriteString(",")
 		}
-		f.userRightsBuffer.WriteString(strconv.FormatUint(uint64(userRight), 10))
+		f.userRightsBuffer.WriteString(strconv.FormatUint(uint64(userRight), units.Base10))
 		c++
 	}
 

@@ -3,14 +3,17 @@ package filters
 import (
 	"bytes"
 	"database/sql"
+	"errors"
 	"strconv"
 
 	"github.com/espal-digital-development/espal-core/database"
+	"github.com/espal-digital-development/system/units"
 )
 
 const (
 	maxPaginationBarPages   = 7
 	paginationLeftTreshHold = 4
+	pageBufferRight         = 3
 )
 
 // Model represents a database meta object.
@@ -171,7 +174,7 @@ func (f *filter) PaginationBlocks() []uint {
 		// [ 1 2 3 4 5 . 9 ] (. (or ...) will be indicated as 0)
 		return []uint{1, 2, 3, 4, 5, 0, f.totalPages}
 	}
-	if f.CurrentPage() >= (f.TotalPages() - 3) {
+	if f.CurrentPage() >= (f.TotalPages() - pageBufferRight) {
 		// [ 1 . 5 6 7 8 9 ]
 		blocks = append(blocks, 1)
 		blocks = append(blocks, 0)
@@ -222,15 +225,15 @@ func (f *filter) sort() {
 func (f *filter) pagination() {
 	if f.limit > 0 {
 		f.query.WriteString(" LIMIT ")
-		f.query.WriteString(strconv.FormatUint(uint64(f.limit), 10))
+		f.query.WriteString(strconv.FormatUint(uint64(f.limit), units.Base10))
 		if f.offset > 0 {
 			f.query.WriteString(" OFFSET ")
-			f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10))
+			f.query.WriteString(strconv.FormatUint(uint64(f.offset), units.Base10))
 		}
 	}
 	if f.limit == 0 && f.offset > 0 {
 		f.query.WriteString(" OFFSET ")
-		f.query.WriteString(strconv.FormatUint(uint64(f.offset), 10))
+		f.query.WriteString(strconv.FormatUint(uint64(f.offset), units.Base10))
 	}
 }
 
@@ -246,7 +249,7 @@ func (f *filter) HasResults() bool {
 
 // HasError returns if there was an error while running the query.
 func (f *filter) HasError() bool {
-	return f.rowsError != nil && sql.ErrNoRows != f.rowsError
+	return f.rowsError != nil && !errors.Is(sql.ErrNoRows, f.rowsError)
 }
 
 // Limit returns the set result limit.

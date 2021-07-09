@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -60,7 +61,7 @@ func (f *Form) validateDateFormField(field *formField) error {
 				if len(parts[0]) != yearStringLength {
 					yearError = true
 				} else {
-					year, err = strconv.ParseUint(field.Value(), 10, 64)
+					year, err = strconv.ParseUint(field.Value(), units.Base10, units.BitWidth64Bit)
 					if err != nil || (uint(year) <= field.MinYear()) || (field.MaxYear() > 0 && uint(year) > field.MaxYear()) {
 						yearError = true
 					}
@@ -77,7 +78,7 @@ func (f *Form) validateDateFormField(field *formField) error {
 				if len(parts[partKey]) != monthStringLength {
 					monthError = true
 				} else {
-					month, err = strconv.ParseUint(field.Value(), 10, 64)
+					month, err = strconv.ParseUint(field.Value(), units.Base10, units.BitWidth64Bit)
 					if err != nil || month > monthsInYear || (uint(month) <= field.MinMonth()) ||
 						(field.MaxMonth() > 0 && uint(month) > field.MaxMonth()) {
 						monthError = true
@@ -96,7 +97,7 @@ func (f *Form) validateDateFormField(field *formField) error {
 				if len(parts[partKey]) != dayStringLength {
 					dayError = true
 				} else {
-					day, err = strconv.ParseUint(field.Value(), 10, 64)
+					day, err = strconv.ParseUint(field.Value(), units.Base10, units.BitWidth64Bit)
 					if err != nil || day > 31 {
 						dayError = true
 					} else if !yearError && !monthError && day > 0 {

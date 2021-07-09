@@ -2,9 +2,11 @@ package adminmenu
 
 import (
 	"database/sql"
+	errorsNative "errors"
 	"strconv"
 	"strings"
 
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -81,7 +83,7 @@ func (m *AdminMenu) GenerateAdminMenuStructure(userID string, localeID uint16) (
 	rows, err := m.selecterDatabase.Query(`SELECT ug."userRights" FROM "UserGroup" ug
 		JOIN "UserGroupUser" uu ON uu."userGroupID" = ug."id" AND uu."userID" = $1
 		WHERE ug."userRights" != ''`, userID)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return nil, errors.Trace(err)
 	}
 
@@ -98,7 +100,7 @@ func (m *AdminMenu) GenerateAdminMenuStructure(userID string, localeID uint16) (
 		splitRights := strings.Split(userRights, ",")
 
 		for k := range splitRights {
-			rightNumber, err := strconv.ParseUint(splitRights[k], 10, 16)
+			rightNumber, err := strconv.ParseUint(splitRights[k], units.Base10, units.BitWidth16Bit)
 			if err != nil {
 				return nil, errors.Trace(err)
 			}

@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -18,14 +19,14 @@ import (
 // s = Search (LIKE %Word%).
 func (f *filter) Process() error {
 	// TODO :: Handle posted data when send (still to do; `o`, `c` & `s`)
-	resultsPerPage, err := strconv.ParseUint(f.queryReader.QueryValue("r"), 10, 64)
+	resultsPerPage, err := strconv.ParseUint(f.queryReader.QueryValue("r"), units.Base10, units.BitWidth64Bit)
 	if err != nil {
 		resultsPerPage = 0
 	}
 	if resultsPerPage > 0 {
 		f.limit = uint(resultsPerPage)
 	}
-	page, err := strconv.ParseUint(f.queryReader.QueryValue("p"), 10, 64)
+	page, err := strconv.ParseUint(f.queryReader.QueryValue("p"), units.Base10, units.BitWidth64Bit)
 	if err != nil {
 		page = 0
 	}

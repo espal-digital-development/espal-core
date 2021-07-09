@@ -8,12 +8,14 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/espal-digital-development/system/permissions"
 	"github.com/juju/errors"
 )
 
 const (
-	gifsicleMinLossy = 1
-	gifsicleMaxLossy = 100
+	gifsicleDefaultOptimizationLevel = 3
+	gifsicleMinLossy                 = 1
+	gifsicleMaxLossy                 = 100
 )
 
 func (o *Optimizer) gifsicle(data []byte, optimizationLevel int, lossy int) ([]byte, error) {
@@ -21,7 +23,7 @@ func (o *Optimizer) gifsicle(data []byte, optimizationLevel int, lossy int) ([]b
 		return nil, errors.Errorf("lossy has to be between %d and %d", gifsicleMinLossy, gifsicleMaxLossy)
 	}
 	tmpFile := strings.TrimSuffix(os.TempDir(), "/") + "/gifsicle.tmp.gif"
-	if err := ioutil.WriteFile(tmpFile, data, 0600); err != nil {
+	if err := ioutil.WriteFile(tmpFile, data, permissions.UserReadWrite); err != nil {
 		return nil, errors.Trace(err)
 	}
 	oParam := "-O" + strconv.Itoa(optimizationLevel)

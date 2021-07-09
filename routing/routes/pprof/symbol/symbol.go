@@ -10,6 +10,7 @@ import (
 	"strconv"
 
 	"github.com/espal-digital-development/espal-core/routing/router/contexts"
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -32,7 +33,7 @@ func (r *Route) Handle(context contexts.Context) {
 		if err == nil {
 			word = word[0 : len(word)-1]
 		}
-		pc, err := strconv.ParseUint(string(word), 0, 64)
+		pc, err := strconv.ParseUint(string(word), units.Base10, units.BitWidth64Bit)
 		if err != nil {
 			pc = 0
 		}

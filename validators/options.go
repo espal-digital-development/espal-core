@@ -3,6 +3,8 @@ package validators
 import (
 	"sort"
 	"strconv"
+
+	"github.com/espal-digital-development/system/units"
 )
 
 type options []ChoiceOption
@@ -30,7 +32,7 @@ func (v *Validators) GetCountryOptionsForLanguage(language language) []ChoiceOpt
 		options = make([]ChoiceOption, 0, len(entries))
 		for k := range entries {
 			options = append(options, &choiceOption{
-				value:   strconv.FormatUint(uint64(entries[k].ID()), 10),
+				value:   strconv.FormatUint(uint64(entries[k].ID()), units.Base10),
 				display: entries[k].Translate(language.ID()),
 			})
 		}
@@ -48,7 +50,7 @@ func (v *Validators) GetLanguageOptionsForLanguage(language language) []ChoiceOp
 		options = make([]ChoiceOption, 0, len(entries))
 		for k := range entries {
 			options = append(options, &choiceOption{
-				value:   strconv.FormatUint(uint64(entries[k].ID()), 10),
+				value:   strconv.FormatUint(uint64(entries[k].ID()), units.Base10),
 				display: entries[k].Translate(language.ID()),
 			})
 		}
@@ -66,7 +68,7 @@ func (v *Validators) GetCurrencyOptionsForLanguage(language language) []ChoiceOp
 		options = make([]ChoiceOption, 0, len(entries))
 		for k := range entries {
 			options = append(options, &choiceOption{
-				value:   strconv.FormatUint(uint64(entries[k].ID()), 10),
+				value:   strconv.FormatUint(uint64(entries[k].ID()), units.Base10),
 				display: entries[k].Translate(language.ID()) + " (" + entries[k].Symbol() + ")",
 			})
 		}

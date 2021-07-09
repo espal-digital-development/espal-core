@@ -28,12 +28,12 @@ func (o *Optimizer) ForMIMEType(data []byte, mimeType string) (newData []byte, c
 		if !o.configService.OptimizeJpegs() {
 			return nil, false, nil
 		}
-		newData, err = o.jpegOptim(data, 100)
+		newData, err = o.jpegOptim(data, jpegOptimMaxQuality)
 	case "image/gif":
 		if !o.configService.OptimizeGifs() {
 			return nil, false, nil
 		}
-		newData, err = o.gifsicle(data, 3, 100)
+		newData, err = o.gifsicle(data, gifsicleDefaultOptimizationLevel, gifsicleMaxLossy)
 	case "image/svg+xml":
 		if !o.configService.OptimizeSvgs() {
 			return nil, false, nil

@@ -13,6 +13,8 @@ import (
 
 var _ Set = &Migrations{}
 
+const migrationDirectorySplitLimit = 2
+
 // Set represents a collection of database migrations.
 type Set interface {
 	Run() error
@@ -94,7 +96,7 @@ func (m *Migrations) TotalMigrations() uint {
 	sort.Strings(allFiles)
 	for k := range allFiles {
 		file := allFiles[k]
-		directory := strings.SplitN(strings.TrimPrefix(file, "_data/"), "/", 2)[0]
+		directory := strings.SplitN(strings.TrimPrefix(file, "_data/"), "/", migrationDirectorySplitLimit)[0]
 		directories[directory] = true
 	}
 	return uint(len(directories))
@@ -120,7 +122,7 @@ func (m *Migrations) migrationsToRun() ([]string, error) {
 	sort.Strings(allFiles)
 	for k := range allFiles {
 		file := allFiles[k]
-		directory := strings.SplitN(strings.TrimPrefix(file, "_data/"), "/", 2)[0]
+		directory := strings.SplitN(strings.TrimPrefix(file, "_data/"), "/", migrationDirectorySplitLimit)[0]
 		directories[directory] = true
 	}
 

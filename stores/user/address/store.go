@@ -2,6 +2,7 @@ package address
 
 import (
 	"database/sql"
+	errorsNative "errors"
 
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/queryhelper"
@@ -30,7 +31,7 @@ func (s *AddressesStore) ForUser(userID string) (result []*Address, ok bool, err
 		LEFT JOIN "User" cu ON cu."id" = u."createdByID"
 		LEFT JOIN "User" uu ON uu."id" = u."updatedByID"
 		WHERE u."userID" = $1`, userID)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		err = nil
 		return
 	}

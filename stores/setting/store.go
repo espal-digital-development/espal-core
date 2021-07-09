@@ -2,6 +2,7 @@ package setting
 
 import (
 	"database/sql"
+	errorsNative "errors"
 	"sync"
 
 	"github.com/espal-digital-development/espal-core/database"
@@ -43,7 +44,7 @@ func (s *SettingsStore) GetOneForSite(key uint16, userID string, domainID string
 		err = s.selecterDatabase.QueryRow(`SELECT "value" FROM "Setting" WHERE "key" = $1 AND ("userID" = $2
 		OR "domainID" = $3 OR "siteID" = $4) ORDER BY "userID", "domainID", "siteID" LIMIT 1`,
 			key, userID, domainID, siteID).Scan(&value)
-		if err != nil && err != sql.ErrNoRows {
+		if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 			return "", errors.Trace(err)
 		}
 	}
@@ -66,7 +67,7 @@ func (s *SettingsStore) getOneForSiteWithoutUser(key uint16, domainID string, si
 	err := s.selecterDatabase.QueryRow(`SELECT "value" FROM "Setting" WHERE "key" = $1 AND ("domainID" = $2
 		OR "siteID" = $3) ORDER BY "domainID", "siteID" LIMIT 1`,
 		key, domainID, siteID).Scan(&value)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return "", errors.Trace(err)
 	}
 	return value, nil

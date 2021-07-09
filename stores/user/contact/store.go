@@ -2,6 +2,7 @@ package contact
 
 import (
 	"database/sql"
+	errorsNative "errors"
 
 	"github.com/espal-digital-development/espal-core/database"
 	"github.com/espal-digital-development/espal-core/database/queryhelper"
@@ -77,7 +78,7 @@ func (s *ContactsStore) ForUser(userID string) (result []*Contact, ok bool, err 
 		LEFT JOIN "User" uu ON uu."id" = u."updatedByID"
 		WHERE u."userID" = $1
 		ORDER BY u."sorting"`, userID)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		err = nil
 		return
 	}

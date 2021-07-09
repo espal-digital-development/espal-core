@@ -1,6 +1,7 @@
 package contexts
 
 import (
+	errorsNative "errors"
 	"net/http"
 	"strings"
 
@@ -58,7 +59,7 @@ func (c *HTTPContext) getSession() (sessions.Session, bool, error) {
 		return c.session, true, nil
 	}
 	cookie, err := c.request.Cookie(c.configService.SessionCookieName())
-	if err == http.ErrNoCookie {
+	if errorsNative.Is(err, http.ErrNoCookie) {
 		return nil, false, nil
 	}
 	var ok bool

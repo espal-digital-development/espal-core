@@ -2,6 +2,7 @@ package user
 
 import (
 	"database/sql"
+	errorsNative "errors"
 	"fmt"
 	"strings"
 
@@ -130,7 +131,7 @@ func (s *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, b
 	user := newUser()
 	err := s.selecterDatabase.QueryRow(s.queries["GetOneIDAndPasswordForActiveByEmail"], email).
 		Scan(&user.id, &user.password)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		return nil, false, nil
 	}
 	if err != nil {
@@ -143,7 +144,7 @@ func (s *UsersStore) GetOneIDAndPasswordForActiveByEmail(email string) (*User, b
 func (s *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error) {
 	var id string
 	err := s.selecterDatabase.QueryRow(s.queries["GetOneIDForActivationHash"], hash).Scan(&id)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		return "", false, nil
 	}
 	if err != nil {
@@ -156,10 +157,10 @@ func (s *UsersStore) GetOneIDForActivationHash(hash string) (string, bool, error
 func (s *UsersStore) ExistsByEmail(email string) (bool, error) {
 	var exists bool
 	err := s.selecterDatabase.QueryRow(s.queries["ExistsByEmail"], email).Scan(&exists)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && errorsNative.Is(err, sql.ErrNoRows) {
 		return false, errors.Trace(err)
 	}
-	if err == sql.ErrNoRows || !exists {
+	if !exists || errorsNative.Is(err, sql.ErrNoRows) {
 		return false, nil
 	}
 	return true, nil
@@ -189,10 +190,10 @@ func (s *UsersStore) Activate(id string) error {
 func (s *UsersStore) GetAvatar(id string) (*string, bool, error) {
 	var avatar *string
 	err := s.selecterDatabase.QueryRow(s.queries["GetAvatar"], id).Scan(&avatar)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return nil, false, errors.Trace(err)
 	}
-	if err == sql.ErrNoRows || avatar == nil {
+	if avatar == nil || errorsNative.Is(err, sql.ErrNoRows) {
 		return nil, false, nil
 	}
 	return avatar, true, nil
@@ -269,7 +270,7 @@ func (s *UsersStore) HasUserRight(userEntity UserEntity, userRightName string) (
 
 	var hasUserRight uint8
 	err = s.selecterDatabase.QueryRow(s.queries["HasUserRight"], userRight, userEntity.ID()).Scan(&hasUserRight)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		return false, errors.Trace(err)
 	}
 

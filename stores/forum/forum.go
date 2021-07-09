@@ -3,6 +3,8 @@ package forum
 import (
 	"strconv"
 	"time"
+
+	"github.com/espal-digital-development/system/units"
 )
 
 // nolint:deadcode,unused
@@ -47,10 +49,10 @@ func (f *Forum) TableAlias() string {
 
 // TopicsCountAsString returns the model's TopicsCount as a string.
 func (f *Forum) TopicsCountAsString() string {
-	return strconv.FormatUint(uint64(f.topicsCount), 10)
+	return strconv.FormatUint(uint64(f.topicsCount), units.Base10)
 }
 
 // PostsCountAsString returns the model's PostsCount as a string.
 func (f *Forum) PostsCountAsString() string {
-	return strconv.FormatUint(uint64(f.postsCount), 10)
+	return strconv.FormatUint(uint64(f.postsCount), units.Base10)
 }

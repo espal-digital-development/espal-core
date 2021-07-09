@@ -2,6 +2,7 @@ package group
 
 import (
 	"database/sql"
+	errorsNative "errors"
 	"strings"
 
 	"github.com/espal-digital-development/espal-core/database"
@@ -130,11 +131,11 @@ func (s *GroupsStore) Name(userGroup *Group, languageID uint16) string {
 	err := s.selecterDatabase.QueryRow(
 		`SELECT "value" FROM "UserGroupTranslation" WHERE "userGroupID" = $1 AND "field" = $2 AND "language" = $3`,
 		userGroup.ID(), database.DBTranslationFieldName, languageID).Scan(&name)
-	if err != nil && err != sql.ErrNoRows {
+	if err != nil && !errorsNative.Is(err, sql.ErrNoRows) {
 		s.loggerService.Error(errors.ErrorStack(err))
 		return ""
 	}
-	if err == sql.ErrNoRows || name == "" {
+	if errorsNative.Is(err, sql.ErrNoRows) || name == "" {
 		return s.translationsRepository.Singular(languageID, "userGroup") + " " + userGroup.ID()
 	}
 	return name
@@ -147,7 +148,7 @@ func (s *GroupsStore) TranslationsForID(userGroupID string) (translations []*Tra
 		FROM "UserGroupTranslation" ugt
 		LEFT JOIN "UserGroup" ug ON ugt."userGroupID" = ug."id"
 		WHERE ugt."userGroupID" = $1`, userGroupID)
-	if err == sql.ErrNoRows {
+	if errorsNative.Is(err, sql.ErrNoRows) {
 		err = nil
 		return
 	}

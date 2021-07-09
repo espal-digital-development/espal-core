@@ -4,6 +4,8 @@ import (
 	"io"
 	"strconv"
 	"strings"
+
+	"github.com/espal-digital-development/system/units"
 )
 
 // RenderOverviewFilter will render the filter actions of an admin module overview page.
@@ -13,7 +15,7 @@ func (f *filter) RenderOverviewFilter(ctx Context) string {
 	out.WriteString(`<div class="filter">`)
 
 	out.WriteString(`<div class="filterInfo">`)
-	out.WriteString(strconv.FormatUint(uint64(f.totalResults), 10))
+	out.WriteString(strconv.FormatUint(uint64(f.totalResults), units.Base10))
 	out.WriteString(` `)
 	if f.totalResults == 1 {
 		out.WriteString(ctx.Translate("result"))
@@ -52,13 +54,13 @@ func (f *filter) renderPagination(out io.StringWriter) {
 	out.WriteString(`<select>`)
 	for _, r := range []uint{5, 10, 25, 50, 100} {
 		out.WriteString(`<option value="`)
-		out.WriteString(strconv.FormatUint(uint64(r), 10))
+		out.WriteString(strconv.FormatUint(uint64(r), units.Base10))
 		out.WriteString(`"`)
 		if r == f.limit {
 			out.WriteString(` selected`)
 		}
 		out.WriteString(`>`)
-		out.WriteString(strconv.FormatUint(uint64(r), 10))
+		out.WriteString(strconv.FormatUint(uint64(r), units.Base10))
 		out.WriteString(`</option>`)
 	}
 	out.WriteString(`</select>`)
@@ -78,7 +80,7 @@ func (f *filter) renderPagination(out io.StringWriter) {
 		if page == 0 {
 			out.WriteString(`...`)
 		} else {
-			out.WriteString(strconv.FormatUint(uint64(page), 10))
+			out.WriteString(strconv.FormatUint(uint64(page), units.Base10))
 		}
 		out.WriteString(`</p>`)
 	}

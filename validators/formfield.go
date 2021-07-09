@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/espal-digital-development/espal-core/storage"
+	"github.com/espal-digital-development/system/units"
 	"github.com/juju/errors"
 )
 
@@ -433,7 +434,7 @@ func (f *formField) ValueAsBool() bool {
 
 // ValueAsUint converts the string-value and returns it as uint.
 func (f *formField) ValueAsUint() uint {
-	i, err := strconv.ParseUint(f.value, 10, 64)
+	i, err := strconv.ParseUint(f.value, units.Base10, units.BitWidth64Bit)
 	if err != nil {
 		return 0
 	}
@@ -442,7 +443,7 @@ func (f *formField) ValueAsUint() uint {
 
 // ValueAsUint16 converts the string-value and returns it as uint16.
 func (f *formField) ValueAsUint16() uint16 {
-	i, err := strconv.ParseUint(f.value, 10, 16)
+	i, err := strconv.ParseUint(f.value, units.Base10, units.BitWidth16Bit)
 	if err != nil {
 		return 0
 	}
